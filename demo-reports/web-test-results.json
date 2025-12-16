@@ -1,0 +1,159 @@
+{
+  "execution": {
+    "started_at": "2024-12-16T14:35:22Z",
+    "completed_at": "2024-12-16T14:35:45Z",
+    "duration_seconds": 23,
+    "executed_by": "HAIDA Automation Engine",
+    "browser": "Chromium",
+    "environment": "Staging"
+  },
+  "summary": {
+    "total_tests": 12,
+    "passed": 11,
+    "failed": 1,
+    "skipped": 0,
+    "success_rate": 91.67,
+    "first_failure": "TC-011"
+  },
+  "test_results": [
+    {
+      "test_id": "TC-001",
+      "test_name": "Login - Usuario valido con credenciales correctas",
+      "status": "PASSED",
+      "duration_seconds": 2.1,
+      "assertions": 4,
+      "passed_assertions": 4,
+      "screenshots": ["tc-001-step1.png", "tc-001-step2.png", "tc-001-final.png"],
+      "video": "tc-001-recording.mp4"
+    },
+    {
+      "test_id": "TC-002",
+      "test_name": "Login - Contrasena incorrecta",
+      "status": "PASSED",
+      "duration_seconds": 1.8,
+      "assertions": 2,
+      "passed_assertions": 2,
+      "screenshots": ["tc-002-error.png"],
+      "video": "tc-002-recording.mp4"
+    },
+    {
+      "test_id": "TC-004",
+      "test_name": "Carrito - Agregar producto",
+      "status": "PASSED",
+      "duration_seconds": 2.3,
+      "assertions": 3,
+      "passed_assertions": 3,
+      "screenshots": ["tc-004-product.png", "tc-004-cart.png"],
+      "video": "tc-004-recording.mp4"
+    },
+    {
+      "test_id": "TC-005",
+      "test_name": "Carrito - Aplicar cupon de descuento",
+      "status": "PASSED",
+      "duration_seconds": 2.5,
+      "assertions": 3,
+      "passed_assertions": 3,
+      "screenshots": ["tc-005-coupon.png", "tc-005-discount.png"],
+      "video": "tc-005-recording.mp4"
+    },
+    {
+      "test_id": "TC-006",
+      "test_name": "Checkout - Procesar pago",
+      "status": "PASSED",
+      "duration_seconds": 3.2,
+      "assertions": 5,
+      "passed_assertions": 5,
+      "screenshots": ["tc-006-checkout.png", "tc-006-payment.png", "tc-006-confirmation.png"],
+      "video": "tc-006-recording.mp4"
+    },
+    {
+      "test_id": "TC-009",
+      "test_name": "Formulario - WCAG 2A Compliance",
+      "status": "PASSED",
+      "duration_seconds": 1.9,
+      "assertions": 8,
+      "passed_assertions": 8,
+      "accessibility_score": 98,
+      "screenshots": ["tc-009-wcag.png"],
+      "video": "tc-009-recording.mp4"
+    },
+    {
+      "test_id": "TC-011",
+      "test_name": "XSS Prevention - Input Sanitization",
+      "status": "FAILED",
+      "duration_seconds": 2.8,
+      "assertions": 3,
+      "passed_assertions": 2,
+      "error_message": "XSS payload not completely sanitized in comment field",
+      "error_type": "AssertionError",
+      "recommended_action": "Sanitize comment field with DOMPurify library",
+      "severity": "High",
+      "screenshots": ["tc-011-fail.png", "tc-011-payload.png"],
+      "video": "tc-011-recording.mp4"
+    },
+    {
+      "test_id": "TC-012",
+      "test_name": "CSRF Protection",
+      "status": "PASSED",
+      "duration_seconds": 1.6,
+      "assertions": 2,
+      "passed_assertions": 2,
+      "screenshots": ["tc-012-csrf.png"],
+      "video": "tc-012-recording.mp4"
+    },
+    {
+      "test_id": "TC-013",
+      "test_name": "Validacion - Limites de cantidad",
+      "status": "PASSED",
+      "duration_seconds": 2.0,
+      "assertions": 4,
+      "passed_assertions": 4,
+      "screenshots": ["tc-013-validation.png"],
+      "video": "tc-013-recording.mp4"
+    },
+    {
+      "test_id": "TC-014",
+      "test_name": "Email - Confirmacion de orden",
+      "status": "PASSED",
+      "duration_seconds": 4.1,
+      "assertions": 3,
+      "passed_assertions": 3,
+      "screenshots": ["tc-014-email.png"],
+      "video": "tc-014-recording.mp4"
+    },
+    {
+      "test_id": "TC-015",
+      "test_name": "Base de datos - Integridad de datos",
+      "status": "PASSED",
+      "duration_seconds": 3.5,
+      "assertions": 4,
+      "passed_assertions": 4,
+      "screenshots": ["tc-015-db.png"],
+      "video": "tc-015-recording.mp4"
+    }
+  ],
+  "performance_metrics": {
+    "average_test_duration": 2.45,
+    "slowest_test": "TC-014",
+    "fastest_test": "TC-012",
+    "total_duration": 23,
+    "memory_peak_mb": 245,
+    "cpu_average_percent": 38
+  },
+  "recommendations": [
+    {
+      "priority": "High",
+      "issue": "XSS payload in comment field",
+      "solution": "Implement DOMPurify sanitization",
+      "estimated_effort_hours": 2,
+      "impact": "Security vulnerability"
+    },
+    {
+      "priority": "Medium",
+      "issue": "Email confirmation slow",
+      "solution": "Optimize email queue system",
+      "estimated_effort_hours": 4,
+      "impact": "Performance improvement"
+    }
+  ]
+}

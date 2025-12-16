@@ -1,0 +1,31 @@
+{
+  "name": "qa-starter-kit",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "@playwright/test": "^1.48.0",
+    "allure-commandline": "^2.24.0",
+    "allure-playwright": "^2.0.0",
+    "axe-core": "^4.9.0",
+    "dotenv": "^16.4.5",
+    "lighthouse": "^12.0.0",
+    "newman": "^6.0.0",
+    "rimraf": "^5.0.0"
+  },
+  "scripts": {
+    "test:web": "playwright test",
+    "test:web:ui": "playwright test --ui",
+    "test:api": "newman run tests/api/collection.json --reporters cli,junit --reporter-junit-export reports/newman/results.xml",
+    "lighthouse": "lighthouse $BASE_URL --quiet --chrome-flags=\"--headless=new\" --output html --output json --output-path reports/lighthouse",
+    "test:perf": "k6 run tests/perf/k6-smoke.js",
+    "report": "playwright show-report",
+    "allure:clean": "rimraf reports/allure-report reports/allure-results || true",
+    "allure:generate": "allure generate reports/allure-results -o reports/allure-report --clean",
+    "allure:open": "allure open reports/allure-report"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.88.0",
+    "pg": "^8.16.3"
+  }
+}

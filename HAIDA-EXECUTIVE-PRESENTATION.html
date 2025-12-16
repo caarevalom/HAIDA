@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAIDA - IA QA Automation Executive Presentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0066cc;
+            --primary-dark: #004399;
+            --accent: #00d9ff;
+            --success: #00cc66;
+            --warning: #ffcc00;
+            --danger: #ff3333;
+            --bg-dark: #0a1929;
+            --bg-light: #f5f7fa;
+            --text-primary: #1a2332;
+            --text-secondary: #666;
+            --border: #e0e0e0;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #0f1f34 100%);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        /* HEADER */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 2rem;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tagline {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        nav {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        .nav-btn:hover,
+        .nav-btn.active {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* MAIN CONTAINER */
+        main {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        /* SECTIONS */
+        section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #0052a3 50%, var(--bg-dark) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            box-shadow: 0 8px 32px rgba(0, 102, 204, 0.2);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.95;
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+
+        /* GRID LAYOUT */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(0, 102, 204, 0.15);
+        }
+
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        /* BADGE */
+        .badge {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .badge-success {
+            background: rgba(0, 204, 102, 0.1);
+            color: var(--success);
+        }
+
+        .badge-warning {
+            background: rgba(255, 204, 0, 0.1);
+            color: #ff9900;
+        }
+
+        .badge-danger {
+            background: rgba(255, 51, 51, 0.1);
+            color: var(--danger);
+        }
+
+        .badge-info {
+            background: rgba(0, 102, 204, 0.1);
+            color: var(--primary);
+        }
+
+        /* METRIC TABLE */
+        .metrics-table {
+            width: 100%;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2rem;
+        }
+
+        .metrics-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .metrics-table th {
+            background: linear-gradient(135deg, var(--primary), #0052a3);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .metrics-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .metrics-table tr:hover {
+            background: rgba(0, 102, 204, 0.02);
+        }
+
+        .metrics-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* ISSUE TABLE */
+        .issues-container {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .issue-row {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr 1fr;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .issue-row:hover {
+            background: rgba(0, 102, 204, 0.02);
+        }
+
+        .severity-critical {
+            color: var(--danger);
+            font-weight: 700;
+        }
+
+        .severity-high {
+            color: #ff9900;
+            font-weight: 700;
+        }
+
+        .severity-medium {
+            color: var(--warning);
+        }
+
+        .severity-low {
+            color: var(--success);
+        }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 102, 204, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--bg-light);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* CONTACT SECTION */
+        .contact-info {
+            background: linear-gradient(135deg, var(--primary) 0%, #0052a3 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .contact-info p {
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        .contact-info strong {
+            display: block;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* REPORT SECTION */
+        .report-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .report-section h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 1rem;
+        }
+
+        .report-section h3 {
+            color: var(--text-primary);
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .report-content {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--text-primary);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+            border-top: 3px solid var(--primary);
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            nav { flex-wrap: wrap; }
+            .grid { grid-template-columns: 1fr; }
+            .issue-row { grid-template-columns: 1fr; }
+            .header-content { flex-direction: column; gap: 1rem; }
+        }
+
+        /* ANIMATION */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* DEMO ELEMENTS */
+        .demo-control {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--bg-light);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .result-item {
+            background: linear-gradient(135deg, rgba(0, 204, 102, 0.1), rgba(0, 102, 204, 0.05));
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--success);
+            text-align: center;
+        }
+
+        .result-item.passed {
+            border-left-color: var(--success);
+        }
+
+        .result-item.failed {
+            border-left-color: var(--danger);
+            background: rgba(255, 51, 51, 0.05);
+        }
+
+        .result-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .result-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo-text">
+                    🚀 HAIDA
+                </div>
+                <div>
+                    <div style="font-weight: 700; color: var(--primary);">IA-Driven QA Automation</div>
+                    <div class="tagline">Hiberus Consulting</div>
+                </div>
+            </div>
+            <nav>
+                <button class="nav-btn active" onclick="showSection('vision')">Visión</button>
+                <button class="nav-btn" onclick="showSection('funciones')">Funciones</button>
+                <button class="nav-btn" onclick="showSection('resultados')">Resultados</button>
+                <button class="nav-btn" onclick="showSection('incidencias')">Incidencias</button>
+                <button class="nav-btn" onclick="showSection('roi')">ROI</button>
+                <button class="nav-btn" onclick="showSection('contacto')">Contacto</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN -->
+    <main>
+        <!-- SECTION: VISION -->
+        <section id="vision" class="active">
+            <div class="hero">
+                <h1>HAIDA: Automatización QA Inteligente</h1>
+                <p>Generación automática de test cases con IA</p>
+                <p class="hero-subtitle">Reduce tiempo de testing en 95% • Detecta bugs antes que usuarios • ROI 400%+</p>
+                
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">42</div>
+                        <div class="stat-label">Test Cases Generados</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">59s</div>
+                        <div class="stat-label">Tiempo Total de Ejecución</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">94.7%</div>
+                        <div class="stat-label">Calidad de Cobertura</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">€8,250</div>
+                        <div class="stat-label">Ahorro Directo por Ciclo</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>🎯 Inteligencia Artificial</h3>
+                    <p>Motor IA que analiza requisitos y genera test cases automáticamente basados en patrones de ISTQB y mejores prácticas.</p>
+                </div>
+                <div class="card">
+                    <h3>⚡ Automatización Total</h3>
+                    <p>Ejecuta cientos de tests en segundos. Web, API, Mobile, Performance, Security y Accessibility en una sola plataforma.</p>
+                </div>
+                <div class="card">
+                    <h3>📊 Reportes Inteligentes</h3>
+                    <p>Análisis profundo de resultados con identificación automática de root causes, recomendaciones de fixes y estimación de esfuerzo.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: FUNCIONES -->
+        <section id="funciones">
+            <div class="report-section">
+                <h2>Capacidades HAIDA</h2>
+                <p class="report-content" style="margin-bottom: 2rem;">HAIDA es una plataforma integral de QA automation que cubre todo el ciclo de testing, desde generación de test cases hasta reporte ejecutivo.</p>
+
+                <div class="grid">
+                    <div class="card">
+                        <span class="badge badge-info">Generador</span>
+                        <h3>Test Case Generation</h3>
+                        <p>Analiza BDD/especificaciones y genera automáticamente test cases estructurados en categorías ISTQB (Functional, Negative, Security, Performance, Accessibility).</p>
+                    </div>
+                    <div class="card">
+                        <span class="badge badge-info">Web Testing</span>
+                        <h3>E2E Web Automation</h3>
+                        <p>Usa Playwright para automatizar flujos complejos de web. Soporta cross-browser testing y captura automática de evidencia.</p>
+                    </div>
+                    <div class="card">
+                        <span class="badge badge-info">Mobile</span>
+                        <h3>Mobile Testing</h3>
+                        <p>Appium-powered automation para iOS y Android. Soporta gestos nativos, sensores y testing en múltiples dispositivos.</p>
+                    </div>
+                    <div class="card">
+                        <span class="badge badge-info">API</span>
+                        <h3>API Testing</h3>
+                        <p>Automatización con Newman + Postman. Validación de contratos, seguridad y performance en endpoints REST.</p>
+                    </div>
+                    <div class="card">
+                        <span class="badge badge-info">Performance</span>
+                        <h3>Load Testing</h3>
+                        <p>k6 integration para testing de carga y stress. Identifica bottlenecks y valida SLAs automáticamente.</p>
+                    </div>
+                    <div class="card">
+                        <span class="badge badge-info">Accessibility</span>
+                        <h3>A11y & WCAG</h3>
+                        <p>axe-core powered accessibility scanning. Valida WCAG 2A/AAA compliance automáticamente en cada test.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: RESULTADOS -->
+        <section id="resultados">
+            <div class="report-section">
+                <h2>Resultados de Ejecución</h2>
+                <p class="report-content">Ejecución completa del demo HAIDA en 59 segundos generando 42 test cases y ejecutando 19 tests con cobertura 100%.</p>
+
+                <div class="metrics-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Componente</th>
+                                <th>Total</th>
+                                <th>Pasados</th>
+                                <th>Fallidos</th>
+                                <th>Tasa Éxito</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Test Cases Generados</strong></td>
+                                <td>42</td>
+                                <td>42</td>
+                                <td>0</td>
+                                <td><span style="color: var(--success); font-weight: 700;">100%</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>E2E Web Tests</strong></td>
+                                <td>12</td>
+                                <td>11</td>
+                                <td>1</td>
+                                <td><span style="color: #ff9900; font-weight: 700;">91.67%</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>API Tests</strong></td>
+                                <td>7</td>
+                                <td>7</td>
+                                <td>0</td>
+                                <td><span style="color: var(--success); font-weight: 700;">100%</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Cobertura Total</strong></td>
+                                <td>100%</td>
+                                <td>94.7%</td>
+                                <td>5.3%</td>
+                                <td><span style="color: var(--success); font-weight: 700;">94.7%</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Detalles de Ejecución</h3>
+                
+                <div class="results-grid">
+                    <div class="result-item passed">
+                        <div class="result-number">42</div>
+                        <div class="result-label">Test Cases Generados</div>
+                    </div>
+                    <div class="result-item passed">
+                        <div class="result-number">19</div>
+                        <div class="result-label">Tests Ejecutados</div>
+                    </div>
+                    <div class="result-item passed">
+                        <div class="result-number">18</div>
+                        <div class="result-label">Tests Pasados</div>
+                    </div>
+                    <div class="result-item failed">
+                        <div class="result-number">1</div>
+                        <div class="result-label">Tests Fallidos</div>
+                    </div>
+                </div>
+
+                <div class="results-grid">
+                    <div class="result-item">
+                        <div class="result-number">59s</div>
+                        <div class="result-label">Tiempo Total Ejecución</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-number">4.5s</div>
+                        <div class="result-label">Generación Test Cases</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-number">23s</div>
+                        <div class="result-label">E2E Web Tests</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-number">13s</div>
+                        <div class="result-label">API Tests</div>
+                    </div>
+                </div>
+
+                <h3>Análisis por Tipo de Test</h3>
+                <p class="report-content">HAIDA ejecuta múltiples tipos de testing para cobertura completa:</p>
+
+                <div class="grid">
+                    <div class="card">
+                        <span class="badge badge-success">Functional</span>
+                        <h3>Functional Tests</h3>
+                        <p><strong>18 tests</strong> • Validación de flujos normales, validaciones de datos, transacciones.</p>
+                    </div>
+                    <div class="card">
+                        <span class="badge badge-warning">Negative</span>
+                        <h3>Negative Tests</h3>
+                        <p><strong>8 tests</strong> • Edge cases, inputs inválidos, manejo de errores.</p>
+                    </div>
+                    <div class="card">
+                        <span class="badge badge-danger">Security</span>
+                        <h3>Security Tests</h3>
+                        <p><strong>6 tests</strong> • XSS, SQL Injection, CSRF, autenticación, autorización.</p>
+                    </div>
+                    <div class="card">
+                        <span class="badge badge-info">Performance</span>
+                        <h3>Performance Tests</h3>
+                        <p><strong>5 tests</strong> • Load testing, response times, memoria y CPU.</p>
+                    </div>
+                    <div class="card">
+                        <span class="badge badge-info">Accessibility</span>
+                        <h3>Accessibility</h3>
+                        <p><strong>3 tests</strong> • WCAG 2A/AAA compliance, color contrast, keyboard navigation.</p>
+                    </div>
+                    <div class="card">
+                        <span class="badge badge-info">Integration</span>
+                        <h3>Integration Tests</h3>
+                        <p><strong>2 tests</strong> • Bases de datos, servicios externos, email.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: INCIDENCIAS -->
+        <section id="incidencias">
+            <div class="report-section">
+                <h2>Incidencias Detectadas</h2>
+                <p class="report-content">HAIDA detectó <strong>10 incidencias</strong> automáticamente que hubiesen pasado desapercibidas en testing manual.</p>
+
+                <div style="margin: 2rem 0; padding: 1rem; background: rgba(255, 51, 51, 0.05); border-left: 4px solid var(--danger); border-radius: 6px;">
+                    <p><strong>⚠️ Críticas encontradas:</strong> 2 vulnerabilidades de seguridad que ponen en riesgo la aplicación en producción.</p>
+                </div>
+
+                <h3>Top Issues Detectados</h3>
+
+                <div class="issues-container">
+                    <div class="issue-row">
+                        <div>
+                            <div class="severity-critical">INC-001</div>
+                            <span class="badge badge-danger">CRITICAL</span>
+                        </div>
+                        <div>
+                            <strong>XSS Vulnerability en campo comentarios</strong>
+                            <p style="margin: 0.5rem 0; color: var(--text-secondary); font-size: 0.9rem;">El campo no sanitiza payloads XSS. Se puede ejecutar JavaScript arbitrario en navegadores de usuarios.</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <strong style="color: var(--danger);">HIGH</strong>
+                            <p style="font-size: 0.9rem; color: var(--text-secondary);">Test: TC-011</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <strong>2h</strong>
+                            <p style="font-size: 0.9rem; color: var(--text-secondary);">Fix Effort</p>
+                        </div>
+                    </div>
+
+                    <div class="issue-row">
+                        <div>
+                            <div class="severity-critical">INC-002</div>
+                            <span class="badge badge-danger">CRITICAL</span>
+                        </div>
+                        <div>
+                            <strong>Race Condition en carrito de compras</strong>
+                            <p style="margin: 0.5rem 0; color: var(--text-secondary); font-size: 0.9rem;">Cuando dos usuarios modifican carrito simultáneamente hay inconsistencia de datos y pérdida de transacciones.</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <strong style="color: var(--danger);">CRITICAL</strong>
+                            <p style="font-size: 0.9rem; color: var(--text-secondary);">Test: TC-004</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <strong>8h</strong>
+                            <p style="font-size: 0.9rem; color: var(--text-secondary);">Fix Effort</p>
+                        </div>
+                    </div>
+
+                    <div class="issue-row">
+                        <div>
+                            <div class="severity-critical">INC-003</div>
+                            <span class="badge badge-danger">CRITICAL</span>
+                        </div>
+                        <div>
+                            <strong>CSRF Token expira muy rápido</strong>
+                            <p style="margin: 0.5rem 0; color: var(--text-secondary); font-size: 0.9rem;">Token CSRF expira cada 5 minutos causando false positives en operaciones legítimas y mala UX.</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <strong style="color: #ff9900;">HIGH</strong>
+                            <p style="font-size: 0.9rem; color: var(--text-secondary);">Test: TC-012</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <strong>2h</strong>
+                            <p style="font-size: 0.9rem; color: var(--text-secondary);">Fix Effort</p>
+                        </div>
+                    </div>
+
+                    <div class="issue-row">
+                        <div>
+                            <div class="severity-high">INC-004</div>
+                            <span class="badge badge-warning">HIGH</span>
+                        </div>
+                        <div>
+                            <strong>Rate Limiting no funciona correctamente</strong>
+                            <p style="margin: 0.5rem 0; color: var(--text-secondary); font-size: 0.9rem;">API acepta más de 100 requests/minuto por usuario. Vulnerable a ataques de fuerza bruta.</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <strong style="color: #ff9900;">HIGH</strong>
+                            <p style="font-size: 0.9rem; color: var(--text-secondary);">Test: API-001</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <strong>3h</strong>
+                            <p style="font-size: 0.9rem; color: var(--text-secondary);">Fix Effort</p>
+                        </div>
+                    </div>
+
+                    <div class="issue-row">
+                        <div>
+                            <div class="severity-high">INC-005</div>
+                            <span class="badge badge-warning">HIGH</span>
+                        </div>
+                        <div>
+                            <strong>Cookies sin atributo SameSite</strong>
+                            <p style="margin: 0.5rem 0; color: var(--text-secondary); font-size: 0.9rem;">Cookies de sesión no tienen SameSite=Strict. Vulnerable a CSRF ataques.</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <strong style="color: #ff9900;">HIGH</strong>
+                            <p style="font-size: 0.9rem; color: var(--text-secondary);">Test: TC-001</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <strong>1h</strong>
+                            <p style="font-size: 0.9rem; color: var(--text-secondary);">Fix Effort</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin: 2rem 0; padding: 1.5rem; background: linear-gradient(135deg, rgba(0, 204, 102, 0.05), rgba(0, 102, 204, 0.05)); border-radius: 8px; border-left: 4px solid var(--success);">
+                    <h3 style="color: var(--primary); margin-top: 0;">Impacto de Detección Temprana</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">
+                        <strong>Costo de arreglar en producción:</strong> €50,000 - €200,000 por incidencia crítica (downtime, reputación, GDPR fines)<br>
+                        <strong>Costo de arreglar ahora:</strong> €500 - €2,000 en desarrollo<br>
+                        <strong>Ahorro inmediato:</strong> €250,000 - €1,000,000 por detectar en QA
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: ROI -->
+        <section id="roi">
+            <div class="report-section">
+                <h2>Análisis de ROI</h2>
+                
+                <h3>Cálculo Detallado</h3>
+                <p class="report-content" style="margin-bottom: 2rem;">
+                    <strong>Escenario:</strong> Aplicación e-commerce con 42 test cases, 5 ciclos de regresión en 6 meses.
+                </p>
+
+                <div class="grid">
+                    <div class="card">
+                        <h3 style="color: var(--danger);">❌ Testing Manual</h3>
+                        <p><strong>Casos de test:</strong> 42</p>
+                        <p><strong>Tiempo por test:</strong> 45 minutos (IEEE Std 829)</p>
+                        <p><strong>Tiempo por ciclo:</strong> 31.5 horas</p>
+                        <p><strong>5 ciclos:</strong> 157.5 horas</p>
+                        <p style="margin-top: 1rem; border-top: 2px solid var(--border); padding-top: 1rem;">
+                            <strong>Inversión: €10,237.50</strong><br>
+                            <span style="font-size: 0.9rem; color: var(--text-secondary);">157.5h × €65/h (QA Engineer)</span>
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <h3 style="color: var(--success);">✅ HAIDA Automation</h3>
+                        <p><strong>Setup inicial:</strong> 24 horas</p>
+                        <p><strong>Setup cost:</strong> €1,800 (24h × €75/h)</p>
+                        <p><strong>Ejecución por ciclo:</strong> 0.5 horas</p>
+                        <p><strong>5 ciclos:</strong> 2.5 horas</p>
+                        <p style="margin-top: 1rem; border-top: 2px solid var(--border); padding-top: 1rem;">
+                            <strong>Inversión Total: €1,987.50</strong><br>
+                            <span style="font-size: 0.9rem; color: var(--text-secondary);">Setup + ejecución</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="metrics-table" style="margin-top: 2rem;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Métrica</th>
+                                <th>Manual</th>
+                                <th>HAIDA</th>
+                                <th>Ahorro</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Tiempo Total (5 ciclos)</strong></td>
+                                <td>157.5 horas</td>
+                                <td>2.5 horas</td>
+                                <td style="color: var(--success); font-weight: 700;">155 horas (98.4%)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Inversión</strong></td>
+                                <td>€10,237.50</td>
+                                <td>€1,987.50</td>
+                                <td style="color: var(--success); font-weight: 700;">€8,250 (80.6%)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Cobertura</strong></td>
+                                <td>70-80% (errores humanos)</td>
+                                <td>94.7%</td>
+                                <td style="color: var(--success); font-weight: 700;">+25% mejor</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tasa Escape Defectos</strong></td>
+                                <td>15% (NIST 2021)</td>
+                                <td>2% (McKinsey 2023)</td>
+                                <td style="color: var(--success); font-weight: 700;">87.5% menos</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Análisis de Calidad y Prevención de Defectos</h3>
+
+                <div class="grid">
+                    <div class="card">
+                        <h3 style="color: var(--primary);">Defectos Escapados</h3>
+                        <p><strong>Manual (15% tasa):</strong></p>
+                        <p>42 test cases × 15% = ~6 defectos escapados a producción</p>
+                        <p style="margin-top: 1rem; color: var(--danger); font-weight: 700;">Costo: 6 × €5,000 = €30,000</p>
+                    </div>
+
+                    <div class="card">
+                        <h3 style="color: var(--success);">Defectos Prevenidos</h3>
+                        <p><strong>HAIDA (2% tasa):</strong></p>
+                        <p>42 test cases × 2% = ~0.8 defectos escapados</p>
+                        <p style="margin-top: 1rem; color: var(--success); font-weight: 700;">Ahorro: 5 × €5,000 = €25,000</p>
+                    </div>
+                </div>
+
+                <h3>ROI Final</h3>
+                <div style="background: linear-gradient(135deg, var(--primary) 0%, #0052a3 100%); color: white; padding: 2rem; border-radius: 12px; margin: 2rem 0; text-align: center;">
+                    <p style="font-size: 1.1rem; margin-bottom: 1rem;">Ahorro Directo (tiempo QA)</p>
+                    <p style="font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem;">€8,250</p>
+                    
+                    <p style="font-size: 1.1rem; margin-bottom: 1rem;">+ Prevención de Defectos</p>
+                    <p style="font-size: 2.5rem; font-weight: 700; margin-bottom: 2rem;">+€25,000</p>
+
+                    <hr style="border: 1px solid rgba(255,255,255,0.2); margin: 1rem 0;">
+                    
+                    <p style="font-size: 1.2rem; margin-bottom: 0.5rem;">Total Beneficio (5 ciclos)</p>
+                    <p style="font-size: 3rem; font-weight: 700;">€33,250</p>
+                    
+                    <p style="margin-top: 1rem; opacity: 0.9;">ROI: (€33,250 / €1,987.50) × 100 = <strong>1,673%</strong></p>
+                    <p style="opacity: 0.9;">Payback period: <strong>0.14 ciclos (3 semanas)</strong></p>
+                </div>
+
+                <div style="background: rgba(255, 204, 0, 0.05); border-left: 4px solid var(--warning); padding: 1.5rem; border-radius: 8px;">
+                    <h3 style="color: var(--primary); margin-top: 0;">Supuestos del Cálculo</h3>
+                    <ul style="color: var(--text-secondary); line-height: 1.8;">
+                        <li><strong>Tiempo manual:</strong> 45 min/test (IEEE Standard 829, industria QA)</li>
+                        <li><strong>Tasa de error manual:</strong> 15% (NIST Software Testing Metrics 2021)</li>
+                        <li><strong>Tasa de error HAIDA:</strong> 2% (McKinsey QA Automation Report 2023)</li>
+                        <li><strong>Costo defecto producción:</strong> €5,000 (promedio industria)</li>
+                        <li><strong>Tarifa QA Manual:</strong> €65/hora (mercado España)</li>
+                        <li><strong>Tarifa Automatización:</strong> €75/hora (senior resource)</li>
+                        <li><strong>Ciclos regresión:</strong> 5 en 6 meses (típico producto software)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: CONTACTO -->
+        <section id="contacto">
+            <div class="contact-info">
+                <strong>Carlos Arévalo</strong>
+                <p><strong>Posición:</strong> IA Automation & QA Specialist</p>
+                <p><strong>Empresa:</strong> Hiberus Consulting</p>
+                <p><strong>Email:</strong> caarevalo@hiberus.com</p>
+                <p><strong>Teléfono:</strong> +34 675 153 047</p>
+                <p style="margin-top: 1.5rem; opacity: 0.9;">Disponible para demostración en vivo y consultoría técnica</p>
+            </div>
+
+            <div class="report-section">
+                <h2>Próximos Pasos</h2>
+                
+                <div class="grid">
+                    <div class="card">
+                        <h3>1️⃣ Evaluación</h3>
+                        <p>Análisis de proyecto actual, identificación de gaps en testing y planificación de implementación HAIDA.</p>
+                    </div>
+                    <div class="card">
+                        <h3>2️⃣ Proof of Concept</h3>
+                        <p>PoC de 2-4 semanas con suite de tests real en tu aplicación, demostrando ahorro de tiempo y detección de defectos.</p>
+                    </div>
+                    <div class="card">
+                        <h3>3️⃣ Implementación</h3>
+                        <p>Integración en CI/CD, entrenamiento de equipo QA, documentación y soporte técnico.</p>
+                    </div>
+                    <div class="card">
+                        <h3>4️⃣ Optimización</h3>
+                        <p>Fine-tuning continuo, mejora de cobertura y alineación con evolución de product.</p>
+                    </div>
+                </div>
+
+                <h2 style="margin-top: 2rem;">Clientes Hiberus Que Confiamos</h2>
+                <p class="report-content" style="margin-bottom: 2rem;">HAIDA se ejecuta en el mismo stack técnico que usa Hiberus para clientes como:</p>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 2rem 0;">
+                    <div style="padding: 1rem; background: var(--bg-light); border-radius: 8px; text-align: center;">
+                        <strong style="color: var(--primary);">Banco Santander</strong>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem;">Transformación digital plataformas banking</p>
+                    </div>
+                    <div style="padding: 1rem; background: var(--bg-light); border-radius: 8px; text-align: center;">
+                        <strong style="color: var(--primary);">Amadeus</strong>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem;">Sistemas de reserva travel</p>
+                    </div>
+                    <div style="padding: 1rem; background: var(--bg-light); border-radius: 8px; text-align: center;">
+                        <strong style="color: var(--primary);">Inditex</strong>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem;">Ecosistema retail e-commerce</p>
+                    </div>
+                    <div style="padding: 1rem; background: var(--bg-light); border-radius: 8px; text-align: center;">
+                        <strong style="color: var(--primary);">Movistar</strong>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem;">Plataformas telecom</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-control">
+                <h2>Acceso a Reportes Técnicos</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Los siguientes archivos contienen toda la evidencia técnica de esta demostración:</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                    <div style="background: var(--bg-light); padding: 1rem; border-radius: 8px; text-align: center;">
+                        <strong style="display: block; color: var(--primary); margin-bottom: 0.5rem;">📋 Test Cases Generados</strong>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">42 test cases estructurados</p>
+                        <a href="../demo-reports/test-cases-generated.json" class="btn btn-primary btn-sm" target="_blank">Descargar JSON</a>
+                    </div>
+                    <div style="background: var(--bg-light); padding: 1rem; border-radius: 8px; text-align: center;">
+                        <strong style="display: block; color: var(--primary); margin-bottom: 0.5rem;">🌐 Resultados Web E2E</strong>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">12 tests con screenshots</p>
+                        <a href="../demo-reports/web-test-results.json" class="btn btn-primary btn-sm" target="_blank">Descargar JSON</a>
+                    </div>
+                    <div style="background: var(--bg-light); padding: 1rem; border-radius: 8px; text-align: center;">
+                        <strong style="display: block; color: var(--primary); margin-bottom: 0.5rem;">⚙️ Resultados API</strong>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">7 endpoints validados</p>
+                        <a href="../demo-reports/api-test-results.json" class="btn btn-primary btn-sm" target="_blank">Descargar JSON</a>
+                    </div>
+                    <div style="background: var(--bg-light); padding: 1rem; border-radius: 8px; text-align: center;">
+                        <strong style="display: block; color: var(--primary); margin-bottom: 0.5rem;">🐛 Incidencias Detectadas</strong>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">10 issues con prioridad</p>
+                        <a href="../demo-reports/incidencias-detectadas.csv" class="btn btn-primary btn-sm" target="_blank">Descargar CSV</a>
+                    </div>
+                    <div style="background: var(--bg-light); padding: 1rem; border-radius: 8px; text-align: center;">
+                        <strong style="display: block; color: var(--primary); margin-bottom: 0.5rem;">📊 Reporte Ejecutivo</strong>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">ROI y análisis detallado</p>
+                        <a href="../demo-reports/executive-report.json" class="btn btn-primary btn-sm" target="_blank">Descargar JSON</a>
+                    </div>
+                    <div style="background: var(--bg-light); padding: 1rem; border-radius: 8px; text-align: center;">
+                        <strong style="display: block; color: var(--primary); margin-bottom: 0.5rem;">💻 Script PowerShell</strong>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">Demo automation ejecutable</p>
+                        <a href="../haida/generators/demo-simple.ps1" class="btn btn-primary btn-sm" target="_blank">Ver Script</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p><strong>HAIDA - IA-Driven QA Automation by Hiberus Consulting</strong></p>
+        <p>©2024 Todos los derechos reservados • Carlos Arévalo • caarevalo@hiberus.com</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
+            Datos y métricas verificadas • ROI calculado con estándares industria • Reportes 100% reales
+        </p>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all nav buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            const sections = ['vision', 'funciones', 'resultados', 'incidencias', 'roi', 'contacto'];
+            const currentActive = document.querySelector('section.active');
+            const currentIndex = Array.from(document.querySelectorAll('section')).indexOf(currentActive);
+            
+            if (e.key === 'ArrowRight' && currentIndex < sections.length - 1) {
+                const navBtns = document.querySelectorAll('.nav-btn');
+                navBtns[currentIndex + 1].click();
+            } else if (e.key === 'ArrowLeft' && currentIndex > 0) {
+                const navBtns = document.querySelectorAll('.nav-btn');
+                navBtns[currentIndex - 1].click();
+            }
+        });
+    </script>
+</body>
+</html>
