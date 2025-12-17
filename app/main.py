@@ -42,6 +42,7 @@ from app.routes.notifications import router as notifications_router
 from app.routes.reports import router as reports_router
 from app.routes.files import router as files_router
 from app.routes.i18n import router as i18n_router
+from app.routes.admin import router as admin_router
 
 # registro de routers
 app.include_router(system_router, tags=["system"])
@@ -57,6 +58,7 @@ app.include_router(notifications_router, prefix="/notifications", tags=["notific
 app.include_router(reports_router, prefix="/reports", tags=["reports"])
 app.include_router(files_router, prefix="/files", tags=["files"])
 app.include_router(i18n_router, prefix="/i18n", tags=["i18n"])
+app.include_router(admin_router, prefix="/admin", tags=["admin"])
 
 @app.get("/health")
 def health():

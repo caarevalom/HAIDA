@@ -1,0 +1,81 @@
+version: '3.8'
+
+services:
+  # FastAPI Backend
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: haida-backend
+    ports:
+      - "8000:8000"
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    environment:
+      # App Config
+      - APP_NAME=HAIDA
+      - NODE_ENV=development
+      - PORT=8000
+
+      # CORS
+      - CORS_ORIGINS=http://localhost:3000,http://localhost:5173
+
+      # Supabase (from .env)
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_KEY=${SUPABASE_KEY}
+      - SUPABASE_SERVICE_KEY=${SUPABASE_SERVICE_KEY}
+
+      # Database Direct Connection
+      - DATABASE_URL=${DATABASE_URL}
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_PORT=${POSTGRES_PORT:-5432}
+      - POSTGRES_DATABASE=${POSTGRES_DATABASE}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+
+      # Redis
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379}
+
+      # Microsoft Entra ID
+      - AZURE_CLIENT_ID=${AZURE_CLIENT_ID}
+      - AZURE_TENANT_ID=${AZURE_TENANT_ID}
+      - AZURE_CLIENT_SECRET=${AZURE_CLIENT_SECRET}
+
+      # JWT
+      - JWT_SECRET=${JWT_SECRET:-dev-secret-change-in-production}
+      - JWT_ALGORITHM=HS256
+      - ACCESS_TOKEN_EXPIRE_MINUTES=30
+
+      # Logging
+      - LOG_LEVEL=INFO
+      - REQUEST_ID_HEADER=X-Request-Id
+
+    volumes:
+      - ./app:/app/app
+      - ./.env:/app/.env
+    depends_on:
+      - redis
+    networks:
+      - haida-network
+    restart: unless-stopped
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: haida-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - haida-network
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+
+networks:
+  haida-network:
+    driver: bridge
+
+volumes:
+  redis-data:
