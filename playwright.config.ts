@@ -2,7 +2,7 @@
 import { defineConfig, devices } from '@playwright/test';
 import 'dotenv/config';
 
-const BASE_URL = process.env.BASE_URL || 'https://mcprod.thisisbarcelona.com.com';
+const BASE_URL = process.env.BASE_URL || 'http://localhost:8000';
 
 export default defineConfig({
   testDir: './tests',
