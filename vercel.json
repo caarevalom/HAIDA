@@ -1,33 +1,24 @@
 {
-  "name": "haida",
   "version": 2,
+  "name": "haida-backend",
   "builds": [
     {
-      "src": "haida/haida-api/server.js",
-      "use": "@vercel/node"
+      "src": "app/main.py",
+      "use": "@vercel/python"
     }
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "haida/haida-api/server.js"
-    },
-    {
-      "src": "/webhook/(.*)",
-      "dest": "haida/haida-api/server.js"
-    },
-    {
-      "src": "/health",
-      "dest": "haida/haida-api/server.js"
+      "src": "/(.*)",
+      "dest": "app/main.py"
     }
   ],
   "env": {
+    "APP_NAME": "HAIDA",
     "NODE_ENV": "production",
+    "SUPABASE_URL": "https://wdebyxvtunromsnkqbrd.supabase.co",
+    "SUPABASE_SERVICE_KEY": "@supabase_service_key",
     "DATABASE_URL": "@database_url",
-    "SUPABASE_URL": "@supabase_url",
-    "SUPABASE_ANON_KEY": "@supabase_anon_key",
-    "SUPABASE_SERVICE_ROLE_KEY": "@supabase_service_role_key"
-  },
-  "regions": ["iad1"],
-  "public": false
+    "CORS_ORIGINS": "https://haida-frontend.vercel.app,http://localhost:3000,http://localhost:5173"
+  }
 }
