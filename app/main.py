@@ -75,8 +75,5 @@ for router_name, prefix in optional_routers:
     except (ImportError, AttributeError) as e:
         print(f"ℹ️ {router_name.capitalize()} router not available: {e}")
 
-# Fallback health endpoint if system router is not available
-if not any(router.tags == ["system"] for router in app.routes):
-    @app.get("/health")
-    def health():
-        return {"status": "healthy", "version": "2.0.0"}
+# Fallback health endpoint (no longer needed - system router handles it)
+# System router already loaded above and provides /health endpoint
