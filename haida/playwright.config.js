@@ -91,10 +91,11 @@ module.exports = defineConfig({
   ],
 
   /* Run your local dev server before starting the tests */
-  webServer: {
+  /* DISABLED: Tests apuntan a TEST_URL externa */
+  /* webServer: {
     command: 'npm run start:app',
     url: 'http://localhost:3000',
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: !process.env.CI, */
   },
 
   /* Global timeout */
