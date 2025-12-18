@@ -69,3 +69,6 @@ allure-report/
 
 # Playwright
 playwright/.cache/
+
+.vercel
+.env*.local

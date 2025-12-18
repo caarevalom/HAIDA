@@ -1,34 +1,48 @@
 #!/bin/bash
 
-# HAIDA Change Detection Deployment Script
-# Automates setup, configuration, and deployment
+# HAIDA Complete DevOps Deployment Script
+# Full CI/CD pipeline with Docker, Railway, and Vercel support
 
-set -e  # Exit on error
+set -e
 
 # Colors for output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
+CYAN='\033[0;36m'
 NC='\033[0m' # No Color
+
+# Configuration
+ENVIRONMENT=${1:-development}
+VERSION=${VERSION:-$(git describe --tags --always 2>/dev/null || echo "dev")}
+BUILD_TIME=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+LOG_DIR="./logs"
+LOG_FILE="$LOG_DIR/deploy-${ENVIRONMENT}-$(date +%Y%m%d_%H%M%S).log"
+
+mkdir -p "$LOG_DIR"
 
 # Functions
 print_header() {
-    echo -e "\n${BLUE}========================================${NC}"
-    echo -e "${BLUE}$1${NC}"
-    echo -e "${BLUE}========================================${NC}\n"
+    echo -e "\n${CYAN}========================================${NC}"
+    echo -e "${CYAN}$1${NC}"
+    echo -e "${CYAN}========================================${NC}\n" | tee -a "$LOG_FILE"
 }
 
 print_success() {
-    echo -e "${GREEN}✓ $1${NC}"
+    echo -e "${GREEN}✓ $1${NC}" | tee -a "$LOG_FILE"
 }
 
 print_warning() {
-    echo -e "${YELLOW}⚠ $1${NC}"
+    echo -e "${YELLOW}⚠ $1${NC}" | tee -a "$LOG_FILE"
 }
 
 print_error() {
-    echo -e "${RED}✗ $1${NC}"
+    echo -e "${RED}✗ $1${NC}" | tee -a "$LOG_FILE"
+}
+
+log() {
+    echo -e "${BLUE}[$(date +'%Y-%m-%d %H:%M:%S')]${NC} $1" | tee -a "$LOG_FILE"
 }
 
 check_command() {
