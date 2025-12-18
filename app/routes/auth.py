@@ -1,19 +1,29 @@
 """
-Local Authentication endpoints
+Supabase Authentication endpoints
 """
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, HTTPException, Depends, status
 from pydantic import BaseModel, EmailStr
-from typing import Optional
+from typing import Optional, Dict, Any
 import jwt
 import os
 from datetime import datetime, timedelta
+from supabase import create_client, Client
+from app.core.db import fetch_one, fetch_all, execute
 
 router = APIRouter()
 
-# JWT Configuration
+# Supabase Configuration
+SUPABASE_URL = os.environ.get("SUPABASE_URL")
+SUPABASE_SERVICE_ROLE_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY")
 JWT_SECRET = os.environ.get("JWT_SECRET", "development-secret-key")
 JWT_ALGORITHM = "HS256"
 JWT_EXPIRATION_HOURS = int(os.environ.get("JWT_EXPIRATION_HOURS", "24"))
+
+if not SUPABASE_URL or not SUPABASE_SERVICE_ROLE_KEY:
+    raise RuntimeError("SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY must be set")
+
+# Initialize Supabase client with service role key
+supabase: Client = create_client(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)
 
 class LoginRequest(BaseModel):
     email: EmailStr
@@ -23,72 +33,222 @@ class RegisterRequest(BaseModel):
     email: EmailStr
     password: str
     full_name: Optional[str] = None
+    role: Optional[str] = "viewer"
 
 class TokenResponse(BaseModel):
     access_token: str
     token_type: str = "bearer"
     expires_in: int
+    user: Optional[Dict[str, Any]] = None
+
+class UserResponse(BaseModel):
+    id: str
+    email: str
+    name: str
+    role: str
+    is_active: bool
+    created_at: datetime
+    last_login_at: Optional[datetime] = None
+
+def create_jwt_token(user_data: Dict[str, Any]) -> str:
+    """Create JWT token with user data"""
+    payload = {
+        "sub": user_data["id"],
+        "email": user_data["email"],
+        "role": user_data.get("role", "viewer"),
+        "name": user_data.get("name"),
+        "exp": datetime.utcnow() + timedelta(hours=JWT_EXPIRATION_HOURS),
+        "iat": datetime.utcnow()
+    }
+    return jwt.encode(payload, JWT_SECRET, algorithm=JWT_ALGORITHM)
+
+async def get_user_from_database(email: str) -> Optional[Dict[str, Any]]:
+    """Get user from our users table"""
+    try:
+        user = fetch_one("SELECT id, email, name, role, is_active, created_at, last_login_at FROM users WHERE email = %s", (email,))
+        return dict(user) if user else None
+    except Exception as e:
+        print(f"Error fetching user from database: {e}")
+        return None
+
+async def create_user_in_database(user_data: Dict[str, Any]) -> Dict[str, Any]:
+    """Create user in our users table"""
+    try:
+        sql = """
+        INSERT INTO users (id, email, name, role, is_active, created_at) 
+        VALUES (%s, %s, %s, %s, %s, %s) 
+        RETURNING id, email, name, role, is_active, created_at
+        """
+        result = execute(
+            sql,
+            (
+                user_data["id"],
+                user_data["email"],
+                user_data.get("name", ""),
+                user_data.get("role", "viewer"),
+                True,
+                datetime.utcnow()
+            )
+        )
+        return user_data
+    except Exception as e:
+        print(f"Error creating user in database: {e}")
+        raise
 
 @router.post("/login", response_model=TokenResponse)
 async def login(request: LoginRequest):
     """
-    Local JWT authentication
-    TODO: Validate against Supabase auth.users
+    Authenticate user with Supabase and return JWT token
     """
-    # TODO: Implement actual authentication
-    # For now, return a JWT token for development
-
-    payload = {
-        "sub": request.email,
-        "email": request.email,
-        "exp": datetime.utcnow() + timedelta(hours=JWT_EXPIRATION_HOURS),
-        "iat": datetime.utcnow()
-    }
-
-    token = jwt.encode(payload, JWT_SECRET, algorithm=JWT_ALGORITHM)
-
-    return TokenResponse(
-        access_token=token,
-        expires_in=JWT_EXPIRATION_HOURS * 3600
-    )
+    try:
+        # Authenticate with Supabase
+        auth_response = supabase.auth.sign_in_with_password({
+            "email": request.email,
+            "password": request.password
+        })
+        
+        if not auth_response.user:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Invalid credentials"
+            )
+        
+        # Get or create user in our database
+        user = await get_user_from_database(request.email)
+        if not user:
+            # Create user in our database
+            user_data = {
+                "id": auth_response.user.id,
+                "email": auth_response.user.email,
+                "name": auth_response.user.user_metadata.get("full_name", auth_response.user.email),
+                "role": auth_response.user.user_metadata.get("role", "viewer")
+            }
+            user = await create_user_in_database(user_data)
+        
+        # Update last login
+        execute("UPDATE users SET last_login_at = %s WHERE email = %s", 
+                (datetime.utcnow(), request.email))
+        
+        # Create JWT token
+        token = create_jwt_token(user)
+        
+        return TokenResponse(
+            access_token=token,
+            expires_in=JWT_EXPIRATION_HOURS * 3600,
+            user={
+                "id": user["id"],
+                "email": user["email"],
+                "name": user["name"],
+                "role": user["role"]
+            }
+        )
+        
+    except Exception as e:
+        print(f"Login error: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Authentication failed"
+        )
 
 @router.post("/register", response_model=TokenResponse)
 async def register(request: RegisterRequest):
     """
-    User registration
-    TODO: Create user in Supabase auth.users and user_profiles
+    Register new user with Supabase
     """
-    # TODO: Implement actual registration
-    # For now, return a JWT token for development
+    try:
+        # Create user in Supabase Auth
+        auth_response = supabase.auth.sign_up({
+            "email": request.email,
+            "password": request.password,
+            "options": {
+                "data": {
+                    "full_name": request.full_name,
+                    "role": request.role
+                }
+            }
+        })
+        
+        if not auth_response.user:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Registration failed"
+            )
+        
+        # Create user in our database
+        user_data = {
+            "id": auth_response.user.id,
+            "email": auth_response.user.email,
+            "name": request.full_name or auth_response.user.email,
+            "role": request.role
+        }
+        user = await create_user_in_database(user_data)
+        
+        # Create JWT token
+        token = create_jwt_token(user)
+        
+        return TokenResponse(
+            access_token=token,
+            expires_in=JWT_EXPIRATION_HOURS * 3600,
+            user={
+                "id": user["id"],
+                "email": user["email"],
+                "name": user["name"],
+                "role": user["role"]
+            }
+        )
+        
+    except Exception as e:
+        print(f"Registration error: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Registration failed"
+        )
 
-    payload = {
-        "sub": request.email,
-        "email": request.email,
-        "name": request.full_name,
-        "exp": datetime.utcnow() + timedelta(hours=JWT_EXPIRATION_HOURS),
-        "iat": datetime.utcnow()
-    }
-
-    token = jwt.encode(payload, JWT_SECRET, algorithm=JWT_ALGORITHM)
-
-    return TokenResponse(
-        access_token=token,
-        expires_in=JWT_EXPIRATION_HOURS * 3600
-    )
-
-@router.get("/me")
-async def get_current_user():
+@router.get("/me", response_model=UserResponse)
+async def get_current_user(authorization: str = None):
     """
-    Get current authenticated user
-    TODO: Extract from JWT token and fetch from DB
+    Get current authenticated user from JWT token
     """
-    # TODO: Implement actual user fetching
-    return {
-        "id": "00000000-0000-0000-0000-000000000000",
-        "email": "user@example.com",
-        "full_name": "Test User",
-        "role": "viewer"
-    }
+    if not authorization:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Authorization header required"
+        )
+    
+    try:
+        # Extract token from "Bearer <token>"
+        token = authorization.replace("Bearer ", "")
+        
+        # Decode JWT token
+        payload = jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGORITHM])
+        email = payload.get("email")
+        
+        if not email:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Invalid token"
+            )
+        
+        # Get user from database
+        user = await get_user_from_database(email)
+        if not user:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="User not found"
+            )
+        
+        return UserResponse(**user)
+        
+    except jwt.ExpiredSignatureError:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Token expired"
+        )
+    except jwt.JWTError:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid token"
+        )
 
 @router.post("/logout")
 async def logout():
@@ -96,3 +256,56 @@ async def logout():
     Logout user (invalidate token on client side)
     """
     return {"message": "Logged out successfully"}
+
+@router.post("/refresh", response_model=TokenResponse)
+async def refresh_token(authorization: str = None):
+    """
+    Refresh JWT token
+    """
+    if not authorization:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Authorization header required"
+        )
+    
+    try:
+        # Extract token from "Bearer <token>"
+        token = authorization.replace("Bearer ", "")
+        
+        # Decode JWT token (allowing expired tokens for refresh)
+        payload = jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGORITHM], options={"verify_exp": False})
+        email = payload.get("email")
+        
+        if not email:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Invalid token"
+            )
+        
+        # Get user from database
+        user = await get_user_from_database(email)
+        if not user:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="User not found"
+            )
+        
+        # Create new JWT token
+        new_token = create_jwt_token(user)
+        
+        return TokenResponse(
+            access_token=new_token,
+            expires_in=JWT_EXPIRATION_HOURS * 3600,
+            user={
+                "id": user["id"],
+                "email": user["email"],
+                "name": user["name"],
+                "role": user["role"]
+            }
+        )
+        
+    except jwt.JWTError:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid token"
+        )
