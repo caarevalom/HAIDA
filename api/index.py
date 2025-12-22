@@ -8,12 +8,14 @@ from datetime import datetime
 import os
 
 # Import auth router
+auth_router = None
+auth_import_error = None
 try:
     from api.auth import router as auth_router
-except ImportError:
+except Exception as e:
     # Fallback if import fails
-    print("Warning: Could not import auth router")
-    auth_router = None
+    print(f"Warning: Could not import auth router: {e}")
+    auth_import_error = str(e)
 
 # Create FastAPI app
 app = FastAPI(
@@ -68,8 +70,15 @@ async def debug():
     import sys
     return {
         "auth_router_loaded": auth_router is not None,
+        "auth_import_error": auth_import_error,
         "python_version": sys.version,
         "environment": os.environ.get("VERCEL_ENV", "development"),
+        "env_vars_set": {
+            "SUPABASE_URL": bool(os.environ.get("SUPABASE_URL")),
+            "SUPABASE_SERVICE_ROLE_KEY": bool(os.environ.get("SUPABASE_SERVICE_ROLE_KEY")),
+            "DATABASE_URL": bool(os.environ.get("DATABASE_URL")),
+            "JWT_SECRET": bool(os.environ.get("JWT_SECRET"))
+        },
         "routes": [route.path for route in app.routes],
         "timestamp": datetime.utcnow().isoformat()
     }
