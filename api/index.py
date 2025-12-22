@@ -47,17 +47,31 @@ async def root():
     return {
         "status": "healthy",
         "service": "HAIDA API",
-        "version": "2.0.0",
+        "version": "2.0.1",  # Incremented to verify deployment
         "message": "HAIDA Backend is running",
         "timestamp": datetime.utcnow().isoformat(),
         "environment": os.environ.get("VERCEL_ENV", "development"),
+        "auth_router_loaded": auth_router is not None,
         "endpoints": {
             "health": "/health",
             "api_status": "/api/status",
+            "debug": "/debug",
             "auth_login": "/auth/login",
             "auth_register": "/auth/register",
             "auth_me": "/auth/me"
         }
+    }
+
+@app.get("/debug")
+async def debug():
+    """Debug endpoint to check router status"""
+    import sys
+    return {
+        "auth_router_loaded": auth_router is not None,
+        "python_version": sys.version,
+        "environment": os.environ.get("VERCEL_ENV", "development"),
+        "routes": [route.path for route in app.routes],
+        "timestamp": datetime.utcnow().isoformat()
     }
 
 @app.get("/health")
