@@ -1,11 +1,19 @@
 """
 HAIDA API Backend - Vercel Serverless Function
-Production-ready minimal API
+Production-ready API with Authentication
 """
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from datetime import datetime
 import os
+
+# Import auth router
+try:
+    from api.auth import router as auth_router
+except ImportError:
+    # Fallback if import fails
+    print("Warning: Could not import auth router")
+    auth_router = None
 
 # Create FastAPI app
 app = FastAPI(
@@ -29,6 +37,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Include authentication router
+if auth_router:
+    app.include_router(auth_router, prefix="/auth", tags=["Authentication"])
+
 @app.get("/")
 async def root():
     """Root endpoint - API status"""
@@ -38,7 +50,14 @@ async def root():
         "version": "2.0.0",
         "message": "HAIDA Backend is running",
         "timestamp": datetime.utcnow().isoformat(),
-        "environment": os.environ.get("VERCEL_ENV", "development")
+        "environment": os.environ.get("VERCEL_ENV", "development"),
+        "endpoints": {
+            "health": "/health",
+            "api_status": "/api/status",
+            "auth_login": "/auth/login",
+            "auth_register": "/auth/register",
+            "auth_me": "/auth/me"
+        }
     }
 
 @app.get("/health")
@@ -75,6 +94,15 @@ async def api_status():
             "test_cases": True,
             "reporting": True,
             "supabase": True
+        },
+        "endpoints": {
+            "auth": {
+                "login": "POST /auth/login",
+                "register": "POST /auth/register",
+                "me": "GET /auth/me",
+                "refresh": "POST /auth/refresh",
+                "logout": "POST /auth/logout"
+            }
         },
         "timestamp": datetime.utcnow().isoformat()
     }
