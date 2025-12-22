@@ -1,3 +1,21 @@
-# HAIDA API - Minimal Dependencies for Vercel Serverless
+# HAIDA API - Production Dependencies for Vercel Serverless
+# Core Framework
 fastapi==0.115.6
+uvicorn==0.34.0
 python-dotenv==1.0.1
+pydantic==2.10.6
+pydantic-settings==2.7.1
+
+# Database
+psycopg2-binary==2.9.10
+supabase==2.11.4
+
+# Authentication & Security
+pyjwt==2.10.1
+python-jose[cryptography]==3.3.0
+cryptography==44.0.0
+passlib[bcrypt]==1.7.4
+
+# HTTP & API
+httpx==0.28.1
+requests==2.32.3

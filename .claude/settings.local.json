@@ -1,7 +1,15 @@
 {
   "permissions": {
     "allow": [
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(git -C \"C:\\\\Users\\\\CarlosArturoArevaloM\\\\Documents\\\\Proyectos\\\\HAIDA\" diff --stat HEAD)",
+      "Bash(npm run build:*)",
+      "Bash(npx vite build)",
+      "Bash(npm install:*)",
+      "Bash(npx vercel:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ]
-  }
+  },
+  "outputStyle": "default"
 }
