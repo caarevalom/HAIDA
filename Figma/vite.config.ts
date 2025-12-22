@@ -16,4 +16,20 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  server: {
+    port: 5173,
+    proxy: {
+      // Proxy API requests to backend during development
+      // Uncomment if you need to bypass CORS during local development
+      // '/api': {
+      //   target: 'https://haida-one.vercel.app',
+      //   changeOrigin: true,
+      //   rewrite: (path) => path.replace(/^\/api/, ''),
+      // },
+    },
+  },
+  define: {
+    // Make env variables available
+    'import.meta.env.VITE_API_URL': JSON.stringify(process.env.VITE_API_URL || 'https://haida-one.vercel.app'),
+  },
 })
