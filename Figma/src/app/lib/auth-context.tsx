@@ -1,9 +1,16 @@
 /**
- * Authentication Context - HAIDA FastAPI Backend
- * Manages user authentication state with HAIDA API
+ * Authentication Context - HAIDA Hybrid Auth
+ * Supports both FastAPI backend auth and Supabase Microsoft SSO
  */
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { authApi, User, ApiError, storage } from './apiService';
+import { createClient } from '@supabase/supabase-js';
+
+// Initialize Supabase client for Microsoft OAuth
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://wdebyxvtunromsnkqbrd.supabase.co';
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndkZWJ5eHZ0dW5yb21zbmtxYnJkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzQxMzQzODYsImV4cCI6MjA0OTcxMDM4Nn0.wZ_3yV0gPOT-gG3vLRBt9Gv-VRgp7qfz8lJWr0YCcbM';
+
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 interface AuthContextType {
   user: User | null;
@@ -13,6 +20,7 @@ interface AuthContextType {
 
   signIn: (email: string, password: string) => Promise<{ success: boolean; error?: string }>;
   signUp: (email: string, password: string, fullName?: string, role?: string) => Promise<{ success: boolean; error?: string }>;
+  signInWithMicrosoft: () => Promise<{ success: boolean; error?: string }>;
   signOut: () => Promise<void>;
   refreshUser: () => Promise<void>;
 }
@@ -106,9 +114,43 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const signInWithMicrosoft = async (): Promise<{ success: boolean; error?: string }> => {
+    try {
+      setIsLoading(true);
+      setError(null);
+
+      // Use Supabase OAuth for Microsoft
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: 'azure',
+        options: {
+          redirectTo: `${window.location.origin}/dashboard`,
+          scopes: 'openid email profile'
+        }
+      });
+
+      if (error) {
+        setError(error.message);
+        return { success: false, error: error.message };
+      }
+
+      // OAuth will redirect to Microsoft, then back to the app
+      // The actual user creation happens in the callback
+      return { success: true };
+    } catch (err: any) {
+      const errorMessage = err.message || 'Microsoft sign-in failed';
+      setError(errorMessage);
+      return { success: false, error: errorMessage };
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const signOut = async () => {
     setIsLoading(true);
     try {
+      // Sign out from Supabase if using Microsoft auth
+      await supabase.auth.signOut();
+      // Sign out from FastAPI
       await authApi.logout();
     } catch (err) {
       console.error('Sign out error:', err);
@@ -125,6 +167,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     error,
     signIn,
     signUp,
+    signInWithMicrosoft,
     signOut,
     refreshUser
   };
