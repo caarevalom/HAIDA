@@ -11,7 +11,6 @@ interface AuthContextType {
   isAuthenticated: boolean;
   error: string | null;
 
-  // Actions
   signIn: (email: string, password: string) => Promise<{ success: boolean; error?: string }>;
   signUp: (email: string, password: string, fullName?: string, role?: string) => Promise<{ success: boolean; error?: string }>;
   signOut: () => Promise<void>;
@@ -25,22 +24,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Initialize auth state from localStorage
   useEffect(() => {
     const initAuth = async () => {
       try {
-        // Check if we have a token
         const token = storage.getToken();
         const storedUser = storage.getStoredUser();
 
         if (token && storedUser) {
-          // Verify token is still valid by fetching current user
           try {
             const currentUser = await authApi.getCurrentUser();
             setUser(currentUser);
-            storage.setUser(currentUser); // Update stored user
+            storage.setUser(currentUser);
           } catch (err) {
-            // Token invalid or expired, clear storage
             console.error('Token validation failed:', err);
             storage.clear();
             setUser(null);
@@ -57,7 +52,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     initAuth();
   }, []);
 
-  // Refresh user data
   const refreshUser = async () => {
     try {
       const currentUser = await authApi.getCurrentUser();
@@ -65,27 +59,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       storage.setUser(currentUser);
     } catch (err) {
       console.error('Failed to refresh user:', err);
-      // If refresh fails, user might be logged out
       storage.clear();
       setUser(null);
     }
   };
 
-  // Sign in
   const signIn = async (email: string, password: string): Promise<{ success: boolean; error?: string }> => {
     setIsLoading(true);
     setError(null);
-
     try {
       const response = await authApi.login({ email, password });
-
       if (response.user) {
         setUser(response.user as User);
       } else {
-        // If user not returned, fetch it
         await refreshUser();
       }
-
       return { success: true };
     } catch (err: any) {
       const apiError = err as ApiError;
@@ -97,31 +85,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  // Sign up
-  const signUp = async (
-    email: string,
-    password: string,
-    fullName?: string,
-    role: string = 'viewer'
-  ): Promise<{ success: boolean; error?: string }> {
+  const signUp = async (email: string, password: string, fullName?: string, role?: string): Promise<{ success: boolean; error?: string }> => {
     setIsLoading(true);
     setError(null);
-
     try {
-      const response = await authApi.register({
-        email,
-        password,
-        full_name: fullName,
-        role: role as any
-      });
-
+      const response = await authApi.register({ email, password, full_name: fullName, role: (role || 'viewer') as any });
       if (response.user) {
         setUser(response.user as User);
       } else {
-        // If user not returned, fetch it
         await refreshUser();
       }
-
       return { success: true };
     } catch (err: any) {
       const apiError = err as ApiError;
@@ -133,7 +106,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  // Sign out
   const signOut = async () => {
     setIsLoading(true);
     try {
