@@ -17,6 +17,15 @@ except Exception as e:
     print(f"Warning: Could not import auth router: {e}")
     auth_import_error = str(e)
 
+# Import entra router
+entra_router = None
+entra_import_error = None
+try:
+    from api.entra import router as entra_router
+except Exception as e:
+    print(f"Warning: Could not import entra router: {e}")
+    entra_import_error = str(e)
+
 # Create FastAPI app
 app = FastAPI(
     title="HAIDA API",
@@ -43,6 +52,10 @@ app.add_middleware(
 if auth_router:
     app.include_router(auth_router, prefix="/auth", tags=["Authentication"])
 
+# Include Microsoft Entra ID router
+if entra_router:
+    app.include_router(entra_router, prefix="/entra", tags=["Microsoft Entra ID"])
+
 @app.get("/")
 async def root():
     """Root endpoint - API status"""
@@ -54,13 +67,17 @@ async def root():
         "timestamp": datetime.utcnow().isoformat(),
         "environment": os.environ.get("VERCEL_ENV", "development"),
         "auth_router_loaded": auth_router is not None,
+        "entra_router_loaded": entra_router is not None,
         "endpoints": {
             "health": "/health",
             "api_status": "/api/status",
             "debug": "/debug",
             "auth_login": "/auth/login",
             "auth_register": "/auth/register",
-            "auth_me": "/auth/me"
+            "auth_me": "/auth/me",
+            "entra_login": "/entra/login",
+            "entra_callback": "/entra/callback",
+            "entra_status": "/entra/status"
         }
     }
 
@@ -71,13 +88,17 @@ async def debug():
     return {
         "auth_router_loaded": auth_router is not None,
         "auth_import_error": auth_import_error,
+        "entra_router_loaded": entra_router is not None,
+        "entra_import_error": entra_import_error,
         "python_version": sys.version,
         "environment": os.environ.get("VERCEL_ENV", "development"),
         "env_vars_set": {
             "SUPABASE_URL": bool(os.environ.get("SUPABASE_URL")),
             "SUPABASE_SERVICE_ROLE_KEY": bool(os.environ.get("SUPABASE_SERVICE_ROLE_KEY")),
             "DATABASE_URL": bool(os.environ.get("DATABASE_URL")),
-            "JWT_SECRET": bool(os.environ.get("JWT_SECRET"))
+            "JWT_SECRET": bool(os.environ.get("JWT_SECRET")),
+            "ENTRA_CLIENT_ID": bool(os.environ.get("ENTRA_CLIENT_ID")),
+            "ENTRA_CLIENT_SECRET": bool(os.environ.get("ENTRA_CLIENT_SECRET"))
         },
         "routes": [route.path for route in app.routes],
         "timestamp": datetime.utcnow().isoformat()
