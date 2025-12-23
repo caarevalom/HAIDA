@@ -21,7 +21,7 @@ import { AlertCircle, CheckCircle2, Linkedin, Twitter, Instagram, Youtube, Globe
 export function Login({ onLogin }: { onLogin: () => void }) {
   const { config } = useUi();
   const { login } = config;
-  const { signIn, signUp, signInWithMicrosoft, isLoading: authLoading } = useAuth();
+  const { signIn, signUp, signInWithMicrosoft, resetPassword, isLoading: authLoading } = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
