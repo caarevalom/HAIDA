@@ -36,18 +36,49 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const initAuth = async () => {
       try {
-        const token = storage.getToken();
-        const storedUser = storage.getStoredUser();
+        // Check for OAuth session from Supabase (Microsoft login)
+        const { data: { session } } = await supabase.auth.getSession();
 
-        if (token && storedUser) {
+        if (session?.user) {
+          // User logged in with Microsoft OAuth
+          console.log('Microsoft OAuth session detected:', session.user.email);
+
+          // Create/sync user in our backend
           try {
+            // Try to get existing user from backend
             const currentUser = await authApi.getCurrentUser();
             setUser(currentUser);
             storage.setUser(currentUser);
           } catch (err) {
-            console.error('Token validation failed:', err);
-            storage.clear();
-            setUser(null);
+            // User doesn't exist in backend, create it
+            console.log('Creating user from Microsoft OAuth session');
+            // For now, we'll set a basic user object from Supabase data
+            const oauthUser = {
+              id: session.user.id,
+              email: session.user.email || '',
+              name: session.user.user_metadata?.full_name || session.user.email || 'Microsoft User',
+              role: 'viewer',
+              is_active: true,
+              created_at: new Date().toISOString()
+            };
+            setUser(oauthUser);
+            storage.setUser(oauthUser);
+          }
+        } else {
+          // Check for email/password auth token
+          const token = storage.getToken();
+          const storedUser = storage.getStoredUser();
+
+          if (token && storedUser) {
+            try {
+              const currentUser = await authApi.getCurrentUser();
+              setUser(currentUser);
+              storage.setUser(currentUser);
+            } catch (err) {
+              console.error('Token validation failed:', err);
+              storage.clear();
+              setUser(null);
+            }
           }
         }
       } catch (err) {
@@ -59,6 +90,32 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     };
 
     initAuth();
+
+    // Listen for auth state changes from Supabase
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+      console.log('Supabase auth state changed:', event);
+
+      if (event === 'SIGNED_IN' && session?.user) {
+        // User signed in with Microsoft
+        const oauthUser = {
+          id: session.user.id,
+          email: session.user.email || '',
+          name: session.user.user_metadata?.full_name || session.user.email || 'Microsoft User',
+          role: 'viewer',
+          is_active: true,
+          created_at: new Date().toISOString()
+        };
+        setUser(oauthUser);
+        storage.setUser(oauthUser);
+      } else if (event === 'SIGNED_OUT') {
+        setUser(null);
+        storage.clear();
+      }
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
   }, []);
 
   const refreshUser = async () => {
@@ -124,7 +181,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'azure',
         options: {
-          redirectTo: `${window.location.origin}/dashboard`,
+          redirectTo: `${window.location.origin}`,
           scopes: 'openid email profile'
         }
       });
