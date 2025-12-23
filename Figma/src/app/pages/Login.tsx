@@ -21,7 +21,7 @@ import { AlertCircle, CheckCircle2, Linkedin, Twitter, Instagram, Youtube, Globe
 export function Login({ onLogin }: { onLogin: () => void }) {
   const { config } = useUi();
   const { login } = config;
-  const { signIn, signUp, resetPassword, isLoading: authLoading } = useAuth();
+  const { signIn, signUp, signInWithMicrosoft, isLoading: authLoading } = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -219,18 +219,28 @@ export function Login({ onLogin }: { onLogin: () => void }) {
                   </div>
                 </div>
 
-                <Button 
-                  variant="outline" 
-                  className="w-full h-11 glass hover:bg-white/20 border-white/20" 
-                  onClick={() => window.open('https://login.microsoftonline.com/', '_blank')}
+                <Button
+                  variant="outline"
+                  className="w-full h-11 glass hover:bg-white/20 border-white/20"
+                  onClick={async () => {
+                    const result = await signInWithMicrosoft();
+                    if (!result.success) {
+                      toast.error(result.error || 'Microsoft sign-in failed');
+                    }
+                  }}
+                  disabled={isLoading || authLoading}
                 >
-                   <svg className="mr-2 h-4 w-4" viewBox="0 0 23 23" fill="currentColor">
-                     <path fill="#f35325" d="M1 1h10v10H1z"/>
-                     <path fill="#81bc06" d="M12 1h10v10H12z"/>
-                     <path fill="#05a6f0" d="M1 12h10v10H1z"/>
-                     <path fill="#ffba08" d="M12 12h10v10H12z"/>
-                   </svg>
-                   {login.microsoftButtonText}
+                   {(isLoading || authLoading) ? (
+                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                   ) : (
+                     <svg className="mr-2 h-4 w-4" viewBox="0 0 23 23" fill="currentColor">
+                       <path fill="#f35325" d="M1 1h10v10H1z"/>
+                       <path fill="#81bc06" d="M12 1h10v10H12z"/>
+                       <path fill="#05a6f0" d="M1 12h10v10H1z"/>
+                       <path fill="#ffba08" d="M12 12h10v10H12z"/>
+                     </svg>
+                   )}
+                   {(isLoading || authLoading) ? 'Signing in...' : login.microsoftButtonText}
                 </Button>
               </>
             )}
