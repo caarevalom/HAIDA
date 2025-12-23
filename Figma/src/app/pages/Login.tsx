@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "../components/ui/button"
 import { Input } from "../components/ui/input"
 import { Label } from "../components/ui/label"
@@ -21,7 +21,7 @@ import { AlertCircle, CheckCircle2, Linkedin, Twitter, Instagram, Youtube, Globe
 export function Login({ onLogin }: { onLogin: () => void }) {
   const { config } = useUi();
   const { login } = config;
-  const { signIn, signUp, signInWithMicrosoft, resetPassword, isLoading: authLoading } = useAuth();
+  const { signIn, signUp, signInWithMicrosoft, resetPassword, isLoading: authLoading, user, isAuthenticated } = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -32,6 +32,17 @@ export function Login({ onLogin }: { onLogin: () => void }) {
   const [signUpEmail, setSignUpEmail] = useState("");
   const [signUpPassword, setSignUpPassword] = useState("");
   const [signUpName, setSignUpName] = useState("");
+
+  // Auto-redirect if user is already authenticated (e.g., from Microsoft OAuth callback)
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      console.log('User authenticated, redirecting to dashboard:', user.email);
+      toast.success("Welcome back!", {
+        description: `Logged in as ${user.email}`
+      });
+      onLogin();
+    }
+  }, [isAuthenticated, user, onLogin]);
 
   const validateEmail = (email: string) => {
     return String(email)
