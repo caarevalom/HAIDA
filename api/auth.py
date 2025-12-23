@@ -8,7 +8,6 @@ import jwt
 import os
 from datetime import datetime, timedelta
 from supabase import create_client, Client
-from api.db import fetch_one, execute
 
 router = APIRouter()
 
@@ -63,34 +62,31 @@ def create_jwt_token(user_data: Dict[str, Any]) -> str:
     return jwt.encode(payload, JWT_SECRET, algorithm=JWT_ALGORITHM)
 
 async def get_user_from_database(email: str) -> Optional[Dict[str, Any]]:
-    """Get user from our users table"""
+    """Get user from our users table using Supabase REST API"""
     try:
-        user = fetch_one("SELECT id, email, name, role, is_active, created_at, last_login_at FROM users WHERE email = %s", (email,))
-        return dict(user) if user else None
+        response = supabase.table("users").select("*").eq("email", email).execute()
+        if response.data and len(response.data) > 0:
+            return response.data[0]
+        return None
     except Exception as e:
         print(f"Error fetching user from database: {e}")
         return None
 
 async def create_user_in_database(user_data: Dict[str, Any]) -> Dict[str, Any]:
-    """Create user in our users table"""
+    """Create user in our users table using Supabase REST API"""
     try:
-        sql = """
-        INSERT INTO users (id, email, name, role, is_active, created_at)
-        VALUES (%s, %s, %s, %s, %s, %s)
-        RETURNING id, email, name, role, is_active, created_at
-        """
-        execute(
-            sql,
-            (
-                user_data["id"],
-                user_data["email"],
-                user_data.get("name", ""),
-                user_data.get("role", "viewer"),
-                True,
-                datetime.utcnow()
-            )
-        )
-        return user_data
+        new_user = {
+            "id": user_data["id"],
+            "email": user_data["email"],
+            "name": user_data.get("name", ""),
+            "role": user_data.get("role", "viewer"),
+            "is_active": True,
+            "created_at": datetime.utcnow().isoformat()
+        }
+        response = supabase.table("users").insert(new_user).execute()
+        if response.data and len(response.data) > 0:
+            return response.data[0]
+        return new_user
     except Exception as e:
         print(f"Error creating user in database: {e}")
         raise
@@ -125,9 +121,8 @@ async def login(request: LoginRequest):
             }
             user = await create_user_in_database(user_data)
 
-        # Update last login
-        execute("UPDATE users SET last_login_at = %s WHERE email = %s",
-                (datetime.utcnow(), request.email))
+        # Update last login using Supabase REST API
+        supabase.table("users").update({"last_login_at": datetime.utcnow().isoformat()}).eq("email", request.email).execute()
 
         # Create JWT token
         token = create_jwt_token(user)
