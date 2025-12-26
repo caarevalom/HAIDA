@@ -101,7 +101,7 @@ def login():
     }
 
 @router.get("/callback")
-def callback(code: str, state: str):
+async def callback(code: str, state: str):
     if not ENTRA_CONFIGURED:
         raise HTTPException(status_code=501, detail="Microsoft Entra ID not configured")
 
@@ -110,7 +110,6 @@ def callback(code: str, state: str):
 
     app = msal.ConfidentialClientApplication(CLIENT_ID, authority=AUTHORITY, client_credential=CLIENT_SECRET)
     result = app.acquire_token_by_authorization_code(code, scopes=SCOPES, redirect_uri=REDIRECT_URI)
-
     if "error" in result:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

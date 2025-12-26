@@ -1,12 +1,13 @@
 """Internationalization endpoints"""
-from fastapi import APIRouter
+from fastapi import APIRouter, Request
 from typing import Dict, Any
+from app.core.i18n import resolve_locale
 
 router = APIRouter()
 
 @router.get("/translations/{locale}")
-async def get_translations(locale: str = "es") -> Dict[str, Any]:
-    """Get translations for locale - TODO: Implement"""
+async def get_translations(request: Request, locale: str = "es") -> Dict[str, Any]:
+    """Get translations for locale"""
     translations = {
         "es": {
             "common.hello": "Hola",
@@ -37,4 +38,5 @@ async def get_translations(locale: str = "es") -> Dict[str, Any]:
         }
     }
 
-    return translations.get(locale, translations["es"])
+    resolved = locale or resolve_locale(request)
+    return translations.get(resolved, translations["es"])
