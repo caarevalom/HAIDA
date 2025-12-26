@@ -62,6 +62,15 @@ class ReportGenerationRequest(BaseModel):
 
 SUPPORTED_FORMATS = {"html", "json"}
 
+def _json_safe(value):
+    if isinstance(value, datetime):
+        return value.isoformat()
+    if isinstance(value, dict):
+        return {k: _json_safe(v) for k, v in value.items()}
+    if isinstance(value, list):
+        return [_json_safe(v) for v in value]
+    return value
+
 
 def render_report_html(report_name: str, report_type: str, data: Dict[str, Any]) -> str:
     summary = data.get("summary", {})
@@ -221,6 +230,7 @@ async def generate_report(request: Request, payload: ReportGenerationRequest):
         payload.date_range,
         payload.filters
     )
+    report_data = _json_safe(report_data)
 
     parameters = {
         "project_id": payload.project_id,
