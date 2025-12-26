@@ -250,41 +250,27 @@ async def generate_report(request: Request, payload: ReportGenerationRequest):
     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
     """
 
-    report = None
-    try:
-        execute(
-            insert_sql,
-            (
-                report_id,
-                tenant_id,
-                report_name,
-                description,
-                payload.report_type,
-                "generating",
-                fmt,
-                None,
-                json.dumps(parameters),
-                json.dumps(report_data),
-                None,
-                user_id,
-                datetime.utcnow(),
-                datetime.utcnow(),
-            )
-        )
-        report = fetch_one(
-            """
-            SELECT id, tenant_id, template_id, name, description, report_type, status,
-                   format, file_url, parameters, data, generated_at, created_by,
-                   created_at, updated_at
-            FROM reports WHERE id = %s
-            """,
-            (report_id,)
-        )
-    except Exception:
-        report = None
+    supabase = get_supabase_client()
+    insert_payload = {
+        "id": report_id,
+        "tenant_id": tenant_id,
+        "name": report_name,
+        "description": description,
+        "report_type": payload.report_type,
+        "status": "generating",
+        "format": fmt,
+        "file_url": None,
+        "parameters": parameters,
+        "data": report_data,
+        "generated_at": None,
+        "created_by": user_id,
+    }
+    result = supabase.table("reports").insert(insert_payload).execute()
+    if not result.data:
+        raise HTTPException(status_code=500, detail="Report creation failed")
+    report = result.data[0]
 
     file_url = None
-    supabase = get_supabase_client()
     if fmt == "html":
         bucket = request.headers.get("X-Reports-Bucket") or "haida-reports"
         storage_path = f"reports/{tenant_id}/{report_id}.html"
@@ -298,41 +284,15 @@ async def generate_report(request: Request, payload: ReportGenerationRequest):
             raise HTTPException(status_code=500, detail="Report upload failed")
         file_url = storage_path
 
-    if report is None:
-        insert_payload = {
-            "id": report_id,
-            "tenant_id": tenant_id,
-            "name": report_name,
-            "description": description,
-            "report_type": payload.report_type,
-            "status": "completed",
-            "format": fmt,
-            "file_url": file_url,
-            "parameters": parameters,
-            "data": report_data,
-            "generated_at": datetime.utcnow().isoformat(),
-            "created_by": user_id,
-        }
-        result = supabase.table("reports").insert(insert_payload).execute()
-        if not result.data:
-            raise HTTPException(status_code=500, detail="Report creation failed")
-        report = result.data[0]
-    else:
-        update_sql = """
-        UPDATE reports
-        SET status = %s, file_url = %s, generated_at = %s, updated_at = %s
-        WHERE id = %s
-        """
-        execute(update_sql, ("completed", file_url, datetime.utcnow(), datetime.utcnow(), report_id))
-        report = fetch_one(
-            """
-            SELECT id, tenant_id, template_id, name, description, report_type, status,
-                   format, file_url, parameters, data, generated_at, created_by,
-                   created_at, updated_at
-            FROM reports WHERE id = %s
-            """,
-            (report_id,)
-        )
+    update_payload = {
+        "status": "completed",
+        "file_url": file_url,
+        "generated_at": datetime.utcnow().isoformat(),
+        "updated_at": datetime.utcnow().isoformat(),
+    }
+    updated = supabase.table("reports").update(update_payload).eq("id", report_id).execute()
+    if updated.data:
+        report = updated.data[0]
     report_data_db = dict(report)
     report_data_db["parameters"] = report_data_db.get("parameters") or {}
     report_data_db["data"] = report_data_db.get("data") or {}
