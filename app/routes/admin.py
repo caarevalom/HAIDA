@@ -287,8 +287,13 @@ async def seed_demo_data():
             tenant_name = tenant_result.data[0]['name']
             created_tenant = True
 
-        # 2. Verificar si ya hay proyectos para este tenant
-        existing_projects = supabase.table('projects').select('id,name').eq('tenant_id', tenant_id).limit(1).execute()
+        # 2. Verificar si ya hay proyecto demo para este tenant
+        existing_projects = supabase.table('projects')\
+            .select('id,name')\
+            .eq('tenant_id', tenant_id)\
+            .eq('slug', 'haida-demo')\
+            .limit(1)\
+            .execute()
 
         if existing_projects.data and len(existing_projects.data) > 0:
             project_id = existing_projects.data[0]['id']
@@ -309,16 +314,30 @@ async def seed_demo_data():
             project_name = project_result.data[0]['name']
             created_project = True
 
-        # 3. Crear test suite
-        suite_data = {
-            "project_id": project_id,
-            "name": "Login & Authentication Tests",
-            "description": "Suite de pruebas para funcionalidad de login",
-            "suite_type": "smoke",
-            "priority": "critical"
-        }
-        suite_result = supabase.table('test_suites').insert(suite_data).execute()
-        suite_id = suite_result.data[0]['id']
+        # 3. Crear o reutilizar test suite
+        existing_suites = supabase.table('test_suites')\
+            .select('id,name')\
+            .eq('project_id', project_id)\
+            .eq('name', 'Login & Authentication Tests')\
+            .limit(1)\
+            .execute()
+
+        if existing_suites.data and len(existing_suites.data) > 0:
+            suite_id = existing_suites.data[0]['id']
+            suite_name = existing_suites.data[0]['name']
+            created_suite = False
+        else:
+            suite_data = {
+                "project_id": project_id,
+                "name": "Login & Authentication Tests",
+                "description": "Suite de pruebas para funcionalidad de login",
+                "suite_type": "smoke",
+                "priority": "critical"
+            }
+            suite_result = supabase.table('test_suites').insert(suite_data).execute()
+            suite_id = suite_result.data[0]['id']
+            suite_name = suite_result.data[0]['name']
+            created_suite = True
 
         # 4. Crear test cases con JSONB test_steps
         test_cases_data = [
@@ -354,7 +373,17 @@ async def seed_demo_data():
             }
         ]
 
-        test_cases_result = supabase.table('test_cases').insert(test_cases_data).execute()
+        existing_cases = supabase.table('test_cases')\
+            .select('test_id')\
+            .eq('test_suite_id', suite_id)\
+            .in_('test_id', [case['test_id'] for case in test_cases_data])\
+            .execute()
+        existing_ids = {row['test_id'] for row in (existing_cases.data or [])}
+        missing_cases = [case for case in test_cases_data if case['test_id'] not in existing_ids]
+
+        test_cases_result = {"data": []}
+        if missing_cases:
+            test_cases_result = supabase.table('test_cases').insert(missing_cases).execute()
 
         return {
             "status": "success",
@@ -372,7 +401,8 @@ async def seed_demo_data():
                 },
                 "test_suite": {
                     "id": suite_id,
-                    "name": suite_result.data[0]['name']
+                    "name": suite_name,
+                    "created": created_suite
                 },
                 "test_cases": len(test_cases_result.data)
             }

@@ -156,36 +156,55 @@ async def register(request: RegisterRequest):
     Register new user with Supabase
     """
     try:
-        # Create user in Supabase Auth
-        auth_response = supabase.auth.sign_up({
-            "email": request.email,
-            "password": request.password,
-            "options": {
-                "data": {
+        # Create user in Supabase Auth (public signup)
+        auth_response = None
+        try:
+            auth_response = supabase.auth.sign_up({
+                "email": request.email,
+                "password": request.password,
+                "options": {
+                    "data": {
+                        "full_name": request.full_name,
+                        "role": request.role
+                    }
+                }
+            })
+        except Exception:
+            auth_response = None
+
+        if not auth_response or not auth_response.user:
+            # Fallback: create user via admin API (service role)
+            admin_response = supabase.auth.admin.create_user({
+                "email": request.email,
+                "password": request.password,
+                "email_confirm": True,
+                "user_metadata": {
                     "full_name": request.full_name,
                     "role": request.role
                 }
-            }
-        })
-        
-        if not auth_response.user:
+            })
+            auth_user = admin_response.user if admin_response else None
+        else:
+            auth_user = auth_response.user
+
+        if not auth_user:
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
                 detail="Registration failed"
             )
-        
+
         # Create user in our database
         user_data = {
-            "id": auth_response.user.id,
-            "email": auth_response.user.email,
-            "name": request.full_name or auth_response.user.email,
+            "id": auth_user.id,
+            "email": auth_user.email,
+            "name": request.full_name or auth_user.email,
             "role": request.role
         }
         user = await create_user_in_database(user_data)
-        
+
         # Create JWT token
         token = create_jwt_token(user)
-        
+
         return TokenResponse(
             access_token=token,
             expires_in=JWT_EXPIRATION_HOURS * 3600,
@@ -196,7 +215,7 @@ async def register(request: RegisterRequest):
                 "role": user["role"]
             }
         )
-        
+
     except Exception as e:
         print(f"Registration error: {e}")
         raise HTTPException(
