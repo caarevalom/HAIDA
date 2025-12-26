@@ -383,6 +383,7 @@ async def seed_demo_data():
         test_cases_result = {"data": []}
         if missing_cases:
             test_cases_result = supabase.table('test_cases').insert(missing_cases).execute()
+        inserted_count = len(test_cases_result.data) if hasattr(test_cases_result, "data") else len(test_cases_result.get("data", []))
 
         return {
             "status": "success",
@@ -403,7 +404,7 @@ async def seed_demo_data():
                     "name": suite_name,
                     "created": created_suite
                 },
-                "test_cases": len(test_cases_result.data)
+                "test_cases": inserted_count
             }
         }
 
