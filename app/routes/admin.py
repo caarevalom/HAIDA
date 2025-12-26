@@ -289,8 +289,7 @@ async def seed_demo_data():
 
         # 2. Verificar si ya hay proyecto demo para este tenant
         existing_projects = supabase.table('projects')\
-            .select('id,name')\
-            .eq('tenant_id', tenant_id)\
+            .select('id,name,tenant_id')\
             .eq('slug', 'haida-demo')\
             .limit(1)\
             .execute()
@@ -298,6 +297,7 @@ async def seed_demo_data():
         if existing_projects.data and len(existing_projects.data) > 0:
             project_id = existing_projects.data[0]['id']
             project_name = existing_projects.data[0]['name']
+            tenant_id = existing_projects.data[0].get('tenant_id', tenant_id)
             created_project = False
         else:
             # Crear proyecto demo (omitiendo 'type' porque tiene default 'web')
