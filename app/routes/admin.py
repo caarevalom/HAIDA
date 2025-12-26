@@ -375,7 +375,6 @@ async def seed_demo_data():
 
         existing_cases = supabase.table('test_cases')\
             .select('test_id')\
-            .eq('test_suite_id', suite_id)\
             .in_('test_id', [case['test_id'] for case in test_cases_data])\
             .execute()
         existing_ids = {row['test_id'] for row in (existing_cases.data or [])}
