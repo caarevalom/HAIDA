@@ -1,49 +1,51 @@
-"""
-Reports endpoints
-"""
-from fastapi import APIRouter, HTTPException, Depends, status
+"""Reports endpoints"""
+from fastapi import APIRouter, HTTPException, Request
+from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 from typing import List, Optional, Dict, Any
-from datetime import datetime, timedelta
-import uuid
+from datetime import datetime
 import json
+import uuid
+
 from app.core.db import fetch_one, fetch_all, execute
+from app.core.request_context import get_tenant_id, get_user_id
+from app.core.supabase_client import get_supabase_client
 
 router = APIRouter()
 
 class Report(BaseModel):
     id: str
-    project_id: str
-    execution_id: Optional[str]
+    tenant_id: str
+    template_id: Optional[str]
     name: str
     description: Optional[str]
     report_type: str
-    format: str
     status: str
-    file_path: Optional[str]
-    file_size: Optional[int]
-    download_url: Optional[str]
-    metadata: dict
-    created_by: str
+    format: str
+    file_url: Optional[str]
+    parameters: dict
+    data: dict
+    generated_at: Optional[datetime]
+    created_by: Optional[str]
     created_at: datetime
     updated_at: datetime
 
 class ReportCreate(BaseModel):
     project_id: str
-    execution_id: Optional[str] = None
-    name: str
-    description: Optional[str] = None
     report_type: str = "execution_summary"
-    format: str = "pdf"
+    format: str = "html"
+    name: Optional[str] = None
+    description: Optional[str] = None
+    date_range: Optional[Dict[str, str]] = None
+    filters: Optional[Dict[str, Any]] = None
 
 class ReportUpdate(BaseModel):
     name: Optional[str] = None
     description: Optional[str] = None
     status: Optional[str] = None
-    file_path: Optional[str] = None
-    file_size: Optional[int] = None
-    download_url: Optional[str] = None
-    metadata: Optional[Dict[str, Any]] = None
+    file_url: Optional[str] = None
+    parameters: Optional[Dict[str, Any]] = None
+    data: Optional[Dict[str, Any]] = None
 
 class ReportListResponse(BaseModel):
     reports: List[Report]
@@ -54,244 +56,269 @@ class ReportListResponse(BaseModel):
 class ReportGenerationRequest(BaseModel):
     project_id: str
     report_type: str
-    format: str = "pdf"
+    format: str = "html"
     date_range: Optional[Dict[str, str]] = None
     filters: Optional[Dict[str, Any]] = None
 
-async def get_current_user_id(authorization: str = None) -> str:
-    """Extract user ID from JWT token"""
-    if not authorization:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Authorization header required"
-        )
-    
-    try:
-        import jwt
-        import os
-        JWT_SECRET = os.environ.get("JWT_SECRET", "development-secret-key")
-        JWT_ALGORITHM = "HS256"
-        
-        token = authorization.replace("Bearer ", "")
-        payload = jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGORITHM])
-        return payload.get("sub")
-    except:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid token"
-        )
+SUPPORTED_FORMATS = {"html", "json"}
+
+
+def render_report_html(report_name: str, report_type: str, data: Dict[str, Any]) -> str:
+    summary = data.get("summary", {})
+    chart = data.get("chart_data", [])
+    trends = data.get("daily_trends", [])
+
+    chart_rows = "".join(
+        f"<div class='bar'><span>{item['label']}</span><div style='width:{item['value']}%'></div><em>{item['value']}%</em></div>"
+        for item in chart
+    )
+
+    trend_rows = "".join(
+        f"<tr><td>{item.get('date')}</td><td>{item.get('executions', 0)}</td><td>{item.get('passed_tests', 0)}</td><td>{item.get('failed_tests', 0)}</td></tr>"
+        for item in trends
+    )
+
+    return f"""
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>{report_name}</title>
+<style>
+body {{ font-family: Arial, sans-serif; margin: 24px; color: #1b1b1b; }}
+header {{ display: flex; justify-content: space-between; align-items: baseline; }}
+section {{ margin-top: 24px; }}
+.kpis {{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }}
+.kpi {{ border: 1px solid #e2e2e2; border-radius: 8px; padding: 12px; background: #fafafa; }}
+.kpi h3 {{ margin: 0 0 6px; font-size: 12px; text-transform: uppercase; color: #666; }}
+.kpi p {{ margin: 0; font-size: 20px; font-weight: bold; }}
+.chart .bar {{ display: grid; grid-template-columns: 120px 1fr 60px; align-items: center; gap: 8px; margin-bottom: 8px; }}
+.chart .bar div {{ height: 10px; background: #1f6feb; border-radius: 999px; }}
+.chart .bar span {{ font-size: 12px; color: #444; }}
+.chart .bar em {{ font-size: 12px; color: #444; text-align: right; }}
+.table {{ width: 100%; border-collapse: collapse; }}
+.table th, .table td {{ border: 1px solid #e2e2e2; padding: 8px; font-size: 12px; }}
+.table th {{ background: #f0f0f0; text-align: left; }}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>{report_name}</h1>
+    <p>Tipo: {report_type}</p>
+  </div>
+  <div>
+    <p>Generado: {data.get('generated_at')}</p>
+  </div>
+</header>
+<section>
+  <h2>Resumen</h2>
+  <div class="kpis">
+    <div class="kpi"><h3>Total ejecuciones</h3><p>{summary.get('total_executions', 0)}</p></div>
+    <div class="kpi"><h3>Completadas</h3><p>{summary.get('completed_executions', 0)}</p></div>
+    <div class="kpi"><h3>Fallidas</h3><p>{summary.get('failed_executions', 0)}</p></div>
+    <div class="kpi"><h3>Promedio duracion</h3><p>{summary.get('avg_duration_ms', 0)} ms</p></div>
+  </div>
+</section>
+<section class="chart">
+  <h2>Distribucion de resultados</h2>
+  {chart_rows or '<p>Sin datos suficientes.</p>'}
+</section>
+<section>
+  <h2>Tendencias recientes</h2>
+  <table class="table">
+    <thead><tr><th>Fecha</th><th>Ejecuciones</th><th>Passed</th><th>Failed</th></tr></thead>
+    <tbody>{trend_rows or '<tr><td colspan="4">Sin datos</td></tr>'}</tbody>
+  </table>
+</section>
+</body>
+</html>
+"""
+
+
+def _normalize_format(fmt: str) -> str:
+    fmt = (fmt or "").lower()
+    return fmt if fmt in SUPPORTED_FORMATS else "html"
+
 
 @router.get("", response_model=ReportListResponse)
 async def list_reports(
-    project_id: Optional[str] = None,
-    execution_id: Optional[str] = None,
+    request: Request,
     report_type: Optional[str] = None,
     status: Optional[str] = None,
     format: Optional[str] = None,
     page: int = 1,
     per_page: int = 20,
-    authorization: str = None
 ):
     """List reports with filters and pagination"""
-    user_id = await get_current_user_id(authorization)
-    
-    # Build WHERE clause
-    where_conditions = ["created_by = %s"]
-    params = [user_id]
-    
-    if project_id:
-        where_conditions.append("project_id = %s")
-        params.append(project_id)
-    
-    if execution_id:
-        where_conditions.append("execution_id = %s")
-        params.append(execution_id)
-    
+    tenant_id = get_tenant_id(request)
+    user_id = get_user_id(request)
+
+    where_conditions = ["tenant_id = %s", "created_by = %s"]
+    params = [tenant_id, user_id]
+
     if report_type:
         where_conditions.append("report_type = %s")
         params.append(report_type)
-    
     if status:
         where_conditions.append("status = %s")
         params.append(status)
-    
     if format:
         where_conditions.append("format = %s")
         params.append(format)
-    
+
     where_clause = " WHERE " + " AND ".join(where_conditions)
-    
-    # Get total count
+
     count_sql = f"SELECT COUNT(*) as total FROM reports{where_clause}"
     count_result = fetch_one(count_sql, tuple(params))
-    total = count_result['total'] if count_result else 0
-    
-    # Get reports with pagination
+    total = count_result["total"] if count_result else 0
+
     offset = (page - 1) * per_page
     reports_sql = f"""
-    SELECT id, project_id, execution_id, name, description, report_type, format,
-           status, file_path, file_size, download_url, metadata, created_by,
+    SELECT id, tenant_id, template_id, name, description, report_type, status,
+           format, file_url, parameters, data, generated_at, created_by,
            created_at, updated_at
     FROM reports
     {where_clause}
-    ORDER BY created_at DESC 
+    ORDER BY created_at DESC
     LIMIT %s OFFSET %s
     """
-    
+
     params.extend([per_page, offset])
     reports = fetch_all(reports_sql, tuple(params))
-    
+
     report_list = []
     for report in reports:
         report_data = dict(report)
-        report_data['metadata'] = report_data['metadata'] or {}
+        report_data["parameters"] = report_data.get("parameters") or {}
+        report_data["data"] = report_data.get("data") or {}
         report_list.append(Report(**report_data))
-    
-    return ReportListResponse(
-        reports=report_list,
-        total=total,
-        page=page,
-        per_page=per_page
-    )
+
+    return ReportListResponse(reports=report_list, total=total, page=page, per_page=per_page)
+
 
 @router.post("/generate", response_model=Report)
-async def generate_report(request: ReportGenerationRequest, authorization: str = None):
+async def generate_report(request: Request, payload: ReportGenerationRequest):
     """Generate a new report"""
-    user_id = await get_current_user_id(authorization)
-    
-    # Verify user has access to the project
+    tenant_id = get_tenant_id(request)
+    user_id = get_user_id(request)
+
     project = fetch_one(
-        "SELECT id FROM projects WHERE id = %s AND owner_id = %s",
-        (request.project_id, user_id)
+        "SELECT id FROM projects WHERE id = %s AND tenant_id = %s",
+        (payload.project_id, tenant_id)
     )
-    
     if not project:
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail="Access denied to project"
-        )
-    
+        raise HTTPException(status_code=403, detail="Access denied to project")
+
     report_id = str(uuid.uuid4())
-    report_name = f"{request.report_type}_{request.format}_{datetime.utcnow().strftime('%Y%m%d_%H%M%S')}"
-    
-    # Create report record
-    sql = """
-    INSERT INTO reports 
-    (id, project_id, execution_id, name, description, report_type, format,
-     status, metadata, created_by, created_at, updated_at)
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-    RETURNING id, project_id, execution_id, name, description, report_type, format,
-              status, file_path, file_size, download_url, metadata, created_by,
-              created_at, updated_at
+    fmt = _normalize_format(payload.format)
+    report_name = payload.name or f"{payload.report_type}_{fmt}_{datetime.utcnow().strftime('%Y%m%d_%H%M%S')}"
+    description = payload.description or f"Generated {payload.report_type} report"
+
+    report_data = await generate_report_data(
+        payload.project_id,
+        payload.report_type,
+        payload.date_range,
+        payload.filters
+    )
+
+    parameters = {
+        "project_id": payload.project_id,
+        "requested_format": payload.format,
+        "report_type": payload.report_type,
+        "date_range": payload.date_range or {},
+        "filters": payload.filters or {},
+    }
+
+    insert_sql = """
+    INSERT INTO reports
+    (id, tenant_id, name, description, report_type, status, format, file_url,
+     parameters, data, generated_at, created_by, created_at, updated_at)
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
     """
-    
-    try:
-        # Generate report data based on type
-        report_data = await generate_report_data(
-            request.project_id, 
-            request.report_type, 
-            request.date_range,
-            request.filters
-        )
-        
-        created_report = execute(sql, (
+
+    execute(
+        insert_sql,
+        (
             report_id,
-            request.project_id,
-            None,  # execution_id (can be added later)
+            tenant_id,
             report_name,
-            f"Generated {request.report_type} report",
-            request.report_type,
-            request.format,
+            description,
+            payload.report_type,
             "generating",
-            report_data,
+            fmt,
+            None,
+            json.dumps(parameters),
+            json.dumps(report_data),
+            None,
             user_id,
             datetime.utcnow(),
-            datetime.utcnow()
-        ))
-        
-        # Fetch the created report
-        report = fetch_one(
-            """
-            SELECT id, project_id, execution_id, name, description, report_type, format,
-                   status, file_path, file_size, download_url, metadata, created_by,
-                   created_at, updated_at
-            FROM reports WHERE id = %s
-            """,
-            (report_id,)
+            datetime.utcnow(),
         )
-        
-        if report:
-            report_data = dict(report)
-            report_data['metadata'] = report_data['metadata'] or {}
-            
-            # In a real implementation, you would:
-            # 1. Generate the actual file (PDF, Excel, etc.)
-            # 2. Save to storage (S3, Vercel, etc.)
-            # 3. Update the record with file_path and download_url
-            
-            # For now, we'll simulate completion
-            file_path = f"/reports/{report_id}.{request.format}"
-            download_url = f"/api/reports/{report_id}/download"
-            
-            execute(
-                """
-                UPDATE reports 
-                SET status = %s, file_path = %s, download_url = %s, updated_at = %s
-                WHERE id = %s
-                """,
-                ("completed", file_path, download_url, datetime.utcnow(), report_id)
-            )
-            
-            # Fetch updated report
-            updated_report = fetch_one("SELECT * FROM reports WHERE id = %s", (report_id,))
-            updated_data = dict(updated_report)
-            updated_data['metadata'] = updated_data['metadata'] or {}
-            
-            return Report(**updated_data)
-        else:
-            raise HTTPException(
-                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail="Failed to create report"
-            )
-            
-    except Exception as e:
-        print(f"Error generating report: {e}")
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Failed to generate report: {str(e)}"
+    )
+
+    file_url = None
+    if fmt == "html":
+        supabase = get_supabase_client()
+        bucket = request.headers.get("X-Reports-Bucket") or "haida-reports"
+        storage_path = f"reports/{tenant_id}/{report_id}.html"
+        html = render_report_html(report_name, payload.report_type, report_data)
+        upload_result = supabase.storage.from_(bucket).upload(
+            storage_path,
+            html.encode("utf-8"),
+            file_options={"content-type": "text/html; charset=utf-8"}
         )
+        if getattr(upload_result, "error", None):
+            raise HTTPException(status_code=500, detail="Report upload failed")
+        file_url = storage_path
+
+    update_sql = """
+    UPDATE reports
+    SET status = %s, file_url = %s, generated_at = %s, updated_at = %s
+    WHERE id = %s
+    """
+    execute(update_sql, ("completed", file_url, datetime.utcnow(), datetime.utcnow(), report_id))
+
+    report = fetch_one(
+        """
+        SELECT id, tenant_id, template_id, name, description, report_type, status,
+               format, file_url, parameters, data, generated_at, created_by,
+               created_at, updated_at
+        FROM reports WHERE id = %s
+        """,
+        (report_id,)
+    )
+    report_data_db = dict(report)
+    report_data_db["parameters"] = report_data_db.get("parameters") or {}
+    report_data_db["data"] = report_data_db.get("data") or {}
+    return Report(**report_data_db)
+
 
 async def generate_report_data(project_id: str, report_type: str, date_range: Optional[Dict[str, str]], filters: Optional[Dict[str, Any]]) -> Dict[str, Any]:
-    """Generate report data based on type"""
-    
     if report_type == "execution_summary":
         return await generate_execution_summary(project_id, date_range, filters)
-    elif report_type == "test_coverage":
+    if report_type == "test_coverage":
         return await generate_test_coverage(project_id, date_range, filters)
-    elif report_type == "trends":
+    if report_type == "trends":
         return await generate_trends_report(project_id, date_range, filters)
-    elif report_type == "performance":
+    if report_type == "performance":
         return await generate_performance_report(project_id, date_range, filters)
-    else:
-        return {"error": "Unsupported report type"}
+    return {"error": "Unsupported report type"}
+
 
 async def generate_execution_summary(project_id: str, date_range: Optional[Dict[str, str]], filters: Optional[Dict[str, Any]]) -> Dict[str, Any]:
-    """Generate execution summary report data"""
-    
-    # Build WHERE clause for date range
     where_conditions = ["project_id = %s"]
     params = [project_id]
-    
+
     if date_range and date_range.get("start_date") and date_range.get("end_date"):
         where_conditions.append("started_at BETWEEN %s AND %s")
         params.extend([date_range["start_date"], date_range["end_date"]])
-    
+
     where_clause = " WHERE " + " AND ".join(where_conditions)
-    
-    # Get execution summary
+
     summary = fetch_one(
         f"""
-        SELECT 
+        SELECT
             COUNT(*) as total_executions,
             COUNT(CASE WHEN status = 'completed' THEN 1 END) as completed_executions,
             COUNT(CASE WHEN status = 'failed' THEN 1 END) as failed_executions,
@@ -308,8 +335,20 @@ async def generate_execution_summary(project_id: str, date_range: Optional[Dict[
         """,
         tuple(params)
     )
-    
-    # Get recent executions
+
+    summary_data = dict(summary) if summary else {}
+    total_tests = summary_data.get("total_tests") or 0
+    passed = summary_data.get("total_passed") or 0
+    failed = summary_data.get("total_failed") or 0
+    skipped = summary_data.get("total_skipped") or 0
+    total = max(total_tests, 1)
+
+    chart_data = [
+        {"label": "Passed", "value": round((passed / total) * 100, 2)},
+        {"label": "Failed", "value": round((failed / total) * 100, 2)},
+        {"label": "Skipped", "value": round((skipped / total) * 100, 2)},
+    ]
+
     recent_executions = fetch_all(
         f"""
         SELECT id, status, started_at, completed_at, duration_ms,
@@ -321,18 +360,17 @@ async def generate_execution_summary(project_id: str, date_range: Optional[Dict[
         """,
         tuple(params)
     )
-    
+
     return {
-        "summary": dict(summary) if summary else {},
+        "summary": summary_data,
         "recent_executions": [dict(exec) for exec in recent_executions],
+        "chart_data": chart_data,
         "generated_at": datetime.utcnow().isoformat(),
-        "project_id": project_id
+        "project_id": project_id,
     }
 
+
 async def generate_test_coverage(project_id: str, date_range: Optional[Dict[str, str]], filters: Optional[Dict[str, Any]]) -> Dict[str, Any]:
-    """Generate test coverage report data"""
-    
-    # Get test coverage from view
     coverage_data = fetch_all(
         """
         SELECT * FROM v_test_coverage
@@ -342,11 +380,10 @@ async def generate_test_coverage(project_id: str, date_range: Optional[Dict[str,
         """,
         (project_id,)
     )
-    
-    # Get test case breakdown by type
+
     type_breakdown = fetch_all(
         """
-        SELECT test_type, COUNT(*) as count, 
+        SELECT test_type, COUNT(*) as count,
                COUNT(CASE WHEN is_automated = true THEN 1 END) as automated
         FROM test_cases
         WHERE test_suite_id IN (
@@ -356,21 +393,25 @@ async def generate_test_coverage(project_id: str, date_range: Optional[Dict[str,
         """,
         (project_id,)
     )
-    
+
+    chart_data = [
+        {"label": row.get("test_type"), "value": row.get("count", 0)}
+        for row in (type_breakdown or [])
+    ]
+
     return {
         "coverage_by_suite": [dict(data) for data in coverage_data],
         "coverage_by_type": [dict(data) for data in type_breakdown],
+        "chart_data": chart_data,
         "generated_at": datetime.utcnow().isoformat(),
-        "project_id": project_id
+        "project_id": project_id,
     }
 
+
 async def generate_trends_report(project_id: str, date_range: Optional[Dict[str, str]], filters: Optional[Dict[str, Any]]) -> Dict[str, Any]:
-    """Generate trends report data"""
-    
-    # Get daily execution trends
     daily_trends = fetch_all(
         """
-        SELECT 
+        SELECT
             DATE(started_at) as date,
             COUNT(*) as executions,
             SUM(total_tests) as total_tests,
@@ -385,20 +426,18 @@ async def generate_trends_report(project_id: str, date_range: Optional[Dict[str,
         """,
         (project_id,)
     )
-    
+
     return {
         "daily_trends": [dict(trend) for trend in daily_trends],
         "generated_at": datetime.utcnow().isoformat(),
-        "project_id": project_id
+        "project_id": project_id,
     }
 
+
 async def generate_performance_report(project_id: str, date_range: Optional[Dict[str, str]], filters: Optional[Dict[str, Any]]) -> Dict[str, Any]:
-    """Generate performance report data"""
-    
-    # Get performance metrics
     performance_data = fetch_all(
         """
-        SELECT 
+        SELECT
             id,
             started_at,
             duration_ms,
@@ -416,248 +455,190 @@ async def generate_performance_report(project_id: str, date_range: Optional[Dict
         """,
         (project_id,)
     )
-    
+
     return {
         "performance_metrics": [dict(data) for data in performance_data],
         "generated_at": datetime.utcnow().isoformat(),
-        "project_id": project_id
+        "project_id": project_id,
     }
 
+
 @router.get("/{report_id}", response_model=Report)
-async def get_report(report_id: str, authorization: str = None):
+async def get_report(request: Request, report_id: str):
     """Get specific report by ID"""
-    user_id = await get_current_user_id(authorization)
-    
+    tenant_id = get_tenant_id(request)
+    user_id = get_user_id(request)
+
     report = fetch_one(
         """
-        SELECT id, project_id, execution_id, name, description, report_type, format,
-               status, file_path, file_size, download_url, metadata, created_by,
+        SELECT id, tenant_id, template_id, name, description, report_type, status,
+               format, file_url, parameters, data, generated_at, created_by,
                created_at, updated_at
         FROM reports
-        WHERE id = %s AND created_by = %s
+        WHERE id = %s AND tenant_id = %s AND created_by = %s
         """,
-        (report_id, user_id)
+        (report_id, tenant_id, user_id)
     )
-    
+
     if not report:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Report not found"
-        )
-    
+        raise HTTPException(status_code=404, detail="Report not found")
+
     report_data = dict(report)
-    report_data['metadata'] = report_data['metadata'] or {}
+    report_data["parameters"] = report_data.get("parameters") or {}
+    report_data["data"] = report_data.get("data") or {}
     return Report(**report_data)
 
+
 @router.put("/{report_id}", response_model=Report)
-async def update_report(report_id: str, report_update: ReportUpdate, authorization: str = None):
+async def update_report(request: Request, report_id: str, report_update: ReportUpdate):
     """Update existing report"""
-    user_id = await get_current_user_id(authorization)
-    
-    # Check if report exists and belongs to user
+    tenant_id = get_tenant_id(request)
+    user_id = get_user_id(request)
+
     existing_report = fetch_one(
-        "SELECT id FROM reports WHERE id = %s AND created_by = %s",
-        (report_id, user_id)
+        "SELECT id FROM reports WHERE id = %s AND tenant_id = %s AND created_by = %s",
+        (report_id, tenant_id, user_id)
     )
-    
+
     if not existing_report:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Report not found"
-        )
-    
-    # Build UPDATE dynamically
+        raise HTTPException(status_code=404, detail="Report not found")
+
     update_fields = []
     params = []
-    
+
     if report_update.name is not None:
         update_fields.append("name = %s")
         params.append(report_update.name)
-    
     if report_update.description is not None:
         update_fields.append("description = %s")
         params.append(report_update.description)
-    
     if report_update.status is not None:
         update_fields.append("status = %s")
         params.append(report_update.status)
-    
-    if report_update.file_path is not None:
-        update_fields.append("file_path = %s")
-        params.append(report_update.file_path)
-    
-    if report_update.file_size is not None:
-        update_fields.append("file_size = %s")
-        params.append(report_update.file_size)
-    
-    if report_update.download_url is not None:
-        update_fields.append("download_url = %s")
-        params.append(report_update.download_url)
-    
-    if report_update.metadata is not None:
-        update_fields.append("metadata = %s")
-        params.append(json.dumps(report_update.metadata))
-    
+    if report_update.file_url is not None:
+        update_fields.append("file_url = %s")
+        params.append(report_update.file_url)
+    if report_update.parameters is not None:
+        update_fields.append("parameters = %s")
+        params.append(json.dumps(report_update.parameters))
+    if report_update.data is not None:
+        update_fields.append("data = %s")
+        params.append(json.dumps(report_update.data))
+
     if not update_fields:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="No fields to update"
-        )
-    
-    # Add updated_at and report_id
+        raise HTTPException(status_code=400, detail="No fields to update")
+
     update_fields.append("updated_at = %s")
     params.append(datetime.utcnow())
     params.append(report_id)
-    
-    sql = f"""
-    UPDATE reports 
-    SET {', '.join(update_fields)}
-    WHERE id = %s
-    """
-    
-    try:
-        execute(sql, tuple(params))
-        
-        # Fetch updated report
-        updated_report = fetch_one(
-            """
-            SELECT id, project_id, execution_id, name, description, report_type, format,
-                   status, file_path, file_size, download_url, metadata, created_by,
-                   created_at, updated_at
-            FROM reports WHERE id = %s
-            """,
-            (report_id,)
-        )
-        
-        report_data = dict(updated_report)
-        report_data['metadata'] = report_data['metadata'] or {}
-        return Report(**report_data)
-        
-    except Exception as e:
-        print(f"Error updating report: {e}")
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Failed to update report: {str(e)}"
-        )
+
+    sql = f"UPDATE reports SET {', '.join(update_fields)} WHERE id = %s"
+    execute(sql, tuple(params))
+
+    updated_report = fetch_one(
+        """
+        SELECT id, tenant_id, template_id, name, description, report_type, status,
+               format, file_url, parameters, data, generated_at, created_by,
+               created_at, updated_at
+        FROM reports WHERE id = %s
+        """,
+        (report_id,)
+    )
+
+    report_data = dict(updated_report)
+    report_data["parameters"] = report_data.get("parameters") or {}
+    report_data["data"] = report_data.get("data") or {}
+    return Report(**report_data)
+
 
 @router.delete("/{report_id}")
-async def delete_report(report_id: str, authorization: str = None):
+async def delete_report(request: Request, report_id: str):
     """Delete report"""
-    user_id = await get_current_user_id(authorization)
-    
-    # Check if report exists and belongs to user
+    tenant_id = get_tenant_id(request)
+    user_id = get_user_id(request)
+
     existing_report = fetch_one(
-        "SELECT id, file_path FROM reports WHERE id = %s AND created_by = %s",
-        (report_id, user_id)
+        "SELECT id FROM reports WHERE id = %s AND tenant_id = %s AND created_by = %s",
+        (report_id, tenant_id, user_id)
     )
-    
+
     if not existing_report:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Report not found"
-        )
-    
-    try:
-        # In a real implementation, you would delete the file from storage
-        # For now, we'll just delete the database record
-        
-        execute("DELETE FROM reports WHERE id = %s", (report_id,))
-        
-        return {"message": "Report deleted successfully"}
-        
-    except Exception as e:
-        print(f"Error deleting report: {e}")
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Failed to delete report: {str(e)}"
-        )
+        raise HTTPException(status_code=404, detail="Report not found")
+
+    execute("DELETE FROM reports WHERE id = %s", (report_id,))
+    return {"message": "Report deleted successfully"}
+
+
+@router.get("/{report_id}/view")
+async def view_report(request: Request, report_id: str):
+    """Render report as HTML for in-app viewing"""
+    report = await get_report(request, report_id)
+    if report.format != "html" or not report.file_url:
+        raise HTTPException(status_code=400, detail="Report not available for preview")
+
+    supabase = get_supabase_client()
+    bucket = request.headers.get("X-Reports-Bucket") or "haida-reports"
+    data = supabase.storage.from_(bucket).download(report.file_url)
+    if not data:
+        raise HTTPException(status_code=404, detail="Report file not found")
+
+    return HTMLResponse(content=data.decode("utf-8"), status_code=200)
+
 
 @router.get("/{report_id}/download")
-async def download_report(report_id: str, authorization: str = None):
+async def download_report(request: Request, report_id: str):
     """Download report file"""
-    user_id = await get_current_user_id(authorization)
-    
-    report = fetch_one(
-        "SELECT id, name, format, file_path, download_url, status FROM reports WHERE id = %s AND created_by = %s",
-        (report_id, user_id)
-    )
-    
-    if not report:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Report not found"
-        )
-    
-    if report['status'] != 'completed':
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Report is not ready for download"
-        )
-    
-    if not report['file_path']:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Report file not found"
-        )
-    
-    # In a real implementation, you would:
-    # 1. Stream the file from storage (S3, Vercel, etc.)
-    # 2. Return appropriate headers for download
-    # 3. Handle different file types
-    
-    return {
-        "message": "Download endpoint - implement file streaming",
-        "report_id": report_id,
-        "file_path": report['file_path'],
-        "format": report['format'],
-        "download_url": f"/files/reports/{report_id}.{report['format']}"
-    }
+    report = await get_report(request, report_id)
+
+    if report.status != "completed":
+        raise HTTPException(status_code=400, detail="Report is not ready for download")
+
+    if report.format == "json":
+        return {
+            "report_id": report.id,
+            "name": report.name,
+            "type": report.report_type,
+            "data": report.data,
+            "downloaded_at": datetime.utcnow().isoformat(),
+        }
+
+    if not report.file_url:
+        raise HTTPException(status_code=404, detail="Report file not found")
+
+    supabase = get_supabase_client()
+    bucket = request.headers.get("X-Reports-Bucket") or "haida-reports"
+    expires_in = int(request.headers.get("X-Report-Url-Expires", "3600"))
+    signed = supabase.storage.from_(bucket).create_signed_url(report.file_url, expires_in)
+    signed_url = signed.get("signedURL") if isinstance(signed, dict) else None
+
+    if not signed_url:
+        raise HTTPException(status_code=500, detail="Failed to generate download URL")
+
+    return {"download_url": signed_url, "expires_in": expires_in}
+
 
 @router.post("/{report_id}/export")
-async def export_report(report_id: str, format: str = "json", authorization: str = None):
+async def export_report(request: Request, report_id: str, format: str = "json"):
     """Export report in different format"""
-    user_id = await get_current_user_id(authorization)
-    
-    report = fetch_one(
-        """
-        SELECT id, name, report_type, metadata, status
-        FROM reports 
-        WHERE id = %s AND created_by = %s
-        """,
-        (report_id, user_id)
-    )
-    
-    if not report:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Report not found"
-        )
-    
-    if report['status'] != 'completed':
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Report is not ready for export"
-        )
-    
-    # Convert to requested format
-    metadata = report['metadata'] or {}
-    
+    report = await get_report(request, report_id)
+
+    if report.status != "completed":
+        raise HTTPException(status_code=400, detail="Report is not ready for export")
+
+    data = report.data or {}
+
     if format == "json":
         return {
-            "report_id": report_id,
-            "name": report['name'],
-            "type": report['report_type'],
-            "data": metadata,
-            "exported_at": datetime.utcnow().isoformat()
+            "report_id": report.id,
+            "name": report.name,
+            "type": report.report_type,
+            "data": data,
+            "exported_at": datetime.utcnow().isoformat(),
         }
-    elif format == "csv":
-        # Convert to CSV format (simplified)
-        return {
-            "message": "CSV export - implement CSV conversion",
-            "data": metadata
-        }
-    else:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail=f"Unsupported export format: {format}"
-        )
+
+    if format == "csv":
+        summary = data.get("summary", {})
+        lines = ["metric,value"] + [f"{k},{summary.get(k, '')}" for k in summary.keys()]
+        return {"csv": "\n".join(lines)}
+
+    raise HTTPException(status_code=400, detail=f"Unsupported export format: {format}")
