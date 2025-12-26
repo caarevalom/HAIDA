@@ -1,26 +1,19 @@
-"""
-Projects management endpoints
-"""
-from fastapi import APIRouter, HTTPException, Query
+"""Projects management endpoints"""
+from fastapi import APIRouter, HTTPException, Query, Request
 from pydantic import BaseModel
 from typing import List, Optional
 from datetime import datetime
 import uuid
-import os
-from supabase import create_client, Client
+import re
+from app.core.supabase_client import get_supabase_client
+from app.core.tenants import resolve_tenant_id
 
 router = APIRouter()
 
-# Supabase client
-def get_supabase() -> Client:
-    """Get Supabase client"""
-    supabase_url = os.getenv('SUPABASE_URL')
-    supabase_key = os.getenv('SUPABASE_SERVICE_KEY')
-
-    if not supabase_url or not supabase_key:
-        raise HTTPException(status_code=500, detail="Supabase not configured")
-
-    return create_client(supabase_url, supabase_key)
+def slugify(value: str) -> str:
+    value = value.strip().lower()
+    value = re.sub(r"[^a-z0-9]+", "-", value)
+    return value.strip("-") or f"project-{uuid.uuid4().hex[:8]}"
 
 class ProjectCreate(BaseModel):
     name: str
@@ -47,17 +40,23 @@ class Project(BaseModel):
 
 @router.get("", response_model=List[Project])
 async def list_projects(
+    request: Request,
     skip: int = Query(0, ge=0),
     limit: int = Query(50, le=100)
 ):
     """
     List all projects for current tenant
     """
-    supabase = get_supabase()
+    tenant_id = resolve_tenant_id(request) or request.headers.get("X-Tenant-Id")
+    if not tenant_id:
+        raise HTTPException(status_code=400, detail="Tenant id required")
+
+    supabase = get_supabase_client()
 
     # Query projects from Supabase
     result = supabase.table('projects')\
         .select('*')\
+        .eq('tenant_id', tenant_id)\
         .order('created_at', desc=True)\
         .range(skip, skip + limit - 1)\
         .execute()
@@ -65,34 +64,59 @@ async def list_projects(
     return result.data if result.data else []
 
 @router.post("", response_model=Project)
-async def create_project(project: ProjectCreate):
+async def create_project(request: Request, project: ProjectCreate):
     """
     Create a new project
-    TODO: Insert into projects table
     """
-    # TODO: Implement actual creation
-    return Project(
-        id=str(uuid.uuid4()),
-        tenant_id=str(uuid.uuid4()),
-        name=project.name,
-        description=project.description,
-        repository_url=project.repository_url,
-        base_url=project.base_url,
-        status="active",
-        created_at=datetime.utcnow(),
-        updated_at=datetime.utcnow()
-    )
+    tenant_id = resolve_tenant_id(request) or request.headers.get("X-Tenant-Id")
+    if not tenant_id:
+        raise HTTPException(status_code=400, detail="Tenant id required")
+    if not project.base_url:
+        raise HTTPException(status_code=400, detail="base_url is required")
+
+    supabase = get_supabase_client()
+
+    slug = slugify(project.name)
+    existing = supabase.table("projects")\
+        .select("id")\
+        .eq("tenant_id", tenant_id)\
+        .eq("slug", slug)\
+        .limit(1)\
+        .execute()
+    if existing.data:
+        slug = f"{slug}-{uuid.uuid4().hex[:6]}"
+
+    payload = {
+        "tenant_id": tenant_id,
+        "name": project.name,
+        "slug": slug,
+        "description": project.description,
+        "repository_url": project.repository_url,
+        "base_url": project.base_url,
+        "status": "active",
+        "created_at": datetime.utcnow().isoformat(),
+        "updated_at": datetime.utcnow().isoformat(),
+    }
+    result = supabase.table('projects').insert(payload).execute()
+    if not result.data:
+        raise HTTPException(status_code=500, detail="Project creation failed")
+    return result.data[0]
 
 @router.get("/{project_id}", response_model=Project)
-async def get_project(project_id: str):
+async def get_project(request: Request, project_id: str):
     """
     Get project by ID
     """
-    supabase = get_supabase()
+    tenant_id = resolve_tenant_id(request) or request.headers.get("X-Tenant-Id")
+    if not tenant_id:
+        raise HTTPException(status_code=400, detail="Tenant id required")
+
+    supabase = get_supabase_client()
 
     result = supabase.table('projects')\
         .select('*')\
         .eq('id', project_id)\
+        .eq('tenant_id', tenant_id)\
         .execute()
 
     if not result.data or len(result.data) == 0:
@@ -101,29 +125,58 @@ async def get_project(project_id: str):
     return result.data[0]
 
 @router.put("/{project_id}", response_model=Project)
-async def update_project(project_id: str, project: ProjectCreate):
+async def update_project(request: Request, project_id: str, project: ProjectCreate):
     """
     Update project
-    TODO: Update in database
     """
-    # TODO: Implement actual update
-    raise HTTPException(status_code=404, detail="Project not found")
+    tenant_id = resolve_tenant_id(request) or request.headers.get("X-Tenant-Id")
+    if not tenant_id:
+        raise HTTPException(status_code=400, detail="Tenant id required")
+
+    supabase = get_supabase_client()
+    payload = {
+        "name": project.name,
+        "description": project.description,
+        "repository_url": project.repository_url,
+        "base_url": project.base_url,
+        "updated_at": datetime.utcnow().isoformat(),
+    }
+    result = supabase.table('projects')\
+        .update(payload)\
+        .eq('id', project_id)\
+        .eq('tenant_id', tenant_id)\
+        .execute()
+
+    if not result.data:
+        raise HTTPException(status_code=404, detail="Project not found")
+    return result.data[0]
 
 @router.delete("/{project_id}")
-async def delete_project(project_id: str):
+async def delete_project(request: Request, project_id: str):
     """
     Delete project
-    TODO: Soft delete in database
     """
-    # TODO: Implement actual deletion
-    return {"message": "Project deleted successfully"}
+    tenant_id = resolve_tenant_id(request) or request.headers.get("X-Tenant-Id")
+    if not tenant_id:
+        raise HTTPException(status_code=400, detail="Tenant id required")
+
+    supabase = get_supabase_client()
+    result = supabase.table('projects')\
+        .update({"status": "archived", "updated_at": datetime.utcnow().isoformat()})\
+        .eq('id', project_id)\
+        .eq('tenant_id', tenant_id)\
+        .execute()
+
+    if not result.data:
+        raise HTTPException(status_code=404, detail="Project not found")
+    return {"message": "Project archived successfully"}
 
 @router.get("/{project_id}/test-suites")
 async def list_test_suites(project_id: str):
     """
     List test suites for a project
     """
-    supabase = get_supabase()
+    supabase = get_supabase_client()
 
     result = supabase.table('test_suites')\
         .select('*')\

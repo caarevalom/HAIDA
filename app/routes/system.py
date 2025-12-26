@@ -1,9 +1,8 @@
-"""
-System endpoints: Health, Version, Status
-"""
-from fastapi import APIRouter, Depends
+"""System endpoints: Health, Version, Status"""
+from fastapi import APIRouter
 from datetime import datetime
 import os
+from app.core.db import fetch_one
 
 router = APIRouter()
 
@@ -27,10 +26,22 @@ def version():
 @router.get("/status")
 def status():
     """Get detailed system status"""
+    db_status = "unconfigured"
+    if os.environ.get("DATABASE_URL"):
+        try:
+            fetch_one("SELECT 1")
+            db_status = "operational"
+        except Exception:
+            db_status = "down"
+
+    redis_status = "unconfigured"
+    if os.environ.get("REDIS_URL"):
+        redis_status = "configured"
+
     return {
         "api": "operational",
-        "database": "operational",  # TODO: Check DB connection
-        "redis": "operational",     # TODO: Check Redis connection
+        "database": db_status,
+        "redis": redis_status,
         "version": os.environ.get("APP_VERSION", "2.0.0"),
         "uptime": "running",
         "timestamp": datetime.utcnow().isoformat()

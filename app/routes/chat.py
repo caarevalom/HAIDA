@@ -1,9 +1,11 @@
 """AI Chat endpoints - Copilot Studio integration"""
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel
 from typing import List, Optional
 from datetime import datetime
 import uuid
+from app.core.supabase_client import get_supabase_client
+from app.core.request_context import get_tenant_id, get_user_id
 
 router = APIRouter()
 
@@ -28,48 +30,150 @@ class Thread(BaseModel):
     updated_at: datetime
 
 @router.get("/threads", response_model=List[Thread])
-async def list_threads():
-    """List chat threads - TODO: Implement DB query"""
-    return []
+async def list_threads(request: Request):
+    """List chat threads"""
+    tenant_id = get_tenant_id(request)
+    user_id = get_user_id(request)
+    supabase = get_supabase_client()
+
+    threads_result = supabase.table("chat_threads")\
+        .select("*")\
+        .eq("tenant_id", tenant_id)\
+        .eq("user_id", user_id)\
+        .eq("status", "active")\
+        .order("updated_at", desc=True)\
+        .execute()
+
+    threads = []
+    for thread in threads_result.data or []:
+        count_result = supabase.table("chat_messages")\
+            .select("id", count="exact")\
+            .eq("thread_id", thread["id"])\
+            .execute()
+        message_count = count_result.count or 0
+        threads.append(Thread(
+            id=thread["id"],
+            title=thread.get("title") or "Conversation",
+            provider=thread.get("provider") or "copilot-studio",
+            message_count=message_count,
+            created_at=thread.get("created_at") or datetime.utcnow(),
+            updated_at=thread.get("updated_at") or datetime.utcnow()
+        ))
+
+    return threads
 
 @router.post("/threads", response_model=Thread)
-async def create_thread(title: Optional[str] = "New Conversation"):
-    """Create chat thread - TODO: Implement DB insert"""
+async def create_thread(request: Request, title: Optional[str] = "New Conversation"):
+    """Create chat thread"""
+    tenant_id = get_tenant_id(request)
+    user_id = get_user_id(request)
+    supabase = get_supabase_client()
+
+    payload = {
+        "tenant_id": tenant_id,
+        "user_id": user_id,
+        "title": title,
+        "provider": "copilot-studio",
+        "status": "active",
+        "created_at": datetime.utcnow().isoformat(),
+        "updated_at": datetime.utcnow().isoformat(),
+    }
+    result = supabase.table("chat_threads").insert(payload).execute()
+    if not result.data:
+        raise HTTPException(status_code=500, detail="Thread creation failed")
+    thread = result.data[0]
     return Thread(
-        id=str(uuid.uuid4()),
-        title=title,
-        provider="copilot-studio",
+        id=thread["id"],
+        title=thread.get("title") or "Conversation",
+        provider=thread.get("provider") or "copilot-studio",
         message_count=0,
-        created_at=datetime.utcnow(),
-        updated_at=datetime.utcnow()
+        created_at=thread.get("created_at") or datetime.utcnow(),
+        updated_at=thread.get("updated_at") or datetime.utcnow()
     )
 
 @router.get("/threads/{thread_id}/messages", response_model=List[Message])
-async def list_messages(thread_id: str):
-    """List thread messages - TODO: Implement DB query"""
-    return []
+async def list_messages(request: Request, thread_id: str):
+    """List thread messages"""
+    tenant_id = get_tenant_id(request)
+    user_id = get_user_id(request)
+    supabase = get_supabase_client()
+
+    thread_result = supabase.table("chat_threads")\
+        .select("id")\
+        .eq("id", thread_id)\
+        .eq("tenant_id", tenant_id)\
+        .eq("user_id", user_id)\
+        .execute()
+    if not thread_result.data:
+        raise HTTPException(status_code=404, detail="Thread not found")
+
+    messages_result = supabase.table("chat_messages")\
+        .select("*")\
+        .eq("thread_id", thread_id)\
+        .order("created_at", desc=False)\
+        .execute()
+
+    messages = []
+    for msg in messages_result.data or []:
+        messages.append(Message(
+            id=msg["id"],
+            thread_id=msg["thread_id"],
+            role=msg["role"],
+            content=msg["content"],
+            provider="copilot-studio",
+            created_at=msg.get("created_at") or datetime.utcnow()
+        ))
+
+    return messages
 
 @router.post("/threads/{thread_id}/messages", response_model=Message)
-async def send_message(thread_id: str, message: MessageCreate):
-    """Send message and get AI response - TODO: Implement Copilot API"""
-    # TODO: Call Copilot Studio Direct Line API
-    user_message = Message(
-        id=str(uuid.uuid4()),
-        thread_id=thread_id,
-        role="user",
-        content=message.content,
-        provider=message.provider,
-        created_at=datetime.utcnow()
-    )
+async def send_message(request: Request, thread_id: str, message: MessageCreate):
+    """Send message and get AI response"""
+    tenant_id = get_tenant_id(request)
+    user_id = get_user_id(request)
+    supabase = get_supabase_client()
 
-    # TODO: Get response from Copilot
-    assistant_message = Message(
-        id=str(uuid.uuid4()),
-        thread_id=thread_id,
-        role="assistant",
-        content="[Copilot response - TODO: Implement]",
-        provider=message.provider,
-        created_at=datetime.utcnow()
-    )
+    thread_result = supabase.table("chat_threads")\
+        .select("id")\
+        .eq("id", thread_id)\
+        .eq("tenant_id", tenant_id)\
+        .eq("user_id", user_id)\
+        .execute()
+    if not thread_result.data:
+        raise HTTPException(status_code=404, detail="Thread not found")
 
-    return assistant_message
+    user_payload = {
+        "thread_id": thread_id,
+        "role": "user",
+        "content": message.content,
+        "content_type": "text",
+        "created_at": datetime.utcnow().isoformat(),
+    }
+    supabase.table("chat_messages").insert(user_payload).execute()
+
+    assistant_content = "Copilot integration not configured"
+    assistant_payload = {
+        "thread_id": thread_id,
+        "role": "assistant",
+        "content": assistant_content,
+        "content_type": "error",
+        "created_at": datetime.utcnow().isoformat(),
+    }
+    assistant_result = supabase.table("chat_messages").insert(assistant_payload).execute()
+    if not assistant_result.data:
+        raise HTTPException(status_code=500, detail="Assistant response failed")
+    assistant = assistant_result.data[0]
+
+    supabase.table("chat_threads")\
+        .update({"updated_at": datetime.utcnow().isoformat()})\
+        .eq("id", thread_id)\
+        .execute()
+
+    return Message(
+        id=assistant["id"],
+        thread_id=assistant["thread_id"],
+        role=assistant["role"],
+        content=assistant["content"],
+        provider=message.provider,
+        created_at=assistant.get("created_at") or datetime.utcnow()
+    )
