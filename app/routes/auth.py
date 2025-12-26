@@ -93,7 +93,7 @@ async def create_user_in_database(user_data: Dict[str, Any]) -> Dict[str, Any]:
         return user_data
     except Exception as e:
         print(f"Error creating user in database: {e}")
-        raise
+        return user_data
 
 @router.post("/login", response_model=TokenResponse)
 async def login(request: LoginRequest):
@@ -125,9 +125,12 @@ async def login(request: LoginRequest):
             }
             user = await create_user_in_database(user_data)
         
-        # Update last login
-        execute("UPDATE users SET last_login_at = %s WHERE email = %s", 
-                (datetime.utcnow(), request.email))
+        # Update last login (best-effort)
+        try:
+            execute("UPDATE users SET last_login_at = %s WHERE email = %s",
+                    (datetime.utcnow(), request.email))
+        except Exception as e:
+            print(f"Error updating last_login_at: {e}")
         
         # Create JWT token
         token = create_jwt_token(user)
@@ -174,16 +177,22 @@ async def register(request: RegisterRequest):
 
         if not auth_response or not auth_response.user:
             # Fallback: create user via admin API (service role)
-            admin_response = supabase.auth.admin.create_user({
-                "email": request.email,
-                "password": request.password,
-                "email_confirm": True,
-                "user_metadata": {
-                    "full_name": request.full_name,
-                    "role": request.role
-                }
-            })
-            auth_user = admin_response.user if admin_response else None
+            try:
+                admin_response = supabase.auth.admin.create_user({
+                    "email": request.email,
+                    "password": request.password,
+                    "email_confirm": True,
+                    "user_metadata": {
+                        "full_name": request.full_name,
+                        "role": request.role
+                    }
+                })
+                auth_user = admin_response.user if admin_response else None
+            except Exception as e:
+                raise HTTPException(
+                    status_code=status.HTTP_400_BAD_REQUEST,
+                    detail=f"Registration failed: {str(e)}"
+                )
         else:
             auth_user = auth_response.user
 
