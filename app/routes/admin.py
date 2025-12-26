@@ -297,7 +297,9 @@ async def seed_demo_data():
         if existing_projects.data and len(existing_projects.data) > 0:
             project_id = existing_projects.data[0]['id']
             project_name = existing_projects.data[0]['name']
-            tenant_id = existing_projects.data[0].get('tenant_id', tenant_id)
+            project_tenant_id = existing_projects.data[0].get('tenant_id')
+            if project_tenant_id:
+                tenant_id = project_tenant_id
             created_project = False
         else:
             # Crear proyecto demo (omitiendo 'type' porque tiene default 'web')
