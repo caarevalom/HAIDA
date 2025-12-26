@@ -3,6 +3,7 @@ from fastapi import APIRouter
 from datetime import datetime
 import os
 from app.core.db import fetch_one
+from app.core.supabase_client import get_supabase_client
 
 router = APIRouter()
 
@@ -32,7 +33,12 @@ def status():
             fetch_one("SELECT 1")
             db_status = "operational"
         except Exception:
-            db_status = "down"
+            try:
+                supabase = get_supabase_client()
+                supabase.table("tenants").select("id").limit(1).execute()
+                db_status = "operational"
+            except Exception:
+                db_status = "down"
 
     redis_status = "unconfigured"
     if os.environ.get("REDIS_URL"):
