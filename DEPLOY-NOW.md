@@ -9,6 +9,7 @@
 ## ✅ PRE-DEPLOYMENT VERIFICATION - ALL GREEN
 
 ### Backend Local:
+
 ```
 ✅ Docker running: haida-backend (healthy)
 ✅ Health check: 200 OK
@@ -18,6 +19,7 @@
 ```
 
 ### CI/CD:
+
 ```
 ✅ GitHub Actions: All tests passing
 ✅ Workflow 1: 39 seconds (passed)
@@ -26,6 +28,7 @@
 ```
 
 ### Files Ready:
+
 ```
 ✅ vercel.json - Backend deployment config
 ✅ api/index.py - Vercel entry point
@@ -41,6 +44,7 @@
 ### **Option 1: Deploy via Vercel CLI (Recommended)**
 
 #### Backend Deployment:
+
 ```bash
 # Install Vercel CLI (if not installed)
 npm install -g vercel
@@ -62,6 +66,7 @@ vercel --prod
 ```
 
 **Environment Variables** (add in Vercel Dashboard):
+
 ```
 SUPABASE_URL=https://wdebyxvtunromsnkqbrd.supabase.co
 SUPABASE_SERVICE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndkZWJ5eHZ0dW5yb21zbmtxYnJkIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2NTg5NTc1MSwiZXhwIjoyMDgxNDcxNzUxfQ.Jg6UBGpYDBBKvB4pgaKW_OJCTx0VOm9UMI18vqdUEJc
@@ -69,6 +74,7 @@ DATABASE_URL=postgresql://postgres:Aupbag7.@db.wdebyxvtunromsnkqbrd.supabase.co:
 ```
 
 #### Frontend Deployment:
+
 ```bash
 # Deploy frontend
 cd Figma
@@ -82,6 +88,7 @@ vercel --prod
 ```
 
 **Environment Variables** (add in Vercel Dashboard):
+
 ```
 VITE_SUPABASE_URL=https://wdebyxvtunromsnkqbrd.supabase.co
 VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndkZWJ5eHZ0dW5yb21zbmtxYnJkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU4OTU3NTEsImV4cCI6MjA4MTQ3MTc1MX0._VYypgb2tV9u_4jSAt3sbcFj-drhufB0oN9o3BcgHTs
@@ -93,6 +100,7 @@ VITE_API_URL=https://haida-backend.vercel.app
 ### **Option 2: Deploy via Vercel Dashboard (Easier)**
 
 #### Backend:
+
 1. Go to: https://vercel.com/new
 2. Click "Import Git Repository"
 3. Select `caarevalom/HAIDA`
@@ -105,6 +113,7 @@ VITE_API_URL=https://haida-backend.vercel.app
 6. Click "Deploy"
 
 #### Frontend:
+
 1. Go to: https://vercel.com/new
 2. Click "Import Git Repository"
 3. Select `caarevalom/HAIDA`
@@ -121,6 +130,7 @@ VITE_API_URL=https://haida-backend.vercel.app
 ### **Option 3: GitHub Integration (Automatic)**
 
 #### Setup:
+
 1. Go to: https://vercel.com/dashboard
 2. Click "Add New..." → "Project"
 3. Click "Import" next to your GitHub repo
@@ -135,6 +145,7 @@ VITE_API_URL=https://haida-backend.vercel.app
 ## ✅ POST-DEPLOYMENT VERIFICATION
 
 ### Test Backend:
+
 ```bash
 # Health check
 curl https://your-backend-url.vercel.app/health
@@ -147,6 +158,7 @@ curl https://your-backend-url.vercel.app/admin/db-status-rest
 ```
 
 ### Test Frontend:
+
 ```bash
 # Open in browser
 open https://your-frontend-url.vercel.app
@@ -162,6 +174,7 @@ open https://your-frontend-url.vercel.app
 ### If Backend Fails:
 
 **Error**: "Module not found"
+
 ```bash
 # Solution: Verify requirements.txt includes all dependencies
 pip freeze > requirements.txt
@@ -171,12 +184,14 @@ git push
 ```
 
 **Error**: "Environment variables not set"
+
 ```bash
 # Solution: Add variables in Vercel Dashboard:
 # https://vercel.com/[your-project]/settings/environment-variables
 ```
 
 **Error**: "Build failed"
+
 ```bash
 # Solution: Check Vercel build logs
 # Common fix: Update vercel.json
@@ -184,12 +199,14 @@ git push
 
 ### If Frontend Fails:
 
-**Error**: "VITE_* variables undefined"
+**Error**: "VITE\_\* variables undefined"
+
 ```bash
 # Solution: Add all VITE_ prefixed variables in Vercel Dashboard
 ```
 
 **Error**: "API calls fail (CORS)"
+
 ```bash
 # Solution: Update CORS_ORIGINS in backend .env to include frontend URL
 ```
@@ -199,6 +216,7 @@ git push
 ## 📊 EXPECTED RESULTS
 
 ### Backend Deployment:
+
 ```
 ✅ URL: https://haida-backend-xxxxx.vercel.app
 ✅ Health: https://haida-backend-xxxxx.vercel.app/health
@@ -208,6 +226,7 @@ git push
 ```
 
 ### Frontend Deployment:
+
 ```
 ✅ URL: https://haida-frontend-xxxxx.vercel.app
 ✅ Build time: 2-3 minutes
@@ -239,6 +258,7 @@ npm run dev
 ## 📝 DEPLOYMENT CHECKLIST
 
 ### Pre-Deployment:
+
 - [x] Backend tests passing ✅
 - [x] Database connected ✅
 - [x] Docker running locally ✅
@@ -247,6 +267,7 @@ npm run dev
 - [x] Environment variables prepared ✅
 
 ### During Deployment:
+
 - [ ] Vercel CLI installed
 - [ ] Logged into Vercel account
 - [ ] Backend deployed
@@ -254,6 +275,7 @@ npm run dev
 - [ ] Environment variables added
 
 ### Post-Deployment:
+
 - [ ] Backend health check passes
 - [ ] Frontend loads correctly
 - [ ] API calls work
@@ -267,18 +289,21 @@ npm run dev
 ### What Success Looks Like:
 
 **Backend**:
+
 - Health endpoint returns 200 OK
 - Swagger UI loads at /docs
 - Database queries return data
 - All 14 routers accessible
 
 **Frontend**:
+
 - App loads without errors
 - UI renders correctly
 - API calls successful
 - Data displays from backend
 
 **Integration**:
+
 - Frontend → Backend communication works
 - Backend → Database queries work
 - Authentication flows (if implemented)
@@ -289,6 +314,7 @@ npm run dev
 ## 🚀 DEPLOY NOW COMMANDS
 
 ### Quick Deploy (one command):
+
 ```bash
 # Backend
 vercel --prod --token RsMSKpDF84aOXNaTCwCEanBi
@@ -298,6 +324,7 @@ cd Figma && vercel --prod --token RsMSKpDF84aOXNaTCwCEanBi
 ```
 
 ### Or use Vercel token:
+
 ```bash
 export VERCEL_TOKEN=RsMSKpDF84aOXNaTCwCEanBi
 vercel --prod --yes
@@ -308,12 +335,14 @@ vercel --prod --yes
 ## 📞 SUPPORT
 
 ### Issues?
+
 1. Check Vercel deployment logs
 2. Verify environment variables
 3. Test locally first with Docker
 4. Check GitHub Actions for CI/CD issues
 
 ### Resources:
+
 - Vercel Docs: https://vercel.com/docs
 - Supabase Dashboard: https://supabase.com/dashboard
 - GitHub Repo: https://github.com/caarevalom/HAIDA

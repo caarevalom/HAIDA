@@ -1,11 +1,13 @@
 # 💬 Figma Maker IA Prompt - Chat IA Module HAIDA
 
 ## 🎯 Objetivo
+
 Crear módulo Chat IA completo con layout 3-column, historial de hilos, integración Copilot Studio, panel M365, y export de conversaciones. Proveedor principal: Copilot Studio con fallback.
 
 ## 📐 Layout 3-Column
 
 ### 🗂️ Columna Izquierda (Historial)
+
 - **Header**: "Conversaciones" + botón "Nueva"
 - **Search**: Barra de búsqueda con filtros
 - **Thread List**: Cards verticales con preview
@@ -13,6 +15,7 @@ Crear módulo Chat IA completo con layout 3-column, historial de hilos, integrac
 - **Actions**: Pin, Archive, Delete por thread
 
 ### 💬 Columna Central (Conversación)
+
 - **Header**: Título hilo + menú (rename, export, delete)
 - **Messages Area**: Scroll infinito hacia arriba
 - **Message Types**:
@@ -23,6 +26,7 @@ Crear módulo Chat IA completo con layout 3-column, historial de hilos, integrac
 - **States**: Typing, Error, Loading responses
 
 ### 🔗 Columna Derecha (Panel M365)
+
 - **Header**: "Microsoft 365" + toggle collapse
 - **Quick Actions**: Outlook, Teams, OneDrive, SharePoint
 - **Recent Items**: Últimos emails, reuniones, archivos
@@ -32,17 +36,20 @@ Crear módulo Chat IA completo con layout 3-column, historial de hilos, integrac
 ## 🤖 Integración Copilot Studio
 
 ### Proveedores
+
 - **Primary**: `copilot-studio` (Direct Line API)
 - **Fallback**: `openai` o `anthropic`
 - **Switching**: Auto-switch on failure, manual override
 
 ### Estados de Conexión
+
 - **Connected**: Verde, "Copilot activo"
 - **Connecting**: Amarillo, spinner
 - **Disconnected**: Rojo, "Reconectando..."
 - **Error**: Rojo, retry button
 
 ### Message Handling
+
 - **Streaming**: Typing indicator durante respuesta
 - **Attachments**: File upload, image preview, link cards
 - **Formatting**: Markdown support, code highlighting
@@ -51,6 +58,7 @@ Crear módulo Chat IA completo con layout 3-column, historial de hilos, integrac
 ## 📝 Gestión de Hilos
 
 ### Thread Properties
+
 - **ID**: UUID único
 - **Title**: Auto-generated o manual
 - **Provider**: Copilot/OpenAI/Anthropic
@@ -58,6 +66,7 @@ Crear módulo Chat IA completo con layout 3-column, historial de hilos, integrac
 - **Metadata**: Token count, message count, last activity
 
 ### Thread Actions
+
 - **Create**: Nueva conversación
 - **Rename**: Editar título
 - **Archive**: Mover a archivado
@@ -68,12 +77,14 @@ Crear módulo Chat IA completo con layout 3-column, historial de hilos, integrac
 ## 🔄 Estados y Feedback
 
 ### Message States
+
 - **Sending**: Spinner + "Enviando..."
 - **Delivered**: Checkmark
 - **Read**: Double checkmark (si aplica)
 - **Error**: Red exclamation + retry button
 
 ### Connection States
+
 - **Typing**: "Copilot está escribiendo..."
 - **Thinking**: Progress bar + "Analizando contexto..."
 - **Error**: Error message + "Reintentar"
@@ -82,16 +93,19 @@ Crear módulo Chat IA completo con layout 3-column, historial de hilos, integrac
 ## 🎨 Design System Integration
 
 ### Glassmorphism
+
 - **Background**: Blur 20px, semi-transparent
 - **Borders**: Subtle 1px borders
 - **Elevation**: Soft shadows para cards
 
 ### Message Bubbles
+
 - **User**: Right-aligned, primary color, rounded
 - **Assistant**: Left-aligned, surface color, rounded
 - **System**: Center-aligned, muted, smaller
 
 ### Animations
+
 - **Message Appear**: Fade in + slide up
 - **Typing**: Pulsing dots
 - **Scroll**: Smooth auto-scroll to new messages
@@ -99,6 +113,7 @@ Crear módulo Chat IA completo con layout 3-column, historial de hilos, integrac
 ## ♿ Accesibilidad
 
 ### Keyboard Navigation
+
 - **Tab Order**: Logical through threads → messages → input
 - **Shortcuts**:
   - Ctrl+N: Nueva conversación
@@ -107,6 +122,7 @@ Crear módulo Chat IA completo con layout 3-column, historial de hilos, integrac
   - Escape: Close modals
 
 ### Screen Readers
+
 - **Thread List**: "Conversación con [título]"
 - **Messages**: "Mensaje de [usuario/asistente] a las [hora]"
 - **Status**: Announce connection states
@@ -114,14 +130,17 @@ Crear módulo Chat IA completo con layout 3-column, historial de hilos, integrac
 ## 📱 Responsive Behavior
 
 ### Desktop (>1200px)
+
 - **Full 3-column**: Sidebar (300px) + Chat (flex) + Panel (300px)
 - **Resizable**: Drag to adjust column widths
 
 ### Tablet (768-1199px)
+
 - **2-column**: Chat full + Panel collapsable
 - **Sidebar**: Drawer desde izquierda
 
 ### Mobile (<768px)
+
 - **Single column**: Chat full screen
 - **Panel**: Bottom sheet
 - **Sidebar**: Hidden, access via hamburger
@@ -129,6 +148,7 @@ Crear módulo Chat IA completo con layout 3-column, historial de hilos, integrac
 ## 🔗 Integración M365
 
 ### Panel Components
+
 - **Outlook**: Próximas reuniones, emails sin leer
 - **Teams**: Canales activos, menciones
 - **OneDrive**: Archivos recientes
@@ -137,6 +157,7 @@ Crear módulo Chat IA completo con layout 3-column, historial de hilos, integrac
 - **Copilot**: Estado conexión
 
 ### Deep Linking
+
 - **Generate Links**: Para reuniones, archivos, emails
 - **Context Injection**: Insertar links en conversación
 - **Permission Handling**: OAuth scopes management
@@ -144,12 +165,14 @@ Crear módulo Chat IA completo con layout 3-column, historial de hilos, integrac
 ## 📊 Analytics y Métricas
 
 ### Usage Metrics
+
 - **Message Count**: Por thread y usuario
 - **Token Usage**: Para rate limiting
 - **Response Times**: Assistant latency tracking
 - **Error Rates**: Connection/success rates
 
 ### Thread Insights
+
 - **Popular Topics**: Most discussed subjects
 - **Script Generation**: Scripts created via chat
 - **Document References**: Most accessed docs
@@ -157,11 +180,13 @@ Crear módulo Chat IA completo con layout 3-column, historial de hilos, integrac
 ## 🔒 Seguridad y Privacy
 
 ### Data Handling
+
 - **Encryption**: End-to-end para messages sensibles
 - **Retention**: Configurable message history
 - **PII Masking**: Automatic detection y masking
 
 ### Access Control
+
 - **Tenant Isolation**: Messages only visible to tenant members
 - **Audit Logging**: All message operations logged
 - **Export Controls**: Permission-based export restrictions
@@ -169,17 +194,20 @@ Crear módulo Chat IA completo con layout 3-column, historial de hilos, integrac
 ## 🚀 Performance
 
 ### Optimization
+
 - **Lazy Loading**: Messages loaded in batches
 - **WebSocket**: Real-time message delivery
 - **Caching**: Recent threads cached locally
 - **Compression**: Message payload optimization
 
 ### Offline Support
+
 - **Queue Messages**: Send when reconnection established
 - **Local Cache**: Recent conversations available offline
 - **Sync Indicator**: Show offline/online status
 
 ## 📋 Implementation Checklist
+
 - [ ] 3-column responsive layout
 - [ ] Thread management system
 - [ ] Copilot Studio integration

@@ -1,4 +1,3 @@
-
 import { test, expect } from '@playwright/test';
 
 const normalizeURL = (url: string) => {
@@ -14,7 +13,9 @@ const normalizeURL = (url: string) => {
 test.describe('Smoke & Health checks', () => {
   test('Home carga sin errores y estado OK', async ({ page, baseURL }) => {
     const consoleErrors: string[] = [];
-    page.on('console', msg => { if (msg.type() === 'error') consoleErrors.push(msg.text()); });
+    page.on('console', (msg) => {
+      if (msg.type() === 'error') consoleErrors.push(msg.text());
+    });
 
     const resp = await page.goto(baseURL!, { waitUntil: 'domcontentloaded', timeout: 45000 });
     expect(resp).toBeTruthy();
@@ -24,10 +25,16 @@ test.describe('Smoke & Health checks', () => {
 
     await page.waitForLoadState('networkidle');
 
-    const hasHorizontalOverflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
+    const hasHorizontalOverflow = await page.evaluate(
+      () => document.documentElement.scrollWidth > window.innerWidth
+    );
     expect(hasHorizontalOverflow, 'No debe haber overflow horizontal').toBeFalsy();
 
-    const unloadedImages = await page.evaluate(() => Array.from(document.images).filter(img => img.naturalWidth === 0 || img.naturalHeight === 0).map(img => img.src));
+    const unloadedImages = await page.evaluate(() =>
+      Array.from(document.images)
+        .filter((img) => img.naturalWidth === 0 || img.naturalHeight === 0)
+        .map((img) => img.src)
+    );
     expect(unloadedImages, `Imágenes no cargadas: ${unloadedImages.join(', ')}`).toHaveLength(0);
 
     expect(consoleErrors, `Errores de consola: \n${consoleErrors.join('\n')}`).toHaveLength(0);
@@ -40,9 +47,15 @@ test.describe('Smoke & Health checks', () => {
     await page.goto(baseURL!, { waitUntil: 'domcontentloaded', timeout: 45000 });
     await page.waitForLoadState('networkidle');
 
-    const links = await page.$$eval('a[href]', as => Array.from(as).map(a => (a as HTMLAnchorElement).href).filter(Boolean));
+    const links = await page.$$eval('a[href]', (as) =>
+      Array.from(as)
+        .map((a) => (a as HTMLAnchorElement).href)
+        .filter(Boolean)
+    );
     const origin = new URL(baseURL!).origin;
-    const internal = Array.from(new Set(links.map(normalizeURL).filter(href => href.startsWith(origin)))).slice(0, 50);
+    const internal = Array.from(
+      new Set(links.map(normalizeURL).filter((href) => href.startsWith(origin)))
+    ).slice(0, 50);
 
     const broken: { url: string; status?: number; error?: string }[] = [];
 
@@ -57,6 +70,9 @@ test.describe('Smoke & Health checks', () => {
       }
     }
 
-    expect(broken, `Enlaces internos rotos:\n${broken.map(b => `${b.url} (${b.status ?? b.error})`).join('\n')}`).toHaveLength(0);
+    expect(
+      broken,
+      `Enlaces internos rotos:\n${broken.map((b) => `${b.url} (${b.status ?? b.error})`).join('\n')}`
+    ).toHaveLength(0);
   });
 });

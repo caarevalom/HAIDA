@@ -43,6 +43,7 @@ npm install appium-xcuitest-driver --save-dev
 ### Paso 2: Activar USB Debugging
 
 **En el dispositivo:**
+
 1. Abre **Configuración** → **Sistema** → **Acerca del dispositivo**
 2. Toca 7 veces en **Número de compilación**
 3. Abre **Opciones de desarrollo**
@@ -89,6 +90,7 @@ Crea archivo: `haida/configs/appium-android.json`
 ### Paso 1: Requisitos previos
 
 **Solo funciona en macOS:**
+
 1. Xcode instalado (versión mínima 13.0)
 2. iOS Deployment Target: 14.0+
 3. Dispositivo iOS conectado vía USB
@@ -153,6 +155,7 @@ Crea archivo: `haida/configs/appium-server.json`
 ```
 
 Usa con:
+
 ```powershell
 appium --config-file haida/configs/appium-server.json
 ```
@@ -172,7 +175,7 @@ const APPIUM_HOST = 'localhost';
 // Configuración Android
 const androidCapabilities = {
   'appium:automationName': 'UiAutomator2',
-  'platformName': 'Android',
+  platformName: 'Android',
   'appium:deviceName': 'emulator-5554',
   'appium:app': process.cwd() + '/apps/android-app.apk',
   'appium:appPackage': 'com.example.app',
@@ -183,7 +186,7 @@ const androidCapabilities = {
 // Configuración iOS
 const iosCapabilities = {
   'appium:automationName': 'XCUITest',
-  'platformName': 'iOS',
+  platformName: 'iOS',
   'appium:deviceName': 'iPhone 14',
   'appium:platformVersion': '17',
   'appium:bundleId': 'com.example.app',
@@ -193,52 +196,44 @@ const iosCapabilities = {
 test.describe('Mobile Testing - HAIDA', () => {
   test('Android: Login Flow', async () => {
     const capabilities = androidCapabilities;
-    
-    const context = await chromium.launchPersistentContext(
-      `http://${APPIUM_HOST}:${APPIUM_PORT}`,
-      {
-        ...devices['Pixel 5'],
-        launchArgs: [
-          `--disable-blink-features=AutomationControlled`,
-        ],
-      }
-    );
+
+    const context = await chromium.launchPersistentContext(`http://${APPIUM_HOST}:${APPIUM_PORT}`, {
+      ...devices['Pixel 5'],
+      launchArgs: [`--disable-blink-features=AutomationControlled`],
+    });
 
     const page = context.newPage();
-    
+
     // Interactuar con app
     await page.click('id=com.example.app:id/login_button');
     await page.fill('id=com.example.app:id/email_input', 'test@example.com');
     await page.fill('id=com.example.app:id/password_input', 'password123');
-    
+
     // Validaciones
     await page.waitForSelector('id=com.example.app:id/welcome_message');
     const message = await page.textContent('id=com.example.app:id/welcome_message');
     expect(message).toBe('Welcome!');
-    
+
     await context.close();
   });
 
   test('iOS: Navigation Flow', async () => {
     const capabilities = iosCapabilities;
-    
-    const context = await webkit.launchPersistentContext(
-      `http://${APPIUM_HOST}:${APPIUM_PORT}`,
-      {
-        ...devices['iPhone 14'],
-      }
-    );
+
+    const context = await webkit.launchPersistentContext(`http://${APPIUM_HOST}:${APPIUM_PORT}`, {
+      ...devices['iPhone 14'],
+    });
 
     const page = context.newPage();
-    
+
     // Interactuar con app
     await page.click('id=homeTabButton');
     await page.waitForSelector('id=homeScreen');
-    
+
     // Validaciones
     const title = await page.getAttribute('id=screenTitle', 'text');
     expect(title).toContain('Home');
-    
+
     await context.close();
   });
 });
@@ -281,6 +276,7 @@ Write-Host "✓ Setup completado"
 ```
 
 Ejecutar:
+
 ```powershell
 powershell -File haida/generators/verify-appium.ps1
 ```
@@ -358,13 +354,13 @@ haida/
 
 ## 9. Troubleshooting
 
-| Problema | Solución |
-|----------|----------|
-| "ADB not found" | Agregar Android SDK/platform-tools a PATH |
-| "Connection refused" | Verificar puerto 4723 no está en uso |
-| "App not installed" | Ruta incorrecta en `app` capability |
-| "Permission denied" | Activar USB Debugging en dispositivo |
-| "Session timeout" | Aumentar `newCommandTimeout` a 600 |
+| Problema             | Solución                                  |
+| -------------------- | ----------------------------------------- |
+| "ADB not found"      | Agregar Android SDK/platform-tools a PATH |
+| "Connection refused" | Verificar puerto 4723 no está en uso      |
+| "App not installed"  | Ruta incorrecta en `app` capability       |
+| "Permission denied"  | Activar USB Debugging en dispositivo      |
+| "Session timeout"    | Aumentar `newCommandTimeout` a 600        |
 
 ---
 
@@ -375,7 +371,7 @@ haida/
 ✓ **Datos de prueba** - Setup/cleanup entre tests  
 ✓ **Logs detallados** - Activar `logLevel: 'debug'`  
 ✓ **CI/CD** - Automatizar en pipelines  
-✓ **Reportes** - Allure + screenshots en fallos  
+✓ **Reportes** - Allure + screenshots en fallos
 
 ---
 
@@ -393,6 +389,7 @@ haida/
 ---
 
 **Referencias:**
+
 - [Appium Docs](http://appium.io/docs/en/2.0/)
 - [Appium Capabilities](https://appium.io/docs/en/latest/guides/caps/)
 - [Playwright Mobile Testing](https://playwright.dev/docs/emulation#mobile-devices)

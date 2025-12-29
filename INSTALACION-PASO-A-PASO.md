@@ -3,6 +3,7 @@
 ## ✅ Estado Actual
 
 **Git configurado correctamente**:
+
 - ✅ user.email: caarevalo@hiberus.com
 - ✅ user.name: caarevalo
 
@@ -34,6 +35,7 @@
    node --version
    npm --version
    ```
+
    - Debería mostrar:
    ```
    v20.10.0
@@ -84,6 +86,7 @@ npm --version
    java -version
    echo $env:JAVA_HOME
    ```
+
    - Debería mostrar:
    ```
    openjdk version "17.0.x"
@@ -114,16 +117,19 @@ Si muestra **5.x**, instalar PowerShell 7:
 ### Instalar PowerShell 7
 
 **Opción A: Con Winget**
+
 ```powershell
 winget install Microsoft.PowerShell
 ```
 
 **Opción B: Descarga Manual**
+
 1. Ve a: https://github.com/PowerShell/PowerShell/releases/latest
 2. Buscar archivo: `PowerShell-7.x.x-win-x64.msi`
 3. Descargar y ejecutar
 
 **Después de instalar**:
+
 - Buscar "PowerShell 7" en el menú inicio
 - O ejecutar: `pwsh` en el terminal
 
@@ -150,6 +156,7 @@ npx playwright install --with-deps
 **Tiempo estimado**: 5-10 minutos
 
 **Salida esperada**:
+
 ```
 ✔ Installing dependencies...
 ✔ Downloading browsers...
@@ -177,6 +184,7 @@ choco install k6
 1. Ve a: https://dl.k6.io/msi/k6-latest-amd64.msi
 2. Descargar y ejecutar
 3. Verificar:
+
 ```powershell
 k6 version
 ```
@@ -293,6 +301,7 @@ code .env
 ```
 
 **Agregar en .env**:
+
 ```bash
 # Supabase Database
 DB_HOST=db.wdebyxvtunromsnkqbrd.supabase.co
@@ -320,6 +329,7 @@ node setup-database.js
 ```
 
 **Salida esperada**:
+
 ```
 ===================================================
 HAIDA Database Setup
@@ -380,6 +390,7 @@ docker-compose logs -f haida-api
 ```
 
 **Servicios disponibles**:
+
 - HAIDA API: http://localhost:3001
 - Changedetection.io: http://localhost:5000
 - Allure Reports: http://localhost:4040
@@ -393,6 +404,7 @@ docker-compose logs -f haida-api
 ### Error: "node: command not found" después de instalar
 
 **Solución**:
+
 1. Cerrar TODAS las ventanas de PowerShell
 2. Abrir nuevo PowerShell
 3. Intentar de nuevo
@@ -400,6 +412,7 @@ docker-compose logs -f haida-api
 ### Error: "Cannot find module 'pg'"
 
 **Solución**:
+
 ```powershell
 cd C:\Users\CarlosArturoArevaloM\Documents\Proyectos\HAIDA
 npm install pg
@@ -408,6 +421,7 @@ npm install pg
 ### Error: "Execution policy" al ejecutar scripts
 
 **Solución**:
+
 ```powershell
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
@@ -415,6 +429,7 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ### Error: "JAVA_HOME not set"
 
 **Solución**:
+
 ```powershell
 # Buscar instalación de Java
 $javaPath = "C:\Program Files\Eclipse Adoptium\jdk-17.0.9.9-hotspot"
@@ -429,6 +444,7 @@ java -version
 ```
 
 Para hacerlo permanente:
+
 1. Buscar "Environment Variables" en Windows
 2. Agregar variable de sistema:
    - Nombre: `JAVA_HOME`

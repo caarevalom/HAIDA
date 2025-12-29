@@ -31,11 +31,15 @@ test.describe('Form Validation Tests', () => {
     await expect(emailField).toBeVisible();
 
     // Check for password field
-    const passwordField = page.locator('input[name="password"], #password, [aria-label="Password"]').first();
+    const passwordField = page
+      .locator('input[name="password"], #password, [aria-label="Password"]')
+      .first();
     await expect(passwordField).toBeVisible();
 
     // Check for submit button
-    const submitButton = page.locator('button[type="submit"], button:has-text("Login"), button:has-text("Sign In")').first();
+    const submitButton = page
+      .locator('button[type="submit"], button:has-text("Login"), button:has-text("Sign In")')
+      .first();
     await expect(submitButton).toBeVisible();
 
     console.log('✓ All form fields rendered');
@@ -49,7 +53,9 @@ test.describe('Form Validation Tests', () => {
     await page.keyboard.press('Tab'); // Trigger blur event
 
     // Wait for validation message
-    const errorMessage = page.locator('[role="alert"], .error, .validation-error, .invalid-feedback').first();
+    const errorMessage = page
+      .locator('[role="alert"], .error, .validation-error, .invalid-feedback')
+      .first();
     const isVisible = await errorMessage.isVisible().catch(() => false);
 
     if (isVisible) {
@@ -60,14 +66,18 @@ test.describe('Form Validation Tests', () => {
   });
 
   test('should validate password field', async () => {
-    const passwordField = page.locator('input[name="password"], #password, [aria-label="Password"]').first();
+    const passwordField = page
+      .locator('input[name="password"], #password, [aria-label="Password"]')
+      .first();
 
     // Test short password
     await passwordField.fill('123');
     await page.keyboard.press('Tab');
 
     // Check for validation feedback
-    const errorMessage = page.locator('[role="alert"], .error, .validation-error, .invalid-feedback').nth(1);
+    const errorMessage = page
+      .locator('[role="alert"], .error, .validation-error, .invalid-feedback')
+      .nth(1);
     const isVisible = await errorMessage.isVisible().catch(() => false);
 
     if (isVisible) {
@@ -100,8 +110,8 @@ test.describe('Form Validation Tests', () => {
     await checkA11y(page, null, {
       detailedReport: true,
       detailedReportOptions: {
-        html: true
-      }
+        html: true,
+      },
     });
 
     console.log('✓ Form passes WCAG 2A accessibility checks');
@@ -116,17 +126,25 @@ test.describe('Form Validation Tests', () => {
     await passwordField.fill('ValidPassword123!');
 
     // Listen for API calls or navigation
-    page.on('response', response => {
+    page.on('response', (response) => {
       console.log(`← ${response.status()} ${response.url()}`);
     });
 
     await submitButton.click();
 
     // Wait for either redirect or success message
-    const successMessage = page.locator('[role="alert"]:has-text("Success"), .success-message').first();
+    const successMessage = page
+      .locator('[role="alert"]:has-text("Success"), .success-message')
+      .first();
     const isSuccess = await Promise.race([
-      successMessage.isVisible().then(() => true).catch(() => false),
-      page.waitForURL('**/dashboard', { timeout: 5000 }).then(() => true).catch(() => false)
+      successMessage
+        .isVisible()
+        .then(() => true)
+        .catch(() => false),
+      page
+        .waitForURL('**/dashboard', { timeout: 5000 })
+        .then(() => true)
+        .catch(() => false),
     ]);
 
     expect(isSuccess).toBeTruthy();
@@ -157,7 +175,7 @@ test.describe('Form Validation Tests', () => {
     await page.reload();
     await page.screenshot({
       path: `./screenshots/form-${WEBHOOK_ID}.png`,
-      fullPage: true
+      fullPage: true,
     });
 
     console.log(`✓ Screenshot saved: form-${WEBHOOK_ID}.png`);

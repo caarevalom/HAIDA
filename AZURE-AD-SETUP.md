@@ -25,15 +25,18 @@ https://portal.azure.com
 ### 1.2 Configurar Registro
 
 **Nombre de la aplicación:**
+
 ```
 HAIDA - QA Automation Platform
 ```
 
 **Supported account types:**
+
 - ☑️ **Accounts in this organizational directory only** (Single tenant)
   - Usar esta opción si solo quieres que usuarios de tu empresa accedan
 
 **Redirect URI:**
+
 ```
 Type: Web
 URI: https://haida-frontend.vercel.app/auth/callback
@@ -52,6 +55,7 @@ URI: https://haida-frontend.vercel.app/auth/callback
 Después del registro, verás la página de "Overview":
 
 1. Copia el **Application (client) ID**
+
    ```
    Ejemplo: 12345678-1234-1234-1234-123456789abc
    ```
@@ -61,6 +65,7 @@ Después del registro, verás la página de "Overview":
 ### 2.2 Directory (tenant) ID
 
 1. En la misma página, copia el **Directory (tenant) ID**
+
    ```
    Ejemplo: 98765432-4321-4321-4321-9876543210xyz
    ```
@@ -134,6 +139,7 @@ Si quieres probar localmente:
 ### 4.3 Implicit Grant y Hybrid Flows
 
 En la sección **Implicit grant and hybrid flows**:
+
 - ☐ Access tokens (NO)
 - ☑️ ID tokens (SÍ)
 
@@ -297,15 +303,19 @@ Para restringir qué usuarios pueden acceder:
 ## 🐛 Troubleshooting
 
 ### Error: "redirect_uri_mismatch"
+
 **Solución:** La URI de callback en Azure AD NO coincide con la configurada en `ENTRA_REDIRECT_URI`
 
 ### Error: "invalid_client"
+
 **Solución:** El Client Secret es incorrecto o ha expirado
 
 ### Error: "unauthorized_client"
+
 **Solución:** Falta otorgar "Grant admin consent" para los permisos
 
 ### Error: "User not allowed"
+
 **Solución:** El usuario no tiene permisos. Agregar en "Users and groups" en Enterprise applications
 
 ---

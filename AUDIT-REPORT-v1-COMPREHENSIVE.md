@@ -1,4 +1,5 @@
 # 🔍 AUDITORÍA PROFUNDA - HAIDA v1.0
+
 ## Reporte Comprensivo de Gaps, Issues, y Plan v2.0
 
 **Fecha:** 16 Diciembre 2024  
@@ -27,6 +28,7 @@
 ### Estado Actual: v1.0 - Entrega Completada pero Fragmentada
 
 **✅ FORTALEZAS:**
+
 - Core architecture es sólida (Docker, Changedetection, Playwright)
 - Documentación extensa (2,850+ líneas en 5+ archivos)
 - 6 servicios Docker funcionan correctamente
@@ -36,6 +38,7 @@
 - Accessibility testing (WCAG 2A)
 
 **❌ DEBILIDADES CRÍTICAS:**
+
 - **CAOS ORGANIZACIONAL**: Archivos duplicados/fragmentados entre `/HAIDA` (raíz) y `/HAIDA/haida` (subfolder)
 - **DOCUMENTACIÓN REDUNDANTE**: Multiple copies de START-HERE, README, QUICK-START, OVERVIEW
 - **CÓDIGO INCOMPLETO**: Solo 1 de 8 test profiles implementado
@@ -46,12 +49,14 @@
 - **TESTING LIMITADO**: Solo form-validation.spec.js; 7 profiles missing
 
 ### Riesgos de Mantener v1.0:
+
 - 🚨 **Confusión de usuarios** (¿cuál archivo es la fuente verdadera?)
 - 🚨 **Mantenimiento imposible** (cambios no sincronizados entre copies)
 - 🚨 **No es production-ready** (falta features críticas)
 - 🚨 **Escalabilidad limitada** (sin DB schema ni logging)
 
 ### Plan v2.0:
+
 ```
 HAIDA v1.0 (fragmentado, incompleto)
            ↓
@@ -118,6 +123,7 @@ HAIDA/ (RAÍZ - 40+ archivos)
 ### Problema #2: Documentación Fragmentada
 
 **En raíz `/HAIDA/`:**
+
 - START-HERE.md
 - README.md
 - HAIDA-OVERVIEW.md
@@ -126,6 +132,7 @@ HAIDA/ (RAÍZ - 40+ archivos)
 - INDEX.html
 
 **En `/HAIDA/haida/`:**
+
 - START-HERE.md (DUPLICADO)
 - README.md (DUPLICADO)
 - QUICK-START.md (DUPLICADO)
@@ -141,6 +148,7 @@ HAIDA/ (RAÍZ - 40+ archivos)
 ### Problema #3: Mezcla de Proyectos
 
 **Archivos pertenecen a otros proyectos (CTB, etc.):**
+
 ```
 ANALISIS-MEJORA-INCIDENCIAS-CSV.md
 ANALISIS-PROYECTO-CTB.md
@@ -166,11 +174,13 @@ FLUJO-REAL-CTB-ESTRATEGIA.md
 ### TIER 1: CRÍTICO (Bloquea Producción)
 
 #### 🔴 Issue #1: Solo 1 de 8 Test Profiles Implementado
+
 **Severidad:** CRÍTICO  
 **Afectados:** haida-api/server.js, tests/  
 **Descripción:** El archivo server.js define 8 perfiles de test (login, dashboard, checkout, navigation, button, form, table, modal) pero solo existe 1 test suite (form-validation.spec.js).
 
 **Código en server.js (líneas 48-90):**
+
 ```javascript
 const profileMap = {
   'login': { profile: 'form-validation', tests: [...] },       // ✅ TIENE TEST
@@ -184,7 +194,8 @@ const profileMap = {
 };
 ```
 
-**Impacto:** 
+**Impacto:**
+
 - Sistema no es funcional para 87.5% de cambios esperados
 - Si webhook llega con "dashboard", falla porque no existe test
 - Usuarios ven promesas no cumplidas en documentación
@@ -194,13 +205,16 @@ const profileMap = {
 ---
 
 #### 🔴 Issue #2: Caos Organizacional (2 Niveles de Directorios)
+
 **Severidad:** CRÍTICO  
 **Afectados:** Todo el sistema  
 **Descripción:** Archivos esenciales viven en dos lugares:
+
 - `/HAIDA/` (raíz): configs, scripts, algunas docs
 - `/HAIDA/haida/` (subfolder): código, Docker, API, tests, más docs
 
 **Problema:**
+
 ```
 deploy.sh está en /haida/deploy.sh
 pero documentación lo refiere como si estuviera en raíz
@@ -211,6 +225,7 @@ README dice "cd haida-api" pero los paths no son claros
 ```
 
 **Impacto:**
+
 - Confusión de usuarios (¿dónde ejecuto deploy.sh?)
 - Paths hard-coded rompen cuando se mueven archivos
 - Instalación manual es manual con muchos pasos
@@ -219,14 +234,17 @@ README dice "cd haida-api" pero los paths no son claros
 ---
 
 #### 🔴 Issue #3: Documentación Redundante y Contradictoria
+
 **Severidad:** CRÍTICO  
 **Afectados:** START-HERE.md, README.md, QUICK-START.md (3+ copias)  
-**Descripción:** 
+**Descripción:**
+
 - START-HERE.md existe en raíz Y en haida/ (probablemente diferente contenido)
 - README.md existe en raíz Y en haida/
 - QUICK-START.md existe en raíz Y en haida/
 
 **Problema:**
+
 ```
 Usuario lee /HAIDA/START-HERE.md → conflictivo con /HAIDA/haida/START-HERE.md
 Usuario ejecuta comando de /README.md → falla porque paths son diferentes
@@ -234,6 +252,7 @@ Documentation says "run deploy.sh" pero ¿de dónde?
 ```
 
 **Impacto:**
+
 - Usuarios no saben cual versión es correcta
 - Cambios se aplican a 1 copia, no a la otra
 - Bug reports dicen "seguí documentación pero no funciona"
@@ -241,9 +260,11 @@ Documentation says "run deploy.sh" pero ¿de dónde?
 ---
 
 #### 🔴 Issue #4: Sin Autenticación, Rate Limiting, o Hardening de Seguridad
+
 **Severidad:** CRÍTICO (para producción)  
 **Afectados:** haida-api/server.js  
-**Descripción:** 
+**Descripción:**
+
 ```javascript
 // haida-api/server.js - SIN SEGURIDAD
 app.post('/webhook/change-detected', (req, res) => {
@@ -257,12 +278,14 @@ app.post('/webhook/change-detected', (req, res) => {
 ```
 
 **Impacto:**
+
 - Cualquiera puede triggerear tests (DoS attack)
 - Sin autenticación, un atacante inicia tests infinitos
 - Sin rate limiting, consume recursos
 - Impossível auditar quién triggeró qué
 
 **Riesgos:**
+
 - 💰 Costos de infraestructura explotan (CPU/memoria infinita)
 - 🔓 Acceso no autorizado a resultados de tests
 - 📊 No se puede usar en enterprise sin hardening
@@ -270,14 +293,16 @@ app.post('/webhook/change-detected', (req, res) => {
 ---
 
 #### 🔴 Issue #5: Sin Database Schema o Persistencia Planificada
+
 **Severidad:** CRÍTICO  
 **Afectados:** haida-api/server.js, docker-compose.yml  
-**Descripción:** 
+**Descripción:**
+
 ```javascript
 // haida-api/server.js line ~250
 async function saveResults(webhookId, results) {
   const filename = `${CONFIG.testResultsDir}/${webhookId}-${Date.now()}.json`;
-  await fs.writeFile(filename, JSON.stringify(results));  // ❌ FILE I/O ONLY
+  await fs.writeFile(filename, JSON.stringify(results)); // ❌ FILE I/O ONLY
   // ❌ No database insert
   // ❌ No schema validation
   // ❌ No foreign keys
@@ -286,6 +311,7 @@ async function saveResults(webhookId, results) {
 ```
 
 **Impacto:**
+
 - Resultados guardados solo en filesystem
 - Si servidor se reinicia, histórico se pierde (¿dónde están los JSONs?)
 - PostgreSQL está en docker-compose pero no se usa
@@ -296,13 +322,15 @@ async function saveResults(webhookId, results) {
 ---
 
 #### 🔴 Issue #6: Sin Logging Centralizado
+
 **Severidad:** CRÍTICO  
 **Afectados:** Todos los componentes  
-**Descripción:** 
+**Descripción:**
+
 ```javascript
 // haida-api/server.js usa console.log
-console.log('✓ Webhook received');  // ❌ No logging centralizado
-console.error('Error:', error);     // ❌ A donde va? stdout?
+console.log('✓ Webhook received'); // ❌ No logging centralizado
+console.error('Error:', error); // ❌ A donde va? stdout?
 
 // No hay:
 // - Winston / Pino / Bunyan logger
@@ -314,6 +342,7 @@ console.error('Error:', error);     // ❌ A donde va? stdout?
 ```
 
 **Impacto:**
+
 - Cuando hay problemas, imposible debuggear (dónde están los logs?)
 - No se puede ver cronología de eventos
 - Sin structured logging, parsing manual de logs
@@ -324,8 +353,10 @@ console.error('Error:', error);     // ❌ A donde va? stdout?
 ### TIER 2: ALTO (Limita Escalabilidad y Mantenibilidad)
 
 #### 🟠 Issue #7: Configuración Hard-coded
+
 **Severidad:** ALTO  
 **Código:**
+
 ```javascript
 // haida-api/server.js línea ~70
 const CONFIG = {
@@ -341,7 +372,8 @@ environment:
   - POSTGRES_PASSWORD=postgres                        # ❌ Default password
 ```
 
-**Impacto:** 
+**Impacto:**
+
 - No se puede reconfigurar sin editar código
 - No funciona con diferentes DNS names o IPs
 - Default passwords en producción es riesgo de seguridad
@@ -350,27 +382,30 @@ environment:
 ---
 
 #### 🟠 Issue #8: No Error Handling Robusto
+
 **Severidad:** ALTO  
 **Código:**
+
 ```javascript
 // haida-api/server.js line ~200
 function launchTests(webhookId, url, testProfile) {
   const testProcess = spawn('npx', ['playwright', 'test']);
-  
+
   // ❌ Qué pasa si playwright no está instalado?
   // ❌ Qué pasa si url es inválida?
   // ❌ Qué pasa si testProfile no existe?
   // ❌ Qué pasa si se desconecta Selenium Hub?
   // ❌ No retry logic
   // ❌ No circuit breaker
-  
+
   testProcess.on('error', (err) => {
-    console.error(err);  // ❌ Qué hace después? Continúa?
+    console.error(err); // ❌ Qué hace después? Continúa?
   });
 }
 ```
 
 **Impacto:**
+
 - Si Playwright falla, no hay reintentos
 - Si Selenium Hub se cae, tests fallan sin recuperación
 - Error handling no es graceful
@@ -378,8 +413,10 @@ function launchTests(webhookId, url, testProfile) {
 ---
 
 #### 🟠 Issue #9: Solo 1 Test Profile Implementado
+
 **Severidad:** ALTO  
 **Detalles:**
+
 - form-validation.spec.js: 300+ líneas, 12 test cases ✅
 - widget-rendering: Missing ❌
 - navigation-flow: Missing ❌
@@ -392,8 +429,10 @@ function launchTests(webhookId, url, testProfile) {
 ---
 
 #### 🟠 Issue #10: Sin Monitoreo o Alerting
+
 **Severidad:** ALTO  
 **Missing:**
+
 - No health check dashboard
 - No uptime monitoring
 - No performance metrics (response times, success rate)
@@ -406,8 +445,10 @@ function launchTests(webhookId, url, testProfile) {
 ### TIER 3: MEDIO (Afecta Experiencia de Usuario)
 
 #### 🟡 Issue #11: Sin CLI Tool o Entry Point Unificado
+
 **Severidad:** MEDIO  
 **Problema:**
+
 - Usuario debe ejecutar:
   1. `cd haida-api && npm install`
   2. `cd ../change-detection && docker-compose build`
@@ -416,6 +457,7 @@ function launchTests(webhookId, url, testProfile) {
 - Sin script único que lo haga
 
 **Solución:** CLI (`haida-cli`) que:
+
 - Valida prerequisites
 - Instala dependencias
 - Construye Docker images
@@ -426,8 +468,10 @@ function launchTests(webhookId, url, testProfile) {
 ---
 
 #### 🟡 Issue #12: Sin Versionamiento de Archivos
+
 **Severidad:** MEDIO  
 **Problema:**
+
 - No hay /versions/v1.0, /versions/v2.0, etc.
 - Imposible mantener código legacy si hay cambios breaking
 - Usuarios no saben qué versión tienen instalada
@@ -436,8 +480,10 @@ function launchTests(webhookId, url, testProfile) {
 ---
 
 #### 🟡 Issue #13: Documentación no está priorizada
+
 **Severidad:** MEDIO  
 **Problema:**
+
 - Usuario no sabe por dónde empezar
 - START-HERE.md existe pero es solo resumen visual
 - No hay "What to read first?" claro
@@ -456,6 +502,7 @@ function launchTests(webhookId, url, testProfile) {
 **Servicios:** 6 (changedetection, selenium, haida-api, postgres, redis, allure)
 
 **Validación:**
+
 ```
 ✅ docker-compose up -d    → Funciona
 ✅ All services healthy
@@ -464,12 +511,14 @@ function launchTests(webhookId, url, testProfile) {
 ```
 
 **Issues:**
+
 - ⚠️ No hay init scripts para PostgreSQL (no crea schema)
 - ⚠️ Redis no está configurado para persistencia
 - ⚠️ Changedetection.io config no se sincroniza automáticamente
 - ⚠️ Allure Reports no tiene data pre-cargado
 
 **Mejoras v2.0:**
+
 - [ ] Agregar init-db.sql para schema
 - [ ] Habilitar Redis persistence
 - [ ] Auto-importar changedetection config
@@ -484,6 +533,7 @@ function launchTests(webhookId, url, testProfile) {
 **Status:** ⚠️ Core funciona, pero con graves limitaciones
 
 **Validación:**
+
 ```
 ✅ GET /health              → Funciona
 ✅ POST /webhook/change-detected → Recibe webhooks
@@ -496,22 +546,23 @@ function launchTests(webhookId, url, testProfile) {
 
 **Issues Críticos:**
 
-| Issue | Línea | Descripción | Severidad |
-|-------|-------|-------------|-----------|
-| Hard-coded paths | 25-30 | testResultsDir, reportsDir hard-coded | Alto |
-| File I/O only | 250 | Usa fs.writeFile, no DB | Crítico |
-| No auth | 120 | POST /webhook sin validación | Crítico |
-| No retry | 200 | spawn() sin error recovery | Alto |
-| No logging | 80-459 | console.log en todo el archivo | Medio |
-| Only 1/8 tests | 48-100 | profileMap define 8 pero solo 1 existe | Crítico |
+| Issue            | Línea  | Descripción                            | Severidad |
+| ---------------- | ------ | -------------------------------------- | --------- |
+| Hard-coded paths | 25-30  | testResultsDir, reportsDir hard-coded  | Alto      |
+| File I/O only    | 250    | Usa fs.writeFile, no DB                | Crítico   |
+| No auth          | 120    | POST /webhook sin validación           | Crítico   |
+| No retry         | 200    | spawn() sin error recovery             | Alto      |
+| No logging       | 80-459 | console.log en todo el archivo         | Medio     |
+| Only 1/8 tests   | 48-100 | profileMap define 8 pero solo 1 existe | Crítico   |
 
 **Código Problemático:**
+
 ```javascript
 // ANTES (v1.0 - Problemático)
 app.post('/webhook/change-detected', (req, res) => {
   const { webhookId, url, tag, changeDetails } = req.body;
   const testProfile = determineTestProfile(tag, url);
-  launchTests(webhookId, url, testProfile);  // ❌ Sin error handling
+  launchTests(webhookId, url, testProfile); // ❌ Sin error handling
 });
 
 // DESPUÉS (v2.0 - Propuesto)
@@ -531,6 +582,7 @@ app.post('/webhook/change-detected', authenticateWebhook, rateLimiter, async (re
 ```
 
 **Mejoras v2.0:**
+
 - [ ] Agregar autenticación (HMAC signing)
 - [ ] Implementar rate limiting (express-rate-limit)
 - [ ] Usar DB para persistencia (Knex + SQL)
@@ -574,13 +626,13 @@ form-validation.spec.js (✅ 12 test cases)
 
 **Issues:**
 
-| Issue | Impact |
-|-------|--------|
-| Solo 1/8 profiles | 87.5% de cambios no tienen tests |
-| Hard-coded selectors | XPath paths no son flexible |
-| No data-driven tests | Cada test es manual |
-| No visual snapshots dir | Screenshots sin baseline |
-| No retry logic | Flaky tests fallan sin reintentos |
+| Issue                   | Impact                            |
+| ----------------------- | --------------------------------- |
+| Solo 1/8 profiles       | 87.5% de cambios no tienen tests  |
+| Hard-coded selectors    | XPath paths no son flexible       |
+| No data-driven tests    | Cada test es manual               |
+| No visual snapshots dir | Screenshots sin baseline          |
+| No retry logic          | Flaky tests fallan sin reintentos |
 
 ---
 
@@ -591,20 +643,21 @@ form-validation.spec.js (✅ 12 test cases)
 
 **Documentos:**
 
-| Doc | Raíz | Haida/ | Contenido | Propósito |
-|-----|------|--------|-----------|-----------|
-| START-HERE.md | ✅ | ✅ | Visual overview | Entrada rápida |
-| README.md | ✅ | ✅ | Overview + links | Descripción general |
-| QUICK-START.md | ✅ | ✅ | 5-min setup | Setup rápido |
-| INTEGRATION-GUIDE-COMPLETE.md | ❌ | ✅ | 8 fases detalladas | Implementation |
-| CHANGE-DETECTION-FRAMEWORK.md | ❌ | ✅ | Arquitectura | Understanding |
-| EXECUTIVE-SUMMARY.md | ❌ | ✅ | ROI + beneficios | Stakeholders |
-| DELIVERY-SUMMARY.md | ❌ | ✅ | Qué se entregó | Inventory |
-| FILE-INDEX.md | ❌ | ✅ | Índice de archivos | Navigation |
-| IMPLEMENTATION-CHECKLIST.md | ❌ | ✅ | 20-punto checklist | Validation |
-| RESUMEN-VISUAL-ENTREGA.md | ❌ | ✅ | Stats + tables | Quick facts |
+| Doc                           | Raíz | Haida/ | Contenido          | Propósito           |
+| ----------------------------- | ---- | ------ | ------------------ | ------------------- |
+| START-HERE.md                 | ✅   | ✅     | Visual overview    | Entrada rápida      |
+| README.md                     | ✅   | ✅     | Overview + links   | Descripción general |
+| QUICK-START.md                | ✅   | ✅     | 5-min setup        | Setup rápido        |
+| INTEGRATION-GUIDE-COMPLETE.md | ❌   | ✅     | 8 fases detalladas | Implementation      |
+| CHANGE-DETECTION-FRAMEWORK.md | ❌   | ✅     | Arquitectura       | Understanding       |
+| EXECUTIVE-SUMMARY.md          | ❌   | ✅     | ROI + beneficios   | Stakeholders        |
+| DELIVERY-SUMMARY.md           | ❌   | ✅     | Qué se entregó     | Inventory           |
+| FILE-INDEX.md                 | ❌   | ✅     | Índice de archivos | Navigation          |
+| IMPLEMENTATION-CHECKLIST.md   | ❌   | ✅     | 20-punto checklist | Validation          |
+| RESUMEN-VISUAL-ENTREGA.md     | ❌   | ✅     | Stats + tables     | Quick facts         |
 
 **Problemas:**
+
 - 🔴 DUPLICATES: START-HERE, README, QUICK-START en ambos lados
 - 🔴 CONTRADICTIONS: Paths diferentes en cada copy
 - 🔴 NO CLEAR ENTRY POINT: Usuario no sabe qué leer primero
@@ -612,6 +665,7 @@ form-validation.spec.js (✅ 12 test cases)
 - 🔴 40+ archivos de otros proyectos mezclan la carpeta
 
 **Mejoras v2.0:**
+
 - [ ] Consolidar en 1 ubicación (preferiblemente raíz o haida/docs/)
 - [ ] Crear índice único con tabla de contenidos
 - [ ] Definir 4 paths de usuario (Empezar, Implementar, Entender, Presentar)
@@ -624,6 +678,7 @@ form-validation.spec.js (✅ 12 test cases)
 **Archivos:** `.env`, `.env.example`, `playwright.config.js`, `tsconfig.json`
 
 **Issues:**
+
 - ⚠️ `.env` en raíz vs `.env` en haida/ (¿cuál se usa?)
 - ⚠️ `.env.example` no cubre todas las variables necesarias
 - ⚠️ `playwright.config.ts` en raíz pero `playwright.config.js` en haida/
@@ -631,6 +686,7 @@ form-validation.spec.js (✅ 12 test cases)
 - ⚠️ No hay validation de variables requeridas en startup
 
 **Variables Missing de .env.example:**
+
 - `DB_HOST` / `DB_USER` / `DB_PASSWORD`
 - `REDIS_URL`
 - `ALLURE_RESULTS_PATH`
@@ -648,6 +704,7 @@ form-validation.spec.js (✅ 12 test cases)
 **Status:** 🟡 Funciona pero con gaps
 
 **Fases Implementadas:**
+
 ```
 ✅ Phase 1: Validación de prerequisites
 ✅ Phase 2: Setup de ambiente (.env)
@@ -665,6 +722,7 @@ form-validation.spec.js (✅ 12 test cases)
 ```
 
 **Issues:**
+
 - ⚠️ No pre-flight checks (disco, memoria, puertos disponibles)
 - ⚠️ No rollback si algo falla
 - ⚠️ No log rotation configurado
@@ -678,6 +736,7 @@ form-validation.spec.js (✅ 12 test cases)
 **Scripts:** `check-setup.bat`, `validate-all-tools.ps1`, `run-qa.ps1`
 
 **Validación:**
+
 - ✅ check-setup.bat: Valida prereqs (Node, Docker, Git)
 - ✅ validate-all-tools.ps1: Verifica instalación
 - ✅ run-qa.ps1: Ejecuta tests locally
@@ -691,33 +750,33 @@ form-validation.spec.js (✅ 12 test cases)
 
 ### Herramientas Implementadas:
 
-| Herramienta | Versión | Propósito | Integración |
-|-------------|---------|-----------|-------------|
-| **Changedetection.io** | Latest | Change monitoring | Docker |
-| **Selenium Hub** | Latest | Browser automation | Docker |
-| **Playwright** | 1.40+ | E2E testing | npm |
-| **Express.js** | 4.18.2 | API webhook receiver | npm |
-| **PostgreSQL** | 15 | Data persistence | Docker |
-| **Redis** | 7 | Caching | Docker |
-| **Allure Reports** | Latest | Test reporting | Docker |
-| **axe-core** | Latest | A11y testing | npm |
-| **Docker Compose** | Latest | Orchestration | CLI |
-| **Node.js** | 18+ | Runtime | System |
-| **npm** | Latest | Package manager | CLI |
+| Herramienta            | Versión | Propósito            | Integración |
+| ---------------------- | ------- | -------------------- | ----------- |
+| **Changedetection.io** | Latest  | Change monitoring    | Docker      |
+| **Selenium Hub**       | Latest  | Browser automation   | Docker      |
+| **Playwright**         | 1.40+   | E2E testing          | npm         |
+| **Express.js**         | 4.18.2  | API webhook receiver | npm         |
+| **PostgreSQL**         | 15      | Data persistence     | Docker      |
+| **Redis**              | 7       | Caching              | Docker      |
+| **Allure Reports**     | Latest  | Test reporting       | Docker      |
+| **axe-core**           | Latest  | A11y testing         | npm         |
+| **Docker Compose**     | Latest  | Orchestration        | CLI         |
+| **Node.js**            | 18+     | Runtime              | System      |
+| **npm**                | Latest  | Package manager      | CLI         |
 
 ### Herramientas Recomendadas (NO implementadas):
 
-| Herramienta | Propósito | Razón | v2.0? |
-|-------------|-----------|-------|-------|
-| **Winston** | Logging centralizado | console.log es insuficiente | ✅ |
-| **Express-rate-limit** | Rate limiting | Protección contra DoS | ✅ |
-| **Passport.js** | Autenticación | Sin auth actualmente | ✅ |
-| **Joi** | Validación de datos | Sin validación schema | ✅ |
-| **Knex.js** | Query builder | File I/O solo | ✅ |
-| **Pino** | High-performance logging | Alternativa a Winston | Optional |
-| **Prometheus** | Metrics collection | Monitoreo avanzado | Optional |
-| **ELK Stack** | Log aggregation | Para enterprise | Optional |
-| **Jest** | Unit testing | Tests de Node.js code | ✅ |
+| Herramienta            | Propósito                | Razón                       | v2.0?    |
+| ---------------------- | ------------------------ | --------------------------- | -------- |
+| **Winston**            | Logging centralizado     | console.log es insuficiente | ✅       |
+| **Express-rate-limit** | Rate limiting            | Protección contra DoS       | ✅       |
+| **Passport.js**        | Autenticación            | Sin auth actualmente        | ✅       |
+| **Joi**                | Validación de datos      | Sin validación schema       | ✅       |
+| **Knex.js**            | Query builder            | File I/O solo               | ✅       |
+| **Pino**               | High-performance logging | Alternativa a Winston       | Optional |
+| **Prometheus**         | Metrics collection       | Monitoreo avanzado          | Optional |
+| **ELK Stack**          | Log aggregation          | Para enterprise             | Optional |
+| **Jest**               | Unit testing             | Tests de Node.js code       | ✅       |
 
 ---
 
@@ -832,44 +891,44 @@ End
 
 ### Código
 
-| Métrica | Valor | Benchmarks |
-|---------|-------|-----------|
-| Total lines of code | 1,050 | v2.0 target: 1,500 |
-| Total lines of config | 400 | v2.0 target: 300 |
-| Code duplication | ~15% | v2.0 target: <5% |
-| Test coverage | Unknown* | v2.0 target: >70% |
-| Cyclomatic complexity | ~8 (promedio) | v2.0 target: <5 |
+| Métrica               | Valor         | Benchmarks         |
+| --------------------- | ------------- | ------------------ |
+| Total lines of code   | 1,050         | v2.0 target: 1,500 |
+| Total lines of config | 400           | v2.0 target: 300   |
+| Code duplication      | ~15%          | v2.0 target: <5%   |
+| Test coverage         | Unknown\*     | v2.0 target: >70%  |
+| Cyclomatic complexity | ~8 (promedio) | v2.0 target: <5    |
 
-*No hay tests unitarios actualmente
+\*No hay tests unitarios actualmente
 
 ### Documentación
 
-| Métrica | Valor |
-|---------|-------|
-| Total docs | 18+ archivos |
-| Total lines | 2,850+ líneas |
-| Redundancy | ~40% (START-HERE, README duplicados) |
-| Up-to-date | 80% (algunas docs referencias v1.0 features que no existen) |
-| Clarity | Medium (múltiples paths de lectura) |
+| Métrica     | Valor                                                       |
+| ----------- | ----------------------------------------------------------- |
+| Total docs  | 18+ archivos                                                |
+| Total lines | 2,850+ líneas                                               |
+| Redundancy  | ~40% (START-HERE, README duplicados)                        |
+| Up-to-date  | 80% (algunas docs referencias v1.0 features que no existen) |
+| Clarity     | Medium (múltiples paths de lectura)                         |
 
 ### Performance
 
-| Métrica | Valor | Target |
-|---------|-------|--------|
-| Webhook to first test | ~5-10 sec | <10 sec ✅ |
-| Single test execution | ~30-60 sec | <60 sec ✅ |
-| Deployment time | ~5-10 min | <10 min ✅ |
-| API response time (/health) | ~10ms | <50ms ✅ |
-| Docker startup | ~30 sec | <60 sec ✅ |
+| Métrica                     | Valor      | Target     |
+| --------------------------- | ---------- | ---------- |
+| Webhook to first test       | ~5-10 sec  | <10 sec ✅ |
+| Single test execution       | ~30-60 sec | <60 sec ✅ |
+| Deployment time             | ~5-10 min  | <10 min ✅ |
+| API response time (/health) | ~10ms      | <50ms ✅   |
+| Docker startup              | ~30 sec    | <60 sec ✅ |
 
 ### Availability
 
-| Métrica | Valor |
-|---------|-------|
-| Services uptime | Unknown (no monitoring) |
-| API availability | 99%+ (local testing) |
-| Database uptime | 99%+ (PostgreSQL stable) |
-| Monitoring dashboard | ❌ None |
+| Métrica              | Valor                    |
+| -------------------- | ------------------------ |
+| Services uptime      | Unknown (no monitoring)  |
+| API availability     | 99%+ (local testing)     |
+| Database uptime      | 99%+ (PostgreSQL stable) |
+| Monitoring dashboard | ❌ None                  |
 
 ---
 
@@ -878,6 +937,7 @@ End
 ### CRÍTICOS (Bloquean Producción)
 
 #### 1. Test Profiles (7/8 faltantes) {Priority: P0}
+
 ```javascript
 // EXISTE:
 ✅ form-validation.spec.js
@@ -895,6 +955,7 @@ End
 **Effort:** ~80 horas (10 horas × 8 profiles)
 
 #### 2. API Authentication & Authorization {Priority: P0}
+
 ```javascript
 // FALTA:
 ❌ API key validation
@@ -907,6 +968,7 @@ End
 **Effort:** ~16 horas
 
 #### 3. Database Schema & ORM {Priority: P0}
+
 ```sql
 -- FALTA crear schema:
 ❌ webhooks table
@@ -924,6 +986,7 @@ End
 **Effort:** ~24 horas
 
 #### 4. Rate Limiting & DDoS Protection {Priority: P0}
+
 ```javascript
 // FALTA:
 ❌ express-rate-limit
@@ -936,6 +999,7 @@ End
 **Effort:** ~8 horas
 
 #### 5. Centralized Logging {Priority: P0}
+
 ```javascript
 // FALTA:
 ❌ Winston / Pino logger
@@ -953,6 +1017,7 @@ End
 ### ALTOS (Limitan Escalabilidad)
 
 #### 6. CLI Tool (haida-cli) {Priority: P1}
+
 ```bash
 # PROPUESTO:
 haida-cli setup              # Instala todo
@@ -968,21 +1033,22 @@ haida-cli cleanup            # Remove everything
 **Effort:** ~32 horas
 
 #### 7. Unified Configuration Management {Priority: P1}
+
 ```yaml
 # config/haida.yml (propuesto)
 server:
   port: 3001
   host: localhost
-  
+
 database:
   dialect: postgres
   host: postgres
   port: 5432
-  
+
 api:
   rate_limit: 100
   timeout: 30000
-  
+
 logging:
   level: info
   format: json
@@ -992,6 +1058,7 @@ logging:
 **Effort:** ~12 horas
 
 #### 8. Version Management Structure {Priority: P1}
+
 ```
 /versions/
 ├── v1.0/
@@ -1010,6 +1077,7 @@ logging:
 **Effort:** ~8 horas
 
 #### 9. Comprehensive Error Handling {Priority: P1}
+
 ```javascript
 // FALTA:
 ❌ Global error handler
@@ -1022,6 +1090,7 @@ logging:
 **Effort:** ~16 horas
 
 #### 10. Monitoring & Health Checks {Priority: P1}
+
 ```javascript
 // FALTA:
 ❌ Prometheus metrics
@@ -1038,6 +1107,7 @@ logging:
 ### MEDIOS (Mejoran Experiencia)
 
 #### 11. Unit & Integration Tests {Priority: P2}
+
 ```javascript
 // FALTA:
 ❌ Jest tests para haida-api
@@ -1049,6 +1119,7 @@ logging:
 **Effort:** ~40 horas
 
 #### 12. Consolidated Documentation {Priority: P2}
+
 ```
 docs/
 ├── 01-QUICKSTART.md
@@ -1065,6 +1136,7 @@ docs/
 **Effort:** ~32 horas
 
 #### 13. CI/CD Examples (GitHub Actions, Azure Pipelines) {Priority: P2}
+
 ```yaml
 # FALTA templates:
 ❌ .github/workflows/build.yml
@@ -1076,6 +1148,7 @@ docs/
 **Effort:** ~12 horas
 
 #### 14. Dashboard & Visualization {Priority: P2}
+
 ```
 Dashboard features:
 ❌ Test result trends
@@ -1092,6 +1165,7 @@ Dashboard features:
 ### BAJOS (Nice-to-have)
 
 #### 15. Performance Optimization {Priority: P3}
+
 ```javascript
 // FALTA:
 ❌ Caching strategy (Redis usage)
@@ -1103,6 +1177,7 @@ Dashboard features:
 **Effort:** ~24 horas
 
 #### 16. Advanced Features {Priority: P3}
+
 ```
 ❌ Test scheduling
 ❌ Test skip patterns
@@ -1150,6 +1225,7 @@ HAIDA v2.0 (Professional, unified, complete)
 
 **Duración:** 3-5 días  
 **Deliverables:**
+
 1. Directory structure design
 2. API design document
 3. Database schema design
@@ -1159,6 +1235,7 @@ HAIDA v2.0 (Professional, unified, complete)
 **Tareas:**
 
 #### A. Directory Structure Unificada
+
 ```
 HAIDA-v2.0/
 ├── src/
@@ -1227,6 +1304,7 @@ HAIDA-v2.0/
 ```
 
 #### B. API Redesign
+
 ```javascript
 // v1.0 - Problems
 POST /webhook/change-detected  // ❌ Sin auth
@@ -1243,10 +1321,10 @@ GET /api/v1/webhooks/{id}/results    // ✅ Con pagination
   → autenticado
   → filtrable (status, date range)
   → con paginación
-  
+
 GET /api/v1/test-profiles           // ✅ Nuevo
   → lista todos los profiles
-  
+
 POST /api/v1/test-profiles/custom   // ✅ Nuevo
   → crear custom profiles
 
@@ -1258,6 +1336,7 @@ GET /api/v1/health                  // ✅ Mejorado
 ```
 
 #### C. Database Schema
+
 ```sql
 CREATE TABLE webhooks (
   id UUID PRIMARY KEY,
@@ -1321,6 +1400,7 @@ CREATE TABLE audit_logs (
 
 **Duración:** 2-3 semanas  
 **Deliverables:**
+
 1. Consolidate into v2.0 directory
 2. Refactored server.js
 3. Restructured test suites
@@ -1329,6 +1409,7 @@ CREATE TABLE audit_logs (
 **Tareas:**
 
 #### A. Create v2.0 Directory Structure
+
 - [ ] Create /versions/v2.0/ estructura
 - [ ] Archive v1.0 a /versions/v1.0/
 - [ ] Crear symlink /versions/latest → v2.0
@@ -1336,6 +1417,7 @@ CREATE TABLE audit_logs (
 - [ ] Remove duplication (1 copy of each file)
 
 #### B. Refactor server.js
+
 - [ ] Split into: middleware, routes, controllers, services
 - [ ] Add authentication layer
 - [ ] Add rate limiting
@@ -1345,6 +1427,7 @@ CREATE TABLE audit_logs (
 - [ ] Add metrics collection
 
 #### C. Reorganize Tests
+
 - [ ] Implement 7 missing test profiles
 - [ ] Consolidate selectors to constants
 - [ ] Add data-driven test support
@@ -1352,6 +1435,7 @@ CREATE TABLE audit_logs (
 - [ ] Add visual regression baselines
 
 #### D. Configuration Management
+
 - [ ] Create config/haida.yml
 - [ ] Create config/database.js
 - [ ] Create config/logger.js
@@ -1367,6 +1451,7 @@ CREATE TABLE audit_logs (
 **Tareas por Prioridad:**
 
 #### P0 (Crítico - 2 semanas)
+
 - [ ] Implement Database Schema
 - [ ] Implement Authentication (JWT)
 - [ ] Implement Rate Limiting
@@ -1374,12 +1459,14 @@ CREATE TABLE audit_logs (
 - [ ] Implement 7 Test Profiles
 
 #### P1 (Alto - 2 semanas)
+
 - [ ] Create CLI Tool (haida-cli)
 - [ ] Implement Monitoring & Health Checks
 - [ ] Create Unified Documentation
 - [ ] Implement Error Handling Framework
 
 #### P2 (Medio - 1-2 semanas)
+
 - [ ] Add Unit Tests (Jest)
 - [ ] Add CI/CD Examples
 - [ ] Add Dashboard (basic)
@@ -1391,6 +1478,7 @@ CREATE TABLE audit_logs (
 **Duración:** 2-3 semanas
 
 **Tareas:**
+
 - [ ] Unit test coverage >70%
 - [ ] Integration tests de toda la pipeline
 - [ ] Load testing (stress test webhook endpoint)
@@ -1405,6 +1493,7 @@ CREATE TABLE audit_logs (
 **Duración:** 1 semana
 
 **Tareas:**
+
 - [ ] Final testing & QA
 - [ ] Create MIGRATION-v1-to-v2 guide
 - [ ] Update all documentation
@@ -1422,7 +1511,6 @@ CREATE TABLE audit_logs (
    - Eliminar 40+ docs de otros proyectos
    - Mantener solo HAIDA-related docs
    - Crear índice maestro único
-   
 2. **Crear Entry Point Unificado**
    - Crear `/haida-quick-start.sh` (bash)
    - Crear `/haida-quick-start.ps1` (PowerShell)
@@ -1458,19 +1546,19 @@ CREATE TABLE audit_logs (
 
 ## 📊 RESUMEN EJECUTIVO
 
-| Aspecto | v1.0 Status | Severidad | v2.0 Plan |
-|---------|------------|-----------|-----------|
-| **Architecture** | Sólida | ✅ | Keep |
-| **Directory Structure** | Caótica | 🔴 Crítico | Unify |
-| **Documentation** | Redundante | 🔴 Crítico | Consolidate |
-| **Test Coverage** | 12.5% (1/8) | 🔴 Crítico | Complete |
-| **Security** | Ninguna | 🔴 Crítico | Add Auth + Rate Limit |
-| **Database** | File I/O | 🔴 Crítico | Implement Schema |
-| **Logging** | console.log | 🔴 Crítico | Winston + Centralized |
-| **Monitoring** | None | 🟠 Alto | Prometheus + Dashboard |
-| **CLI Tool** | None | 🟠 Alto | Create haida-cli |
-| **Error Handling** | Basic | 🟠 Alto | Comprehensive |
-| **Code Quality** | Good | 🟡 Medio | Improve (Tests, Refactor) |
+| Aspecto                 | v1.0 Status | Severidad  | v2.0 Plan                 |
+| ----------------------- | ----------- | ---------- | ------------------------- |
+| **Architecture**        | Sólida      | ✅         | Keep                      |
+| **Directory Structure** | Caótica     | 🔴 Crítico | Unify                     |
+| **Documentation**       | Redundante  | 🔴 Crítico | Consolidate               |
+| **Test Coverage**       | 12.5% (1/8) | 🔴 Crítico | Complete                  |
+| **Security**            | Ninguna     | 🔴 Crítico | Add Auth + Rate Limit     |
+| **Database**            | File I/O    | 🔴 Crítico | Implement Schema          |
+| **Logging**             | console.log | 🔴 Crítico | Winston + Centralized     |
+| **Monitoring**          | None        | 🟠 Alto    | Prometheus + Dashboard    |
+| **CLI Tool**            | None        | 🟠 Alto    | Create haida-cli          |
+| **Error Handling**      | Basic       | 🟠 Alto    | Comprehensive             |
+| **Code Quality**        | Good        | 🟡 Medio   | Improve (Tests, Refactor) |
 
 ---
 

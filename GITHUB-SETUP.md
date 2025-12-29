@@ -59,6 +59,7 @@ core.sshCommand: ssh -F .git/config-ssh
 ```
 
 SSH config file (`.git/config-ssh`):
+
 ```
 Host github.com
     HostName github.com
@@ -80,6 +81,7 @@ cd C:\Users\CarlosArturoArevaloM\Documents\Proyectos\HAIDA
 ```
 
 This script will:
+
 1. ✅ Verify SSH keys exist
 2. ✅ Configure Git user (name and email)
 3. ✅ Setup SSH for the repository
@@ -279,37 +281,37 @@ name: HAIDA Tests
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [main, develop]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '20'
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
 
-    - name: Install dependencies
-      run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-    - name: Install Playwright browsers
-      run: npx playwright install --with-deps
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
 
-    - name: Run tests
-      run: npm test
+      - name: Run tests
+        run: npm test
 
-    - name: Upload test results
-      if: always()
-      uses: actions/upload-artifact@v3
-      with:
-        name: test-results
-        path: test-results/
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: test-results/
 ```
 
 ---
@@ -377,6 +379,7 @@ git commit -m "test(smoke): Add broken link detection"
 ### Error: Permission denied (publickey)
 
 **Solution**:
+
 ```powershell
 # Verify SSH config
 cat .git/config-ssh
@@ -391,6 +394,7 @@ icacls Pro\HAIDA-Deploy
 ### Error: Remote already exists
 
 **Solution**:
+
 ```powershell
 # Remove existing remote
 git remote remove origin
@@ -402,6 +406,7 @@ git remote add origin git@github.com:CarlosArturoArevaloM/HAIDA.git
 ### Error: Failed to push
 
 **Solution**:
+
 ```powershell
 # Pull latest changes first
 git pull origin main --rebase

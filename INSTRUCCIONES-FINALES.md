@@ -11,6 +11,7 @@
 ### OPCIÓN 1: Supabase Dashboard (RECOMENDADO - 10 min)
 
 1. **Acceder a Supabase**
+
    ```
    URL: https://supabase.com/dashboard/project/wdebyxvtunromsnkqbrd
    ```
@@ -38,6 +39,7 @@
    - Click "Run"
 
 6. **Verificar**
+
    ```sql
    -- En SQL Editor, ejecutar:
    SELECT table_name FROM information_schema.tables
@@ -72,6 +74,7 @@ supabase db execute -f infrastructure/supabase/migrations/002_migrate_test_steps
 ## ✅ LO QUE YA ESTÁ FUNCIONANDO
 
 ### Backend (100% Operativo)
+
 ```bash
 # Verificar
 curl http://localhost:8000/health
@@ -81,6 +84,7 @@ curl http://localhost:8000/health
 ```
 
 **Endpoints disponibles**:
+
 - ✅ `/health` - Health check
 - ✅ `/docs` - Swagger UI interactiva
 - ✅ `/auth/*` - Autenticación
@@ -90,6 +94,7 @@ curl http://localhost:8000/health
 - ✅ `/admin/*` - Gestión de DB
 
 ### Docker (100% Funcionando)
+
 ```bash
 # Ver estado
 docker-compose ps
@@ -102,6 +107,7 @@ docker-compose restart backend
 ```
 
 ### Configuración (100% Completa)
+
 - ✅ `.env` con credenciales reales
 - ✅ `requirements.txt` con dependencies corregidas
 - ✅ `Dockerfile` optimizado
@@ -208,6 +214,7 @@ vercel --prod --token RsMSKpDF84aOXNaTCwCEanBi
 ```
 
 **Variables de entorno en Vercel**:
+
 ```
 NEXT_PUBLIC_SUPABASE_URL=https://wdebyxvtunromsnkqbrd.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndkZWJ5eHZ0dW5yb21zbmtxYnJkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU4OTU3NTEsImV4cCI6MjA4MTQ3MTc1MX0._VYypgb2tV9u_4jSAt3sbcFj-drhufB0oN9o3BcgHTs
@@ -217,27 +224,29 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzd
 
 ## 📊 PROGRESO FINAL
 
-| Tarea | Estado | Tiempo |
-|-------|--------|--------|
-| Configurar .env | ✅ 100% | - |
-| Docker funcionando | ✅ 100% | - |
-| Backend API | ✅ 100% | - |
-| Migrations creadas | ✅ 100% | - |
+| Tarea                         | Estado           | Tiempo     |
+| ----------------------------- | ---------------- | ---------- |
+| Configurar .env               | ✅ 100%          | -          |
+| Docker funcionando            | ✅ 100%          | -          |
+| Backend API                   | ✅ 100%          | -          |
+| Migrations creadas            | ✅ 100%          | -          |
 | **Aplicar Schema a Supabase** | ⏳ **PENDIENTE** | **10 min** |
-| Seed data | ⏳ Opcional | 5 min |
-| Deploy Frontend | ⏳ Pendiente | 5 min |
-| Implementar lógica routes | ⏳ Futuro | 1-2 días |
+| Seed data                     | ⏳ Opcional      | 5 min      |
+| Deploy Frontend               | ⏳ Pendiente     | 5 min      |
+| Implementar lógica routes     | ⏳ Futuro        | 1-2 días   |
 
 ---
 
 ## 🎯 CHECKLIST FINAL
 
 ### Hacer AHORA:
+
 - [ ] Aplicar schema a Supabase Dashboard (10 min)
 - [ ] Insertar seed data (5 min)
 - [ ] Deploy frontend a Vercel (5 min)
 
 ### Hacer DESPUÉS:
+
 - [ ] Implementar lógica real en routes/projects.py
 - [ ] Implementar lógica real en routes/auth.py
 - [ ] Crear routes/test_cases.py (nuevo)
@@ -250,11 +259,13 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzd
 ## 📁 ARCHIVOS DE REFERENCIA
 
 ### Schema SQL
+
 - `infrastructure/supabase/schema.sql` - Schema principal
 - `infrastructure/supabase/migrations/001_create_defects_table.sql`
 - `infrastructure/supabase/migrations/002_migrate_test_steps_to_jsonb.sql`
 
 ### Documentación
+
 - `GUIA-APLICAR-SCHEMA-SUPABASE.md` - Guía paso a paso detallada
 - `RESUMEN-FINAL-DEPLOYMENT.md` - Estado completo del proyecto
 - `GAPS-INCIDENCIAS.md` - Issues y soluciones

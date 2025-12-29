@@ -1,8 +1,8 @@
-import { Button } from "./ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
-import { Separator } from "./ui/separator";
+import { Button } from './ui/button';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card';
+import { Input } from './ui/input';
+import { Label } from './ui/label';
+import { Separator } from './ui/separator';
 
 export function StyleGuide() {
   return (
@@ -35,7 +35,9 @@ export function StyleGuide() {
           </div>
           <div className="space-y-2">
             <p>Body Text (md: 16px)</p>
-            <p className="text-muted-foreground">Inter Regular. The quick brown fox jumps over the lazy dog.</p>
+            <p className="text-muted-foreground">
+              Inter Regular. The quick brown fox jumps over the lazy dog.
+            </p>
           </div>
         </div>
       </section>
@@ -44,7 +46,7 @@ export function StyleGuide() {
 
       <section className="space-y-6">
         <h2 className="text-2xl font-bold border-b pb-2">Colors</h2>
-        
+
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <ColorCard name="Background" variable="bg-background" text="text-foreground" />
           <ColorCard name="Foreground" variable="bg-foreground" text="text-background" />
@@ -54,7 +56,11 @@ export function StyleGuide() {
           <ColorCard name="Secondary" variable="bg-secondary" text="text-secondary-foreground" />
           <ColorCard name="Muted" variable="bg-muted" text="text-muted-foreground" />
           <ColorCard name="Accent" variable="bg-accent" text="text-accent-foreground" />
-          <ColorCard name="Destructive" variable="bg-destructive" text="text-destructive-foreground" />
+          <ColorCard
+            name="Destructive"
+            variable="bg-destructive"
+            text="text-destructive-foreground"
+          />
           <ColorCard name="Success" variable="bg-success" text="text-white" />
           <ColorCard name="Warning" variable="bg-warning" text="text-white" />
           <ColorCard name="Error" variable="bg-error" text="text-white" />
@@ -117,7 +123,9 @@ export function StyleGuide() {
 function ColorCard({ name, variable, text }: { name: string; variable: string; text?: string }) {
   return (
     <div className="rounded-lg border p-4 flex flex-col items-center justify-center gap-2 aspect-square text-center">
-      <div className={`w-full flex-1 rounded-md shadow-sm ${variable} flex items-center justify-center`}>
+      <div
+        className={`w-full flex-1 rounded-md shadow-sm ${variable} flex items-center justify-center`}
+      >
         {text && <span className={`${text} text-xs font-mono opacity-80`}>Aa</span>}
       </div>
       <div className="text-sm font-medium">{name}</div>

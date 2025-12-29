@@ -1,7 +1,7 @@
 ╔══════════════════════════════════════════════════════════════════════════════╗
-║                                                                              ║
-║                    🎉 ¡HAIDA ESTÁ LISTO! - PRÓXIMOS PASOS                   ║
-║                                                                              ║
+║ ║
+║ 🎉 ¡HAIDA ESTÁ LISTO! - PRÓXIMOS PASOS ║
+║ ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
 
 **Autor:** Carlos Arévalo | caarevalo@hiberus.com  
@@ -41,6 +41,7 @@
 ```
 
 **Resultado esperado:**
+
 - ✓ Playwright: OK
 - ✓ Newman: OK
 - ✓ Allure: OK
@@ -112,14 +113,14 @@ npx allure serve ./allure-results
 
 ## 📚 Documentación Clave
 
-| Documento | Contenido | Lectura |
-|-----------|----------|---------|
-| `START-HERE.md` | Punto de entrada principal | 10 min |
-| `HAIDA-OVERVIEW.md` | Visión de HAIDA (antes ISTQB-HIBERUS) | 15 min |
-| `haida/QUICK-START.md` | Quick start generador de test cases | 5 min |
-| `APPIUM-MOBILE-SETUP.md` | Configuración completa Appium | 30 min |
-| `POSTMAN-VSCODE-SETUP.md` | Postman en VS Code | 20 min |
-| `HAIDA-MIGRATION-COMPLETADO.md` | Detalles técnicos de migración | 20 min |
+| Documento                       | Contenido                             | Lectura |
+| ------------------------------- | ------------------------------------- | ------- |
+| `START-HERE.md`                 | Punto de entrada principal            | 10 min  |
+| `HAIDA-OVERVIEW.md`             | Visión de HAIDA (antes ISTQB-HIBERUS) | 15 min  |
+| `haida/QUICK-START.md`          | Quick start generador de test cases   | 5 min   |
+| `APPIUM-MOBILE-SETUP.md`        | Configuración completa Appium         | 30 min  |
+| `POSTMAN-VSCODE-SETUP.md`       | Postman en VS Code                    | 20 min  |
+| `HAIDA-MIGRATION-COMPLETADO.md` | Detalles técnicos de migración        | 20 min  |
 
 ---
 
@@ -142,21 +143,25 @@ npx allure serve ./allure-results
 ## 💡 Próximos Pasos Recomendados
 
 ### Hoy (Validación)
+
 - [ ] Ejecutar `validate-all-tools.ps1`
 - [ ] Revisar resultado de validación
 - [ ] Leer `START-HERE.md`
 
 ### Mañana (Postman)
+
 - [ ] Instalar extensión Postman
 - [ ] Autenticarse con team Hiberus
 - [ ] Ejecutar primer test API
 
 ### Esta semana (Appium)
+
 - [ ] Conectar dispositivo móvil (opcional)
 - [ ] Configurar Appium
 - [ ] Ejecutar test móvil
 
 ### La próxima semana (CI/CD)
+
 - [ ] Actualizar GitHub Actions
 - [ ] Agregar validación automática
 - [ ] Configurar reportes

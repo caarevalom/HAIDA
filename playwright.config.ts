@@ -1,4 +1,3 @@
-
 import { defineConfig, devices } from '@playwright/test';
 import 'dotenv/config';
 
@@ -13,20 +12,20 @@ export default defineConfig({
   reporter: [
     ['list'],
     ['html', { outputFolder: 'playwright-report', open: 'never' }],
-    ['allure-playwright']
+    ['allure-playwright'],
   ],
   use: {
     baseURL: BASE_URL,
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
     trace: 'on-first-retry',
-    ignoreHTTPSErrors: true
+    ignoreHTTPSErrors: true,
   },
   projects: [
     { name: 'Desktop Chrome', use: { ...devices['Desktop Chrome'] } },
     { name: 'Desktop Firefox', use: { ...devices['Desktop Firefox'] } },
     { name: 'Desktop Safari', use: { ...devices['Desktop Safari'] } },
     { name: 'iPhone 14', use: { ...devices['iPhone 14'] } },
-    { name: 'Pixel 7', use: { ...devices['Pixel 7'] } }
-  ]
+    { name: 'Pixel 7', use: { ...devices['Pixel 7'] } },
+  ],
 });

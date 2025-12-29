@@ -1,4 +1,5 @@
 # ⚡ Estrategia de Implementación Rápida - HAIDA
+
 ## Objetivo: Sistema completo en producción en < 1 hora
 
 ---
@@ -6,6 +7,7 @@
 ## 🎯 Estrategia: Parallel Multi-Agent Architecture
 
 ### Concepto
+
 Dividir el trabajo en 8 agentes especializados trabajando simultáneamente en diferentes módulos del sistema. Cada agente es autónomo y tiene objetivos claros.
 
 ---
@@ -13,9 +15,11 @@ Dividir el trabajo en 8 agentes especializados trabajando simultáneamente en di
 ## 📋 División de Trabajo
 
 ### 🤖 **Agente 1: Backend Core - Auth & Users**
+
 **Tiempo**: 10 minutos
 **Tecnología**: FastAPI + Supabase
 **Tareas**:
+
 1. Crear estructura FastAPI
 2. Implementar JWT auth con Supabase
 3. Endpoints: /auth/login, /auth/register, /auth/me
@@ -23,6 +27,7 @@ Dividir el trabajo en 8 agentes especializados trabajando simultáneamente en di
 5. RBAC (5 roles)
 
 **Entregables**:
+
 - `/backend/app/api/v1/auth.py`
 - `/backend/app/core/security.py`
 - `/backend/tests/test_auth.py`
@@ -30,14 +35,17 @@ Dividir el trabajo en 8 agentes especializados trabajando simultáneamente en di
 ---
 
 ### 🤖 **Agente 2: Backend - Projects & Config**
+
 **Tiempo**: 10 minutos
 **Tareas**:
+
 1. CRUD de proyectos
 2. Gestión de configuración (variables cifradas)
 3. Fixtures de datos
 4. Endpoints: /projects, /projects/{id}/config
 
 **Entregables**:
+
 - `/backend/app/api/v1/projects.py`
 - `/backend/app/services/encryption.py`
 - `/backend/tests/test_projects.py`
@@ -45,8 +53,10 @@ Dividir el trabajo en 8 agentes especializados trabajando simultáneamente en di
 ---
 
 ### 🤖 **Agente 3: Backend - Test Cases Management**
+
 **Tiempo**: 10 minutos
 **Tareas**:
+
 1. CRUD de test cases
 2. Workflow de aprobación (draft→review→approved)
 3. Versionado
@@ -54,6 +64,7 @@ Dividir el trabajo en 8 agentes especializados trabajando simultáneamente en di
 5. Endpoints: /test-cases, /test-cases/{id}/approve
 
 **Entregables**:
+
 - `/backend/app/api/v1/test_cases.py`
 - `/backend/app/models/test_case.py`
 - `/backend/tests/test_test_cases.py`
@@ -61,8 +72,10 @@ Dividir el trabajo en 8 agentes especializados trabajando simultáneamente en di
 ---
 
 ### 🤖 **Agente 4: Backend - AI Document Analyzer**
+
 **Tiempo**: 12 minutos
 **Tareas**:
+
 1. Upload de documentos (PDF/DOCX parser)
 2. Integración Claude API
 3. Extractor de requisitos
@@ -70,6 +83,7 @@ Dividir el trabajo en 8 agentes especializados trabajando simultáneamente en di
 5. Endpoints: /documents/upload, /documents/{id}/analyze
 
 **Entregables**:
+
 - `/backend/app/services/ai_analyzer.py`
 - `/backend/app/services/test_generator.py`
 - Prompts optimizados para ISTQB
@@ -77,8 +91,10 @@ Dividir el trabajo en 8 agentes especializados trabajando simultáneamente en di
 ---
 
 ### 🤖 **Agente 5: Backend - Execution Engine**
+
 **Tiempo**: 12 minutos
 **Tareas**:
+
 1. Convertidor: Test Case → Playwright script
 2. Template engine
 3. Queue system (Bull)
@@ -86,6 +102,7 @@ Dividir el trabajo en 8 agentes especializados trabajando simultáneamente en di
 5. Endpoints: /executions/start, /executions/{id}/status
 
 **Entregables**:
+
 - `/backend/app/services/execution_engine.py`
 - `/execution-engine/templates/`
 - `/backend/app/workers/test_runner.py`
@@ -93,9 +110,11 @@ Dividir el trabajo en 8 agentes especializados trabajando simultáneamente en di
 ---
 
 ### 🤖 **Agente 6: Frontend - Core & Auth**
+
 **Tiempo**: 12 minutos
 **Tecnología**: Next.js 14 + Shadcn/ui
 **Tareas**:
+
 1. Setup Next.js con App Router
 2. Sistema de diseño (Tailwind + Shadcn)
 3. Layout principal + navegación
@@ -103,6 +122,7 @@ Dividir el trabajo en 8 agentes especializados trabajando simultáneamente en di
 5. Protección de rutas
 
 **Páginas**:
+
 - `/app/(auth)/login/page.tsx`
 - `/app/(dashboard)/layout.tsx`
 - `/app/(dashboard)/dashboard/page.tsx`
@@ -110,8 +130,10 @@ Dividir el trabajo en 8 agentes especializados trabajando simultáneamente en di
 ---
 
 ### 🤖 **Agente 7: Frontend - Projects & Test Cases**
+
 **Tiempo**: 12 minutos
 **Tareas**:
+
 1. CRUD de proyectos (UI)
 2. Tablero de configuración editable
 3. Lista de test cases
@@ -119,6 +141,7 @@ Dividir el trabajo en 8 agentes especializados trabajando simultáneamente en di
 5. Workflow de revisión
 
 **Páginas**:
+
 - `/app/(dashboard)/projects/page.tsx`
 - `/app/(dashboard)/projects/[id]/page.tsx`
 - `/app/(dashboard)/projects/[id]/test-cases/page.tsx`
@@ -127,8 +150,10 @@ Dividir el trabajo en 8 agentes especializados trabajando simultáneamente en di
 ---
 
 ### 🤖 **Agente 8: DevOps & Integration**
+
 **Tiempo**: 10 minutos
 **Tareas**:
+
 1. Docker Compose completo
 2. CI/CD (GitHub Actions)
 3. Deploy a producción (Vercel + Railway)
@@ -136,6 +161,7 @@ Dividir el trabajo en 8 agentes especializados trabajando simultáneamente en di
 5. Integración Jira/Slack
 
 **Entregables**:
+
 - `docker-compose.production.yml`
 - `.github/workflows/deploy.yml`
 - Scripts de deploy
@@ -223,55 +249,69 @@ haida/
 ## ⏱️ Timeline Detallado
 
 ### **Minutos 0-5: Setup & Coordinación**
+
 - ✅ Crear estructura de directorios
 - ✅ Inicializar repositorios
 - ✅ Configurar Supabase project
 - ✅ Lanzar 8 agentes en paralelo
 
 ### **Minutos 5-15: Desarrollo Backend Core (Agentes 1-3)**
+
 **Paralelo**:
+
 - Agente 1: Auth & Users
 - Agente 2: Projects & Config
 - Agente 3: Test Cases
 
 ### **Minutos 5-17: Desarrollo Backend Advanced (Agentes 4-5)**
+
 **Paralelo**:
+
 - Agente 4: AI Document Analyzer
 - Agente 5: Execution Engine
 
 ### **Minutos 5-17: Desarrollo Frontend (Agentes 6-7)**
+
 **Paralelo**:
+
 - Agente 6: Core & Auth UI
 - Agente 7: Projects & Test Cases UI
 
 ### **Minutos 5-15: DevOps (Agente 8)**
+
 **Paralelo**:
+
 - Configurar Docker
 - CI/CD pipeline
 - Deploy scripts
 
 ### **Minutos 17-25: Integración**
+
 - Conectar Frontend ↔ Backend
 - Testing E2E básico
 - Fix de integraciones
 
 ### **Minutos 25-35: Testing & QA**
+
 - Tests unitarios
 - Tests de integración
 - Validación de flujos críticos
 
 ### **Minutos 35-45: Deploy a Staging**
+
 - Build de imágenes Docker
 - Deploy a Railway (backend)
 - Deploy a Vercel (frontend)
 - Verificación
 
 ### **Minutos 45-55: Testing en Staging**
+
 - Smoke tests
 - User acceptance flows
 - Performance básico
 
 ### **Minutos 55-60: Deploy a Producción**
+
 - Promote staging → production
 - Verificación final
 - Documentación de URLs
@@ -281,6 +321,7 @@ haida/
 ## 🔧 Stack Tecnológico Final
 
 ### Backend
+
 - **Framework**: FastAPI 0.104+
 - **Database**: Supabase PostgreSQL
 - **Auth**: Supabase Auth + JWT
@@ -291,6 +332,7 @@ haida/
 - **Migrations**: Alembic
 
 ### Frontend
+
 - **Framework**: Next.js 14.0+ (App Router)
 - **Language**: TypeScript 5.3+
 - **Styling**: Tailwind CSS 3.4+
@@ -301,12 +343,14 @@ haida/
 - **Auth**: Supabase Auth (client)
 
 ### Testing
+
 - **Backend**: Pytest + Pytest-asyncio
 - **Frontend**: Vitest + React Testing Library
 - **E2E**: Playwright
 - **API Testing**: Postman/Newman
 
 ### DevOps
+
 - **Containerization**: Docker + Docker Compose
 - **CI/CD**: GitHub Actions
 - **Hosting Backend**: Railway / Render
@@ -357,6 +401,7 @@ haida/
 ## 🎯 MVP Features (Lo que se implementa en 1 hora)
 
 ### ✅ Core Features (MUST HAVE)
+
 1. **Autenticación** - Login/Logout con roles
 2. **Proyectos** - CRUD básico
 3. **Test Cases** - CRUD + workflow de aprobación
@@ -366,11 +411,13 @@ haida/
 7. **Change Detection** - Integración existente
 
 ### 🟡 Advanced Features (NICE TO HAVE - si hay tiempo)
+
 8. **Document Analysis** - Upload + AI generation
 9. **Mobile Testing** - Appium integration
 10. **Bug Tracking** - Jira integration
 
 ### ❌ Future Features (Post-MVP)
+
 - AI auto-healing
 - Performance testing
 - Visual regression
@@ -382,6 +429,7 @@ haida/
 ## 🔐 Seguridad
 
 ### Implementaciones Críticas
+
 1. **JWT tokens** con refresh
 2. **RBAC** (5 roles)
 3. **Cifrado** de credenciales (Fernet)
@@ -396,6 +444,7 @@ haida/
 ## 📝 Checklist de Validación Final
 
 ### Backend
+
 - [ ] Todos los endpoints responden 200/201
 - [ ] Auth flow funciona (login→token→refresh)
 - [ ] CRUD de proyectos funciona
@@ -405,6 +454,7 @@ haida/
 - [ ] Tests unitarios pasan (>70% coverage)
 
 ### Frontend
+
 - [ ] Login/Logout funciona
 - [ ] Navegación entre páginas funciona
 - [ ] CRUD de proyectos funciona (UI)
@@ -414,6 +464,7 @@ haida/
 - [ ] Error handling implementado
 
 ### Integración
+
 - [ ] Frontend ↔ Backend conectado
 - [ ] Supabase auth funciona
 - [ ] Database queries funcionan
@@ -421,6 +472,7 @@ haida/
 - [ ] Playwright ejecuta tests
 
 ### DevOps
+
 - [ ] Docker compose funciona local
 - [ ] CI/CD pipeline funciona
 - [ ] Deploy a staging exitoso
@@ -450,6 +502,7 @@ claude --parallel \
 ## 📞 Contingencias
 
 ### Si algo falla:
+
 1. **Backend no levanta** → Usar mock data en frontend
 2. **AI API falla** → Desactivar document analysis
 3. **Queue falla** → Ejecución síncrona
@@ -473,6 +526,7 @@ Al finalizar tendremos:
 ✅ **Documentación** técnica
 
 **URLs Finales**:
+
 - Frontend: `https://haida.vercel.app`
 - Backend API: `https://haida-api.railway.app`
 - API Docs: `https://haida-api.railway.app/docs`

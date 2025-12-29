@@ -5,6 +5,7 @@
 This guide provides a comprehensive step-by-step process to implement the HAIDA Change Detection system, which monitors frontend UI changes and automatically triggers appropriate test suites.
 
 **Architecture Summary:**
+
 ```
 Frontend Changes → Changedetection.io → Webhook → HAIDA API → Test Routing → Playwright → Results
 ```
@@ -120,6 +121,7 @@ Open browser: `http://localhost:5000`
 ### 3.2 Add Monitoring Watches
 
 **For Login Form:**
+
 1. Click "Add Watch"
 2. URL: `https://your-app.com/login`
 3. Tag: `frontend-ui-login`
@@ -150,6 +152,7 @@ Open browser: `http://localhost:5000`
 4. Save
 
 **Webhook Payload Example:**
+
 ```json
 {
   "url": "https://your-app.com/login",
@@ -189,16 +192,16 @@ curl -X POST http://localhost:3001/webhook/change-detected \
 
 Test profiles map change types to specific test suites:
 
-| Change Type | Profile | Tests | Timeout |
-|-------------|---------|-------|---------|
-| Login form | form-validation | login-fields, error-handling, form-submission | 30s |
-| Dashboard | widget-rendering | widget-load, data-display, responsive | 60s |
-| Checkout | form-validation | form-validation, payment, confirmation | 45s |
-| Navigation | navigation-flow | link-validity, menu, breadcrumb | 35s |
-| Table | data-rendering | data-load, sorting, filtering, pagination | 50s |
-| Modal | modal-interaction | modal-render, close-handlers, form | 30s |
-| Button | interaction | click-handlers, state-change, loading | 25s |
-| Generic | general-e2e | page-load, basic-functionality | 60s |
+| Change Type | Profile           | Tests                                         | Timeout |
+| ----------- | ----------------- | --------------------------------------------- | ------- |
+| Login form  | form-validation   | login-fields, error-handling, form-submission | 30s     |
+| Dashboard   | widget-rendering  | widget-load, data-display, responsive         | 60s     |
+| Checkout    | form-validation   | form-validation, payment, confirmation        | 45s     |
+| Navigation  | navigation-flow   | link-validity, menu, breadcrumb               | 35s     |
+| Table       | data-rendering    | data-load, sorting, filtering, pagination     | 50s     |
+| Modal       | modal-interaction | modal-render, close-handlers, form            | 30s     |
+| Button      | interaction       | click-handlers, state-change, loading         | 25s     |
+| Generic     | general-e2e       | page-load, basic-functionality                | 60s     |
 
 ### 4.2 Create Test Profiles
 
@@ -217,6 +220,7 @@ mkdir -p tests/profiles
 Test file: `tests/form-validation.spec.js`
 
 Key test cases included:
+
 - ✓ Page load time validation (< 3 seconds)
 - ✓ Form field rendering
 - ✓ Email validation
@@ -278,6 +282,7 @@ curl -X POST http://localhost:3001/webhook/change-detected \
 ### 5.3 View Test Results
 
 **Via API:**
+
 ```bash
 # Get all test executions
 curl http://localhost:3001/results
@@ -289,12 +294,14 @@ curl http://localhost:3001/results/webhook-1705318245123
 ```
 
 **Via Allure Reports:**
+
 ```bash
 # Open browser to:
 http://localhost:4040
 ```
 
 **Via Slack:**
+
 - Notifications sent to configured Slack channel
 - Shows: ✅ PASSED / ❌ FAILED / ⚠️ ERROR
 - Includes: URL, profile, status, webhook ID
@@ -334,13 +341,13 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    
+
     services:
       changedetection:
         image: ghcr.io/dgtlmoon/changedetection.io:latest
         ports:
           - 5000:5000
-      
+
       haida-api:
         image: haida-api:latest
         ports:
@@ -350,27 +357,27 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-      
+
       - name: Install dependencies
         run: npm ci
-      
+
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
-      
+
       - name: Run tests
         run: npm test
-      
+
       - name: Upload results to Allure
         if: always()
         run: |
           curl -X POST http://localhost:4040/api/allure \
             -F "allure=@test-results/results.json"
-      
+
       - name: Publish test report
         if: always()
         uses: dorny/test-reporter@v1
@@ -401,7 +408,7 @@ trigger:
   - develop
 
 schedules:
-  - cron: "*/5 * * * *"
+  - cron: '*/5 * * * *'
     displayName: Run HAIDA tests every 5 minutes
     branches:
       include:
@@ -414,19 +421,19 @@ steps:
   - task: NodeTool@0
     inputs:
       versionSpec: '18.x'
-  
+
   - script: npm ci
     displayName: 'Install dependencies'
-  
+
   - script: npx playwright install --with-deps
     displayName: 'Install Playwright'
-  
+
   - script: npm test
     displayName: 'Run tests'
     env:
       TEST_URL: $(TEST_URL)
       SLACK_WEBHOOK: $(SLACK_WEBHOOK)
-  
+
   - task: PublishTestResults@2
     condition: succeededOrFailed()
     inputs:
@@ -459,6 +466,7 @@ curl -X POST $SLACK_WEBHOOK \
 ### 7.2 Set Up Alerts
 
 Notification events:
+
 - ✅ Test passed
 - ❌ Test failed
 - ⚠️ Test flaky (pass & fail within 24h)
@@ -468,11 +476,13 @@ Notification events:
 ### 7.3 Dashboard & Metrics
 
 Access via browser:
+
 - **Allure Reports**: `http://localhost:4040`
 - **Changedetection.io**: `http://localhost:5000`
 - **API Health**: `http://localhost:3001/health`
 
 Key metrics:
+
 - Total executions
 - Pass rate
 - Average execution time
@@ -579,6 +589,7 @@ Before deploying to production:
 ## 📞 Support
 
 For issues or questions:
+
 1. Check logs: `docker-compose logs -f [service-name]`
 2. Review error messages in test results
 3. Consult Changedetection.io documentation

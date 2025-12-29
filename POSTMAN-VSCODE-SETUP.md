@@ -54,6 +54,7 @@ code --install-extension postman.postman-for-vscode
 ### Opción A: Desde la carpeta de proyecto
 
 **Ubicación de colecciones:**
+
 ```
 qa-starter-kit/configs/postman-collections/
 ```
@@ -153,11 +154,13 @@ GET {{base_url}}/api/users
 ### Flujo recomendado:
 
 1. **Ejecutar Playwright** (E2E UI):
+
    ```powershell
    npm test -- --project=chromium
    ```
 
 2. **Ejecutar Newman** (API):
+
    ```powershell
    npx newman run "./configs/postman-collections/HAIDA-API-Tests.json"
    ```
@@ -172,7 +175,9 @@ GET {{base_url}}/api/users
 ## 8. Troubleshooting
 
 ### Problema: "No se puede conectar a Postman"
+
 **Solución:**
+
 ```powershell
 # Limpiar cache
 Remove-Item -Path $env:APPDATA\Postman -Recurse -Force
@@ -181,7 +186,9 @@ code --install-extension postman.postman-for-vscode --force
 ```
 
 ### Problema: "Colecciones no sincronizadas"
+
 **Solución:**
+
 ```powershell
 # Verificar sincronización
 curl -H "X-API-Key: $env:POSTMAN_API_KEY" `
@@ -189,7 +196,9 @@ curl -H "X-API-Key: $env:POSTMAN_API_KEY" `
 ```
 
 ### Problema: "Errores de timeout en Newman"
+
 **Solución:**
+
 ```powershell
 npx newman run collection.json `
   --timeout-request 10000 `
@@ -228,14 +237,14 @@ jobs:
 
 ## 10. Mejores Prácticas
 
-| Práctica | Descripción |
-|----------|------------|
-| **Organización** | Agrupa requests por módulo/endpoint |
-| **Variables** | Usa variables de entorno, no URLs hardcodeadas |
-| **Tests** | Cada request debe tener tests de validación |
-| **Documentación** | Describe cada request y su propósito |
-| **Versionado** | Guarda colecciones en Git |
-| **CI/CD** | Automatiza ejecución en pipelines |
+| Práctica          | Descripción                                    |
+| ----------------- | ---------------------------------------------- |
+| **Organización**  | Agrupa requests por módulo/endpoint            |
+| **Variables**     | Usa variables de entorno, no URLs hardcodeadas |
+| **Tests**         | Cada request debe tener tests de validación    |
+| **Documentación** | Describe cada request y su propósito           |
+| **Versionado**    | Guarda colecciones en Git                      |
+| **CI/CD**         | Automatiza ejecución en pipelines              |
 
 ---
 
@@ -267,13 +276,14 @@ npx newman run collection.json --delay-request 1000
 ✅ Importar colecciones  
 ✅ Ejecutar tests desde VS Code  
 ✅ Integrar con Playwright  
-✅ Configurar CI/CD  
+✅ Configurar CI/CD
 
 **Estado:** Listo para usar Postman en VS Code ✓
 
 ---
 
-**Documentación:** 
+**Documentación:**
+
 - [Postman for VS Code](https://learning.postman.com/docs/postman-for-vscode/overview/)
 - [Newman CLI](https://learning.postman.com/docs/postman-cli/postman-cli-overview/)
 - [Team Collaboration](https://learning.postman.com/docs/postman/team-collaboration/managing-your-team/)

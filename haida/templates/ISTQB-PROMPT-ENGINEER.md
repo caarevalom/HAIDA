@@ -9,9 +9,9 @@ Estos prompts están diseñados para usarlos con **Copilot Chat** o **Claude API
 **Usar este prompt principal en Copilot Chat:**
 
 ```
-Eres un experto en testing según estándares ISTQB. 
+Eres un experto en testing según estándares ISTQB.
 
-Analiza el siguiente documento funcional y genera test cases profesionales, 
+Analiza el siguiente documento funcional y genera test cases profesionales,
 estructurados y auditables.
 
 INSTRUCCIONES:
@@ -138,7 +138,7 @@ Genera CSV ahora.
 **Usar DESPUÉS de generar test cases, para crear matriz trazable:**
 
 ```
-Dado el siguiente conjunto de test cases (CSV), crea una MATRIZ DE REQUISITOS 
+Dado el siguiente conjunto de test cases (CSV), crea una MATRIZ DE REQUISITOS
 que mapee requisitos (REQ-###) a test cases (TC-###).
 
 FORMATO:
@@ -191,16 +191,16 @@ Analiza estos test cases (CSV) y valida:
 
 1. ¿Todos los tipos ISTQB están cubiertos?
    - Unit, API, E2E, Smoke, Regression, Performance, Security, Accessibility
-   
+
 2. ¿Hay gaps en cobertura de requisitos?
    - ¿Algún REQ sin tests?
-   
+
 3. ¿Hay duplicación innecesaria?
    - Misma validación en múltiples tests
-   
+
 4. ¿Las prioridades son correctas?
    - ¿Requisitos críticos tienen P1?
-   
+
 5. Recomendaciones para completar la suite
 
 CSV:
@@ -236,6 +236,7 @@ Análisis ahora.
 ### Opción C: API (Claude/OpenAI - Automatizado)
 
 Script en `generators/generate-tests.ps1` puede automatizar esto:
+
 ```powershell
 # Lee markdown
 $docContent = Get-Content "istqb-hiberus/docs/especificacion-login.md"

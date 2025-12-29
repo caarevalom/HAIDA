@@ -7,6 +7,7 @@ Este proyecto está configurado **EXCLUSIVAMENTE para testing local** en tu port
 ### ✅ Configuración de seguridad actual
 
 **Archivo: `.env`**
+
 ```dotenv
 BASE_URL=http://localhost:3000
 ```
@@ -131,6 +132,7 @@ curl -I http://localhost:3000/broken
 ## 📊 Tests que correrán contra el servidor local
 
 ### 1. Smoke Tests (`tests/web-e2e/smoke.spec.ts`)
+
 - ✅ Home carga sin errores
 - ✅ Status HTTP correcto (200)
 - ✅ No hay errores de consola
@@ -139,11 +141,13 @@ curl -I http://localhost:3000/broken
 - ✅ Enlaces internos funcionan
 
 ### 2. Accesibilidad WCAG (`tests/web-e2e/accessibility.spec.ts`)
+
 - ✅ Validación axe-core (WCAG 2A)
 - ✅ No hay violaciones de accesibilidad
 - ✅ Etiquetas HTML semánticas correctas
 
 ### 3. API (`tests/api/collection.json`)
+
 - ✅ GET /api retorna 200
 - ✅ JSON válido
 
@@ -153,12 +157,12 @@ curl -I http://localhost:3000/broken
 
 Ejecutando contra el servidor local:
 
-| Métrica | Esperado |
-|---------|----------|
-| Tiempo setup | ~10 segundos |
-| Tiempo tests | ~2-3 minutos |
-| Tiempo reportes | ~1 minuto |
-| **Total** | **~5 minutos** |
+| Métrica         | Esperado       |
+| --------------- | -------------- |
+| Tiempo setup    | ~10 segundos   |
+| Tiempo tests    | ~2-3 minutos   |
+| Tiempo reportes | ~1 minuto      |
+| **Total**       | **~5 minutos** |
 
 ---
 

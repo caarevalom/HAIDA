@@ -45,22 +45,22 @@ export interface UiConfig {
 
 const DEFAULT_UI_CONFIG: UiConfig = {
   login: {
-    title: "Welcome Back",
-    subtitle: "Enter your credentials to access your QA workspace",
-    emailPlaceholder: "name@example.com",
-    passwordPlaceholder: "Password",
-    rememberMeText: "Remember for 30 days",
-    signInButtonText: "Sign In",
-    forgotPasswordText: "Forgot password?",
-    signUpText: "Sign up",
-    microsoftButtonText: "Microsoft Entra ID",
-    footerText: "© 2025 Hiberus Tecnología. Todos los derechos reservados.",
+    title: 'Welcome Back',
+    subtitle: 'Enter your credentials to access your QA workspace',
+    emailPlaceholder: 'name@example.com',
+    passwordPlaceholder: 'Password',
+    rememberMeText: 'Remember for 30 days',
+    signInButtonText: 'Sign In',
+    forgotPasswordText: 'Forgot password?',
+    signUpText: 'Sign up',
+    microsoftButtonText: 'Microsoft Entra ID',
+    footerText: '© 2025 Hiberus Tecnología. Todos los derechos reservados.',
     showMicrosoftLogin: true,
     showFooter: true,
-    backgroundImage: "bg-blue-500/10", // Example of mapping style
+    backgroundImage: 'bg-blue-500/10', // Example of mapping style
   },
   header: {
-    brandName: "HAIDA",
+    brandName: 'HAIDA',
     showSearch: true,
     showNotifications: true,
     showThemeToggle: true,
@@ -68,12 +68,12 @@ const DEFAULT_UI_CONFIG: UiConfig = {
     showUserMenu: true,
   },
   dashboard: {
-    welcomeMessage: "Welcome Back",
+    welcomeMessage: 'Welcome Back',
     subtitleMessage: "Here's what's happening with your projects today.",
     showKpiCards: true,
     showCharts: true,
     showRecentProjects: true,
-  }
+  },
 };
 
 // --- Context Interface ---
@@ -90,20 +90,16 @@ export function UiProvider({ children }: { children: ReactNode }) {
 
   // This function simulates an UPDATE query to the DB
   const updateConfig = (section: keyof UiConfig, data: Partial<any>) => {
-    setConfig(prev => ({
+    setConfig((prev) => ({
       ...prev,
       [section]: {
         ...prev[section],
-        ...data
-      }
+        ...data,
+      },
     }));
   };
 
-  return (
-    <UiContext.Provider value={{ config, updateConfig }}>
-      {children}
-    </UiContext.Provider>
-  );
+  return <UiContext.Provider value={{ config, updateConfig }}>{children}</UiContext.Provider>;
 }
 
 export const useUi = () => {

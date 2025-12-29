@@ -37,51 +37,62 @@ cd C:\Users\CarlosArturoArevaloM\Documents\Proyectos\HAIDA
 El script `setup-all-tools.ps1` hace TODO esto automáticamente:
 
 ### ✅ FASE 1: Verificación
+
 - Verifica Git instalado
 - Verifica Docker (opcional)
 
 ### ✅ FASE 2: Directorios
+
 - Crea `C:\Users\CarlosArturoArevaloM\Apps`
 - Crea subcarpetas: nodejs, java, tools
 
 ### ✅ FASE 3: Descarga
+
 - Descarga Node.js 20.10.0 (portable)
 - Descarga Java JDK 17 (portable)
 
 ### ✅ FASE 4: Extracción
+
 - Extrae Node.js a Apps\nodejs
 - Extrae Java a Apps\java
 
 ### ✅ FASE 5: Variables de Entorno
+
 - Agrega Node.js al PATH
 - Configura JAVA_HOME
 - Agrega Java al PATH
 
 ### ✅ FASE 6: Verificación
+
 - Verifica node --version
 - Verifica npm --version
 - Verifica java -version
 
 ### ✅ FASE 7: NPM Global
+
 - Instala allure-commandline
 - Instala lighthouse
 - Instala newman
 
 ### ✅ FASE 8: HAIDA Dependencies
+
 - Ejecuta npm ci
 - Instala pg (Supabase)
 - Instala Playwright browsers
 
 ### ✅ FASE 9: .env
+
 - Crea .env desde .env.example
 - Configura Supabase (si password provided)
 
 ### ✅ FASE 10: Supabase Database
+
 - Ejecuta setup-database.js
 - Crea tablas y vistas
 - Inserta datos de prueba
 
 ### ✅ FASE 11: Scripts
+
 - Crea verify-tools.ps1
 - Scripts de verificación
 
@@ -93,6 +104,7 @@ El script `setup-all-tools.ps1` hace TODO esto automáticamente:
 - **Con internet lenta**: 30-40 minutos
 
 ### Desglose:
+
 - Descarga Node.js: ~2-5 minutos (50 MB)
 - Descarga Java: ~5-10 minutos (180 MB)
 - Extracción: ~1 minuto
@@ -126,11 +138,13 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ### Paso 4: Ejecutar setup
 
 **CON password de Supabase**:
+
 ```powershell
 .\setup-all-tools.ps1 -SupabasePassword "tu_password_real"
 ```
 
 **SIN password** (configurar después):
+
 ```powershell
 .\setup-all-tools.ps1
 ```
@@ -164,6 +178,7 @@ PHASE 3: Downloading Tools
 ### Paso 6: Cerrar y Reabrir PowerShell
 
 Después de que termine:
+
 1. **CIERRA** este PowerShell
 2. **ABRE** un nuevo PowerShell
 
@@ -213,6 +228,7 @@ npm run report
 ### Error: "no se puede ejecutar porque la ejecución de scripts está deshabilitada"
 
 **Solución**:
+
 ```powershell
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
@@ -220,6 +236,7 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ### Error: "No se encuentra node/npm después de la instalación"
 
 **Solución**:
+
 1. Cierra TODAS las ventanas de PowerShell
 2. Abre un NUEVO PowerShell
 3. Intenta de nuevo
@@ -244,6 +261,7 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ### El script se queda en "Downloading..."
 
 **Solución**:
+
 - Presiona Ctrl+C
 - Descarga manualmente (ver arriba)
 - Vuelve a ejecutar el script (detectará los archivos ya descargados)

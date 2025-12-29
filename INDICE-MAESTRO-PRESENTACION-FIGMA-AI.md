@@ -24,6 +24,7 @@ Este índice te guiará a través de:
 ### 1. ANALISIS-COMPLETO-HAIDA-Y-PROMPT-FIGMA-AI.md (Este archivo)
 
 **Contenido:**
+
 - ✅ Parte 1: Análisis integral de HAIDA
   - 1.1 ¿Qué es HAIDA?
   - 1.2 Arquitectura actual (v1.0)
@@ -51,6 +52,7 @@ Este índice te guiará a través de:
 ### 2. GUIA-RAPIDA-GENERAR-FIGMA-AI-PRESENTATION.md
 
 **Contenido:**
+
 - ✅ 5 Opciones de generación:
   1. Figma AI Plugin (RECOMENDADO)
   2. ChatGPT + HTML
@@ -75,6 +77,7 @@ Este índice te guiará a través de:
 ### 3. HIBERUS-BRAND-GUIDE.md
 
 **Contenido:**
+
 - ✅ Paleta de colores Hiberus
   - Persian Blue #1E34A1 (primary)
   - Stratos #010D3D (dark)
@@ -181,13 +184,13 @@ Este índice te guiará a través de:
 
 ## 🎨 DECISIÓN RÁPIDA: ¿CUÁL OPCIÓN ELEGIR?
 
-| Opción | Pros | Contras | Tiempo | Resultado |
-|--------|------|---------|--------|-----------|
-| **Figma AI** | ✅ Mejor UX, editable, visual | Requiere cuenta | 30 min | HTML/export |
-| **ChatGPT** | ✅ Rápido, HTML completo | Menos control visual | 15 min | HTML directo |
-| **Claude** | ✅ Código de calidad | Setup en VS Code | 20 min | HTML directo |
-| **Builder.io** | ✅ No-code, deployment | Interfaz compleja | 45 min | Live URL |
-| **Vercel** | ✅ Deploy automático | Menos customización | 25 min | Live URL |
+| Opción         | Pros                          | Contras              | Tiempo | Resultado    |
+| -------------- | ----------------------------- | -------------------- | ------ | ------------ |
+| **Figma AI**   | ✅ Mejor UX, editable, visual | Requiere cuenta      | 30 min | HTML/export  |
+| **ChatGPT**    | ✅ Rápido, HTML completo      | Menos control visual | 15 min | HTML directo |
+| **Claude**     | ✅ Código de calidad          | Setup en VS Code     | 20 min | HTML directo |
+| **Builder.io** | ✅ No-code, deployment        | Interfaz compleja    | 45 min | Live URL     |
+| **Vercel**     | ✅ Deploy automático          | Menos customización  | 25 min | Live URL     |
 
 **RECOMENDACIÓN:** Figma AI (mejor balance visual + control)
 
@@ -276,6 +279,7 @@ Este índice te guiará a través de:
 ## 🎓 GUÍA DE LECTURA POR ROL
 
 ### Si eres EJECUTIVO/STAKEHOLDER:
+
 ```
 1. Lee: EXECUTIVE-SUMMARY-v2.0.md (5 min)
 2. Ve: Sección 7 Benefits en presentación HTML (3 min)
@@ -284,6 +288,7 @@ Este índice te guiará a través de:
 ```
 
 ### Si eres QA/TEST MANAGER:
+
 ```
 1. Lee: HAIDA-OVERVIEW.md (10 min)
 2. Estudia: ANALISIS-COMPLETO Secciones 1.1-1.3 (20 min)
@@ -292,6 +297,7 @@ Este índice te guiará a través de:
 ```
 
 ### Si eres DEVELOPER/ARCHITECT:
+
 ```
 1. Lee completo: ANALISIS-COMPLETO (1 hora)
 2. Estudia: MIGRACION-v1-to-v2-STRATEGY.md (45 min)
@@ -301,6 +307,7 @@ Este índice te guiará a través de:
 ```
 
 ### Si eres DESIGNER:
+
 ```
 1. Lee: HIBERUS-BRAND-GUIDE.md (15 min)
 2. Estudia: ANALISIS-COMPLETO Sección 2.2 (Structure) (20 min)
@@ -309,6 +316,7 @@ Este índice te guiará a través de:
 ```
 
 ### Si eres PROJECT MANAGER:
+
 ```
 1. Lee: EXECUTIVE-SUMMARY-v2.0.md (5 min)
 2. Estudia: ANALISIS-COMPLETO Sección 1.6 (Timeline) (10 min)
@@ -321,27 +329,35 @@ Este índice te guiará a través de:
 ## ❓ PREGUNTAS FRECUENTES
 
 ### P: ¿Cuánto tiempo toma generar la presentación?
+
 **R:** 30-60 minutos (30 min generación + 30 min validación)
 
 ### P: ¿Necesito Figma cuenta pagada?
+
 **R:** No, puedes usar Figma gratis con limitaciones. O usa ChatGPT/Claude.
 
 ### P: ¿Qué pasa si la generación AI no es perfecta?
+
 **R:** Normal. Uso GUIA-RAPIDA SECCIÓN "Personalización común" para ajustar.
 
 ### P: ¿Puedo empezar sin leer todos los documentos?
+
 **R:** Sí. Lee solo GUIA-RAPIDA (15 min) y comienza. Vuelve a ANALISIS si necesitas profundidad.
 
 ### P: ¿Dónde pongo el HTML final?
+
 **R:** `/HAIDA/HAIDA-PRESENTATION-v2.0.html` (o sube a web server)
 
 ### P: ¿Cómo comparto con stakeholders?
+
 **R:** Opción A: Link HTML en servidor web. Opción B: Exporta PDF desde navegador.
 
 ### P: ¿Qué si necesito feedback?
+
 **R:** Haz screenshot de la presentación, compartir con equipo, itera según feedback.
 
 ### P: ¿Puedo usar esta presentación para múltiples contextos?
+
 **R:** Sí. Cambia texts, logos, links según necesidad (GUIA-RAPIDA Sección "Personalización")
 
 ---
@@ -349,6 +365,7 @@ Este índice te guiará a través de:
 ## 📞 SOPORTE & RECURSOS
 
 ### Documentos Disponibles:
+
 - [ANALISIS-COMPLETO-HAIDA-Y-PROMPT-FIGMA-AI.md](./ANALISIS-COMPLETO-HAIDA-Y-PROMPT-FIGMA-AI.md)
 - [GUIA-RAPIDA-GENERAR-FIGMA-AI-PRESENTATION.md](./GUIA-RAPIDA-GENERAR-FIGMA-AI-PRESENTATION.md)
 - [HIBERUS-BRAND-GUIDE.md](./HIBERUS-BRAND-GUIDE.md)
@@ -356,6 +373,7 @@ Este índice te guiará a través de:
 - [TECHNIQUES-INTEGRATION-CATALOG.md](./TECHNIQUES-INTEGRATION-CATALOG.md)
 
 ### Herramientas Recomendadas:
+
 - Figma AI: https://www.figma.com/ai
 - ChatGPT: https://chat.openai.com
 - Claude: https://claude.ai
@@ -363,6 +381,7 @@ Este índice te guiará a través de:
 - Vercel: https://vercel.com
 
 ### Recursos Técnicos:
+
 - HTML Validator: https://validator.w3.org
 - CSS Validator: https://jigsaw.w3.org/css-validator/
 - Lighthouse: https://developers.google.com/web/tools/lighthouse
@@ -372,23 +391,24 @@ Este índice te guiará a través de:
 
 ## 📊 ESTADÍSTICAS
 
-| Métrica | Valor |
-|---------|-------|
-| Análisis HAIDA | 1.7 MB (16,000+ palabras) |
-| Prompts Figma AI | 2,500+ líneas |
-| Guías paso a paso | 5 opciones diferentes |
-| Documentos vinculados | 10+ referencias |
-| Checklists | 5 + 15 items c/u |
-| Tiempo lectura análisis | 45 minutos |
-| Tiempo lectura guías | 15 minutos |
-| Tiempo ejecución total | 60-90 minutos |
-| Resultado esperado | HTML profesional, responsive, branded |
+| Métrica                 | Valor                                 |
+| ----------------------- | ------------------------------------- |
+| Análisis HAIDA          | 1.7 MB (16,000+ palabras)             |
+| Prompts Figma AI        | 2,500+ líneas                         |
+| Guías paso a paso       | 5 opciones diferentes                 |
+| Documentos vinculados   | 10+ referencias                       |
+| Checklists              | 5 + 15 items c/u                      |
+| Tiempo lectura análisis | 45 minutos                            |
+| Tiempo lectura guías    | 15 minutos                            |
+| Tiempo ejecución total  | 60-90 minutos                         |
+| Resultado esperado      | HTML profesional, responsive, branded |
 
 ---
 
 ## ✅ RESUMEN EJECUTIVO
 
 ### ¿Qué tengo?
+
 ✅ Análisis profundo de HAIDA v1.0/v2.0 (16 problemas + soluciones)
 ✅ Prompts detallados para Figma AI (largo + corto)
 ✅ Guías de 5 opciones diferentes (Figma, ChatGPT, Claude, Builder, Vercel)
@@ -399,6 +419,7 @@ Este índice te guiará a través de:
 ### ¿Qué debo hacer?
 
 **Flujo rápido (1 hora):**
+
 1. Lee GUIA-RAPIDA-GENERAR... (15 min)
 2. Elige Opción 1 (Figma AI Plugin)
 3. Copia PROMPT CORTO de ANALISIS-COMPLETO (Sección 2.4)
@@ -407,6 +428,7 @@ Este índice te guiará a través de:
 6. Personaliza si es necesario (15 min)
 
 **Flujo completo (3-4 horas):**
+
 1. Lee ANALISIS-COMPLETO (1 hora)
 2. Lee GUIA-RAPIDA (20 min)
 3. Lee HIBERUS-BRAND-GUIDE (10 min)
@@ -415,6 +437,7 @@ Este índice te guiará a través de:
 6. Personaliza y refina (45 min)
 
 ### ¿Cuál es el resultado?
+
 ```
 HAIDA-PRESENTATION-v2.0.html
 ├─ 8 secciones profesionales
@@ -430,7 +453,7 @@ HAIDA-PRESENTATION-v2.0.html
 
 ## 🚀 PRÓXIMO PASO
 
-**AHORA:** 
+**AHORA:**
 → Abre GUIA-RAPIDA-GENERAR-FIGMA-AI-PRESENTATION.md
 → Sigue los pasos para tu opción preferida
 → ¡Genera tu presentación!

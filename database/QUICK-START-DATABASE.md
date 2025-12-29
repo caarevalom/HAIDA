@@ -15,6 +15,7 @@ node --version  # Should be v18+ or v20+
 ### Step 2: Set Your Password
 
 **Option A: Environment Variable**
+
 ```powershell
 # PowerShell (Windows)
 $env:DB_PASSWORD="YOUR_SUPABASE_PASSWORD"
@@ -28,6 +29,7 @@ export DB_PASSWORD="YOUR_SUPABASE_PASSWORD"
 **Option B: Update Script Directly**
 
 Edit `database/setup-database.js` line 30:
+
 ```javascript
 password: process.env.DB_PASSWORD || 'YOUR_PASSWORD_HERE',
 ```
@@ -47,6 +49,7 @@ node setup-database.js
 ```
 
 **Expected Output:**
+
 ```
 ===================================================
 HAIDA Database Setup
@@ -163,7 +166,7 @@ const pool = new Pool({
   database: process.env.DB_NAME,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  ssl: { rejectUnauthorized: false }
+  ssl: { rejectUnauthorized: false },
 });
 
 async function test() {
@@ -189,6 +192,7 @@ test();
 ```
 
 Run:
+
 ```bash
 cd haida/haida-api
 node test-db-connection.js
@@ -202,7 +206,8 @@ node test-db-connection.js
 
 ```javascript
 // In your HAIDA API
-const execution = await pool.query(`
+const execution = await pool.query(
+  `
   INSERT INTO test_executions (
     project_id,
     execution_type,
@@ -212,7 +217,9 @@ const execution = await pool.query(`
   ) VALUES (
     $1, $2, $3, $4, $5
   ) RETURNING id, started_at
-`, [projectId, 'webhook_triggered', 'staging', 'chromium', 'running']);
+`,
+  [projectId, 'webhook_triggered', 'staging', 'chromium', 'running']
+);
 
 console.log('Execution ID:', execution.rows[0].id);
 ```
@@ -220,7 +227,8 @@ console.log('Execution ID:', execution.rows[0].id);
 ### Record Test Result
 
 ```javascript
-await pool.query(`
+await pool.query(
+  `
   INSERT INTO test_results (
     test_execution_id,
     test_name,
@@ -228,7 +236,9 @@ await pool.query(`
     duration_ms,
     screenshot_url
   ) VALUES ($1, $2, $3, $4, $5)
-`, [executionId, 'Login Test', 'passed', 1500, '/screenshots/test.png']);
+`,
+  [executionId, 'Login Test', 'passed', 1500, '/screenshots/test.png']
+);
 ```
 
 ### Query Recent Executions
@@ -247,30 +257,42 @@ console.log('Recent executions:', recent.rows);
 ## 🛠️ Troubleshooting
 
 ### Error: "node: command not found"
+
 **Solution**: Install Node.js
+
 - https://nodejs.org/dist/v20.10.0/node-v20.10.0-x64.msi
 
 ### Error: "Cannot find module 'pg'"
+
 **Solution**: Install pg package
+
 ```bash
 npm install pg
 ```
 
 ### Error: "Connection refused"
+
 **Check**:
+
 - Is your internet connected?
 - Is Supabase host correct?
 - Is Supabase project active?
 
 ### Error: "Authentication failed"
+
 **Check**:
+
 - Is password correct?
 - Did you set DB_PASSWORD environment variable?
 
 ### Error: "SSL required"
+
 **Solution**: Already configured in script with:
+
 ```javascript
-ssl: { rejectUnauthorized: false }
+ssl: {
+  rejectUnauthorized: false;
+}
 ```
 
 ---
@@ -282,6 +304,7 @@ ssl: { rejectUnauthorized: false }
 ### Option 1: SQL Script
 
 Create `database/reset-database.sql`:
+
 ```sql
 -- Drop all tables
 DROP TABLE IF EXISTS test_results CASCADE;
@@ -299,6 +322,7 @@ DROP VIEW IF EXISTS v_recent_executions CASCADE;
 ```
 
 Run in Supabase SQL Editor or:
+
 ```bash
 psql "postgresql://postgres:[PASSWORD]@db.wdebyxvtunromsnkqbrd.supabase.co:5432/postgres" -f reset-database.sql
 ```
@@ -317,6 +341,7 @@ Then re-run setup script.
 ## 📊 Useful Queries
 
 ### View All Tables
+
 ```sql
 SELECT table_name
 FROM information_schema.tables
@@ -325,6 +350,7 @@ AND table_type = 'BASE TABLE';
 ```
 
 ### Count Records in All Tables
+
 ```sql
 SELECT
   table_name,
@@ -341,11 +367,13 @@ LIMIT 1;
 ```
 
 ### Project Health Dashboard
+
 ```sql
 SELECT * FROM v_project_health;
 ```
 
 ### Test Coverage Report
+
 ```sql
 SELECT
   test_suite_name,
@@ -357,6 +385,7 @@ ORDER BY automation_percentage ASC;
 ```
 
 ### Failed Tests Last 7 Days
+
 ```sql
 SELECT
   te.started_at,

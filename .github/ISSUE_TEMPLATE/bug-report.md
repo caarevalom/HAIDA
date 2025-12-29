@@ -37,6 +37,7 @@ What actually happened instead.
 If applicable, add screenshots to help explain your problem.
 
 **Logs**
+
 ```
 Paste any relevant logs here
 ```

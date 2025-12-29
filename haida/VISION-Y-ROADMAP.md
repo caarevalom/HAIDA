@@ -1,6 +1,7 @@
 # 🎯 HAIDA - Visión del Proyecto y Roadmap
 
 ## Fecha
+
 18 de diciembre de 2025
 
 ---
@@ -109,17 +110,17 @@
 
 ## 📊 Estado Actual vs Estado Objetivo
 
-| Módulo | Estado Actual | Completado | Siguiente |
-|--------|---------------|------------|-----------|
-| 1. Análisis Docs | 🟡 Parcial (generadores) | 30% | Integrar IA API |
-| 2. Test Suites | ❌ No existe | 0% | Crear backend + frontend |
-| 3. Config Proyectos | ❌ No existe | 0% | BBDD + UI |
-| 4. Motor Ejecución | 🟢 Playwright básico | 40% | Appium + Grid |
-| 5. Evidencias | 🟡 Screenshots | 50% | Video + Storage cloud |
-| 6. Incidencias | ❌ No existe | 0% | Integración Jira/ADO |
-| 7. Change Detection | 🟢 Implementado | 70% | Refinar triggers |
-| 8. Reportes | 🟡 Allure básico | 30% | Dashboard completo |
-| 9. Usuarios/Roles | ❌ No existe | 0% | Auth + RBAC |
+| Módulo              | Estado Actual            | Completado | Siguiente                |
+| ------------------- | ------------------------ | ---------- | ------------------------ |
+| 1. Análisis Docs    | 🟡 Parcial (generadores) | 30%        | Integrar IA API          |
+| 2. Test Suites      | ❌ No existe             | 0%         | Crear backend + frontend |
+| 3. Config Proyectos | ❌ No existe             | 0%         | BBDD + UI                |
+| 4. Motor Ejecución  | 🟢 Playwright básico     | 40%        | Appium + Grid            |
+| 5. Evidencias       | 🟡 Screenshots           | 50%        | Video + Storage cloud    |
+| 6. Incidencias      | ❌ No existe             | 0%         | Integración Jira/ADO     |
+| 7. Change Detection | 🟢 Implementado          | 70%        | Refinar triggers         |
+| 8. Reportes         | 🟡 Allure básico         | 30%        | Dashboard completo       |
+| 9. Usuarios/Roles   | ❌ No existe             | 0%         | Auth + RBAC              |
 
 **Progreso Global**: ~22% completado
 
@@ -128,6 +129,7 @@
 ## 🗺️ Roadmap de Implementación
 
 ### 🎯 Fase 0: Fundamentos (COMPLETADO ✅)
+
 **Duración**: Ya completado
 **Estado**: ✅ Done
 
@@ -142,9 +144,11 @@
 ### 🎯 Fase 1: Backend Core (8-10 semanas)
 
 #### Sprint 1-2: Autenticación y Usuarios (2 semanas)
+
 **Prioridad**: 🔴 Crítico
 
 **Backend (FastAPI)**:
+
 - [ ] Sistema de autenticación JWT
 - [ ] Gestión de usuarios (CRUD)
 - [ ] Roles y permisos (RBAC)
@@ -152,6 +156,7 @@
 - [ ] Middleware de autorización
 
 **Base de Datos**:
+
 ```sql
 CREATE TABLE users (
     id UUID PRIMARY KEY,
@@ -173,6 +178,7 @@ CREATE TABLE user_projects (
 ```
 
 **Entregables**:
+
 - API de auth funcionando
 - Tests unitarios (80% coverage)
 - Documentación OpenAPI
@@ -180,9 +186,11 @@ CREATE TABLE user_projects (
 ---
 
 #### Sprint 3-4: Gestión de Proyectos (2 semanas)
+
 **Prioridad**: 🔴 Crítico
 
 **Backend**:
+
 - [ ] CRUD de proyectos
 - [ ] Configuración de variables por proyecto
 - [ ] Gestión de credenciales (cifradas con Vault)
@@ -190,6 +198,7 @@ CREATE TABLE user_projects (
 - [ ] Fixtures de datos de prueba
 
 **Base de Datos**:
+
 ```sql
 CREATE TABLE projects (
     id UUID PRIMARY KEY,
@@ -223,9 +232,11 @@ CREATE TABLE test_data_fixtures (
 ---
 
 #### Sprint 5-6: Test Cases Management (2 semanas)
+
 **Prioridad**: 🔴 Crítico
 
 **Backend**:
+
 - [ ] CRUD de test cases
 - [ ] Estructura ISTQB (ID, prerequisitos, pasos, expected)
 - [ ] Versionado de test cases
@@ -233,6 +244,7 @@ CREATE TABLE test_data_fixtures (
 - [ ] Asignación de casos a QA
 
 **Base de Datos**:
+
 ```sql
 CREATE TABLE test_cases (
     id UUID PRIMARY KEY,
@@ -267,9 +279,11 @@ CREATE TABLE test_case_versions (
 ---
 
 #### Sprint 7-8: Document Analysis (2 semanas)
+
 **Prioridad**: 🟡 Alta
 
 **Backend**:
+
 - [ ] Upload de documentos (PDF, DOCX, MD)
 - [ ] Integración con Claude API / OpenAI
 - [ ] Parser de requisitos
@@ -277,6 +291,7 @@ CREATE TABLE test_case_versions (
 - [ ] Review de casos generados
 
 **Flujo**:
+
 ```
 1. Usuario sube documento
 2. Sistema extrae texto
@@ -291,9 +306,11 @@ CREATE TABLE test_case_versions (
 ### 🎯 Fase 2: Frontend Core (6-8 semanas)
 
 #### Sprint 9-10: UI Base y Auth (2 semanas)
+
 **Prioridad**: 🔴 Crítico
 
 **Frontend (React/Next.js)**:
+
 - [ ] Setup proyecto Next.js 14+ (App Router)
 - [ ] Sistema de diseño (Tailwind + Shadcn/ui)
 - [ ] Layout principal con navegación
@@ -301,6 +318,7 @@ CREATE TABLE test_case_versions (
 - [ ] Protección de rutas por rol
 
 **Páginas**:
+
 - `/login`
 - `/dashboard`
 - `/projects`
@@ -309,9 +327,11 @@ CREATE TABLE test_case_versions (
 ---
 
 #### Sprint 11-12: Gestión de Proyectos UI (2 semanas)
+
 **Prioridad**: 🔴 Crítico
 
 **Páginas**:
+
 - [ ] `/projects` - Lista de proyectos
 - [ ] `/projects/new` - Crear proyecto
 - [ ] `/projects/[id]` - Detalle y dashboard del proyecto
@@ -319,6 +339,7 @@ CREATE TABLE test_case_versions (
 - [ ] `/projects/[id]/team` - Gestión de equipo
 
 **Componentes**:
+
 - Tablero de configuración editable (key-value pairs)
 - Editor de credenciales (con toggle show/hide)
 - Gestión de URLs por entorno
@@ -326,15 +347,18 @@ CREATE TABLE test_case_versions (
 ---
 
 #### Sprint 13-14: Test Cases UI (2 semanas)
+
 **Prioridad**: 🔴 Crítico
 
 **Páginas**:
+
 - [ ] `/projects/[id]/test-cases` - Lista de casos
 - [ ] `/projects/[id]/test-cases/new` - Crear caso
 - [ ] `/projects/[id]/test-cases/[tcId]` - Editar caso
 - [ ] `/projects/[id]/test-cases/review` - Cola de revisión (QA Leader)
 
 **Componentes**:
+
 - Editor de test case (rich text)
 - Preview ISTQB format
 - Workflow de aprobación
@@ -343,14 +367,17 @@ CREATE TABLE test_case_versions (
 ---
 
 #### Sprint 15-16: Document Upload & AI Generation (2 semanas)
+
 **Prioridad**: 🟡 Alta
 
 **Páginas**:
+
 - [ ] `/projects/[id]/documents` - Lista de documentos
 - [ ] `/projects/[id]/documents/upload` - Upload wizard
 - [ ] `/projects/[id]/documents/[docId]/generate` - Generación IA
 
 **Flujo UI**:
+
 1. Drag & drop documento
 2. Preview de contenido extraído
 3. "Generar Test Cases" → Loading con progress
@@ -362,9 +389,11 @@ CREATE TABLE test_case_versions (
 ### 🎯 Fase 3: Execution Engine (4-6 semanas)
 
 #### Sprint 17-18: Playwright Orchestrator (2 semanas)
+
 **Prioridad**: 🔴 Crítico
 
 **Backend**:
+
 - [ ] Convertir test cases → Playwright scripts
 - [ ] Template engine para generación de código
 - [ ] Queue de ejecución (Bull/BullMQ)
@@ -372,6 +401,7 @@ CREATE TABLE test_case_versions (
 - [ ] Gestión de concurrencia
 
 **Arquitectura**:
+
 ```
 Test Case (DB) → Generator → Playwright Script → Queue → Worker → Results
 ```
@@ -379,9 +409,11 @@ Test Case (DB) → Generator → Playwright Script → Queue → Worker → Resu
 ---
 
 #### Sprint 19-20: Mobile Testing (Appium) (2 semanas)
+
 **Prioridad**: 🟡 Alta
 
 **Backend**:
+
 - [ ] Integración con Appium
 - [ ] Android emulators
 - [ ] iOS simulators
@@ -391,9 +423,11 @@ Test Case (DB) → Generator → Playwright Script → Queue → Worker → Resu
 ---
 
 #### Sprint 21-22: Cross-Browser & Cloud (2 semanas)
+
 **Prioridad**: 🟢 Media
 
 **Integraciones**:
+
 - [ ] Selenium Grid
 - [ ] BrowserStack API
 - [ ] LambdaTest API
@@ -404,9 +438,11 @@ Test Case (DB) → Generator → Playwright Script → Queue → Worker → Resu
 ### 🎯 Fase 4: Evidence & Reporting (4 semanas)
 
 #### Sprint 23-24: Capture System (2 semanas)
+
 **Prioridad**: 🔴 Crítico
 
 **Backend**:
+
 - [ ] Screenshots en cada step
 - [ ] Video recording
 - [ ] Network logs
@@ -415,6 +451,7 @@ Test Case (DB) → Generator → Playwright Script → Queue → Worker → Resu
 - [ ] Generación de URLs firmadas
 
 **Base de Datos**:
+
 ```sql
 CREATE TABLE test_evidences (
     id UUID PRIMARY KEY,
@@ -430,9 +467,11 @@ CREATE TABLE test_evidences (
 ---
 
 #### Sprint 25-26: Reporting Dashboard (2 semanas)
+
 **Prioridad**: 🔴 Crítico
 
 **Frontend**:
+
 - [ ] Dashboard ejecutivo
 - [ ] Gráficas de tendencias (Chart.js/Recharts)
 - [ ] Filtros avanzados
@@ -440,6 +479,7 @@ CREATE TABLE test_evidences (
 - [ ] Integración Allure mejorada
 
 **Métricas**:
+
 - Pass Rate
 - Test Coverage
 - Execution Time Trends
@@ -451,9 +491,11 @@ CREATE TABLE test_evidences (
 ### 🎯 Fase 5: Issue Management (3 semanas)
 
 #### Sprint 27-28: Bug Detection & Tickets (2 semanas)
+
 **Prioridad**: 🟡 Alta
 
 **Backend**:
+
 - [ ] Detección automática de fallos
 - [ ] Análisis de error con IA (sugiere causa)
 - [ ] Integración Jira API
@@ -461,6 +503,7 @@ CREATE TABLE test_evidences (
 - [ ] Auto-creación de tickets
 
 **Flujo**:
+
 ```
 Test Fails → AI Analysis → Generate Ticket → Send to Jira/ADO
              → Attach evidences
@@ -470,9 +513,11 @@ Test Fails → AI Analysis → Generate Ticket → Send to Jira/ADO
 ---
 
 #### Sprint 29: Tracking & Resolution (1 semana)
+
 **Prioridad**: 🟢 Media
 
 **Frontend**:
+
 - [ ] Vista de bugs activos
 - [ ] Tracking de resolución
 - [ ] Re-testing automático
@@ -483,24 +528,28 @@ Test Fails → AI Analysis → Generate Ticket → Send to Jira/ADO
 ### 🎯 Fase 6: Advanced Features (4 semanas)
 
 #### Sprint 30: AI-Powered Features
+
 - [ ] Auto-healing tests (actualizar selectores)
 - [ ] Análisis predictivo de fallos
 - [ ] Sugerencias de optimización
 - [ ] Test case recommendations
 
 #### Sprint 31: Performance & Scale
+
 - [ ] Caching con Redis
 - [ ] CDN para evidencias
 - [ ] Database indexing optimization
 - [ ] Load testing
 
 #### Sprint 32: Integrations
+
 - [ ] GitHub/GitLab webhooks
 - [ ] Slack bot
 - [ ] Teams bot
 - [ ] API pública
 
 #### Sprint 33: Polish & Documentation
+
 - [ ] Documentación completa
 - [ ] Videos tutoriales
 - [ ] Onboarding wizard
@@ -582,15 +631,15 @@ haida/
 
 ## 💰 Estimación de Esfuerzo
 
-| Fase | Duración | Equipo Recomendado |
-|------|----------|-------------------|
-| Fase 0: Fundamentos | ✅ Completo | - |
-| Fase 1: Backend Core | 10 semanas | 2 Backend + 1 DevOps |
-| Fase 2: Frontend Core | 8 semanas | 2 Frontend + 1 UI/UX |
-| Fase 3: Execution Engine | 6 semanas | 2 Backend + 1 QA Automation |
-| Fase 4: Evidence & Reporting | 4 semanas | 1 Backend + 1 Frontend |
-| Fase 5: Issue Management | 3 semanas | 1 Backend + 1 Frontend |
-| Fase 6: Advanced Features | 4 semanas | Full team |
+| Fase                         | Duración    | Equipo Recomendado          |
+| ---------------------------- | ----------- | --------------------------- |
+| Fase 0: Fundamentos          | ✅ Completo | -                           |
+| Fase 1: Backend Core         | 10 semanas  | 2 Backend + 1 DevOps        |
+| Fase 2: Frontend Core        | 8 semanas   | 2 Frontend + 1 UI/UX        |
+| Fase 3: Execution Engine     | 6 semanas   | 2 Backend + 1 QA Automation |
+| Fase 4: Evidence & Reporting | 4 semanas   | 1 Backend + 1 Frontend      |
+| Fase 5: Issue Management     | 3 semanas   | 1 Backend + 1 Frontend      |
+| Fase 6: Advanced Features    | 4 semanas   | Full team                   |
 
 **Total**: ~35 semanas (8-9 meses) con equipo de 4-5 personas
 
@@ -601,6 +650,7 @@ haida/
 ### Stack Tecnológico Recomendado
 
 **Backend**:
+
 - FastAPI (Python) - APIs REST
 - Supabase / PostgreSQL - Base de datos
 - Redis - Cache y queue
@@ -609,6 +659,7 @@ haida/
 - AWS S3 / Azure Blob - Almacenamiento evidencias
 
 **Frontend**:
+
 - Next.js 14+ (App Router)
 - React 18
 - TypeScript
@@ -618,17 +669,20 @@ haida/
 - Zustand - State management
 
 **Testing & Automation**:
+
 - Playwright - Web testing
 - Appium - Mobile testing
 - Selenium Grid - Escalabilidad
 - Changedetection.io - Change detection
 
 **IA & ML**:
+
 - Anthropic Claude API - Document analysis
 - OpenAI GPT-4 - Alternative
 - LangChain - Orchestration
 
 **DevOps**:
+
 - Docker + Docker Compose
 - GitHub Actions / Azure DevOps
 - Kubernetes (para escala)

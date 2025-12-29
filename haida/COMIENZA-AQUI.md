@@ -3,6 +3,7 @@
 ## ¿Qué has recibido?
 
 Un **sistema completo de automatización de QA** que:
+
 - ✅ Detecta cambios en tu frontend automáticamente
 - ✅ Dispara tests sin intervención manual
 - ✅ Te notifica en Slack en < 5 minutos
@@ -14,28 +15,36 @@ Un **sistema completo de automatización de QA** que:
 ## 📚 ¿Por dónde empiezo?
 
 ### **Opción 1: "Quiero comenzar AHORA" (25 minutos)**
+
 ```bash
 1. cp .env.example .env
 2. Editar .env con tus valores
 3. bash deploy.sh
 4. ¡Listo!
 ```
+
 → **Guía rápida**: [RESUMEN-VISUAL-ENTREGA.md](RESUMEN-VISUAL-ENTREGA.md)
 
 ### **Opción 2: "Quiero entender primero" (30 minutos)**
-→ **Lee primero**: 
+
+→ **Lee primero**:
+
 1. [START-HERE.md](START-HERE.md) - Visual overview
 2. [README.md](README.md) - Project overview
 3. [EXECUTIVE-SUMMARY.md](EXECUTIVE-SUMMARY.md) - Beneficios
 
 ### **Opción 3: "Necesito implementarlo correctamente" (2-3 horas)**
+
 → **Sigue paso a paso**:
+
 1. [INTEGRATION-GUIDE-COMPLETE.md](INTEGRATION-GUIDE-COMPLETE.md) - 8 fases
 2. [IMPLEMENTATION-CHECKLIST.md](IMPLEMENTATION-CHECKLIST.md) - Validación
 3. deploy.sh - Automation
 
 ### **Opción 4: "Necesito presentar esto a mi equipo" (30 minutos)**
+
 → **Revisa estos documentos**:
+
 1. [EXECUTIVE-SUMMARY.md](EXECUTIVE-SUMMARY.md) - ROI & Beneficios
 2. [DELIVERY-SUMMARY.md](DELIVERY-SUMMARY.md) - Lo que entregamos
 3. [RESUMEN-VISUAL-ENTREGA.md](RESUMEN-VISUAL-ENTREGA.md) - Estadísticas
@@ -45,6 +54,7 @@ Un **sistema completo de automatización de QA** que:
 ## 🚀 Inicio Rápido (25 minutos)
 
 ### **Paso 1: Preparación (5 minutos)**
+
 ```bash
 # Verificar que tienes instalado:
 docker --version      # Docker
@@ -53,6 +63,7 @@ node --version        # Node.js (v18+)
 ```
 
 ### **Paso 2: Configuración (5 minutos)**
+
 ```bash
 cd ~/Documents/Proyectos/HAIDA/haida
 cp .env.example .env
@@ -63,6 +74,7 @@ cp .env.example .env
 ```
 
 ### **Paso 3: Deployment (10 minutos)**
+
 ```bash
 bash deploy.sh
 # Se ejecutarán 10 fases automáticamente:
@@ -79,6 +91,7 @@ bash deploy.sh
 ```
 
 ### **Paso 4: Validación (5 minutos)**
+
 ```bash
 # Verificar todos los servicios
 docker-compose ps
@@ -155,55 +168,66 @@ curl http://localhost:3001/health
 ## 📚 Documentos Disponibles
 
 ### **Para Aprender Rápido**
-| Documento | Tiempo | Propósito |
-|-----------|--------|-----------|
-| [START-HERE.md](START-HERE.md) | 5 min | Visual overview |
-| [README.md](README.md) | 5 min | Project overview |
-| [QUICK-START.md](QUICK-START.md) | 5 min | Inicio rápido |
+
+| Documento                        | Tiempo | Propósito        |
+| -------------------------------- | ------ | ---------------- |
+| [START-HERE.md](START-HERE.md)   | 5 min  | Visual overview  |
+| [README.md](README.md)           | 5 min  | Project overview |
+| [QUICK-START.md](QUICK-START.md) | 5 min  | Inicio rápido    |
 
 ### **Para Implementar**
-| Documento | Tiempo | Propósito |
-|-----------|--------|-----------|
-| [INTEGRATION-GUIDE-COMPLETE.md](INTEGRATION-GUIDE-COMPLETE.md) | 2-3h | Guía 8 fases |
-| [IMPLEMENTATION-CHECKLIST.md](IMPLEMENTATION-CHECKLIST.md) | 1-2h | Validación |
-| [deploy.sh](deploy.sh) | 10 min | Automation |
+
+| Documento                                                      | Tiempo | Propósito    |
+| -------------------------------------------------------------- | ------ | ------------ |
+| [INTEGRATION-GUIDE-COMPLETE.md](INTEGRATION-GUIDE-COMPLETE.md) | 2-3h   | Guía 8 fases |
+| [IMPLEMENTATION-CHECKLIST.md](IMPLEMENTATION-CHECKLIST.md)     | 1-2h   | Validación   |
+| [deploy.sh](deploy.sh)                                         | 10 min | Automation   |
 
 ### **Para Entender**
-| Documento | Tiempo | Propósito |
-|-----------|--------|-----------|
-| [CHANGE-DETECTION-FRAMEWORK.md](CHANGE-DETECTION-FRAMEWORK.md) | 1h | Arquitectura |
-| [FILE-INDEX.md](FILE-INDEX.md) | 15 min | Índice |
+
+| Documento                                                      | Tiempo | Propósito    |
+| -------------------------------------------------------------- | ------ | ------------ |
+| [CHANGE-DETECTION-FRAMEWORK.md](CHANGE-DETECTION-FRAMEWORK.md) | 1h     | Arquitectura |
+| [FILE-INDEX.md](FILE-INDEX.md)                                 | 15 min | Índice       |
 
 ### **Para Presentar**
-| Documento | Tiempo | Propósito |
-|-----------|--------|-----------|
-| [EXECUTIVE-SUMMARY.md](EXECUTIVE-SUMMARY.md) | 30 min | ROI & Beneficios |
-| [DELIVERY-SUMMARY.md](DELIVERY-SUMMARY.md) | 20 min | Resumen entrega |
-| [RESUMEN-VISUAL-ENTREGA.md](RESUMEN-VISUAL-ENTREGA.md) | 10 min | Stats visuales |
+
+| Documento                                              | Tiempo | Propósito        |
+| ------------------------------------------------------ | ------ | ---------------- |
+| [EXECUTIVE-SUMMARY.md](EXECUTIVE-SUMMARY.md)           | 30 min | ROI & Beneficios |
+| [DELIVERY-SUMMARY.md](DELIVERY-SUMMARY.md)             | 20 min | Resumen entrega  |
+| [RESUMEN-VISUAL-ENTREGA.md](RESUMEN-VISUAL-ENTREGA.md) | 10 min | Stats visuales   |
 
 ---
 
 ## ❓ Respuestas Rápidas
 
 ### "¿Cuál es el ROI?"
+
 → €2,000-3,000 ahorrados por mes / 1,200-1,500% ROI anual
 
 ### "¿Cuánto tiempo se ahorra?"
+
 → 40-60 horas/mes por QA engineer / 90% reducción
 
 ### "¿Qué navegadores soporta?"
+
 → Chrome, Firefox, Safari, Edge + Mobile (iOS/Android)
 
 ### "¿Funciona con mi CI/CD?"
+
 → Sí: GitHub Actions, Azure DevOps, Jenkins
 
 ### "¿Dónde veo los resultados?"
+
 → Allure Dashboard (http://localhost:4040) + Slack
 
 ### "¿Es seguro para producción?"
+
 → Sí: Docker containers, secrets en variables de entorno, logging completo
 
 ### "¿Qué pasa si algo falla?"
+
 → Ver troubleshooting en INTEGRATION-GUIDE-COMPLETE.md (Fase 8)
 
 ---
@@ -236,17 +260,20 @@ FINALMENTE (2-3 semanas)
 ## 📞 ¿Necesitas ayuda?
 
 ### **Si algo no funciona:**
+
 1. Leer: INTEGRATION-GUIDE-COMPLETE.md (Fase 8 - Troubleshooting)
 2. Ver logs: `docker-compose logs -f`
 3. Health check: `curl http://localhost:3001/health`
 4. Contactar: devops@hiberus.com
 
 ### **Si tienes preguntas técnicas:**
+
 1. Revisar: CHANGE-DETECTION-FRAMEWORK.md
 2. Ver código: haida-api/server.js (comentado)
 3. Contactar: qa-team@hiberus.com
 
 ### **Si necesitas información de negocio:**
+
 1. Leer: EXECUTIVE-SUMMARY.md
 2. Revisar: DELIVERY-SUMMARY.md
 3. Contactar: haida-po@hiberus.com
@@ -284,7 +311,7 @@ Estás a punto de implementar un sistema que:
 ✨ **Revoluciona tu QA**: Feedback automático en < 5 minutos  
 ✨ **Ahorra tiempo**: 40-60 horas/mes por QA engineer  
 ✨ **Mejora confiabilidad**: 95%+ cobertura vs 70% manual  
-✨ **Escala con éxito**: Docker-based, listo para producción  
+✨ **Escala con éxito**: Docker-based, listo para producción
 
 ---
 
@@ -314,15 +341,19 @@ bash deploy.sh
 ## 📖 Lectura Recomendada
 
 **Primero (5 minutos):**
+
 - [START-HERE.md](START-HERE.md)
 
 **Segundo (15 minutos):**
+
 - [RESUMEN-VISUAL-ENTREGA.md](RESUMEN-VISUAL-ENTREGA.md)
 
 **Tercero (30 minutos):**
+
 - [EXECUTIVE-SUMMARY.md](EXECUTIVE-SUMMARY.md)
 
 **Para implementar (2-3 horas):**
+
 - [INTEGRATION-GUIDE-COMPLETE.md](INTEGRATION-GUIDE-COMPLETE.md)
 
 ---

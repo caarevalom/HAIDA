@@ -1,6 +1,6 @@
 ---
-title: "E2E Testing Setup - Resumen Ejecutivo"
-date: "2025-12-15"
+title: 'E2E Testing Setup - Resumen Ejecutivo'
+date: '2025-12-15'
 ---
 
 # ✅ Entorno E2E Testing Configurado
@@ -8,6 +8,7 @@ date: "2025-12-15"
 ## 🎯 Estado actual
 
 Tu entorno de testing E2E está **100% configurado y funcional** en:
+
 ```
 C:\Users\CarlosArturoArevaloM\Documents\Proyectos\qa-starter-kit
 ```
@@ -26,6 +27,7 @@ C:\Users\CarlosArturoArevaloM\Documents\Proyectos\qa-starter-kit
 ## 🚀 Comandos de uso rápido
 
 ### Opción 1: Ejecución completa (recomendado)
+
 Desde **Terminal integrado en VS Code** (Ctrl + `), colócate en el proyecto y ejecuta:
 
 ```powershell
@@ -33,6 +35,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\run-qa.ps1
 ```
 
 **Qué hace:**
+
 - Configura PATH temporal para Node.js
 - Instala dependencias (si faltan)
 - Instala navegadores Playwright
@@ -42,12 +45,15 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\run-qa.ps1
 - Genera y abre reporte Allure automáticamente
 
 ### Opción 2: Solo validar setup
+
 ```batch
 .\check-setup.bat
 ```
+
 Comprueba rápidamente que node/npm funcionan.
 
 ### Opción 3: Scripts individuales de npm
+
 ```powershell
 # Tests Web E2E
 npm run test:web
@@ -78,13 +84,13 @@ npm run allure:open
 
 ## 📊 Archivos clave creados
 
-| Archivo | Propósito | Estado |
-|---------|-----------|--------|
-| `run-qa.ps1` | Script principal E2E (pasos 1-5) | ✅ Creado |
-| `.env` | Variables de entorno (BASE_URL) | ✅ Creado |
-| `check-setup.bat` | Validación rápida de setup | ✅ Creado |
-| `QA-SETUP-GUIDE.md` | Guía detallada (troubleshooting, etc) | ✅ Creado |
-| `package.json` | Actualizado con rimraf + lighthouse corregido | ✅ Modificado |
+| Archivo             | Propósito                                     | Estado        |
+| ------------------- | --------------------------------------------- | ------------- |
+| `run-qa.ps1`        | Script principal E2E (pasos 1-5)              | ✅ Creado     |
+| `.env`              | Variables de entorno (BASE_URL)               | ✅ Creado     |
+| `check-setup.bat`   | Validación rápida de setup                    | ✅ Creado     |
+| `QA-SETUP-GUIDE.md` | Guía detallada (troubleshooting, etc)         | ✅ Creado     |
+| `package.json`      | Actualizado con rimraf + lighthouse corregido | ✅ Modificado |
 
 ---
 
@@ -112,16 +118,19 @@ reports/
 ## ⚙️ Notas técnicas
 
 ### Sin permisos de administrador
+
 - El script **no modifica** variables globales
 - PATH se configura **solo en la sesión actual**
 - Se restaura automáticamente al finalizar
 
 ### Manejo robusto de errores
+
 - Si `npm ci` falla (sin `package-lock.json`), usa `npm install`
 - Si `allure` CLI falta, usa `npx allure-commandline@2` como fallback
 - Validaciones previas de node/npm antes de continuar
 
 ### Parámetros opcionales del script
+
 ```powershell
 # Saltar instalación de dependencias
 .\run-qa.ps1 -SkipInstall:$true
@@ -141,30 +150,39 @@ reports/
 ## 🔧 Solución de problemas comunes
 
 ### "node no está accesible"
+
 Verifica que existe:
+
 ```powershell
 dir "C:\Users\CarlosArturoArevaloM\Documents\Proyectos\node-v24.12.0-win-x64\node.exe"
 ```
 
 ### "npm ci falló"
+
 Ejecuta manualmente:
+
 ```powershell
 npm install --verbose
 ```
 
 ### "Playwright browsers no instalados"
+
 ```powershell
 npx playwright install --with-deps
 ```
 
 ### "Newman: POST {{BASE_URL}} falló"
+
 Verifica que `.env` tiene un URL accesible:
+
 ```powershell
 curl -I "https://mcprod.thisisbarcelona.com.com"
 ```
 
 ### "Allure: no se abre el reporte"
+
 Abre manualmente:
+
 ```powershell
 start .\reports\allure-report\index.html
 ```

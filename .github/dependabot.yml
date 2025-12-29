@@ -7,32 +7,124 @@ updates:
       interval: "weekly"
       day: "monday"
       time: "09:00"
+      timezone: "Europe/Madrid"
     open-pull-requests-limit: 10
     reviewers:
       - "caarevalom"
     assignees:
       - "caarevalom"
+    labels:
+      - "dependencies"
+      - "python"
+      - "automated"
     commit-message:
       prefix: "deps"
       prefix-development: "deps-dev"
       include: "scope"
+    groups:
+      fastapi:
+        patterns:
+          - "fastapi"
+          - "uvicorn"
+          - "pydantic*"
+      security:
+        patterns:
+          - "*security*"
+          - "cryptography"
+          - "pyjwt"
+          - "python-jose"
 
-  # Node.js dependencies
+  # Node.js dependencies (root)
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "weekly"
       day: "monday"
       time: "09:00"
+      timezone: "Europe/Madrid"
     open-pull-requests-limit: 10
     reviewers:
       - "caarevalom"
     assignees:
       - "caarevalom"
+    labels:
+      - "dependencies"
+      - "npm"
+      - "automated"
     commit-message:
       prefix: "deps"
       prefix-development: "deps-dev"
       include: "scope"
+    versioning-strategy: increase
+    groups:
+      playwright:
+        patterns:
+          - "@playwright/*"
+          - "playwright"
+          - "allure-playwright"
+      testing:
+        patterns:
+          - "*test*"
+          - "newman"
+          - "lighthouse"
+      security:
+        patterns:
+          - "snyk"
+          - "*security*"
+          - "eslint-plugin-security"
+      linting:
+        patterns:
+          - "eslint*"
+          - "prettier"
+          - "@typescript-eslint/*"
+
+  # Node.js dependencies (Figma)
+  - package-ecosystem: "npm"
+    directory: "/Figma"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Europe/Madrid"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "caarevalom"
+    labels:
+      - "dependencies"
+      - "figma"
+      - "automated"
+
+  # Node.js dependencies (haida-api)
+  - package-ecosystem: "npm"
+    directory: "/haida/haida-api"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Europe/Madrid"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "caarevalom"
+    labels:
+      - "dependencies"
+      - "haida-api"
+      - "automated"
+
+  # Docker dependencies
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Europe/Madrid"
+    open-pull-requests-limit: 3
+    reviewers:
+      - "caarevalom"
+    labels:
+      - "dependencies"
+      - "docker"
+      - "automated"
 
   # GitHub Actions
   - package-ecosystem: "github-actions"
@@ -41,9 +133,14 @@ updates:
       interval: "weekly"
       day: "monday"
       time: "09:00"
+      timezone: "Europe/Madrid"
     open-pull-requests-limit: 5
     reviewers:
       - "caarevalom"
+    labels:
+      - "dependencies"
+      - "ci-cd"
+      - "automated"
     commit-message:
       prefix: "ci"
       include: "scope"

@@ -13,6 +13,7 @@
 **Ubicación**: `docs/UX/DesignTokens.json`
 
 **Contenido**:
+
 ```json
 {
   "font": {
@@ -68,6 +69,7 @@
 **Objetivo**: Construir Design System HAIDA completo
 
 **Incluye**:
+
 - ✅ **Componentes Básicos**:
   - Buttons (Primary, Secondary, Link, Icon)
   - Inputs (Text, Email, Password)
@@ -99,14 +101,17 @@
 **Incluye**:
 
 #### Header Fijo (Functional)
+
 - Logo + App Name "HAIDA"
 - Navigation: Principal, Inbox, Explorar, Proyecto, Chat IA
 - Right Section: Language, Theme toggle, Notifications, Avatar
 
 #### Footer (Functional)
+
 - Copyright, Quick links, Legal links
 
 #### 8 Pantallas Principales:
+
 1. **Login/Register** - Centered card, Microsoft Entra ID
 2. **Dashboard** - KPIs, Recent activity, Charts, Quick actions
 3. **Inbox** - Notificaciones con filters y actions
@@ -129,10 +134,12 @@
 **Incluye**:
 
 #### Navbar Inferior (Bottom Tab Bar)
+
 - 5 ítems: Principal, Inbox, Explorar, Proyecto, Chat IA
 - Safe areas, badges, glass effect
 
 #### 8 Pantallas Mobile:
+
 1. **Login/Register Mobile** - Biometric auth, large touch targets
 2. **Dashboard Mobile** - Pull-to-refresh, FAB buttons
 3. **Inbox Mobile** - Swipe gestures (archive, mark read)
@@ -143,6 +150,7 @@
 8. **Perfil Mobile** - Large avatar, switches, toggles
 
 #### Touch Interactions:
+
 - Tap targets: 44px (iOS), 48px (Android)
 - Gestures: Swipe, long press, pinch, pull-to-refresh
 - Haptic feedback
@@ -160,6 +168,7 @@
 **Incluye**:
 
 #### Componentes Principales:
+
 1. **Listado de Documentación** - 3-column grid, filtros, paginación
 2. **Visor Markdown** - 2-column (content + TOC), theme-aware
 3. **Editor** - Rich toolbar, live preview, autosave
@@ -168,6 +177,7 @@
 6. **Enlaces Contextuales** - Links a scripts, endpoints, pantallas
 
 **Flujos**:
+
 - Crear: Template → Editor → Preview → Publish
 - Editar: Load → Edit → Auto-save → Publish
 - Versionar: Edit → Save version → Compare → Publish
@@ -185,6 +195,7 @@
 **Incluye**:
 
 #### Layout 3-Column:
+
 1. **Columna Izquierda (Historial)**:
    - Thread list con preview
    - Búsqueda y filtros
@@ -201,12 +212,14 @@
    - Deep links contextuales
 
 #### Integración Copilot Studio:
+
 - Primary provider: Copilot Studio (Direct Line API)
 - Fallback: OpenAI o Anthropic
 - Estados: Connected, Connecting, Disconnected, Error
 - Streaming responses con typing indicator
 
 #### Gestión de Hilos:
+
 - Create, Rename, Archive, Delete, Export, Share
 - Thread properties: ID, Title, Provider, Status, Metadata
 
@@ -230,16 +243,19 @@
 ### Pasos Detallados:
 
 #### Paso 1: Abrir Figma Maker IA
+
 - Ve a: https://www.figma.com/maker
 - O usa plugin de Figma si lo tienes instalado
 
 #### Paso 2: Cargar Design Tokens
+
 1. Abre `docs/UX/DesignTokens.json`
 2. Copia TODO el contenido
 3. Pégalo en Figma Maker IA
 4. Indica: "Use estos tokens para todo el diseño"
 
 #### Paso 3: Ejecutar Prompts en Orden
+
 1. Abre `01-DesignSystem.md`
 2. Copia TODO el contenido
 3. Pégalo en Figma Maker IA
@@ -247,6 +263,7 @@
 5. Repite con 02, 03, 04, 05 en orden
 
 #### Paso 4: Conectar Flujos
+
 - Usa prototipado de Figma para conectar pantallas
 - Flujos recomendados:
   - Login → Dashboard
@@ -258,19 +275,20 @@
 
 ## 📊 COBERTURA COMPLETA
 
-| Módulo | Pantallas | Estado | Prompt | Tokens |
-|--------|-----------|--------|--------|--------|
-| **Design System** | Componentes base | ✅ Listo | 01-DesignSystem.md | DesignTokens.json |
-| **Web Desktop** | 8 pantallas + Header/Footer | ✅ Listo | 02-Web.md | ✅ |
-| **Mobile** | iOS/Android completo | ✅ Listo | 03-Mobile.md | ✅ |
-| **Documentación** | Editor + visor + versiones | ✅ Listo | 04-Documentacion.md | ✅ |
-| **Chat IA** | 3-column + Copilot | ✅ Listo | 05-ChatIA.md | ✅ |
+| Módulo            | Pantallas                   | Estado   | Prompt              | Tokens            |
+| ----------------- | --------------------------- | -------- | ------------------- | ----------------- |
+| **Design System** | Componentes base            | ✅ Listo | 01-DesignSystem.md  | DesignTokens.json |
+| **Web Desktop**   | 8 pantallas + Header/Footer | ✅ Listo | 02-Web.md           | ✅                |
+| **Mobile**        | iOS/Android completo        | ✅ Listo | 03-Mobile.md        | ✅                |
+| **Documentación** | Editor + visor + versiones  | ✅ Listo | 04-Documentacion.md | ✅                |
+| **Chat IA**       | 3-column + Copilot          | ✅ Listo | 05-ChatIA.md        | ✅                |
 
 ---
 
 ## 🎯 CARACTERÍSTICAS INCLUIDAS
 
 ### Design System
+
 - ✅ Tema Light/Dark con glassmorphism
 - ✅ Accesibilidad WCAG AA completa
 - ✅ i18n (ES/EN/FR) preparado
@@ -279,6 +297,7 @@
 - ✅ Estados interactivos (hover, active, focus, disabled)
 
 ### Componentes
+
 - ✅ 40+ componentes reutilizables
 - ✅ Variants para cada componente
 - ✅ Auto-layout para responsive
@@ -286,6 +305,7 @@
 - ✅ Nested instances
 
 ### Pantallas
+
 - ✅ 8 pantallas web desktop
 - ✅ 8 pantallas mobile (iOS/Android)
 - ✅ Header/Footer funcionales
@@ -294,6 +314,7 @@
 - ✅ Módulo chat IA con M365
 
 ### Prototipado
+
 - ✅ Flujos navegables
 - ✅ Micro-interacciones
 - ✅ Transiciones suaves
@@ -305,29 +326,34 @@
 ## 💡 TIPS PARA FIGMA
 
 ### 1. Organización
+
 - Crear páginas separadas: Design System, Web, Mobile, Docs, Chat
 - Usar frames con naming convention: `[Módulo] - [Pantalla] - [Variante]`
 - Ejemplo: `Web - Dashboard - Light`, `Mobile - Dashboard - iOS`
 
 ### 2. Components
+
 - Crear main components en página "Design System"
 - Instanciar en páginas de pantallas
 - Usar component properties para variants
 - Nombrar layers descriptivamente
 
 ### 3. Auto-Layout
+
 - Usar auto-layout para responsive
 - Configurar padding y spacing con tokens
 - Usar flex direction y alignment
 - Test con resize handles
 
 ### 4. Prototyping
+
 - Conectar todas las pantallas principales
 - Usar "Smart Animate" para transiciones suaves
 - Configurar scroll behavior en contenido largo
 - Añadir overlays para modals y sheets
 
 ### 5. Variables (si usas Figma variables)
+
 - Crear collections: Colors, Typography, Spacing
 - Mapear light/dark modes
 - Usar semantic naming
@@ -356,11 +382,13 @@ HAIDA/
 ## 🔗 ACCESO RÁPIDO
 
 ### GitHub Repository
+
 ```
 git@github.com:CarlosArturoArevaloM/HAIDA.git
 ```
 
 ### Rutas Directas
+
 ```
 docs/UX/DesignTokens.json
 docs/UX/Figma_Maker_Prompts/01-DesignSystem.md
@@ -371,6 +399,7 @@ docs/UX/Figma_Maker_Prompts/05-ChatIA.md
 ```
 
 ### Clonar Repositorio
+
 ```bash
 git clone git@github.com:CarlosArturoArevaloM/HAIDA.git
 cd HAIDA/docs/UX
@@ -381,12 +410,14 @@ cd HAIDA/docs/UX
 ## 📋 CHECKLIST DE USO
 
 ### Pre-Figma
+
 - [ ] Leer todos los prompts para entender la estructura
 - [ ] Revisar DesignTokens.json
 - [ ] Tener cuenta de Figma activa
 - [ ] Acceso a Figma Maker IA
 
 ### Durante Figma
+
 - [ ] Cargar DesignTokens.json primero
 - [ ] Ejecutar 01-DesignSystem.md
 - [ ] Crear componentes base
@@ -402,6 +433,7 @@ cd HAIDA/docs/UX
 - [ ] Test responsive en diferentes tamaños
 
 ### Post-Figma
+
 - [ ] Revisar accesibilidad (contraste, focus states)
 - [ ] Verificar consistencia visual
 - [ ] Test prototipo navegable
@@ -414,15 +446,18 @@ cd HAIDA/docs/UX
 ## 🎓 RECURSOS ADICIONALES
 
 ### Figma Maker IA
+
 - Documentación: https://www.figma.com/maker
 - Tutoriales: https://help.figma.com/hc/en-us/articles/maker
 
 ### Design System
+
 - Material Design: https://material.io/design
 - Fluent 2: https://fluent2.microsoft.design/
 - Glassmorphism: https://glassmorphism.com/
 
 ### Accesibilidad
+
 - WCAG Guidelines: https://www.w3.org/WAI/WCAG21/quickref/
 - Contrast Checker: https://webaim.org/resources/contrastchecker/
 
@@ -445,6 +480,7 @@ cd HAIDA/docs/UX
 ## 🚀 SIGUIENTE PASO
 
 **Ejecuta AHORA**:
+
 1. Abre Figma
 2. Inicia Figma Maker IA
 3. Carga `DesignTokens.json`

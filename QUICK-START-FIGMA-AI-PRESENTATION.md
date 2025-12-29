@@ -136,15 +136,15 @@ CAMBIAR LINKS:
    C:\Users\...\Proyectos\HAIDA\HAIDA-PRESENTATION-v2.0.html
 
 2. Para compartir con stakeholders:
-   
+
    OPCIÓN A: File HTML directo
    └─ Envía archivo por email o Slack
-   
+
    OPCIÓN B: Sube a web server
    ├─ Netlify: Drag & drop → obtén URL
    ├─ Vercel: Git push → auto deploy
    └─ GitHub Pages: Push a repo → auto deploy
-   
+
    OPCIÓN C: Convierte a PDF
    └─ En navegador: Ctrl+P → Save as PDF
 ```
@@ -185,16 +185,16 @@ ANTES DE COMPARTIR:
 
 ## 🚨 TROUBLESHOOTING RÁPIDO
 
-| Problema | Solución |
-|----------|----------|
-| Plugin AI no aparece en Figma | Busca en Plugins menu, instala nuevo |
-| Generación muy lenta | Intenta prompt CORTO (2.4) en lugar de detallado |
-| HTML no se ve bien | Abre en navegador diferente, limpia cache (Ctrl+Shift+Del) |
-| Imágenes no cargan | Convierte a base64 o sube a CDN (imgur, cloudinary) |
-| Colores incorrectos | Busca #1E34A1, #010D3D en CSS, actualiza si es necesario |
-| Tabs no funcionan | Verifica JavaScript en Console (F12), busca errores |
-| No responsive | Verifica <meta name="viewport"> en HTML |
-| Performance lento | Minifica CSS/JS, comprimi imágenes |
+| Problema                      | Solución                                                   |
+| ----------------------------- | ---------------------------------------------------------- |
+| Plugin AI no aparece en Figma | Busca en Plugins menu, instala nuevo                       |
+| Generación muy lenta          | Intenta prompt CORTO (2.4) en lugar de detallado           |
+| HTML no se ve bien            | Abre en navegador diferente, limpia cache (Ctrl+Shift+Del) |
+| Imágenes no cargan            | Convierte a base64 o sube a CDN (imgur, cloudinary)        |
+| Colores incorrectos           | Busca #1E34A1, #010D3D en CSS, actualiza si es necesario   |
+| Tabs no funcionan             | Verifica JavaScript en Console (F12), busca errores        |
+| No responsive                 | Verifica <meta name="viewport"> en HTML                    |
+| Performance lento             | Minifica CSS/JS, comprimi imágenes                         |
 
 ---
 
@@ -311,22 +311,22 @@ OPCIÓN BUILDER.IO (30 min):
 ```
 ✅ TAMAÑO HTML
    Target: <50KB ✓
-   
+
 ✅ LOAD TIME
    Target: <3 segundos ✓
-   
+
 ✅ LIGHTHOUSE SCORE
    Target: >90 ✓
-   
+
 ✅ WCAG ACCESSIBILITY
    Target: AA ✓
-   
+
 ✅ BROWSER COMPATIBILITY
    Target: Chrome, Safari, Firefox, Edge ✓
-   
+
 ✅ RESPONSIVENESS
    Target: Works on mobile/tablet/desktop ✓
-   
+
 ✅ BRAND COMPLIANCE
    Target: Hiberus colors (#1E34A1, #010D3D) ✓
 ```
@@ -397,4 +397,3 @@ PRÓXIMO PASO:
 **Duración:** 60 minutos  
 **Resultado:** Presentación HTML profesional  
 **Status:** ✅ Listo
-

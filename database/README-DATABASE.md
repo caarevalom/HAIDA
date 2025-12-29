@@ -9,11 +9,13 @@
 ## 🔗 Supabase Connection
 
 ### Connection String
+
 ```
 postgresql://postgres:[YOUR-PASSWORD]@db.wdebyxvtunromsnkqbrd.supabase.co:5432/postgres
 ```
 
 ### Connection Details
+
 - **Host**: `db.wdebyxvtunromsnkqbrd.supabase.co`
 - **Port**: `5432`
 - **Database**: `postgres`
@@ -27,44 +29,58 @@ postgresql://postgres:[YOUR-PASSWORD]@db.wdebyxvtunromsnkqbrd.supabase.co:5432/p
 ### Tables
 
 #### 1. **users**
+
 Store user accounts for HAIDA system
+
 - **Purpose**: User management and audit trail
 - **Key Fields**: email, name, role, is_active
 - **Relationships**: Owner of projects, trigger of executions
 
 #### 2. **projects**
+
 Projects/Applications being tested
+
 - **Purpose**: Multi-tenant project management
 - **Key Fields**: name, slug, base_url, status, settings
 - **Relationships**: Has many test_suites, test_executions
 
 #### 3. **test_suites**
+
 Grouping of related test cases
+
 - **Purpose**: Organize tests by type/functionality
 - **Key Fields**: name, suite_type, priority, tags
 - **Relationships**: Belongs to project, has many test_cases
 
 #### 4. **test_cases**
+
 Individual test case definitions (ISTQB compliant)
+
 - **Purpose**: Store test documentation and traceability
 - **Key Fields**: test_id, test_type, requirement_ids, test_steps, expected_result
 - **Relationships**: Belongs to test_suite, has many test_results
 - **ISTQB Fields**: preconditions, test_steps, expected_result, requirement_ids
 
 #### 5. **change_detections**
+
 Detected changes from changedetection.io
+
 - **Purpose**: Track UI/API changes that trigger tests
 - **Key Fields**: url, tag, previous_md5, current_md5, selected_test_profile
 - **Relationships**: Belongs to project, triggers test_executions
 
 #### 6. **test_executions**
+
 Test execution runs
+
 - **Purpose**: Track test runs and their overall results
 - **Key Fields**: status, environment, browser, total_tests, passed_tests, failed_tests
 - **Relationships**: Belongs to project, triggered by change_detection, has many test_results
 
 #### 7. **test_results**
+
 Individual test case results
+
 - **Purpose**: Store detailed results of each test
 - **Key Fields**: status, error_message, duration_ms, screenshot_url
 - **Relationships**: Belongs to test_execution, references test_case
@@ -72,19 +88,25 @@ Individual test case results
 ### Views
 
 #### v_project_health
+
 Dashboard view of project health metrics
+
 ```sql
 SELECT * FROM v_project_health;
 ```
 
 #### v_test_coverage
+
 Test automation coverage by suite
+
 ```sql
 SELECT * FROM v_test_coverage;
 ```
 
 #### v_recent_executions
+
 Recent test executions with context
+
 ```sql
 SELECT * FROM v_recent_executions LIMIT 20;
 ```
@@ -104,12 +126,14 @@ SELECT * FROM v_recent_executions LIMIT 20;
    - Click "New Query"
 
 3. **Execute Schema**
+
    ```sql
    -- Copy and paste contents of 01-schema-haida.sql
    -- Click "Run" or press Ctrl+Enter
    ```
 
 4. **Execute Test Data (Optional)**
+
    ```sql
    -- Copy and paste contents of 02-test-data.sql
    -- Click "Run"
@@ -128,11 +152,13 @@ SELECT * FROM v_recent_executions LIMIT 20;
    - Linux: `sudo apt-get install postgresql-client`
 
 2. **Connect to Supabase**
+
    ```bash
    psql "postgresql://postgres:[YOUR-PASSWORD]@db.wdebyxvtunromsnkqbrd.supabase.co:5432/postgres"
    ```
 
 3. **Execute Scripts**
+
    ```sql
    \i /path/to/HAIDA/database/01-schema-haida.sql
    \i /path/to/HAIDA/database/02-test-data.sql
@@ -148,14 +174,16 @@ SELECT * FROM v_recent_executions LIMIT 20;
 ### Option 3: Node.js Script (Automated)
 
 Create `database/setup-db.js`:
+
 ```javascript
 import pkg from 'pg';
 const { Client } = pkg;
 import fs from 'fs';
 
 const client = new Client({
-  connectionString: 'postgresql://postgres:[YOUR-PASSWORD]@db.wdebyxvtunromsnkqbrd.supabase.co:5432/postgres',
-  ssl: { rejectUnauthorized: false }
+  connectionString:
+    'postgresql://postgres:[YOUR-PASSWORD]@db.wdebyxvtunromsnkqbrd.supabase.co:5432/postgres',
+  ssl: { rejectUnauthorized: false },
 });
 
 async function setup() {
@@ -185,6 +213,7 @@ setup();
 ```
 
 Run:
+
 ```bash
 node database/setup-db.js
 ```
@@ -196,6 +225,7 @@ node database/setup-db.js
 ### Update HAIDA .env
 
 Add Supabase connection to `.env`:
+
 ```bash
 # Supabase PostgreSQL
 SUPABASE_URL=https://wdebyxvtunromsnkqbrd.supabase.co
@@ -215,6 +245,7 @@ DB_SSL=true
 ### Update HAIDA API Server
 
 Update `haida/haida-api/server.js` to connect:
+
 ```javascript
 import pkg from 'pg';
 const { Pool } = pkg;
@@ -225,7 +256,7 @@ const pool = new Pool({
   database: process.env.DB_NAME,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  ssl: { rejectUnauthorized: false }
+  ssl: { rejectUnauthorized: false },
 });
 
 // Test connection
@@ -243,6 +274,7 @@ pool.query('SELECT NOW()', (err, res) => {
 ## 📝 Common Queries
 
 ### Insert New Test Execution
+
 ```sql
 INSERT INTO test_executions (
   project_id,
@@ -260,6 +292,7 @@ INSERT INTO test_executions (
 ```
 
 ### Record Test Result
+
 ```sql
 INSERT INTO test_results (
   test_execution_id,
@@ -277,18 +310,21 @@ INSERT INTO test_results (
 ```
 
 ### Get Project Health
+
 ```sql
 SELECT * FROM v_project_health
 WHERE project_name = 'CTB Barcelona';
 ```
 
 ### Get Test Coverage
+
 ```sql
 SELECT * FROM v_test_coverage
 WHERE test_suite_name LIKE '%Login%';
 ```
 
 ### Recent Failed Tests
+
 ```sql
 SELECT
   te.started_at,
@@ -304,6 +340,7 @@ LIMIT 20;
 ```
 
 ### Test Flakiness Report
+
 ```sql
 SELECT
   tc.test_id,
@@ -350,28 +387,38 @@ USING (auth.uid() = triggered_by);
 ## 🧪 Testing the Database
 
 ### 1. Create Test Execution
+
 ```javascript
 // HAIDA API
-const execution = await pool.query(`
+const execution = await pool.query(
+  `
   INSERT INTO test_executions (project_id, execution_type, environment, status)
   VALUES ($1, $2, $3, $4)
   RETURNING id, started_at
-`, [projectId, 'manual', 'staging', 'running']);
+`,
+  [projectId, 'manual', 'staging', 'running']
+);
 
 console.log('Execution started:', execution.rows[0].id);
 ```
 
 ### 2. Record Results
+
 ```javascript
-const result = await pool.query(`
+const result = await pool.query(
+  `
   INSERT INTO test_results (test_execution_id, test_name, status, duration_ms)
   VALUES ($1, $2, $3, $4)
-`, [executionId, 'Login Test', 'passed', 1500]);
+`,
+  [executionId, 'Login Test', 'passed', 1500]
+);
 ```
 
 ### 3. Update Execution Status
+
 ```javascript
-await pool.query(`
+await pool.query(
+  `
   UPDATE test_executions
   SET
     status = 'completed',
@@ -380,7 +427,9 @@ await pool.query(`
     passed_tests = 9,
     failed_tests = 1
   WHERE id = $1
-`, [executionId]);
+`,
+  [executionId]
+);
 ```
 
 ---
@@ -388,6 +437,7 @@ await pool.query(`
 ## 📊 Backup & Restore
 
 ### Backup
+
 ```bash
 # Full backup
 pg_dump "postgresql://postgres:[YOUR-PASSWORD]@db.wdebyxvtunromsnkqbrd.supabase.co:5432/postgres" > haida-backup.sql
@@ -400,6 +450,7 @@ pg_dump --data-only "postgresql://..." > haida-data.sql
 ```
 
 ### Restore
+
 ```bash
 psql "postgresql://postgres:[YOUR-PASSWORD]@db.wdebyxvtunromsnkqbrd.supabase.co:5432/postgres" < haida-backup.sql
 ```

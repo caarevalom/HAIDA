@@ -12,11 +12,7 @@ interface ProtectedRouteProps {
   onUnauthorized?: () => void;
 }
 
-export function ProtectedRoute({
-  children,
-  requiredRole,
-  onUnauthorized
-}: ProtectedRouteProps) {
+export function ProtectedRoute({ children, requiredRole, onUnauthorized }: ProtectedRouteProps) {
   const { isAuthenticated, isLoading, user } = useAuth();
 
   useEffect(() => {
@@ -46,10 +42,10 @@ export function ProtectedRoute({
   // Check role-based access
   if (requiredRole && user) {
     const roleHierarchy: Record<string, number> = {
-      'viewer': 1,
-      'developer': 2,
-      'qa_engineer': 3,
-      'admin': 4
+      viewer: 1,
+      developer: 2,
+      qa_engineer: 3,
+      admin: 4,
     };
 
     const userRoleLevel = roleHierarchy[user.role] || 0;
@@ -60,9 +56,7 @@ export function ProtectedRoute({
         <div className="flex items-center justify-center min-h-screen">
           <div className="text-center">
             <h2 className="text-2xl font-bold text-destructive mb-2">Access Denied</h2>
-            <p className="text-muted-foreground">
-              You don't have permission to access this page.
-            </p>
+            <p className="text-muted-foreground">You don't have permission to access this page.</p>
             <p className="text-sm text-muted-foreground mt-2">
               Required role: {requiredRole} | Your role: {user.role}
             </p>

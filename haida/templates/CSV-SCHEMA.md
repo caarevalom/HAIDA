@@ -15,6 +15,7 @@ TEST_ID|TIPO_PRUEBA|COMPONENTE|MODULO|REQUISITO_ID|DESCRIPCION|PRECONDICIONES|PA
 ## DEFINICIÓN POR COLUMNA
 
 ### 1. TEST_ID
+
 - **Tipo:** String (no contiene espacios)
 - **Formato:** `TC_[MODULO_ABREVIADO]_[###]`
 - **Ejemplo:** `TC_AUTH_001`, `TC_PAY_042`, `TC_DASH_501`
@@ -27,65 +28,68 @@ TEST_ID|TIPO_PRUEBA|COMPONENTE|MODULO|REQUISITO_ID|DESCRIPCION|PRECONDICIONES|PA
 ---
 
 ### 2. TIPO_PRUEBA
+
 - **Tipo:** Enum (uno por test case)
 - **Valores válidos (según Pirámide de Cohn - Hiberus):**
 
   **PRUEBAS FUNCIONALES (Base Pirámide - 5 tipos)**
+
   ```
   Unit              # Probar lógica individual (métodos, funciones)
                     # Entrada muestra → Salida esperada
                     # Frameworks: Jest, Mocha, pytest
-  
+
   Integration       # Componentes se combinan → Resultados integrados
                     # Comunicación entre servicios/módulos
                     # Frameworks: Jest + Supertest, Cypress
-  
+
   Interface         # Validar GUI conforme a requisitos
                     # Tamaño botones, alineación, tablas, menú
                     # Frameworks: Playwright, Selenium, Cypress
-  
+
   Regression        # Cambios NO rompen funcionalidad existente
                     # Aplicación modificada → Sin nuevos defectos
                     # Ejecutar ante cada cambio
-  
+
   Smoke             # Software listo/estable para más pruebas
                     # NO hay defectos de tapón (show stoppers)
                     # Health checks básicos
   ```
 
   **PRUEBAS NO FUNCIONALES (Pirámide arriba - 7 tipos)**
+
   ```
   Performance       # Velocidad y eficacia del programa
                     # Qué carga soporta, carga máxima
                     # Tiempo respuesta, throughput
                     # Frameworks: Lighthouse, k6, JMeter
-  
+
   Stress            # Forzar sistema más allá de especificaciones
                     # Múltiples login en poco tiempo
                     # Verificar cómo y cuándo falla
                     # Frameworks: k6, JMeter, Gatling
-  
+
   Volume            # Gran cantidad de datos
                     # Comportamiento y tiempo respuesta
                     # Afecta a rendimiento y procesamiento
                     # Frameworks: k6, Great Expectations
-  
+
   Security          # Protegido frente a amenazas
                     # OWASP (SQL injection, XSS, CSRF)
                     # Autorización y autenticación segura
                     # Comportamiento ante ataques
                     # Frameworks: OWASP ZAP, Burp Suite, Snyk
-  
+
   Compatibility     # Comportamiento en diferentes entornos
                     # Navegadores, versiones, dispositivos
                     # Sistemas operativos, bases de datos
                     # Frameworks: Playwright (multi-browser), Cypress
-  
+
   Recovery          # Recuperación rápida de fallas
                     # Sistema continúa operación tras desastre
                     # Resilencia y fault tolerance
                     # Frameworks: k6 failure handling, Spring CircuitBreaker
-  
+
   Accessibility     # Facilidad de uso e intuitividad
                     # Cumplimiento WCAG 2A/2AA
                     # Screen readers, navegación
@@ -94,6 +98,7 @@ TEST_ID|TIPO_PRUEBA|COMPONENTE|MODULO|REQUISITO_ID|DESCRIPCION|PRECONDICIONES|PA
   ```
 
   **ADICIONALES / ESPECIALIZADOS**
+
   ```
   System            # Comportamiento de sistema completo
   E2E               # Flujos usuario end-to-end completos
@@ -110,6 +115,7 @@ TEST_ID|TIPO_PRUEBA|COMPONENTE|MODULO|REQUISITO_ID|DESCRIPCION|PRECONDICIONES|PA
 ---
 
 ### 3. COMPONENTE
+
 - **Tipo:** String
 - **Descripción:** Área del sistema (mayor granularidad)
 - **Ejemplos:** `Auth`, `Payment`, `Dashboard`, `Database`, `Backend`, `Frontend`, `UI`, `API Gateway`, `Cache`
@@ -118,6 +124,7 @@ TEST_ID|TIPO_PRUEBA|COMPONENTE|MODULO|REQUISITO_ID|DESCRIPCION|PRECONDICIONES|PA
 ---
 
 ### 4. MODULO
+
 - **Tipo:** String
 - **Descripción:** Módulo específico dentro del componente (menor granularidad)
 - **Ejemplos:** `Login`, `Register`, `PasswordReset`, `CheckoutCart`, `OrderHistory`, `UserProfile`
@@ -126,6 +133,7 @@ TEST_ID|TIPO_PRUEBA|COMPONENTE|MODULO|REQUISITO_ID|DESCRIPCION|PRECONDICIONES|PA
 ---
 
 ### 5. REQUISITO_ID
+
 - **Tipo:** String (puede ser múltiple, separado por comas)
 - **Formato:** `REQ-[###]` o `REQ-[###],REQ-[###],REQ-[###]`
 - **Ejemplos:**
@@ -139,6 +147,7 @@ TEST_ID|TIPO_PRUEBA|COMPONENTE|MODULO|REQUISITO_ID|DESCRIPCION|PRECONDICIONES|PA
 ---
 
 ### 6. DESCRIPCION
+
 - **Tipo:** String (texto narrativo)
 - **Extensión:** 50-200 caracteres
 - **Pauta:** Responde "¿Qué se prueba?" en una frase clara
@@ -158,6 +167,7 @@ TEST_ID|TIPO_PRUEBA|COMPONENTE|MODULO|REQUISITO_ID|DESCRIPCION|PRECONDICIONES|PA
 ---
 
 ### 7. PRECONDICIONES
+
 - **Tipo:** String (lista de precondiciones)
 - **Descripción:** Estado inicial necesario para ejecutar el test
 - **Ejemplos:**
@@ -175,6 +185,7 @@ TEST_ID|TIPO_PRUEBA|COMPONENTE|MODULO|REQUISITO_ID|DESCRIPCION|PRECONDICIONES|PA
 ---
 
 ### 8. PASOS
+
 - **Tipo:** String (numerado)
 - **Descripción:** Secuencia ejecutable de acciones
 - **Formato:**
@@ -196,6 +207,7 @@ TEST_ID|TIPO_PRUEBA|COMPONENTE|MODULO|REQUISITO_ID|DESCRIPCION|PRECONDICIONES|PA
 ---
 
 ### 9. RESULTADO_ESPERADO
+
 - **Tipo:** String (asertaciones)
 - **Descripción:** Qué debe suceder si el test PASA
 - **Ejemplos:**
@@ -215,6 +227,7 @@ TEST_ID|TIPO_PRUEBA|COMPONENTE|MODULO|REQUISITO_ID|DESCRIPCION|PRECONDICIONES|PA
 ---
 
 ### 10. PRIORIDAD
+
 - **Tipo:** Enum
 - **Valores válidos:**
   ```
@@ -235,6 +248,7 @@ TEST_ID|TIPO_PRUEBA|COMPONENTE|MODULO|REQUISITO_ID|DESCRIPCION|PRECONDICIONES|PA
 ---
 
 ### 11. RIESGO
+
 - **Tipo:** Enum
 - **Valores válidos:**
   ```
@@ -252,10 +266,12 @@ TEST_ID|TIPO_PRUEBA|COMPONENTE|MODULO|REQUISITO_ID|DESCRIPCION|PRECONDICIONES|PA
 ---
 
 ### 12. ETIQUETA_AUTOMATIZACION
+
 - **Tipo:** String (múltiples tags, separados por espacio)
 - **Descripción:** Etiquetas para grep, paralelización, filtrado en Playwright
 - **Formato:** `@tag1 @tag2 @tag3`
 - **Tags estándar:**
+
   ```
   @unit                 # Unit test
   @api                  # API test
@@ -267,31 +283,33 @@ TEST_ID|TIPO_PRUEBA|COMPONENTE|MODULO|REQUISITO_ID|DESCRIPCION|PRECONDICIONES|PA
   @a11y                 # Accessibility
   @data-quality         # Data validation
   @integration          # Integration test
-  
+
   # Módulos/Componentes
   @auth                 # Authentication module
   @payment              # Payment module
   @dashboard            # Dashboard module
   @login                # Login feature
   @register             # Register feature
-  
+
   # Ejecución
   @parallelizable       # Puede ejecutarse en paralelo sin dependencias
   @serial               # Debe ejecutarse secuencialmente
   @slow                 # Toma > 5 segundos
   @flaky                # Conocidamente inestable (investigar)
-  
+
   # Estado
   @skip                 # No ejecutar (pendiente, broken)
   @focus                # Ejecutar solo este test (dev only)
   @todo                 # Falta implementar
   ```
+
 - **Ejemplo:** `@api @auth @unit @parallelizable`
 - **Regla:** Mínimo 2 tags (tipo + módulo)
 
 ---
 
 ### 13. ESTADO
+
 - **Tipo:** Enum
 - **Valores válidos:**
   ```
@@ -328,6 +346,7 @@ TC_AUTH_005|Load|API|Login|REQ-004|POST /auth responde < 200ms en red 4G|API cor
 ## VALIDACIÓN DEL CSV
 
 **Reglas de validación:**
+
 1. ✓ Todas las columnas presentes en header
 2. ✓ TEST_ID único (no duplicados)
 3. ✓ TIPO_PRUEBA es válido (from lista)
@@ -359,7 +378,7 @@ const records = csv.parse(content, {
 
 records.forEach(record => {
   console.log(`${record.TEST_ID} | ${record.TIPO_PRUEBA} | ${record.DESCRIPCION}`);
-  
+
   // Validar
   if (!record.TEST_ID.startsWith('TC_')) console.error(`Invalid TEST_ID: ${record.TEST_ID}`);
   if (!['Unit', 'API', 'E2E', ...].includes(record.TIPO_PRUEBA)) {
@@ -385,7 +404,9 @@ test.describe('@${test.MODULO}', () => {
     ${test.PRECONDICIONES}
     
     // Steps
-    ${test.PASOS.split(/\d+\./).map(step => `// ${step.trim()}`).join('\n')}
+    ${test.PASOS.split(/\d+\./)
+      .map((step) => `// ${step.trim()}`)
+      .join('\n')}
     
     // Assertions
     ${test.RESULTADO_ESPERADO}
@@ -398,8 +419,8 @@ const csv = fs.readFileSync('test-cases.csv', 'utf-8');
 const records = parse(csv, { columns: true, delimiter: '|' });
 
 records
-  .filter(r => r.TIPO_PRUEBA === 'E2E')
-  .forEach(test => {
+  .filter((r) => r.TIPO_PRUEBA === 'E2E')
+  .forEach((test) => {
     console.log(testTemplate(test));
   });
 ```

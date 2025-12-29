@@ -149,6 +149,10 @@ async def login(request: LoginRequest):
 async def register(request: RegisterRequest):
     """
     Register new user with Supabase
+
+    Note: User is automatically created in public.users table via database trigger
+    when Supabase Auth creates the user in auth.users. We just need to wait and
+    fetch the user data from public.users.
     """
     try:
         # Create user in Supabase Auth
@@ -169,14 +173,31 @@ async def register(request: RegisterRequest):
                 detail="Registration failed"
             )
 
-        # Create user in our database
-        user_data = {
-            "id": auth_response.user.id,
-            "email": auth_response.user.email,
-            "name": request.full_name or auth_response.user.email,
-            "role": request.role
-        }
-        user = await create_user_in_database(user_data)
+        # Wait briefly for trigger to complete (trigger runs on INSERT in auth.users)
+        import asyncio
+        await asyncio.sleep(0.5)  # 500ms should be enough for trigger execution
+
+        # Fetch user from database (created by trigger)
+        user = await get_user_from_database(auth_response.user.email)
+
+        # If trigger hasn't run yet, retry a few times
+        retry_count = 0
+        max_retries = 3
+        while not user and retry_count < max_retries:
+            await asyncio.sleep(0.5)
+            user = await get_user_from_database(auth_response.user.email)
+            retry_count += 1
+
+        # If still no user after retries, fall back to manual creation
+        if not user:
+            print(f"Warning: Trigger did not create user, creating manually")
+            user_data = {
+                "id": auth_response.user.id,
+                "email": auth_response.user.email,
+                "name": request.full_name or auth_response.user.email,
+                "role": request.role
+            }
+            user = await create_user_in_database(user_data)
 
         # Create JWT token
         token = create_jwt_token(user)

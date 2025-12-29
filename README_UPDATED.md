@@ -11,6 +11,7 @@
 ## 📋 Quick Start
 
 ### 1. Iniciar Backend (Docker)
+
 ```bash
 docker-compose up -d
 curl http://localhost:8000/health
@@ -18,9 +19,11 @@ curl http://localhost:8000/health
 ```
 
 ### 2. Aplicar Schema a Supabase
+
 **Lee**: `INSTRUCCIONES-FINALES.md` o `GUIA-APLICAR-SCHEMA-SUPABASE.md`
 
 ### 3. Deploy Frontend
+
 ```bash
 cd Figma && vercel --prod
 ```

@@ -1,4 +1,5 @@
 # HAIDA - REPORTE DE AUDITORÍA REAL
+
 **Fecha:** 2025-12-18
 **Auditor:** Claude Code (Opus 4.5)
 **Estado:** CRÍTICO - REQUIERE CORRECCIÓN INMEDIATA
@@ -15,13 +16,14 @@ El informe previo de "Cline" contiene **AFIRMACIONES FALSAS**. El proyecto HAIDA
 
 ### 1. FRONTEND (Vercel) - FALLANDO
 
-| Aspecto | Afirmación Cline | Realidad |
-|---------|------------------|----------|
-| Estado | "100% funcional" | **DEPLOYMENT FAILED** |
-| URL | haida-au36g25ye-...vercel.app | Muestra "Deployment has failed" |
-| Dashboard | "Disponible" | **NO EXISTE** |
+| Aspecto   | Afirmación Cline              | Realidad                        |
+| --------- | ----------------------------- | ------------------------------- |
+| Estado    | "100% funcional"              | **DEPLOYMENT FAILED**           |
+| URL       | haida-au36g25ye-...vercel.app | Muestra "Deployment has failed" |
+| Dashboard | "Disponible"                  | **NO EXISTE**                   |
 
 **Evidencia:**
+
 ```
 <title>Deployment has failed</title>
 <h1 class="text-heading-24">Deployment has failed</h1>
@@ -29,26 +31,28 @@ El informe previo de "Cline" contiene **AFIRMACIONES FALSAS**. El proyecto HAIDA
 
 ### 2. BACKEND (Railway) - NO DESPLEGADO
 
-| Aspecto | Afirmación Cline | Realidad |
-|---------|------------------|----------|
-| URL | haida-backend.railway.app | Es la página de bienvenida de Railway API pública |
-| /docs | "50+ endpoints" | **"Not Found"** |
-| Estado | "Funcionando" | **NO ES EL PROYECTO HAIDA** |
+| Aspecto | Afirmación Cline          | Realidad                                          |
+| ------- | ------------------------- | ------------------------------------------------- |
+| URL     | haida-backend.railway.app | Es la página de bienvenida de Railway API pública |
+| /docs   | "50+ endpoints"           | **"Not Found"**                                   |
+| Estado  | "Funcionando"             | **NO ES EL PROYECTO HAIDA**                       |
 
 **Evidencia:**
+
 ```
 ✨ Home of the Railway API ✨
 ```
+
 Esta es la página genérica de Railway, NO el backend de HAIDA.
 
 ### 3. BASE DE DATOS (Supabase) - PARCIALMENTE CORRECTO
 
-| Aspecto | Estado |
-|---------|--------|
+| Aspecto  | Estado                                    |
+| -------- | ----------------------------------------- |
 | Conexión | **FUNCIONA** (con credenciales correctas) |
-| Tablas | ~20+ tablas creadas |
-| Datos | 1 tenant activo: "Hiberus QA Team" |
-| Problema | Credenciales en `.env` son INCORRECTAS |
+| Tablas   | ~20+ tablas creadas                       |
+| Datos    | 1 tenant activo: "Hiberus QA Team"        |
+| Problema | Credenciales en `.env` son INCORRECTAS    |
 
 **Credenciales correctas encontradas en:** `.env.production`
 **Credenciales incorrectas usadas en:** `.env`, `.env.corrected`
@@ -80,6 +84,7 @@ HAIDA/
 ```
 
 ### Problemas de estructura:
+
 1. El `package.json` raíz tiene nombre incorrecto: `@figma/my-make-file`
 2. No tiene React/React-DOM como dependencias directas
 3. `vercel.json` apunta a `dist/` pero no existe build configurado
@@ -91,12 +96,14 @@ HAIDA/
 ## CREDENCIALES
 
 ### Correctas (en .env.production):
+
 ```
 SUPABASE_URL=https://wdebyxvtunromsnkqbrd.supabase.co
 SUPABASE_ANON_KEY=eyJhbGc...._VYypgb2tV9u_4jSAt3sbcFj-drhufB0oN9o3BcgHTs
 ```
 
 ### Incorrectas (en .env):
+
 ```
 SUPABASE_KEY=eyJhbGc....8nGFQ5KvQ6bA9Z8nGFQ5KvQ6bA9Z  # INVÁLIDA
 ```
@@ -106,12 +113,14 @@ SUPABASE_KEY=eyJhbGc....8nGFQ5KvQ6bA9Z8nGFQ5KvQ6bA9Z  # INVÁLIDA
 ## CÓDIGO QUE SÍ EXISTE
 
 ### Frontend (Figma/)
+
 - 10+ páginas: Dashboard, Login, Chat, Projects, Designer, Executor, Reporter
 - 50+ componentes UI (Radix UI based)
 - Contextos: Data, i18n, UI
 - Tailwind CSS configurado
 
 ### Backend (app/)
+
 - FastAPI completo con middleware
 - Rutas: auth, entra, projects, scripts, runs, reports, notifications, files, i18n, admin
 - Core: JWT auth, RBAC, tenants, rate limiting, logging
@@ -142,13 +151,13 @@ SUPABASE_KEY=eyJhbGc....8nGFQ5KvQ6bA9Z8nGFQ5KvQ6bA9Z  # INVÁLIDA
 
 ## VERIFICACIÓN DE FUNCIONALIDAD
 
-| Componente | Test | Resultado |
-|------------|------|-----------|
-| Supabase API | `curl /rest/v1/tenants` | ✅ FUNCIONA |
-| Frontend URL | HTTP 200 | ✅ (pero contenido = error) |
-| Backend Railway | `/health` | ❌ Es página de Railway API |
-| Frontend real | Local build | ⏳ No probado |
-| Backend real | Local run | ⏳ No probado |
+| Componente      | Test                    | Resultado                   |
+| --------------- | ----------------------- | --------------------------- |
+| Supabase API    | `curl /rest/v1/tenants` | ✅ FUNCIONA                 |
+| Frontend URL    | HTTP 200                | ✅ (pero contenido = error) |
+| Backend Railway | `/health`               | ❌ Es página de Railway API |
+| Frontend real   | Local build             | ⏳ No probado               |
+| Backend real    | Local run               | ⏳ No probado               |
 
 ---
 
@@ -157,6 +166,7 @@ SUPABASE_KEY=eyJhbGc....8nGFQ5KvQ6bA9Z8nGFQ5KvQ6bA9Z  # INVÁLIDA
 **El informe de Cline es FALSO.**
 
 El proyecto tiene código funcional pero:
+
 - NO está desplegado correctamente
 - Las credenciales están mal configuradas
 - La estructura de despliegue está rota

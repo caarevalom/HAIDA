@@ -6,15 +6,15 @@ Complete guide to all HAIDA service URLs, credentials, and administrative access
 
 ### Application URLs
 
-| Service | URL | Port | Status |
-|---------|-----|------|--------|
-| **Frontend** | http://localhost:3000 | 3000 | Development |
-| **Backend API** | http://localhost:3001 | 3001 | Development |
-| **API Documentation** | http://localhost:3001/docs | 3001 | Swagger UI |
-| **API Alternative Docs** | http://localhost:3001/redoc | 3001 | ReDoc |
-| **Changedetection.io** | http://localhost:5000 | 5000 | Monitoring |
-| **Selenium Hub** | http://localhost:4444 | 4444 | Browser Automation |
-| **Allure Reports** | http://localhost:4040 | 4040 | Test Reports |
+| Service                  | URL                         | Port | Status             |
+| ------------------------ | --------------------------- | ---- | ------------------ |
+| **Frontend**             | http://localhost:3000       | 3000 | Development        |
+| **Backend API**          | http://localhost:3001       | 3001 | Development        |
+| **API Documentation**    | http://localhost:3001/docs  | 3001 | Swagger UI         |
+| **API Alternative Docs** | http://localhost:3001/redoc | 3001 | ReDoc              |
+| **Changedetection.io**   | http://localhost:5000       | 5000 | Monitoring         |
+| **Selenium Hub**         | http://localhost:4444       | 4444 | Browser Automation |
+| **Allure Reports**       | http://localhost:4040       | 4040 | Test Reports       |
 
 ### Database Access
 
@@ -61,12 +61,12 @@ Password: (set during initialization)
 
 ### Application URLs
 
-| Service | URL | Status |
-|---------|-----|--------|
-| **Frontend** | https://staging.haida.hiberus.com | Staging |
-| **Backend API** | https://api-staging.haida.hiberus.com | Staging |
+| Service               | URL                                        | Status  |
+| --------------------- | ------------------------------------------ | ------- |
+| **Frontend**          | https://staging.haida.hiberus.com          | Staging |
+| **Backend API**       | https://api-staging.haida.hiberus.com      | Staging |
 | **API Documentation** | https://api-staging.haida.hiberus.com/docs | Staging |
-| **Allure Reports** | https://reports-staging.haida.hiberus.com | Staging |
+| **Allure Reports**    | https://reports-staging.haida.hiberus.com  | Staging |
 
 ### Staging Access
 
@@ -92,12 +92,12 @@ Password: (set during initialization)
 
 ### Application URLs
 
-| Service | URL | Status | SLA |
-|---------|-----|--------|-----|
-| **Frontend** | https://haida.hiberus.com | Production | 99.9% |
-| **Backend API** | https://api.haida.hiberus.com | Production | 99.9% |
-| **API Documentation** | https://api.haida.hiberus.com/docs | Production | - |
-| **Status Dashboard** | https://status.haida.hiberus.com | Monitoring | - |
+| Service               | URL                                | Status     | SLA   |
+| --------------------- | ---------------------------------- | ---------- | ----- |
+| **Frontend**          | https://haida.hiberus.com          | Production | 99.9% |
+| **Backend API**       | https://api.haida.hiberus.com      | Production | 99.9% |
+| **API Documentation** | https://api.haida.hiberus.com/docs | Production | -     |
+| **Status Dashboard**  | https://status.haida.hiberus.com   | Monitoring | -     |
 
 ### Production Access
 
@@ -185,18 +185,18 @@ API Access:
 
 ### Monitoring Dashboards
 
-| Service | URL | Purpose | Access |
-|---------|-----|---------|--------|
-| **Sentry** | https://sentry.io | Error Tracking | Team members |
-| **Logtail** | https://betterstack.com | Centralized Logging | DevOps team |
-| **Uptime Monitoring** | https://uptimerobot.com | Health Checks | DevOps team |
+| Service               | URL                     | Purpose             | Access       |
+| --------------------- | ----------------------- | ------------------- | ------------ |
+| **Sentry**            | https://sentry.io       | Error Tracking      | Team members |
+| **Logtail**           | https://betterstack.com | Centralized Logging | DevOps team  |
+| **Uptime Monitoring** | https://uptimerobot.com | Health Checks       | DevOps team  |
 
 ### CI/CD Platforms
 
-| Service | URL | Purpose |
-|---------|-----|---------|
-| **GitHub** | https://github.com/hiberus/haida | Source Code |
-| **GitHub Actions** | https://github.com/hiberus/haida/actions | Workflows |
+| Service             | URL                                       | Purpose            |
+| ------------------- | ----------------------------------------- | ------------------ |
+| **GitHub**          | https://github.com/hiberus/haida          | Source Code        |
+| **GitHub Actions**  | https://github.com/hiberus/haida/actions  | Workflows          |
 | **GitHub Packages** | https://github.com/hiberus/haida/packages | Container Registry |
 
 ### Communication Channels

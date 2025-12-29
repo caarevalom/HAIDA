@@ -1,14 +1,13 @@
 ╔══════════════════════════════════════════════════════════════════════════════╗
-║                                                                              ║
-║                            HAIDA TEST GENERATOR                             ║
-║                                                                              ║
-║           Plataforma inteligente de generación automática de tests           ║
-║                 Alineados con estándares ISTQB profesionales                ║
-║                                                                              ║
-║                         🎯 PROPUESTA DIFERENCIADORA 🎯                      ║
-║                                                                              ║
+║ ║
+║ HAIDA TEST GENERATOR ║
+║ ║
+║ Plataforma inteligente de generación automática de tests ║
+║ Alineados con estándares ISTQB profesionales ║
+║ ║
+║ 🎯 PROPUESTA DIFERENCIADORA 🎯 ║
+║ ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
-
 
 ═══════════════════════════════════════════════════════════════════════════════
 ¿QUÉ ES HAIDA?
@@ -18,16 +17,15 @@ HAIDA es un **módulo generador inteligente de test cases** que transforma
 documentación funcional en suites de pruebas profesionales y auditables.
 
 FLUJO CORE:
-  📄 Documento Funcional (adjuntar) 
-       ↓
-  🤖 Análisis con IA (Copilot/Claude)
-       ↓
-  ✅ Test Cases ISTQB (generados automáticamente)
-       ↓
-  📊 CSV Estructurado (tipos, componentes, requisitos)
-       ↓
-  🔗 Mapeado a suites en Playwright/Newman/Jest
-
+📄 Documento Funcional (adjuntar)
+↓
+🤖 Análisis con IA (Copilot/Claude)
+↓
+✅ Test Cases ISTQB (generados automáticamente)
+↓
+📊 CSV Estructurado (tipos, componentes, requisitos)
+↓
+🔗 Mapeado a suites en Playwright/Newman/Jest
 
 DIFERENCIADOR:
 ✓ Sin intervención manual
@@ -37,82 +35,78 @@ DIFERENCIADOR:
 ✓ Separación por tipos y componentes
 ✓ Profesional, detallado, serio
 
-
 ═══════════════════════════════════════════════════════════════════════════════
 ESTRUCTURA DE CARPETAS
 ═══════════════════════════════════════════════════════════════════════════════
 
 istqb-hiberus/
-├── docs/                          # Documentación funcional (adjunta por usuario)
-│   ├── README-DOCS.md             # Instrucciones de qué adjuntar
-│   └── [usuario adjunta].md       # Especificaciones, BRDs, PRDs, etc
+├── docs/ # Documentación funcional (adjunta por usuario)
+│ ├── README-DOCS.md # Instrucciones de qué adjuntar
+│ └── [usuario adjunta].md # Especificaciones, BRDs, PRDs, etc
 │
-├── templates/                     # Plantillas y prompts
-│   ├── FUNCTIONAL-SPEC-TEMPLATE.md    # Template de documento funcional
-│   ├── ISTQB-PROMPT-ENGINEER.md       # Prompts para IA
-│   └── CSV-SCHEMA.md                  # Estructura esperada del CSV
+├── templates/ # Plantillas y prompts
+│ ├── FUNCTIONAL-SPEC-TEMPLATE.md # Template de documento funcional
+│ ├── ISTQB-PROMPT-ENGINEER.md # Prompts para IA
+│ └── CSV-SCHEMA.md # Estructura esperada del CSV
 │
-├── generators/                    # Scripts de generación
-│   ├── generate-tests.ps1         # Script principal (PowerShell)
-│   └── parse-csv.js               # Parseador de output CSV
+├── generators/ # Scripts de generación
+│ ├── generate-tests.ps1 # Script principal (PowerShell)
+│ └── parse-csv.js # Parseador de output CSV
 │
-├── outputs/                       # CSVs generados
-│   ├── test-cases-YYYY-MM-DD.csv  # Test cases generados
-│   ├── requirements-matrix.csv    # Matriz requisitos ↔ tests
-│   └── [otros reportes].csv
+├── outputs/ # CSVs generados
+│ ├── test-cases-YYYY-MM-DD.csv # Test cases generados
+│ ├── requirements-matrix.csv # Matriz requisitos ↔ tests
+│ └── [otros reportes].csv
 │
-├── examples/                      # Ejemplos demostradores
-│   ├── example-brd.md             # BRD de ejemplo
-│   ├── example-output.csv         # CSV generado de ejemplo
-│   └── STEP-BY-STEP.md            # Ejemplo paso a paso
+├── examples/ # Ejemplos demostradores
+│ ├── example-brd.md # BRD de ejemplo
+│ ├── example-output.csv # CSV generado de ejemplo
+│ └── STEP-BY-STEP.md # Ejemplo paso a paso
 │
-└── README.md                      # Este archivo
-
+└── README.md # Este archivo
 
 ═══════════════════════════════════════════════════════════════════════════════
 FLUJO DE USO (USUARIO FINAL)
 ═══════════════════════════════════════════════════════════════════════════════
 
 PASO 1: ADJUNTAR DOCUMENTACIÓN FUNCIONAL
-  └─ Ir a: istqb-hiberus/docs/
-  └─ Copiar template: FUNCTIONAL-SPEC-TEMPLATE.md
-  └─ Rellenar con especificación (historias, requisitos, criterios aceptación)
-  └─ Guardar como: docs/especificacion-modulo-X.md
+└─ Ir a: istqb-hiberus/docs/
+└─ Copiar template: FUNCTIONAL-SPEC-TEMPLATE.md
+└─ Rellenar con especificación (historias, requisitos, criterios aceptación)
+└─ Guardar como: docs/especificacion-modulo-X.md
 
 PASO 2: EJECUTAR GENERADOR
-  └─ PowerShell (en qa-starter-kit/)
-  └─ powershell -File istqb-hiberus\generators\generate-tests.ps1 -DocPath "istqb-hiberus\docs\especificacion-modulo-X.md"
+└─ PowerShell (en qa-starter-kit/)
+└─ powershell -File istqb-hiberus\generators\generate-tests.ps1 -DocPath "istqb-hiberus\docs\especificacion-modulo-X.md"
 
 PASO 3: VALIDAR OUTPUT
-  └─ Revisar: istqb-hiberus/outputs/test-cases-YYYY-MM-DD.csv
-  └─ Estructura: [ID | Tipo | Componente | Requisito | Descripción | Pasos | Expected | ...]
-  └─ Integrar CSV a suite de tests existente
+└─ Revisar: istqb-hiberus/outputs/test-cases-YYYY-MM-DD.csv
+└─ Estructura: [ID | Tipo | Componente | Requisito | Descripción | Pasos | Expected | ...]
+└─ Integrar CSV a suite de tests existente
 
 PASO 4: IMPORTAR A TESTS
-  └─ Script convierte CSV a test cases en Playwright/Newman/Jest
-  └─ Tests listos para ejecutar
-
+└─ Script convierte CSV a test cases en Playwright/Newman/Jest
+└─ Tests listos para ejecutar
 
 ═══════════════════════════════════════════════════════════════════════════════
 TIPOS DE PRUEBAS (ISTQB) SOPORTADOS
 ═══════════════════════════════════════════════════════════════════════════════
 
-✓ Unit Tests              (código, backend, funciones)
-✓ Integration Tests       (servicios, APIs internas)
-✓ API/REST Tests         (endpoint contracts, payloads)
-✓ System Tests           (flujo end-to-end, múltiples módulos)
-✓ E2E Tests              (web, UI, user journeys)
-✓ Smoke Tests            (health checks, sanidad)
-✓ Regression Tests       (cambios no rompen existente)
-✓ UAT Tests              (aceptación usuario)
-✓ Performance Tests      (carga, stress, volumen)
-✓ Security Tests         (OWASP, inyecciones, auth)
-✓ Accessibility Tests    (WCAG, a11y)
-✓ Compatibility Tests    (navegadores, dispositivos, formatos)
-✓ Data Quality Tests     (integridad, consistencia, validez)
+✓ Unit Tests (código, backend, funciones)
+✓ Integration Tests (servicios, APIs internas)
+✓ API/REST Tests (endpoint contracts, payloads)
+✓ System Tests (flujo end-to-end, múltiples módulos)
+✓ E2E Tests (web, UI, user journeys)
+✓ Smoke Tests (health checks, sanidad)
+✓ Regression Tests (cambios no rompen existente)
+✓ UAT Tests (aceptación usuario)
+✓ Performance Tests (carga, stress, volumen)
+✓ Security Tests (OWASP, inyecciones, auth)
+✓ Accessibility Tests (WCAG, a11y)
+✓ Compatibility Tests (navegadores, dispositivos, formatos)
+✓ Data Quality Tests (integridad, consistencia, validez)
 
 Cada documento funcional → generador ISTQB clasifica automáticamente
-
 
 ═══════════════════════════════════════════════════════════════════════════════
 FORMATO CSV SALIDA
@@ -138,7 +132,7 @@ TC_USR_005 | Performance | API | Auth | REQ-004 | Login < 200ms en red normal | 
 ─────────────────────────────────────────────────────────────────────────────
 
 COLUMNAS (descripción):
-├─ TEST_ID: Identificador único (TC_MODULO_###)
+├─ TEST*ID: Identificador único (TC_MODULO*###)
 ├─ TIPO_PRUEBA: Unit | API | E2E | Smoke | Regression | Performance | Security | Accessibility | ...
 ├─ COMPONENTE: Auth, Payment, Dashboard, UI, Backend, Database, ...
 ├─ MODULO: Login, Register, Profile, Checkout, ...
@@ -151,7 +145,6 @@ COLUMNAS (descripción):
 ├─ RIESGO: Alto | Medio | Bajo
 ├─ ETIQUETA_AUTOMATIZACION: @unit @api @e2e @regression @perf @security @a11y (para Playwright.grep)
 └─ ESTADO: Generado | Manual | Verificado | En_Ejecucion | Pasado | Fallido
-
 
 ═══════════════════════════════════════════════════════════════════════════════
 CARACTERÍSTICAS DIFERENCIADORA (PROPUESTA A MANAGER)
@@ -187,54 +180,52 @@ CARACTERÍSTICAS DIFERENCIADORA (PROPUESTA A MANAGER)
    ✓ Logs auditables
    ✓ Cumple estándares corporativos
 
-
 ═══════════════════════════════════════════════════════════════════════════════
 CONTENIDO DE CARPETAS
 ═══════════════════════════════════════════════════════════════════════════════
 
 📁 docs/
-   └─ Aquí adjuntas tus especificaciones funcionales (BRD, PRD, user stories)
-   └─ README-DOCS.md → instrucciones de qué incluir
-   └─ Ejemplo: especificacion-login-ctb.md
+└─ Aquí adjuntas tus especificaciones funcionales (BRD, PRD, user stories)
+└─ README-DOCS.md → instrucciones de qué incluir
+└─ Ejemplo: especificacion-login-ctb.md
 
 📁 templates/
-   ├─ FUNCTIONAL-SPEC-TEMPLATE.md
-   │  └─ Plantilla lista para rellenar (estructura esperada por IA)
-   │
-   ├─ ISTQB-PROMPT-ENGINEER.md
-   │  └─ Prompts optimizados para Copilot/Claude
-   │  └─ Instrucciones: "Analiza este documento y extrae test cases ISTQB"
-   │
-   └─ CSV-SCHEMA.md
-      └─ Definición completa de columnas y valores válidos
+├─ FUNCTIONAL-SPEC-TEMPLATE.md
+│ └─ Plantilla lista para rellenar (estructura esperada por IA)
+│
+├─ ISTQB-PROMPT-ENGINEER.md
+│ └─ Prompts optimizados para Copilot/Claude
+│ └─ Instrucciones: "Analiza este documento y extrae test cases ISTQB"
+│
+└─ CSV-SCHEMA.md
+└─ Definición completa de columnas y valores válidos
 
 📁 generators/
-   ├─ generate-tests.ps1
-   │  └─ Orquestador: lee doc → llama IA → formatea CSV → exporta
-   │
-   └─ parse-csv.js
-      └─ Utilidad: convierte CSV a test code (Playwright spec, Newman collection, etc)
+├─ generate-tests.ps1
+│ └─ Orquestador: lee doc → llama IA → formatea CSV → exporta
+│
+└─ parse-csv.js
+└─ Utilidad: convierte CSV a test code (Playwright spec, Newman collection, etc)
 
 📁 outputs/
-   ├─ test-cases-YYYY-MM-DD.csv
-   │  └─ Salida principal (tests generados)
-   │
-   ├─ requirements-matrix.csv
-   │  └─ Matriz: requisito → tests que lo cubren
-   │
-   └─ [otros reports]
-      └─ Trazabilidad, análisis de cobertura, etc
+├─ test-cases-YYYY-MM-DD.csv
+│ └─ Salida principal (tests generados)
+│
+├─ requirements-matrix.csv
+│ └─ Matriz: requisito → tests que lo cubren
+│
+└─ [otros reports]
+└─ Trazabilidad, análisis de cobertura, etc
 
 📁 examples/
-   ├─ example-brd.md
-   │  └─ Especificación funcional de ejemplo (Login module)
-   │
-   ├─ example-output.csv
-   │  └─ CSV generado de esa especificación
-   │
-   └─ STEP-BY-STEP.md
-      └─ Demostración completa: de .md a CSV
-
+├─ example-brd.md
+│ └─ Especificación funcional de ejemplo (Login module)
+│
+├─ example-output.csv
+│ └─ CSV generado de esa especificación
+│
+└─ STEP-BY-STEP.md
+└─ Demostración completa: de .md a CSV
 
 ═══════════════════════════════════════════════════════════════════════════════
 PRÓXIMOS PASOS
@@ -249,13 +240,12 @@ PRÓXIMOS PASOS
 
 Ver ejemplo completo en: examples/STEP-BY-STEP.md
 
-
 ═══════════════════════════════════════════════════════════════════════════════
 VISIÓN (PARA MANAGER)
 ═══════════════════════════════════════════════════════════════════════════════
 
 HAIDA es la **respuesta automatizada a la pregunta:**
-"¿Cómo convertimos especificaciones en tests profesionales, auditables y 
+"¿Cómo convertimos especificaciones en tests profesionales, auditables y
 mantenibles sin escribir cada uno manualmente?"
 
 IMPACTO:

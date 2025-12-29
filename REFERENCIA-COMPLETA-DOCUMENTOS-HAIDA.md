@@ -202,14 +202,14 @@ SOPORTE EN TODO MOMENTO:
 
 ## 📋 TABLA DE NAVEGACIÓN
 
-| Documento | Tamaño | Lectura | Contenido Clave | Cuándo Usarlo |
-|-----------|--------|---------|-----------------|---------------|
-| **QUICK-START** | 5 KB | 10 min | Pasos rápidos, cheat sheet | ✅ EMPIEZA AQUÍ |
-| **GUIA-RAPIDA** | 5.2 KB | 15 min | 5 opciones, paso a paso | Mientras generas |
-| **ANALISIS-COMPLETO** | 7.8 KB | 1 hora | Prompts + análisis | Entiende el contexto |
-| **INDICE-MAESTRO** | 6.2 KB | 20 min | Navegación, FAQ | Preguntas, decisiones |
-| **HIBERUS-BRAND-GUIDE** | 3.1 KB | 10 min | Colores, tipografía | Personalización |
-| **RESUMEN-VISUAL** | 4.5 KB | 15 min | Overview + estadísticas | Perspectiva general |
+| Documento               | Tamaño | Lectura | Contenido Clave            | Cuándo Usarlo         |
+| ----------------------- | ------ | ------- | -------------------------- | --------------------- |
+| **QUICK-START**         | 5 KB   | 10 min  | Pasos rápidos, cheat sheet | ✅ EMPIEZA AQUÍ       |
+| **GUIA-RAPIDA**         | 5.2 KB | 15 min  | 5 opciones, paso a paso    | Mientras generas      |
+| **ANALISIS-COMPLETO**   | 7.8 KB | 1 hora  | Prompts + análisis         | Entiende el contexto  |
+| **INDICE-MAESTRO**      | 6.2 KB | 20 min  | Navegación, FAQ            | Preguntas, decisiones |
+| **HIBERUS-BRAND-GUIDE** | 3.1 KB | 10 min  | Colores, tipografía        | Personalización       |
+| **RESUMEN-VISUAL**      | 4.5 KB | 15 min  | Overview + estadísticas    | Perspectiva general   |
 
 ---
 
@@ -262,6 +262,7 @@ SOPORTE EN TODO MOMENTO:
 ## 📍 RECOMENDACIONES POR CASO DE USO
 
 ### CASO 1: "Necesito presentación EN ESTE MOMENTO"
+
 ```
 Tiempo disponible: <1 hora
 
@@ -277,6 +278,7 @@ Documentos clave: QUICK-START, GUIA-RAPIDA, ANALISIS-COMPLETO (2.4)
 ```
 
 ### CASO 2: "Quiero entender HAIDA completamente"
+
 ```
 Tiempo disponible: 2+ horas
 
@@ -292,6 +294,7 @@ Documentos clave: ANALISIS-COMPLETO (completo), todos demás
 ```
 
 ### CASO 3: "Tengo preguntas específicas"
+
 ```
 ¿QUÉ DUDA TENGO?
 
@@ -315,6 +318,7 @@ Si es referencia rápida:
 ```
 
 ### CASO 4: "Prefiero NO usar Figma"
+
 ```
 Flujo alternativo:
 
@@ -331,6 +335,7 @@ Documentos clave: GUIA-RAPIDA (tu opción)
 ```
 
 ### CASO 5: "Necesito compartir presentación CON STAKEHOLDERS"
+
 ```
 Después de generar:
 
@@ -462,6 +467,7 @@ EJECUCIÓN:
 ## 🎓 RUTAS DE APRENDIZAJE POR ROL
 
 ### EJECUTIVO
+
 ```
 Objetivo: Entender HAIDA v2.0 en 10 minutos
 Lectura: EXECUTIVE-SUMMARY-v2.0.md (5 min)
@@ -470,6 +476,7 @@ Focus: Beneficios, timeline, ROI
 ```
 
 ### QA MANAGER
+
 ```
 Objetivo: Entender cómo HAIDA ayuda al equipo
 Lectura: ANALISIS-COMPLETO Sección 1.1 (10 min)
@@ -479,6 +486,7 @@ Focus: Features, test profiles, coverage
 ```
 
 ### DEVELOPER/ARCHITECT
+
 ```
 Objetivo: Entender arquitectura v2.0 completa
 Lectura: ANALISIS-COMPLETO Sección 1.2-1.5 (45 min)
@@ -488,6 +496,7 @@ Focus: Architecture, tech stack, 50 techniques
 ```
 
 ### DESIGNER
+
 ```
 Objetivo: Entender requerimientos de diseño
 Lectura: HIBERUS-BRAND-GUIDE.md (10 min)
@@ -497,6 +506,7 @@ Focus: Colors, typography, components, brand
 ```
 
 ### PROJECT MANAGER
+
 ```
 Objetivo: Entender timeline y roadmap
 Lectura: EXECUTIVE-SUMMARY-v2.0.md (5 min)
@@ -533,11 +543,11 @@ Herramientas:
 ═══════════════════════════════════════════════════════════════════════════════
 
            Este documento mapea TODOS tus recursos y cómo usarlos
-           
+
            ¿Perdido? → Usa el QUICK DECISION TREE arriba ↑
            ¿Prisa? → Lee QUICK-START.md
            ¿Preguntas? → Busca en "BÚSQUEDA RÁPIDA" arriba ↑
-           
+
 ═══════════════════════════════════════════════════════════════════════════════
 ```
 
@@ -547,4 +557,3 @@ Herramientas:
 **Creado:** 16 Diciembre 2025  
 **Status:** ✅ Listo  
 **Propósito:** Navegación y consulta rápida
-

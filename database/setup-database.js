@@ -22,7 +22,7 @@ const colors = {
   red: '\x1b[31m',
   yellow: '\x1b[33m',
   cyan: '\x1b[36m',
-  blue: '\x1b[34m'
+  blue: '\x1b[34m',
 };
 
 const log = {
@@ -41,15 +41,12 @@ const DB_CONFIG = {
   user: process.env.DB_USER || 'postgres',
   password: process.env.DB_PASSWORD || null,
   ssl: {
-    rejectUnauthorized: false
-  }
+    rejectUnauthorized: false,
+  },
 };
 
 // Files to execute
-const SQL_FILES = [
-  '01-schema-haida.sql',
-  '02-test-data.sql'
-];
+const SQL_FILES = ['01-schema-haida.sql', '02-test-data.sql'];
 
 /**
  * Read SQL file
@@ -112,10 +109,10 @@ async function verifyTables(client) {
   `;
 
   const result = await client.query(query);
-  const tables = result.rows.map(row => row.table_name);
+  const tables = result.rows.map((row) => row.table_name);
 
   log.info(`Tables created: ${tables.length}`);
-  tables.forEach(table => console.log(`  - ${table}`));
+  tables.forEach((table) => console.log(`  - ${table}`));
 
   return tables;
 }
@@ -132,10 +129,10 @@ async function verifyViews(client) {
   `;
 
   const result = await client.query(query);
-  const views = result.rows.map(row => row.table_name);
+  const views = result.rows.map((row) => row.table_name);
 
   log.info(`Views created: ${views.length}`);
-  views.forEach(view => console.log(`  - ${view}`));
+  views.forEach((view) => console.log(`  - ${view}`));
 
   return views;
 }
@@ -241,7 +238,6 @@ async function setup() {
 
     // Display next steps
     displayNextSteps();
-
   } catch (err) {
     log.header('Setup Failed');
     log.error(err.message);

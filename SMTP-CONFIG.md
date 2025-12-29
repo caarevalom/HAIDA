@@ -5,6 +5,7 @@
 ### 1. **Resend** (Recomendado para Producción) ⭐
 
 **Pros:**
+
 - Gratuito hasta 3,000 emails/mes
 - Configuración en 5 minutos
 - Excelente deliverability
@@ -13,6 +14,7 @@
 - Dominio verificado automáticamente
 
 **Configuración:**
+
 ```env
 # En Supabase Dashboard → Project Settings → Auth → SMTP Settings
 SMTP_HOST=smtp.resend.com
@@ -23,6 +25,7 @@ SMTP_ADMIN_EMAIL=haida@tu-dominio.com
 ```
 
 **Pasos:**
+
 1. Crear cuenta en https://resend.com
 2. Generar API Key
 3. Configurar en Supabase Auth SMTP Settings
@@ -33,12 +36,14 @@ SMTP_ADMIN_EMAIL=haida@tu-dominio.com
 ### 2. **SendGrid** (Para Alto Volumen)
 
 **Pros:**
+
 - Gratuito hasta 100 emails/día
 - Muy confiable
 - Analytics detallados
 - Usado por empresas grandes
 
 **Configuración:**
+
 ```env
 SMTP_HOST=smtp.sendgrid.net
 SMTP_PORT=587
@@ -47,6 +52,7 @@ SMTP_PASS=SG.xxxxxxxxxxxxxxxxx  # SendGrid API Key
 ```
 
 **Pasos:**
+
 1. Crear cuenta en https://sendgrid.com
 2. Settings → API Keys → Create API Key
 3. Configurar en Supabase
@@ -56,16 +62,19 @@ SMTP_PASS=SG.xxxxxxxxxxxxxxxxx  # SendGrid API Key
 ### 3. **Gmail SMTP** (Solo para Testing)
 
 **Pros:**
+
 - Gratis
 - Fácil de configurar
 - Bueno para desarrollo
 
 **Contras:**
+
 - Límite de 500 emails/día
 - Requiere "App Password"
 - No recomendado para producción
 
 **Configuración:**
+
 ```env
 SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
@@ -74,6 +83,7 @@ SMTP_PASS=xxxx xxxx xxxx xxxx  # App Password (no tu contraseña real)
 ```
 
 **Pasos:**
+
 1. Ir a https://myaccount.google.com/apppasswords
 2. Generar "App Password" para "Mail"
 3. Usar ese password en SMTP_PASS
@@ -83,15 +93,18 @@ SMTP_PASS=xxxx xxxx xxxx xxxx  # App Password (no tu contraseña real)
 ### 4. **AWS SES** (Para Empresas)
 
 **Pros:**
+
 - Muy económico ($0.10 por 1,000 emails)
 - Infraestructura de AWS
 - Escalable
 
 **Contras:**
+
 - Requiere verificar dominio
 - Configuración más compleja
 
 **Configuración:**
+
 ```env
 SMTP_HOST=email-smtp.us-east-1.amazonaws.com
 SMTP_PORT=587
@@ -150,6 +163,7 @@ open https://resend.com
 ## Email Templates Incluidos
 
 Supabase incluye templates para:
+
 - ✉️ Confirmación de registro
 - 🔑 Reset de contraseña
 - ✅ Email verification
@@ -162,6 +176,7 @@ Puedes personalizarlos en **Authentication** → **Email Templates**
 ## Mi Recomendación
 
 **Para empezar rápido:** Usa **Resend**
+
 - Más fácil de configurar
 - Gratis para empezar
 - Excelente deliverability

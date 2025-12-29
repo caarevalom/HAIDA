@@ -16,17 +16,21 @@
 ## 🚀 PASO 2: DEPLOY BACKEND A VERCEL
 
 ### 2.1. Abre tu navegador
+
 **URL**: https://vercel.com/new
 
 ### 2.2. Login
+
 - Click "Continue with GitHub"
 - Autoriza Vercel si es necesario
 
 ### 2.3. Import Repository
+
 - Busca: `HAIDA` o `caarevalom/HAIDA`
 - Click **"Import"** en el repositorio HAIDA
 
 ### 2.4. Configure Project
+
 **Copia y pega estos valores EXACTOS**:
 
 ```
@@ -52,6 +56,7 @@
 ```
 
 ### 2.5. Environment Variables
+
 **Click "Add" para cada variable**:
 
 ```env
@@ -77,15 +82,19 @@ Value: https://haida-frontend.vercel.app,http://localhost:3000,http://localhost:
 ```
 
 ### 2.6. Deploy
+
 **Click: "Deploy"**
 
 ⏳ **Espera 2-3 minutos** mientras Vercel:
+
 - Instala dependencias
 - Construye el proyecto
 - Deploya a producción
 
 ### 2.7. Copia la URL del Backend
+
 Cuando termine verás:
+
 ```
 🎉 Your project is ready!
 https://haida-backend-xxxxx.vercel.app
@@ -98,13 +107,16 @@ https://haida-backend-xxxxx.vercel.app
 ## 🎨 PASO 3: DEPLOY FRONTEND A VERCEL
 
 ### 3.1. Nueva pestaña
+
 **URL**: https://vercel.com/new
 
 ### 3.2. Import nuevamente
+
 - Busca: `HAIDA`
 - Click **"Import"** (otra vez)
 
 ### 3.3. Configure Project
+
 **IMPORTANTE: Root Directory diferente**:
 
 ```
@@ -128,6 +140,7 @@ https://haida-backend-xxxxx.vercel.app
 ```
 
 ### 3.4. Environment Variables
+
 **Click "Add" para cada variable**:
 
 ```env
@@ -149,9 +162,11 @@ Value: HAIDA
 ```
 
 ### 3.5. Deploy
+
 **Click: "Deploy"**
 
 ⏳ **Espera 3-5 minutos** mientras Vercel:
+
 - Instala npm dependencies
 - Construye con Vite
 - Deploya a producción
@@ -161,28 +176,35 @@ Value: HAIDA
 ## ✅ PASO 4: VERIFICACIÓN
 
 ### 4.1. Verifica Backend
+
 **Abre en navegador**:
+
 ```
 https://[tu-backend-url].vercel.app/health
 ```
 
 **Deberías ver**:
+
 ```json
-{"status":"healthy","timestamp":"2025-12-17T..."}
+{ "status": "healthy", "timestamp": "2025-12-17T..." }
 ```
 
 **También prueba la documentación**:
+
 ```
 https://[tu-backend-url].vercel.app/docs
 ```
 
 ### 4.2. Verifica Frontend
+
 **Abre en navegador**:
+
 ```
 https://[tu-frontend-url].vercel.app
 ```
 
 **Deberías ver**:
+
 - La aplicación HAIDA cargada
 - Sin errores en consola (F12)
 - Datos cargando del backend
@@ -207,6 +229,7 @@ Si el frontend no puede conectar al backend:
 ## 📊 RESULTADO ESPERADO
 
 ### Backend:
+
 ```
 ✅ URL: https://haida-backend-xxxxx.vercel.app
 ✅ Health: /health retorna 200 OK
@@ -215,6 +238,7 @@ Si el frontend no puede conectar al backend:
 ```
 
 ### Frontend:
+
 ```
 ✅ URL: https://haida-frontend-xxxxx.vercel.app
 ✅ App: Carga sin errores
@@ -229,20 +253,24 @@ Si el frontend no puede conectar al backend:
 ### Si el backend falla:
 
 **Error**: "Module not found"
+
 - Solución: Verifica que requirements.txt esté en la raíz
 - Verifica que vercel.json esté configurado
 
 **Error**: "Environment variables not set"
+
 - Solución: Revisa que pegaste todas las variables
 - Asegúrate de no tener espacios extras
 
 ### Si el frontend falla:
 
-**Error**: "VITE_* undefined"
+**Error**: "VITE\_\* undefined"
+
 - Solución: Las variables DEBEN empezar con `VITE_`
 - Redeploy después de añadirlas
 
 **Error**: "CORS error"
+
 - Solución: Añade la URL del frontend a CORS_ORIGINS del backend
 - Redeploy el backend
 
@@ -253,12 +281,15 @@ Si el frontend no puede conectar al backend:
 **HAIDA está ahora en producción** 🚀
 
 ### URLs Finales:
+
 - Backend: `https://haida-backend-xxxxx.vercel.app`
 - Frontend: `https://haida-frontend-xxxxx.vercel.app`
 - Database: `wdebyxvtunromsnkqbrd.supabase.co` (ya estaba)
 
 ### Auto-deployment:
+
 Cada vez que hagas `git push`, Vercel automáticamente:
+
 - Construye la nueva versión
 - Ejecuta los tests
 - Deploya si todo está OK

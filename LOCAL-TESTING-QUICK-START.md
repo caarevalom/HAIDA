@@ -18,6 +18,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\run-qa-local.ps1
 ```
 
 **Esto hace todo automáticamente:**
+
 1. ✅ Configura PATH temporal (Node.js portable)
 2. ✅ Inicia servidor mock local (puerto 3000)
 3. ✅ Verifica que el servidor está corriendo
@@ -31,6 +32,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\run-qa-local.ps1
 ## 🚀 Opción 2: Dos terminales (mayor control)
 
 ### Terminal 1: Iniciar servidor (mantener abierta)
+
 ```powershell
 # Configura Node.js
 $env:PATH = "C:\Users\CarlosArturoArevaloM\Documents\Proyectos\node-v24.12.0-win-x64;$env:PATH"
@@ -47,6 +49,7 @@ node tools/mock-server.js
 ```
 
 ### Terminal 2: Ejecutar tests
+
 ```powershell
 # En otra terminal (Terminal 1 sigue abierta):
 
@@ -83,6 +86,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\run-qa-local.ps1 -Port 300
 ## ✅ Verificación rápida
 
 ### 1. Comprobar que está en localhost
+
 ```powershell
 Get-Content .env
 # Debe mostrar:
@@ -90,12 +94,14 @@ Get-Content .env
 ```
 
 ### 2. Probar que el servidor responde
+
 ```powershell
 curl http://localhost:3000
 # Debería devolver HTML
 ```
 
 ### 3. Probar una ruta específica
+
 ```powershell
 curl http://localhost:3000/api
 # Debería devolver JSON: {"status":"ok",...}
@@ -105,15 +111,15 @@ curl http://localhost:3000/api
 
 ## 🔒 Seguridad garantizada
 
-| Aspecto | Estado |
-|--------|--------|
-| Conexión externa | ❌ BLOQUEADA |
-| Datos transmitidos | ❌ NINGUNO |
+| Aspecto                 | Estado            |
+| ----------------------- | ----------------- |
+| Conexión externa        | ❌ BLOQUEADA      |
+| Datos transmitidos      | ❌ NINGUNO        |
 | Servidores corporativos | ❌ NO CONTACTADOS |
-| Internet requerido | ❌ NO |
-| Datos sensibles | ❌ NINGUNO USADO |
-| Auditable | ✅ SI |
-| Local-only | ✅ SI |
+| Internet requerido      | ❌ NO             |
+| Datos sensibles         | ❌ NINGUNO USADO  |
+| Auditable               | ✅ SI             |
+| Local-only              | ✅ SI             |
 
 ---
 
@@ -136,6 +142,7 @@ Cada ruta está optimizada para testing (WCAG, accessibilidad, headers de seguri
 ## 🛠️ Solución de problemas
 
 ### Puerto 3000 ocupado
+
 ```powershell
 # Opción A: Cambiar a otro puerto
 powershell -NoProfile -ExecutionPolicy Bypass -File .\run-qa-local.ps1 -Port 3001
@@ -145,6 +152,7 @@ Get-Process node | Stop-Process -Force
 ```
 
 ### Servidor no responde
+
 ```powershell
 # Verificar que está corriendo
 Get-Process node
@@ -154,6 +162,7 @@ node tools/mock-server.js
 ```
 
 ### Tests fallan contra servidor
+
 ```powershell
 # 1. Verificar servidor está vivo
 curl -I http://localhost:3000

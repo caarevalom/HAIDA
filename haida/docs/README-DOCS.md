@@ -9,6 +9,7 @@
 Documentos aceptados (en Markdown):
 
 ### 1. **Business Requirements Document (BRD)**
+
 - Especificación funcional de alto nivel
 - Requisitos de negocio (REQ-###)
 - Criterios de aceptación
@@ -18,6 +19,7 @@ Documentos aceptados (en Markdown):
 **Ejemplo:** `brd-login-module.md`, `brd-payment-flow.md`
 
 ### 2. **Product Requirements Document (PRD)**
+
 - Definición de features
 - User stories
 - Criterios de aceptación
@@ -26,6 +28,7 @@ Documentos aceptados (en Markdown):
 **Ejemplo:** `prd-dashboard-v2.md`, `prd-mobile-app.md`
 
 ### 3. **Technical Specifications (TechSpec)**
+
 - Arquitectura técnica
 - APIs a exponer
 - Integraciones
@@ -34,6 +37,7 @@ Documentos aceptados (en Markdown):
 **Ejemplo:** `techspec-auth-service.md`, `techspec-payment-gateway.md`
 
 ### 4. **API Specifications (OpenAPI/Swagger en Markdown)**
+
 - Endpoints
 - Request/Response contracts
 - Status codes
@@ -80,24 +84,30 @@ Copy-Item "C:\Documentos\BRD-Login.md" `
 
 Tu documento debe incluir:
 
-```markdown
+````markdown
 # Nombre del Módulo/Feature
 
 ## Requisitos Funcionales
+
 ### REQ-001: Descripción
+
 - Criterios de aceptación
 - Casos de uso
 
 ### REQ-002: Descripción
+
 - ...
 
 ## Flujos de Usuario
+
 ### Flujo principal
+
 1. Paso 1
 2. Paso 2
-...
+   ...
 
 ## Datos de Prueba
+
 ```json
 {
   "usuarios": [...],
@@ -105,15 +115,19 @@ Tu documento debe incluir:
   "datos_invalidos": [...]
 }
 ```
+````
 
 ## Integraciones
+
 | Sistema | Tipo | Criticidad |
-|---------|------|-----------|
+| ------- | ---- | ---------- |
 
 ## Riesgos
+
 | Riesgo | Probabilidad | Impacto | Mitigación |
-|--------|-------------|--------|-----------|
-```
+| ------ | ------------ | ------- | ---------- |
+
+````
 
 ---
 
@@ -125,9 +139,10 @@ Una vez adjuntes tu documento aquí, ejecuta:
 # En raíz de qa-starter-kit
 powershell -File istqb-hiberus\generators\generate-tests.ps1 `
   -DocPath "istqb-hiberus\docs\tu-especificacion.md"
-```
+````
 
 El generador:
+
 1. ✓ Lee tu documento
 2. ✓ Envía prompt a Copilot/Claude
 3. ✓ Recibe test cases ISTQB
@@ -162,12 +177,14 @@ Antes de generar, valida tu documento:
 ## RESTRICCIONES
 
 ❌ **NO adjuntes:**
+
 - Archivos binarios (PDF, DOCX, XLS) - conviértelos a .md primero
 - Información sensible (contraseñas, APIs keys, datos reales)
 - Documentos mayores a 500 KB (divide en múltiples módulos)
 - Imágenes de mockups (describe en texto, o adjunta URL)
 
 ✅ **SÍ adjunta:**
+
 - Markdown (.md) con estructura clara
 - Requisitos numerados (REQ-###)
 - Criterios de aceptación específicos

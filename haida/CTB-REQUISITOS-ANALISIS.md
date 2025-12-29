@@ -1,6 +1,7 @@
 # CTB (VisitBarcelona) - Análisis de Requisitos y Test Cases
 
 ## 📊 Resumen Ejecutivo
+
 - **Portal:** VisitBarcelona Tickets (Turismo/E-commerce)
 - **Test Cases Existentes:** 440 (Desktop 220, Mobile 220)
 - **Incidencias Abiertas:** 50+ (9 críticas, 40+ normales, 1 baja)
@@ -13,7 +14,9 @@
 ## 🏗️ MÓDULOS Y REQUISITOS
 
 ### 1. 🔐 AUTENTICACIÓN (REQ-AUTH-001 → REQ-AUTH-015)
+
 **Requisitos Funcionales:**
+
 - REQ-AUTH-001: Login con email/password
 - REQ-AUTH-002: Validación email formato
 - REQ-AUTH-003: Validación password (fuerza, longitud)
@@ -31,15 +34,19 @@
 - REQ-AUTH-015: Cambio contraseña usuario logueado
 
 **Incidencias Relacionadas (9 críticas):**
+
 - CTB-276, CTB-278, CTB-281, CTB-288, CTB-290, CTB-293, CTB-306, CTB-307, CTB-308, CTB-320, CTB-326
 
 **Casos de Prueba (est. 12-15 casos):**
+
 - TC_AUTH_001 → TC_AUTH_015
 
 ---
 
 ### 2. 🏠 NAVEGACIÓN/HEADER (REQ-NAV-001 → REQ-NAV-020)
+
 **Requisitos Funcionales:**
+
 - REQ-NAV-001: Menú principal visible
 - REQ-NAV-002: Búsqueda de productos funcional
 - REQ-NAV-003: Autocompletado búsqueda
@@ -62,15 +69,19 @@
 - REQ-NAV-020: Quick links/Favoritos
 
 **Incidencias Relacionadas:**
+
 - CTB-1, CTB-7, CTB-8, CTB-37, CTB-40, CTB-41, CTB-64, CTB-77, CTB-124, CTB-125, CTB-128, CTB-131, CTB-159
 
 **Casos de Prueba (est. 18-20 casos):**
+
 - TC_NAV_001 → TC_NAV_020
 
 ---
 
 ### 3. 🏠 HOME PAGE (REQ-HOME-001 → REQ-HOME-015)
+
 **Requisitos Funcionales:**
+
 - REQ-HOME-001: Banner principal
 - REQ-HOME-002: Productos destacados
 - REQ-HOME-003: Carrusel de imagenes
@@ -88,12 +99,15 @@
 - REQ-HOME-015: Seasonal content
 
 **Casos de Prueba (est. 12-15 casos):**
+
 - TC_HOME_001 → TC_HOME_015
 
 ---
 
 ### 4. 📅 BÚSQUEDA Y FILTROS (REQ-SEARCH-001 → REQ-SEARCH-020)
+
 **Requisitos Funcionales:**
+
 - REQ-SEARCH-001: Buscar por término
 - REQ-SEARCH-002: Calendario date picker
 - REQ-SEARCH-003: Seleccionar rango fechas
@@ -116,15 +130,19 @@
 - REQ-SEARCH-020: Suggestions/autocomplete
 
 **Incidencias Relacionadas:**
+
 - CTB-93, CTB-96, CTB-99, CTB-100, CTB-101, CTB-113, CTB-143, CTB-159, CTB-162
 
 **Casos de Prueba (est. 18-20 casos):**
+
 - TC_SEARCH_001 → TC_SEARCH_020
 
 ---
 
 ### 5. ❤️ FAVORITOS (REQ-FAV-001 → REQ-FAV-010)
+
 **Requisitos Funcionales:**
+
 - REQ-FAV-001: Agregar favorito (click corazón)
 - REQ-FAV-002: Marcar/desmarcar corazón visual
 - REQ-FAV-003: Ver lista favoritos
@@ -137,15 +155,19 @@
 - REQ-FAV-010: Notificación cuando favorito baja precio
 
 **Incidencias Relacionadas:**
+
 - CTB-148, CTB-149, CTB-162, CTB-312, CTB-315
 
 **Casos de Prueba (est. 8-10 casos):**
+
 - TC_FAV_001 → TC_FAV_010
 
 ---
 
 ### 6. 👤 PERFIL USUARIO (REQ-PROFILE-001 → REQ-PROFILE-020)
+
 **Requisitos Funcionales:**
+
 - REQ-PROFILE-001: Ver datos perfil
 - REQ-PROFILE-002: Editar nombre
 - REQ-PROFILE-003: Cambiar email
@@ -168,15 +190,19 @@
 - REQ-PROFILE-020: Idioma preferido
 
 **Incidencias Relacionadas:**
+
 - CTB-297, CTB-300, CTB-304, CTB-340, CTB-342, CTB-347, CTB-349, CTB-350, CTB-351, CTB-352, CTB-353, CTB-365, CTB-374, CTB-375, CTB-376, CTB-377
 
 **Casos de Prueba (est. 18-20 casos):**
+
 - TC_PROFILE_001 → TC_PROFILE_020
 
 ---
 
 ### 7. 🛒 CARRITO (REQ-CART-001 → REQ-CART-015)
+
 **Requisitos Funcionales:**
+
 - REQ-CART-001: Agregar al carrito
 - REQ-CART-002: Mostrar total carrito
 - REQ-CART-003: Modificar cantidad
@@ -194,15 +220,19 @@
 - REQ-CART-015: Carrito persistente multi-device
 
 **Incidencias Relacionadas:**
+
 - CTB-387, CTB-388, CTB-390
 
 **Casos de Prueba (est. 12-15 casos):**
+
 - TC_CART_001 → TC_CART_015
 
 ---
 
 ### 8. 📦 CHECKOUT (REQ-CHECK-001 → REQ-CHECK-015)
+
 **Requisitos Funcionales:**
+
 - REQ-CHECK-001: Ingresar dirección envío
 - REQ-CHECK-002: Validación dirección
 - REQ-CHECK-003: Método envío (opciones, precios)
@@ -220,12 +250,15 @@
 - REQ-CHECK-015: Order tracking
 
 **Casos de Prueba (est. 14-16 casos):**
+
 - TC_CHECK_001 → TC_CHECK_015
 
 ---
 
 ### 9. 📅 CALENDARIO/DISPONIBILIDAD (REQ-CAL-001 → REQ-CAL-012)
+
 **Requisitos Funcionales:**
+
 - REQ-CAL-001: Mostrar calendario
 - REQ-CAL-002: Deshabilitar fechas no disponibles
 - REQ-CAL-003: Seleccionar fecha inicio
@@ -240,45 +273,47 @@
 - REQ-CAL-012: Integración con búsqueda
 
 **Incidencias Relacionadas:**
+
 - (Incluidas en SEARCH)
 
 **Casos de Prueba (est. 10-12 casos):**
+
 - TC_CAL_001 → TC_CAL_012
 
 ---
 
 ## 🐛 INCIDENCIAS CRÍTICAS (9)
 
-| Bug ID | Módulo | Descripción | Severity | Status |
-|--------|--------|-------------|----------|--------|
-| CTB-276 | AUTH | Login no valida email formato | CRÍTICA | ABIERTO |
-| CTB-278 | AUTH | Password reset email no llega | CRÍTICA | ABIERTO |
-| CTB-281 | AUTH | Logout no limpia sesión | CRÍTICA | ABIERTO |
-| CTB-288 | AUTH | Social login Google falla | CRÍTICA | ABIERTO |
-| CTB-290 | AUTH | CAPTCHA bloquea usuarios válidos | CRÍTICA | ABIERTO |
-| CTB-293 | AUTH | Duplicado email registration | CRÍTICA | ABIERTO |
-| CTB-306 | AUTH | Session timeout no funciona | CRÍTICA | ABIERTO |
-| CTB-307 | AUTH | Cookie HTTPS solo en prod | CRÍTICA | ABIERTO |
-| CTB-308 | AUTH | Account lockout infinito | CRÍTICA | ABIERTO |
+| Bug ID  | Módulo | Descripción                      | Severity | Status  |
+| ------- | ------ | -------------------------------- | -------- | ------- |
+| CTB-276 | AUTH   | Login no valida email formato    | CRÍTICA  | ABIERTO |
+| CTB-278 | AUTH   | Password reset email no llega    | CRÍTICA  | ABIERTO |
+| CTB-281 | AUTH   | Logout no limpia sesión          | CRÍTICA  | ABIERTO |
+| CTB-288 | AUTH   | Social login Google falla        | CRÍTICA  | ABIERTO |
+| CTB-290 | AUTH   | CAPTCHA bloquea usuarios válidos | CRÍTICA  | ABIERTO |
+| CTB-293 | AUTH   | Duplicado email registration     | CRÍTICA  | ABIERTO |
+| CTB-306 | AUTH   | Session timeout no funciona      | CRÍTICA  | ABIERTO |
+| CTB-307 | AUTH   | Cookie HTTPS solo en prod        | CRÍTICA  | ABIERTO |
+| CTB-308 | AUTH   | Account lockout infinito         | CRÍTICA  | ABIERTO |
 
 ---
 
 ## 📊 DISTRIBUCIÓN TEST CASES
 
-| Módulo | Desktop | Mobile | Total Est. |
-|--------|---------|--------|-----------|
-| AUTH | 10 | 7 | 15 |
-| NAV | 12 | 8 | 20 |
-| HOME | 8 | 7 | 15 |
-| SEARCH | 12 | 8 | 20 |
-| FAV | 5 | 5 | 10 |
-| PROFILE | 12 | 8 | 20 |
-| CART | 8 | 7 | 15 |
-| CHECK | 8 | 7 | 15 |
-| CAL | 7 | 5 | 12 |
-| **TOTAL** | **82** | **62** | **142** |
+| Módulo    | Desktop | Mobile | Total Est. |
+| --------- | ------- | ------ | ---------- |
+| AUTH      | 10      | 7      | 15         |
+| NAV       | 12      | 8      | 20         |
+| HOME      | 8       | 7      | 15         |
+| SEARCH    | 12      | 8      | 20         |
+| FAV       | 5       | 5      | 10         |
+| PROFILE   | 12      | 8      | 20         |
+| CART      | 8       | 7      | 15         |
+| CHECK     | 8       | 7      | 15         |
+| CAL       | 7       | 5      | 12         |
+| **TOTAL** | **82**  | **62** | **142**    |
 
-*Nota: 440 casos incluyen variantes (desktop, mobile, navegadores, idiomas, idiomas, casos edge)*
+_Nota: 440 casos incluyen variantes (desktop, mobile, navegadores, idiomas, idiomas, casos edge)_
 
 ---
 

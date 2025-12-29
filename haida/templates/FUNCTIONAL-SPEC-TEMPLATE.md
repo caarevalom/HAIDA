@@ -6,13 +6,13 @@
 
 ## INFORMACIÓN GENERAL
 
-| Campo | Valor |
-|-------|-------|
-| **Módulo** | Ejemplo: Login, Payment, Dashboard |
-| **Versión** | 1.0 |
-| **Fecha** | YYYY-MM-DD |
-| **Responsable** | Nombre del PO/Product Manager |
-| **Componentes afectados** | Backend, Frontend, Database, APIs |
+| Campo                     | Valor                              |
+| ------------------------- | ---------------------------------- |
+| **Módulo**                | Ejemplo: Login, Payment, Dashboard |
+| **Versión**               | 1.0                                |
+| **Fecha**                 | YYYY-MM-DD                         |
+| **Responsable**           | Nombre del PO/Product Manager      |
+| **Componentes afectados** | Backend, Frontend, Database, APIs  |
 
 ---
 
@@ -21,6 +21,7 @@
 Descripción breve de qué hace este módulo, cuál es su propósito en el sistema y por qué es importante.
 
 **Ejemplo:**
+
 ```
 El módulo Login permite a usuarios autenticarse en el sistema usando email y
 contraseña. Es crítico para acceso a aplicación y debe soportar 500+ usuarios
@@ -32,15 +33,18 @@ simultáneos con latencia < 200ms.
 ## REQUISITOS FUNCIONALES
 
 ### REQ-001: Validación de Credenciales
+
 **Descripción:** El sistema debe validar email y contraseña contra base de datos.
 
 **Criterios de Aceptación:**
+
 - Email debe ser formato válido (RFC 5322)
 - Contraseña debe tener mínimo 8 caracteres
 - Si credenciales inválidas, mostrar error genérico
 - Máximo 3 intentos fallidos → bloquear cuenta 15 minutos
 
 **Casos de Uso:**
+
 ```
 1. Usuario ingresa email válido + contraseña correcta → Login exitoso
 2. Usuario ingresa email válido + contraseña incorrecta → Error "Credenciales inválidas"
@@ -52,9 +56,11 @@ simultáneos con latencia < 200ms.
 ---
 
 ### REQ-002: Gestión de Sesiones
+
 **Descripción:** Sistema debe crear y mantener sesiones seguras.
 
 **Criterios de Aceptación:**
+
 - Session token generado con JWT (HS256)
 - Token válido por 24 horas
 - Token se almacena en httpOnly cookie
@@ -62,6 +68,7 @@ simultáneos con latencia < 200ms.
 - Renovación automática si usuario activo
 
 **Casos de Uso:**
+
 ```
 1. Login exitoso → Token generado + cookie set
 2. Request con token válido → Permitido
@@ -73,9 +80,11 @@ simultáneos con latencia < 200ms.
 ---
 
 ### REQ-003: UI Accesibilidad
+
 **Descripción:** Formulario debe cumplir WCAG 2A.
 
 **Criterios de Aceptación:**
+
 - Labels asociados a inputs
 - Navegación por Tab correcta
 - Mensajes de error descriptivos
@@ -85,9 +94,11 @@ simultáneos con latencia < 200ms.
 ---
 
 ### REQ-004: Performance
+
 **Descripción:** Login debe ser rápido incluso en condiciones adversas.
 
 **Criterios de Aceptación:**
+
 - Latencia < 200ms en red 4G
 - Capacidad: 500+ simultáneos
 - Cache de resultados (Redis)
@@ -97,6 +108,7 @@ simultáneos con latencia < 200ms.
 ## FLUJOS DE USUARIO
 
 ### Flujo Principal: Login Exitoso
+
 ```
 1. Usuario navega a /login
 2. Ve formulario con campos: Email, Password
@@ -109,6 +121,7 @@ simultáneos con latencia < 200ms.
 ```
 
 ### Flujo Alternativo: Password Olvidado
+
 ```
 1. Usuario en login hace click "Forgot Password"
 2. Ingresa email registrado
@@ -126,24 +139,14 @@ simultáneos con latencia < 200ms.
 ```json
 {
   "usuarios_validos": [
-    {"email": "user1@test.com", "password": "ValidPass123"},
-    {"email": "user2@test.com", "password": "AnotherPass456"}
+    { "email": "user1@test.com", "password": "ValidPass123" },
+    { "email": "user2@test.com", "password": "AnotherPass456" }
   ],
   "usuarios_bloqueados": [
-    {"email": "blocked@test.com", "password": "anything", "reason": "3+ intentos fallidos"}
+    { "email": "blocked@test.com", "password": "anything", "reason": "3+ intentos fallidos" }
   ],
-  "email_invalidos": [
-    "notanemail",
-    "missing@domain",
-    "@nodomain.com",
-    ""
-  ],
-  "passwords_invalidos": [
-    "short",
-    "nospecial123",
-    "",
-    "pass with spaces"
-  ]
+  "email_invalidos": ["notanemail", "missing@domain", "@nodomain.com", ""],
+  "passwords_invalidos": ["short", "nospecial123", "", "pass with spaces"]
 }
 ```
 
@@ -151,13 +154,13 @@ simultáneos con latencia < 200ms.
 
 ## INTEGRACIONES
 
-| Sistema | Tipo | Criticidad |
-|---------|------|-----------|
-| Base de datos (PostgreSQL) | Query users table | Alta |
-| API Authentication | POST /auth | Alta |
-| Email Service (SendGrid) | Send reset link | Media |
-| Cache (Redis) | Store sessions | Media |
-| Logging Service | Audit trail | Baja |
+| Sistema                    | Tipo              | Criticidad |
+| -------------------------- | ----------------- | ---------- |
+| Base de datos (PostgreSQL) | Query users table | Alta       |
+| API Authentication         | POST /auth        | Alta       |
+| Email Service (SendGrid)   | Send reset link   | Media      |
+| Cache (Redis)              | Store sessions    | Media      |
+| Logging Service            | Audit trail       | Baja       |
 
 ---
 
@@ -185,12 +188,12 @@ Database:
 
 ## RIESGOS IDENTIFICADOS
 
-| Riesgo | Probabilidad | Impacto | Mitigación |
-|--------|-------------|--------|-----------|
-| SQL Injection en query email | Media | Alta | Prepared statements, input validation |
-| Brute force attacks | Alta | Alta | Rate limiting, bloqueo después 3 fallos |
-| Session hijacking | Baja | Alta | HTTPS, httpOnly cookies, CSRF token |
-| Contraseña débil ingresada | Media | Media | Validación cliente + servidor |
+| Riesgo                       | Probabilidad | Impacto | Mitigación                              |
+| ---------------------------- | ------------ | ------- | --------------------------------------- |
+| SQL Injection en query email | Media        | Alta    | Prepared statements, input validation   |
+| Brute force attacks          | Alta         | Alta    | Rate limiting, bloqueo después 3 fallos |
+| Session hijacking            | Baja         | Alta    | HTTPS, httpOnly cookies, CSRF token     |
+| Contraseña débil ingresada   | Media        | Media   | Validación cliente + servidor           |
 
 ---
 
@@ -206,21 +209,23 @@ Database:
 
 ## CAMBIOS DOCUMENTADOS
 
-| Versión | Fecha | Cambio |
-|---------|-------|--------|
-| 1.0 | 2025-12-15 | Documento inicial |
-| 1.1 | (próximo) | Feedback de QA |
+| Versión | Fecha      | Cambio            |
+| ------- | ---------- | ----------------- |
+| 1.0     | 2025-12-15 | Documento inicial |
+| 1.1     | (próximo)  | Feedback de QA    |
 
 ---
 
 **Sección para el generador HAIDA:**
 
 Una vez completado este documento, ejecuta en PowerShell:
+
 ```powershell
 powershell -File istqb-hiberus\generators\generate-tests.ps1 -DocPath "istqb-hiberus\docs\especificacion-login.md"
 ```
 
 El generador automaticamente:
+
 1. Analiza este documento con IA
 2. Extrae casos de prueba ISTQB
 3. Clasifica por tipo (Unit, API, E2E, etc)
