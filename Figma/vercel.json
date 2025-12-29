@@ -11,7 +11,7 @@
   "env": {
     "VITE_SUPABASE_URL": "https://wdebyxvtunromsnkqbrd.supabase.co",
     "VITE_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndkZWJ5eHZ0dW5yb21zbmtxYnJkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU4OTU3NTEsImV4cCI6MjA4MTQ3MTc1MX0._VYypgb2tV9u_4jSAt3sbcFj-drhufB0oN9o3BcgHTs",
-    "VITE_API_URL": "https://haida-one.vercel.app",
+    "VITE_API_URL": "https://back.carlosarta.com",
     "VITE_APP_NAME": "HAIDA",
     "VITE_APP_VERSION": "2.0.0"
   }

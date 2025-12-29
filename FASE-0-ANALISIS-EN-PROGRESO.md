@@ -1,11 +1,10 @@
 ╔══════════════════════════════════════════════════════════════════════════════╗
-║                                                                              ║
-║              FASE 0: ANÁLISIS CTB - EN PROGRESO                             ║
-║                                                                              ║
-║    Estoy analizando documentación y TestLink para definir estrategia         ║
-║                                                                              ║
+║ ║
+║ FASE 0: ANÁLISIS CTB - EN PROGRESO ║
+║ ║
+║ Estoy analizando documentación y TestLink para definir estrategia ║
+║ ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
-
 
 ═══════════════════════════════════════════════════════════════════════════════
 📁 ARCHIVOS IDENTIFICADOS
@@ -15,23 +14,22 @@ CARPETA: CTB -/Documentación/
 
 ✅ DOCUMENTOS ENCONTRADOS:
 ├─ CTB VisitBarcelona Tickets - Análisis funcional_v2.pdf (2 MB)
-│  └─ Especificación de requisitos funcionales
+│ └─ Especificación de requisitos funcionales
 │
 ├─ CTB VisitBarcelona Tickets - Análisis funcional_v2-castellano.pdf (3 MB)
-│  └─ Especificación en castellano
+│ └─ Especificación en castellano
 │
 ├─ Guía de QA – Proyecto CTB VisitBarcelona.pdf (3.8 MB)
-│  └─ Estrategia de pruebas, casos, cobertura
+│ └─ Estrategia de pruebas, casos, cobertura
 │
 ├─ hiberus - Memoria técnica (Versión castellano).pdf (12.71 MB)
-│  └─ Arquitectura técnica, stack, decisiones
+│ └─ Arquitectura técnica, stack, decisiones
 │
 ├─ HIBERUS_Informe_EstadoCalidad_CTB_B2C_DSK_Header_20251017_v1.0.pptx
-│  └─ Reporte de calidad (Desktop Header)
+│ └─ Reporte de calidad (Desktop Header)
 │
 └─ Plan de Pruebas - CTB.docx
-   └─ Plan detallado de ejecución
-
+└─ Plan detallado de ejecución
 
 CARPETA: CTB -/Testlink/
 
@@ -42,7 +40,6 @@ CARPETA: CTB -/Testlink/
 └─ Sin confirmar 235332.crdownload (4.79 MB)
 
 📌 STATUS: Descargas incompletas, renombrar cuando terminen
-
 
 ═══════════════════════════════════════════════════════════════════════════════
 🎯 PLAN DE ANÁLISIS (FASE 0)
@@ -75,7 +72,6 @@ PASO 5: DISEÑAR MAPEO HAIDA
 ├─ Excel estructura (nuevas pestañas)
 └─ Validaciones automáticas
 
-
 ═══════════════════════════════════════════════════════════════════════════════
 ⏳ INSTRUCCIONES PARA TI (MIENTRAS ESPERAMOS)
 ═══════════════════════════════════════════════════════════════════════════════
@@ -86,10 +82,10 @@ PASO 5: DISEÑAR MAPEO HAIDA
 
 2. RENOMBRA ARCHIVOS TESTLINK (SI ES NECESARIO)
    └─ Basándote en tamaño:
-      ├─ 11.49 MB → Probablemente test-cases.xlsx (GRANDE)
-      ├─ 4.79 MB → Probablemente test-cases-mobile.xlsx
-      ├─ 2.23 MB → Probablemente metadata/índice
-      └─ 0.03 MB → Probablemente config o pequeño índice
+   ├─ 11.49 MB → Probablemente test-cases.xlsx (GRANDE)
+   ├─ 4.79 MB → Probablemente test-cases-mobile.xlsx
+   ├─ 2.23 MB → Probablemente metadata/índice
+   └─ 0.03 MB → Probablemente config o pequeño índice
 
 3. CONFIRMA ACCESO A EXCEL SHAREPOINT
    └─ ¿Puedes abrir el link? https://hiberus-my.sharepoint.com/...
@@ -99,7 +95,6 @@ PASO 5: DISEÑAR MAPEO HAIDA
    └─ ✅ Descargas completadas
    └─ ✅ Archivos renombrados (envía nombres)
    └─ ✅ Confirmada acceso Excel SharePoint
-
 
 ═══════════════════════════════════════════════════════════════════════════════
 🎓 MIENTRAS TANTO: PREVIEW DE ESTRATEGIA
@@ -140,11 +135,9 @@ RESULTADO FINAL:
 ✅ Matriz requisitos con 100% trazabilidad
 ✅ Listo para ejecutar tests con qa-orchestrator
 
-
 ═════════════════════════════════════════════════════════════════════════════════
 DOCUMENTO: FASE-0-ANALISIS-EN-PROGRESO.md
 TIPO: Status y próximos pasos
 STATUS: Esperando completar descargas
 ACCIÓN REQUERIDA: Confirma cuando archivos listos + acceso Excel OK
 ═════════════════════════════════════════════════════════════════════════════════
-

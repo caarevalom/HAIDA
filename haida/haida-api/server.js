@@ -20,7 +20,7 @@ const CONFIG = {
   slackWebhook: process.env.SLACK_WEBHOOK || '',
   testResultsDir: './test-results',
   reportsDir: './reports',
-  nodeEnv: process.env.NODE_ENV || 'development'
+  nodeEnv: process.env.NODE_ENV || 'development',
 };
 
 // Ensure directories exist
@@ -42,7 +42,7 @@ app.get('/health', (req, res) => {
     status: 'healthy',
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),
-    environment: CONFIG.nodeEnv
+    environment: CONFIG.nodeEnv,
   });
 });
 
@@ -55,54 +55,54 @@ function determineTestProfile(tag, url, changeDetails) {
 
   // Map change type to test profile
   const profileMap = {
-    'login': {
+    login: {
       profile: 'form-validation',
       tests: ['login-fields', 'error-handling', 'form-submission'],
       timeout: 30000,
-      priority: 'high'
+      priority: 'high',
     },
-    'dashboard': {
+    dashboard: {
       profile: 'widget-rendering',
       tests: ['widget-load', 'data-display', 'responsive-check'],
       timeout: 60000,
-      priority: 'high'
+      priority: 'high',
     },
-    'checkout': {
+    checkout: {
       profile: 'form-validation',
       tests: ['form-validation', 'payment-processing', 'order-confirmation'],
       timeout: 45000,
-      priority: 'critical'
+      priority: 'critical',
     },
-    'navigation': {
+    navigation: {
       profile: 'navigation-flow',
       tests: ['link-validity', 'menu-functionality', 'breadcrumb-navigation'],
       timeout: 35000,
-      priority: 'medium'
+      priority: 'medium',
     },
-    'button': {
+    button: {
       profile: 'interaction',
       tests: ['click-handlers', 'state-change', 'loading-states'],
       timeout: 25000,
-      priority: 'medium'
+      priority: 'medium',
     },
-    'form': {
+    form: {
       profile: 'form-validation',
       tests: ['field-validation', 'error-messages', 'form-submission'],
       timeout: 40000,
-      priority: 'high'
+      priority: 'high',
     },
-    'table': {
+    table: {
       profile: 'data-rendering',
       tests: ['data-load', 'sorting', 'filtering', 'pagination'],
       timeout: 50000,
-      priority: 'high'
+      priority: 'high',
     },
-    'modal': {
+    modal: {
       profile: 'modal-interaction',
       tests: ['modal-render', 'close-handlers', 'form-in-modal'],
       timeout: 30000,
-      priority: 'medium'
-    }
+      priority: 'medium',
+    },
   };
 
   // Find best matching profile
@@ -117,7 +117,7 @@ function determineTestProfile(tag, url, changeDetails) {
     profile: 'general-e2e',
     tests: ['page-load', 'basic-functionality', 'accessibility'],
     timeout: 60000,
-    priority: 'low'
+    priority: 'low',
   };
 }
 
@@ -128,7 +128,7 @@ app.post('/webhook/change-detected', async (req, res) => {
   const timestamp = new Date().toISOString();
   const webhookId = `webhook-${Date.now()}`;
 
-  console.log(`\n[${ timestamp}] 🔔 Change Detection Webhook Received`);
+  console.log(`\n[${timestamp}] 🔔 Change Detection Webhook Received`);
   console.log(`Webhook ID: ${webhookId}`);
 
   try {
@@ -141,7 +141,7 @@ app.post('/webhook/change-detected', async (req, res) => {
       uuid,
       title,
       notification_format,
-      change_text
+      change_text,
     } = req.body;
 
     // Validate required fields
@@ -149,7 +149,7 @@ app.post('/webhook/change-detected', async (req, res) => {
       return res.status(400).json({
         status: 'error',
         message: 'Missing required fields: url, tag',
-        webhookId
+        webhookId,
       });
     }
 
@@ -174,7 +174,7 @@ app.post('/webhook/change-detected', async (req, res) => {
       currentMd5: current_md5,
       selectedProfile: testProfile.profile,
       selectedTests: testProfile.tests,
-      status: 'received'
+      status: 'received',
     };
 
     await fs.writeFile(
@@ -192,15 +192,14 @@ app.post('/webhook/change-detected', async (req, res) => {
       webhookId,
       selectedProfile: testProfile.profile,
       selectedTests: testProfile.tests,
-      expectedCompletionTime: `${Math.round(testProfile.timeout / 1000)}s`
+      expectedCompletionTime: `${Math.round(testProfile.timeout / 1000)}s`,
     });
-
   } catch (error) {
     console.error(`❌ Error processing webhook: ${error.message}`);
     res.status(500).json({
       status: 'error',
       message: error.message,
-      webhookId
+      webhookId,
     });
   }
 });
@@ -221,7 +220,7 @@ async function launchTests(webhookId, url, testProfile, webhookEvent) {
       `--grep=${testProfile.tests.join('|')}`,
       `--timeout=${testProfile.timeout}`,
       `--reporter=json`,
-      `--output=${path.join(CONFIG.testResultsDir, `${webhookId}-results.json`)}`
+      `--output=${path.join(CONFIG.testResultsDir, `${webhookId}-results.json`)}`,
     ];
 
     // Set environment variables for test execution
@@ -230,13 +229,13 @@ async function launchTests(webhookId, url, testProfile, webhookEvent) {
       TEST_URL: url,
       TEST_PROFILE: testProfile.profile,
       WEBHOOK_ID: webhookId,
-      CHANGE_DETECTED_AT: webhookEvent.timestamp
+      CHANGE_DETECTED_AT: webhookEvent.timestamp,
     };
 
     // Spawn Playwright test process
     const testProcess = spawn('npx', ['playwright', ...testArgs], {
       env: testEnv,
-      cwd: process.cwd()
+      cwd: process.cwd(),
     });
 
     let stdout = '';
@@ -270,7 +269,7 @@ async function launchTests(webhookId, url, testProfile, webhookEvent) {
         status: testPassed ? 'PASSED' : 'FAILED',
         stdout,
         stderr,
-        changeDetection: webhookEvent
+        changeDetection: webhookEvent,
       };
 
       // Save results
@@ -284,7 +283,6 @@ async function launchTests(webhookId, url, testProfile, webhookEvent) {
 
       console.log(`📊 Results saved to ${webhookId}-execution.json`);
     });
-
   } catch (error) {
     console.error(`❌ Error launching tests: ${error.message}`);
 
@@ -294,7 +292,7 @@ async function launchTests(webhookId, url, testProfile, webhookEvent) {
       url,
       status: 'ERROR',
       error: error.message,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
   }
 }
@@ -322,28 +320,28 @@ async function notifyResults(testResults) {
               {
                 title: 'URL',
                 value: url,
-                short: false
+                short: false,
               },
               {
                 title: 'Profile',
                 value: profile,
-                short: true
+                short: true,
               },
               {
                 title: 'Status',
                 value: status,
-                short: true
+                short: true,
               },
               {
                 title: 'Webhook ID',
                 value: webhookId,
-                short: false
-              }
+                short: false,
+              },
             ],
             footer: 'HAIDA Change Detection System',
-            ts: Math.floor(Date.now() / 1000)
-          }
-        ]
+            ts: Math.floor(Date.now() / 1000),
+          },
+        ],
       };
 
       await axios.post(CONFIG.slackWebhook, payload);
@@ -368,7 +366,7 @@ app.get('/results/:webhookId', async (req, res) => {
     res.status(404).json({
       status: 'error',
       message: 'Results not found',
-      details: error.message
+      details: error.message,
     });
   }
 });
@@ -379,7 +377,7 @@ app.get('/results/:webhookId', async (req, res) => {
 app.get('/results', async (req, res) => {
   try {
     const files = await fs.readdir(CONFIG.testResultsDir);
-    const executionFiles = files.filter(f => f.endsWith('-execution.json'));
+    const executionFiles = files.filter((f) => f.endsWith('-execution.json'));
 
     const results = [];
     for (const file of executionFiles) {
@@ -389,13 +387,13 @@ app.get('/results', async (req, res) => {
 
     res.json({
       count: results.length,
-      results: results.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
+      results: results.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)),
     });
   } catch (error) {
     res.status(500).json({
       status: 'error',
       message: 'Error reading results',
-      details: error.message
+      details: error.message,
     });
   }
 });
@@ -411,7 +409,7 @@ app.get('/changedetection/status', async (req, res) => {
     res.status(502).json({
       status: 'error',
       message: 'Cannot reach Changedetection.io',
-      details: error.message
+      details: error.message,
     });
   }
 });
@@ -424,7 +422,7 @@ app.use((err, req, res, next) => {
   res.status(500).json({
     status: 'error',
     message: err.message,
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   });
 });
 

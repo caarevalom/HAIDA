@@ -8,6 +8,7 @@
 ## 🚨 GAPS CRÍTICOS (Bloquean ejecución)
 
 ### GAP #1: Python no instalado
+
 - **Descripción**: Python no está instalado en el sistema Windows
 - **Impacto**: 🔴 CRÍTICO - No se puede ejecutar el backend FastAPI
 - **Error**: `no se encontró Python; ejecutar sin argumentos para instalar desde el Microsoft Store`
@@ -18,6 +19,7 @@
 - **Estado**: ❌ BLOQUEANTE
 
 ### GAP #2: requirements.txt no existía
+
 - **Descripción**: No había archivo de dependencias Python
 - **Impacto**: 🟡 ALTO - Imposible instalar dependencias
 - **Solución aplicada**: ✅ Creado requirements.txt con todas las dependencias
@@ -25,6 +27,7 @@
 - **Estado**: ✅ RESUELTO
 
 ### GAP #3: app/core/cors.py faltante
+
 - **Descripción**: main.py importa `from app.core.cors import setup_cors` pero el archivo no existía
 - **Impacto**: 🟡 ALTO - ImportError al iniciar FastAPI
 - **Solución aplicada**: ✅ Creado app/core/cors.py con configuración CORS
@@ -35,6 +38,7 @@
 ## ⚠️ GAPS DE IMPLEMENTACIÓN (Funcionalidad incompleta)
 
 ### GAP #4: Routes con implementación skeleton
+
 - **Descripción**: Los 12 archivos de routes creados tienen solo estructura básica
 - **Archivos afectados**:
   - app/routes/system.py
@@ -58,6 +62,7 @@
 - **Estado**: ⏳ EN PROGRESO
 
 ### GAP #5: Sin tests Python/pytest
+
 - **Descripción**: No existe estructura de tests para el backend Python
 - **Impacto**: 🟡 MEDIO - No hay validación automática del backend
 - **Requerimientos**:
@@ -69,6 +74,7 @@
 - **Estado**: ❌ PENDIENTE
 
 ### GAP #6: Sin entorno virtual Python
+
 - **Descripción**: No hay venv/ o .venv/ configurado
 - **Impacto**: 🟢 BAJO - Buena práctica pero no bloqueante
 - **Solución recomendada**: Crear venv con `python -m venv venv`
@@ -79,18 +85,21 @@
 ## 📋 INCIDENCIAS DE CONFIGURACIÓN
 
 ### INCIDENCIA #1: Alias Python de Microsoft Store
+
 - **Descripción**: Windows tiene alias de Python que redirige a Microsoft Store
 - **Comando afectado**: `python`
 - **Workaround**: Usar `python3` o deshabilitar alias en Windows Settings
 - **Estado**: ⚠️ CONOCIDO
 
 ### INCIDENCIA #2: Directorios de infraestructura duplicados
+
 - **Descripción**: Existían tanto `infra/` como `infrastructure/`
 - **Impacto**: 🟢 BAJO - Puede causar confusión
 - **Solución aplicada**: ✅ Consolidado en `infrastructure/` - `infra/` eliminado
 - **Estado**: ✅ RESUELTO
 
 ### INCIDENCIA #3: Desalineación schema DB vs Frontend (Figma)
+
 - **Descripción**: Diferencias entre tipos de datos, enums y estructura entre Frontend y Backend
 - **Impacto**: 🟡 MEDIO - Puede causar errores de integración
 - **Gaps detectados**:
@@ -107,12 +116,14 @@
 ## 🔄 PRÓXIMOS PASOS
 
 ### ✅ COMPLETADOS:
+
 1. ✅ Crear Dockerfile para backend Python
 2. ✅ Crear docker-compose.yml (Backend + Redis)
 3. ✅ Consolidar directorios infra/ → infrastructure/
 4. ✅ Analizar alineación Frontend (Figma) ↔ Backend (Supabase)
 
 ### 🎯 SIGUIENTES:
+
 1. **AHORA**: Ejecutar backend con Docker (`docker-compose up -d`)
 2. **AHORA**: Testear endpoints básicos (health, system)
 3. **DESPUÉS**: Completar variables .env con credenciales reales
@@ -125,13 +136,14 @@
 
 ## 📊 RESUMEN
 
-| Categoría | Total | Resueltos | Críticos | Altos | Medios | Bajos |
-|-----------|-------|-----------|----------|-------|--------|-------|
-| Gaps      | 6     | 3         | 1        | 2     | 1      | 2     |
-| Incidencias | 3   | 1         | 0        | 0     | 1      | 2     |
-| **TOTAL** | **9** | **4**     | **1**    | **2** | **2**  | **4** |
+| Categoría   | Total | Resueltos | Críticos | Altos | Medios | Bajos |
+| ----------- | ----- | --------- | -------- | ----- | ------ | ----- |
+| Gaps        | 6     | 3         | 1        | 2     | 1      | 2     |
+| Incidencias | 3     | 1         | 0        | 0     | 1      | 2     |
+| **TOTAL**   | **9** | **4**     | **1**    | **2** | **2**  | **4** |
 
 ### 📈 PROGRESO:
+
 - ✅ **44% Completado** (4/9 issues resueltos)
 - 🔴 **1 Bloqueante** (Python no instalado - workaround: Docker)
 - ⏳ **5 Pendientes** (implementación lógica routes, tests, alineación schema)

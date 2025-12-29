@@ -5,6 +5,7 @@
 ## ¿Qué es FASE E?
 
 Sistema automático para:
+
 1. **Investigar** por qué fallaron los tests
 2. **Mapear** resultados a CSV (preservando formato)
 3. **Deduplicar** bugs (N problemas → 1 por causa raíz)
@@ -15,7 +16,9 @@ Sistema automático para:
 ## Los 3 Scripts Nuevos
 
 ### 1. `analyze-test-failures.ps1`
+
 **Detecta 7 tipos de error automáticamente:**
+
 - TIMEOUT (>30s)
 - ASSERTION_FAILED
 - ELEMENT_NOT_FOUND
@@ -27,7 +30,9 @@ Sistema automático para:
 **Salida:** `bugs-detected.json`
 
 ### 2. `map-csv-input-output.ps1`
+
 **Mapea CSV:**
+
 - Lee: CSV de entrada (test cases)
 - Enriquece: 20+ columnas de resultados
 - Salida: CSV mismo formato que input + bugs
@@ -35,7 +40,9 @@ Sistema automático para:
 **Salida:** `test-cases-with-results.csv`
 
 ### 3. `generate-bugs-report.ps1`
+
 **Deduplica bugs:**
+
 - Lee: bugs detectados
 - Agrupa: por causa raíz
 - Deduplica: 15 bugs → 8 únicos
@@ -65,26 +72,26 @@ Sistema automático para:
 
 ## Resultado
 
-| Archivo | Contenido |
-|---------|-----------|
-| `test-results.json` | 10 casos ejecutados (8 PASS, 1 FAIL, 1 BLOCKED) |
-| `bugs-detected.json` | Bugs con análisis automático |
-| `test-cases-with-results.csv` | Input CSV + resultados + bugs |
-| `bugs-for-excel.csv` | Bugs deduplicados, listo Excel |
+| Archivo                       | Contenido                                       |
+| ----------------------------- | ----------------------------------------------- |
+| `test-results.json`           | 10 casos ejecutados (8 PASS, 1 FAIL, 1 BLOCKED) |
+| `bugs-detected.json`          | Bugs con análisis automático                    |
+| `test-cases-with-results.csv` | Input CSV + resultados + bugs                   |
+| `bugs-for-excel.csv`          | Bugs deduplicados, listo Excel                  |
 
 ---
 
 ## Los 7 Gaps Que Solucioné
 
-| Gap | Antes | Después |
-|-----|-------|---------|
+| Gap               | Antes           | Después             |
+| ----------------- | --------------- | ------------------- |
 | **Investigación** | Manual (90 min) | Automática (30 seg) |
-| **Contexto** | 2 líneas | 15 campos |
-| **Duplicados** | 45% | 0% |
-| **Evidencia** | No | Sí (100%) |
-| **Asignación** | Genérica | Por módulo |
-| **Severidad** | Adivinar | Automática |
-| **Estimación** | Imposible | Exacta |
+| **Contexto**      | 2 líneas        | 15 campos           |
+| **Duplicados**    | 45%             | 0%                  |
+| **Evidencia**     | No              | Sí (100%)           |
+| **Asignación**    | Genérica        | Por módulo          |
+| **Severidad**     | Adivinar        | Automática          |
+| **Estimación**    | Imposible       | Exacta              |
 
 ---
 
@@ -136,4 +143,3 @@ R: Edita `analyze-test-failures.ps1` - sección patrones de error
 ---
 
 **¿Listo para ejecutar el DEMO?** 🚀
-

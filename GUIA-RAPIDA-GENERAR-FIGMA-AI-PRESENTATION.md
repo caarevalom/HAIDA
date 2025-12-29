@@ -2,7 +2,7 @@
 
 **Documento:** Instrucciones paso a paso para generar presentación  
 **Fecha:** 16 Diciembre 2025  
-**Tiempo estimado:** 30-60 minutos (generación + ajustes)  
+**Tiempo estimado:** 30-60 minutos (generación + ajustes)
 
 ---
 
@@ -280,6 +280,7 @@ Incluye comentarios en código para fácil personalización.
 ## CHECKLIST POST-GENERACIÓN
 
 ### Content Validation
+
 - [ ] Hero section con título "HAIDA v2.0"
 - [ ] 5 problem cards visibles (Slow, Gaps, Costly, Manual, Messy)
 - [ ] Tabla comparativa (v1.0 vs v2.0) con 7+ features
@@ -290,6 +291,7 @@ Incluye comentarios en código para fácil personalización.
 - [ ] CTA buttons con links funcionales
 
 ### Design Validation
+
 - [ ] Colores Hiberus aplicados:
   - Persian Blue #1E34A1 (headings, buttons)
   - Stratos #010D3D (backgrounds)
@@ -304,6 +306,7 @@ Incluye comentarios en código para fácil personalización.
   - Mobile (375px) ✅
 
 ### Functionality Validation
+
 - [ ] Tab navigation funciona (cambiar secciones)
 - [ ] Smooth scroll entre sections
 - [ ] Buttons responden a hover
@@ -313,6 +316,7 @@ Incluye comentarios en código para fácil personalización.
 - [ ] No hay console errors (F12 → Console)
 
 ### Performance Validation
+
 - [ ] Tamaño <50KB (si es posible)
 - [ ] Load time <3 segundos
 - [ ] Lighthouse score >90
@@ -323,6 +327,7 @@ Incluye comentarios en código para fácil personalización.
   - [ ] Fonts inline (si posible)
 
 ### Accessibility Validation
+
 - [ ] WCAG AA compliant (contrast ratios)
 - [ ] Alt text en imágenes
 - [ ] Keyboard navigation (Tab key)
@@ -330,6 +335,7 @@ Incluye comentarios en código para fácil personalización.
 - [ ] Semantic HTML (h1, h2, button, etc)
 
 ### Browser Validation
+
 - [ ] Chrome ✅
 - [ ] Safari ✅
 - [ ] Firefox ✅
@@ -340,20 +346,22 @@ Incluye comentarios en código para fácil personalización.
 ## PERSONALIZACIÓN COMÚN
 
 ### 1. Cambiar Textos
+
 ```html
 <!-- Busca y reemplaza: -->
-"HAIDA v2.0" → "HAIDA v2.0 — Hiberus"
-"Test Generation, Simplified" → Tu headline custom
-"Get Started" → "Schedule Demo" (u otro CTA)
+"HAIDA v2.0" → "HAIDA v2.0 — Hiberus" "Test Generation, Simplified" → Tu headline custom "Get
+Started" → "Schedule Demo" (u otro CTA)
 ```
 
 ### 2. Añadir Logo
+
 ```html
 <!-- Reemplaza logo text con: -->
-<img src="path/to/logo-hiberus.svg" alt="Hiberus Logo" style="height: 40px;">
+<img src="path/to/logo-hiberus.svg" alt="Hiberus Logo" style="height: 40px;" />
 ```
 
 ### 3. Cambiar Colores
+
 ```css
 /* Busca y reemplaza en <style> -->
 #1E34A1 (Persian Blue) → tu color primary
@@ -363,14 +371,15 @@ Incluye comentarios en código para fácil personalización.
 ```
 
 ### 4. Añadir Links
+
 ```html
 <!-- En CTA buttons: -->
-href="https://your-domain.com/demo"
-href="https://docs.your-domain.com"
+href="https://your-domain.com/demo" href="https://docs.your-domain.com"
 href="mailto:haida@your-company.com"
 ```
 
 ### 5. Cambiar Contenido Técnico
+
 ```html
 <!-- Actualizar sección 4 Architecture: -->
 <!-- Servicios, endpoints, tech stack -->
@@ -387,32 +396,42 @@ href="mailto:haida@your-company.com"
 ## TROUBLESHOOTING
 
 ### Problema: El HTML no se ve correctamente
+
 **Solución:**
+
 1. Abre en navegador diferente
 2. Limpia caché (Ctrl+Shift+Delete)
 3. Verifica que CSS esté embebido en <style> tag
 4. Busca errores en Console (F12)
 
 ### Problema: Imágenes no cargan
+
 **Solución:**
+
 1. Verifica rutas (usa rutas relativas)
 2. Convierte a base64 si es posible
 3. O sube a CDN (imgur, cloudinary, etc)
 
 ### Problema: Tabs no funcionan
+
 **Solución:**
+
 1. Verifica JavaScript en <script> tag
 2. Busca errores en Console
 3. Revisa IDs de elementos (deben coincidir)
 
 ### Problema: Responsive no funciona
+
 **Solución:**
+
 1. Verifica viewport meta tag: `<meta name="viewport" content="width=device-width, initial-scale=1">`
 2. Verifica media queries en CSS
 3. Abre DevTools → Toggle device toolbar (F12)
 
 ### Problema: Colores no son correctos
+
 **Solución:**
+
 1. Verifica hex codes: #1E34A1, #010D3D, #ffffff
 2. En navegador: Right-click → Inspect → Elements
 3. Busca en <style> y actualiza colores
@@ -453,4 +472,3 @@ Una vez que tengas el HTML generado y validado:
 **Status:** ✅ Listo para usar  
 **Tiempo estimado:** 30-60 min (completo)  
 **Resultado:** Presentación HTML profesional, branded, responsive
-

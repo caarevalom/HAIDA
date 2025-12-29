@@ -1,14 +1,13 @@
 ╔══════════════════════════════════════════════════════════════════════════════╗
-║                                                                              ║
-║              ANÁLISIS ESTRATÉGICO - PROPUESTA PILOTO A MANAGER               ║
-║         Testing Automatizado con IA - Seguro y Corporativo-Compatible      ║
-║                                                                              ║
-║                    Fecha: 15/12/2025                                        ║
-║                    Autor: Carlos Arturo Arévalo M.                          ║
-║                    Estado: PILOTO FUNCIONAL                                 ║
-║                                                                              ║
+║ ║
+║ ANÁLISIS ESTRATÉGICO - PROPUESTA PILOTO A MANAGER ║
+║ Testing Automatizado con IA - Seguro y Corporativo-Compatible ║
+║ ║
+║ Fecha: 15/12/2025 ║
+║ Autor: Carlos Arturo Arévalo M. ║
+║ Estado: PILOTO FUNCIONAL ║
+║ ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
-
 
 ═══════════════════════════════════════════════════════════════════════════════
 OBJETIVO DE LA PROPUESTA
@@ -25,18 +24,18 @@ Implementar un **marco de testing automatizado con IA** que:
 
 **Alcance piloto:** qa-starter-kit (CTB VisitBarcelona)
 
+═══════════════════════════════════════════════════════════════════════════════
 
-═══════════════════════════════════════════════════════════════════════════════
 1. ESTADO ACTUAL (MVP FUNCIONAL)
-═══════════════════════════════════════════════════════════════════════════════
+   ═══════════════════════════════════════════════════════════════════════════════
 
 ✅ YA IMPLEMENTADO Y PROBADO:
 
 TESTING E2E & WEB
 ├─ Playwright (web E2E)
-│  ├─ Smoke tests: carga correcta, status HTTP, console errors
-│  ├─ Accessibility tests: WCAG 2A con axe-core
-│  └─ Link validation: navegación interna, 404s
+│ ├─ Smoke tests: carga correcta, status HTTP, console errors
+│ ├─ Accessibility tests: WCAG 2A con axe-core
+│ └─ Link validation: navegación interna, 404s
 ├─ Servidores testeados: localhost (mock) + externo (configurable)
 └─ Resultados: ✓ 15/15 tests pasados en localhost
 
@@ -76,9 +75,7 @@ DOCUMENTACIÓN
 ├─ Inicio rápido (LOCAL-TESTING-QUICK-START.md)
 └─ Checklist de contenido (PACKAGEMENT-CHECKLIST.md)
 
-
-═══════════════════════════════════════════════════════════════════════════════
-2. GAPS IDENTIFICADOS (PARA PROPUESTA COMPLETA)
+═══════════════════════════════════════════════════════════════════════════════ 2. GAPS IDENTIFICADOS (PARA PROPUESTA COMPLETA)
 ═══════════════════════════════════════════════════════════════════════════════
 
 FALTA PARA CUMPLIR ISTQB COMPLETO:
@@ -92,40 +89,40 @@ FALTA PARA CUMPLIR ISTQB COMPLETO:
 
 2. TRAZABILIDAD A REQUISITOS (MATRIZ ISTQB)
    ├─ Estado: NO EXISTE
-   ├─ Necesario: 
-   │  ├─ REQ-001, REQ-002... en documentación
-   │  ├─ Cada test etiquetado con @requisito, @riesgo, @modulo
-   │  ├─ Test Plan ISTQB formal (documento)
-   │  └─ Matriz de cobertura (requisitos vs tests)
+   ├─ Necesario:
+   │ ├─ REQ-001, REQ-002... en documentación
+   │ ├─ Cada test etiquetado con @requisito, @riesgo, @modulo
+   │ ├─ Test Plan ISTQB formal (documento)
+   │ └─ Matriz de cobertura (requisitos vs tests)
    ├─ Esfuerzo: BAJO-MEDIO (3-5 días)
    └─ Valor: CRÍTICO para propuesta a manager (trazabilidad)
 
 3. TRIGGERS POR CAMBIOS DE CÓDIGO
    ├─ Estado: NO IMPLEMENTADO
    ├─ Necesario:
-   │  ├─ CI/CD pipeline (GitHub Actions, GitLab CI o Jenkins)
-   │  ├─ Webhook por push/PR
-   │  ├─ Test suite automático al detectar cambio
-   │  └─ Notificación de resultados
+   │ ├─ CI/CD pipeline (GitHub Actions, GitLab CI o Jenkins)
+   │ ├─ Webhook por push/PR
+   │ ├─ Test suite automático al detectar cambio
+   │ └─ Notificación de resultados
    ├─ Esfuerzo: MEDIO (3-7 días)
    └─ Valor: CRÍTICO para automatización completa
 
 4. REPORTES PROGRAMADOS
    ├─ Estado: PARCIAL (manuales)
    ├─ Necesario:
-   │  ├─ Scheduler (cron en servidor, o cloud)
-   │  ├─ Ejecución a hora programada
-   │  ├─ Agregación de resultados históricos
-   │  └─ Gráficos de tendencias (pass/fail, coverage, etc)
+   │ ├─ Scheduler (cron en servidor, o cloud)
+   │ ├─ Ejecución a hora programada
+   │ ├─ Agregación de resultados históricos
+   │ └─ Gráficos de tendencias (pass/fail, coverage, etc)
    ├─ Esfuerzo: MEDIO (5-10 días)
    └─ Valor: KPI para manager (visibilidad)
 
 5. ANÁLISIS DE DOCUMENTACIÓN CON IA
    ├─ Estado: MANUAL
    ├─ Necesario:
-   │  ├─ Copilot/Claude para extraer requisitos
-   │  ├─ Generación automática de test plan
-   │  └─ Actualización incremental
+   │ ├─ Copilot/Claude para extraer requisitos
+   │ ├─ Generación automática de test plan
+   │ └─ Actualización incremental
    ├─ Esfuerzo: BAJO (requiere prompts + validación)
    └─ Valor: Acelera creación de casos de prueba
 
@@ -150,57 +147,55 @@ FALTA PARA CUMPLIR ISTQB COMPLETO:
 
 9. COMPATIBILITY TESTING
    ├─ Estado: PARCIAL (5 navegadores en Playwright)
-   ├─ Necesario: 
-   │  ├─ Más navegadores (Edge, Chrome viejo, Safari)
-   │  ├─ Dispositivos reales (opcional: BrowserStack)
+   ├─ Necesario:
+   │ ├─ Más navegadores (Edge, Chrome viejo, Safari)
+   │ ├─ Dispositivos reales (opcional: BrowserStack)
    ├─ Esfuerzo: BAJO (1-2 días)
    └─ Valor: Asegurar cobertura multiplataforma
 
-
-═══════════════════════════════════════════════════════════════════════════════
-3. PROPUESTA A MANAGER (ROADMAP)
+═══════════════════════════════════════════════════════════════════════════════ 3. PROPUESTA A MANAGER (ROADMAP)
 ═══════════════════════════════════════════════════════════════════════════════
 
 FASE 0: PILOTO ACTUAL (YA COMPLETADO) ✓
 ├─ Duración: Ya hecho
-├─ Entregables: 
-│  ├─ qa-starter-kit con E2E + API + Lighthouse + Allure
-│  ├─ Servidor mock local seguro
-│  ├─ Scripts automatizados
-│  └─ Documentación completa
+├─ Entregables:
+│ ├─ qa-starter-kit con E2E + API + Lighthouse + Allure
+│ ├─ Servidor mock local seguro
+│ ├─ Scripts automatizados
+│ └─ Documentación completa
 ├─ Métrica: 15/15 tests pasados, 0 falsos positivos
 └─ Objetivo: Demostrar viabilidad y seguridad
 
 FASE 1: TRAZABILIDAD ISTQB (PROPUESTA BASE)
 ├─ Duración: 2-3 semanas
 ├─ Entregables:
-│  ├─ Test Plan ISTQB formal
-│  ├─ Matriz de requisitos (REQ-###)
-│  ├─ Etiquetado de tests por tipo (@unit, @api, @e2e, @perf, etc)
-│  ├─ Unit tests básicos (Jest)
-│  └─ Documentación trazable
+│ ├─ Test Plan ISTQB formal
+│ ├─ Matriz de requisitos (REQ-###)
+│ ├─ Etiquetado de tests por tipo (@unit, @api, @e2e, @perf, etc)
+│ ├─ Unit tests básicos (Jest)
+│ └─ Documentación trazable
 ├─ Inversión: 1 QA + IA (Copilot)
 └─ ROI: Manager ve cobertura completa y trazabilidad
 
 FASE 2: CI/CD & TRIGGERS (AUTOMATIZACIÓN)
 ├─ Duración: 3-4 semanas
 ├─ Entregables:
-│  ├─ GitHub Actions workflow (o equivalente)
-│  ├─ Triggers por PR/push
-│  ├─ Test execution automática
-│  ├─ Reportes post-run
-│  └─ Notificaciones (Slack/Teams)
+│ ├─ GitHub Actions workflow (o equivalente)
+│ ├─ Triggers por PR/push
+│ ├─ Test execution automática
+│ ├─ Reportes post-run
+│ └─ Notificaciones (Slack/Teams)
 ├─ Inversión: 1 QA + DevOps (puede ser mismo equipo)
 └─ ROI: Testing sin intervención manual, detección temprana de issues
 
 FASE 3: REPORTERÍA & KPIs (VISIBILIDAD)
 ├─ Duración: 2-3 semanas
 ├─ Entregables:
-│  ├─ Scheduler para ejecuciones programadas
-│  ├─ Dashboard histórico (ReportPortal opcional)
-│  ├─ Gráficos: pass/fail ratio, coverage%, trends
-│  ├─ Alertas por degradación
-│  └─ Reportes ejecutivos para manager
+│ ├─ Scheduler para ejecuciones programadas
+│ ├─ Dashboard histórico (ReportPortal opcional)
+│ ├─ Gráficos: pass/fail ratio, coverage%, trends
+│ ├─ Alertas por degradación
+│ └─ Reportes ejecutivos para manager
 ├─ Inversión: 1 QA + analyst (opcional)
 └─ ROI: Visibilidad en tiempo real, métricas para decisiones
 
@@ -215,9 +210,7 @@ TIMELINE RECOMENDADO:
 ├─ Semanas 8-10: Fase 3 (VISIBILITY)
 └─ Semana 11+: Expansión
 
-
-═══════════════════════════════════════════════════════════════════════════════
-4. PROPUESTA ESCRITA A MANAGER (TEMPLATE)
+═══════════════════════════════════════════════════════════════════════════════ 4. PROPUESTA ESCRITA A MANAGER (TEMPLATE)
 ═══════════════════════════════════════════════════════════════════════════════
 
 TÍTULO:
@@ -235,6 +228,7 @@ que garantice:
 5. Seguridad corporativa garantizada (cero conexiones externas, auditable)
 
 CONTEXTO:
+
 - Piloto completado: qa-starter-kit con E2E, API, Lighthouse, Allure
 - 15/15 tests pasados, 0 riesgos de seguridad
 - Scripts portables, documentación, servidor local seguro
@@ -263,37 +257,33 @@ RIESCOS MITIGADOS:
 SIGUIENTE PASO:
 Aprobación de Fase 1 (Trazabilidad ISTQB)
 
-
-═══════════════════════════════════════════════════════════════════════════════
-5. MATRIZ ISTQB (TIPOS DE PRUEBAS - HOJA DE RUTA)
+═══════════════════════════════════════════════════════════════════════════════ 5. MATRIZ ISTQB (TIPOS DE PRUEBAS - HOJA DE RUTA)
 ═══════════════════════════════════════════════════════════════════════════════
 
-TIPO DE PRUEBA          ESTADO          HERRAMIENTA         ESFUERZO    FASE
+TIPO DE PRUEBA ESTADO HERRAMIENTA ESFUERZO FASE
 ─────────────────────────────────────────────────────────────────────────────
 
-Unit Tests             FALTA           Jest/pytest         BAJO        1
-Integration            FALTA           Jest/Supertest      MEDIO       2
-API/REST               ✓ LISTO         Newman              -           -
-System Testing         ✓ LISTO         Playwright          -           -
-E2E Web                ✓ LISTO         Playwright          -           -
-E2E Mobile             FALTA           Appium              ALTO        4
-Regression             ✓ LISTO         Playwright (@tag)   -           -
-Smoke                  ✓ LISTO         Playwright          -           -
-UAT                    PLANIFICADO     Manual + E2E        MEDIO       3
-Load/Stress            PARCIAL         k6                  BAJO        2
-Security (DAST)        FALTA           OWASP ZAP           BAJO        2
-Security (SAST)        FALTA           checksec            BAJO        2
-Performance            ✓ LISTO         Lighthouse          -           -
-Accessibility (WCAG)   ✓ LISTO         axe-core            -           -
-Data Quality           FALTA           Great Expectations  MEDIO       2
-Compatibility          PARCIAL         Playwright (5+)     BAJO        1
-Visual Regression      FALTA           Percy/Applitools    BAJO        3
-Contract (Pact)        FALTA           Pact                BAJO        3
+Unit Tests FALTA Jest/pytest BAJO 1
+Integration FALTA Jest/Supertest MEDIO 2
+API/REST ✓ LISTO Newman - -
+System Testing ✓ LISTO Playwright - -
+E2E Web ✓ LISTO Playwright - -
+E2E Mobile FALTA Appium ALTO 4
+Regression ✓ LISTO Playwright (@tag) - -
+Smoke ✓ LISTO Playwright - -
+UAT PLANIFICADO Manual + E2E MEDIO 3
+Load/Stress PARCIAL k6 BAJO 2
+Security (DAST) FALTA OWASP ZAP BAJO 2
+Security (SAST) FALTA checksec BAJO 2
+Performance ✓ LISTO Lighthouse - -
+Accessibility (WCAG) ✓ LISTO axe-core - -
+Data Quality FALTA Great Expectations MEDIO 2
+Compatibility PARCIAL Playwright (5+) BAJO 1
+Visual Regression FALTA Percy/Applitools BAJO 3
+Contract (Pact) FALTA Pact BAJO 3
 ─────────────────────────────────────────────────────────────────────────────
 
-
-═══════════════════════════════════════════════════════════════════════════════
-6. SEGURIDAD CORPORATIVA (DIFERENCIADOR)
+═══════════════════════════════════════════════════════════════════════════════ 6. SEGURIDAD CORPORATIVA (DIFERENCIADOR)
 ═══════════════════════════════════════════════════════════════════════════════
 
 ✅ PRINCIPIOS IMPLEMENTADOS:
@@ -316,9 +306,7 @@ Contract (Pact)        FALTA           Pact                BAJO        3
 5. PORTABLE
    └─ Node.js portable, scripts .ps1, .bat (sin instalación)
 
-
-═══════════════════════════════════════════════════════════════════════════════
-7. PRÓXIMOS PASOS (ACTIONABLE)
+═══════════════════════════════════════════════════════════════════════════════ 7. PRÓXIMOS PASOS (ACTIONABLE)
 ═══════════════════════════════════════════════════════════════════════════════
 
 PARA ENTREGA PILOTO A MANAGER:
@@ -338,7 +326,6 @@ PARA FASE 1 (INMEDIATAMENTE DESPUÉS):
 4. Crear matriz de cobertura (REQ vs tests)
 5. Implementar primeros Jest unit tests
 
-
 ═══════════════════════════════════════════════════════════════════════════════
 CONCLUSIÓN
 ═══════════════════════════════════════════════════════════════════════════════
@@ -349,6 +336,7 @@ CONCLUSIÓN
 ✅ Diferenciador: 100% corporativo-seguro + IA
 
 La clave para manager:
+
 - ROI en 2-3 meses
 - Trazabilidad regulatoria
 - Seguridad garantizada

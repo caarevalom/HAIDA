@@ -1,15 +1,16 @@
-
 # 🤖 HAIDA - IA-Driven QA Automation
 
 **Hiberus AI-Driven Automation (HAIDA)** - Solución completa de testing
 
 **Propuesta de valor**
+
 - Testing integral alineado a **ISTQB** sin necesidad de acceder al código fuente.
 - Web (E2E/UI), APIs, móvil (con Appium), performance, accesibilidad y seguridad.
 - Automatización reproducible desde CLI/CI, reportes trazables con **Allure**.
 - **Generador inteligente de test cases** (HAIDA) desde especificaciones funcionales.
 
 ## Stack usado (gratuito / open source)
+
 - **Playwright** (web E2E)
 - **Appium** (mobile real devices - iOS/Android)
 - **Postman + Newman** (API)
@@ -20,18 +21,22 @@
 - **HAIDA** (generador inteligente de test cases)
 
 ## Requisitos
+
 - Node.js 18+ (recomendado 20)
 - Navegadores de Playwright: `npx playwright install --with-deps`
 - (Opcional) Java 8+ si usas `allure-commandline` localmente
 - (Opcional) k6 instalado en el sistema: https://k6.io/docs/get-started/installation/
 
 ## Variables de entorno
+
 Crea `.env` a partir de `.env.example`:
+
 ```
 BASE_URL=https://example.com
 ```
 
 ## Comandos principales
+
 ```bash
 # Instalar dependencias
 npm ci
@@ -57,6 +62,7 @@ npm run allure:open
 ```
 
 ## Estructura
+
 ```
 qa-starter-kit/
   configs/
@@ -78,5 +84,6 @@ qa-starter-kit/
 ```
 
 ## Notas
+
 - **Mobile (Appium/Maestro)** no está incluido para mantener la simplicidad sin dependencias externas. Se puede añadir después según necesidad.
 - Los reportes HTML de Playwright y Allure quedan en `playwright-report/` y `reports/allure-report/`.

@@ -16,6 +16,7 @@ cd C:\Users\CarlosArturoArevaloM\Documents\Proyectos\HAIDA
 ```
 
 **Esto hace**:
+
 1. ✅ Configura variables de entorno
 2. ✅ Prueba conexión a Supabase
 3. ✅ Crea tablas en la base de datos
@@ -40,6 +41,7 @@ cd C:\Users\CarlosArturoArevaloM\Documents\Proyectos\HAIDA
 ```
 
 **Esto hace**:
+
 - Prueba conexión a Supabase
 - Crea todas las tablas (users, projects, test_suites, etc.)
 - Inserta datos de prueba
@@ -53,6 +55,7 @@ cd C:\Users\CarlosArturoArevaloM\Documents\Proyectos\HAIDA
 ```
 
 **Esto hace**:
+
 - Instala Vercel CLI
 - Configura autenticación
 - Vincula proyecto
@@ -204,6 +207,7 @@ npm install -g vercel
 ### Error: "Database connection failed"
 
 Verifica el password:
+
 ```powershell
 # Debe ser: Aupbag7. (con el punto al final)
 psql "postgresql://postgres:Aupbag7.@db.wdebyxvtunromsnkqbrd.supabase.co:5432/postgres"
@@ -283,6 +287,7 @@ cd C:\Users\CarlosArturoArevaloM\Documents\Proyectos\HAIDA
 ```
 
 Esto configurará AUTOMÁTICAMENTE:
+
 - ✅ Supabase (base de datos)
 - ✅ Vercel (deployment)
 - ✅ Variables de entorno

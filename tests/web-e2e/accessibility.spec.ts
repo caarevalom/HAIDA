@@ -1,4 +1,3 @@
-
 import { test, expect } from '@playwright/test';
 import axeSource from 'axe-core';
 
@@ -9,7 +8,7 @@ test('Accesibilidad básica (WCAG) en home', async ({ page, baseURL }) => {
 
   const results = await page.evaluate(async () => {
     return await (window as any).axe.run(document, {
-      runOnly: ['wcag2a', 'wcag2aa']
+      runOnly: ['wcag2a', 'wcag2aa'],
     });
   });
 
@@ -18,5 +17,8 @@ test('Accesibilidad básica (WCAG) en home', async ({ page, baseURL }) => {
     const report = violations.map((v: any) => `• ${v.id} (${v.impact}) — ${v.help}`).join('\n');
     test.info().annotations.push({ type: 'accessibility', description: report });
   }
-  expect(violations, `Violaciones encontradas: ${violations.map((v:any)=>v.id).join(', ')}`).toHaveLength(0);
+  expect(
+    violations,
+    `Violaciones encontradas: ${violations.map((v: any) => v.id).join(', ')}`
+  ).toHaveLength(0);
 });

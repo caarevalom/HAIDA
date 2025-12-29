@@ -90,19 +90,19 @@ Git Push → GitHub Actions Trigger
 
 ```yaml
 Services Running Locally:
-├─ Frontend (Next.js)         : http://localhost:3000
-├─ Backend API (FastAPI)      : http://localhost:3001
-├─ PostgreSQL                 : localhost:5432
-├─ Redis                      : localhost:6379
-├─ Changedetection.io         : http://localhost:5000
-├─ Selenium Hub               : http://localhost:4444
-└─ Allure Reports             : http://localhost:4040
+├─ Frontend (Next.js): http://localhost:3000
+├─ Backend API (FastAPI): http://localhost:3001
+├─ PostgreSQL: localhost:5432
+├─ Redis: localhost:6379
+├─ Changedetection.io: http://localhost:5000
+├─ Selenium Hub: http://localhost:4444
+└─ Allure Reports: http://localhost:4040
 
 Configuration:
-- docker-compose.yml (development)
-- Environment: .env file
-- Volumes: ./data (mounted locally)
-- Logs: ./logs (stored locally)
+  - docker-compose.yml (development)
+  - Environment: .env file
+  - Volumes: ./data (mounted locally)
+  - Logs: ./logs (stored locally)
 ```
 
 ### Production (Distributed)
@@ -211,6 +211,7 @@ Tests → Build → Deploy → Verify → Notify
 ```
 
 **What it does**:
+
 1. Checks all requirements
 2. Builds Docker images
 3. Runs tests
@@ -614,17 +615,20 @@ Solution:
 ## Getting Started
 
 1. **Initial Setup**
+
    ```bash
    ./init-devops.sh
    ```
 
 2. **Local Development**
+
    ```bash
    docker-compose up -d
    npm install && npm run dev
    ```
 
 3. **Push Changes**
+
    ```bash
    git add .
    git commit -m "Your changes"

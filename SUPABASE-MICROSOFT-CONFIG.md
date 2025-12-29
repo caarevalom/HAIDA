@@ -45,12 +45,14 @@ O si solo quieres tu organización:
 ```
 
 **IMPORTANTE:**
+
 - Si dejas el Tenant ID **vacío** o usas "common", permite cuentas personales Y organizacionales
 - Si pones tu Tenant ID específico, solo permite cuentas de tu organización
 
 ### 5. Configurar Scopes (Permisos)
 
 Supabase debería tener estos scopes por defecto:
+
 ```
 openid email profile
 ```
@@ -106,6 +108,7 @@ Callback: https://wdebyxvtunromsnkqbrd.supabase.co/auth/v1/callback
 ## ✨ Una vez configurado
 
 Los usuarios podrán:
+
 - Hacer click en "Sign in with Microsoft"
 - Ser redirigidos a Microsoft login
 - Autenticarse con credenciales Microsoft
@@ -117,13 +120,17 @@ Los usuarios podrán:
 ## 🐛 Troubleshooting
 
 ### Error: "redirect_uri_mismatch"
+
 - Verificar que la callback URL de Supabase esté en Azure → Redirect URIs
 
 ### Error: "invalid_client"
+
 - Verificar Client ID y Secret en Supabase
 
 ### Error: "unauthorized_client"
+
 - Hacer "Grant admin consent" en Azure → API permissions
 
 ### Error: "AADSTS700016"
+
 - Verificar que la app esté disponible en el tenant correcto

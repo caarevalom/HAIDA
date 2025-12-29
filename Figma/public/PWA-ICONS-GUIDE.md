@@ -6,41 +6,45 @@ To enable full PWA functionality and install-to-desktop capability, create the f
 
 ### Icon Sizes Needed
 
-| Filename | Size | Purpose |
-|----------|------|---------|
-| `icon-16x16.png` | 16x16px | Browser favicon |
-| `icon-32x32.png` | 32x32px | Browser favicon |
-| `icon-72x72.png` | 72x72px | Android small icon |
-| `icon-96x96.png` | 96x96px | Android medium icon, Shortcuts |
-| `icon-128x128.png` | 128x128px | Android large icon |
-| `icon-144x144.png` | 144x144px | Windows tile |
-| `icon-152x152.png` | 152x152px | iOS app icon |
-| `icon-180x180.png` | 180x180px | iOS app icon |
-| `icon-192x192.png` | 192x192px | Android large icon, maskable |
-| `icon-384x384.png` | 384x384px | Android XL icon |
+| Filename           | Size      | Purpose                            |
+| ------------------ | --------- | ---------------------------------- |
+| `icon-16x16.png`   | 16x16px   | Browser favicon                    |
+| `icon-32x32.png`   | 32x32px   | Browser favicon                    |
+| `icon-72x72.png`   | 72x72px   | Android small icon                 |
+| `icon-96x96.png`   | 96x96px   | Android medium icon, Shortcuts     |
+| `icon-128x128.png` | 128x128px | Android large icon                 |
+| `icon-144x144.png` | 144x144px | Windows tile                       |
+| `icon-152x152.png` | 152x152px | iOS app icon                       |
+| `icon-180x180.png` | 180x180px | iOS app icon                       |
+| `icon-192x192.png` | 192x192px | Android large icon, maskable       |
+| `icon-384x384.png` | 384x384px | Android XL icon                    |
 | `icon-512x512.png` | 512x512px | Android XXL icon, splash, maskable |
 
 ### Screenshots (Optional but Recommended)
 
-| Filename | Size | Purpose |
-|----------|------|---------|
+| Filename                 | Size        | Purpose         |
+| ------------------------ | ----------- | --------------- |
 | `screenshot-desktop.png` | 1920x1080px | Desktop preview |
-| `screenshot-mobile.png` | 750x1334px | Mobile preview |
+| `screenshot-mobile.png`  | 750x1334px  | Mobile preview  |
 
 ## Design Guidelines
 
 ### Safe Zone for Maskable Icons
+
 For `icon-192x192.png` and `icon-512x512.png`:
+
 - Icon content should fit within 80% of canvas (safe zone)
 - 10% padding on all sides
 - Background should extend to edges
 
 ### Colors
+
 - Use HAIDA brand colors
 - Ensure contrast for visibility on different backgrounds
 - Consider dark mode (icon-512x512.png visible on dark backgrounds)
 
 ### Format
+
 - **Format**: PNG with transparency
 - **Color depth**: 32-bit (RGBA)
 - **Compression**: Optimized for web
@@ -110,11 +114,13 @@ magick -size 512x512 xc:black \
 After adding icons:
 
 1. **Check manifest.json**:
+
    ```bash
    curl https://haida-frontend.vercel.app/manifest.json
    ```
 
 2. **Lighthouse PWA Audit**:
+
    ```bash
    npx lighthouse https://haida-frontend.vercel.app --only-categories=pwa
    ```
@@ -132,6 +138,7 @@ After adding icons:
 ## Expected Result
 
 Once icons are in place:
+
 - ✅ Browsers show install prompt
 - ✅ App can be installed to desktop/home screen
 - ✅ App opens in standalone window (no browser UI)

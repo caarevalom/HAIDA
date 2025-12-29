@@ -9,6 +9,7 @@ All Supabase and Vercel credentials have been configured for HAIDA.
 ## 📊 SUPABASE CONFIGURATION
 
 ### Project Details
+
 ```
 Project Name: HAIDA
 Project ID: wdebyxvtunromsnkqbrd
@@ -16,6 +17,7 @@ Project URL: https://wdebyxvtunromsnkqbrd.supabase.co
 ```
 
 ### Database Connection
+
 ```
 Host: db.wdebyxvtunromsnkqbrd.supabase.co
 Port: 5432
@@ -25,6 +27,7 @@ Password: Aupbag7.
 ```
 
 ### Connection String
+
 ```
 postgresql://postgres:Aupbag7.@db.wdebyxvtunromsnkqbrd.supabase.co:5432/postgres
 ```
@@ -32,12 +35,14 @@ postgresql://postgres:Aupbag7.@db.wdebyxvtunromsnkqbrd.supabase.co:5432/postgres
 ### API Keys
 
 **Public Keys** (safe for client-side):
+
 ```
 SUPABASE_URL=https://wdebyxvtunromsnkqbrd.supabase.co
 SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndkZWJ5eHZ0dW5yb21zbmtxYnJkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU4OTU3NTEsImV4cCI6MjA4MTQ3MTc1MX0._VYypgb2tV9u_4jSAt3sbcFj-drhufB0oN9o3BcgHTs
 ```
 
 **Private Keys** (server-side only):
+
 ```
 SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndkZWJ5eHZ0dW5yb21zbmtxYnJkIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2NTg5NTc1MSwiZXhwIjoyMDgxNDcxNzUxfQ.Jg6UBGpYDBBKvB4pgaKW_OJCTx0VOm9UMI18vqdUEJc
 ```
@@ -47,18 +52,21 @@ SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhY
 ## 🌐 VERCEL CONFIGURATION
 
 ### Account Details
+
 ```
 User ID: w9ITuSz5cmhTvpQIafRHh8mS
 Org ID: w9ITuSz5cmhTvpQIafRHh8mS
 ```
 
 ### Tokens
+
 ```
 HAIDA Token: RsMSKpDF84aOXNaTCwCEanBi
 Account Token: lpTPNhJff0QxtVsD4e3Qhhgt
 ```
 
 ### AI Gateway
+
 ```
 AI_GATEWAY_API_KEY=vck_0H2zUd4C0R7NYuCN4Cq3xWcLW85uCox4uj5rm410I10DAOzjiD1VV9mb
 ```
@@ -236,6 +244,7 @@ Complete environment configuration with all credentials.
 ### `vercel.json`
 
 Deployment configuration:
+
 - Build settings
 - Routes configuration
 - Environment variable references
@@ -244,6 +253,7 @@ Deployment configuration:
 ### `.vercelignore`
 
 Files excluded from deployment:
+
 - node_modules
 - test results
 - local env files
@@ -309,6 +319,7 @@ npm test
 ## 🔐 SECURITY BEST PRACTICES
 
 ### ✅ DO:
+
 - Use environment variables for all secrets
 - Keep `.env.production` in `.gitignore`
 - Use SUPABASE_SERVICE_ROLE_KEY only on server-side
@@ -316,6 +327,7 @@ npm test
 - Use SSL connections for database
 
 ### ❌ DON'T:
+
 - Commit credentials to git
 - Expose SERVICE_ROLE_KEY to client
 - Use same credentials across environments
@@ -451,15 +463,18 @@ git push origin deploy/production
 ## 📞 SUPPORT
 
 ### Documentation
+
 - Supabase Docs: https://supabase.com/docs
 - Vercel Docs: https://vercel.com/docs
 - HAIDA Docs: See `README.md`
 
 ### Dashboards
+
 - Supabase: https://app.supabase.com/
 - Vercel: https://vercel.com/dashboard
 
 ### Contact
+
 - Email: caarevalo@hiberus.com
 - Project: HAIDA QA Automation
 

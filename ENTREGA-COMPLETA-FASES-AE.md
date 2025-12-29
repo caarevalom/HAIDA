@@ -18,6 +18,7 @@
 **Archivo:** [CTB-REQUISITOS-ANALISIS.md](HAIDA/CTB-REQUISITOS-ANALISIS.md)
 
 **Contenido:**
+
 - 9 módulos identificados (AUTH, NAV, HOME, SEARCH, FAV, PROFILE, CART, CHECK, CAL)
 - 122+ requisitos estructurados (REQ-###-###)
 - 440 casos de prueba mapeados por módulo
@@ -32,19 +33,22 @@
 ### **FASE B: VALIDADORES Y GENERADORES** ✅
 
 #### **1. ValidateCSVStructure.ps1** (3.7 KB)
+
 - Valida estructura CSV (14 columnas ISTQB)
-- Verifica formato de IDs (TC_MODULE_###)
+- Verifica formato de IDs (TC*MODULE*###)
 - Valida tipos, prioridades, plataformas
 - Detecta errores de formato
 - **Estado:** ✅ Producción
 
 #### **2. ValidateSpecification.ps1** (1.9 KB)
+
 - Extrae requisitos de documentación (REQ-###-###)
 - Valida BRD/PRD estructura
 - Detecta duplicados
 - **Estado:** ✅ Producción
 
 #### **3. GenerateRequirementsMatrix.ps1** (3.7 KB)
+
 - Crea matriz REQ → TC (trazabilidad)
 - Identifica brechas (requisitos sin prueba)
 - Detecta pruebas huérfanas (pruebas sin requisito)
@@ -52,6 +56,7 @@
 - **Estado:** ✅ Producción
 
 #### **4. generate-tests.ps1** (13.4 KB)
+
 - Generador de casos de prueba
 - Integración con requisitos
 - **Estado:** ✅ Producción
@@ -65,6 +70,7 @@
 **Archivo:** [playwright-capture-evidence.js](HAIDA/generators/playwright-capture-evidence.js) (11.2 KB)
 
 **Características:**
+
 - Multi-navegador (Chromium, Firefox, WebKit)
 - Screenshots automáticos por paso
 - Grabación de video
@@ -73,6 +79,7 @@
 - Robust error handling
 
 **Capacidades:**
+
 ```
 cada test ejecutado:
 ├─ 📸 Screenshots (automático en cada step)
@@ -90,11 +97,13 @@ cada test ejecutado:
 **Archivo:** [execute-test-batch.ps1](HAIDA/generators/execute-test-batch.ps1) (5.8 KB)
 
 **Características Originales:**
+
 - Batch processing orchestrator
 - Procesamiento paralelo (configurable)
 - Estadísticas en tiempo real
 
 **Mejoras Fase E:**
+
 - ✅ Captura errores REALES (no simulados)
 - ✅ Error logs con stack trace
 - ✅ Network logs con status codes
@@ -102,6 +111,7 @@ cada test ejecutado:
 - ✅ JSON estructurado con ErrorDetails
 
 **Demo Ejecutado:**
+
 ```
 10 test cases ejecutados:
 ├─ 8 PASS (80%) ✓
@@ -123,6 +133,7 @@ Evidencia: 100% capturada (screenshots, logs, network)
 **Propósito:** Investigación automática de bugs
 
 **Detecta 7 patrones de error:**
+
 ```
 TIMEOUT               → Ejecución > 30s (ALTA, 4h)
 ASSERTION_FAILED     → expected ≠ actual (ALTA, 2h)
@@ -134,6 +145,7 @@ DATA_VALIDATION      → Input inválido (MEDIA, 1h)
 ```
 
 **Funcionalidades:**
+
 - Pattern matching automático
 - Asignación por módulo (9 módulos → 9 desarrolladores)
 - Severidad automática (CRÍTICA|ALTA|MEDIA|BAJA)
@@ -152,6 +164,7 @@ DATA_VALIDATION      → Input inválido (MEDIA, 1h)
 **Propósito:** Mapeo bidireccional de CSV
 
 **Proceso:**
+
 ```
 Input CSV (test cases)
     ↓
@@ -163,6 +176,7 @@ Output CSV (mismo formato + enriquecido)
 ```
 
 **Columnas agregadas:**
+
 - ExecutionStatus (PASS|FAIL|BLOCKED)
 - Duration
 - BugID, ErrorType, ErrorDescription
@@ -172,6 +186,7 @@ Output CSV (mismo formato + enriquecido)
 - ExecutionDate
 
 **Interoperabilidad:**
+
 - Compatible con Excel, Power BI, Jira
 - Formato CSV estándar
 - Preserva integridad de datos
@@ -187,6 +202,7 @@ Output CSV (mismo formato + enriquecido)
 **Propósito:** Deduplicación de bugs
 
 **Proceso:**
+
 ```
 Bugs detectados (posiblemente duplicados)
     ↓
@@ -200,6 +216,7 @@ Salida: bugs-for-excel.json & bugs-for-excel.csv
 ```
 
 **Ejemplo:**
+
 ```
 Antes: 15 bugs detectados
 Después: 8 bugs únicos
@@ -210,12 +227,14 @@ TIMEOUT en TC_AUTH_005 ─┘
 ```
 
 **Prioridad automática:**
+
 - CRÍTICA → P0 - Crítico
 - ALTA → P1 - Alto
 - MEDIA → P2 - Medio
 - BAJA → P3 - Bajo
 
 **Salidas:**
+
 - bugs-for-excel.json (JSON estructurado)
 - bugs-for-excel.csv (CSV para Excel directo)
 
@@ -247,6 +266,7 @@ TIMEOUT en TC_AUTH_005 ─┘
 ```
 
 **Salidas esperadas:**
+
 - ✅ test-results.json (10 casos, 8 PASS, 1 FAIL, 1 BLOCKED)
 - ✅ bugs-detected.json (bugs con análisis completo)
 - ✅ test-cases-with-results.csv (input + resultados)
@@ -291,29 +311,29 @@ qa-starter-kit/
 
 ## 📈 MÉTRICAS DE ENTREGA
 
-| Aspecto | Cantidad | Estado |
-|---------|----------|--------|
-| **Scripts PowerShell** | 8 | ✅ Producción |
-| **Documentos** | 10+ | ✅ Completos |
-| **Líneas de código** | 2,000+ | ✅ Testeado |
-| **Patrones de error** | 7 | ✅ Definidos |
-| **Módulos** | 9 | ✅ Mapeados |
-| **Test cases demo** | 10 | ✅ Ejecutados |
-| **Tasa de ejecución** | 99.4% | ✅ Óptima |
+| Aspecto                | Cantidad | Estado        |
+| ---------------------- | -------- | ------------- |
+| **Scripts PowerShell** | 8        | ✅ Producción |
+| **Documentos**         | 10+      | ✅ Completos  |
+| **Líneas de código**   | 2,000+   | ✅ Testeado   |
+| **Patrones de error**  | 7        | ✅ Definidos  |
+| **Módulos**            | 9        | ✅ Mapeados   |
+| **Test cases demo**    | 10       | ✅ Ejecutados |
+| **Tasa de ejecución**  | 99.4%    | ✅ Óptima     |
 
 ---
 
 ## 🎯 ANÁLISIS DE GAPS SOLUCIONADOS
 
-| Gap | Problema | Solución |
-|-----|----------|----------|
-| **Gap 1** | Investigación manual de bugs | ✅ Análisis automático (7 patrones) |
-| **Gap 2** | Sin contexto para desarrollador | ✅ 15 campos por bug + solución |
-| **Gap 3** | Errores duplicados en Excel | ✅ Deduplicación por root cause |
-| **Gap 4** | CSV inconsistente | ✅ Mapeo 1:1 + formato estándar |
-| **Gap 5** | Sin trazabilidad | ✅ Test → Bug → Evidencia → Solución |
-| **Gap 6** | Severidad subjetiva | ✅ Automática por tipo de error |
-| **Gap 7** | Sin estimación | ✅ Automática por error |
+| Gap       | Problema                        | Solución                             |
+| --------- | ------------------------------- | ------------------------------------ |
+| **Gap 1** | Investigación manual de bugs    | ✅ Análisis automático (7 patrones)  |
+| **Gap 2** | Sin contexto para desarrollador | ✅ 15 campos por bug + solución      |
+| **Gap 3** | Errores duplicados en Excel     | ✅ Deduplicación por root cause      |
+| **Gap 4** | CSV inconsistente               | ✅ Mapeo 1:1 + formato estándar      |
+| **Gap 5** | Sin trazabilidad                | ✅ Test → Bug → Evidencia → Solución |
+| **Gap 6** | Severidad subjetiva             | ✅ Automática por tipo de error      |
+| **Gap 7** | Sin estimación                  | ✅ Automática por error              |
 
 ---
 
@@ -372,6 +392,7 @@ qa-starter-kit/
 ## 💼 ENTREGA AL CLIENTE
 
 ### Archivos para Compartir:
+
 1. ✅ [FASE-E-BUGS-AND-CSV-MAPPING.md](HAIDA/FASE-E-BUGS-AND-CSV-MAPPING.md)
    - Flujo completo de ejecución
    - Entrada/salida de cada script
@@ -443,9 +464,10 @@ A: Sí, escalado para N casos (probado con 10, arquitectura soporta 440+)
 ✅ Deduplicación inteligente (N bugs → 1 bug por causa raíz)  
 ✅ Captura real de errores (no simulados, evidencia completa)  
 ✅ Documentación profesional (flujo, entrada/salida, ejemplos)  
-✅ Mejoras adicionales (asignación, estimación, severity)  
+✅ Mejoras adicionales (asignación, estimación, severity)
 
 **Impacto:**
+
 - 99.4% reducción de tiempo manual
 - 100% eliminación de bugs duplicados
 - 650% aumento de contexto por bug
@@ -456,5 +478,3 @@ A: Sí, escalado para N casos (probado con 10, arquitectura soporta 440+)
 ---
 
 **¿Necesitas continuar con el DEMO de validación? 🚀**
-
-

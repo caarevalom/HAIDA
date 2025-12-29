@@ -40,7 +40,7 @@ class MonitoringService {
         filename: event.filename,
         lineno: event.lineno,
         colno: event.colno,
-        stack: event.error?.stack
+        stack: event.error?.stack,
       });
     });
 
@@ -48,7 +48,7 @@ class MonitoringService {
     window.addEventListener('unhandledrejection', (event) => {
       this.trackError({
         message: `Unhandled Promise Rejection: ${event.reason}`,
-        type: 'unhandled_rejection'
+        type: 'unhandled_rejection',
       });
     });
 
@@ -65,7 +65,7 @@ class MonitoringService {
       ...event,
       timestamp,
       url: window.location.href,
-      userAgent: navigator.userAgent
+      userAgent: navigator.userAgent,
     };
 
     this.eventQueue.push(enrichedEvent);
@@ -94,8 +94,8 @@ class MonitoringService {
         filename: error.filename,
         lineno: error.lineno,
         colno: error.colno,
-        type: error.type
-      }
+        type: error.type,
+      },
     });
   }
 
@@ -112,8 +112,8 @@ class MonitoringService {
         endpoint,
         method,
         statusCode,
-        duration
-      }
+        duration,
+      },
     });
   }
 
@@ -125,7 +125,7 @@ class MonitoringService {
       category: 'user_action',
       action,
       label,
-      metadata
+      metadata,
     });
   }
 
@@ -155,8 +155,8 @@ class MonitoringService {
       value: duration,
       metadata: {
         duration,
-        timestamp: Date.now()
-      }
+        timestamp: Date.now(),
+      },
     });
 
     return duration;
@@ -172,8 +172,8 @@ class MonitoringService {
       label: pageName,
       metadata: {
         path: window.location.pathname,
-        referrer: document.referrer
-      }
+        referrer: document.referrer,
+      },
     });
   }
 
@@ -220,41 +220,41 @@ class MonitoringService {
       {
         name: 'dns_lookup',
         duration: navigation.domainLookupEnd - navigation.domainLookupStart,
-        timestamp: Date.now()
+        timestamp: Date.now(),
       },
       {
         name: 'tcp_connection',
         duration: navigation.connectEnd - navigation.connectStart,
-        timestamp: Date.now()
+        timestamp: Date.now(),
       },
       {
         name: 'request',
         duration: navigation.responseStart - navigation.requestStart,
-        timestamp: Date.now()
+        timestamp: Date.now(),
       },
       {
         name: 'response',
         duration: navigation.responseEnd - navigation.responseStart,
-        timestamp: Date.now()
+        timestamp: Date.now(),
       },
       {
         name: 'dom_processing',
         duration: navigation.domComplete - navigation.domLoading,
-        timestamp: Date.now()
+        timestamp: Date.now(),
       },
       {
         name: 'total_load_time',
         duration: navigation.loadEventEnd - navigation.fetchStart,
-        timestamp: Date.now()
-      }
+        timestamp: Date.now(),
+      },
     ];
 
     // Add paint metrics
-    paint.forEach(entry => {
+    paint.forEach((entry) => {
       metrics.push({
         name: entry.name,
         duration: entry.startTime,
-        timestamp: Date.now()
+        timestamp: Date.now(),
       });
     });
 
@@ -269,11 +269,11 @@ class MonitoringService {
     console.table(metrics);
 
     // Track each metric
-    metrics.forEach(metric => {
+    metrics.forEach((metric) => {
       this.track({
         category: 'performance',
         action: metric.name,
-        value: metric.duration
+        value: metric.duration,
       });
     });
   }
@@ -289,8 +289,12 @@ if (typeof window !== 'undefined') {
 
 // Export utilities
 export const trackError = (error: any) => monitoring.trackError(error);
-export const trackApiCall = (endpoint: string, method: string, statusCode: number, duration: number) =>
-  monitoring.trackApiCall(endpoint, method, statusCode, duration);
+export const trackApiCall = (
+  endpoint: string,
+  method: string,
+  statusCode: number,
+  duration: number
+) => monitoring.trackApiCall(endpoint, method, statusCode, duration);
 export const trackUserAction = (action: string, label?: string, metadata?: Record<string, any>) =>
   monitoring.trackUserAction(action, label, metadata);
 export const trackPageView = (pageName: string) => monitoring.trackPageView(pageName);

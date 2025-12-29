@@ -1,4 +1,5 @@
 # 📌 ACCIÓN INMEDIATA - PRÓXIMOS PASOS HAIDA
+
 ## Plan de Ejecución para las Próximas 2 Semanas
 
 **Documento:** Immediate Action Items  
@@ -25,11 +26,13 @@ Día 8-14: PREP (preparar para refactor)
 ### TIER 1: CRÍTICO (Fazer esta semana)
 
 #### ✅ Tarea 1.1: Crear Directory v2.0 Skeleton
+
 **Duración:** 2 horas  
 **Responsable:** [DevOps/Lead]  
 **Status:** READY
 
 **Pasos:**
+
 ```bash
 # 1. Crear estructura v2.0
 mkdir -p /versions/v2.0
@@ -52,12 +55,14 @@ ln -s /versions/v2.0 /versions/latest
 ```
 
 **Entregable:**
+
 - [ ] `/versions/v2.0/` estructura completa
 - [ ] Archivos copiados sin duplicación
 - [ ] Symlink /versions/latest funcional
 - [ ] README básico en /versions/v2.0/
 
 **Validación:**
+
 ```bash
 ls -la /versions/v2.0/
 # Debe mostrar: src/ docker/ docs/ tools/ README.md
@@ -66,12 +71,14 @@ ls -la /versions/v2.0/
 ---
 
 #### ✅ Tarea 1.2: Limpiar Documentación (Eliminar 40+ docs basura)
+
 **Duración:** 3 horas  
 **Responsable:** [Documentation/Lead]  
 **Status:** READY
 
 **Qué Eliminar:**
 Todos estos archivos pertenecen a otros proyectos (CTB, etc):
+
 ```
 ❌ ANALISIS-MEJORA-INCIDENCIAS-CSV.md
 ❌ ANALISIS-PROYECTO-CTB.md
@@ -111,6 +118,7 @@ Todos estos archivos pertenecen a otros proyectos (CTB, etc):
 ```
 
 **Pasos:**
+
 ```bash
 # 1. Crear backup de todos (por si acaso)
 mkdir -p /versions/v1.0/ARCHIVED_OTHER_PROJECTS
@@ -126,6 +134,7 @@ echo "Eliminados: 40+ archivos de proyectos anteriores" >> /HAIDA/CLEANUP-LOG.md
 ```
 
 **Entregable:**
+
 - [ ] 40+ archivos removidos a backup
 - [ ] `/HAIDA/` ahora solo contiene HAIDA files
 - [ ] CLEANUP-LOG.md creado
@@ -134,11 +143,13 @@ echo "Eliminados: 40+ archivos de proyectos anteriores" >> /HAIDA/CLEANUP-LOG.md
 ---
 
 #### ✅ Tarea 1.3: Consolidar Documentación Duplicada
+
 **Duración:** 4 horas  
 **Responsable:** [Documentation]  
 **Status:** READY
 
 **Problema Actual:**
+
 ```
 /HAIDA/START-HERE.md (X versión)
 /HAIDA/haida/START-HERE.md (Y versión - posiblemente diferente)
@@ -151,6 +162,7 @@ echo "Eliminados: 40+ archivos de proyectos anteriores" >> /HAIDA/CLEANUP-LOG.md
 ```
 
 **Solución:**
+
 ```bash
 # 1. Leer ambas versiones y elegir la mejor
 # 2. Guardar la elegida en /versions/v2.0/docs/
@@ -165,6 +177,7 @@ echo "START-HERE.md is now a symlink to v2.0/docs/01-QUICKSTART.md" >> README.md
 ```
 
 **Entregable:**
+
 - [ ] Una copia elegida de cada doc duplicado
 - [ ] Symlinks creados en /HAIDA/
 - [ ] Documentación clara sobre cambio
@@ -175,25 +188,30 @@ echo "START-HERE.md is now a symlink to v2.0/docs/01-QUICKSTART.md" >> README.md
 ### TIER 2: ALTO (Esta semana si es posible)
 
 #### ✅ Tarea 2.1: Crear Documento de Decisiones Arquitectónicas
+
 **Duración:** 3 horas  
 **Responsable:** [Tech Lead]  
 **Status:** READY
 
 **Qué Documentar:**
+
 ```markdown
 # ADR (Architecture Decision Records)
 
 ## ADR-001: JWT para Autenticación
+
 **Decisión:** Usar JWT tokens en lugar de sessions
 **Razón:** Stateless, escalable, compatible con microservicios
 **Alternativas Consideradas:** Sessions, OAuth2 (futuro)
 
 ## ADR-002: PostgreSQL para Persistencia
+
 **Decisión:** PostgreSQL en lugar de file I/O
 **Razón:** ACID guarantees, querying, escalabilidad
 **Alternativas Consideradas:** MongoDB (descartado - queremos relacional)
 
 ## ADR-003: Winston para Logging
+
 **Decisión:** Winston en lugar de console.log
 **Razón:** Log rotation, niveles, structured logging
 **Alternativas Consideradas:** Pino (similar, elegimos Winston por ecosystem)
@@ -202,6 +220,7 @@ echo "START-HERE.md is now a symlink to v2.0/docs/01-QUICKSTART.md" >> README.md
 ```
 
 **Entregable:**
+
 - [ ] ADR.md en /versions/v2.0/docs/
 - [ ] 5-10 decisiones documentadas
 - [ ] Razones claras para cada una
@@ -209,11 +228,13 @@ echo "START-HERE.md is now a symlink to v2.0/docs/01-QUICKSTART.md" >> README.md
 ---
 
 #### ✅ Tarea 2.2: Setup Database Schema Design
+
 **Duración:** 4 horas  
 **Responsable:** [Database/Backend]  
 **Status:** READY
 
 **Qué Crear:**
+
 ```sql
 -- /versions/v2.0/database/schema.sql
 -- Documento completo con:
@@ -224,6 +245,7 @@ echo "START-HERE.md is now a symlink to v2.0/docs/01-QUICKSTART.md" >> README.md
 ```
 
 **Validación:**
+
 ```bash
 # Debe power ser ejecutado sin errores
 psql -U postgres -f /versions/v2.0/database/schema.sql
@@ -231,6 +253,7 @@ psql -U postgres -f /versions/v2.0/database/schema.sql
 ```
 
 **Entregable:**
+
 - [ ] schema.sql completamente documentado
 - [ ] ERD diagram (texto o PNG)
 - [ ] Índices para queries comunes
@@ -239,6 +262,7 @@ psql -U postgres -f /versions/v2.0/database/schema.sql
 ---
 
 #### ✅ Tarea 2.3: Crear Plantilla package.json v2.0
+
 **Duración:** 2 horas  
 **Responsable:** [Backend]  
 **Status:** READY
@@ -293,6 +317,7 @@ psql -U postgres -f /versions/v2.0/database/schema.sql
 ```
 
 **Entregable:**
+
 - [ ] package.json copiado a /versions/v2.0/
 - [ ] Todas las dependencies necesarias listadas
 - [ ] Scripts para desarrollo y testing
@@ -303,10 +328,12 @@ psql -U postgres -f /versions/v2.0/database/schema.sql
 ## 📅 SEMANA 2: PLANNING & DESIGN
 
 ### Tarea 3: Crear API Specification Document
+
 **Duración:** 6 horas  
 **Responsable:** [Tech Lead]
 
 **Documento debe incluir:**
+
 ```
 1. API Base URL y versionamiento
 2. Endpoints completos:
@@ -322,6 +349,7 @@ psql -U postgres -f /versions/v2.0/database/schema.sql
 ```
 
 **Entregable:**
+
 - [ ] /versions/v2.0/docs/05-API-REFERENCE.md (10+ páginas)
 - [ ] Ejemplos curl para cada endpoint
 - [ ] Response codes documentados
@@ -329,10 +357,12 @@ psql -U postgres -f /versions/v2.0/database/schema.sql
 ---
 
 ### Tarea 4: Crear Roadmap Detallado v2.0
+
 **Duración:** 4 horas  
 **Responsable:** [Product/PM]
 
 **Qué incluir:**
+
 ```
 Phase 1: Weeks 1-2 (Architecture)
   - Week 1, Day 1-3: Cleanup + setup
@@ -350,6 +380,7 @@ Gantt chart con milestones
 ```
 
 **Entregable:**
+
 - [ ] ROADMAP-v2.0.md con timeline completo
 - [ ] Milestones y dependencies claros
 - [ ] Gantt chart (formato text o image)
@@ -357,10 +388,12 @@ Gantt chart con milestones
 ---
 
 ### Tarea 5: Comunicar a Stakeholders
+
 **Duración:** 2 horas  
 **Responsable:** [PM/Manager]
 
 **Qué Comunicar:**
+
 ```
 Memorándum a Stakeholders:
 
@@ -368,7 +401,7 @@ HAIDA v1.0 → v2.0 MIGRATION PLAN
 
 Problema: v1.0 está fragmentado, incompleto, no-production-ready
 Solución: Consolidar a v2.0 professional-grade en 8-10 semanas
-Timeline: 
+Timeline:
   - Fase 1 (Weeks 1-2): Planning ✅ (THIS WEEK)
   - Fase 2 (Weeks 3-4): Code Refactor
   - Fase 3 (Weeks 5-6): Feature Implementation
@@ -392,6 +425,7 @@ Presupuesto: [Estimado basado en días-hombre]
 ```
 
 **Entregable:**
+
 - [ ] Memorándum enviado a stakeholders
 - [ ] Aprobación de timeline y recursos
 - [ ] Confirmación de commitment
@@ -401,18 +435,21 @@ Presupuesto: [Estimado basado en días-hombre]
 ## ✅ CHECKLIST DE COMPLETITUD (Semana 1-2)
 
 ### Día 1-3 (CLEANUP)
+
 - [ ] v2.0 directory structure created
 - [ ] 40+ docs basura removidos
 - [ ] Docs duplicadas consolidadas
 - [ ] CLEANUP-LOG.md creado
 
 ### Día 4-7 (DOCUMENTATION)
+
 - [ ] ADR.md creado (5-10 decisiones)
 - [ ] Database schema designed
 - [ ] package.json template creado
 - [ ] API specification started
 
 ### Día 8-14 (PLANNING)
+
 - [ ] API spec completado
 - [ ] Roadmap detallado con timeline
 - [ ] Stakeholders notificados y aprobación obtenida
@@ -423,26 +460,22 @@ Presupuesto: [Estimado basado en días-hombre]
 ## 🎯 WHAT TO DO RIGHT NOW (HICIERA MISMO)
 
 **Si tienes 15 minutos:**
+
 1. Lee este documento de principio a fin
 2. Entiende el scope: v1.0 → v2.0 migration
 
-**Si tienes 1 hora:**
-3. Crea el directorio `/versions/v2.0/` con estructura básica
-4. Lee los documentos de AUDIT-REPORT y MIGRACION-STRATEGY
+**Si tienes 1 hora:** 3. Crea el directorio `/versions/v2.0/` con estructura básica 4. Lee los documentos de AUDIT-REPORT y MIGRACION-STRATEGY
 
-**Si tienes 2 horas:**
-5. Inicia Tarea 1.2 (limpiar documentación basura)
-6. Crea CLEANUP-LOG.md tracking qué se eliminó
+**Si tienes 2 horas:** 5. Inicia Tarea 1.2 (limpiar documentación basura) 6. Crea CLEANUP-LOG.md tracking qué se eliminó
 
-**Si tienes 4+ horas:**
-7. Completa Tarea 1.1, 1.2, 1.3 (structure, cleanup, consolidation)
-8. Eres ready para Semana 2
+**Si tienes 4+ horas:** 7. Completa Tarea 1.1, 1.2, 1.3 (structure, cleanup, consolidation) 8. Eres ready para Semana 2
 
 ---
 
 ## 📞 SOPORTE & PREGUNTAS
 
 Si tienes preguntas sobre:
+
 - **Arquitectura:** Ver MIGRACION-v1-to-v2-STRATEGY.md
 - **Issues específicos:** Ver AUDIT-REPORT-v1-COMPREHENSIVE.md
 - **Timeline detallado:** Ver este documento (ACCION-INMEDIATA.md)
@@ -452,6 +485,7 @@ Si tienes preguntas sobre:
 ## 🚀 PRÓXIMO DOCUMENTO EN QUEUE
 
 Una vez completadas estas tareas, crearemos:
+
 1. **REFACTOR-SERVER-GUIDE.md** - Cómo refactorizar server.js step-by-step
 2. **DATABASE-MIGRATION-SCRIPT.md** - Script para migrar datos v1.0 → v2.0
 3. **TEST-PROFILES-IMPLEMENTATION.md** - Cómo implementar 7 profiles faltantes

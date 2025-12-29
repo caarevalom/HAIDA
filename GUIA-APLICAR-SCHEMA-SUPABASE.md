@@ -9,6 +9,7 @@
 ## 🎯 OBJETIVO
 
 Aplicar el schema completo de HAIDA v2.0 a tu proyecto Supabase incluyendo:
+
 - Schema principal (25 tablas)
 - Migration #1: Tabla `defects`
 - Migration #2: Migración de `test_steps` TEXT → JSONB
@@ -26,11 +27,13 @@ Aplicar el schema completo de HAIDA v2.0 a tu proyecto Supabase incluyendo:
 ## 🚀 PASO 1: Acceder a Supabase SQL Editor
 
 ### 1.1 Login a Supabase
+
 ```
 URL: https://supabase.com/dashboard
 ```
 
 ### 1.2 Seleccionar Proyecto HAIDA
+
 ```
 Project: HAIDA
 ID: wdebyxvtunromsnkqbrd
@@ -38,6 +41,7 @@ URL: https://wdebyxvtunromsnkqbrd.supabase.co
 ```
 
 ### 1.3 Abrir SQL Editor
+
 - En el menú lateral izquierdo, click en **SQL Editor**
 - Click en **New query** (botón verde)
 
@@ -46,22 +50,28 @@ URL: https://wdebyxvtunromsnkqbrd.supabase.co
 ## 📝 PASO 2: Aplicar Schema Principal
 
 ### 2.1 Copiar Schema SQL
+
 Abrir el archivo:
+
 ```
 C:\Users\CarlosArturoArevaloM\Documents\Proyectos\HAIDA\infrastructure\supabase\schema.sql
 ```
 
 ### 2.2 Pegar en SQL Editor
+
 - Copiar **TODO** el contenido del archivo `schema.sql`
 - Pegar en el SQL Editor de Supabase
 
 ### 2.3 Ejecutar
+
 - Click en botón **Run** (esquina inferior derecha)
 - **ADVERTENCIA**: Esto puede tardar 1-2 minutos
 - Esperar a que aparezca "Success" en verde
 
 ### 2.4 Verificar Tablas Creadas
+
 Ejecutar este query para verificar:
+
 ```sql
 SELECT table_name
 FROM information_schema.tables
@@ -70,6 +80,7 @@ ORDER BY table_name;
 ```
 
 **Deberías ver** (al menos estas tablas principales):
+
 - `tenants`
 - `tenant_members`
 - `user_profiles`
@@ -90,20 +101,25 @@ ORDER BY table_name;
 ## 🔧 PASO 3: Aplicar Migration #1 - Tabla Defects
 
 ### 3.1 Nueva Query en SQL Editor
+
 - Click en **New query**
 
 ### 3.2 Copiar Migration SQL
+
 Abrir el archivo:
+
 ```
 C:\Users\CarlosArturoArevaloM\Documents\Proyectos\HAIDA\infrastructure\supabase\migrations\001_create_defects_table.sql
 ```
 
 ### 3.3 Pegar y Ejecutar
+
 - Copiar contenido completo
 - Pegar en SQL Editor
 - Click **Run**
 
 ### 3.4 Verificar
+
 ```sql
 SELECT EXISTS (
     SELECT 1
@@ -120,20 +136,25 @@ SELECT EXISTS (
 ## 🔧 PASO 4: Aplicar Migration #2 - Test Steps JSONB
 
 ### 4.1 Nueva Query
+
 - Click en **New query**
 
 ### 4.2 Copiar Migration SQL
+
 Abrir el archivo:
+
 ```
 C:\Users\CarlosArturoArevaloM\Documents\Proyectos\HAIDA\infrastructure\supabase\migrations\002_migrate_test_steps_to_jsonb.sql
 ```
 
 ### 4.3 Pegar y Ejecutar
+
 - Copiar contenido completo
 - Pegar en SQL Editor
 - Click **Run**
 
 ### 4.4 Verificar
+
 ```sql
 SELECT data_type
 FROM information_schema.columns
@@ -148,6 +169,7 @@ AND column_name = 'test_steps';
 ## ✅ PASO 5: Verificación Final
 
 ### 5.1 Ejecutar Check Completo
+
 ```sql
 -- 1. Contar tablas públicas
 SELECT COUNT(*)
@@ -174,6 +196,7 @@ ORDER BY table_name;
 ```
 
 ### 5.2 Resultados Esperados
+
 - **Tablas públicas**: ~25-30 tablas
 - **Tabla defects**: 0 registros (normal, está vacía)
 - **test_steps**: tipo `jsonb`
@@ -199,6 +222,7 @@ WHERE tablename = 'projects';
 ```
 
 Si no hay policies, aplicar el archivo:
+
 ```
 C:\Users\CarlosArturoArevaloM\Documents\Proyectos\HAIDA\infrastructure\supabase\policies.sql
 ```
@@ -282,23 +306,29 @@ RETURNING id, test_id, name;
 ## 🐛 TROUBLESHOOTING
 
 ### Error: "relation already exists"
+
 **Causa**: Intentas crear una tabla que ya existe
 **Solución**: Ignora el error o usa `CREATE TABLE IF NOT EXISTS`
 
 ### Error: "column already exists"
+
 **Causa**: Intentas agregar columna duplicada
 **Solución**: Ignora el error o usa `ADD COLUMN IF NOT EXISTS`
 
 ### Error: "syntax error near..."
+
 **Causa**: Query mal formateado
 **Solución**:
+
 1. Asegúrate de copiar TODO el contenido del archivo
 2. Verifica que no haya caracteres extraños
 3. Ejecuta secciones pequeñas paso a paso
 
 ### Error: "permission denied"
+
 **Causa**: Usuario no tiene permisos
 **Solución**:
+
 1. Usa el SQL Editor de Supabase (tiene permisos admin)
 2. No uses psql directo como usuario `postgres`
 
@@ -307,6 +337,7 @@ RETURNING id, test_id, name;
 ## ✅ VERIFICACIÓN POST-DEPLOYMENT
 
 ### Backend Conecta a DB
+
 ```bash
 # Desde terminal local (con Docker corriendo)
 curl http://localhost:8000/admin/db-status
@@ -323,7 +354,9 @@ curl http://localhost:8000/admin/db-status
 ```
 
 ### Frontend Conecta a Supabase
+
 Desde el frontend (Figma), al iniciar debería poder:
+
 - Autenticarse con Supabase Auth
 - Listar proyectos (si hay seed data)
 - Crear test cases con steps JSON
@@ -332,12 +365,12 @@ Desde el frontend (Figma), al iniciar debería poder:
 
 ## 📚 ARCHIVOS DE REFERENCIA
 
-| Archivo | Ubicación | Descripción |
-|---------|-----------|-------------|
-| **schema.sql** | `infrastructure/supabase/schema.sql` | Schema principal completo |
-| **001_create_defects_table.sql** | `infrastructure/supabase/migrations/` | Migration tabla defects |
-| **002_migrate_test_steps_to_jsonb.sql** | `infrastructure/supabase/migrations/` | Migration JSONB |
-| **policies.sql** | `infrastructure/supabase/policies.sql` | RLS Policies |
+| Archivo                                 | Ubicación                              | Descripción               |
+| --------------------------------------- | -------------------------------------- | ------------------------- |
+| **schema.sql**                          | `infrastructure/supabase/schema.sql`   | Schema principal completo |
+| **001_create_defects_table.sql**        | `infrastructure/supabase/migrations/`  | Migration tabla defects   |
+| **002_migrate_test_steps_to_jsonb.sql** | `infrastructure/supabase/migrations/`  | Migration JSONB           |
+| **policies.sql**                        | `infrastructure/supabase/policies.sql` | RLS Policies              |
 
 ---
 
@@ -346,6 +379,7 @@ Desde el frontend (Figma), al iniciar debería poder:
 Después de aplicar el schema:
 
 1. ✅ **Testear conexión desde backend**
+
    ```bash
    curl http://localhost:8000/admin/db-status
    ```
@@ -365,6 +399,7 @@ Después de aplicar el schema:
 ---
 
 **¿Problemas?** Revisa los logs en:
+
 - Supabase Dashboard → Database → Logs
 - Backend Docker: `docker-compose logs backend`
 

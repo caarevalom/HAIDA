@@ -1,12 +1,11 @@
 ╔══════════════════════════════════════════════════════════════════════════════╗
-║                                                                              ║
-║            ESTRATEGIA SEGURA DE IMPLEMENTACIÓN: CLIENTE REAL                ║
-║                     Fase 1 + Fase 2 con Validación en Cada Paso             ║
-║                                                                              ║
-║           SIN RIESGOS - Cada cambio probado y aprobado antes de pasar       ║
-║                                                                              ║
+║ ║
+║ ESTRATEGIA SEGURA DE IMPLEMENTACIÓN: CLIENTE REAL ║
+║ Fase 1 + Fase 2 con Validación en Cada Paso ║
+║ ║
+║ SIN RIESGOS - Cada cambio probado y aprobado antes de pasar ║
+║ ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
-
 
 ═══════════════════════════════════════════════════════════════════════════════
 ⚠️ CONTEXTO: PROYECTO CLIENTE REAL
@@ -25,7 +24,6 @@
 ├─ Rollback plan (por si algo falla)
 ├─ Aprobación explicita antes de cambios importantes
 
-
 ═══════════════════════════════════════════════════════════════════════════════
 📋 PLAN DE EJECUCIÓN SEGURA (85 horas → Dividido en Etapas)
 ═══════════════════════════════════════════════════════════════════════════════
@@ -38,6 +36,7 @@ Riesgo: BAJO (nuevos scripts, no toca existentes)
 Output: 3 nuevos scripts + test cases + documentación
 
 Pasos:
+
 1. Crear tools/ directorio
 2. Crear ValidateSpecification.ps1
 3. Crear test case real (ejemplo-brd.md)
@@ -56,6 +55,7 @@ Riesgo: MEDIO (modifica scripts existentes, pero en ramas)
 Output: Scripts mejorados con gates automáticos
 
 Pasos:
+
 1. Crear rama: feature/add-validation-gates
 2. Copiar generate-tests.ps1 original (backup)
 3. Integrar item 1.4 (ValidateSpec + ValidateCSV en generate-tests)
@@ -73,6 +73,7 @@ Riesgo: BAJO (cambios de estructura, no de código)
 Output: Estructura reorganizada, templates disponibles
 
 Pasos:
+
 1. Crear estructura: validations/v1.0/, config/, templates/test-templates/
 2. Mover archivos de validación
 3. Crear config/hiberus-policies.json
@@ -90,6 +91,7 @@ Riesgo: MEDIO (nuevo script, pero sin tocar existentes)
 Output: Orquestador central funcionando
 
 Pasos:
+
 1. Crear qa-orchestrator.ps1 (estructura base)
 2. Integrar Jest
 3. Integrar Playwright
@@ -106,6 +108,7 @@ Riesgo: BAJO (nuevos scripts)
 Output: batch-generate-tests.ps1, políticas configurable
 
 Pasos:
+
 1. Crear batch-generate-tests.ps1
 2. Crear hiberus-policies.json (completo)
 3. Refactorizar qa-orchestrator para usar policies
@@ -120,6 +123,7 @@ Riesgo: BAJO (no afecta local, solo CI)
 Output: Pipeline automático funcionando
 
 Pasos:
+
 1. Crear .github/workflows/qa-pipeline.yml
 2. Crear .github/workflows/qa-validate.yml
 3. Setup secrets (si aplica)
@@ -135,6 +139,7 @@ Riesgo: BAJO (es validación, no cambio a productivo)
 Output: Caso demostrativo completo
 
 Pasos:
+
 1. Obtener BRD del cliente (proyecto real)
 2. Crear especificación con formato FUNCTIONAL-SPEC-TEMPLATE
 3. Generar CSV con IA (Copilot/Claude)
@@ -144,7 +149,6 @@ Pasos:
 7. Ejecutar con qa-orchestrator
 8. Generar reporte final
 9. APROBACIÓN USUARIO: ¿Listo para producción?
-
 
 ═══════════════════════════════════════════════════════════════════════════════
 🔐 MECANISMOS DE SEGURIDAD EN CADA ETAPA
@@ -176,7 +180,6 @@ Pasos:
    └─ Si algo falla = Volver a última versión estable
    └─ Backups mantenidos hasta confirmación final
    └─ Git history disponible para revert
-
 
 ═══════════════════════════════════════════════════════════════════════════════
 📊 CHECKLIST DE APROBACIÓN POR ETAPA
@@ -234,7 +237,6 @@ ETAPA 7: CASO REAL
 □ Reporte final generado
 □ ¿APROBACIÓN FINAL - Listo para producción?
 
-
 ═══════════════════════════════════════════════════════════════════════════════
 🎯 INICIO: ETAPA 1 - POC VALIDACIÓN CRÍTICA
 ═══════════════════════════════════════════════════════════════════════════════
@@ -271,7 +273,6 @@ ANTES DE EMPEZAR, NECESITO SABER:
    └─ Hacer todo bien (3-4 semanas)
 
 RESPONDE ESTO Y COMENZAMOS ETAPA 1 INMEDIATAMENTE.
-
 
 ═════════════════════════════════════════════════════════════════════════════════
 DOCUMENTO: ESTRATEGIA-IMPLEMENTACION-SEGURA.md

@@ -1,4 +1,5 @@
 # 📖 QUICK START - CÓMO LEER EL PLAN v2.0
+
 ## Guía de 5 Minutos para Entender Todo
 
 **Este documento:** Quick start guide  
@@ -59,6 +60,7 @@
 ## 📚 DOCUMENTO POR DOCUMENTO
 
 ### 1. QUICK-START-LECTURA.md (Este documento)
+
 ```
 Propósito:   Saber qué leer y cuándo
 Tamaño:      500 líneas
@@ -68,6 +70,7 @@ Debe leer:   SÍ - es el índice de inicio
 ```
 
 ### 2. EXECUTIVE-SUMMARY-v2.0.md
+
 ```
 Propósito:   Resumen en 1 página (v1.0 → v2.0)
 Tamaño:      1,500 líneas
@@ -78,6 +81,7 @@ Debe leer:   SÍ - mandatory para cualquiera
 ```
 
 **Qué contiene:**
+
 - Tabla comparativa v1.0 vs v2.0
 - Problema principal (16 problemas identificados)
 - Solución (3 pilares)
@@ -90,6 +94,7 @@ Debe leer:   SÍ - mandatory para cualquiera
 ---
 
 ### 3. INDICE-MAESTRO-v2.0.md
+
 ```
 Propósito:   Navegación y roadmap completo
 Tamaño:      2,500 líneas
@@ -100,6 +105,7 @@ Debe leer:   SÍ - después de Executive Summary
 ```
 
 **Qué contiene:**
+
 - "Elige tu camino" por rol (5 paths diferentes)
 - Tabla de todos los documentos
 - Timeline combinado (Semana 1-10)
@@ -108,6 +114,7 @@ Debe leer:   SÍ - después de Executive Summary
 - FAQ (Preguntas frecuentes)
 
 **Tu rol:**
+
 - **Manager/PM:** Path 1 (30 min)
 - **Developer:** Path 2 (2-3 horas)
 - **QA:** Path 3 (1-2 horas)
@@ -117,6 +124,7 @@ Debe leer:   SÍ - después de Executive Summary
 ---
 
 ### 4. AUDIT-REPORT-v1-COMPREHENSIVE.md
+
 ```
 Propósito:   Análisis técnico COMPLETO de v1.0
 Tamaño:      11,500 líneas
@@ -130,29 +138,26 @@ Debe leer:   Parcialmente - según tu rol
 ```
 
 **Secciones principales:**
+
 1. **Resumen Ejecutivo** (líneas 1-100)
    - Estado actual v1.0
    - Fortalezas y debilidades
    - Riesgos de mantener v1.0
-   
 2. **Estructura Actual** (líneas 200-400)
    - Problema de 2 directorios
    - Docs fragmentadas
    - Mezcla de proyectos
-   
 3. **Problemas Críticos** (líneas 400-1000)
    - Issue #1: Solo 1/8 test profiles
    - Issue #2: Caos organizacional
    - Issue #3: Docs redundantes
    - ... 13 más (P0, P1, P2)
-   
 4. **Análisis Componentes** (líneas 1500-2000)
    - Docker Compose (✅ Funcional)
    - HAIDA API (⚠️ Incompleto)
    - Test Suites (🟡 Parcial)
    - Documentación (🔴 Caótica)
    - Configuración (⚠️ Fragmentada)
-   
 5. **Gaps & Features Faltantes** (líneas 2500-3000)
    - P0: Críticos (15 items)
    - P1: Altos (10 items)
@@ -162,6 +167,7 @@ Debe leer:   Parcialmente - según tu rol
 ---
 
 ### 5. MIGRACION-v1-to-v2-STRATEGY.md
+
 ```
 Propósito:   Plan detallado de migración + arquitectura
 Tamaño:      8,000 líneas
@@ -174,11 +180,11 @@ Debe leer:   SÍ - especialmente sección 5-6
 ```
 
 **Secciones principales:**
+
 1. **Visión v2.0** (líneas 1-100)
    - Estado deseado
    - 5 pilares del refactoring
    - Beneficios inmediatos
-   
 2. **Timeline 8-10 Semanas** (líneas 200-500)
    - PHASE 1: Architecture & Planning (Week 1-2)
    - PHASE 2: Code Consolidation (Week 3-4)
@@ -186,7 +192,6 @@ Debe leer:   SÍ - especialmente sección 5-6
    - PHASE 4: Testing & Validation (Week 7)
    - PHASE 5: Documentation (Week 8)
    - PHASE 6: Launch (Week 9-10)
-   
 3. **Directory Structure v2.0** (líneas 500-1000)
    - /src/api/ (refactored)
    - /src/tests/ (8 profiles)
@@ -195,7 +200,6 @@ Debe leer:   SÍ - especialmente sección 5-6
    - /src/cli/ (haida-cli tool)
    - /docker/ (consolidated)
    - /docs/ (8 consolidated docs)
-   
 4. **Plan Técnico Detallado** (líneas 1000-2500)
    - Refactoring server.js (antes/después)
    - Introducir autenticación (JWT + HMAC)
@@ -203,7 +207,6 @@ Debe leer:   SÍ - especialmente sección 5-6
    - Logging centralizado (Winston)
    - Rate limiting (express-rate-limit)
    - Input validation (Joi)
-   
 5. **Mitigación de Riesgos** (líneas 2500-2800)
    - 5 riesgos principales
    - Estrategias de mitigación para cada
@@ -211,6 +214,7 @@ Debe leer:   SÍ - especialmente sección 5-6
 ---
 
 ### 6. ACTION-ITEMS-IMMEDIATE-2WEEKS.md
+
 ```
 Propósito:   Tareas concretas para hacer ESTA SEMANA
 Tamaño:      3,500 líneas
@@ -221,6 +225,7 @@ Debe leer:   SÍ - ANTES de empezar a trabajar
 ```
 
 **Qué contiene:**
+
 - **TIER 1 CRÍTICO (Esta semana):**
   1. Crear v2.0 skeleton (2 horas)
   2. Limpiar 40+ docs basura (3 horas)
@@ -243,6 +248,7 @@ Debe leer:   SÍ - ANTES de empezar a trabajar
 ## 🛤️ CAMINOS POR ROL (Recomendados)
 
 ### Para MANAGER/PM (30 minutos)
+
 ```
 1. Este documento (5 min)
 2. EXECUTIVE-SUMMARY-v2.0.md (10 min)
@@ -253,6 +259,7 @@ Resultado: Entiendes qué debe aprobarse, cuándo, qué pedir
 ```
 
 ### Para DEVELOPER (2-3 horas)
+
 ```
 1. Este documento (5 min)
 2. EXECUTIVE-SUMMARY-v2.0.md (15 min)
@@ -264,6 +271,7 @@ Resultado: Entiendes architecture, gaps, qué refactorizar, cómo
 ```
 
 ### Para QA/TEST (1-2 horas)
+
 ```
 1. Este documento (5 min)
 2. EXECUTIVE-SUMMARY-v2.0.md (10 min)
@@ -275,6 +283,7 @@ Resultado: Entiendes qué test profiles faltan, cómo implementar
 ```
 
 ### Para DEVOPS (1-2 horas)
+
 ```
 1. Este documento (5 min)
 2. EXECUTIVE-SUMMARY-v2.0.md (10 min)
@@ -321,6 +330,7 @@ LISTO PARA ACTUAR:
 ## 🎯 PRÓXIMO PASO DESPUÉS DE LEER
 
 ### Opción A: Eres Manager/PM
+
 1. ✅ Lee EXECUTIVE-SUMMARY (10 min)
 2. ✅ Lee ACTION-ITEMS Tareas Críticas (5 min)
 3. 👉 **SIGUIENTE:** Aprueba timeline + recursos + presupuesto
@@ -328,6 +338,7 @@ LISTO PARA ACTUAR:
 5. 👉 **SIGUIENTE:** Semana 1 comienza
 
 ### Opción B: Eres Developer
+
 1. ✅ Lee EXECUTIVE-SUMMARY (10 min)
 2. ✅ Lee AUDIT-REPORT secciones técnicas (60 min)
 3. ✅ Lee MIGRACION-v1-to-v2 plan técnico (60 min)
@@ -335,6 +346,7 @@ LISTO PARA ACTUAR:
 5. 👉 **SIGUIENTE:** Inicia Tarea 1.1
 
 ### Opción C: Eres QA
+
 1. ✅ Lee EXECUTIVE-SUMMARY (10 min)
 2. ✅ Lee AUDIT-REPORT secciones de tests (30 min)
 3. ✅ Lee MIGRACION-v1-to-v2 test profiles (30 min)
@@ -342,6 +354,7 @@ LISTO PARA ACTUAR:
 5. 👉 **SIGUIENTE:** Prepara test templates
 
 ### Opción D: Eres DevOps
+
 1. ✅ Lee EXECUTIVE-SUMMARY (10 min)
 2. ✅ Lee AUDIT-REPORT Docker/DB (30 min)
 3. ✅ Lee MIGRACION-v1-to-v2 infraestructura (40 min)
@@ -353,21 +366,25 @@ LISTO PARA ACTUAR:
 ## 💡 CONSEJOS PARA LA LECTURA
 
 ### Consejo #1: No Leas Todo Linealmente
+
 - Usa INDICE-MAESTRO para "elige tu camino"
 - Lee SOLO lo relevante para tu rol
 - Salta secciones que no te aplican
 
 ### Consejo #2: Ten Lapicero y Papel
+
 - Anota preguntas mientras lees
 - Marca puntos confusos
 - Crea pequeño resumen personal
 
 ### Consejo #3: Busca Patrones
+
 - Cada documento repite puntos clave
 - Es intencional para refuerzo
 - Los 16 problemas reaparecen en múltiples documentos
 
 ### Consejo #4: Si es Abrumador
+
 - Empieza con EXECUTIVE-SUMMARY
 - Si necesitas más detalle, sigue con tu sección
 - Los otros documentos son referencia
@@ -377,11 +394,13 @@ LISTO PARA ACTUAR:
 ## ❓ PREGUNTAS DESPUÉS DE LEER
 
 Si tienes preguntas, busca en:
+
 1. **INDICE-MAESTRO** > Sección FAQ (preguntas comunes)
 2. **AUDIT-REPORT** > Búsqueda de tu pregunta (Ctrl+F)
 3. **MIGRACION-v1-to-v2** > Sección Mitigación de Riesgos
 
 Si sigue sin respuesta:
+
 - Pregunta en equipo standup
 - Crea issue en HAIDA repo
 - Haz un meeting de clarificación
@@ -391,6 +410,7 @@ Si sigue sin respuesta:
 ## 🏁 CONCLUSIÓN
 
 **Tu trabajo ahora:**
+
 1. Lee los documentos para tu rol (15 min - 4 horas según rol)
 2. Entiende el problema y la solución
 3. Espera aprobación de stakeholders (hoy/mañana)

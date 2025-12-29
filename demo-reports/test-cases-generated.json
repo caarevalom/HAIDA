@@ -27,7 +27,12 @@
       "type": "Functional",
       "priority": "Critical",
       "preconditions": ["Sistema disponible", "BD con usuario de prueba"],
-      "steps": ["Navegar a login", "Ingresar usuario valido", "Ingresar contrasena correcta", "Click en Login"],
+      "steps": [
+        "Navegar a login",
+        "Ingresar usuario valido",
+        "Ingresar contrasena correcta",
+        "Click en Login"
+      ],
       "expected_result": "Usuario autenticado, redirige a dashboard",
       "estimated_duration_minutes": 5,
       "automated": true
@@ -38,7 +43,12 @@
       "type": "Negative",
       "priority": "High",
       "preconditions": ["Sistema disponible"],
-      "steps": ["Navegar a login", "Ingresar usuario valido", "Ingresar contrasena incorrecta", "Click en Login"],
+      "steps": [
+        "Navegar a login",
+        "Ingresar usuario valido",
+        "Ingresar contrasena incorrecta",
+        "Click en Login"
+      ],
       "expected_result": "Mensaje de error, usuario no autenticado",
       "estimated_duration_minutes": 3,
       "automated": true
@@ -115,7 +125,11 @@
       "type": "Accessibility",
       "priority": "High",
       "preconditions": ["Sistema disponible"],
-      "steps": ["Validar etiquetas ARIA", "Validar contraste colores", "Validar navegacion teclado"],
+      "steps": [
+        "Validar etiquetas ARIA",
+        "Validar contraste colores",
+        "Validar navegacion teclado"
+      ],
       "expected_result": "Cumple WCAG 2A",
       "estimated_duration_minutes": 15,
       "automated": true

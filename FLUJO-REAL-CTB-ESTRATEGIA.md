@@ -1,11 +1,10 @@
 ╔══════════════════════════════════════════════════════════════════════════════╗
-║                                                                              ║
-║              FLUJO REAL CTB: Documentación → Tests → Ejecución              ║
-║                                                                              ║
-║    Estrategia rápida: Leer docs → Crear tests NUEVOS → Ejecutar → Reportar  ║
-║                                                                              ║
+║ ║
+║ FLUJO REAL CTB: Documentación → Tests → Ejecución ║
+║ ║
+║ Estrategia rápida: Leer docs → Crear tests NUEVOS → Ejecutar → Reportar ║
+║ ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
-
 
 ═══════════════════════════════════════════════════════════════════════════════
 🎯 CAMBIO DE ESTRATEGIA (Más Inteligente)
@@ -29,7 +28,6 @@ AHORA (Flujo REAL):
 
 ESTE ES EL APPROACH CORRECTO.
 
-
 ═══════════════════════════════════════════════════════════════════════════════
 📋 DOCUMENTOS A ANALIZAR
 ═══════════════════════════════════════════════════════════════════════════════
@@ -49,7 +47,6 @@ ESTE ES EL APPROACH CORRECTO.
 4. hiberus - Memoria técnica (12.71 MB)
    └─ Qué leer: Arquitectura, stack técnico, decisiones
    └─ Extraer: Tecnologías, endpoints, contexto
-
 
 ═══════════════════════════════════════════════════════════════════════════════
 🚀 FASES DE EJECUCIÓN INMEDIATA
@@ -82,7 +79,6 @@ PASO 1.4: Revisar Incidencias Abiertas
 ├─ 40+ normales
 └─ Output: Prioridad_Bugs.txt
 
-
 FASE 2: CREAR TEST CASES NUEVOS (4-6 horas)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Objetivo: Crear casos de prueba NUEVOS siguiendo HAIDA
@@ -97,7 +93,7 @@ MÓDULOS A CUBRIR:
    ├─ Recuperación contraseña
    ├─ Social login (Google, Facebook)
    └─ Incidencias: CTB-276, CTB-278, CTB-281, CTB-288, CTB-290, CTB-293, CTB-306-307-308, CTB-320, CTB-326
-   
+
    Tests a crear:
    ├─ TC_AUTH_001: Login válido
    ├─ TC_AUTH_002: Email inválido
@@ -117,9 +113,9 @@ MÓDULOS A CUBRIR:
    ├─ Multiidioma
    ├─ Selector moneda
    └─ Enlaces legales
-   
+
    Incidencias: CTB-1, CTB-7, CTB-8, CTB-37, CTB-40-41, CTB-64, CTB-77, CTB-124-125-128-131, CTB-159
-   
+
    Tests a crear:
    ├─ TC_NAV_001: Header presente
    ├─ TC_NAV_002: Búsqueda funciona
@@ -138,9 +134,9 @@ MÓDULOS A CUBRIR:
    ├─ Rangos de fechas
    ├─ Validaciones
    └─ Filtros productos
-   
+
    Incidencias: CTB-93, CTB-96, CTB-99-100-101, CTB-113, CTB-143, CTB-159, CTB-162
-   
+
    Tests a crear:
    ├─ TC_SEARCH_001: Calendario se abre
    ├─ TC_SEARCH_002: Seleccionar rango válido
@@ -157,9 +153,9 @@ MÓDULOS A CUBRIR:
    ├─ Listar favoritos
    ├─ Compartir lista
    └─ Ver detalle
-   
+
    Incidencias: CTB-148-149, CTB-162, CTB-312, CTB-315
-   
+
    Tests a crear:
    ├─ TC_FAV_001: Agregar favorito
    ├─ TC_FAV_002: Corazón se marca
@@ -175,9 +171,9 @@ MÓDULOS A CUBRIR:
    ├─ Editar dirección
    ├─ Cerrar sesión
    └─ Prefs suscripción
-   
+
    Incidencias: CTB-297, CTB-300, CTB-304, CTB-340, CTB-342, CTB-347, CTB-349-350-352-353, CTB-351, CTB-365-375-376-377, CTB-374
-   
+
    Tests a crear:
    ├─ TC_PROFILE_001: Ver datos perfil
    ├─ TC_PROFILE_002: Editar nombre
@@ -197,9 +193,9 @@ MÓDULOS A CUBRIR:
    ├─ Modificar cantidad
    ├─ Aplicar descuento
    └─ Checkout
-   
+
    Incidencias: CTB-387, CTB-388, CTB-390
-   
+
    Tests a crear:
    ├─ TC_CART_001: Agregar producto
    ├─ TC_CART_002: Mostrar total
@@ -210,7 +206,6 @@ MÓDULOS A CUBRIR:
 TOTAL NUEVOS TEST CASES: ~55 casos
 (No viejos deprecados, sino NUEVOS, limpios, alineados a requisitos)
 
-
 FASE 3: VALIDAR Y PREPARAR (1 hora)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ├─ Crear BRD para cada módulo (FUNCTIONAL-SPEC-TEMPLATE)
@@ -219,7 +214,6 @@ FASE 3: VALIDAR Y PREPARAR (1 hora)
 ├─ Crear matriz requisitos
 └─ Output: CSV validado + Matriz requisitos
 
-
 FASE 4: EJECUTAR PRUEBAS (2-3 horas)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ├─ Ejecutar con run-qa-local.ps1
@@ -227,7 +221,6 @@ FASE 4: EJECUTAR PRUEBAS (2-3 horas)
 ├─ Capturar screenshots/videos de bugs
 ├─ Actualizar estado de incidencias
 └─ Output: Test execution log + Defect report
-
 
 FASE 5: REPORTAR EN EXCEL (1 hora)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -240,21 +233,19 @@ FASE 5: REPORTAR EN EXCEL (1 hora)
 ├─ Subir a SharePoint
 └─ Output: Excel actualizado y listo
 
-
 ═══════════════════════════════════════════════════════════════════════════════
 ⏱️ TIMING TOTAL
 ═══════════════════════════════════════════════════════════════════════════════
 
-Fase 1 (Análisis):       2 horas
-Fase 2 (Crear tests):    6 horas
-Fase 3 (Validar):        1 hora
-Fase 4 (Ejecutar):       3 horas
-Fase 5 (Reportar):       1 hora
+Fase 1 (Análisis): 2 horas
+Fase 2 (Crear tests): 6 horas
+Fase 3 (Validar): 1 hora
+Fase 4 (Ejecutar): 3 horas
+Fase 5 (Reportar): 1 hora
 ────────────────────────
-TOTAL:                  13 horas (1.6 días de trabajo)
+TOTAL: 13 horas (1.6 días de trabajo)
 
 Result: Sistema completo, flujo demostrado, Excel actualizado
-
 
 ═══════════════════════════════════════════════════════════════════════════════
 🎬 SIGUIENTES PASOS (INMEDIATOS)
@@ -268,11 +259,9 @@ Result: Sistema completo, flujo demostrado, Excel actualizado
 
 ¿Comenzamos?
 
-
 ═════════════════════════════════════════════════════════════════════════════════
 DOCUMENTO: FLUJO-REAL-CTB-ESTRATEGIA.md
 TIPO: Plan de acción ejecutivo
 CLIENTE: CTB Real
 STATUS: Esperando confirmación para comenzar Fase 1
 ═════════════════════════════════════════════════════════════════════════════════
-

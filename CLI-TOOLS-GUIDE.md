@@ -3,16 +3,19 @@
 ## 📋 Resumen de Verificación de Herramientas
 
 ### ✅ INSTALADAS
+
 - **Git**: v2.52.0.windows.1 ✓
 - **Docker**: v29.1.3 ✓
 - **Docker Compose**: v2.40.3 ✓
 
 ### ❌ FALTANTES (CRÍTICAS)
+
 - **Node.js**: NO INSTALADO
 - **NPM**: NO INSTALADO (viene con Node.js)
 - **Java**: NO INSTALADO
 
 ### ⚠️ OPCIONALES NO INSTALADAS
+
 - **k6**: NO INSTALADO
 
 ---
@@ -22,9 +25,11 @@
 ### 1. Node.js & NPM CLI
 
 #### Instalación
+
 **Link**: https://nodejs.org/dist/v20.10.0/node-v20.10.0-x64.msi
 
 #### Comandos Esenciales
+
 ```bash
 # Verificar instalación
 node --version
@@ -64,6 +69,7 @@ npm audit fix
 ```
 
 #### NPM Packages Globales Recomendados para HAIDA
+
 ```bash
 # Playwright CLI
 npm install -g @playwright/test
@@ -95,9 +101,11 @@ npm install -g eslint
 ### 2. Java CLI
 
 #### Instalación
+
 **Link**: https://adoptium.net/temurin/releases/?version=17
 
 #### Comandos Esenciales
+
 ```bash
 # Verificar instalación
 java -version
@@ -121,6 +129,7 @@ allure open <report-dir>
 ```
 
 #### Configurar JAVA_HOME (Windows)
+
 ```powershell
 # PowerShell (temporal)
 $env:JAVA_HOME = "C:\Program Files\Eclipse Adoptium\jdk-17.0.9.9-hotspot"
@@ -139,6 +148,7 @@ $env:PATH = "$env:JAVA_HOME\bin;$env:PATH"
 #### Estado: ✅ INSTALADO (v2.52.0)
 
 #### Comandos Esenciales para HAIDA
+
 ```bash
 # Configuración inicial
 git config --global user.name "Tu Nombre"
@@ -203,6 +213,7 @@ git blame <file>            # ver quien cambió qué
 #### Estado: ✅ INSTALADO (v29.1.3 / v2.40.3)
 
 #### Docker CLI
+
 ```bash
 # Verificar instalación
 docker --version
@@ -247,6 +258,7 @@ docker system prune -a --volumes  # limpieza completa
 ```
 
 #### Docker Compose CLI
+
 ```bash
 # Verificar instalación
 docker-compose --version
@@ -296,6 +308,7 @@ docker-compose config --services  # listar servicios
 ```
 
 #### Comandos HAIDA Específicos
+
 ```bash
 # Setup completo
 cd /c/Users/CarlosArturoArevaloM/Documents/Proyectos/HAIDA
@@ -328,12 +341,14 @@ docker-compose up -d --build
 ### 5. Playwright CLI
 
 #### Instalación (después de instalar Node.js)
+
 ```bash
 npm install -g @playwright/test
 npx playwright install --with-deps
 ```
 
 #### Comandos Esenciales
+
 ```bash
 # Ejecutar tests
 npx playwright test                    # todos los tests
@@ -376,11 +391,13 @@ npx playwright test tests/web-e2e/smoke.spec.ts  # test específico
 ### 6. Newman CLI (Postman)
 
 #### Instalación
+
 ```bash
 npm install -g newman
 ```
 
 #### Comandos Esenciales
+
 ```bash
 # Ejecutar collection
 newman run <collection.json>
@@ -416,11 +433,13 @@ newman run tests/api/collection.json --reporters cli,html --reporter-html-export
 ### 7. Lighthouse CLI
 
 #### Instalación
+
 ```bash
 npm install -g lighthouse
 ```
 
 #### Comandos Esenciales
+
 ```bash
 # Básico
 lighthouse <url>
@@ -457,11 +476,13 @@ lighthouse $BASE_URL --quiet --chrome-flags="--headless=new" --output html --out
 ### 8. k6 CLI (Load Testing)
 
 #### Instalación
+
 **Windows**: https://dl.k6.io/msi/k6-latest-amd64.msi
 **Mac**: `brew install k6`
 **Linux**: https://k6.io/docs/get-started/installation/
 
 #### Comandos Esenciales
+
 ```bash
 # Ejecutar test
 k6 run <script.js>
@@ -496,12 +517,14 @@ k6 run --vus 50 --duration 2m tests/perf/k6-load.js
 ### 9. Allure CLI
 
 #### Instalación
+
 ```bash
 npm install -g allure-commandline
 # O con Scoop (Windows): scoop install allure
 ```
 
 #### Comandos Esenciales
+
 ```bash
 # Generar reporte
 allure generate <results-dir> -o <report-dir>
@@ -534,9 +557,11 @@ allure open reports/allure-report
 ### 10. PostgreSQL CLI (psql)
 
 #### Instalación
+
 Incluido con pgAdmin o standalone: https://www.postgresql.org/download/
 
 #### Comandos Esenciales
+
 ```bash
 # Conectar
 psql -h <host> -p <port> -U <user> -d <database>
@@ -575,6 +600,7 @@ docker-compose exec postgres psql -U haida haida_tests
 ### 11. GitHub CLI (gh)
 
 #### Instalación
+
 ```bash
 # Windows
 winget install --id GitHub.cli
@@ -587,6 +613,7 @@ brew install gh
 ```
 
 #### Comandos Esenciales
+
 ```bash
 # Autenticación
 gh auth login
@@ -630,9 +657,11 @@ gh workflow run qa-pipeline.yml
 ### 12. PowerShell 7 CLI
 
 #### Instalación
+
 https://github.com/PowerShell/PowerShell/releases
 
 #### Comandos Esenciales
+
 ```powershell
 # Versión
 $PSVersionTable
@@ -699,19 +728,19 @@ docker-compose down
 
 ## 🔗 LINKS DE REFERENCIA
 
-| Tool | Docs | CLI Reference |
-|------|------|---------------|
-| Node.js | https://nodejs.org/docs/ | https://nodejs.dev/learn/the-nodejs-cli |
-| NPM | https://docs.npmjs.com/ | https://docs.npmjs.com/cli/ |
-| Git | https://git-scm.com/doc | https://git-scm.com/docs |
-| Docker | https://docs.docker.com/ | https://docs.docker.com/engine/reference/commandline/cli/ |
-| Docker Compose | https://docs.docker.com/compose/ | https://docs.docker.com/compose/reference/ |
-| Playwright | https://playwright.dev/ | https://playwright.dev/docs/test-cli |
-| Newman | https://learning.postman.com/docs/running-collections/using-newman-cli/command-line-integration-with-newman/ | https://www.npmjs.com/package/newman |
-| Lighthouse | https://developer.chrome.com/docs/lighthouse/ | https://github.com/GoogleChrome/lighthouse#cli-options |
-| k6 | https://k6.io/docs/ | https://k6.io/docs/using-k6/k6-options/reference/ |
-| Allure | https://docs.qameta.io/allure/ | https://docs.qameta.io/allure/#_commandline |
-| PostgreSQL | https://www.postgresql.org/docs/ | https://www.postgresql.org/docs/current/app-psql.html |
+| Tool           | Docs                                                                                                         | CLI Reference                                             |
+| -------------- | ------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------- |
+| Node.js        | https://nodejs.org/docs/                                                                                     | https://nodejs.dev/learn/the-nodejs-cli                   |
+| NPM            | https://docs.npmjs.com/                                                                                      | https://docs.npmjs.com/cli/                               |
+| Git            | https://git-scm.com/doc                                                                                      | https://git-scm.com/docs                                  |
+| Docker         | https://docs.docker.com/                                                                                     | https://docs.docker.com/engine/reference/commandline/cli/ |
+| Docker Compose | https://docs.docker.com/compose/                                                                             | https://docs.docker.com/compose/reference/                |
+| Playwright     | https://playwright.dev/                                                                                      | https://playwright.dev/docs/test-cli                      |
+| Newman         | https://learning.postman.com/docs/running-collections/using-newman-cli/command-line-integration-with-newman/ | https://www.npmjs.com/package/newman                      |
+| Lighthouse     | https://developer.chrome.com/docs/lighthouse/                                                                | https://github.com/GoogleChrome/lighthouse#cli-options    |
+| k6             | https://k6.io/docs/                                                                                          | https://k6.io/docs/using-k6/k6-options/reference/         |
+| Allure         | https://docs.qameta.io/allure/                                                                               | https://docs.qameta.io/allure/#_commandline               |
+| PostgreSQL     | https://www.postgresql.org/docs/                                                                             | https://www.postgresql.org/docs/current/app-psql.html     |
 
 ---
 

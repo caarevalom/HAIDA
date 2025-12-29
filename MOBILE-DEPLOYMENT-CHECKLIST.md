@@ -1,4 +1,5 @@
 # 📱 HAIDA - Mobile Deployment Checklist
+
 **Fecha**: 2025-12-17
 **Objetivo**: Verificar disponibilidad del backend para iOS y Android
 
@@ -16,6 +17,7 @@ npx vercel --prod --yes
 ```
 
 Si no estás autenticado, primero ejecuta:
+
 ```powershell
 npx vercel login
 ```
@@ -41,12 +43,14 @@ content-type: application/json
 **Archivo**: `app/core/cors.py`
 
 Verificar que CORS permite:
+
 - ✅ Orígenes desde mobile apps
 - ✅ Métodos HTTP necesarios (GET, POST, PUT, DELETE, OPTIONS)
 - ✅ Headers de autenticación
 - ✅ Credentials si es necesario
 
 **Configuración Requerida**:
+
 ```python
 app.add_middleware(
     CORSMiddleware,
@@ -61,6 +65,7 @@ app.add_middleware(
 ### 3. ✅ HTTPS/SSL Habilitado
 
 Vercel proporciona SSL automático:
+
 ```bash
 curl -I https://haida-backend.vercel.app/health
 # Debe mostrar: HTTP/2 200 (no HTTP/1.1)
@@ -69,6 +74,7 @@ curl -I https://haida-backend.vercel.app/health
 ### 4. ✅ Response Headers para Mobile
 
 Verificar headers en la respuesta:
+
 ```bash
 curl -i https://haida-backend.vercel.app/health
 
@@ -105,12 +111,14 @@ curl -H "User-Agent: HAIDA-iOS/2.0.0" \
 ### App Transport Security (ATS)
 
 **Requisitos iOS**:
+
 - ✅ HTTPS obligatorio (Vercel lo proporciona)
 - ✅ TLS 1.2 o superior
 - ✅ Forward secrecy ciphers
 - ✅ SHA-256 certificates
 
 **Verificación**:
+
 ```bash
 openssl s_client -connect haida-backend.vercel.app:443 -tls1_2
 ```
@@ -118,11 +126,12 @@ openssl s_client -connect haida-backend.vercel.app:443 -tls1_2
 ### WKWebView Compatibility
 
 Si usas WebView en la app iOS:
+
 ```javascript
 // Configuración en Swift
-let config = WKWebViewConfiguration()
-config.allowsInlineMediaPlayback = true
-config.mediaTypesRequiringUserActionForPlayback = []
+let config = WKWebViewConfiguration();
+config.allowsInlineMediaPlayback = true;
+config.mediaTypesRequiringUserActionForPlayback = [];
 ```
 
 ---
@@ -150,11 +159,13 @@ curl -H "User-Agent: HAIDA-Android/2.0.0" \
 ### Network Security Config
 
 **Requisitos Android (API 28+)**:
+
 - ✅ HTTPS obligatorio por defecto
 - ✅ No HTTP cleartext traffic
 - ✅ Certificate pinning opcional
 
 **Configuración en AndroidManifest.xml**:
+
 ```xml
 <application
     android:usesCleartextTraffic="false"
@@ -163,6 +174,7 @@ curl -H "User-Agent: HAIDA-Android/2.0.0" \
 ```
 
 **network_security_config.xml**:
+
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
@@ -232,6 +244,7 @@ time curl -w "\nTime: %{time_total}s\n" https://haida-backend.vercel.app/health
 ```
 
 **Métricas Objetivo**:
+
 - ✅ WiFi: < 200ms
 - ✅ 4G: < 500ms
 - ✅ 3G: < 1000ms
@@ -281,8 +294,8 @@ describe('HAIDA Mobile API Connectivity', () => {
     const response = await axios.get(`${API_URL}/health`, {
       headers: {
         'User-Agent': 'HAIDA-iOS/2.0.0',
-        'X-Platform': 'iOS'
-      }
+        'X-Platform': 'iOS',
+      },
     });
     expect(response.status).toBe(200);
     expect(response.data.status).toBe('healthy');
@@ -292,8 +305,8 @@ describe('HAIDA Mobile API Connectivity', () => {
     const response = await axios.get(`${API_URL}/health`, {
       headers: {
         'User-Agent': 'HAIDA-Android/2.0.0',
-        'X-Platform': 'Android'
-      }
+        'X-Platform': 'Android',
+      },
     });
     expect(response.status).toBe(200);
     expect(response.data.status).toBe('healthy');
@@ -303,14 +316,14 @@ describe('HAIDA Mobile API Connectivity', () => {
     // Login
     const loginResponse = await axios.post(`${API_URL}/auth/login`, {
       email: 'test@example.com',
-      password: 'test123'
+      password: 'test123',
     });
     expect(loginResponse.data.access_token).toBeDefined();
 
     // Authenticated request
     const token = loginResponse.data.access_token;
     const protectedResponse = await axios.get(`${API_URL}/auth/me`, {
-      headers: { 'Authorization': `Bearer ${token}` }
+      headers: { Authorization: `Bearer ${token}` },
     });
     expect(protectedResponse.status).toBe(200);
   });
@@ -324,6 +337,7 @@ describe('HAIDA Mobile API Connectivity', () => {
 ### Common Issues
 
 #### 1. CORS Errors en Mobile WebView
+
 **Síntoma**: Requests fallan en WebView pero funcionan en browser desktop
 **Solución**: Verificar CORS headers en backend
 
@@ -339,22 +353,28 @@ app.add_middleware(
 ```
 
 #### 2. SSL Certificate Errors
+
 **Síntoma**: "SSL certificate error" en app nativa
 **Solución**: Verificar que Vercel SSL está activo
+
 ```bash
 curl -vvv https://haida-backend.vercel.app/health 2>&1 | grep -i ssl
 ```
 
 #### 3. Network Timeout
+
 **Síntoma**: Requests timeout en mobile pero no en desktop
 **Solución**:
+
 - Aumentar timeout en app mobile (default: 30s → 60s)
 - Optimizar backend response time
 - Implementar retry logic
 
 #### 4. JSON Parsing Errors
+
 **Síntoma**: "Failed to parse JSON" en mobile
 **Solución**: Verificar Content-Type header
+
 ```bash
 curl -i https://haida-backend.vercel.app/health | grep -i content-type
 # Debe ser: Content-Type: application/json
@@ -470,6 +490,7 @@ export const getCurrentUser = () => api.get('/auth/me');
 Una vez desplegado el backend, verificar:
 
 ### Backend Production
+
 - [ ] ✅ `curl https://haida-backend.vercel.app/health` → 200 OK
 - [ ] ✅ `curl https://haida-backend.vercel.app/status` → 200 OK
 - [ ] ✅ `curl https://haida-backend.vercel.app/version` → 200 OK
@@ -477,24 +498,28 @@ Una vez desplegado el backend, verificar:
 - [ ] ✅ CORS configurado correctamente
 
 ### iOS Compatibility
+
 - [ ] ✅ Request con User-Agent iOS → 200 OK
 - [ ] ✅ TLS 1.2+ activo
 - [ ] ✅ Response time < 500ms
 - [ ] ✅ JSON parsing funciona
 
 ### Android Compatibility
+
 - [ ] ✅ Request con User-Agent Android → 200 OK
 - [ ] ✅ HTTPS enforcement
 - [ ] ✅ Response time < 500ms
 - [ ] ✅ JSON parsing funciona
 
 ### Authentication Flow
+
 - [ ] ✅ Login endpoint funciona
 - [ ] ✅ Token JWT se genera correctamente
 - [ ] ✅ Endpoints protegidos validan token
 - [ ] ✅ Token refresh funciona
 
 ### Performance
+
 - [ ] ✅ Response time < 200ms (WiFi)
 - [ ] ✅ Response time < 500ms (4G)
 - [ ] ✅ Gzip compression activo

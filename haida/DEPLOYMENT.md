@@ -44,13 +44,13 @@ Complete guide for deploying HAIDA across multiple environments.
 
 ### Services
 
-| Service | Port | Environment | Type | Deployment |
-|---------|------|-------------|------|------------|
-| Frontend | 3000 | Prod/Dev | Next.js | Vercel |
-| Backend | 8000/3001 | Prod/Dev | FastAPI | Railway |
-| PostgreSQL | 5432 | Both | Database | Docker |
-| Redis | 6379 | Both | Cache | Docker |
-| Changedetection | 5000 | Dev | Monitoring | Docker |
+| Service         | Port      | Environment | Type       | Deployment |
+| --------------- | --------- | ----------- | ---------- | ---------- |
+| Frontend        | 3000      | Prod/Dev    | Next.js    | Vercel     |
+| Backend         | 8000/3001 | Prod/Dev    | FastAPI    | Railway    |
+| PostgreSQL      | 5432      | Both        | Database   | Docker     |
+| Redis           | 6379      | Both        | Cache      | Docker     |
+| Changedetection | 5000      | Dev         | Monitoring | Docker     |
 
 ---
 
@@ -80,12 +80,14 @@ redis-cli          # For cache debugging
 ### Installation
 
 #### macOS
+
 ```bash
 brew install docker docker-compose node python@3.11 postgresql@15 redis
 npm install -g @railway/cli vercel
 ```
 
 #### Ubuntu/Debian
+
 ```bash
 curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh
 sudo apt-get install docker-compose nodejs python3.11 postgresql-client redis-tools
@@ -93,6 +95,7 @@ npm install -g @railway/cli vercel
 ```
 
 #### Windows (WSL2)
+
 ```bash
 # Use Windows Terminal with WSL2
 wsl --install
@@ -343,22 +346,26 @@ docker-compose -f docker-compose.production.yml down -v
 The pipeline is defined in `.github/workflows/deploy.yml` and includes:
 
 #### 1. Test Job
+
 - Runs on every push to main/develop
 - Tests backend (pytest)
 - Tests frontend (npm test)
 - Uploads coverage reports
 
 #### 2. Build Job
+
 - Builds Docker images for backend and frontend
 - Pushes to GitHub Container Registry
 - Runs only on successful tests
 
 #### 3. Deploy Jobs
+
 - Deploy backend to Railway (main branch only)
 - Deploy frontend to Vercel (main branch only)
 - Parallel deployment for speed
 
 #### 4. Notification Job
+
 - Sends Slack notification on completion
 - Reports success/failure status
 
@@ -659,23 +666,23 @@ psql -h localhost -U haida_user haida_results < backup.sql
 
 ### Development Environments
 
-| Service | URL | Auth |
-|---------|-----|------|
-| Frontend | http://localhost:3000 | None |
-| Backend API | http://localhost:3001 | API Key |
-| Backend Docs | http://localhost:3001/docs | None |
-| Changedetection | http://localhost:5000 | None |
-| Allure Reports | http://localhost:4040 | None |
-| PostgreSQL | localhost:5432 | haida_user |
-| Redis | localhost:6379 | None |
+| Service         | URL                        | Auth       |
+| --------------- | -------------------------- | ---------- |
+| Frontend        | http://localhost:3000      | None       |
+| Backend API     | http://localhost:3001      | API Key    |
+| Backend Docs    | http://localhost:3001/docs | None       |
+| Changedetection | http://localhost:5000      | None       |
+| Allure Reports  | http://localhost:4040      | None       |
+| PostgreSQL      | localhost:5432             | haida_user |
+| Redis           | localhost:6379             | None       |
 
 ### Production Environments
 
-| Service | URL | Auth |
-|---------|-----|------|
-| Frontend | https://haida.hiberus.com | SSO/OAuth |
-| API | https://api.haida.hiberus.com | JWT/API Key |
-| API Docs | https://api.haida.hiberus.com/docs | JWT |
+| Service  | URL                                | Auth        |
+| -------- | ---------------------------------- | ----------- |
+| Frontend | https://haida.hiberus.com          | SSO/OAuth   |
+| API      | https://api.haida.hiberus.com      | JWT/API Key |
+| API Docs | https://api.haida.hiberus.com/docs | JWT         |
 
 ### Administrative Access
 

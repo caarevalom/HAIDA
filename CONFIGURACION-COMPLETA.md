@@ -8,6 +8,7 @@ Se han implementado dos sistemas de autenticación para HAIDA:
 2. **🔐 Microsoft Entra ID (Azure AD)** SSO corporativo
 
 **Estado actual:**
+
 - ✅ Backend desplegado con ambos métodos de autenticación
 - ✅ Endpoints funcionales y probados
 - ⏳ Configuración de SMTP pendiente (para confirmación de emails)
@@ -19,6 +20,7 @@ Se han implementado dos sistemas de autenticación para HAIDA:
 ## 🎯 Configuraciones Necesarias
 
 Ver archivos de documentación:
+
 - `SMTP-CONFIG.md` - Configuración de email (5 min)
 - `AZURE-AD-SETUP.md` - Setup de Microsoft Entra ID (15 min)
 

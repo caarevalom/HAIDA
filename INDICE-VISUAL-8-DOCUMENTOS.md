@@ -462,4 +462,3 @@ DESPUÉS (Weeks 2-10):
 **Documentos:** 8 entregados  
 **Contenido:** 36.8 KB, 58,000+ palabras  
 **Acción:** Lee QUICK-START ahora
-

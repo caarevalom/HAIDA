@@ -7,13 +7,13 @@
 
 ## 🎯 RESUMEN EJECUTIVO
 
-| Aspecto | Estado | Notas |
-|---------|--------|-------|
-| **Estructura Core** | ✅ COMPATIBLE | Projects, TestSuites, TestCases, Executions alineados |
-| **Multi-tenancy** | ⚠️ GAP DETECTADO | Frontend no maneja `tenant_id` |
-| **Internacionalización** | ✅ COMPATIBLE | i18n en frontend, `locale` en DB |
-| **UI Config** | ❌ FALTA EN DB | Necesita tabla `ui_configs` |
-| **Tipos de datos** | ✅ COMPATIBLE | Enums coinciden (Priority, Status, ExecutionStatus) |
+| Aspecto                  | Estado           | Notas                                                 |
+| ------------------------ | ---------------- | ----------------------------------------------------- |
+| **Estructura Core**      | ✅ COMPATIBLE    | Projects, TestSuites, TestCases, Executions alineados |
+| **Multi-tenancy**        | ⚠️ GAP DETECTADO | Frontend no maneja `tenant_id`                        |
+| **Internacionalización** | ✅ COMPATIBLE    | i18n en frontend, `locale` en DB                      |
+| **UI Config**            | ❌ FALTA EN DB   | Necesita tabla `ui_configs`                           |
+| **Tipos de datos**       | ✅ COMPATIBLE    | Enums coinciden (Priority, Status, ExecutionStatus)   |
 
 ---
 
@@ -22,19 +22,21 @@
 ### 1️⃣ ENTIDAD: Project
 
 #### Frontend (Figma DataContext.tsx)
+
 ```typescript
 interface Project {
   id: string;
-  key: string;              // e.g., "HAIDA"
+  key: string; // e.g., "HAIDA"
   name: string;
   description?: string;
-  owner: string;            // User name (string)
-  status: Status;           // 'Active' | 'Draft' | 'Archived' | 'Deprecated'
+  owner: string; // User name (string)
+  status: Status; // 'Active' | 'Draft' | 'Archived' | 'Deprecated'
   created_at: string;
 }
 ```
 
 #### Backend (Supabase schema.sql)
+
 ```sql
 CREATE TABLE projects (
     id UUID PRIMARY KEY,
@@ -53,6 +55,7 @@ CREATE TABLE projects (
 ```
 
 #### 🔍 GAPS DETECTADOS:
+
 1. ❌ **Frontend NO maneja `tenant_id`** (multi-tenancy)
 2. ⚠️ **Frontend usa `key` (string), DB usa `slug` (string)** → Compatible pero nombre diferente
 3. ⚠️ **Frontend usa `owner` (string), DB usa `created_by` (UUID)** → Requiere JOIN con `user_profiles`
@@ -62,6 +65,7 @@ CREATE TABLE projects (
 5. ❌ **DB tiene campos extra**: `base_url`, `type`, `repository_url`, `documentation_url`
 
 #### ✅ SOLUCIÓN PROPUESTA:
+
 ```typescript
 // Frontend: Actualizar interface Project
 export interface Project {
@@ -89,17 +93,19 @@ export interface Project {
 ### 2️⃣ ENTIDAD: TestSuite
 
 #### Frontend (Figma)
+
 ```typescript
 interface TestSuite {
   id: string;
   project_id: string;
   name: string;
-  type: TestType;           // 'Web' | 'API' | 'Mobile' | 'Desktop'
-  case_count: number;       // ⚠️ Calculado, no en DB
+  type: TestType; // 'Web' | 'API' | 'Mobile' | 'Desktop'
+  case_count: number; // ⚠️ Calculado, no en DB
 }
 ```
 
 #### Backend (Supabase)
+
 ```sql
 CREATE TABLE test_suites (
     id UUID,
@@ -116,6 +122,7 @@ CREATE TABLE test_suites (
 ```
 
 #### 🔍 GAPS DETECTADOS:
+
 1. ⚠️ **Frontend `type` vs Backend `suite_type`** → Valores completamente diferentes
    - Frontend: `'Web' | 'API' | 'Mobile' | 'Desktop'` (por plataforma)
    - Backend: `'smoke' | 'regression' | 'e2e' | 'api' | 'performance'` (por tipo de test)
@@ -123,6 +130,7 @@ CREATE TABLE test_suites (
 3. ❌ **DB tiene campos no usados en frontend**: `description`, `priority`, `tags`, `configuration`
 
 #### ✅ SOLUCIÓN PROPUESTA:
+
 ```typescript
 // Opción A: Frontend adopta suite_type del backend
 export type SuiteType = 'smoke' | 'regression' | 'integration' | 'e2e' | 'api' | 'performance';
@@ -154,6 +162,7 @@ GROUP BY ts.id;
 ### 3️⃣ ENTIDAD: TestCase
 
 #### Frontend (Figma)
+
 ```typescript
 interface TestCase {
   id: string;
@@ -161,13 +170,14 @@ interface TestCase {
   suite_id: string;
   title: string;
   description?: string;
-  priority: Priority;           // 'Critical' | 'High' | 'Medium' | 'Low'
-  linked_req_id?: string;       // Traceability
+  priority: Priority; // 'Critical' | 'High' | 'Medium' | 'Low'
+  linked_req_id?: string; // Traceability
   steps: { action: string; expected: string }[];
 }
 ```
 
 #### Backend (Supabase)
+
 ```sql
 CREATE TABLE test_cases (
     id UUID,
@@ -192,6 +202,7 @@ CREATE TABLE test_cases (
 ```
 
 #### 🔍 GAPS DETECTADOS:
+
 1. ❌ **Frontend NO tiene `test_id`** (identificador único legible como "TC_LOGIN_001")
 2. ⚠️ **Frontend `title` vs Backend `name`** → Nombres diferentes
 3. ❌ **Frontend `steps` es JSON array, Backend `test_steps` es TEXT**
@@ -201,6 +212,7 @@ CREATE TABLE test_cases (
 5. ❌ **Frontend NO tiene**: `test_type`, `component`, `module`, `preconditions`, `is_automated`, `risk_level`, `status`, `tags`
 
 #### ✅ SOLUCIÓN PROPUESTA:
+
 ```typescript
 // Frontend: Actualizar interface
 export type Priority = 'p0' | 'p1' | 'p2' | 'p3' | 'p4';  // ✅ Adoptar nomenclatura backend
@@ -242,21 +254,23 @@ WHERE test_steps IS NULL OR test_steps = '';
 ### 4️⃣ ENTIDAD: Execution
 
 #### Frontend (Figma)
+
 ```typescript
 interface Execution {
   id: string;
   project_id: string;
   suite_id: string;
-  status: ExecutionStatus;      // 'passed' | 'failed' | 'running' | 'queued' | 'skipped'
-  started_at: string;           // ISO Date
+  status: ExecutionStatus; // 'passed' | 'failed' | 'running' | 'queued' | 'skipped'
+  started_at: string; // ISO Date
   duration_ms: number;
   passed_count: number;
   failed_count: number;
-  defect_id?: string;           // Linked defect if failed
+  defect_id?: string; // Linked defect if failed
 }
 ```
 
 #### Backend (Supabase)
+
 ```sql
 CREATE TABLE test_executions (
     id UUID,
@@ -281,6 +295,7 @@ CREATE TABLE test_executions (
 ```
 
 #### 🔍 GAPS DETECTADOS:
+
 1. ⚠️ **Status values diferentes**:
    - Frontend: `'passed' | 'failed' | 'running' | 'queued' | 'skipped'`
    - Backend: `'pending' | 'running' | 'completed' | 'failed' | 'cancelled' | 'timeout'`
@@ -290,6 +305,7 @@ CREATE TABLE test_executions (
 5. ❌ **Frontend NO tiene**: `execution_type`, `environment`, `browser`, `skipped_tests`, `blocked_tests`
 
 #### ✅ SOLUCIÓN PROPUESTA:
+
 ```typescript
 // Frontend: Actualizar interface
 export type ExecutionStatus = 'pending' | 'running' | 'completed' | 'failed' | 'cancelled' | 'timeout';
@@ -322,6 +338,7 @@ export interface Execution {
 ### 5️⃣ ENTIDAD: Defect (⚠️ SOLO EN FRONTEND)
 
 #### Frontend (Figma)
+
 ```typescript
 interface Defect {
   id: string;
@@ -334,16 +351,19 @@ interface Defect {
 ```
 
 #### Backend (Supabase)
+
 ```sql
 -- ❌ NO EXISTE tabla "defects" explícita
 -- Posiblemente mapeado a issues o test_execution_results con status=failed
 ```
 
 #### 🔍 GAPS DETECTADOS:
+
 1. ❌ **Backend NO tiene tabla `defects`** separada
 2. ⚠️ Posiblemente mapeado a registros de `test_execution_results` con `status='failed'`
 
 #### ✅ SOLUCIÓN PROPUESTA:
+
 ```sql
 -- Opción A: Crear tabla defects
 CREATE TABLE defects (
@@ -372,6 +392,7 @@ ALTER TABLE test_execution_results
 ### 6️⃣ ENTIDAD: UiConfig (❌ SOLO EN FRONTEND)
 
 #### Frontend (Figma UiContext.tsx)
+
 ```typescript
 interface UiConfig {
   login: LoginConfig;
@@ -398,11 +419,13 @@ interface LoginConfig {
 ```
 
 #### Backend (Supabase)
+
 ```sql
 -- ❌ NO EXISTE en schema actual
 ```
 
 #### ✅ SOLUCIÓN PROPUESTA:
+
 ```sql
 -- Crear tabla ui_configs (CMS-like approach)
 CREATE TABLE ui_configs (
@@ -437,6 +460,7 @@ INSERT INTO ui_configs (tenant_id, section, config) VALUES
 ### 7️⃣ INTERNACIONALIZACIÓN (i18n)
 
 #### Frontend (Figma LanguageContext.tsx)
+
 ```typescript
 type Language = "es" | "en" | "fr";
 
@@ -448,15 +472,18 @@ const translations: Translations = {
 ```
 
 #### Backend (Supabase)
+
 ```sql
 -- ✅ user_profiles.locale TEXT DEFAULT 'es'
 -- ✅ tenants.locale TEXT DEFAULT 'es'
 ```
 
 #### ✅ COMPATIBLE - Recomendaciones:
+
 1. ✅ **Frontend maneja traducciones client-side** (correcto para UX)
 2. ✅ **Backend almacena preferencia de usuario** en `user_profiles.locale`
 3. 💡 **Opcional**: Crear tabla `i18n_translations` para gestionar traducciones desde DB
+
 ```sql
 CREATE TABLE i18n_translations (
     key TEXT,
@@ -478,38 +505,42 @@ INSERT INTO i18n_translations (key, locale, value, section) VALUES
 
 ## 🚨 GAPS CRÍTICOS RESUMEN
 
-| # | Gap | Impacto | Solución | Prioridad |
-|---|-----|---------|----------|-----------|
-| 1 | Frontend NO maneja `tenant_id` (multi-tenancy) | 🔴 CRÍTICO | Agregar tenant_id a todos los interfaces | P0 |
-| 2 | Enums con valores diferentes (Status, Priority, etc.) | 🟠 ALTO | Normalizar valores en ambos lados | P0 |
-| 3 | Frontend `steps` es JSON, Backend `test_steps` es TEXT | 🟠 ALTO | Migrar columna a JSONB | P1 |
-| 4 | No existe tabla `defects` en backend | 🟡 MEDIO | Crear tabla defects | P1 |
-| 5 | No existe tabla `ui_configs` en backend | 🟡 MEDIO | Crear tabla ui_configs | P2 |
-| 6 | Duration en ms vs seconds | 🟢 BAJO | Convertir en backend API | P2 |
-| 7 | Nombres de campos diferentes (title/name, etc.) | 🟢 BAJO | Mapear en API layer | P3 |
+| #   | Gap                                                    | Impacto    | Solución                                 | Prioridad |
+| --- | ------------------------------------------------------ | ---------- | ---------------------------------------- | --------- |
+| 1   | Frontend NO maneja `tenant_id` (multi-tenancy)         | 🔴 CRÍTICO | Agregar tenant_id a todos los interfaces | P0        |
+| 2   | Enums con valores diferentes (Status, Priority, etc.)  | 🟠 ALTO    | Normalizar valores en ambos lados        | P0        |
+| 3   | Frontend `steps` es JSON, Backend `test_steps` es TEXT | 🟠 ALTO    | Migrar columna a JSONB                   | P1        |
+| 4   | No existe tabla `defects` en backend                   | 🟡 MEDIO   | Crear tabla defects                      | P1        |
+| 5   | No existe tabla `ui_configs` en backend                | 🟡 MEDIO   | Crear tabla ui_configs                   | P2        |
+| 6   | Duration en ms vs seconds                              | 🟢 BAJO    | Convertir en backend API                 | P2        |
+| 7   | Nombres de campos diferentes (title/name, etc.)        | 🟢 BAJO    | Mapear en API layer                      | P3        |
 
 ---
 
 ## 📋 PLAN DE ACCIÓN
 
 ### FASE 1: Correcciones Críticas (P0)
+
 1. ✅ Agregar `tenant_id` a interfaces frontend
 2. ✅ Normalizar enums (Status, Priority, ExecutionStatus, TestType)
 3. ✅ Actualizar schema.sql con valores normalizados
 4. ✅ Crear migration scripts
 
 ### FASE 2: Schema Migrations (P1)
+
 1. ✅ Migrar `test_steps` de TEXT a JSONB
 2. ✅ Crear tabla `defects`
 3. ✅ Actualizar constraints de enums
 4. ✅ Crear views computadas (test_suites_with_counts)
 
 ### FASE 3: Features Adicionales (P2)
+
 1. ✅ Crear tabla `ui_configs`
 2. ✅ Crear tabla `i18n_translations` (opcional)
 3. ✅ Implementar computed properties en API
 
 ### FASE 4: Refinamiento (P3)
+
 1. ✅ Normalizar nombres de campos (title→name mapeo)
 2. ✅ Documentar mapping layer en FastAPI
 3. ✅ Crear tests de integración
@@ -519,11 +550,13 @@ INSERT INTO i18n_translations (key, locale, value, section) VALUES
 ## 🔧 ARCHIVOS A MODIFICAR
 
 ### Frontend (TypeScript)
+
 - ✅ `contexts/DataContext.tsx` → Actualizar interfaces
 - ✅ `contexts/UiContext.tsx` → Mantener (agregar sync con DB opcional)
 - ✅ `contexts/LanguageContext.tsx` → Mantener (agregar sync con DB opcional)
 
 ### Backend (Python + SQL)
+
 - ✅ `infrastructure/supabase/schema.sql` → Normalizar enums, agregar tablas
 - ✅ `infrastructure/supabase/migrations/` → Crear migration scripts
 - ✅ `app/routes/projects.py` → Implementar mapping layer

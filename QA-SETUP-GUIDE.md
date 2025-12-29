@@ -20,6 +20,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\run-qa.ps1
 ```
 
 Esto hace todo:
+
 - Configura PATH temporal para Node.js
 - Valida `node -v` y `npm -v`
 - Instala dependencias (`npm ci` o `npm install`)
@@ -102,6 +103,7 @@ Para cambiar el URL de prueba, edita `.env` y ejecuta el script nuevamente.
 ## Validación post-ejecución
 
 El script muestra rutas de los reportes generados:
+
 - **Playwright HTML**: `./playwright-report/`
 - **Allure Report**: `./reports/allure-report/`
 - **Newman (API)**: `./reports/newman/`

@@ -5,9 +5,11 @@
 **HAIDA** es una plataforma integral de Testing/Auditoría QA con IA integrada, diseñada para automatizar y optimizar procesos de calidad de software en entornos empresariales multi-tenant.
 
 ### 🎯 Visión
+
 Convertir HAIDA en la plataforma de referencia para Quality Assurance inteligente, combinando automatización tradicional con IA avanzada para entregas de software más rápidas, confiables y escalables.
 
 ### 🏗️ Arquitectura
+
 - **Backend**: FastAPI (Python) + Supabase (PostgreSQL)
 - **Frontend**: Next.js (planeado) + Design System Figma
 - **Autenticación**: Entra ID SSO + Local JWT
@@ -79,15 +81,15 @@ graph TB
 
 ### Decisiones Arquitectónicas
 
-| Aspecto | Decisión | Justificación |
-|---------|----------|---------------|
-| **Backend Framework** | FastAPI | Alto rendimiento, async-first, OpenAPI auto-generado, comunidad activa |
-| **Database** | Supabase PostgreSQL | RLS nativo, real-time, edge functions, escalabilidad automática |
-| **Authentication** | Entra ID + Local JWT | SSO enterprise-grade + flexibilidad para usuarios externos |
-| **Queue System** | RQ + Redis | Simplicidad vs Celery, adecuado para workloads moderados |
-| **IA Integration** | Copilot Studio | Microsoft ecosystem, Direct Line API, enterprise security |
-| **Deployment** | Vercel | Serverless, edge computing, integración con Git |
-| **Monitoring** | OpenTelemetry | Estándar industry, múltiples backends, auto-instrumentación |
+| Aspecto               | Decisión             | Justificación                                                          |
+| --------------------- | -------------------- | ---------------------------------------------------------------------- |
+| **Backend Framework** | FastAPI              | Alto rendimiento, async-first, OpenAPI auto-generado, comunidad activa |
+| **Database**          | Supabase PostgreSQL  | RLS nativo, real-time, edge functions, escalabilidad automática        |
+| **Authentication**    | Entra ID + Local JWT | SSO enterprise-grade + flexibilidad para usuarios externos             |
+| **Queue System**      | RQ + Redis           | Simplicidad vs Celery, adecuado para workloads moderados               |
+| **IA Integration**    | Copilot Studio       | Microsoft ecosystem, Direct Line API, enterprise security              |
+| **Deployment**        | Vercel               | Serverless, edge computing, integración con Git                        |
+| **Monitoring**        | OpenTelemetry        | Estándar industry, múltiples backends, auto-instrumentación            |
 
 ---
 
@@ -112,22 +114,26 @@ test_executions → test_results
 ### Entidades Principales
 
 #### 👥 Usuarios y Autenticación
+
 - **auth.users**: Base authentication (Supabase)
 - **user_profiles**: Extended profile information
 - **user_sso_providers**: SSO provider linkages
 - **tenant_members**: User-tenant relationships
 
 #### 🏢 Tenants y RBAC
+
 - **tenants**: Workspace/organization entities
 - **roles/permissions**: RBAC system
 - **role_permissions**: Role-permission mappings
 
 #### 🚀 Feature Flags
+
 - **feature_flags**: Global feature definitions
 - **tenant_feature_flags**: Tenant-specific overrides
 - **user_feature_flags**: User-specific overrides
 
 #### 📊 Testing y QA
+
 - **projects**: Applications under test
 - **test_suites**: Test suite definitions
 - **test_cases**: Individual test cases (ISTQB compliant)
@@ -135,21 +141,25 @@ test_executions → test_results
 - **test_results**: Individual test outcomes
 
 #### 🤖 Automation
+
 - **change_detections**: Web change monitoring
 - **scripts**: Automation scripts repository
 - **script_runs**: Script execution tracking
 
 #### 📚 Documentation
+
 - **docs**: Documentation entries
 - **doc_versions**: Versioned content
 - **doc_search_index**: Full-text search
 
 #### 💬 IA y Chat
+
 - **chat_threads**: Conversation threads
 - **chat_messages**: Message history
 - **chat_providers**: IA provider configurations
 
 #### 📈 Reports y Analytics
+
 - **reports**: Generated reports
 - **report_templates**: Report configurations
 - **Views**: v_project_health, v_test_coverage, v_recent_executions
@@ -197,6 +207,7 @@ scripts
 ### Modelo de Seguridad
 
 #### 1. Autenticación Multi-provider
+
 ```python
 # Entra ID SSO (Primary)
 @app.post("/entra/login")
@@ -213,6 +224,7 @@ async def local_login(credentials: LoginRequest):
 ```
 
 #### 2. Autorización RBAC
+
 ```python
 # Permission checking
 def has_permission(user_id: UUID, permission: str, tenant_id: UUID = None) -> bool:
@@ -222,6 +234,7 @@ def has_permission(user_id: UUID, permission: str, tenant_id: UUID = None) -> bo
 ```
 
 #### 3. Multi-tenant Isolation
+
 ```sql
 -- RLS Policy Example
 CREATE POLICY "tenant_data_isolation" ON projects
@@ -232,6 +245,7 @@ CREATE POLICY "tenant_data_isolation" ON projects
 ```
 
 #### 4. Rate Limiting
+
 ```python
 # Redis-based rate limiting
 @app.middleware("http")
@@ -247,21 +261,22 @@ async def rate_limit_middleware(request, call_next):
 
 ### Niveles de Seguridad
 
-| Nivel | Componente | Implementación |
-|-------|------------|----------------|
-| **1** | Network | Vercel WAF, Cloudflare |
-| **2** | Transport | HTTPS/TLS 1.3 |
-| **3** | Authentication | Entra ID SSO + JWT |
-| **4** | Authorization | RBAC + RLS |
-| **5** | Application | Input validation, XSS prevention |
-| **6** | Data | Encryption at rest, PII masking |
-| **7** | Audit | Comprehensive logging |
+| Nivel | Componente     | Implementación                   |
+| ----- | -------------- | -------------------------------- |
+| **1** | Network        | Vercel WAF, Cloudflare           |
+| **2** | Transport      | HTTPS/TLS 1.3                    |
+| **3** | Authentication | Entra ID SSO + JWT               |
+| **4** | Authorization  | RBAC + RLS                       |
+| **5** | Application    | Input validation, XSS prevention |
+| **6** | Data           | Encryption at rest, PII masking  |
+| **7** | Audit          | Comprehensive logging            |
 
 ---
 
 ## 🔄 FLUJOS DE USUARIO PRINCIPALES
 
 ### 1. Onboarding y Setup
+
 ```
 User Registration/Login
     ↓
@@ -275,6 +290,7 @@ Ready for Testing
 ```
 
 ### 2. Test Execution Flow
+
 ```
 Change Detection Webhook
     ↓
@@ -292,6 +308,7 @@ Notification Dispatch
 ```
 
 ### 3. Script Automation Flow
+
 ```
 Script Creation/Upload
     ↓
@@ -305,6 +322,7 @@ Result Storage & Notification
 ```
 
 ### 4. Documentation Flow
+
 ```
 Document Creation (Markdown)
     ↓
@@ -318,6 +336,7 @@ Access Control & Auditing
 ```
 
 ### 5. IA Chat Flow
+
 ```
 User Query
     ↓
@@ -337,6 +356,7 @@ Follow-up Suggestions
 ## 🛠️ MÓDULOS FUNCIONALES
 
 ### 1. Core System (`/app/core/`)
+
 - **settings.py**: Configuration management
 - **cors.py**: CORS configuration
 - **rbac.py**: Role-based access control
@@ -345,45 +365,53 @@ Follow-up Suggestions
 - **otel.py**: Observability setup
 
 ### 2. Authentication (`/app/routes/auth.py`)
+
 - Local JWT authentication
 - Password reset flows
 - Session management
 
 ### 3. Entra SSO (`/app/routes/entra.py`)
+
 - OAuth2 flow implementation
 - Token validation
 - User provisioning
 
 ### 4. Tenants Management
+
 - CRUD operations
 - Member invitation/management
 - Role assignment
 
 ### 5. Projects & Testing
+
 - Project lifecycle management
 - Test suite orchestration
 - Execution monitoring
 - Result analytics
 
 ### 6. Documentation System
+
 - Markdown processing
 - Version control
 - Search functionality
 - Access permissions
 
 ### 7. IA Chat Integration
+
 - Copilot Studio connection
 - Thread management
 - Message history
 - Provider switching
 
 ### 8. Scripts & Automation
+
 - Script repository
 - Execution queuing
 - Result tracking
 - Worker management
 
 ### 9. Reports & Analytics
+
 - Template system
 - Data aggregation
 - Export functionality
@@ -394,6 +422,7 @@ Follow-up Suggestions
 ## 🔌 INTEGRACIONES EXTERNAS
 
 ### Microsoft Ecosystem
+
 ```python
 # Entra ID Authentication
 entra_client = ConfidentialClientApplication(
@@ -414,6 +443,7 @@ directline_client = DirectLineClient(
 ```
 
 ### Queue System (Redis/RQ)
+
 ```python
 # Worker setup
 redis_conn = Redis.from_url(settings.REDIS_URL)
@@ -429,6 +459,7 @@ def process_job(job):
 ```
 
 ### Observability (OpenTelemetry)
+
 ```python
 # Tracing setup
 tracer = trace.get_tracer(__name__)
@@ -448,12 +479,14 @@ with tracer.start_as_current_span("test_execution"):
 ### Estrategias de Escalado
 
 #### Horizontal Scaling
+
 - **Database**: Supabase auto-scaling
 - **API**: Vercel serverless functions
 - **Workers**: Multiple RQ workers
 - **Cache**: Redis clustering
 
 #### Performance Optimizations
+
 - **Database Indexes**: 50+ optimized indexes
 - **Query Optimization**: Views for complex aggregations
 - **Caching**: Redis for frequently accessed data
@@ -461,18 +494,19 @@ with tracer.start_as_current_span("test_execution"):
 
 ### Métricas de Performance
 
-| Componente | Target | Current | Monitoring |
-|------------|--------|---------|------------|
-| API Response Time | <200ms | TBD | OpenTelemetry |
-| Database Query Time | <50ms | TBD | Supabase Dashboard |
-| Test Execution Time | <5min | TBD | Custom metrics |
-| Page Load Time | <2s | TBD | Vercel Analytics |
+| Componente          | Target | Current | Monitoring         |
+| ------------------- | ------ | ------- | ------------------ |
+| API Response Time   | <200ms | TBD     | OpenTelemetry      |
+| Database Query Time | <50ms  | TBD     | Supabase Dashboard |
+| Test Execution Time | <5min  | TBD     | Custom metrics     |
+| Page Load Time      | <2s    | TBD     | Vercel Analytics   |
 
 ---
 
 ## 🚀 PLAN DE IMPLEMENTACIÓN
 
 ### Fase 1: Foundation (Semanas 1-2)
+
 ```mermaid
 graph LR
     A[Backend Structure] --> B[Database Setup]
@@ -482,6 +516,7 @@ graph LR
 ```
 
 ### Fase 2: Core Features (Semanas 3-4)
+
 ```mermaid
 graph LR
     F[Scripts Management] --> G[Execution Queue]
@@ -490,6 +525,7 @@ graph LR
 ```
 
 ### Fase 3: Advanced Features (Semanas 5-6)
+
 ```mermaid
 graph LR
     J[UI Implementation] --> K[i18n System]
@@ -498,6 +534,7 @@ graph LR
 ```
 
 ### Fase 4: Production (Semanas 7-8)
+
 ```mermaid
 graph LR
     N[CI/CD Pipeline] --> O[Performance Opt]
@@ -510,6 +547,7 @@ graph LR
 ## 🧪 TESTING STRATEGY
 
 ### Testing Pyramid
+
 ```
 E2E Tests (Playwright) - 10%
     ↓
@@ -519,6 +557,7 @@ Unit Tests (pytest) - 70%
 ```
 
 ### QA Coverage Areas
+
 - **Functional Testing**: All API endpoints
 - **Security Testing**: Authentication, authorization, RLS
 - **Performance Testing**: Load testing, stress testing
@@ -526,6 +565,7 @@ Unit Tests (pytest) - 70%
 - **Cross-browser**: Chrome, Firefox, Safari, Edge
 
 ### Automation Strategy
+
 - **CI/CD**: Automated testing on every PR
 - **Regression**: Daily full suite execution
 - **Performance**: Weekly load testing
@@ -536,18 +576,21 @@ Unit Tests (pytest) - 70%
 ## 🔮 FUTURAS EXPANSIONES
 
 ### Short-term (3-6 months)
+
 - Mobile applications (iOS/Android)
 - Advanced AI features (test generation, defect prediction)
 - Integration with more CI/CD platforms
 - Custom dashboard builder
 
 ### Medium-term (6-12 months)
+
 - Multi-cloud deployment options
 - Advanced analytics and ML insights
 - API marketplace for third-party integrations
 - White-label solutions
 
 ### Long-term (1-2 years)
+
 - Global CDN with edge computing
 - Real-time collaboration features
 - Advanced compliance frameworks
@@ -558,6 +601,7 @@ Unit Tests (pytest) - 70%
 ## 📋 CONCLUSIONES
 
 ### Fortalezas Arquitectónicas
+
 - ✅ **Security First**: RLS + RBAC + Rate limiting
 - ✅ **Scalable**: Multi-tenant + serverless
 - ✅ **Modern Stack**: FastAPI + Supabase + Vercel
@@ -565,12 +609,14 @@ Unit Tests (pytest) - 70%
 - ✅ **AI Integrated**: Copilot Studio + future ML features
 
 ### Riesgos Mitigados
+
 - ✅ **Vendor Lock-in**: Abstraction layers + open standards
 - ✅ **Scalability**: Serverless + auto-scaling
 - ✅ **Security**: Defense in depth approach
 - ✅ **Performance**: Caching + optimization strategies
 
 ### Próximos Pasos Inmediatos
+
 1. Implementar estructura de directorios `/app/`
 2. Configurar FastAPI foundation
 3. Implementar autenticación Entra ID

@@ -84,7 +84,7 @@ export const storage = {
   clear: (): void => {
     storage.removeToken();
     storage.removeUser();
-  }
+  },
 };
 
 // HTTP Client
@@ -95,10 +95,7 @@ class ApiClient {
     this.baseUrl = baseUrl;
   }
 
-  private async request<T>(
-    endpoint: string,
-    options: RequestInit = {}
-  ): Promise<T> {
+  private async request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
     const url = `${this.baseUrl}${endpoint}`;
     const token = storage.getToken();
     const method = options.method || 'GET';
@@ -275,7 +272,7 @@ export const authApi = {
    */
   getStoredUser(): User | null {
     return storage.getUser();
-  }
+  },
 };
 
 // Health check API
@@ -285,7 +282,7 @@ export const healthApi = {
    */
   async check(): Promise<{ status: string; service: string; version: string }> {
     return apiClient.get('/health');
-  }
+  },
 };
 
 // Export the client for custom requests

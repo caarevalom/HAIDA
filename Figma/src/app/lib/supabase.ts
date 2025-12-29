@@ -17,8 +17,8 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   auth: {
     autoRefreshToken: true,
     persistSession: true,
-    detectSessionInUrl: true
-  }
+    detectSessionInUrl: true,
+  },
 });
 
 // Database types based on HAIDA schema
@@ -122,7 +122,7 @@ export const auth = {
   signIn: async (email: string, password: string) => {
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
-      password
+      password,
     });
     return { data, error };
   },
@@ -133,8 +133,8 @@ export const auth = {
       email,
       password,
       options: {
-        data: metadata
-      }
+        data: metadata,
+      },
     });
     return { data, error };
   },
@@ -147,13 +147,19 @@ export const auth = {
 
   // Get current user
   getUser: async () => {
-    const { data: { user }, error } = await supabase.auth.getUser();
+    const {
+      data: { user },
+      error,
+    } = await supabase.auth.getUser();
     return { user, error };
   },
 
   // Get current session
   getSession: async () => {
-    const { data: { session }, error } = await supabase.auth.getSession();
+    const {
+      data: { session },
+      error,
+    } = await supabase.auth.getSession();
     return { session, error };
   },
 
@@ -166,7 +172,7 @@ export const auth = {
   // Listen to auth changes
   onAuthStateChange: (callback: (event: string, session: any) => void) => {
     return supabase.auth.onAuthStateChange(callback);
-  }
+  },
 };
 
 // Data helpers
@@ -182,10 +188,7 @@ export const db = {
 
   // Projects
   getProjects: async (tenantId?: string) => {
-    let query = supabase
-      .from('projects')
-      .select('*')
-      .order('created_at', { ascending: false });
+    let query = supabase.from('projects').select('*').order('created_at', { ascending: false });
 
     if (tenantId) {
       query = query.eq('tenant_id', tenantId);
@@ -205,20 +208,13 @@ export const db = {
   },
 
   createProject: async (project: Partial<DbProject>) => {
-    const { data, error } = await supabase
-      .from('projects')
-      .insert(project)
-      .select()
-      .single();
+    const { data, error } = await supabase.from('projects').insert(project).select().single();
     return { data: data as DbProject | null, error };
   },
 
   // Test Suites
   getTestSuites: async (projectId?: string) => {
-    let query = supabase
-      .from('test_suites')
-      .select('*')
-      .order('created_at', { ascending: false });
+    let query = supabase.from('test_suites').select('*').order('created_at', { ascending: false });
 
     if (projectId) {
       query = query.eq('project_id', projectId);
@@ -230,10 +226,7 @@ export const db = {
 
   // Test Cases
   getTestCases: async (suiteId?: string) => {
-    let query = supabase
-      .from('test_cases')
-      .select('*')
-      .order('created_at', { ascending: false });
+    let query = supabase.from('test_cases').select('*').order('created_at', { ascending: false });
 
     if (suiteId) {
       query = query.eq('test_suite_id', suiteId);
@@ -244,11 +237,7 @@ export const db = {
   },
 
   createTestCase: async (testCase: Partial<DbTestCase>) => {
-    const { data, error } = await supabase
-      .from('test_cases')
-      .insert(testCase)
-      .select()
-      .single();
+    const { data, error } = await supabase.from('test_cases').insert(testCase).select().single();
     return { data: data as DbTestCase | null, error };
   },
 
@@ -288,10 +277,7 @@ export const db = {
 
   // Users
   getUsers: async (tenantId?: string) => {
-    let query = supabase
-      .from('users')
-      .select('*')
-      .order('created_at', { ascending: false });
+    let query = supabase.from('users').select('*').order('created_at', { ascending: false });
 
     if (tenantId) {
       query = query.eq('tenant_id', tenantId);
@@ -303,19 +289,15 @@ export const db = {
 
   // Project Health View
   getProjectHealth: async () => {
-    const { data, error } = await supabase
-      .from('v_project_health')
-      .select('*');
+    const { data, error } = await supabase.from('v_project_health').select('*');
     return { data, error };
   },
 
   // Test Coverage View
   getTestCoverage: async () => {
-    const { data, error } = await supabase
-      .from('v_test_coverage')
-      .select('*');
+    const { data, error } = await supabase.from('v_test_coverage').select('*');
     return { data, error };
-  }
+  },
 };
 
 export default supabase;

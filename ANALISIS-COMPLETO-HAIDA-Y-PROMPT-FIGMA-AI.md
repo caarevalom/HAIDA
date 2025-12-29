@@ -3,7 +3,7 @@
 **Documento:** Análisis exhaustivo de HAIDA v1.0/v2.0 + Prompt optimizado para Figma AI  
 **Fecha:** 16 Diciembre 2025  
 **Audiencia:** Design Teams, AI Design Tools, Stakeholders  
-**Propósito:** Generar presentación profesional HTML con Figma AI  
+**Propósito:** Generar presentación profesional HTML con Figma AI
 
 ---
 
@@ -12,6 +12,7 @@
 ### 1.1 ¿QUÉ ES HAIDA?
 
 **DEFINICIÓN CORE:**
+
 ```
 HAIDA = Sistema Inteligente de Generación de Test Cases
 └─ Transforma especificaciones funcionales en casos de prueba ISTQB
@@ -19,11 +20,13 @@ HAIDA = Sistema Inteligente de Generación de Test Cases
 ```
 
 **MISIÓN:**
+
 - 📄 Input: Especificación funcional (.md)
 - 🤖 Proceso: Prompt engineering + IA
 - 📊 Output: CSV con 20-50 test cases profesionales
 
 **DIFERENCIADOR:**
+
 ```
 VELOCIDAD:    4 semanas → 3 horas (-95%)
 COBERTURA:    12.5% ISTQB (1/8) → 100% ISTQB (8/8)
@@ -81,16 +84,16 @@ PROBLEMAS:
 
 #### Componentes Técnicos v1.0
 
-| Componente | Estatus | Detalles |
-|-----------|---------|---------|
-| **API Server** | ⚠️ Funcional | Express.js, sin auth, console.log, file I/O |
-| **Docker** | ✅ Funcional | 6 servicios (changedetection, selenium, haida-api, postgres, redis, allure) |
-| **Tests** | ⚠️ 12.5% | Solo 1/8 profiles implementados |
-| **Database** | ⚠️ Basic | PostgreSQL/Redis, no schema, file I/O principal |
-| **Security** | ❌ Ninguna | Sin JWT, sin rate limiting, sin input validation |
-| **Logging** | ❌ Basic | console.log solamente |
-| **CLI** | ❌ No existe | Scripts PowerShell manuales |
-| **Docs** | ⚠️ Caótica | 18+ duplicados, 40+ archivos basura |
+| Componente     | Estatus      | Detalles                                                                    |
+| -------------- | ------------ | --------------------------------------------------------------------------- |
+| **API Server** | ⚠️ Funcional | Express.js, sin auth, console.log, file I/O                                 |
+| **Docker**     | ✅ Funcional | 6 servicios (changedetection, selenium, haida-api, postgres, redis, allure) |
+| **Tests**      | ⚠️ 12.5%     | Solo 1/8 profiles implementados                                             |
+| **Database**   | ⚠️ Basic     | PostgreSQL/Redis, no schema, file I/O principal                             |
+| **Security**   | ❌ Ninguna   | Sin JWT, sin rate limiting, sin input validation                            |
+| **Logging**    | ❌ Basic     | console.log solamente                                                       |
+| **CLI**        | ❌ No existe | Scripts PowerShell manuales                                                 |
+| **Docs**       | ⚠️ Caótica   | 18+ duplicados, 40+ archivos basura                                         |
 
 ---
 
@@ -98,28 +101,28 @@ PROBLEMAS:
 
 #### P0 CRÍTICOS (Bloquean producción)
 
-| # | Problema | Impacto | Solución v2.0 |
-|---|----------|---------|---------------|
-| 1 | 2 niveles directorio | Confusión, duplicados | `/versions/v2.0/` único |
-| 2 | 18+ docs duplicados | Mantenimiento imposible | 8 docs consolidados |
-| 3 | Solo 1/8 test profiles | Cobertura 12.5% | Implementar 7 faltantes |
-| 4 | Sin autenticación | Seguridad nula | JWT + HMAC webhooks |
-| 5 | File I/O solo | No escalable | PostgreSQL + schema |
-| 6 | Sin logging | Debugging imposible | Winston + rotación |
-| 7 | Sin rate limiting | Vulnerable a DDoS | express-rate-limit + Redis |
+| #   | Problema               | Impacto                 | Solución v2.0              |
+| --- | ---------------------- | ----------------------- | -------------------------- |
+| 1   | 2 niveles directorio   | Confusión, duplicados   | `/versions/v2.0/` único    |
+| 2   | 18+ docs duplicados    | Mantenimiento imposible | 8 docs consolidados        |
+| 3   | Solo 1/8 test profiles | Cobertura 12.5%         | Implementar 7 faltantes    |
+| 4   | Sin autenticación      | Seguridad nula          | JWT + HMAC webhooks        |
+| 5   | File I/O solo          | No escalable            | PostgreSQL + schema        |
+| 6   | Sin logging            | Debugging imposible     | Winston + rotación         |
+| 7   | Sin rate limiting      | Vulnerable a DDoS       | express-rate-limit + Redis |
 
 #### P1 ALTOS (Afectan usabilidad)
 
-| # | Problema | Impacto | Solución v2.0 |
-|---|----------|---------|---------------|
-| 8 | Sin error handling | Crashes sin info | Comprehensive recovery |
-| 9 | Sin monitoreo | Invisible en prod | Prometheus + alertas |
-| 10 | Sin CLI tool | Manual, lento | haida-cli unificado |
+| #   | Problema           | Impacto           | Solución v2.0          |
+| --- | ------------------ | ----------------- | ---------------------- |
+| 8   | Sin error handling | Crashes sin info  | Comprehensive recovery |
+| 9   | Sin monitoreo      | Invisible en prod | Prometheus + alertas   |
+| 10  | Sin CLI tool       | Manual, lento     | haida-cli unificado    |
 
 #### P2 MEDIOS (Técnico-deuda)
 
-| # | Problema | Impacto | Solución v2.0 |
-|---|----------|---------|---------------|
+| #     | Problema                                                            | Impacto        | Solución v2.0                  |
+| ----- | ------------------------------------------------------------------- | -------------- | ------------------------------ |
 | 11-16 | Hard-coded config, duplicación de API, sin version, <70% tests, etc | Mantenibilidad | Modularización, centralización |
 
 ---
@@ -186,6 +189,7 @@ MEJORAS:
 ### 1.5 COMPONENTES & FEATURES v2.0
 
 #### A) Ingestión & Normalización
+
 ```javascript
 POST /ingest/sanitize
 ├─ Input: especificación .md
@@ -195,6 +199,7 @@ POST /ingest/sanitize
 ```
 
 #### B) RAG & Búsqueda Semántica
+
 ```javascript
 POST /rag/search
 ├─ Dense embeddings (vector search)
@@ -204,6 +209,7 @@ POST /rag/search
 ```
 
 #### C) NLP & Análisis
+
 ```javascript
 POST /nlp/keyphrases
 POST /nlp/summarize
@@ -213,6 +219,7 @@ POST /nlp/sentiment
 ```
 
 #### D) Generación con LLM
+
 ```javascript
 POST /gen/structured-output
 ├─ Function calling
@@ -222,6 +229,7 @@ POST /gen/structured-output
 ```
 
 #### E) Guardrails & Validación
+
 ```javascript
 POST /guardrails/validate
 ├─ Input validation (Joi)
@@ -232,6 +240,7 @@ POST /guardrails/validate
 ```
 
 #### F) Orquestación
+
 ```javascript
 POST /orchestrator/execute
 ├─ Workflow orchestration (Temporal)
@@ -242,6 +251,7 @@ POST /orchestrator/execute
 ```
 
 #### G) Observabilidad
+
 ```javascript
 GET /observability/health
 GET /observability/metrics
@@ -270,24 +280,28 @@ WEEK 9-10: Phase 6 - Launch (QA final, deployment, data migration)
 ### 1.7 BENEFICIOS MEDIBLES
 
 #### Para Usuarios
+
 - ⚡ **Setup:** 30 min → 5 min (-80%)
 - 🎯 **Confiabilidad:** Gaps → Cobertura 100% ISTQB
 - 🔒 **Seguridad:** Ninguna → Enterprise-grade
 - 📊 **Transparencia:** Invisible → Full monitoring
 
 #### Para Desarrolladores
+
 - 🏗️ **Mantenibilidad:** Monolítico → Modular
 - 🧪 **Testabilidad:** <50% → >70% coverage
 - 📚 **Documentación:** Dispersa → Centralizada
 - 🔧 **Tooling:** Manual → CLI automático
 
 #### Para Operaciones
+
 - 🎛️ **Control:** Sin auth → JWT + API keys
 - 🛡️ **Protección:** Sin límites → DDoS protection
 - 📈 **Escalabilidad:** <100 req/día → 1000s/día
 - 📞 **Alertas:** Manual → Automáticas
 
 #### Para el Negocio
+
 - 💰 **Costo:** -80% tiempo de implementación
 - 🚀 **Adopción:** Difícil → Fácil (5 min setup)
 - ✅ **Confianza:** Beta → Production-ready
@@ -300,6 +314,7 @@ WEEK 9-10: Phase 6 - Launch (QA final, deployment, data migration)
 ### 2.1 ESTRATEGIA DE DISEÑO
 
 La presentación debe:
+
 1. **Mostrar HAIDA como herramienta profesional** (no beta)
 2. **Contar la historia:** Antes/después, velocidad, cobertura
 3. **Inspirar confianza:** Datos, métricas, roadmap claro
@@ -369,12 +384,13 @@ PROMPT PARA FIGMA AI DESIGN - HAIDA v2.0 PRESENTATION
 CONTEXTO:
 ─────────
 Necesito una presentación HTML/CSS profesional para HAIDA v2.0, una herramienta
-de generación automática de test cases ISTQB que reduce tiempo de 4 semanas a 
-3 horas. La presentación es para stakeholders ejecutivos y debe inspirar 
+de generación automática de test cases ISTQB que reduce tiempo de 4 semanas a
+3 horas. La presentación es para stakeholders ejecutivos y debe inspirar
 confianza, mostrar diferenciadores clave y facilitar adopción.
 
 AUDIENCIA:
 ──────────
+
 - Ejecutivos (C-level, managers)
 - QA Teams (interesados en productividad)
 - Tech Leads (interesados en arquitectura)
@@ -382,6 +398,7 @@ AUDIENCIA:
 
 BRAND:
 ──────
+
 - Company: Hiberus (Spanish tech company)
 - Colors: Persian Blue #1E34A1, Stratos #010D3D, White #FFFFFF
 - Logo: "Hiberus × HAIDA" (text-based if logo file unavailable)
@@ -393,26 +410,26 @@ SECCIONES REQUERIDAS (8 SECCIONES):
 1. HERO / COVER PAGE
    ─────────────────
    Objetivo: Capturar atención en 5 segundos
-   
+
    Layout:
    ┌─────────────────────────────────────────────────────────┐
-   │  [Hiberus Logo]  Hiberus × HAIDA                         │
-   │                                                           │
-   │  ╔═══════════════════════════════════════════════════╗   │
-   │  ║ HAIDA v2.0                                        ║   │
-   │  ║ Test Generation, Simplified                      ║   │
-   │  ║                                                   ║   │
-   │  ║ From 4 weeks to 3 hours                           ║   │
-   │  ║ Professional ISTQB test cases in a click          ║   │
-   │  ║                                                   ║   │
-   │  ║ [GET STARTED] ← CTA Button                        ║   │
-   │  ╚═══════════════════════════════════════════════════╝   │
-   │                                                           │
-   │  Stats row at bottom:                                    │
-   │  📊 95% Time Saved | 🎯 100% ISTQB Coverage | 🚀 In Production
+   │ [Hiberus Logo] Hiberus × HAIDA │
+   │ │
+   │ ╔═══════════════════════════════════════════════════╗ │
+   │ ║ HAIDA v2.0 ║ │
+   │ ║ Test Generation, Simplified ║ │
+   │ ║ ║ │
+   │ ║ From 4 weeks to 3 hours ║ │
+   │ ║ Professional ISTQB test cases in a click ║ │
+   │ ║ ║ │
+   │ ║ [GET STARTED] ← CTA Button ║ │
+   │ ╚═══════════════════════════════════════════════════╝ │
+   │ │
+   │ Stats row at bottom: │
+   │ 📊 95% Time Saved | 🎯 100% ISTQB Coverage | 🚀 In Production
    │
    └─────────────────────────────────────────────────────────┘
-   
+
    Design notes:
    - Hero gradient: Persian Blue #1E34A1 → Stratos #010D3D (135°)
    - Headline: Bold, large (3-4rem), white
@@ -426,39 +443,39 @@ SECCIONES REQUERIDAS (8 SECCIONES):
 2. THE PROBLEM
    ────────────
    Objetivo: Mostrar pain points del status quo
-   
+
    Layout:
    ┌─────────────────────────────────────────────────────────┐
-   │ THE PROBLEM: Manual Test Generation Takes Weeks          │
-   │                                                           │
-   │  Timeline visual (4 SEMANAS):                            │
-   │  ┌──────────────────────────────────────────────────┐   │
-   │  │ Week 1: QA reads spec        💤                  │   │
-   │  │ Week 2: Design test cases    💤                  │   │
-   │  │ Week 3: Write automation code 💤                 │   │
-   │  │ Week 4: Validate & QA        💤 ← Ready!        │   │
-   │  └──────────────────────────────────────────────────┘   │
-   │                                                           │
-   │  Five Cards (3-column grid):                            │
-   │  ┌───────────┐ ┌───────────┐ ┌──────────┐              │
-   │  │ 🐢 SLOW   │ │ 📉 GAPS   │ │ 💰 COSTLY │             │
-   │  │ 4 weeks   │ │ 12.5%     │ │ 1 QA     │             │
-   │  │ to deliver│ │ coverage  │ │ FT       │             │
-   │  └───────────┘ └───────────┘ └──────────┘             │
-   │  ┌───────────┐ ┌───────────┐                          │
-   │  │ 😞 MANUAL │ │ 📚 MESSY  │                          │
-   │  │ No standard│ │ Docs all  │                          │
-   │  │ approach  │ │ over place│                          │
-   │  └───────────┘ └───────────┘                          │
-   │                                                           │
-   │  Right side: Quote                                       │
-   │  "QA teams waste 40% of time in test design"             │
-   │  — Industry Report 2024                                  │
-   │                                                           │
-   │  [DISCOVER THE SOLUTION →]                              │
+   │ THE PROBLEM: Manual Test Generation Takes Weeks │
+   │ │
+   │ Timeline visual (4 SEMANAS): │
+   │ ┌──────────────────────────────────────────────────┐ │
+   │ │ Week 1: QA reads spec 💤 │ │
+   │ │ Week 2: Design test cases 💤 │ │
+   │ │ Week 3: Write automation code 💤 │ │
+   │ │ Week 4: Validate & QA 💤 ← Ready! │ │
+   │ └──────────────────────────────────────────────────┘ │
+   │ │
+   │ Five Cards (3-column grid): │
+   │ ┌───────────┐ ┌───────────┐ ┌──────────┐ │
+   │ │ 🐢 SLOW │ │ 📉 GAPS │ │ 💰 COSTLY │ │
+   │ │ 4 weeks │ │ 12.5% │ │ 1 QA │ │
+   │ │ to deliver│ │ coverage │ │ FT │ │
+   │ └───────────┘ └───────────┘ └──────────┘ │
+   │ ┌───────────┐ ┌───────────┐ │
+   │ │ 😞 MANUAL │ │ 📚 MESSY │ │
+   │ │ No standard│ │ Docs all │ │
+   │ │ approach │ │ over place│ │
+   │ └───────────┘ └───────────┘ │
+   │ │
+   │ Right side: Quote │
+   │ "QA teams waste 40% of time in test design" │
+   │ — Industry Report 2024 │
+   │ │
+   │ [DISCOVER THE SOLUTION →] │
    │
    └─────────────────────────────────────────────────────────┘
-   
+
    Design notes:
    - Background: Light gray/white (#f5f7fa)
    - Headline: Persian Blue, bold
@@ -472,48 +489,48 @@ SECCIONES REQUERIDAS (8 SECCIONES):
 3. THE SOLUTION
    ─────────────
    Objetivo: Presentar HAIDA v2.0 como respuesta
-   
+
    Layout:
    ┌─────────────────────────────────────────────────────────┐
-   │ THE SOLUTION: HAIDA v2.0                                │
-   │                                                           │
-   │  Timeline visual (3 HORAS):                             │
-   │  ┌──────────────────────────────────────────────────┐   │
-   │  │ Hour 1: Upload specification   ✅ DONE!          │   │
-   │  │ Hour 2: AI generates test cases ✅ DONE!         │   │
-   │  │ Hour 3: Validate & export      ✅ DONE!         │   │
-   │  └──────────────────────────────────────────────────┘   │
-   │                                                           │
-   │  3 Pillars (side-by-side):                             │
-   │  ┌──────────────┐ ┌──────────────┐ ┌──────────────┐   │
-   │  │ 🏗️           │ │ 🔧           │ │ 📈           │   │
-   │  │ CONSOLIDATION│ │ PROFESSIONAL │ │ SCALABILITY  │   │
-   │  │              │ │                │ │              │   │
-   │  │ • 1 unified  │ │ • PostgreSQL  │ │ • 1000s      │   │
-   │  │   directory  │ │ • JWT Auth    │ │   webhooks   │   │
-   │  │ • Docs       │ │ • Winston     │ │ • Prometheus│   │
-   │  │   consolidated
-   │ │ • Logging    │ │ • Alerts      │   │
-   │  │ • No dupes   │ │ • 8/8 tests   │ │ • Redis      │   │
-   │  └──────────────┘ └──────────────┘ └──────────────┘   │
-   │                                                           │
-   │  Comparison Table (Before/After):                        │
-   │  ┌─────────────────┬───────────────┬─────────────────┐  │
-   │  │ Feature         │ v1.0 (Current)│ v2.0 (Proposed) │  │
-   │  ├─────────────────┼───────────────┼─────────────────┤  │
-   │  │ Setup Time      │ 30 min        │ 5 min (-80%)    │  │
-   │  │ Test Coverage   │ 12.5% (1/8)   │ 100% (8/8)      │  │
-   │  │ Security        │ ❌ None       │ ✅ Enterprise   │  │
-   │  │ Database        │ File I/O      │ PostgreSQL      │  │
-   │  │ Logging         │ console.log   │ Winston+Rotate  │  │
-   │  │ Monitoring      │ ❌ None       │ ✅ Prometheus   │  │
-   │  │ Production Ready│ ❌ Beta       │ ✅ Ready        │  │
-   │  └─────────────────┴───────────────┴─────────────────┘  │
+   │ THE SOLUTION: HAIDA v2.0 │
+   │ │
+   │ Timeline visual (3 HORAS): │
+   │ ┌──────────────────────────────────────────────────┐ │
+   │ │ Hour 1: Upload specification ✅ DONE! │ │
+   │ │ Hour 2: AI generates test cases ✅ DONE! │ │
+   │ │ Hour 3: Validate & export ✅ DONE! │ │
+   │ └──────────────────────────────────────────────────┘ │
+   │ │
+   │ 3 Pillars (side-by-side): │
+   │ ┌──────────────┐ ┌──────────────┐ ┌──────────────┐ │
+   │ │ 🏗️ │ │ 🔧 │ │ 📈 │ │
+   │ │ CONSOLIDATION│ │ PROFESSIONAL │ │ SCALABILITY │ │
+   │ │ │ │ │ │ │ │
+   │ │ • 1 unified │ │ • PostgreSQL │ │ • 1000s │ │
+   │ │ directory │ │ • JWT Auth │ │ webhooks │ │
+   │ │ • Docs │ │ • Winston │ │ • Prometheus│ │
+   │ │ consolidated
+   │ │ • Logging │ │ • Alerts │ │
+   │ │ • No dupes │ │ • 8/8 tests │ │ • Redis │ │
+   │ └──────────────┘ └──────────────┘ └──────────────┘ │
+   │ │
+   │ Comparison Table (Before/After): │
+   │ ┌─────────────────┬───────────────┬─────────────────┐ │
+   │ │ Feature │ v1.0 (Current)│ v2.0 (Proposed) │ │
+   │ ├─────────────────┼───────────────┼─────────────────┤ │
+   │ │ Setup Time │ 30 min │ 5 min (-80%) │ │
+   │ │ Test Coverage │ 12.5% (1/8) │ 100% (8/8) │ │
+   │ │ Security │ ❌ None │ ✅ Enterprise │ │
+   │ │ Database │ File I/O │ PostgreSQL │ │
+   │ │ Logging │ console.log │ Winston+Rotate │ │
+   │ │ Monitoring │ ❌ None │ ✅ Prometheus │ │
+   │ │ Production Ready│ ❌ Beta │ ✅ Ready │ │
+   │ └─────────────────┴───────────────┴─────────────────┘ │
    │
-   │  Bottom right: Arrow or icon indicating progression
+   │ Bottom right: Arrow or icon indicating progression
    │
    └─────────────────────────────────────────────────────────┘
-   
+
    Design notes:
    - Background: Gradient light (white to light gray)
    - Section headline: Persian Blue, bold
@@ -527,71 +544,71 @@ SECCIONES REQUERIDAS (8 SECCIONES):
 4. ARCHITECTURE
    ─────────────
    Objetivo: Mostrar cómo funciona técnicamente
-   
+
    Layout:
    ┌─────────────────────────────────────────────────────────┐
-   │ ARCHITECTURE: Modular & Scalable                        │
-   │                                                           │
-   │  System Diagram (center, interactive on hover):         │
-   │                                                           │
-   │        ┌─────────────────────────────────────┐          │
-   │        │   📄 Input: Specification           │          │
-   │        └──────────────┬──────────────────────┘          │
-   │                       │                                  │
-   │         ┌─────────────▼──────────────┐                 │
-   │    ┌────┤ /ingest/sanitize          │                 │
-   │    │    │ (Text normalization)       │                 │
-   │    │    └─────────────┬──────────────┘                 │
-   │    │                  │                                 │
-   │    │    ┌─────────────▼──────────────┐                │
-   │    ├────┤ /rag/search                │                │
-   │    │    │ (Semantic retrieval)       │                │
-   │    │    └─────────────┬──────────────┘                │
-   │    │                  │                                 │
-   │    │    ┌─────────────▼──────────────┐                │
-   │    ├────┤ /nlp/* (NLP tasks)         │                │
-   │    │    │ (Analysis & extraction)    │                │
-   │    │    └─────────────┬──────────────┘                │
-   │    │                  │                                 │
-   │    │    ┌─────────────▼──────────────┐                │
-   │    ├────┤ /gen/* (LLM generation)    │                │
-   │    │    │ (Structured output)        │                │
-   │    │    └─────────────┬──────────────┘                │
-   │    │                  │                                 │
-   │    │    ┌─────────────▼──────────────┐                │
-   │    ├────┤ /guardrails/validate       │                │
-   │    │    │ (Validation & safety)      │                │
-   │    │    └─────────────┬──────────────┘                │
-   │    │                  │                                 │
-   │    │        ┌─────────▼──────────┐                    │
-   │    │        │  📊 Output: CSV    │                    │
-   │    │        │  (Test cases)      │                    │
-   │    │        └────────────────────┘                    │
-   │    │                                                   │
-   │    └─ 7 MICROSERVICES ENDPOINTS                        │
-   │                                                           │
-   │  Left sidebar: Tech Stack                               │
-   │  ┌──────────────────┐                                  │
-   │  │ Backend: Express │                                  │
-   │  │ Database: PG SQL │                                  │
-   │  │ Cache: Redis     │                                  │
-   │  │ Logging: Winston │                                  │
-   │  │ Monitor: Prom    │                                  │
-   │  │ Orchestration:   │                                  │
-   │  │   Temporal       │                                  │
-   │  │ Testing: Jest    │                                  │
-   │  └──────────────────┘                                  │
-   │                                                           │
-   │  Right sidebar: Features                                │
-   │  ✅ Modular architecture                                │
-   │  ✅ Enterprise security                                 │
-   │  ✅ Observable & traceable                              │
-   │  ✅ Horizontally scalable                               │
-   │  ✅ High availability (HA)                              │
-   │  ✅ Disaster recovery (DR)                              │
+   │ ARCHITECTURE: Modular & Scalable │
+   │ │
+   │ System Diagram (center, interactive on hover): │
+   │ │
+   │ ┌─────────────────────────────────────┐ │
+   │ │ 📄 Input: Specification │ │
+   │ └──────────────┬──────────────────────┘ │
+   │ │ │
+   │ ┌─────────────▼──────────────┐ │
+   │ ┌────┤ /ingest/sanitize │ │
+   │ │ │ (Text normalization) │ │
+   │ │ └─────────────┬──────────────┘ │
+   │ │ │ │
+   │ │ ┌─────────────▼──────────────┐ │
+   │ ├────┤ /rag/search │ │
+   │ │ │ (Semantic retrieval) │ │
+   │ │ └─────────────┬──────────────┘ │
+   │ │ │ │
+   │ │ ┌─────────────▼──────────────┐ │
+   │ ├────┤ /nlp/_ (NLP tasks) │ │
+   │ │ │ (Analysis & extraction) │ │
+   │ │ └─────────────┬──────────────┘ │
+   │ │ │ │
+   │ │ ┌─────────────▼──────────────┐ │
+   │ ├────┤ /gen/_ (LLM generation) │ │
+   │ │ │ (Structured output) │ │
+   │ │ └─────────────┬──────────────┘ │
+   │ │ │ │
+   │ │ ┌─────────────▼──────────────┐ │
+   │ ├────┤ /guardrails/validate │ │
+   │ │ │ (Validation & safety) │ │
+   │ │ └─────────────┬──────────────┘ │
+   │ │ │ │
+   │ │ ┌─────────▼──────────┐ │
+   │ │ │ 📊 Output: CSV │ │
+   │ │ │ (Test cases) │ │
+   │ │ └────────────────────┘ │
+   │ │ │
+   │ └─ 7 MICROSERVICES ENDPOINTS │
+   │ │
+   │ Left sidebar: Tech Stack │
+   │ ┌──────────────────┐ │
+   │ │ Backend: Express │ │
+   │ │ Database: PG SQL │ │
+   │ │ Cache: Redis │ │
+   │ │ Logging: Winston │ │
+   │ │ Monitor: Prom │ │
+   │ │ Orchestration: │ │
+   │ │ Temporal │ │
+   │ │ Testing: Jest │ │
+   │ └──────────────────┘ │
+   │ │
+   │ Right sidebar: Features │
+   │ ✅ Modular architecture │
+   │ ✅ Enterprise security │
+   │ ✅ Observable & traceable │
+   │ ✅ Horizontally scalable │
+   │ ✅ High availability (HA) │
+   │ ✅ Disaster recovery (DR) │
    │
    └─────────────────────────────────────────────────────────┘
-   
+
    Design notes:
    - Background: Dark gradient or light gray
    - Diagram: SVG or ASCII art (stylized), Persian Blue lines
@@ -605,44 +622,44 @@ SECCIONES REQUERIDAS (8 SECCIONES):
 5. 50 AI TECHNIQUES
    ────────────────
    Objetivo: Mostrar profundidad técnica
-   
+
    Layout:
    ┌─────────────────────────────────────────────────────────┐
-   │ AI & AUTOMATION: 50 Integrated Techniques               │
-   │                                                           │
-   │  8 Categories (Tab/Pill selector at top):              │
-   │  [RAG ▾] [NLP ▾] [LLM Gen ▾] [Orchestration ▾]         │
-   │  [Observability ▾] [Security ▾] ...                     │
-   │                                                           │
-   │  Category: RAG & RETRIEVAL (8 techniques)               │
-   │  ┌──────────────┐ ┌──────────────┐ ┌─────────────┐     │
-   │  │ 🔎           │ │ 📊           │ │ 🎯          │     │
-   │  │ Semantic     │ │ Dense        │ │ Chunking    │     │
-   │  │ Search       │ │ Retrieval    │ │ Strategies  │     │
-   │  │ Endpoint: .. │ │ Endpoint: .. │ │ Endpoint:.. │     │
-   │  │ Phase: v2.0  │ │ Phase: v2.0  │ │ Phase: v2.0 │     │
-   │  └──────────────┘ └──────────────┘ └─────────────┘     │
-   │  ┌──────────────┐ ┌──────────────┐ ┌─────────────┐     │
-   │  │ 🔄           │ │ 📈           │ │ 🏆          │     │
-   │  │ Query        │ │ Hybrid       │ │ Reranking   │     │
-   │  │ Rewriting    │ │ Search       │ │ Models      │     │
-   │  │ Endpoint: .. │ │ Endpoint: .. │ │ Endpoint:.. │     │
-   │  │ Phase: v2.0  │ │ Phase: v2.0  │ │ Phase: v2.1 │     │
-   │  └──────────────┘ └──────────────┘ └─────────────┘     │
-   │  ...more techniques...                                   │
-   │                                                           │
-   │  Category stats:                                         │
-   │  • RAG: 8 techniques (all v2.0)                          │
-   │  • NLP Advanced: 13 techniques (12 v2.0 + 1 v2.1)       │
-   │  • LLM Generation: 9 techniques (8 v2.0 + 1 v2.1)       │
-   │  • Orchestration: 9 techniques (6 v2.0 + 3 v2.1)        │
-   │  • Observability: 7 techniques (5 v2.0 + 2 v2.1)        │
-   │  • Security: 5 techniques (4 v2.0 + 1 v2.1)             │
-   │                                                           │
-   │  Legend: v2.0 = Core (Semanas 1-8), v2.1+ = Roadmap    │
+   │ AI & AUTOMATION: 50 Integrated Techniques │
+   │ │
+   │ 8 Categories (Tab/Pill selector at top): │
+   │ [RAG ▾] [NLP ▾] [LLM Gen ▾] [Orchestration ▾] │
+   │ [Observability ▾] [Security ▾] ... │
+   │ │
+   │ Category: RAG & RETRIEVAL (8 techniques) │
+   │ ┌──────────────┐ ┌──────────────┐ ┌─────────────┐ │
+   │ │ 🔎 │ │ 📊 │ │ 🎯 │ │
+   │ │ Semantic │ │ Dense │ │ Chunking │ │
+   │ │ Search │ │ Retrieval │ │ Strategies │ │
+   │ │ Endpoint: .. │ │ Endpoint: .. │ │ Endpoint:.. │ │
+   │ │ Phase: v2.0 │ │ Phase: v2.0 │ │ Phase: v2.0 │ │
+   │ └──────────────┘ └──────────────┘ └─────────────┘ │
+   │ ┌──────────────┐ ┌──────────────┐ ┌─────────────┐ │
+   │ │ 🔄 │ │ 📈 │ │ 🏆 │ │
+   │ │ Query │ │ Hybrid │ │ Reranking │ │
+   │ │ Rewriting │ │ Search │ │ Models │ │
+   │ │ Endpoint: .. │ │ Endpoint: .. │ │ Endpoint:.. │ │
+   │ │ Phase: v2.0 │ │ Phase: v2.0 │ │ Phase: v2.1 │ │
+   │ └──────────────┘ └──────────────┘ └─────────────┘ │
+   │ ...more techniques... │
+   │ │
+   │ Category stats: │
+   │ • RAG: 8 techniques (all v2.0) │
+   │ • NLP Advanced: 13 techniques (12 v2.0 + 1 v2.1) │
+   │ • LLM Generation: 9 techniques (8 v2.0 + 1 v2.1) │
+   │ • Orchestration: 9 techniques (6 v2.0 + 3 v2.1) │
+   │ • Observability: 7 techniques (5 v2.0 + 2 v2.1) │
+   │ • Security: 5 techniques (4 v2.0 + 1 v2.1) │
+   │ │
+   │ Legend: v2.0 = Core (Semanas 1-8), v2.1+ = Roadmap │
    │
    └─────────────────────────────────────────────────────────┘
-   
+
    Design notes:
    - Background: Light gray
    - Category tabs: Persian Blue selected, gray inactive
@@ -657,56 +674,54 @@ SECCIONES REQUERIDAS (8 SECCIONES):
 6. ROADMAP
    ────────
    Objetivo: Mostrar timeline realista
-   
    Layout:
    ┌─────────────────────────────────────────────────────────┐
-   │ ROADMAP: 8-10 Weeks to Production                       │
-   │                                                           │
-   │  Timeline visual (linear):                              │
-   │                                                           │
-   │  │ WEEK 1-2 ├─────────────┤ WEEK 3-4 ├─────────────┤  │
-   │  │ PHASE 1  │ PHASE 2     │ PHASE 3  │ PHASE 4     │  │
-   │  │ Planning │ Refactoring │ Features │ Testing     │  │
-   │  │          │             │          │             │  │
-   │  │ ✓ Docs   │ ✓ Modular   │ ✓ Auth   │ ✓ Unit tests│  │
-   │  │ ✓ Cleanup│ ✓ DB Schema │ ✓ Logging│ ✓ Integration
-   │  │ ✓ Structure
- │ ✓ Config   │ ✓ Rate limit │ ✓ Load tests │  │
-   │  │          │             │          │             │  │
-   │  │ WEEK 5-6 ├─────────────┤ WEEK 7-8 ├─────────────┤  │
-   │  │ PHASE 5  │ PHASE 6     │ LAUNCH   │ SUPPORT     │  │
-   │  │ Polish   │ Stabilize   │          │             │  │
-   │  │          │             │ ✓ Deploy │ ✓ Monitor   │  │
-   │  │ ✓ Docs   │ ✓ Monitoring│ ✓ Migrate│ ✓ Optimize  │  │
-   │  │ ✓ CLI    │ ✓ Alerts    │ ✓ QA     │ ✓ Support   │  │
-   │  │ ✓ Demos  │ ✓ Load test │          │             │  │
+   │ ROADMAP: 8-10 Weeks to Production │
+   │ │
+   │ Timeline visual (linear): │
+   │ │
+   │ │ WEEK 1-2 ├─────────────┤ WEEK 3-4 ├─────────────┤ │
+   │ │ PHASE 1 │ PHASE 2 │ PHASE 3 │ PHASE 4 │ │
+   │ │ Planning │ Refactoring │ Features │ Testing │ │
+   │ │ │ │ │ │ │
+   │ │ ✓ Docs │ ✓ Modular │ ✓ Auth │ ✓ Unit tests│ │
+   │ │ ✓ Cleanup│ ✓ DB Schema │ ✓ Logging│ ✓ Integration
+   │ │ ✓ Structure
+   │ ✓ Config │ ✓ Rate limit │ ✓ Load tests │ │
+   │ │ │ │ │ │ │
+   │ │ WEEK 5-6 ├─────────────┤ WEEK 7-8 ├─────────────┤ │
+   │ │ PHASE 5 │ PHASE 6 │ LAUNCH │ SUPPORT │ │
+   │ │ Polish │ Stabilize │ │ │ │
+   │ │ │ │ ✓ Deploy │ ✓ Monitor │ │
+   │ │ ✓ Docs │ ✓ Monitoring│ ✓ Migrate│ ✓ Optimize │ │
+   │ │ ✓ CLI │ ✓ Alerts │ ✓ QA │ ✓ Support │ │
+   │ │ ✓ Demos │ ✓ Load test │ │ │ │
    │
-   │  Below: Effort breakdown                                │
-   │  ┌──────────┬──────────┬──────────┬──────────────┐    │
-   │  │ Phase    │ Duration │ Effort   │ Deliverables │    │
-   │  ├──────────┼──────────┼──────────┼──────────────┤    │
-   │  │ Phase 1  │ 2 weeks  │ 40 hrs   │ Arch docs    │    │
-   │  │ Phase 2  │ 2 weeks  │ 60 hrs   │ Modular code │    │
-   │  │ Phase 3  │ 2 weeks  │ 80 hrs   │ Features     │    │
-   │  │ Phase 4  │ 1 week   │ 40 hrs   │ Test suite   │    │
-   │  │ Phase 5  │ 1 week   │ 30 hrs   │ Docs + CLI   │    │
-   │  │ Phase 6  │ 2 weeks  │ 50 hrs   │ Prod deploy  │    │
-   │  └──────────┴──────────┴──────────┴──────────────┘    │
-   │                                                           │
-   │  Success criteria (checklist):                           │
-   │  ☐ All documentation consolidated                       │
-   │  ☐ 100% test profile coverage (8/8)                     │
-   │  ☐ 70%+ code coverage                                   │
-   │  ☐ Authentication working (JWT + HMAC)                  │
-   │  ☐ Database schema validated                            │
-   │  ☐ Logging centralized (Winston)                        │
-   │  ☐ Rate limiting active                                 │
-   │  ☐ Monitoring + alerts configured                       │
-   │  ☐ CLI tool functional                                  │
-   │  ☐ Production deployment tested                         │
+   │ Below: Effort breakdown │
+   │ ┌──────────┬──────────┬──────────┬──────────────┐ │
+   │ │ Phase │ Duration │ Effort │ Deliverables │ │
+   │ ├──────────┼──────────┼──────────┼──────────────┤ │
+   │ │ Phase 1 │ 2 weeks │ 40 hrs │ Arch docs │ │
+   │ │ Phase 2 │ 2 weeks │ 60 hrs │ Modular code │ │
+   │ │ Phase 3 │ 2 weeks │ 80 hrs │ Features │ │
+   │ │ Phase 4 │ 1 week │ 40 hrs │ Test suite │ │
+   │ │ Phase 5 │ 1 week │ 30 hrs │ Docs + CLI │ │
+   │ │ Phase 6 │ 2 weeks │ 50 hrs │ Prod deploy │ │
+   │ └──────────┴──────────┴──────────┴──────────────┘ │
+   │ │
+   │ Success criteria (checklist): │
+   │ ☐ All documentation consolidated │
+   │ ☐ 100% test profile coverage (8/8) │
+   │ ☐ 70%+ code coverage │
+   │ ☐ Authentication working (JWT + HMAC) │
+   │ ☐ Database schema validated │
+   │ ☐ Logging centralized (Winston) │
+   │ ☐ Rate limiting active │
+   │ ☐ Monitoring + alerts configured │
+   │ ☐ CLI tool functional │
+   │ ☐ Production deployment tested │
    │
    └─────────────────────────────────────────────────────────┘
-   
    Design notes:
    - Timeline: Horizontal line with phase boxes
    - Phase boxes: Gradient background (Persian Blue 1 → 3), white text
@@ -720,63 +735,63 @@ SECCIONES REQUERIDAS (8 SECCIONES):
 7. BENEFITS
    ────────
    Objetivo: Mostrar valor tangible
-   
+
    Layout:
    ┌─────────────────────────────────────────────────────────┐
-   │ BENEFITS: Impact Across All Roles                       │
-   │                                                           │
-   │  4 Perspectives (Tab selector at top):                  │
-   │  [Users ▾] [Developers ▾] [Operations ▾] [Business ▾]  │
-   │                                                           │
-   │  USERS PERSPECTIVE:                                      │
-   │  ┌─────────────────────────────────────────┐            │
-   │  │ 📊 SETUP                                 │            │
-   │  │ Before: 30 minutes of configuration     │            │
-   │  │ After:  5 minutes (CLI automated)       │            │
-   │  │ Impact: ⚡ 80% faster onboarding         │            │
-   │  └─────────────────────────────────────────┘            │
-   │  ┌─────────────────────────────────────────┐            │
-   │  │ 🎯 COVERAGE                              │            │
-   │  │ Before: 12.5% ISTQB profiles (1/8)      │            │
-   │  │ After:  100% ISTQB profiles (8/8)       │            │
-   │  │ Impact: ✅ Zero test gaps (7/8 new)     │            │
-   │  └─────────────────────────────────────────┘            │
-   │  ┌─────────────────────────────────────────┐            │
-   │  │ 🔒 SECURITY                              │            │
-   │  │ Before: No authentication or encryption │            │
-   │  │ After:  Enterprise-grade (JWT + HMAC)  │            │
-   │  │ Impact: 🛡️ Compliance-ready (SOC2)      │            │
-   │  └─────────────────────────────────────────┘            │
-   │  ┌─────────────────────────────────────────┐            │
-   │  │ 📚 DOCS                                   │            │
-   │  │ Before: 18+ duplicated files (confusing)│            │
-   │  │ After:  8 consolidated documents       │            │
-   │  │ Impact: 📖 Clear, maintainable docs     │            │
-   │  └─────────────────────────────────────────┘            │
-   │                                                           │
-   │  DEVELOPERS PERSPECTIVE: (similar cards)                │
-   │  ┌─────────────────────────────────────────┐            │
-   │  │ 🏗️ ARCHITECTURE                         │            │
-   │  │ Monolithic → Modular (7 endpoints)     │            │
-   │  │ Impact: 🧩 Extensible, maintainable    │            │
-   │  └─────────────────────────────────────────┘            │
-   │  ...etc                                                  │
-   │                                                           │
-   │  BUSINESS PERSPECTIVE:                                   │
-   │  ROI Chart (simple bar graph):                           │
-   │  ┌────────────────────────────────────────┐             │
-   │  │ Cost Savings (per project)              │             │
-   │  │ Time: 4 weeks → 3 hours = $16,000      │             │
-   │  │ (1 QA @ $200/day × 20 days)             │             │
-   │  │                                          │             │
-   │  │ Per year (10 projects): $160,000        │             │
-   │  │ Tool cost: $5,000                        │             │
-   │  │ Net savings: $155,000                    │             │
-   │  │ ROI: 3100% in year 1 ✅                 │             │
-   │  └────────────────────────────────────────┘             │
+   │ BENEFITS: Impact Across All Roles │
+   │ │
+   │ 4 Perspectives (Tab selector at top): │
+   │ [Users ▾] [Developers ▾] [Operations ▾] [Business ▾] │
+   │ │
+   │ USERS PERSPECTIVE: │
+   │ ┌─────────────────────────────────────────┐ │
+   │ │ 📊 SETUP │ │
+   │ │ Before: 30 minutes of configuration │ │
+   │ │ After: 5 minutes (CLI automated) │ │
+   │ │ Impact: ⚡ 80% faster onboarding │ │
+   │ └─────────────────────────────────────────┘ │
+   │ ┌─────────────────────────────────────────┐ │
+   │ │ 🎯 COVERAGE │ │
+   │ │ Before: 12.5% ISTQB profiles (1/8) │ │
+   │ │ After: 100% ISTQB profiles (8/8) │ │
+   │ │ Impact: ✅ Zero test gaps (7/8 new) │ │
+   │ └─────────────────────────────────────────┘ │
+   │ ┌─────────────────────────────────────────┐ │
+   │ │ 🔒 SECURITY │ │
+   │ │ Before: No authentication or encryption │ │
+   │ │ After: Enterprise-grade (JWT + HMAC) │ │
+   │ │ Impact: 🛡️ Compliance-ready (SOC2) │ │
+   │ └─────────────────────────────────────────┘ │
+   │ ┌─────────────────────────────────────────┐ │
+   │ │ 📚 DOCS │ │
+   │ │ Before: 18+ duplicated files (confusing)│ │
+   │ │ After: 8 consolidated documents │ │
+   │ │ Impact: 📖 Clear, maintainable docs │ │
+   │ └─────────────────────────────────────────┘ │
+   │ │
+   │ DEVELOPERS PERSPECTIVE: (similar cards) │
+   │ ┌─────────────────────────────────────────┐ │
+   │ │ 🏗️ ARCHITECTURE │ │
+   │ │ Monolithic → Modular (7 endpoints) │ │
+   │ │ Impact: 🧩 Extensible, maintainable │ │
+   │ └─────────────────────────────────────────┘ │
+   │ ...etc │
+   │ │
+   │ BUSINESS PERSPECTIVE: │
+   │ ROI Chart (simple bar graph): │
+   │ ┌────────────────────────────────────────┐ │
+   │ │ Cost Savings (per project) │ │
+   │ │ Time: 4 weeks → 3 hours = $16,000 │ │
+   │ │ (1 QA @ $200/day × 20 days) │ │
+   │ │ │ │
+   │ │ Per year (10 projects): $160,000 │ │
+   │ │ Tool cost: $5,000 │ │
+   │ │ Net savings: $155,000 │ │
+   │ │ ROI: 3100% in year 1 ✅ │ │
+   │ └────────────────────────────────────────┘ │
    │
    └─────────────────────────────────────────────────────────┘
-   
+
    Design notes:
    - Tabs: Persian Blue selected, gray inactive
    - Benefit cards: Icon (large) + metric + before/after + impact
@@ -790,33 +805,33 @@ SECCIONES REQUERIDAS (8 SECCIONES):
 8. CALL-TO-ACTION
    ───────────────
    Objetivo: Facilitar próximos pasos
-   
+
    Layout:
    ┌─────────────────────────────────────────────────────────┐
-   │                                                           │
-   │  ╔═══════════════════════════════════════════════════╗   │
-   │  ║ READY TO GET STARTED?                             ║   │
-   │  ║                                                   ║   │
-   │  ║ Next Steps:                                       ║   │
-   │  ║                                                   ║   │
-   │  ║ 1️⃣  Schedule a demo (15 min) → [BOOK NOW]         ║   │
-   │  ║ 2️⃣  Review architecture docs → [DOWNLOAD]        ║   │
-   │  ║ 3️⃣  Get started in <5 minutes → [QUICKSTART]      ║   │
-   │  ║ 4️⃣  Join the Hiberus AI community → [CHAT]        ║   │
-   │  ║                                                   ║   │
-   │  ╚═══════════════════════════════════════════════════╝   │
-   │                                                           │
-   │  Contact Info:                                           │
-   │  📧 Email: haida@hiberus.com                             │
-   │  🔗 Website: www.hiberus.com/haida                       │
-   │  💬 Chat: Slack #haida-dev                               │
-   │  📖 Docs: https://docs.haida.io                          │
-   │                                                           │
-   │  Follow Us:                                              │
-   │  🐙 GitHub | 𝕏 Twitter | 💼 LinkedIn | 📺 YouTube       │
-   │                                                           │
+   │ │
+   │ ╔═══════════════════════════════════════════════════╗ │
+   │ ║ READY TO GET STARTED? ║ │
+   │ ║ ║ │
+   │ ║ Next Steps: ║ │
+   │ ║ ║ │
+   │ ║ 1️⃣ Schedule a demo (15 min) → [BOOK NOW] ║ │
+   │ ║ 2️⃣ Review architecture docs → [DOWNLOAD] ║ │
+   │ ║ 3️⃣ Get started in <5 minutes → [QUICKSTART] ║ │
+   │ ║ 4️⃣ Join the Hiberus AI community → [CHAT] ║ │
+   │ ║ ║ │
+   │ ╚═══════════════════════════════════════════════════╝ │
+   │ │
+   │ Contact Info: │
+   │ 📧 Email: haida@hiberus.com │
+   │ 🔗 Website: www.hiberus.com/haida │
+   │ 💬 Chat: Slack #haida-dev │
+   │ 📖 Docs: https://docs.haida.io │
+   │ │
+   │ Follow Us: │
+   │ 🐙 GitHub | 𝕏 Twitter | 💼 LinkedIn | 📺 YouTube │
+   │ │
    └─────────────────────────────────────────────────────────┘
-   
+
    Design notes:
    - Background: Gradient Persian Blue → Stratos (like hero)
    - Text: White on dark background
@@ -831,33 +846,38 @@ ESTILO GENERAL
 ──────────────
 
 Typography:
-  - Headings: Bold, sans-serif (Segoe UI, Roboto, system fonts)
-  - Body: Regular, sans-serif, line-height 1.6
-  - Monospace: Code snippets in Monaco or Courier
+
+- Headings: Bold, sans-serif (Segoe UI, Roboto, system fonts)
+- Body: Regular, sans-serif, line-height 1.6
+- Monospace: Code snippets in Monaco or Courier
 
 Color Palette:
-  - Primary: Persian Blue #1E34A1 (buttons, highlights, CTA)
-  - Dark: Stratos #010D3D (backgrounds, footer, contrast)
-  - Light: White #FFFFFF + Light Gray #f5f7fa (backgrounds)
-  - Accents: Green #00cc66 (success), Red #ff3333 (danger), Yellow #ffcc00 (warning)
+
+- Primary: Persian Blue #1E34A1 (buttons, highlights, CTA)
+- Dark: Stratos #010D3D (backgrounds, footer, contrast)
+- Light: White #FFFFFF + Light Gray #f5f7fa (backgrounds)
+- Accents: Green #00cc66 (success), Red #ff3333 (danger), Yellow #ffcc00 (warning)
 
 Layout:
-  - Max-width: 1200px (content)
-  - Padding: 40px sides on desktop, 20px on mobile
-  - Spacing: 20px, 40px, 60px (consistent vertical rhythm)
-  - Responsive: Mobile-first, breakpoints at 768px, 1024px
+
+- Max-width: 1200px (content)
+- Padding: 40px sides on desktop, 20px on mobile
+- Spacing: 20px, 40px, 60px (consistent vertical rhythm)
+- Responsive: Mobile-first, breakpoints at 768px, 1024px
 
 Interactions:
-  - Buttons: Smooth hover transition (0.3s), cursor pointer
-  - Cards: Hover lift (shadow increase), no transform
-  - Tabs: Instant switch (no animation), Persian Blue underline
-  - Scroll: Smooth behavior, lazy-load images
+
+- Buttons: Smooth hover transition (0.3s), cursor pointer
+- Cards: Hover lift (shadow increase), no transform
+- Tabs: Instant switch (no animation), Persian Blue underline
+- Scroll: Smooth behavior, lazy-load images
 
 Accessibility:
-  - WCAG AA compliant (contrast ratios >4.5:1)
-  - All icons have alt text or semantic labels
-  - Focus states visible (outline on buttons/inputs)
-  - Keyboard navigation supported (tabindex, semantic HTML)
+
+- WCAG AA compliant (contrast ratios >4.5:1)
+- All icons have alt text or semantic labels
+- Focus states visible (outline on buttons/inputs)
+- Keyboard navigation supported (tabindex, semantic HTML)
 
 ═══════════════════════════════════════════════════════════════════════════════
 
@@ -886,10 +906,12 @@ TONE & MESSAGING
 ────────────────
 
 Overall: Professional, technical, trustworthy
+
 - NOT: Hype-y, vague, marketing-fluff
 - YES: Data-driven, specific benefits, clear differentiators
 
 Key Messages:
+
 1. "HAIDA reduces test generation from 4 weeks to 3 hours"
 2. "Professional ISTQB test cases, guaranteed"
 3. "Enterprise-grade security and scalability"
@@ -897,6 +919,7 @@ Key Messages:
 5. "Join 100+ companies automating their QA"
 
 Language:
+
 - Active voice ("We consolidated" not "Was consolidated")
 - Specific metrics (not "faster" but "80% faster")
 - Technical depth (mention tech stack, not just buzzwords)
@@ -967,11 +990,13 @@ Si el prompt anterior es demasiado largo, aquí está la versión condensada:
 CREATE A PROFESSIONAL HTML PRESENTATION FOR HAIDA v2.0
 
 PROJECT:
+
 - HAIDA = Test case generation tool (4 weeks → 3 hours)
 - Audience: Executives, QA teams, tech leads
 - Brand: Hiberus (Persian Blue #1E34A1, Stratos #010D3D)
 
 8 SECTIONS:
+
 1. Hero: "HAIDA v2.0 - Test Generation, Simplified"
 2. Problem: 4-week manual process (5 cards showing pain points)
 3. Solution: 3 pillars + before/after table
@@ -982,6 +1007,7 @@ PROJECT:
 8. CTA: Next steps + contact info
 
 STYLE:
+
 - Modern, professional, tech-forward
 - Persian Blue #1E34A1 (primary), Stratos #010D3D (dark)
 - Cards, gradients, icons, tables
@@ -989,6 +1015,7 @@ STYLE:
 - Smooth animations, interactive elements
 
 DELIVERABLE:
+
 - Single HTML file (responsive, self-contained)
 - Embedded CSS + minimal JS
 - <50KB gzipped
@@ -1002,6 +1029,7 @@ TONE: Data-driven, specific metrics, technical depth
 ## 2.5 CÓMO USAR ESTE PROMPT
 
 ### Opción 1: Figma AI Plugin
+
 ```
 1. Abre Figma → Plugins → "AI Assist" o similar
 2. Pega el prompt completo (Sección 2.3)
@@ -1011,6 +1039,7 @@ TONE: Data-driven, specific metrics, technical depth
 ```
 
 ### Opción 2: ChatGPT + Figma
+
 ```
 1. Pasa el prompt a ChatGPT con instrucción "Crea un diseño Figma basado en..."
 2. ChatGPT genera descripción de frames
@@ -1019,6 +1048,7 @@ TONE: Data-driven, specific metrics, technical depth
 ```
 
 ### Opción 3: Claude/Copilot + HTML Generator
+
 ```
 1. Usa este prompt con Copilot
 2. Pide generar HTML/CSS directo
@@ -1027,6 +1057,7 @@ TONE: Data-driven, specific metrics, technical depth
 ```
 
 ### Opción 4: Webflow/Builder.io
+
 ```
 1. Copia el prompt
 2. Usa Builder.io "AI Designer"
@@ -1059,36 +1090,43 @@ Después de generar con Figma AI, personaliza:
 
 ```markdown
 ### Sección 1: Hero
+
 - [ ] Añade logo Hiberus (si tienes archivo .svg)
 - [ ] Ajusta headline según target audience
 - [ ] Personaliza CTA text ("Get Started" vs "Schedule Demo")
 
 ### Sección 3: Solution
+
 - [ ] Añade testimonios/quotes de usuarios reales
 - [ ] Actualiza metrics si tienes datos reales
 - [ ] Cambia timeline si es diferente
 
 ### Sección 4: Architecture
+
 - [ ] Reemplaza diagrama genérico con Mermaid/PlantUML
 - [ ] Añade URLs reales si los servicios están deployed
 - [ ] Cita tecnologías específicas (versiones, etc)
 
 ### Sección 5: AI Techniques
+
 - [ ] Crea enlaces a documentación técnica
 - [ ] Añade ejemplos de código (snippets)
 - [ ] Link a TECHNIQUES-INTEGRATION-CATALOG.md
 
 ### Sección 6: Roadmap
+
 - [ ] Ajusta timeline según tu plan real
 - [ ] Añade responsables (si no es confidencial)
 - [ ] Link a ACTION-ITEMS-IMMEDIATE-2WEEKS.md
 
 ### Sección 7: Benefits
+
 - [ ] Añade quotes/testimonios de clientes
 - [ ] Números reales de ROI/metrics
 - [ ] Case studies (si disponibles)
 
 ### Sección 8: CTA
+
 - [ ] Emails reales de contacto
 - [ ] URLs de Slack, GitHub, Wiki
 - [ ] Calendario de eventos (webinars, demos)
@@ -1105,7 +1143,7 @@ Este análisis + prompt proporciona:
 ✅ **Especificaciones detalladas** de 8 secciones  
 ✅ **Guidelines de diseño** (colores, tipografía, layout, interactividad)  
 ✅ **Instrucciones de validación** post-generación  
-✅ **Tips de personalización** para tu contexto específico  
+✅ **Tips de personalización** para tu contexto específico
 
 **Resultado esperado:** Presentación HTML profesional, responsive, branded con Hiberus, lista para stakeholders.
 

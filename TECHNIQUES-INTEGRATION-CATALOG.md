@@ -3,6 +3,7 @@
 Resumen ejecutivo: catálogo de 50 técnicas de IA/automatización (RAG, NLP, LLM, Orquestación, Observabilidad, Seguridad) mapeadas a la arquitectura HAIDA v2.0.
 
 Objetivo: ofrecer un inventario accionable que indique para cada técnica:
+
 - propósito
 - punto(s) de integración (componentes/pipelines)
 - endpoint o micro-función sugerida
@@ -12,6 +13,7 @@ Objetivo: ofrecer un inventario accionable que indique para cada técnica:
 ---
 
 ## Convenciones
+
 - Endpoints internos propuestos:
   - POST /ingest/sanitize → Normalización y limpieza de texto (encoding/characters)
   - POST /nlp/{task} → Servicios NLP (keyphrases, ner, sentiment, summarization)
@@ -26,6 +28,7 @@ Objetivo: ofrecer un inventario accionable que indique para cada técnica:
 ## Mapeo por categoría
 
 ### 1) Recuperación & RAG (8 técnicas)
+
 - semantic_search — Búsqueda semántica sobre índice (FAISS/Milvus/Weaviate).
   - Integración: ingestion → indexación → query service
   - Endpoint: POST /rag/search
@@ -64,6 +67,7 @@ Objetivo: ofrecer un inventario accionable que indique para cada técnica:
 ---
 
 ### 2) NLP Avanzado (13 técnicas)
+
 - keyphrase_extraction — Extraer frases clave de documentos (useful para tagging/test generation)
   - Endpoint: POST /nlp/keyphrases
   - Prioridad: **v2.0**
@@ -119,6 +123,7 @@ Objetivo: ofrecer un inventario accionable que indique para cada técnica:
 ---
 
 ### 3) Generación & Control LLM (9 técnicas)
+
 - structured_output — Forzar respuestas estructuradas (JSON Schema)
   - Endpoint: POST /gen/structured
   - Prioridad: **v2.0**
@@ -158,6 +163,7 @@ Objetivo: ofrecer un inventario accionable que indique para cada técnica:
 ---
 
 ### 4) Automatización & Orquestación (9 técnicas)
+
 - workflow_orchestration — Jobs definidos en Temporal/Prefect (playbooks)
   - Integración: /orchestrator/execute + job definitions repo
   - Pri: **v2.0**
@@ -196,6 +202,7 @@ Objetivo: ofrecer un inventario accionable que indique para cada técnica:
 ---
 
 ### 5) Observabilidad & Calidad (7 técnicas)
+
 - eval_harness — Framework para evaluar LLM outputs contra oracles
   - Integración: test harness + nightly jobs
   - Pri: **v2.1+**
@@ -227,6 +234,7 @@ Objetivo: ofrecer un inventario accionable que indique para cada técnica:
 ---
 
 ### 6) Seguridad & Compliance (5 técnicas)
+
 - input_validation — Strong validation for all inputs (Joi/OpenAPI)
   - Pri: **v2.0**
 
@@ -245,60 +253,13 @@ Objetivo: ofrecer un inventario accionable que indique para cada técnica:
 ---
 
 ## Ingestión y Normalización (caracteres extraños) — Diseño e implementación
+
 Problema: los documentos pueden contener encodings distintos y caracteres no imprimibles que rompen pipelines de NLP/RAG/LLM.
 
 Solución propuesta (pipeline):
+
 1. Detect encoding (chardet) y convertir a UTF-8 si es necesario.
 2. Normalizar Unicode (NFC o NFKC según política).
-3. Eliminar caracteres de control y reemplazar espacios especiales (NBSP, 	, 
+3. Eliminar caracteres de control y reemplazar espacios especiales (NBSP, ,
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-© HAIDA - Técnicas Integration Catalog — Generado por Copilot---- Mantener el catálogo como living document (`TECHNIQUES-INTEGRATION-CATALOG.md`), actualizable por PRs.- Usar feature flags para togglear técnicas experimentales (v2.1+) y habilitarlas por entorno.- Cada endpoint debe incluir schema OpenAPI y tests (unit + integration) en la carpeta `tests/`.## Notas finales---- latency_ms, token_count, success_rate, error_rate, PII_hits, replaced_chars_count, index_size, recall@k## Observabilidad y métricas mínimas por técnica---- Week 5-7 (v2.1): reranking, query_rewriting, drift_detection, eval_harness, red_team_testing.- Week 3 (v2.0): workflow_orchestration (Temporal), event_driven_actions, cache_layer, rate_limiting.- Week 1 (v2.0 core): /ingest/sanitize, text_normalization, semantic_search, dense_retrieval, keyphrase_extraction, structured_output, guardrails (PII/toxicity), telemetry.## Plan de implementación (prioridad y hitos)---Recomendación: agregar `tools/normalize-text.js` con la función y `POST /ingest/sanitize` en HAIDA API (middleware de validación + logging). También activar métricas en Prometheus para monitorizar documentos con problemas de encoding.```}  return s  s = s.replace(/\s+/g, ' ').trim()  // Collapse multiple spaces  s = s.replace(/[\u00A0\u1680\u2000-\u200A\u202F\u205F\u3000]/g, ' ')  // Replace NBSP and other whitespace with normal space  s = s.replace(/[\u0000-\u001F\u007F-\u009F]/g, '')  // Remove control chars  s = s.normalize('NFKC')  // Normalize unicode  if (!s) return sfunction sanitizeText(s) {```jsSnippet Node.js (pseudocódigo):- Response: { ok: true, sanitized: string, issues: [ { type, detail } ] }- Request: { source: string, content: base64|string, filename?: string }Endpoint de integración: POST /ingest/sanitize6. Registro: telemetría por documento (errors, replaced_chars_count, encoding)5. Validación y guardado: mantener `original_text` + `sanitized_text` en el repositorio/document-store.4. Aplicar transliteration opcional (ej: å → a) para idiomas no críticos o dejar original y almacenar alias.) por espacios simples.
+© HAIDA - Técnicas Integration Catalog — Generado por Copilot---- Mantener el catálogo como living document (`TECHNIQUES-INTEGRATION-CATALOG.md`), actualizable por PRs.- Usar feature flags para togglear técnicas experimentales (v2.1+) y habilitarlas por entorno.- Cada endpoint debe incluir schema OpenAPI y tests (unit + integration) en la carpeta `tests/`.## Notas finales---- latency_ms, token_count, success_rate, error_rate, PII_hits, replaced_chars_count, index_size, recall@k## Observabilidad y métricas mínimas por técnica---- Week 5-7 (v2.1): reranking, query_rewriting, drift_detection, eval_harness, red_team_testing.- Week 3 (v2.0): workflow_orchestration (Temporal), event_driven_actions, cache_layer, rate_limiting.- Week 1 (v2.0 core): /ingest/sanitize, text_normalization, semantic_search, dense_retrieval, keyphrase_extraction, structured_output, guardrails (PII/toxicity), telemetry.## Plan de implementación (prioridad y hitos)---Recomendación: agregar `tools/normalize-text.js` con la función y `POST /ingest/sanitize` en HAIDA API (middleware de validación + logging). También activar métricas en Prometheus para monitorizar documentos con problemas de encoding.`}  return s  s = s.replace(/\s+/g, ' ').trim()  // Collapse multiple spaces  s = s.replace(/[\u00A0\u1680\u2000-\u200A\u202F\u205F\u3000]/g, ' ')  // Replace NBSP and other whitespace with normal space  s = s.replace(/[\u0000-\u001F\u007F-\u009F]/g, '')  // Remove control chars  s = s.normalize('NFKC')  // Normalize unicode  if (!s) return sfunction sanitizeText(s) {`jsSnippet Node.js (pseudocódigo):- Response: { ok: true, sanitized: string, issues: [ { type, detail } ] }- Request: { source: string, content: base64|string, filename?: string }Endpoint de integración: POST /ingest/sanitize6. Registro: telemetría por documento (errors, replaced_chars_count, encoding)5. Validación y guardado: mantener `original_text` + `sanitized_text` en el repositorio/document-store.4. Aplicar transliteration opcional (ej: å → a) para idiomas no críticos o dejar original y almacenar alias.) por espacios simples.

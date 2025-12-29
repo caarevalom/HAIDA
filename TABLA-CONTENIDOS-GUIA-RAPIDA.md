@@ -1,4 +1,5 @@
 # 📑 TABLA DE CONTENIDOS - PLAN COMPLETO HAIDA v2.0
+
 ## Índice Rápido de Todos los Documentos
 
 **Última actualización:** 16 Diciembre 2024  
@@ -9,9 +10,11 @@
 ## 🚀 EMPIEZA AQUÍ (5 Minutos)
 
 ### 1️⃣ QUICK-START-LECTURA.md
+
 **Tiempo:** 5-10 minutos  
 **Para:** Todos - primer documento a leer  
 **Contiene:**
+
 - 3 formas de leer el plan (15 min, 1 hr, 4 hrs)
 - Documento-por-documento explicado
 - 5 caminos según tu rol
@@ -28,9 +31,11 @@ Primer paso: LEE ESTO
 ## 💼 PARA TOMAR DECISIONES (15-30 Minutos)
 
 ### 2️⃣ EXECUTIVE-SUMMARY-v2.0.md
+
 **Tiempo:** 10-15 minutos  
 **Para:** Managers, Stakeholders, Executives  
 **Contiene:**
+
 - Tabla v1.0 vs v2.0 (9 aspectos)
 - Problema principal
 - Solución (3 pilares)
@@ -50,9 +55,11 @@ Segundo paso: ESTE SI ERES MANAGER
 ## 🎯 PARA ENTENDER TODO (1-2 Horas)
 
 ### 3️⃣ INDICE-MAESTRO-v2.0.md
+
 **Tiempo:** 15-20 minutos  
 **Para:** Todos los roles  
 **Contiene:**
+
 - "Elige tu camino" por rol (5 paths)
 - Timeline combinado (Semana 1-10)
 - Matriz de responsabilidades
@@ -70,10 +77,12 @@ NAVIGATION HUB - Aquí encontras qué leer según tu rol
 ## 🔍 PARA ENTENDER PROBLEMAS (30 Min - 4 Hrs)
 
 ### 4️⃣ AUDIT-REPORT-v1-COMPREHENSIVE.md
+
 **Tiempo:** 30 min (resumen) o 3-4 hrs (completo)  
 **Para:** Developers, Architects, Tech Leads  
 **Tamaño:** 11,500 líneas  
 **Contiene:**
+
 - Resumen ejecutivo (v1.0 problemas)
 - Estructura actual análisis (2 directorios, 40+ docs basura)
 - 16 problemas críticos identificados (P0, P1, P2, P3)
@@ -95,10 +104,12 @@ Para managers: LEE RESUMEN EJECUTIVO
 ## 📐 PARA ENTENDER SOLUCIÓN (30 Min - 3 Hrs)
 
 ### 5️⃣ MIGRACION-v1-to-v2-STRATEGY.md
+
 **Tiempo:** 30 min (resumen) o 2-3 hrs (completo)  
 **Para:** Tech Leads, Architects, Senior Developers  
 **Tamaño:** 8,000 líneas  
 **Contiene:**
+
 - Visión v2.0 (3 pilares)
 - Timeline 8-10 semanas (6 fases)
 - Directory structure consolidada
@@ -123,10 +134,12 @@ Para entender CÓMO vamos de v1.0 a v2.0
 ## ✅ PARA EJECUTAR (30 Min - 2 Hrs)
 
 ### 6️⃣ ACTION-ITEMS-IMMEDIATE-2WEEKS.md
+
 **Tiempo:** 30 min (Tier 1) o 1-2 hrs (todas)  
 **Para:** Operativo (Dev, QA, DevOps, PM)  
 **Tamaño:** 3,500 líneas  
 **Contiene:**
+
 - Tareas CRÍTICAS Semana 1 (5 tareas):
   - Crear v2.0 skeleton (2 hrs)
   - Limpiar 40+ docs basura (3 hrs)
@@ -151,9 +164,11 @@ Te dice exactamente qué hacer hoy
 ## 📊 RESUMEN VISUAL (10 Minutos)
 
 ### 7️⃣ ENTREGA-RESUMEN.md
+
 **Tiempo:** 10 minutos  
 **Para:** Todos - para entender qué se entregó  
 **Contiene:**
+
 - Tabla de todos los documentos
 - Logros principales
 - Cobertura del análisis
@@ -173,15 +188,15 @@ Para entender QUÉ se entregó y CÓMO usarlo
 
 ### ¿Quién Eres? → ¿Qué Lees?
 
-| Rol | Tiempo | Documentos |
-|-----|--------|-----------|
-| **Manager/PM** | 30 min | QUICK-START → EXECUTIVE-SUMMARY → ACTION-ITEMS |
-| **Developer** | 2-3 hrs | QUICK-START → AUDIT (técnicas) → MIGRACION (técnicas) → ACTION-ITEMS |
-| **QA/Test** | 1-2 hrs | QUICK-START → AUDIT (tests) → MIGRACION (tests) → ACTION-ITEMS |
-| **DevOps** | 1-2 hrs | QUICK-START → AUDIT (infra) → MIGRACION (infra) → ACTION-ITEMS |
-| **Tech Lead** | 3-4 hrs | QUICK-START → AUDIT (completo) → MIGRACION (completo) → ACTION-ITEMS |
-| **Tech Writer** | 1 hr | QUICK-START → AUDIT (docs) → MIGRACION (docs) → ACTION-ITEMS |
-| **Executive** | 15 min | EXECUTIVE-SUMMARY |
+| Rol             | Tiempo  | Documentos                                                           |
+| --------------- | ------- | -------------------------------------------------------------------- |
+| **Manager/PM**  | 30 min  | QUICK-START → EXECUTIVE-SUMMARY → ACTION-ITEMS                       |
+| **Developer**   | 2-3 hrs | QUICK-START → AUDIT (técnicas) → MIGRACION (técnicas) → ACTION-ITEMS |
+| **QA/Test**     | 1-2 hrs | QUICK-START → AUDIT (tests) → MIGRACION (tests) → ACTION-ITEMS       |
+| **DevOps**      | 1-2 hrs | QUICK-START → AUDIT (infra) → MIGRACION (infra) → ACTION-ITEMS       |
+| **Tech Lead**   | 3-4 hrs | QUICK-START → AUDIT (completo) → MIGRACION (completo) → ACTION-ITEMS |
+| **Tech Writer** | 1 hr    | QUICK-START → AUDIT (docs) → MIGRACION (docs) → ACTION-ITEMS         |
+| **Executive**   | 15 min  | EXECUTIVE-SUMMARY                                                    |
 
 ---
 
@@ -207,26 +222,27 @@ Para entender QUÉ se entregó y CÓMO usarlo
 
 ## 📈 ESTADÍSTICAS
 
-| Métrica | Valor |
-|---------|-------|
-| Documentos maestros | 7 |
-| Líneas totales | 28,300+ |
-| Horas de análisis | 8+ |
-| Problemas identificados | 16 |
-| Fases de ejecución | 6 |
-| Tareas concretas | 20+ |
-| Success criteria | 20+ |
-| Riesgos mitigados | 5 |
-| Estimación esfuerzo | 900 horas |
-| Inversión estimada | $90,000 |
-| ROI payback period | <1 mes |
-| Timeline | 8-10 semanas |
+| Métrica                 | Valor        |
+| ----------------------- | ------------ |
+| Documentos maestros     | 7            |
+| Líneas totales          | 28,300+      |
+| Horas de análisis       | 8+           |
+| Problemas identificados | 16           |
+| Fases de ejecución      | 6            |
+| Tareas concretas        | 20+          |
+| Success criteria        | 20+          |
+| Riesgos mitigados       | 5            |
+| Estimación esfuerzo     | 900 horas    |
+| Inversión estimada      | $90,000      |
+| ROI payback period      | <1 mes       |
+| Timeline                | 8-10 semanas |
 
 ---
 
 ## ✨ CARACTERÍSTICAS CLAVE
 
 ### Comprensibilidad
+
 ✅ Escrito para múltiples audienencias  
 ✅ Lenguaje claro, sin jerga innecesaria  
 ✅ Ejemplos y código reales  
@@ -234,6 +250,7 @@ Para entender QUÉ se entregó y CÓMO usarlo
 ✅ "Too long; didn't read" sections
 
 ### Profundidad
+
 ✅ Va de 5-min overview a 4-hr deep-dive  
 ✅ Resúmenes ejecutivos en cada doc  
 ✅ Tablas de contenidos detallados  
@@ -241,6 +258,7 @@ Para entender QUÉ se entregó y CÓMO usarlo
 ✅ Índices y búsqueda (Ctrl+F)
 
 ### Accionabilidad
+
 ✅ Tareas concretas con duración  
 ✅ Bash commands listos para copiar-pegar  
 ✅ Checklist de validación  
@@ -248,6 +266,7 @@ Para entender QUÉ se entregó y CÓMO usarlo
 ✅ Roles y responsabilidades claras
 
 ### Completitud
+
 ✅ Cubre todo: problema, solución, plan, riesgos  
 ✅ Nada falta: no hay ambigüedades  
 ✅ Estimaciones conservadoras con buffer  
@@ -258,6 +277,7 @@ Para entender QUÉ se entregó y CÓMO usarlo
 ## 🎓 GUÍA DE LECTURA RECOMENDADA
 
 ### Opción A: Ejecutivo (15 minutos)
+
 ```
 1. QUICK-START (5 min)
 2. EXECUTIVE-SUMMARY (10 min)
@@ -265,6 +285,7 @@ Resultado: Entiendes problema + solución + timeline
 ```
 
 ### Opción B: Manager/PM (1 hora)
+
 ```
 1. QUICK-START (5 min)
 2. EXECUTIVE-SUMMARY (15 min)
@@ -275,6 +296,7 @@ Resultado: Entiendes plan, sabes qué aprobar, qué pedir
 ```
 
 ### Opción C: Desarrollador (4 horas)
+
 ```
 1. QUICK-START (5 min)
 2. EXECUTIVE-SUMMARY (15 min)
@@ -286,6 +308,7 @@ Resultado: Entiendes arquitectura, gaps, plan técnico
 ```
 
 ### Opción D: Completo (6 horas)
+
 ```
 1. QUICK-START (5 min)
 2. EXECUTIVE-SUMMARY (15 min)
@@ -302,18 +325,23 @@ Resultado: Entiendes TODOABSOLUTAMENTE
 ## 💡 TIPS PARA LEER
 
 ### Tip #1: Empieza con QUICK-START
+
 No importa tu rol, empieza aquí. Te orienta completamente.
 
 ### Tip #2: No Leas Linealmente
+
 Salta a tu sección. Usa Ctrl+F para buscar términos.
 
 ### Tip #3: Anota Mientras Lees
+
 Preguntas, puntos confusos, ideas → anotalos.
 
 ### Tip #4: Lee Resúmenes Primero
+
 Cada sección tiene un resumen. Lee eso primero.
 
 ### Tip #5: Usa Índices y Tablas
+
 Los documentos tienen TOC. Úsalos para navegar rápido.
 
 ---
@@ -321,26 +349,32 @@ Los documentos tienen TOC. Úsalos para navegar rápido.
 ## 🔗 REFERENCIAS CRUZADAS
 
 ### QUICK-START apunta a:
+
 - EXECUTIVE-SUMMARY (para managers)
 - INDICE-MAESTRO (para navegación)
 - ACTION-ITEMS (para tareas)
 
 ### EXECUTIVE-SUMMARY apunta a:
+
 - AUDIT-REPORT (para detalles)
 - MIGRACION-v1-to-v2 (para plan)
 
 ### INDICE-MAESTRO apunta a:
+
 - Todos los otros documentos (según rol)
 
 ### AUDIT-REPORT apunta a:
+
 - MIGRACION-v1-to-v2 (para soluciones)
 - ACTION-ITEMS (para tareas)
 
 ### MIGRACION-v1-to-v2 apunta a:
+
 - ACTION-ITEMS (para semanas 1-2)
 - Documentos técnicos futuros (refactor guide, etc)
 
 ### ACTION-ITEMS apunta a:
+
 - MIGRACION-v1-to-v2 (para plan completo)
 - Documentos específicos (cuando se crean)
 
@@ -349,21 +383,27 @@ Los documentos tienen TOC. Úsalos para navegar rápido.
 ## ❓ PREGUNTAS FRECUENTES
 
 ### P: ¿Cuál leo primero?
+
 **R:** SIEMPRE: QUICK-START-LECTURA.md (5 min)
 
 ### P: ¿Tengo que leer TODO?
+
 **R:** No. Lee solo lo relevante a tu rol (ver tabla).
 
 ### P: ¿Qué es esto? ¿Un libro?
+
 **R:** Es un plan completo de transformación en 7 documentos estructurados.
 
 ### P: ¿Cuánto tiempo me toma?
+
 **R:** 15 min (mínimo), 1 hour (recomendado), 6 hours (exhaustivo)
 
 ### P: ¿Esto es factible?
+
 **R:** Sí. 8-10 semanas, $90k presupuesto, 5 personas, con buffer.
 
 ### P: ¿Qué pasa si no leo?
+
 **R:** Te perderás el contexto. Recomendamos mínimo 30 min (QUICK-START + EXECUTIVE-SUMMARY).
 
 ---
@@ -381,6 +421,7 @@ Los documentos tienen TOC. Úsalos para navegar rápido.
 ## 📞 SOPORTE
 
 Si tienes dudas después de leer:
+
 1. Busca en INDICE-MAESTRO > FAQ
 2. Busca en documento específico (Ctrl+F)
 3. Pregunta en standup
@@ -415,4 +456,3 @@ No hay sorpresas.
 **Índice versión:** 1.0  
 **Última actualización:** 16 Diciembre 2024  
 **Status:** ✅ READY TO USE
-

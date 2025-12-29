@@ -1,9 +1,7 @@
 {
   "ci": {
     "collect": {
-      "url": [
-        "${BASE_URL:-https://mcprod.thisisbarcelona.com}"
-      ]
+      "url": ["${BASE_URL:-https://mcprod.thisisbarcelona.com}"]
     },
     "assert": {
       "assertions": {

@@ -28,6 +28,7 @@ Si tienes problemas, lee: `SSH-PASSPHRASE-GUIDE.md`
 ```
 
 **Esto verifica**:
+
 - ✅ Git configurado (usuario y email)
 - ✅ SSH funcionando
 - ✅ Archivos sensibles protegidos
@@ -40,6 +41,7 @@ Si tienes problemas, lee: `SSH-PASSPHRASE-GUIDE.md`
 ```
 
 **Esto configura**:
+
 - ✅ Usuario Git
 - ✅ SSH para GitHub
 - ✅ Remote URL
@@ -60,21 +62,21 @@ git push -u origin main
 
 ### Scripts (Ejecutar con PowerShell)
 
-| Script | Qué Hace |
-|--------|----------|
+| Script                   | Qué Hace                                              |
+| ------------------------ | ----------------------------------------------------- |
 | `verify-before-push.ps1` | ⚠️ **EJECUTA PRIMERO** - Verifica todo antes de subir |
-| `setup-github.ps1` | Configura Git y SSH para GitHub |
-| `setup-supabase.ps1` | Crea tablas en base de datos |
-| `deploy-complete.ps1` | Deploy automático completo |
+| `setup-github.ps1`       | Configura Git y SSH para GitHub                       |
+| `setup-supabase.ps1`     | Crea tablas en base de datos                          |
+| `deploy-complete.ps1`    | Deploy automático completo                            |
 
 ### Documentación
 
-| Archivo | Contenido |
-|---------|-----------|
-| `EMPEZAR-AQUI.md` | **👈 Este archivo** - Inicio rápido |
-| `CONFIGURACION-COMPLETA.md` | Resumen de toda la config |
-| `GITHUB-SETUP.md` | Guía completa de GitHub |
-| `SUPABASE-VERCEL-SETUP.md` | Guía Supabase y Vercel |
+| Archivo                     | Contenido                           |
+| --------------------------- | ----------------------------------- |
+| `EMPEZAR-AQUI.md`           | **👈 Este archivo** - Inicio rápido |
+| `CONFIGURACION-COMPLETA.md` | Resumen de toda la config           |
+| `GITHUB-SETUP.md`           | Guía completa de GitHub             |
+| `SUPABASE-VERCEL-SETUP.md`  | Guía Supabase y Vercel              |
 
 ---
 
@@ -83,6 +85,7 @@ git push -u origin main
 ### ✅ Archivos Protegidos (NO suben a GitHub)
 
 Estos archivos están en `.gitignore`:
+
 - `.env.production` - Credenciales reales
 - `Pro/HAIDA-Deploy` - Clave SSH privada
 - `Pro/HAIDA-Deploy.pub` - Clave SSH pública
@@ -91,6 +94,7 @@ Estos archivos están en `.gitignore`:
 ### ✅ Template Público (SÍ sube a GitHub)
 
 Este archivo es seguro:
+
 - `.env.example` - Template sin credenciales reales
 
 ---
@@ -180,14 +184,17 @@ npm run report
 ## 📍 URLs IMPORTANTES
 
 ### GitHub
+
 - Repositorio: https://github.com/CarlosArturoArevaloM/HAIDA
 - Issues: https://github.com/CarlosArturoArevaloM/HAIDA/issues
 
 ### Supabase
+
 - Dashboard: https://app.supabase.com/project/wdebyxvtunromsnkqbrd
 - Tables: https://app.supabase.com/project/wdebyxvtunromsnkqbrd/editor
 
 ### Vercel
+
 - Dashboard: https://vercel.com/w9ITuSz5cmhTvpQIafRHh8mS
 - Deployments: https://vercel.com/w9ITuSz5cmhTvpQIafRHh8mS/deployments
 
@@ -219,10 +226,12 @@ git remote set-url origin git@github.com:CarlosArturoArevaloM/HAIDA.git
 ## 🎓 MÁS INFORMACIÓN
 
 ### Para Principiantes
+
 - Lee: `GITHUB-SETUP.md` - Guía completa de GitHub
 - Ejecuta: `.\verify-before-push.ps1` - Verifica todo
 
 ### Para Avanzados
+
 - Lee: `CONFIGURACION-COMPLETA.md` - Toda la configuración
 - Lee: `CLI-TOOLS-GUIDE.md` - Todos los comandos
 - Ejecuta: `.\deploy-complete.ps1` - Deploy automático

@@ -5,6 +5,7 @@
 ### Paso 1: Desactivar Confirmación de Email
 
 1. **Ir a Supabase Dashboard**
+
    ```
    https://supabase.com/dashboard
    ```
@@ -19,9 +20,11 @@
    - Buscar `Email` en la lista
 
 5. **Desactivar "Confirm email"**
+
    ```
    [ ] Confirm email
    ```
+
    - Desmarcar esta casilla
    - Esto permite que los usuarios hagan login SIN confirmar su email
 
@@ -70,6 +73,7 @@ curl -X POST https://haida-one.vercel.app/auth/login \
 ### Paso 3: Probar en el Frontend
 
 1. **Ir a:**
+
    ```
    https://haida-frontend.vercel.app
    ```
@@ -85,6 +89,7 @@ curl -X POST https://haida-one.vercel.app/auth/login \
 ## 🎯 Ya Funciona!
 
 Con estos pasos, la autenticación estará completamente funcional:
+
 - ✅ Registro de usuarios
 - ✅ Login sin confirmación de email
 - ✅ JWT tokens

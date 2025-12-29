@@ -1,4 +1,5 @@
 # 🚀 ESTRATEGIA DE MIGRACIÓN HAIDA v1.0 → v2.0
+
 ## Plan Detallado de Consolidación y Profesionalización
 
 **Documento:** Migration Strategy v2.0  
@@ -52,6 +53,7 @@ BENEFICIOS INMEDIATOS:
 ## 🏛️ PILARES DEL REFACTORING {#pilares}
 
 ### Pilar 1: Consolidación Estructural
+
 **Objetivo:** Un único directorio, una fuente verdadera
 
 ```
@@ -79,6 +81,7 @@ DESPUÉS (v2.0 - Unificado):
 ```
 
 ### Pilar 2: Profesionalización de Código
+
 **Objetivo:** Enterprise-grade, production-ready
 
 ```
@@ -99,6 +102,7 @@ Después:
 ```
 
 ### Pilar 3: Escalabilidad y Monitoreo
+
 **Objetivo:** Listo para producción a escala
 
 ```
@@ -117,6 +121,7 @@ Después:
 ```
 
 ### Pilar 4: Documentación Unificada
+
 **Objetivo:** Una fuente de verdad, múltiples formatos
 
 ```
@@ -147,6 +152,7 @@ docs/
 ```
 
 ### Pilar 5: Versionamiento y Control
+
 **Objetivo:** Versiones manejables, migración clara
 
 ```
@@ -186,6 +192,7 @@ WEEK 9-10: PHASE 6 - Launch & Stabilization
 ### PHASE 1: Architecture & Planning (Week 1-2)
 
 **Days 1-3: Design Documents**
+
 - [ ] Create detailed API specification
 - [ ] Database schema design
 - [ ] Configuration strategy document
@@ -193,18 +200,21 @@ WEEK 9-10: PHASE 6 - Launch & Stabilization
 - [ ] Monitoring & alerting plan
 
 **Days 4-6: Proof of Concept**
+
 - [ ] Create sample v2.0 directory structure
 - [ ] Spike on authentication approach
 - [ ] Spike on logging strategy
 - [ ] Create migration script skeleton
 
 **Days 7-10: Planning**
+
 - [ ] Create detailed work breakdown structure
 - [ ] Assign tasks and estimate effort
 - [ ] Create risk register
 - [ ] Plan rollback strategy
 
 **Deliverables:**
+
 - ✅ Architecture document (this document)
 - ✅ Detailed API specification
 - ✅ Database schema ERD
@@ -215,6 +225,7 @@ WEEK 9-10: PHASE 6 - Launch & Stabilization
 ### PHASE 2: Code Consolidation & Refactor (Week 3-4)
 
 **Days 1-3: Create v2.0 Structure**
+
 - [ ] Create `/versions/v2.0/` directory
 - [ ] Create directory structure (src/, docker/, docs/)
 - [ ] Copy haida-api → src/api/
@@ -222,6 +233,7 @@ WEEK 9-10: PHASE 6 - Launch & Stabilization
 - [ ] Copy docker-compose → docker/
 
 **Days 4-6: Refactor server.js**
+
 - [ ] Split into: server, routes, middleware, controllers
 - [ ] Extract config to files
 - [ ] Create service layer
@@ -229,6 +241,7 @@ WEEK 9-10: PHASE 6 - Launch & Stabilization
 - [ ] Add input validation (Joi)
 
 **Days 7-10: Consolidate Tests & Config**
+
 - [ ] Move test files to src/tests/
 - [ ] Create test utilities
 - [ ] Consolidate selectors
@@ -236,12 +249,14 @@ WEEK 9-10: PHASE 6 - Launch & Stabilization
 - [ ] Create jest.config.js para unit tests
 
 **Days 11-14: Clean Documentation**
+
 - [ ] Archive v1.0 to `/versions/v1.0/`
 - [ ] Delete 40+ docs de otros proyectos
 - [ ] Create docs/ directory en v2.0
 - [ ] Start consolidating documentation
 
 **Deliverables:**
+
 - ✅ v2.0 directory structure complete
 - ✅ Refactored server.js (modular)
 - ✅ Consolidated tests
@@ -252,6 +267,7 @@ WEEK 9-10: PHASE 6 - Launch & Stabilization
 ### PHASE 3: Implement Critical Features (Week 5-6)
 
 **Days 1-5: Database & Persistence**
+
 - [ ] Create PostgreSQL schema
 - [ ] Set up Knex.js with migrations
 - [ ] Create seed data
@@ -259,6 +275,7 @@ WEEK 9-10: PHASE 6 - Launch & Stabilization
 - [ ] Create database utilities
 
 **Days 6-10: Authentication & Security**
+
 - [ ] Implement JWT authentication
 - [ ] Implement HMAC webhook signing
 - [ ] Add express-rate-limit
@@ -266,6 +283,7 @@ WEEK 9-10: PHASE 6 - Launch & Stabilization
 - [ ] Add audit logging
 
 **Days 11-15: Logging & Monitoring**
+
 - [ ] Integrate Winston logger
 - [ ] Configure log rotation
 - [ ] Create structured logging
@@ -273,6 +291,7 @@ WEEK 9-10: PHASE 6 - Launch & Stabilization
 - [ ] Create health check endpoints
 
 **Days 16-20: Test Profiles**
+
 - [ ] Implement widget-rendering.spec.js
 - [ ] Implement navigation-flow.spec.js
 - [ ] Implement interaction.spec.js
@@ -282,6 +301,7 @@ WEEK 9-10: PHASE 6 - Launch & Stabilization
 - [ ] Improve accessibility-full.spec.js
 
 **Deliverables:**
+
 - ✅ Full database schema with migrations
 - ✅ Production-grade authentication
 - ✅ Centralized logging with Winston
@@ -292,24 +312,28 @@ WEEK 9-10: PHASE 6 - Launch & Stabilization
 ### PHASE 4: Testing & Validation (Week 7)
 
 **Days 1-3: Unit Tests**
+
 - [ ] Write Jest tests for server.js
 - [ ] Write tests for middleware
 - [ ] Write tests for controllers
 - [ ] Aim for >70% code coverage
 
 **Days 4-5: Integration Tests**
+
 - [ ] Test full webhook flow
 - [ ] Test database persistence
 - [ ] Test authentication
 - [ ] Test error handling
 
 **Days 6-7: Load Testing**
+
 - [ ] Stress test webhook endpoint
 - [ ] Test rate limiting
 - [ ] Performance profiling
 - [ ] Database query optimization
 
 **Deliverables:**
+
 - ✅ >70% code coverage
 - ✅ All integration tests passing
 - ✅ Load test report
@@ -319,24 +343,28 @@ WEEK 9-10: PHASE 6 - Launch & Stabilization
 ### PHASE 5: Documentation & Polish (Week 8)
 
 **Days 1-3: Complete Documentation**
+
 - [ ] Finish all 8 docs
 - [ ] Create API reference
 - [ ] Create developer guide
 - [ ] Create troubleshooting guide
 
 **Days 4-5: Create CLI Tool**
+
 - [ ] Build haida-cli (Node.js)
 - [ ] Implement setup command
 - [ ] Implement start/stop commands
 - [ ] Implement test commands
 
 **Days 6-7: Polish & Review**
+
 - [ ] Code review and cleanup
 - [ ] Documentation review
 - [ ] Final testing
 - [ ] Create release notes
 
 **Deliverables:**
+
 - ✅ Complete documentation (8 docs)
 - ✅ haida-cli tool working
 - ✅ Release notes
@@ -346,24 +374,28 @@ WEEK 9-10: PHASE 6 - Launch & Stabilization
 ### PHASE 6: Launch & Stabilization (Week 9-10)
 
 **Days 1-3: Pre-launch**
+
 - [ ] Final QA testing
 - [ ] Security review
 - [ ] Performance review
 - [ ] Documentation validation
 
 **Days 4-5: Launch**
+
 - [ ] Tag v2.0 in git
 - [ ] Publish to npm (opcional)
 - [ ] Create announcement
 - [ ] Send notifications
 
 **Days 6-10: Post-launch Monitoring**
+
 - [ ] Monitor for issues
 - [ ] Address bugs
 - [ ] Gather feedback
 - [ ] Plan v2.1 improvements
 
 **Deliverables:**
+
 - ✅ v2.0 launched and stable
 - ✅ User feedback collected
 - ✅ Bug tracking system active
@@ -553,6 +585,7 @@ WEEK 9-10: PHASE 6 - Launch & Stabilization
 ### 1. Refactoring de server.js
 
 **Antes (459 líneas, monolítico):**
+
 ```javascript
 const express = require('express');
 const app = express();
@@ -573,6 +606,7 @@ app.post('/webhook/change-detected', (req, res) => {
 ```
 
 **Después (Modularizado):**
+
 ```javascript
 // src/api/server.js (100 líneas - solo orchestration)
 const express = require('express');
@@ -599,6 +633,7 @@ module.exports = app;
 ```
 
 **Ventajas:**
+
 - 🎯 Single responsibility
 - 🔧 Fácil de mantener
 - 🧪 Fácil de testear
@@ -619,23 +654,20 @@ function authenticateWebhook(req, res, next) {
   const signature = req.headers['x-webhook-signature'];
   const payload = JSON.stringify(req.body);
   const secret = process.env.WEBHOOK_SECRET;
-  
+
   // Verify HMAC signature
-  const expectedSignature = crypto
-    .createHmac('sha256', secret)
-    .update(payload)
-    .digest('hex');
-  
+  const expectedSignature = crypto.createHmac('sha256', secret).update(payload).digest('hex');
+
   if (signature !== expectedSignature) {
     return res.status(401).json({ error: 'Invalid signature' });
   }
-  
+
   next();
 }
 
 function authenticateAPI(req, res, next) {
   const token = req.headers['authorization']?.split(' ')[1];
-  
+
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = decoded;
@@ -649,6 +681,7 @@ module.exports = { authenticateWebhook, authenticateAPI };
 ```
 
 **Configuración .env:**
+
 ```env
 JWT_SECRET=your-super-secret-key-min-32-chars
 WEBHOOK_SECRET=webhook-secret-for-changedetection
@@ -685,7 +718,7 @@ CREATE TABLE webhooks (
   processed_at TIMESTAMP,
   created_at TIMESTAMP DEFAULT NOW(),
   updated_at TIMESTAMP DEFAULT NOW(),
-  
+
   INDEX idx_status (status),
   INDEX idx_url (url),
   INDEX idx_received_at (received_at)
@@ -702,7 +735,7 @@ CREATE TABLE test_results (
   screenshot_path VARCHAR(255),
   browser VARCHAR(50),
   created_at TIMESTAMP DEFAULT NOW(),
-  
+
   INDEX idx_webhook_id (webhook_id),
   INDEX idx_profile_name (profile_name),
   INDEX idx_status (status)
@@ -718,7 +751,7 @@ CREATE TABLE test_runs (
   passed_tests INTEGER,
   failed_tests INTEGER,
   duration_ms INTEGER,
-  
+
   INDEX idx_webhook_id (webhook_id),
   INDEX idx_status (status)
 );
@@ -733,7 +766,7 @@ CREATE TABLE audit_logs (
   ip_address VARCHAR(45),
   user_agent TEXT,
   created_at TIMESTAMP DEFAULT NOW(),
-  
+
   INDEX idx_user_id (user_id),
   INDEX idx_action (action),
   INDEX idx_created_at (created_at)
@@ -748,9 +781,9 @@ CREATE INDEX idx_results_by_profile_date ON test_results(profile_name, created_a
 
 ```javascript
 // src/database/migrations/001_create_tables.js
-exports.up = function(knex) {
+exports.up = function (knex) {
   return knex.schema
-    .createTable('users', table => {
+    .createTable('users', (table) => {
       table.uuid('id').primary().defaultTo(knex.raw('gen_random_uuid()'));
       table.string('email', 255).unique().notNullable();
       table.string('api_key', 255).unique().notNullable();
@@ -759,7 +792,7 @@ exports.up = function(knex) {
       table.timestamp('created_at').defaultTo(knex.fn.now());
       table.timestamp('updated_at').defaultTo(knex.fn.now());
     })
-    .createTable('webhooks', table => {
+    .createTable('webhooks', (table) => {
       table.uuid('id').primary().defaultTo(knex.raw('gen_random_uuid()'));
       table.string('url', 255).notNullable();
       table.string('tag', 100);
@@ -770,19 +803,17 @@ exports.up = function(knex) {
       table.timestamp('processed_at');
       table.timestamp('created_at').defaultTo(knex.fn.now());
       table.timestamp('updated_at').defaultTo(knex.fn.now());
-      
+
       table.index('status');
       table.index('url');
       table.index('received_at');
-    })
-    // ... más tables
+    });
+  // ... más tables
 };
 
-exports.down = function(knex) {
-  return knex.schema
-    .dropTableIfExists('webhooks')
-    .dropTableIfExists('users')
-    // ... resto
+exports.down = function (knex) {
+  return knex.schema.dropTableIfExists('webhooks').dropTableIfExists('users');
+  // ... resto
 };
 ```
 
@@ -805,14 +836,14 @@ const logger = winston.createLogger({
   defaultMeta: { service: 'haida-api' },
   transports: [
     // Error logs
-    new winston.transports.File({ 
+    new winston.transports.File({
       filename: 'logs/error.log',
       level: 'error',
       maxsize: 5242880, // 5MB
       maxFiles: 5,
     }),
     // All logs
-    new winston.transports.File({ 
+    new winston.transports.File({
       filename: 'logs/app.log',
       maxsize: 5242880,
       maxFiles: 5,
@@ -822,12 +853,11 @@ const logger = winston.createLogger({
 
 // Add console output in development
 if (config.nodeEnv === 'development') {
-  logger.add(new winston.transports.Console({
-    format: winston.format.combine(
-      winston.format.colorize(),
-      winston.format.simple()
-    ),
-  }));
+  logger.add(
+    new winston.transports.Console({
+      format: winston.format.combine(winston.format.colorize(), winston.format.simple()),
+    })
+  );
 }
 
 module.exports = logger;
@@ -841,22 +871,22 @@ const logger = require('../../utils/logger');
 
 router.post('/change-detected', async (req, res, next) => {
   const correlationId = req.headers['x-correlation-id'] || generateId();
-  
+
   try {
     logger.info('Webhook received', {
       correlationId,
       url: req.body.url,
       tag: req.body.tag,
     });
-    
+
     const result = await processWebhook(req.body);
-    
+
     logger.info('Webhook processed successfully', {
       correlationId,
       webhook_id: result.id,
       test_count: result.testCount,
     });
-    
+
     res.json({ success: true, webhookId: result.id });
   } catch (error) {
     logger.error('Webhook processing failed', {
@@ -890,7 +920,7 @@ const webhookLimiter = rateLimit({
     client: redisClient,
     prefix: 'webhook-limit:',
   }),
-  windowMs: 15 * 60 * 1000,  // 15 minutes
+  windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100,
   message: 'Too many requests, please try again later',
   standardHeaders: true,
@@ -904,7 +934,7 @@ const apiLimiter = rateLimit({
     prefix: 'api-limit:',
   }),
   keyGenerator: (req) => req.user?.apiKey || req.ip,
-  windowMs: 60 * 60 * 1000,  // 1 hour
+  windowMs: 60 * 60 * 1000, // 1 hour
   max: 1000,
 });
 
@@ -922,9 +952,7 @@ const Joi = require('joi');
 const webhookPayloadSchema = Joi.object({
   url: Joi.string().uri().required(),
   tag: Joi.string().max(100),
-  change_type: Joi.string().valid(
-    'DOM_CHANGE', 'CSS_CHANGE', 'JS_CHANGE', 'TEXT_CHANGE'
-  ),
+  change_type: Joi.string().valid('DOM_CHANGE', 'CSS_CHANGE', 'JS_CHANGE', 'TEXT_CHANGE'),
   payload: Joi.object().required(),
   timestamp: Joi.date().iso(),
 }).unknown(true);
@@ -943,10 +971,12 @@ module.exports = { validateWebhook };
 ## ⚠️ MITIGACIÓN DE RIESGOS {#riesgos}
 
 ### Riesgo #1: Datos Históricos Se Pierden
+
 **Probabilidad:** Alta  
 **Impacto:** Alto
 
 **Mitigación:**
+
 - [ ] Crear script de migración que importa v1.0 file results a v2.0 DB
 - [ ] Backup de todos los JSONs originales en `/versions/v1.0/backup/`
 - [ ] Documentar proceso de migración
@@ -955,10 +985,12 @@ module.exports = { validateWebhook };
 ---
 
 ### Riesgo #2: Downtime Durante Migración
+
 **Probabilidad:** Media  
 **Impacto:** Medio
 
 **Mitigación:**
+
 - [ ] Mantener v1.0 running mientras se desarrolla v2.0
 - [ ] Crear blue-green deployment
 - [ ] Test full failover antes de cutover
@@ -967,10 +999,12 @@ module.exports = { validateWebhook };
 ---
 
 ### Riesgo #3: Incompatibilidad de API
+
 **Probabilidad:** Media  
 **Impacto:** Alto
 
 **Mitigación:**
+
 - [ ] Mantener compatibilidad backwards si es posible
 - [ ] Crear v1 API wrapper que mapea a v2
 - [ ] Documentar breaking changes claro
@@ -979,10 +1013,12 @@ module.exports = { validateWebhook };
 ---
 
 ### Riesgo #4: Performance Regression
+
 **Probabilidad:** Baja  
 **Impacto:** Alto
 
 **Mitigación:**
+
 - [ ] Benchmark v1.0 (baseline)
 - [ ] Benchmark v2.0 (target: +/- 5%)
 - [ ] Load test con 1000 webhooks/día
@@ -991,10 +1027,12 @@ module.exports = { validateWebhook };
 ---
 
 ### Riesgo #5: Security Vulnerabilities
+
 **Probabilidad:** Media  
 **Impacto:** Alto
 
 **Mitigación:**
+
 - [ ] Security audit de nuevo código
 - [ ] Dependency scanning (Snyk)
 - [ ] OWASP Top 10 review
@@ -1017,7 +1055,7 @@ module.exports = { validateWebhook };
 
 ### Quality
 
-- [ ] >70% code coverage (Jest)
+- [ ] > 70% code coverage (Jest)
 - [ ] All tests passing (both Jest y Playwright)
 - [ ] No security vulnerabilities (npm audit)
 - [ ] <30 second webhook to result
@@ -1043,17 +1081,17 @@ module.exports = { validateWebhook };
 
 ## 📋 RESUMEN EJECUCIÓN
 
-| Aspecto | v1.0 | v2.0 | Mejora |
-|---------|------|------|--------|
-| **Test Profiles** | 1/8 | 8/8 | ✅ +700% |
-| **Security** | None | JWT+HMAC+RateLimit | ✅ Enterprise |
-| **Logging** | console.log | Winston + structured | ✅ Professional |
-| **Persistence** | File I/O | PostgreSQL + schema | ✅ Scalable |
-| **Setup Time** | 30 min | 5 min | ✅ -80% |
-| **Code Organization** | Monolithic | Modular | ✅ Maintainable |
-| **Documentation** | 18+ redundant | 8 consolidated | ✅ Clear |
-| **Monitoring** | None | Prometheus + health | ✅ Observable |
-| **Code Coverage** | Unknown | >70% | ✅ Testable |
+| Aspecto               | v1.0          | v2.0                 | Mejora          |
+| --------------------- | ------------- | -------------------- | --------------- |
+| **Test Profiles**     | 1/8           | 8/8                  | ✅ +700%        |
+| **Security**          | None          | JWT+HMAC+RateLimit   | ✅ Enterprise   |
+| **Logging**           | console.log   | Winston + structured | ✅ Professional |
+| **Persistence**       | File I/O      | PostgreSQL + schema  | ✅ Scalable     |
+| **Setup Time**        | 30 min        | 5 min                | ✅ -80%         |
+| **Code Organization** | Monolithic    | Modular              | ✅ Maintainable |
+| **Documentation**     | 18+ redundant | 8 consolidated       | ✅ Clear        |
+| **Monitoring**        | None          | Prometheus + health  | ✅ Observable   |
+| **Code Coverage**     | Unknown       | >70%                 | ✅ Testable     |
 
 ---
 

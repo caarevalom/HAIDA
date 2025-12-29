@@ -73,8 +73,22 @@ export interface Defect {
 // --- Mock Initial Data (Seed) ---
 
 const MOCK_PROJECTS: Project[] = [
-  { id: 'p1', key: 'ECM', name: 'E-commerce Revamp', owner: 'Carlos Ruiz', status: 'Active', created_at: '2025-01-10' },
-  { id: 'p2', key: 'MOB', name: 'Mobile App Android', owner: 'Ana Garcia', status: 'Active', created_at: '2025-02-15' },
+  {
+    id: 'p1',
+    key: 'ECM',
+    name: 'E-commerce Revamp',
+    owner: 'Carlos Ruiz',
+    status: 'Active',
+    created_at: '2025-01-10',
+  },
+  {
+    id: 'p2',
+    key: 'MOB',
+    name: 'Mobile App Android',
+    owner: 'Ana Garcia',
+    status: 'Active',
+    created_at: '2025-02-15',
+  },
 ];
 
 const MOCK_SUITES: TestSuite[] = [
@@ -84,37 +98,75 @@ const MOCK_SUITES: TestSuite[] = [
 ];
 
 const MOCK_CASES: TestCase[] = [
-  { 
-    id: 'c1', project_id: 'p1', suite_id: 's1', title: 'Verify Login with Valid Credentials', priority: 'Critical', 
+  {
+    id: 'c1',
+    project_id: 'p1',
+    suite_id: 's1',
+    title: 'Verify Login with Valid Credentials',
+    priority: 'Critical',
     description: 'Ensure user can login with valid email and password',
     steps: [
       { action: 'Navigate to login page', expected: 'Login page displayed' },
       { action: 'Enter valid email and password', expected: 'Fields populated' },
-      { action: 'Click Login button', expected: 'Redirected to dashboard' }
-    ]
+      { action: 'Click Login button', expected: 'Redirected to dashboard' },
+    ],
   },
-  { 
-    id: 'c2', project_id: 'p1', suite_id: 's1', title: 'Verify Login with Invalid Password', priority: 'High', 
+  {
+    id: 'c2',
+    project_id: 'p1',
+    suite_id: 's1',
+    title: 'Verify Login with Invalid Password',
+    priority: 'High',
     description: 'Ensure system rejects invalid password',
     steps: [
       { action: 'Navigate to login page', expected: 'Login page displayed' },
       { action: 'Enter valid email and invalid password', expected: 'Fields populated' },
-      { action: 'Click Login button', expected: 'Error message displayed' }
-    ]
+      { action: 'Click Login button', expected: 'Error message displayed' },
+    ],
   },
   {
-    id: 'c3', project_id: 'p1', suite_id: 's2', title: 'API Auth Token Generation', priority: 'Critical',
+    id: 'c3',
+    project_id: 'p1',
+    suite_id: 's2',
+    title: 'API Auth Token Generation',
+    priority: 'Critical',
     description: 'Verify JWT generation',
-    steps: [
-      { action: 'POST /api/auth/login', expected: '200 OK with token' }
-    ]
-  }
+    steps: [{ action: 'POST /api/auth/login', expected: '200 OK with token' }],
+  },
 ];
 
 const MOCK_EXECUTIONS: Execution[] = [
-  { id: 'exe1', project_id: 'p1', suite_id: 's1', status: 'passed', started_at: new Date(Date.now() - 86400000).toISOString(), duration_ms: 240000, passed_count: 44, failed_count: 1 },
-  { id: 'exe2', project_id: 'p1', suite_id: 's2', status: 'failed', started_at: new Date(Date.now() - 43200000).toISOString(), duration_ms: 45000, passed_count: 10, failed_count: 2, defect_id: 'DEF-101' },
-  { id: 'exe3', project_id: 'p2', suite_id: 's3', status: 'passed', started_at: new Date(Date.now() - 10000000).toISOString(), duration_ms: 120000, passed_count: 20, failed_count: 0 },
+  {
+    id: 'exe1',
+    project_id: 'p1',
+    suite_id: 's1',
+    status: 'passed',
+    started_at: new Date(Date.now() - 86400000).toISOString(),
+    duration_ms: 240000,
+    passed_count: 44,
+    failed_count: 1,
+  },
+  {
+    id: 'exe2',
+    project_id: 'p1',
+    suite_id: 's2',
+    status: 'failed',
+    started_at: new Date(Date.now() - 43200000).toISOString(),
+    duration_ms: 45000,
+    passed_count: 10,
+    failed_count: 2,
+    defect_id: 'DEF-101',
+  },
+  {
+    id: 'exe3',
+    project_id: 'p2',
+    suite_id: 's3',
+    status: 'passed',
+    started_at: new Date(Date.now() - 10000000).toISOString(),
+    duration_ms: 120000,
+    passed_count: 20,
+    failed_count: 0,
+  },
 ];
 
 // --- Context Interface ---
@@ -125,7 +177,7 @@ interface DataContextType {
   cases: TestCase[];
   executions: Execution[];
   defects: Defect[];
-  
+
   // Actions (CRUD Logic)
   addProject: (project: Omit<Project, 'id' | 'created_at'>) => void;
   deleteProject: (id: string) => void;
@@ -133,9 +185,14 @@ interface DataContextType {
   runSuite: (suiteId: string) => void; // Simulator
   addExecution: (execution: Omit<Execution, 'id'>) => void;
   addDefect: (defect: Defect) => void;
-  
+
   // Getters / Selectors
-  getProjectKPIs: (projectId?: string) => { totalTests: number; successRate: number; activeSuites: number; criticalDefects: number };
+  getProjectKPIs: (projectId?: string) => {
+    totalTests: number;
+    successRate: number;
+    activeSuites: number;
+    criticalDefects: number;
+  };
   getExecutionsByProject: (projectId?: string) => Execution[];
 }
 
@@ -165,7 +222,7 @@ export function DataProvider({ children }: { children: ReactNode }) {
             description: p.description,
             owner: p.created_by || 'Unknown',
             status: (p.status as Status) || 'Active',
-            created_at: p.created_at
+            created_at: p.created_at,
           }));
           setProjects(mappedProjects);
           setDataSource('supabase');
@@ -180,7 +237,7 @@ export function DataProvider({ children }: { children: ReactNode }) {
             project_id: s.project_id,
             name: s.name,
             type: (s.suite_type as TestType) || 'Web',
-            case_count: 0 // Will be updated with test cases count
+            case_count: 0, // Will be updated with test cases count
           }));
           setSuites(mappedSuites);
         }
@@ -195,7 +252,7 @@ export function DataProvider({ children }: { children: ReactNode }) {
             title: c.name,
             description: c.description,
             priority: (c.priority as Priority) || 'Medium',
-            steps: c.test_steps || []
+            steps: c.test_steps || [],
           }));
           setCases(mappedCases);
         }
@@ -211,11 +268,10 @@ export function DataProvider({ children }: { children: ReactNode }) {
             started_at: e.started_at || e.created_at,
             duration_ms: e.duration_ms || 0,
             passed_count: e.passed_tests,
-            failed_count: e.failed_tests
+            failed_count: e.failed_tests,
           }));
           setExecutions(mappedExecutions);
         }
-
       } catch (err) {
         console.error('Error loading data from Supabase, using mock data:', err);
         setDataSource('mock');
@@ -235,29 +291,29 @@ export function DataProvider({ children }: { children: ReactNode }) {
       id: Math.random().toString(36).substr(2, 9),
       created_at: new Date().toISOString(),
     };
-    setProjects(prev => [newProject, ...prev]);
+    setProjects((prev) => [newProject, ...prev]);
   };
 
   const deleteProject = (id: string) => {
-    setProjects(prev => prev.filter(p => p.id !== id));
+    setProjects((prev) => prev.filter((p) => p.id !== id));
     // Cascade delete logic would go here (delete suites/executions related to project)
   };
 
   const updateTestCase = (id: string, data: Partial<TestCase>) => {
-    setCases(prev => prev.map(c => c.id === id ? { ...c, ...data } : c));
+    setCases((prev) => prev.map((c) => (c.id === id ? { ...c, ...data } : c)));
   };
 
   const addExecution = (execution: Omit<Execution, 'id'>) => {
     const newExecution = { ...execution, id: Math.random().toString(36).substr(2, 9) };
-    setExecutions(prev => [newExecution, ...prev]);
+    setExecutions((prev) => [newExecution, ...prev]);
   };
 
   const addDefect = (defect: Defect) => {
-    setDefects(prev => [defect, ...prev]);
+    setDefects((prev) => [defect, ...prev]);
   };
 
   const runSuite = (suiteId: string) => {
-    const suite = suites.find(s => s.id === suiteId);
+    const suite = suites.find((s) => s.id === suiteId);
     if (!suite) return;
 
     // Simulate a "Running" state
@@ -270,28 +326,30 @@ export function DataProvider({ children }: { children: ReactNode }) {
       started_at: new Date().toISOString(),
       duration_ms: 0,
       passed_count: 0,
-      failed_count: 0
+      failed_count: 0,
     };
 
-    setExecutions(prev => [tempExecution, ...prev]);
+    setExecutions((prev) => [tempExecution, ...prev]);
 
     // Simulate completion after 3 seconds
     setTimeout(() => {
-      setExecutions(prev => prev.map(exe => {
-        if (exe.id === newId) {
-          // Randomized result
-          const isFailure = Math.random() > 0.7; 
-          return {
-            ...exe,
-            status: isFailure ? 'failed' : 'passed',
-            duration_ms: Math.floor(Math.random() * 50000) + 1000,
-            passed_count: isFailure ? suite.case_count - 2 : suite.case_count,
-            failed_count: isFailure ? 2 : 0,
-            defect_id: isFailure ? `DEF-${Math.floor(Math.random() * 1000)}` : undefined
-          };
-        }
-        return exe;
-      }));
+      setExecutions((prev) =>
+        prev.map((exe) => {
+          if (exe.id === newId) {
+            // Randomized result
+            const isFailure = Math.random() > 0.7;
+            return {
+              ...exe,
+              status: isFailure ? 'failed' : 'passed',
+              duration_ms: Math.floor(Math.random() * 50000) + 1000,
+              passed_count: isFailure ? suite.case_count - 2 : suite.case_count,
+              failed_count: isFailure ? 2 : 0,
+              defect_id: isFailure ? `DEF-${Math.floor(Math.random() * 1000)}` : undefined,
+            };
+          }
+          return exe;
+        })
+      );
     }, 3000);
   };
 
@@ -299,44 +357,48 @@ export function DataProvider({ children }: { children: ReactNode }) {
 
   const getExecutionsByProject = (projectId?: string) => {
     if (!projectId || projectId === 'all') return executions;
-    return executions.filter(e => e.project_id === projectId);
+    return executions.filter((e) => e.project_id === projectId);
   };
 
   const getProjectKPIs = (projectId?: string) => {
     const relevantExecutions = getExecutionsByProject(projectId);
-    const relevantSuites = (!projectId || projectId === 'all') 
-      ? suites 
-      : suites.filter(s => s.project_id === projectId);
+    const relevantSuites =
+      !projectId || projectId === 'all' ? suites : suites.filter((s) => s.project_id === projectId);
 
     const totalTests = relevantSuites.reduce((acc, s) => acc + s.case_count, 0);
     const activeSuites = relevantSuites.length;
-    
-    // Calculate Success Rate based on executions
-    const passedExecutions = relevantExecutions.filter(e => e.status === 'passed').length;
-    const totalFinished = relevantExecutions.filter(e => e.status !== 'running' && e.status !== 'queued').length;
-    const successRate = totalFinished > 0 ? Math.round((passedExecutions / totalFinished) * 100) : 0;
 
-    const criticalDefects = relevantExecutions.filter(e => e.status === 'failed').length;
+    // Calculate Success Rate based on executions
+    const passedExecutions = relevantExecutions.filter((e) => e.status === 'passed').length;
+    const totalFinished = relevantExecutions.filter(
+      (e) => e.status !== 'running' && e.status !== 'queued'
+    ).length;
+    const successRate =
+      totalFinished > 0 ? Math.round((passedExecutions / totalFinished) * 100) : 0;
+
+    const criticalDefects = relevantExecutions.filter((e) => e.status === 'failed').length;
 
     return { totalTests, activeSuites, successRate, criticalDefects };
   };
 
   return (
-    <DataContext.Provider value={{ 
-      projects, 
-      suites, 
-      cases,
-      executions, 
-      defects,
-      addProject, 
-      deleteProject, 
-      updateTestCase,
-      runSuite,
-      addExecution,
-      addDefect,
-      getProjectKPIs,
-      getExecutionsByProject
-    }}>
+    <DataContext.Provider
+      value={{
+        projects,
+        suites,
+        cases,
+        executions,
+        defects,
+        addProject,
+        deleteProject,
+        updateTestCase,
+        runSuite,
+        addExecution,
+        addDefect,
+        getProjectKPIs,
+        getExecutionsByProject,
+      }}
+    >
       {children}
     </DataContext.Provider>
   );

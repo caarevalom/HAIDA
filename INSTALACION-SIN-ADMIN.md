@@ -18,6 +18,7 @@ NVM permite instalar Node.js en tu carpeta de usuario sin necesidad de admin.
    - Descárgalo
 
 2. **Extraer a tu carpeta de usuario**
+
    ```powershell
    # Crear carpeta para NVM
    New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\nvm"
@@ -27,6 +28,7 @@ NVM permite instalar Node.js en tu carpeta de usuario sin necesidad de admin.
    ```
 
 3. **Configurar variables de entorno de usuario**
+
    ```powershell
    # Configurar NVM_HOME
    [Environment]::SetEnvironmentVariable("NVM_HOME", "$env:USERPROFILE\nvm", "User")
@@ -63,6 +65,7 @@ Esta es la opción más simple sin instalación.
    - Descarga el ZIP
 
 2. **Extraer a tu carpeta de documentos**
+
    ```powershell
    # Crear carpeta
    New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\Documents\nodejs"
@@ -72,6 +75,7 @@ Esta es la opción más simple sin instalación.
    ```
 
 3. **Agregar al PATH de usuario**
+
    ```powershell
    # Agregar Node.js al PATH
    $nodePath = "$env:USERPROFILE\Documents\nodejs\node-v20.10.0-win-x64"
@@ -97,6 +101,7 @@ Scoop es un package manager que NO requiere admin.
 ### Pasos:
 
 1. **Instalar Scoop**
+
    ```powershell
    # Permitir scripts
    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
@@ -106,6 +111,7 @@ Scoop es un package manager que NO requiere admin.
    ```
 
 2. **Instalar Node.js con Scoop**
+
    ```powershell
    scoop install nodejs-lts
    ```
@@ -176,12 +182,14 @@ npm --version
    - Descarga el ZIP
 
 2. **Extraer a tu perfil**
+
    ```powershell
    New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\Apps\java"
    # Extraer ZIP a esta carpeta
    ```
 
 3. **Configurar JAVA_HOME y PATH**
+
    ```powershell
    $javaPath = "$env:USERPROFILE\Apps\java\jdk-17.0.9+9"
 
@@ -289,11 +297,13 @@ Write-Host ""
 ## 📝 RESUMEN DE LINKS DE DESCARGA
 
 ### Node.js Portable (ZIP):
+
 ```
 https://nodejs.org/dist/v20.10.0/node-v20.10.0-win-x64.zip
 ```
 
 ### Java 17 Portable (ZIP):
+
 ```
 https://adoptium.net/temurin/releases/?version=17
 → Seleccionar: Windows, x64, JDK, Archive (.zip)

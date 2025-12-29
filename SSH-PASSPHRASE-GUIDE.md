@@ -90,6 +90,7 @@ git remote set-url origin https://github.com/CarlosArturoArevaloM/HAIDA.git
 ```
 
 **Crear Personal Access Token**:
+
 1. Ve a: https://github.com/settings/tokens
 2. Click "Generate new token (classic)"
 3. Selecciona permisos: `repo` (todos)
@@ -157,6 +158,7 @@ ssh-add -l
 ```
 
 Salida esperada:
+
 ```
 256 SHA256:9um1TTWmdzu/woGrJmJQ+m9mTSwkPkmBmuHDX4IrPb8 caarevalo@hiberus.com (ED25519)
 ```
@@ -168,6 +170,7 @@ ssh -F .git/config-ssh -T git@github.com
 ```
 
 Salida esperada:
+
 ```
 Hi CarlosArturoArevaloM! You've successfully authenticated, but GitHub does not provide shell access.
 ```

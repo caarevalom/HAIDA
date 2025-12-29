@@ -1,4 +1,5 @@
 # 🔄 HAIDA + Change Detection Framework
+
 ## Trigger Automático de Pruebas al Detectar Cambios en Frontend
 
 **Documento:** Integration Strategy para Change Detection + QA Automation  
@@ -11,22 +12,23 @@
 
 ### Herramientas Candidatas vs Requisitos HAIDA
 
-| Criterio | Distill | Changedetection.io | Chat4Data | Web Scraper | Webtable |
-|----------|---------|-------------------|-----------|-------------|----------|
-| **Open Source** | ❌ (Freemium) | ✅ | ❌ (Freemium) | ❌ (Freemium) | ❌ (Freemium) |
-| **Webhooks/API** | ✅ | ✅✅ | ❌ | ❌ | ❌ |
-| **Historial Cambios** | ✅ | ✅✅ | ❌ | ❌ | ❌ |
-| **Self-hosted** | ❌ | ✅ | ❌ | ❌ | ❌ |
-| **CI/CD Integration** | ✅ (Webhooks) | ✅✅ (Nativo) | ❌ | ❌ | ❌ |
-| **Multi-browser** | ✅✅ | ✅ (Headless) | ✅ | ✅ | ✅ |
-| **Detección Visual** | ✅✅ | ✅ | ✅✅ | ❌ | ✅ |
-| **Costo/Mantenimiento** | 💰💰 | 💵 (Server) | 💰 | 💰 | 💰 |
+| Criterio                | Distill       | Changedetection.io | Chat4Data     | Web Scraper   | Webtable      |
+| ----------------------- | ------------- | ------------------ | ------------- | ------------- | ------------- |
+| **Open Source**         | ❌ (Freemium) | ✅                 | ❌ (Freemium) | ❌ (Freemium) | ❌ (Freemium) |
+| **Webhooks/API**        | ✅            | ✅✅               | ❌            | ❌            | ❌            |
+| **Historial Cambios**   | ✅            | ✅✅               | ❌            | ❌            | ❌            |
+| **Self-hosted**         | ❌            | ✅                 | ❌            | ❌            | ❌            |
+| **CI/CD Integration**   | ✅ (Webhooks) | ✅✅ (Nativo)      | ❌            | ❌            | ❌            |
+| **Multi-browser**       | ✅✅          | ✅ (Headless)      | ✅            | ✅            | ✅            |
+| **Detección Visual**    | ✅✅          | ✅                 | ✅✅          | ❌            | ✅            |
+| **Costo/Mantenimiento** | 💰💰          | 💵 (Server)        | 💰            | 💰            | 💰            |
 
 ---
 
 ## 🏆 RECOMENDACIÓN: Stack de 2 Capas
 
 ### **Capa 1: Detección (Changedetection.io)**
+
 ```
 changedetection.io + Docker
 ├─ Monitorea URL/elemento específico
@@ -36,6 +38,7 @@ changedetection.io + Docker
 ```
 
 ### **Capa 2: Validación/Scraping (Distill Web Monitor)**
+
 ```
 Distill Web Monitor (extensión) + Manual trigger
 ├─ Visual change detection
@@ -140,7 +143,7 @@ changedetection.io --port 5000
           "filter": "//*[@class='btn-submit']"
         },
         {
-          "type": "xpath", 
+          "type": "xpath",
           "filter": "//*[@class='form-error']"
         }
       ],
@@ -161,13 +164,7 @@ const router = express.Router();
 const { runTests } = require('../test-runner');
 
 router.post('/webhook/change-detected', async (req, res) => {
-  const { 
-    url, 
-    tag, 
-    notification_type,
-    previous_md5,
-    current_md5 
-  } = req.body;
+  const { url, tag, notification_type, previous_md5, current_md5 } = req.body;
 
   console.log(`🔄 CAMBIO DETECTADO: ${tag} en ${url}`);
   console.log(`   Hash anterior: ${previous_md5}`);
@@ -175,7 +172,7 @@ router.post('/webhook/change-detected', async (req, res) => {
 
   // Determinar tipo de test según el cambio
   const testProfile = determineTestProfile(tag, url);
-  
+
   // Lanzar tests
   try {
     const results = await runTests({
@@ -184,17 +181,17 @@ router.post('/webhook/change-detected', async (req, res) => {
       changeDetected: {
         timestamp: new Date(),
         previousHash: previous_md5,
-        currentHash: current_md5
-      }
+        currentHash: current_md5,
+      },
     });
 
     // Notificar resultado
     await notifyResults(results);
-    
+
     res.json({
       status: 'success',
       testsLaunched: results.count,
-      allurePath: results.reportPath
+      allurePath: results.reportPath,
     });
   } catch (error) {
     console.error('❌ Error ejecutando tests:', error);
@@ -207,35 +204,21 @@ function determineTestProfile(tag, url) {
   if (tag.includes('login') || tag.includes('form')) {
     return {
       name: 'frontend-form-validation',
-      tests: [
-        'form-rendering',
-        'form-submission',
-        'error-messages',
-        'accessibility-wcag2a'
-      ]
+      tests: ['form-rendering', 'form-submission', 'error-messages', 'accessibility-wcag2a'],
     };
   }
-  
+
   if (tag.includes('dashboard')) {
     return {
       name: 'dashboard-ui-smoke',
-      tests: [
-        'page-load',
-        'ui-rendering',
-        'navigation',
-        'responsive-design'
-      ]
+      tests: ['page-load', 'ui-rendering', 'navigation', 'responsive-design'],
     };
   }
 
   // Default: smoke test
   return {
     name: 'smoke-test',
-    tests: [
-      'page-load',
-      'accessibility-wcag2a',
-      'visual-regression'
-    ]
+    tests: ['page-load', 'accessibility-wcag2a', 'visual-regression'],
   };
 }
 
@@ -257,7 +240,7 @@ async function runTests(config) {
     tests: [],
     passed: 0,
     failed: 0,
-    startTime: new Date()
+    startTime: new Date(),
   };
 
   const browser = await chromium.launch();
@@ -273,16 +256,16 @@ async function runTests(config) {
     if (profile.tests.includes('page-load')) {
       const metrics = await page.evaluate(() => ({
         loadTime: performance.timing.loadEventEnd - performance.timing.navigationStart,
-        domReady: performance.timing.domContentLoadedEventEnd - performance.timing.navigationStart
+        domReady: performance.timing.domContentLoadedEventEnd - performance.timing.navigationStart,
       }));
-      
+
       results.tests.push({
         name: 'Page Load Time',
         status: metrics.loadTime < 3000 ? 'PASSED' : 'FAILED',
         metric: `${metrics.loadTime}ms`,
-        timestamp: new Date()
+        timestamp: new Date(),
       });
-      
+
       if (metrics.loadTime < 3000) results.passed++;
       else results.failed++;
     }
@@ -293,15 +276,15 @@ async function runTests(config) {
       const accessibilityResults = await checkA11y(page, null, {
         detailedReport: true,
         detailedReportOptions: {
-          html: true
-        }
+          html: true,
+        },
       });
 
       results.tests.push({
         name: 'WCAG 2A Compliance',
         status: accessibilityResults.violations.length === 0 ? 'PASSED' : 'FAILED',
         violations: accessibilityResults.violations.length,
-        timestamp: new Date()
+        timestamp: new Date(),
       });
 
       if (accessibilityResults.violations.length === 0) results.passed++;
@@ -315,30 +298,29 @@ async function runTests(config) {
         name: 'Visual Regression Check',
         status: 'PASSED', // TODO: Compare con baseline
         screenshot: screenshot.toString('base64').substring(0, 100) + '...',
-        timestamp: new Date()
+        timestamp: new Date(),
       });
       results.passed++;
     }
 
     // Test 4: Form Submission (si aplica)
     if (profile.tests.includes('form-submission')) {
-      const formPresent = await page.$('form') !== null;
+      const formPresent = (await page.$('form')) !== null;
       results.tests.push({
         name: 'Form Rendering',
         status: formPresent ? 'PASSED' : 'FAILED',
-        timestamp: new Date()
+        timestamp: new Date(),
       });
-      
+
       if (formPresent) results.passed++;
       else results.failed++;
     }
-
   } catch (error) {
     results.tests.push({
       name: 'Test Execution Error',
       status: 'ERROR',
       error: error.message,
-      timestamp: new Date()
+      timestamp: new Date(),
     });
     results.failed++;
   } finally {
@@ -374,15 +356,25 @@ async function notifyResults(results) {
   if (process.env.SLACK_WEBHOOK) {
     await axios.post(process.env.SLACK_WEBHOOK, {
       text: summary,
-      attachments: [{
-        color: results.failed === 0 ? 'good' : 'danger',
-        fields: [
-          { title: 'Profile', value: results.profile, short: true },
-          { title: 'Status', value: results.failed === 0 ? '✅ PASSED' : '❌ FAILED', short: true },
-          { title: 'Duration', value: `${results.duration}ms`, short: true },
-          { title: 'Tests', value: `${results.passed}/${results.passed + results.failed}`, short: true }
-        ]
-      }]
+      attachments: [
+        {
+          color: results.failed === 0 ? 'good' : 'danger',
+          fields: [
+            { title: 'Profile', value: results.profile, short: true },
+            {
+              title: 'Status',
+              value: results.failed === 0 ? '✅ PASSED' : '❌ FAILED',
+              short: true,
+            },
+            { title: 'Duration', value: `${results.duration}ms`, short: true },
+            {
+              title: 'Tests',
+              value: `${results.passed}/${results.passed + results.failed}`,
+              short: true,
+            },
+          ],
+        },
+      ],
     });
   }
 
@@ -398,6 +390,7 @@ module.exports = { notifyResults };
 ## 🔧 INTEGRACIÓN CON HAIDA EXISTENTE
 
 ### Carpeta Nueva en `haida/`
+
 ```
 haida/
 ├─ generators/
@@ -421,6 +414,7 @@ haida/
 ```
 
 ### Package.json Updates
+
 ```json
 {
   "dependencies": {
@@ -442,22 +436,23 @@ haida/
 
 ## 📊 MATRIZ: Qué Tests Ejecutar Según Cambio
 
-| Tipo de Cambio | Selector Detectado | Tests Recomendados | Tiempo |
-|---|---|---|---|
-| **Form Input** | `.form-input`, `[type="text"]` | Form validation, E2E submission | 30s |
-| **Button** | `.btn-submit`, `[type="button"]` | Click handlers, state changes | 20s |
-| **Navigation** | `nav`, `.sidebar`, `.menu` | Navigation flow, link accuracy | 45s |
-| **Modal/Popup** | `.modal`, `[role="dialog"]` | Modal rendering, accessibility | 25s |
-| **Table** | `table`, `.data-grid` | Data rendering, sorting, pagination | 60s |
-| **Dashboard** | `.dashboard`, `.card` | Widget rendering, responsiveness | 90s |
-| **Color/CSS** | Any element | Visual regression, accessibility (contrast) | 40s |
-| **Text Content** | `[contenteditable]`, `.text` | Content update, spell check | 15s |
+| Tipo de Cambio   | Selector Detectado               | Tests Recomendados                          | Tiempo |
+| ---------------- | -------------------------------- | ------------------------------------------- | ------ |
+| **Form Input**   | `.form-input`, `[type="text"]`   | Form validation, E2E submission             | 30s    |
+| **Button**       | `.btn-submit`, `[type="button"]` | Click handlers, state changes               | 20s    |
+| **Navigation**   | `nav`, `.sidebar`, `.menu`       | Navigation flow, link accuracy              | 45s    |
+| **Modal/Popup**  | `.modal`, `[role="dialog"]`      | Modal rendering, accessibility              | 25s    |
+| **Table**        | `table`, `.data-grid`            | Data rendering, sorting, pagination         | 60s    |
+| **Dashboard**    | `.dashboard`, `.card`            | Widget rendering, responsiveness            | 90s    |
+| **Color/CSS**    | Any element                      | Visual regression, accessibility (contrast) | 40s    |
+| **Text Content** | `[contenteditable]`, `.text`     | Content update, spell check                 | 15s    |
 
 ---
 
 ## 🎯 HERRAMIENTAS SECUNDARIAS (Complementarias)
 
 ### **Distill Web Monitor** (Backup Visual)
+
 ```
 Instalación: Chrome/Firefox extensión
 ├─ Para validación manual de cambios
@@ -467,11 +462,13 @@ Instalación: Chrome/Firefox extensión
 ```
 
 **Cuándo usar:**
+
 - Validación inicial de cambio (manual)
 - Backup si Changedetection.io falla
 - Pruebas exploratorias rápidas
 
 ### **Chat4Data** (Para E-commerce)
+
 ```
 Instalación: Chrome extensión
 ├─ Si necesitas extraer datos de productos
@@ -481,6 +478,7 @@ Instalación: Chrome extensión
 ```
 
 **Cuándo usar:**
+
 - Generación de data para tests de e-commerce
 - Validación de contenido dinámico
 - Comparación de precios/existencias
@@ -530,6 +528,7 @@ Instalación: Chrome extensión
 ## 🔌 INTEGRACIONES ADICIONALES
 
 ### GitHub Actions
+
 ```yaml
 # .github/workflows/changedetection-trigger.yml
 name: Change Detection Trigger
@@ -537,7 +536,7 @@ name: Change Detection Trigger
 on:
   workflow_dispatch:
   schedule:
-    - cron: '*/5 * * * *'  # Cada 5 minutos
+    - cron: '*/5 * * * *' # Cada 5 minutos
 
 jobs:
   check-changes:
@@ -547,13 +546,14 @@ jobs:
         run: |
           curl -X GET http://changedetection:5000/api/watch \
             -H "Authorization: Bearer ${{ secrets.CHANGEDETECTION_TOKEN }}"
-      
+
       - name: Trigger tests if changes
         if: failure() == false
         run: npm run test:on-change
 ```
 
 ### Azure DevOps
+
 ```yaml
 trigger:
   - main
@@ -578,25 +578,30 @@ stages:
 ## 💡 VENTAJAS DE ESTA ARQUITECTURA
 
 ✅ **Automatización Completa**
+
 - Cambios en UI → Tests automáticos en segundos
 - Sin intervención manual
 
 ✅ **Escalable**
+
 - Múltiples URLs monitoreadas
 - Perfiles de tests configurables
 - Fácil agregar nuevos elementos
 
 ✅ **Trazable**
+
 - Historial de cambios en changedetection.io
 - Reportes de tests en Allure
 - Notificaciones en Slack
 
 ✅ **Costo Efectivo**
+
 - Changedetection.io = Open Source
 - No requiere servicios pagos
 - Self-hosted option disponible
 
 ✅ **Aligned con HAIDA**
+
 - Extiende capacidades de QA automation
 - Genera más casos de test relevantes
 - Mejora cobertura de regresión
@@ -606,6 +611,7 @@ stages:
 ## 📞 SOPORTE Y PRÓXIMOS PASOS
 
 Para implementar:
+
 1. Instalar Changedetection.io (Docker)
 2. Crear webhook listener en Node.js
 3. Configurar test profiles

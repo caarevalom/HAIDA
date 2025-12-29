@@ -1,9 +1,9 @@
 ╔══════════════════════════════════════════════════════════════════════════════╗
-║                                                                              ║
-║                 ✅ HAIDA MIGRATION: PROYECTO COMPLETADO                      ║
-║                                                                              ║
-║                    De ISTQB-Hiberus a HAIDA v1.0                            ║
-║                                                                              ║
+║ ║
+║ ✅ HAIDA MIGRATION: PROYECTO COMPLETADO ║
+║ ║
+║ De ISTQB-Hiberus a HAIDA v1.0 ║
+║ ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
 
 **Autor:** Carlos Arévalo | caarevalo@hiberus.com  
@@ -14,8 +14,8 @@
 
 ## 📋 Resumen Ejecutivo
 
-Se ha completado la migración de **ISTQB-Hiberus** a **HAIDA** (Hiberus AI-Driven Automation), 
-incluyendo renombramiento de carpetas, actualización de documentación y creación de nuevas guías 
+Se ha completado la migración de **ISTQB-Hiberus** a **HAIDA** (Hiberus AI-Driven Automation),
+incluyendo renombramiento de carpetas, actualización de documentación y creación de nuevas guías
 de configuración para el stack completo de herramientas.
 
 ---
@@ -25,12 +25,14 @@ de configuración para el stack completo de herramientas.
 ### 1️⃣ Renombramiento Global a HAIDA
 
 **Cambios realizados:**
+
 - ✓ Carpeta: `istqb-hiberus/` → `haida/`
 - ✓ Archivo: `ISTQB-HIBERUS-OVERVIEW.md` → `HAIDA-OVERVIEW.md`
 - ✓ Actualizaciones en 40+ referencias de documentación
 - ✓ Rutas de carpetas actualizadas en enlaces y comandos
 
 **Archivos modificados:**
+
 ```
 - START-HERE.md
 - ENTREGA-COMPLETA-FASES-AE.md
@@ -42,6 +44,7 @@ de configuración para el stack completo de herramientas.
 ```
 
 **Verificación:**
+
 ```powershell
 # Confirmar estructura
 ls -Path "haida" -Name
@@ -56,6 +59,7 @@ ls -Path "haida" -Name
 **Archivo creado:** `validate-all-tools.ps1`
 
 **Validaciones incluidas:**
+
 1. ✓ **Playwright** - Instalación, versión, navegadores (Chrome, Firefox, Safari)
 2. ✓ **Appium** - Framework móvil, instalación automática
 3. ✓ **Newman** - CLI de Postman, validación de ejecución
@@ -64,17 +68,20 @@ ls -Path "haida" -Name
 6. ✓ **Allure** - Reporting profesional, carpetas de salida
 
 **Características:**
+
 - Genera reporte JSON: `./reports/tools-validation-YYYY-MM-DD_HHMMSS.json`
 - Colores en consola (OK/WARN/ERROR)
 - Recomendaciones automáticas para instalar herramientas faltantes
 - Próximos pasos claros
 
 **Uso:**
+
 ```powershell
 .\validate-all-tools.ps1
 ```
 
 **Salida:**
+
 ```
 [INFO] Validando Playwright...
 [OK] ✓ Playwright instalado
@@ -103,6 +110,7 @@ ls -Path "haida" -Name
 **Contenido:**
 
 #### A. Instalación
+
 ```powershell
 # Opción global
 npm install -g appium
@@ -114,6 +122,7 @@ npm install appium-xcuitest-driver --save-dev       # iOS
 ```
 
 #### B. Configuración Android
+
 - UiAutomator2 driver
 - USB Debugging setup
 - ADB configuration
@@ -121,28 +130,31 @@ npm install appium-xcuitest-driver --save-dev       # iOS
 - Archivo de configuración: `appium-android.json`
 
 #### C. Configuración iOS
+
 - XCUITest driver (solo macOS)
 - Xcode setup
 - Real device provisioning
 - Archivo de configuración: `appium-ios.json`
 
 #### D. Integration con Playwright
+
 ```typescript
 // Ejemplo de test mobile con Playwright + Appium
 test('Android: Login Flow', async () => {
-  const context = await chromium.launchPersistentContext(
-    `http://localhost:4723`,
-    { ...devices['Pixel 5'] }
-  );
+  const context = await chromium.launchPersistentContext(`http://localhost:4723`, {
+    ...devices['Pixel 5'],
+  });
   // Test steps aquí
 });
 ```
 
 #### E. Scripts de verificación
+
 - `verify-appium.ps1` - Verificar setup
 - `mobile-test-runner.ts` - Tests móviles completos
 
 #### F. Estructura de carpetas recomendada
+
 ```
 haida/
 ├── configs/appium-server.json
@@ -162,6 +174,7 @@ haida/
 **Contenido:**
 
 #### A. Instalación de Extensión
+
 ```powershell
 # Vía marketplace
 code --install-extension postman.postman-for-vscode
@@ -171,16 +184,19 @@ code --list-extensions | findstr postman
 ```
 
 #### B. Autenticación con Team
+
 - Sign-in con credenciales Hiberus
 - Seleccionar team: `Hiberus AI-Driven QA`
 - Verificación de 2FA si es necesario
 
 #### C. Importar Colecciones
+
 - Desde carpeta: `configs/postman-collections/`
 - Desde team compartido
 - Importar archivo .json
 
 #### D. Ejecutar Tests desde VS Code
+
 ```powershell
 # Opción A: Newman CLI (recomendado)
 npx newman run "./configs/postman-collections/HAIDA-API-Tests.json" `
@@ -194,6 +210,7 @@ powershell -File haida/generators/postman-test-runner.ps1
 ```
 
 #### E. Integración con Playwright
+
 ```powershell
 # Ejecutar tests en secuencia
 npm test -- --project=chromium              # Playwright
@@ -202,6 +219,7 @@ powershell -File merge-test-reports.ps1     # Consolidar reportes
 ```
 
 #### F. CI/CD Integration
+
 ```yaml
 # .github/workflows/api-tests.yml
 - name: Run Newman tests
@@ -211,6 +229,7 @@ powershell -File merge-test-reports.ps1     # Consolidar reportes
 ```
 
 #### G. Estructura de colecciones
+
 ```
 configs/postman-collections/
 ├── HAIDA-API-Tests.json
@@ -226,15 +245,15 @@ configs/postman-collections/
 
 ## 📊 Estadísticas de Cambios
 
-| Categoría | Cantidad |
-|-----------|----------|
-| Carpetas renombradas | 1 |
-| Archivos renombrados | 1 |
-| Documentos .md actualizados | 40+ |
-| Referencias ISTQB → HAIDA | 100+ |
-| Nuevos scripts creados | 1 (validate-all-tools.ps1) |
-| Nuevos documentos creados | 3 |
-| Líneas de documentación agregadas | 1,200+ |
+| Categoría                         | Cantidad                   |
+| --------------------------------- | -------------------------- |
+| Carpetas renombradas              | 1                          |
+| Archivos renombrados              | 1                          |
+| Documentos .md actualizados       | 40+                        |
+| Referencias ISTQB → HAIDA         | 100+                       |
+| Nuevos scripts creados            | 1 (validate-all-tools.ps1) |
+| Nuevos documentos creados         | 3                          |
+| Líneas de documentación agregadas | 1,200+                     |
 
 ---
 
@@ -298,6 +317,7 @@ qa-starter-kit/
 ## 🚀 Próximos Pasos Recomendados
 
 ### FASE 1: Validación (Hoy)
+
 ```powershell
 # 1. Ejecutar validación de herramientas
 .\validate-all-tools.ps1
@@ -310,6 +330,7 @@ qa-starter-kit/
 ```
 
 ### FASE 2: Configuración Postman (Mañana)
+
 ```powershell
 # 1. Instalar extensión Postman en VS Code
 code --install-extension postman.postman-for-vscode
@@ -321,6 +342,7 @@ npx newman run config/postman-collections/HAIDA-API-Tests.json
 ```
 
 ### FASE 3: Configuración Appium (Próxima semana)
+
 ```powershell
 # 1. Conectar dispositivo Android o iOS
 # 2. Ejecutar verificación
@@ -331,6 +353,7 @@ npm run test:mobile -- tests/mobile/android/login.spec.ts
 ```
 
 ### FASE 4: CI/CD Integration (Siguiente semana)
+
 ```powershell
 # 1. Actualizar GitHub Actions
 # 2. Agregar steps para:
@@ -346,15 +369,15 @@ npm run test:mobile -- tests/mobile/android/login.spec.ts
 
 **HAIDA ahora soporta:**
 
-| Tipo de Testing | Herramienta | Estado | Docs |
-|-----------------|------------|--------|------|
-| E2E/UI Web | Playwright | ✅ Operativo | README.md |
-| Mobile (Real) | Appium | ✅ Nuevo | APPIUM-MOBILE-SETUP.md |
-| API | Postman/Newman | ✅ Nuevo | POSTMAN-VSCODE-SETUP.md |
-| Performance | k6 | ⚠️ Opcional | Docs existentes |
-| Accesibilidad | axe-core | ⚠️ Opcional | Docs existentes |
-| Seguridad | OWASP ZAP | 🔄 Planificado | - |
-| Reportes | Allure | ✅ Operativo | Docs existentes |
+| Tipo de Testing | Herramienta    | Estado         | Docs                    |
+| --------------- | -------------- | -------------- | ----------------------- |
+| E2E/UI Web      | Playwright     | ✅ Operativo   | README.md               |
+| Mobile (Real)   | Appium         | ✅ Nuevo       | APPIUM-MOBILE-SETUP.md  |
+| API             | Postman/Newman | ✅ Nuevo       | POSTMAN-VSCODE-SETUP.md |
+| Performance     | k6             | ⚠️ Opcional    | Docs existentes         |
+| Accesibilidad   | axe-core       | ⚠️ Opcional    | Docs existentes         |
+| Seguridad       | OWASP ZAP      | 🔄 Planificado | -                       |
+| Reportes        | Allure         | ✅ Operativo   | Docs existentes         |
 
 ---
 
@@ -413,12 +436,14 @@ npm run clean && rm -r ./allure-results ./reports
 ## ✨ Beneficios del Renombramiento
 
 ### Antes (ISTQB-Hiberus)
+
 - ❌ Nombre largo y ambiguo
 - ❌ Confusión entre estándar ISTQB y herramienta
 - ❌ Difícil de recordar
 - ❌ No refleja la propuesta de valor (IA)
 
 ### Después (HAIDA)
+
 - ✅ Nombre corto y memorable
 - ✅ **H**iberus **AI** **DA**ctyl (acrónimo con sentido)
 - ✅ Claridad: es una herramienta, no un estándar

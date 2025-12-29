@@ -1,13 +1,12 @@
 ╔══════════════════════════════════════════════════════════════════════════════╗
-║                                                                              ║
-║                  ANÁLISIS ESTRATÉGICO: PROYECTO CTB                         ║
-║                                                                              ║
-║        Portal Turístico Barcelona - 440+ Test Cases + 50+ Incidencias       ║
-║                                                                              ║
-║              Plan de implementación HAIDA + Actualización Excel     ║
-║                                                                              ║
+║ ║
+║ ANÁLISIS ESTRATÉGICO: PROYECTO CTB ║
+║ ║
+║ Portal Turístico Barcelona - 440+ Test Cases + 50+ Incidencias ║
+║ ║
+║ Plan de implementación HAIDA + Actualización Excel ║
+║ ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
-
 
 ═══════════════════════════════════════════════════════════════════════════════
 📊 ANÁLISIS SITUACIÓN ACTUAL CTB
@@ -50,7 +49,6 @@ MÓDULOS AFECTADOS:
 ├─ Plataformas: Chrome, Firefox, Safari (Desktop), iOS, Android (Mobile)
 └─ Total módulos: ~15-20 módulos principales
 
-
 ═══════════════════════════════════════════════════════════════════════════════
 📋 TEST CASES: 440+ EN TESTLINK
 ═══════════════════════════════════════════════════════════════════════════════
@@ -60,21 +58,21 @@ DATOS FALTANTES QUE NECESITO:
 Para mapear correctamente los 440 test cases de TestLink a HAIDA:
 
 1️⃣ Estructura TestLink:
-   └─ ¿Cómo están organizados los 440 casos?
-   └─ ¿Ejemplo: Feature → Suite → Test Case?
-   └─ ¿Desktop y Mobile están separados o mezclados?
-   └─ ¿Hay prioridades, tipos, requisitos mapeados?
+└─ ¿Cómo están organizados los 440 casos?
+└─ ¿Ejemplo: Feature → Suite → Test Case?
+└─ ¿Desktop y Mobile están separados o mezclados?
+└─ ¿Hay prioridades, tipos, requisitos mapeados?
 
 2️⃣ Exportación TestLink:
-   └─ ¿Qué campos incluye la exportación?
-   └─ Ej: Test_ID, Title, Preconditions, Steps, Expected_Result, Type, Priority
-   └─ ¿Incluye mapeo a requisitos? (REQ-###)
-   └─ ¿Hay coverage info?
+└─ ¿Qué campos incluye la exportación?
+└─ Ej: Test_ID, Title, Preconditions, Steps, Expected_Result, Type, Priority
+└─ ¿Incluye mapeo a requisitos? (REQ-###)
+└─ ¿Hay coverage info?
 
 3️⃣ Excel SharePoint:
-   └─ ¿Cómo está estructurado actualmente?
-   └─ ¿Qué columnas tiene Test Plan Actual?
-   └─ ¿Incidencias están linkadas a test cases?
+└─ ¿Cómo está estructurado actualmente?
+└─ ¿Qué columnas tiene Test Plan Actual?
+└─ ¿Incidencias están linkadas a test cases?
 
 SIN ESTA INFO, NO PUEDO PROCEDER CON PRECISIÓN.
 
@@ -82,7 +80,6 @@ PROPUESTA ALTERNATIVA:
 └─ Comienzo con un PEQUEÑO SUBSET (ej: Login + Registro)
 └─ Demostramos flujo completo: TestLink → Validación → Excel → Ejecución
 └─ Luego escalamos a todos 440 casos
-
 
 ═══════════════════════════════════════════════════════════════════════════════
 🎯 PLAN DE ACCIÓN INMEDIATO (SEGURO Y ÁGIL)
@@ -115,7 +112,6 @@ PASO 4: Validación Arquitectura
 ├─ ¿Todos requisitos tienen tests?
 └─ Output: Matriz requisitos CTB
 
-
 FASE 1: IMPLEMENTACIÓN CONTROLADA (10-12 HORAS)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -143,12 +139,11 @@ SUBPHASE 1D: Validación Final + Incidencias
 ├─ Validar todos 440 casos en Excel
 ├─ Linkear incidencias a test cases
 ├─ Crear pestañas adicionales:
-│  ├─ Ejecución (test run actual)
-│  ├─ Defectos (linkeo incidencias)
-│  ├─ Coverage (cobertura requisitos)
-│  └─ Timeline (histórico ejecuciones)
+│ ├─ Ejecución (test run actual)
+│ ├─ Defectos (linkeo incidencias)
+│ ├─ Coverage (cobertura requisitos)
+│ └─ Timeline (histórico ejecuciones)
 └─ APROBACIÓN: ¿Continuamos a automatización?
-
 
 FASE 2: AUTOMATIZACIÓN (15-20 HORAS)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -158,7 +153,6 @@ FASE 2: AUTOMATIZACIÓN (15-20 HORAS)
 ├─ Integrar con Excel (actualizar resultados)
 ├─ Crear dashboard de métricas
 └─ RESULTADO: Sistema automático funcionando
-
 
 ═══════════════════════════════════════════════════════════════════════════════
 🚀 SIGUIENTE PASO: NECESITO TU CONFIRMACIÓN
@@ -177,29 +171,28 @@ OPCIÓN B: Necesito tu input primero
 PREGUNTAS CRÍTICAS ANTES DE PROCEDER:
 
 1️⃣ TESTLINK EXPORT:
-   ├─ ¿Dónde están los 440 casos? (archivo, URL, etc)
-   ├─ ¿Qué formato? (CSV, Excel, JSON, XML)
-   ├─ ¿Incluye estructura (Suite → Test → TC)?
-   └─ Respuesta: _________________
+├─ ¿Dónde están los 440 casos? (archivo, URL, etc)
+├─ ¿Qué formato? (CSV, Excel, JSON, XML)
+├─ ¿Incluye estructura (Suite → Test → TC)?
+└─ Respuesta: ********\_********
 
 2️⃣ EXCEL SHAREPOINT:
-   ├─ He visto el link, ¿puedo actualizarlo directamente?
-   ├─ ¿Puedo crear nuevas pestañas?
-   ├─ ¿Quiénes tienen permisos (solo tú o equipo)?
-   └─ Respuesta: _________________
+├─ He visto el link, ¿puedo actualizarlo directamente?
+├─ ¿Puedo crear nuevas pestañas?
+├─ ¿Quiénes tienen permisos (solo tú o equipo)?
+└─ Respuesta: ********\_********
 
 3️⃣ MAPEO REQUISITOS:
-   ├─ ¿TestLink tiene requisitos mapeados? (REQ-###)
-   ├─ ¿O necesito inferirlos del título/descripción?
-   ├─ ¿CTB tiene documento de requisitos?
-   └─ Respuesta: _________________
+├─ ¿TestLink tiene requisitos mapeados? (REQ-###)
+├─ ¿O necesito inferirlos del título/descripción?
+├─ ¿CTB tiene documento de requisitos?
+└─ Respuesta: ********\_********
 
 4️⃣ PRIORIDAD MÓDULOS:
-   ├─ ¿Empiezo con Login/Registro (POC)?
-   ├─ ¿O directo con todos 440?
-   ├─ ¿Hay módulos críticos primero?
-   └─ Respuesta: _________________
-
+├─ ¿Empiezo con Login/Registro (POC)?
+├─ ¿O directo con todos 440?
+├─ ¿Hay módulos críticos primero?
+└─ Respuesta: ********\_********
 
 ═══════════════════════════════════════════════════════════════════════════════
 📌 RIESGOS IDENTIFICADOS (Con mitigación)
@@ -221,11 +214,9 @@ PREGUNTAS CRÍTICAS ANTES DE PROCEDER:
 └─ MITIGATION: Crear mapping table (TestLink Type → ISTQB Type)
 └─ MITIGATION: Documentar decisiones de mapeo
 
-
 ═════════════════════════════════════════════════════════════════════════════════
 DOCUMENTO: ANALISIS-PROYECTO-CTB.md
 TIPO: Strategic analysis + plan de acción
 CLIENTE: CTB (Real)
 STATUS: Esperando confirmación de 4 preguntas para proceder Fase 0
 ═════════════════════════════════════════════════════════════════════════════════
-

@@ -13,6 +13,7 @@ HAIDA is a comprehensive Quality Assurance platform with AI integration, combini
 ## 🚀 Quick Start
 
 ### Prerequisites
+
 - **Node.js** 18+ (for tooling)
 - **Python** 3.11+ (for FastAPI)
 - **Supabase** account (database)
@@ -20,6 +21,7 @@ HAIDA is a comprehensive Quality Assurance platform with AI integration, combini
 - **Microsoft** account (Entra SSO)
 
 ### 1. Clone & Setup
+
 ```bash
 git clone <your-repo>
 cd HAIDA
@@ -32,6 +34,7 @@ pip install fastapi uvicorn python-dotenv msal redis
 ```
 
 ### 2. Environment Configuration
+
 ```bash
 # Copy environment template
 cp infra/.env.example .env.production
@@ -45,6 +48,7 @@ cp infra/.env.example .env.production
 ```
 
 ### 3. Database Setup
+
 ```powershell
 # Windows PowerShell
 .\setup-new-supabase.ps1
@@ -53,6 +57,7 @@ cp infra/.env.example .env.production
 ```
 
 ### 4. Local Development
+
 ```bash
 # Start FastAPI server
 cd app
@@ -63,6 +68,7 @@ uvicorn main:app --reload --port 8000
 ```
 
 ### 5. Deploy to Production
+
 ```bash
 # Vercel deployment
 vercel --prod
@@ -75,6 +81,7 @@ vercel --prod
 ## 🏗️ Architecture Details
 
 ### Core Components
+
 ```
 HAIDA/
 ├── app/                    # FastAPI backend
@@ -108,6 +115,7 @@ HAIDA/
 ```
 
 ### Security Model
+
 - **Multi-tenant**: Complete isolation via RLS
 - **RBAC**: Granular permissions system
 - **Authentication**: Entra SSO + local JWT
@@ -121,6 +129,7 @@ HAIDA/
 ### Environment Variables
 
 #### Required
+
 ```bash
 # App
 APP_NAME=HAIDA
@@ -145,6 +154,7 @@ JWT_SECRET=your_super_secret_key
 ```
 
 #### Optional
+
 ```bash
 # Redis (for rate limiting & queues)
 REDIS_URL=redis://localhost:6379/0
@@ -157,12 +167,14 @@ AZURE_KEYVAULT_URL=https://your-keyvault.vault.azure.net
 ```
 
 ### Supabase Setup
+
 1. Create project at https://supabase.com
 2. Run SQL schema: `infra/supabase/schema.sql`
 3. Apply policies: `infra/supabase/policies.sql`
 4. Configure authentication providers
 
 ### Vercel Deployment
+
 1. Install Vercel CLI: `npm i -g vercel`
 2. Login: `vercel login`
 3. Deploy: `vercel --prod`
@@ -173,6 +185,7 @@ AZURE_KEYVAULT_URL=https://your-keyvault.vault.azure.net
 ## 🚀 API Endpoints
 
 ### Authentication
+
 ```http
 POST /auth/login          # Local login
 POST /auth/register       # User registration
@@ -183,6 +196,7 @@ GET  /entra/callback     # OAuth callback
 ```
 
 ### Core Features
+
 ```http
 # Tenants & Projects
 GET  /tenants            # List user tenants
@@ -208,6 +222,7 @@ POST /docs/search                 # Search documents
 ```
 
 ### System
+
 ```http
 GET  /health              # Health check
 GET  /version            # API version
@@ -221,6 +236,7 @@ GET  /system/rate        # Rate limiting status
 ## 🔐 Security Configuration
 
 ### Row Level Security (RLS)
+
 All tables have RLS enabled with tenant-based isolation:
 
 ```sql
@@ -233,6 +249,7 @@ CREATE POLICY "tenant_data_isolation" ON projects
 ```
 
 ### CORS Configuration
+
 ```python
 # app/core/cors.py
 origins = [
@@ -243,6 +260,7 @@ origins = [
 ```
 
 ### Rate Limiting
+
 ```python
 # Applied per endpoint
 @app.middleware("http")
@@ -256,17 +274,20 @@ async def rate_limit_middleware(request, call_next):
 ## 🤖 AI Integration
 
 ### Copilot Studio Setup
+
 1. Create bot in Copilot Studio
 2. Configure Direct Line channel
 3. Get Direct Line secret
 4. Configure in environment variables
 
 ### Fallback Providers
+
 - **Primary**: Copilot Studio (Microsoft)
 - **Fallback**: OpenAI/Anthropic
 - **Auto-switch**: On connection failures
 
 ### Context Integration
+
 - Document references
 - Script suggestions
 - Test case generation
@@ -277,6 +298,7 @@ async def rate_limit_middleware(request, call_next):
 ## 📊 Monitoring & Observability
 
 ### OpenTelemetry Setup
+
 ```python
 # app/core/otel.py
 import os
@@ -292,12 +314,14 @@ def setup_otel():
 ```
 
 ### Logging
+
 - **Structured JSON logs**
 - **Log levels**: DEBUG, INFO, WARNING, ERROR
 - **Request correlation IDs**
 - **Performance metrics**
 
 ### Health Checks
+
 ```bash
 # Health endpoint
 curl https://your-app.vercel.app/health
@@ -315,6 +339,7 @@ curl https://your-app.vercel.app/health
 ## 🧪 Testing
 
 ### Local Testing
+
 ```bash
 # Install test dependencies
 pip install pytest httpx
@@ -327,6 +352,7 @@ npm run test:api
 ```
 
 ### QA Scripts
+
 ```powershell
 # Run QA automation
 .\run-qa-local.ps1
@@ -336,6 +362,7 @@ npm run test:api
 ```
 
 ### Playwright Tests
+
 ```bash
 # E2E tests
 npx playwright test
@@ -352,6 +379,7 @@ npx playwright show-report
 ## 🚢 Deployment
 
 ### Vercel Configuration
+
 ```json
 // vercel.json
 {
@@ -368,12 +396,14 @@ npx playwright show-report
 ```
 
 ### Environment Variables in Vercel
+
 1. Go to Vercel dashboard
 2. Select your project
 3. Settings → Environment Variables
 4. Add all variables from `.env.production`
 
 ### Production URL
+
 - **API**: `https://your-app.vercel.app/api/v2`
 - **Docs**: `https://your-app.vercel.app/docs`
 - **Health**: `https://your-app.vercel.app/health`
@@ -385,6 +415,7 @@ npx playwright show-report
 ### Common Issues
 
 #### Database Connection
+
 ```bash
 # Test Supabase connection
 node -e "
@@ -395,6 +426,7 @@ supabase.from('users').select('*').limit(1).then(console.log);
 ```
 
 #### Authentication Issues
+
 ```bash
 # Check JWT token
 curl -H "Authorization: Bearer YOUR_TOKEN" \
@@ -402,12 +434,14 @@ curl -H "Authorization: Bearer YOUR_TOKEN" \
 ```
 
 #### Rate Limiting
+
 ```bash
 # Check rate limit status
 curl https://your-app.vercel.app/system/rate
 ```
 
 ### Logs & Debugging
+
 ```bash
 # Vercel logs
 vercel logs
@@ -424,17 +458,20 @@ tail -f logs/app.log
 ## 📚 Additional Resources
 
 ### Documentation
+
 - **API Docs**: `/docs` (OpenAPI/Swagger)
 - **Technical Spec**: `docs/HAIDA_Spec.md`
 - **Database ERD**: `docs/DB/ERD.mmd`
 - **UX Design**: `docs/UX/`
 
 ### Development
+
 - **Local Setup**: `docs/LOCAL-TESTING-QUICK-START.md`
 - **Contributing**: `docs/CONTRIBUTING.md`
 - **Security**: `docs/SECURITY/ThreatModel.md`
 
 ### Support
+
 - **Issues**: GitHub Issues
 - **Discussions**: GitHub Discussions
 - **Documentation**: Internal wiki

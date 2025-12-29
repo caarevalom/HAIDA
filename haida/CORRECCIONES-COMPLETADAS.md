@@ -19,6 +19,7 @@ Se ha realizado una revisión exhaustiva del proyecto HAIDA y se han implementad
 **Archivo creado**: `.env.production.template`
 
 **Mejoras**:
+
 - ✅ Secretos seguros generados usando OpenSSL:
   - `DB_PASSWORD`: Base64 32 bytes (256 bits)
   - `API_SECRET_KEY`: Base64 48 bytes (384 bits)
@@ -32,6 +33,7 @@ Se ha realizado una revisión exhaustiva del proyecto HAIDA y se han implementad
 **Ubicación**: `/haida/.env.production.template`
 
 **Acción Requerida**:
+
 ```bash
 # Copiar template y actualizar con valores reales
 cp .env.production.template .env.production
@@ -51,6 +53,7 @@ cp .env.production.template .env.production
 **Archivo creado**: `.gitignore`
 
 **Protecciones Implementadas**:
+
 - ✅ Archivos de secretos (`.env*`, `*.pem`, `*.key`)
 - ✅ Node modules y dependencias
 - ✅ Resultados de tests y reportes
@@ -62,6 +65,7 @@ cp .env.production.template .env.production
 **Ubicación**: `/haida/.gitignore`
 
 **Archivos Mantenidos** (no ignorados):
+
 - `.env.example`
 - `.env.production.template`
 - `examples/`
@@ -74,6 +78,7 @@ cp .env.production.template .env.production
 **Archivo creado**: `docker-compose.yml` (raíz del proyecto)
 
 **Mejoras**:
+
 - ✅ Build context corregido para haida-api
 - ✅ Health checks para todos los servicios
 - ✅ Dependencias entre servicios bien definidas
@@ -84,6 +89,7 @@ cp .env.production.template .env.production
 - ✅ Configuración de recursos (shm_size para Selenium)
 
 **Servicios Configurados**:
+
 1. **changedetection**: Monitoreo de cambios UI
 2. **selenium**: Browser automation
 3. **haida-api**: API webhook receiver
@@ -94,6 +100,7 @@ cp .env.production.template .env.production
 **Ubicación**: `/haida/docker-compose.yml`
 
 **Comando de inicio**:
+
 ```bash
 docker-compose up -d
 ```
@@ -105,6 +112,7 @@ docker-compose up -d
 **Archivo modificado**: `playwright.config.js`
 
 **Correcciones**:
+
 - ✅ Comentado `webServer` inválido (script `start:app` no existe)
 - ✅ Tests configurados para apuntar a `TEST_URL` externa
 - ✅ Configuración alineada con arquitectura del proyecto
@@ -120,6 +128,7 @@ docker-compose up -d
 **Archivo creado**: `change-detection/init-db.sql`
 
 **Características**:
+
 - ✅ Schema completo para almacenar resultados de tests
 - ✅ 5 tablas principales:
   - `test_runs`: Ejecuciones de tests
@@ -146,6 +155,7 @@ docker-compose up -d
 **Archivo creado**: `ANALISIS-Y-CORRECCIONES.md`
 
 **Contenido**:
+
 - ✅ Análisis exhaustivo de la arquitectura actual
 - ✅ Identificación de 15 problemas (críticos a menores)
 - ✅ Priorización de correcciones
@@ -161,29 +171,29 @@ docker-compose up -d
 
 ### Seguridad
 
-| Aspecto | Antes | Después |
-|---------|-------|---------|
-| Secretos por defecto | ❌ Inseguros | ✅ Criptográficamente seguros |
-| .gitignore | ❌ No existe | ✅ Completo y robusto |
-| Exposición de secretos | ❌ Alto riesgo | ✅ Protegido |
-| CORS | ⚠️ Muy permisivo | ✅ Restringido en producción |
+| Aspecto                | Antes            | Después                       |
+| ---------------------- | ---------------- | ----------------------------- |
+| Secretos por defecto   | ❌ Inseguros     | ✅ Criptográficamente seguros |
+| .gitignore             | ❌ No existe     | ✅ Completo y robusto         |
+| Exposición de secretos | ❌ Alto riesgo   | ✅ Protegido                  |
+| CORS                   | ⚠️ Muy permisivo | ✅ Restringido en producción  |
 
 ### Infraestructura
 
-| Aspecto | Antes | Después |
-|---------|-------|---------|
-| Docker Compose | ⚠️ Build context incorrecto | ✅ Corregido |
-| Health Checks | ⚠️ Solo algunos servicios | ✅ Todos los servicios |
-| Volúmenes | ⚠️ Paths relativos | ✅ Configuración robusta |
-| Dependencias | ⚠️ No optimizadas | ✅ Bien definidas |
+| Aspecto        | Antes                       | Después                  |
+| -------------- | --------------------------- | ------------------------ |
+| Docker Compose | ⚠️ Build context incorrecto | ✅ Corregido             |
+| Health Checks  | ⚠️ Solo algunos servicios   | ✅ Todos los servicios   |
+| Volúmenes      | ⚠️ Paths relativos          | ✅ Configuración robusta |
+| Dependencias   | ⚠️ No optimizadas           | ✅ Bien definidas        |
 
 ### Testing
 
-| Aspecto | Antes | Después |
-|---------|-------|---------|
-| Playwright config | ❌ Script inválido | ✅ Corregido |
-| Base de datos | ❌ Sin schema | ✅ Schema completo |
-| Métricas | ❌ No implementadas | ✅ Tablas y vistas |
+| Aspecto           | Antes               | Después            |
+| ----------------- | ------------------- | ------------------ |
+| Playwright config | ❌ Script inválido  | ✅ Corregido       |
+| Base de datos     | ❌ Sin schema       | ✅ Schema completo |
+| Métricas          | ❌ No implementadas | ✅ Tablas y vistas |
 
 ---
 
@@ -192,12 +202,14 @@ docker-compose up -d
 ### Inmediato (Esta Semana)
 
 1. **Configurar Producción**
+
    ```bash
    cp .env.production.template .env.production
    # Editar .env.production con valores reales
    ```
 
 2. **Verificar Git**
+
    ```bash
    git status
    # Asegurarse que .env NO está trackeado
@@ -271,6 +283,7 @@ Los siguientes secretos fueron generados usando `openssl rand -base64`:
 3. **JWT_SECRET**: `vQoaQ0LyzbzPEqIot06PynVVOWmftqbSkl6jaitlXlSWSh3mMNxrBI79RDahIcSVTzRELoFW1ZQtGmmoN7Id6g==`
 
 ⚠️ **IMPORTANTE**:
+
 - Estos secretos están en `.env.production.template` como ejemplo
 - En producción, genera secretos únicos para cada entorno
 - NUNCA commitear archivos `.env.production` al repositorio
@@ -299,18 +312,21 @@ Antes de desplegar en producción, verifica:
 Si encuentras problemas:
 
 1. **Logs de Docker**:
+
    ```bash
    docker-compose logs -f haida-api
    docker-compose logs -f postgres
    ```
 
 2. **Verificar Salud**:
+
    ```bash
    curl http://localhost:3001/health
    curl http://localhost:5000  # Changedetection
    ```
 
 3. **Reiniciar Servicios**:
+
    ```bash
    docker-compose restart haida-api
    ```

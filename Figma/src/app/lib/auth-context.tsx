@@ -8,7 +8,9 @@ import { createClient } from '@supabase/supabase-js';
 
 // Initialize Supabase client for Microsoft OAuth
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://wdebyxvtunromsnkqbrd.supabase.co';
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndkZWJ5eHZ0dW5yb21zbmtxYnJkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzQxMzQzODYsImV4cCI6MjA0OTcxMDM4Nn0.wZ_3yV0gPOT-gG3vLRBt9Gv-VRgp7qfz8lJWr0YCcbM';
+const supabaseAnonKey =
+  import.meta.env.VITE_SUPABASE_ANON_KEY ||
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndkZWJ5eHZ0dW5yb21zbmtxYnJkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzQxMzQzODYsImV4cCI6MjA0OTcxMDM4Nn0.wZ_3yV0gPOT-gG3vLRBt9Gv-VRgp7qfz8lJWr0YCcbM';
 
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
@@ -19,7 +21,12 @@ interface AuthContextType {
   error: string | null;
 
   signIn: (email: string, password: string) => Promise<{ success: boolean; error?: string }>;
-  signUp: (email: string, password: string, fullName?: string, role?: string) => Promise<{ success: boolean; error?: string }>;
+  signUp: (
+    email: string,
+    password: string,
+    fullName?: string,
+    role?: string
+  ) => Promise<{ success: boolean; error?: string }>;
   signInWithMicrosoft: () => Promise<{ success: boolean; error?: string }>;
   resetPassword: (email: string) => Promise<{ success: boolean; error?: string }>;
   signOut: () => Promise<void>;
@@ -37,7 +44,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const initAuth = async () => {
       try {
         // Check for OAuth session from Supabase (Microsoft login)
-        const { data: { session } } = await supabase.auth.getSession();
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
 
         if (session?.user) {
           // User logged in with Microsoft OAuth
@@ -59,7 +68,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
               name: session.user.user_metadata?.full_name || session.user.email || 'Microsoft User',
               role: 'viewer',
               is_active: true,
-              created_at: new Date().toISOString()
+              created_at: new Date().toISOString(),
             };
             setUser(oauthUser);
             storage.setUser(oauthUser);
@@ -92,7 +101,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     initAuth();
 
     // Listen for auth state changes from Supabase
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange(async (event, session) => {
       console.log('Supabase auth state changed:', event);
 
       if (event === 'SIGNED_IN' && session?.user) {
@@ -103,7 +114,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           name: session.user.user_metadata?.full_name || session.user.email || 'Microsoft User',
           role: 'viewer',
           is_active: true,
-          created_at: new Date().toISOString()
+          created_at: new Date().toISOString(),
         };
         setUser(oauthUser);
         storage.setUser(oauthUser);
@@ -130,7 +141,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const signIn = async (email: string, password: string): Promise<{ success: boolean; error?: string }> => {
+  const signIn = async (
+    email: string,
+    password: string
+  ): Promise<{ success: boolean; error?: string }> => {
     setIsLoading(true);
     setError(null);
     try {
@@ -151,11 +165,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const signUp = async (email: string, password: string, fullName?: string, role?: string): Promise<{ success: boolean; error?: string }> => {
+  const signUp = async (
+    email: string,
+    password: string,
+    fullName?: string,
+    role?: string
+  ): Promise<{ success: boolean; error?: string }> => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await authApi.register({ email, password, full_name: fullName, role: (role || 'viewer') as any });
+      const response = await authApi.register({
+        email,
+        password,
+        full_name: fullName,
+        role: (role || 'viewer') as any,
+      });
       if (response.user) {
         setUser(response.user as User);
       } else {
@@ -182,8 +206,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         provider: 'azure',
         options: {
           redirectTo: `${window.location.origin}`,
-          scopes: 'openid email profile'
-        }
+          scopes: 'openid email profile',
+        },
       });
 
       if (error) {
@@ -210,7 +234,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       // Use Supabase password reset
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: `${window.location.origin}/reset-password`
+        redirectTo: `${window.location.origin}/reset-password`,
       });
 
       if (error) {
@@ -253,14 +277,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     signInWithMicrosoft,
     resetPassword,
     signOut,
-    refreshUser
+    refreshUser,
   };
 
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
 export const useAuth = () => {

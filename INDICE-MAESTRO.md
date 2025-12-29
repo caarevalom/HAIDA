@@ -6,21 +6,22 @@
 
 ### **👉 SI NECESITAS...**
 
-| Necesidad | Ir a | Descripción |
-|-----------|------|-------------|
-| **Resumen visual** | [ENTREGA-COMPLETA-FASES-AE.md](ENTREGA-COMPLETA-FASES-AE.md) | Overview todas las fases + checklist |
-| **Cómo ejecutar** | [FASE-E-BUGS-AND-CSV-MAPPING.md](HAIDA/FASE-E-BUGS-AND-CSV-MAPPING.md) | Flujo 7 pasos, comandos, ejemplo |
-| **Antes/Después** | [FASE-E-ANTES-Y-DESPUES.md](FASE-E-ANTES-Y-DESPUES.md) | Comparativa, gaps solucionados, ROI |
-| **Análisis técnico** | [FASE-E-BUGS-AND-CSV-MAPPING.md](HAIDA/FASE-E-BUGS-AND-CSV-MAPPING.md) | Detalle entrada/salida de cada script |
-| **Requisitos del proyecto** | [CTB-REQUISITOS-ANALISIS.md](HAIDA/CTB-REQUISITOS-ANALISIS.md) | 9 módulos, 122+ requisitos, 440 casos |
-| **Scripts PowerShell** | `./generators/` | 8 scripts (.ps1) listos para ejecutar |
-| **Evidencias de la demostración** | `./test-results/` | Carpeta con salida de 10 casos ejecutados |
+| Necesidad                         | Ir a                                                                   | Descripción                               |
+| --------------------------------- | ---------------------------------------------------------------------- | ----------------------------------------- |
+| **Resumen visual**                | [ENTREGA-COMPLETA-FASES-AE.md](ENTREGA-COMPLETA-FASES-AE.md)           | Overview todas las fases + checklist      |
+| **Cómo ejecutar**                 | [FASE-E-BUGS-AND-CSV-MAPPING.md](HAIDA/FASE-E-BUGS-AND-CSV-MAPPING.md) | Flujo 7 pasos, comandos, ejemplo          |
+| **Antes/Después**                 | [FASE-E-ANTES-Y-DESPUES.md](FASE-E-ANTES-Y-DESPUES.md)                 | Comparativa, gaps solucionados, ROI       |
+| **Análisis técnico**              | [FASE-E-BUGS-AND-CSV-MAPPING.md](HAIDA/FASE-E-BUGS-AND-CSV-MAPPING.md) | Detalle entrada/salida de cada script     |
+| **Requisitos del proyecto**       | [CTB-REQUISITOS-ANALISIS.md](HAIDA/CTB-REQUISITOS-ANALISIS.md)         | 9 módulos, 122+ requisitos, 440 casos     |
+| **Scripts PowerShell**            | `./generators/`                                                        | 8 scripts (.ps1) listos para ejecutar     |
+| **Evidencias de la demostración** | `./test-results/`                                                      | Carpeta con salida de 10 casos ejecutados |
 
 ---
 
 ## 📋 ARCHIVOS PRINCIPALES POR FASE
 
 ### **FASE A: Análisis Estratégico**
+
 ```
 HAIDA/
 ├─ CTB-REQUISITOS-ANALISIS.md
@@ -37,6 +38,7 @@ HAIDA/
 ```
 
 ### **FASE B: Validadores**
+
 ```
 generators/
 ├─ ValidateCSVStructure.ps1 (3.7 KB)
@@ -50,6 +52,7 @@ generators/
 ```
 
 ### **FASE C: Framework**
+
 ```
 generators/
 └─ playwright-capture-evidence.js (11.2 KB)
@@ -61,6 +64,7 @@ generators/
 ```
 
 ### **FASE D: Executor**
+
 ```
 generators/
 └─ execute-test-batch.ps1 (5.8 KB)
@@ -72,6 +76,7 @@ generators/
 ```
 
 ### **FASE E: Análisis Inteligente (🆕)**
+
 ```
 generators/
 ├─ analyze-test-failures.ps1 (6.2 KB) ⭐ NUEVO
@@ -135,6 +140,7 @@ cd HAIDA/generators
 ```
 
 **Salidas esperadas:**
+
 - `test-results/test-results.json` → 10 casos ejecutados
 - `bugs-detected.json` → Bugs con análisis
 - `test-cases-with-results.csv` → Input + resultados
@@ -145,18 +151,21 @@ cd HAIDA/generators
 ## 📊 ESTADÍSTICAS
 
 ### **Código Generado**
+
 - **Scripts PowerShell:** 8 (40+ KB)
 - **JavaScript/Playwright:** 1 (11+ KB)
 - **Total líneas:** 2,000+
 - **Documentación:** 10+ archivos (80+ KB)
 
 ### **Cobertura del Proyecto**
+
 - **Módulos:** 9 / 9 (100%)
 - **Requisitos:** 122+ / 122+ (100%)
 - **Test cases:** 440 mapeados
 - **Bugs críticos:** 9 documentados
 
 ### **Demo Ejecutado**
+
 ```
 Test cases ejecutados: 10
 ├─ PASS: 8 (80%) ✓
@@ -168,36 +177,41 @@ Evidencia: 100% capturada
 ```
 
 ### **Mejoras Medibles**
-| Métrica | Antes | Después | Mejora |
-|---------|-------|---------|--------|
-| Tiempo crear bug | 90 min | 30 seg | **99.4%** |
-| Contexto por bug | 2 líneas | 15 campos | **650%** |
-| Bugs duplicados | 45% | 0% | **100%** |
-| Asignación correcta | 50% | 100% | **100%** |
+
+| Métrica             | Antes    | Después   | Mejora    |
+| ------------------- | -------- | --------- | --------- |
+| Tiempo crear bug    | 90 min   | 30 seg    | **99.4%** |
+| Contexto por bug    | 2 líneas | 15 campos | **650%**  |
+| Bugs duplicados     | 45%      | 0%        | **100%**  |
+| Asignación correcta | 50%      | 100%      | **100%**  |
 
 ---
 
 ## 🎯 CASOS DE USO
 
 ### **Caso 1: Ejecutar tests y detectar bugs automáticamente**
+
 ```
 Ver: FASE-E-BUGS-AND-CSV-MAPPING.md
 Sección: "Caso de Uso Completo"
 ```
 
 ### **Caso 2: Exportar resultados a Excel**
+
 ```
 Ver: FASE-E-BUGS-AND-CSV-MAPPING.md
 Sección: "Checklist de Integración Excel"
 ```
 
 ### **Caso 3: Entender qué mejoró con FASE E**
+
 ```
 Ver: FASE-E-ANTES-Y-DESPUES.md
 Sección: "Tu Solicitud Original vs Mi Entrega"
 ```
 
 ### **Caso 4: Modificar patrones de error o módulos**
+
 ```
 Ver: Editar directamente los scripts:
 - analyze-test-failures.ps1 (función Get-ErrorPattern)
@@ -209,6 +223,7 @@ Ver: Editar directamente los scripts:
 ## 🔍 BÚSQUEDA DE INFORMACIÓN
 
 ### **Por característica:**
+
 - **Investigación automática de bugs** → analyze-test-failures.ps1
 - **Mapeo CSV** → map-csv-input-output.ps1
 - **Deduplicación** → generate-bugs-report.ps1
@@ -216,6 +231,7 @@ Ver: Editar directamente los scripts:
 - **Validación** → ValidateCSVStructure.ps1
 
 ### **Por módulo del sistema:**
+
 - **AUTH:** backend-auth@hiberus.com
 - **NAV:** frontend-nav@hiberus.com
 - **HOME:** frontend-home@hiberus.com
@@ -227,6 +243,7 @@ Ver: Editar directamente los scripts:
 - **CAL:** backend-calendar@hiberus.com
 
 ### **Por tipo de error:**
+
 - **TIMEOUT:** 4 hours, ALTA severidad
 - **ASSERTION_FAILED:** 2 hours, ALTA severidad
 - **ELEMENT_NOT_FOUND:** 1 hour, MEDIA severidad
@@ -240,6 +257,7 @@ Ver: Editar directamente los scripts:
 ## ✅ CHECKLIST DE ENTREGA
 
 ### **FASE A - Análisis**
+
 - [x] 9 módulos identificados
 - [x] 122+ requisitos estructurados
 - [x] 440 test cases mapeados
@@ -247,12 +265,14 @@ Ver: Editar directamente los scripts:
 - [x] Matriz de trazabilidad creada
 
 ### **FASE B - Validadores**
+
 - [x] ValidateCSVStructure.ps1 producción
 - [x] ValidateSpecification.ps1 producción
 - [x] GenerateRequirementsMatrix.ps1 producción
 - [x] generate-tests.ps1 producción
 
 ### **FASE C - Framework**
+
 - [x] playwright-capture-evidence.js operativo
 - [x] Multi-navegador soporte
 - [x] Screenshots automáticos
@@ -260,12 +280,14 @@ Ver: Editar directamente los scripts:
 - [x] Network & backend logging
 
 ### **FASE D - Executor**
+
 - [x] execute-test-batch.ps1 operativo
 - [x] Demo 10 casos ejecutado
 - [x] 80% PASS rate alcanzado
 - [x] Evidencia 100% capturada
 
 ### **FASE E - Bugs (NUEVO)**
+
 - [x] analyze-test-failures.ps1 creado
 - [x] 7 patrones de error definidos
 - [x] 9 módulos mapeados
@@ -278,6 +300,7 @@ Ver: Editar directamente los scripts:
 - [x] Documentación FASE E completa
 
 ### **Documentación**
+
 - [x] CTB-REQUISITOS-ANALISIS.md
 - [x] FASE-E-BUGS-AND-CSV-MAPPING.md
 - [x] RESUMEN-FASE-E-COMPLETA.md
@@ -290,17 +313,20 @@ Ver: Editar directamente los scripts:
 ## 🚀 PRÓXIMOS PASOS
 
 ### **Inmediato (Validación):**
+
 1. Ejecutar DEMO con los 4 comandos
 2. Validar JSON y CSV outputs
 3. Revisar bugs detectados
 
 ### **Corto plazo (Excel):**
+
 1. Descargar Excel de SharePoint
 2. Crear/actualizar sheets (Ejecución, Defectos, Cobertura, Dashboard)
 3. Importar 440 test cases
 4. Importar bugs deduplicados
 
 ### **Medio plazo (Reportes):**
+
 1. Generar Allure Report
 2. Crear Executive Summary
 3. Documentar recomendaciones
@@ -331,22 +357,22 @@ A: Sí, escalado para N casos (testeado con 10, soporta 440+)
 
 Para preguntas específicas sobre:
 
-| Tema | Ver archivo |
-|------|------------|
-| Cómo ejecutar | [FASE-E-BUGS-AND-CSV-MAPPING.md](HAIDA/FASE-E-BUGS-AND-CSV-MAPPING.md) |
-| Qué mejoró | [FASE-E-ANTES-Y-DESPUES.md](FASE-E-ANTES-Y-DESPUES.md) |
-| Flujo técnico | [ENTREGA-COMPLETA-FASES-AE.md](ENTREGA-COMPLETA-FASES-AE.md) |
-| Requisitos proyecto | [CTB-REQUISITOS-ANALISIS.md](HAIDA/CTB-REQUISITOS-ANALISIS.md) |
+| Tema                | Ver archivo                                                            |
+| ------------------- | ---------------------------------------------------------------------- |
+| Cómo ejecutar       | [FASE-E-BUGS-AND-CSV-MAPPING.md](HAIDA/FASE-E-BUGS-AND-CSV-MAPPING.md) |
+| Qué mejoró          | [FASE-E-ANTES-Y-DESPUES.md](FASE-E-ANTES-Y-DESPUES.md)                 |
+| Flujo técnico       | [ENTREGA-COMPLETA-FASES-AE.md](ENTREGA-COMPLETA-FASES-AE.md)           |
+| Requisitos proyecto | [CTB-REQUISITOS-ANALISIS.md](HAIDA/CTB-REQUISITOS-ANALISIS.md)         |
 
 ---
 
 ## 📅 Historial de Cambios
 
-| Fecha | Versión | Cambios |
-|-------|---------|---------|
-| 2024-01-16 | v1.0 | FASE A-D completas (scripts + documentación) |
-| 2024-01-16 | v1.1 | FASE E: 3 scripts nuevos + documentación |
-| 2024-01-16 | v1.2 | Este documento: Índice maestro |
+| Fecha      | Versión | Cambios                                      |
+| ---------- | ------- | -------------------------------------------- |
+| 2024-01-16 | v1.0    | FASE A-D completas (scripts + documentación) |
+| 2024-01-16 | v1.1    | FASE E: 3 scripts nuevos + documentación     |
+| 2024-01-16 | v1.2    | Este documento: Índice maestro               |
 
 ---
 
@@ -360,9 +386,10 @@ Para preguntas específicas sobre:
 ✅ Demo funcional (10 casos, 80% PASS)  
 ✅ Análisis automático de bugs  
 ✅ CSV bidireccional  
-✅ Deduplicación inteligente  
+✅ Deduplicación inteligente
 
 **Listo para:**
+
 - Ejecutar 440+ test cases
 - Detectar bugs automáticamente
 - Generar Excel profesional
@@ -371,5 +398,3 @@ Para preguntas específicas sobre:
 ---
 
 **¿Necesitas ayuda con algún punto específico?** 📚
-
-

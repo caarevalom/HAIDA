@@ -5,6 +5,7 @@
 ## ⏱️ Tiempo: aproximadamente 20 minutos para estar operativo
 
 ### **Paso 1: Orientación Rápida (2 min)**
+
 ```
 Leer estos archivos para entender la estructura:
 
@@ -24,6 +25,7 @@ Leer estos archivos para entender la estructura:
 ---
 
 ### **Paso 2: Ejecutar Demo (5 min)**
+
 ```powershell
 # Navega a la carpeta
 cd "c:\Users\CarlosArturoArevaloM\Documents\Proyectos\qa-starter-kit\HAIDA\generators"
@@ -48,6 +50,7 @@ cd "c:\Users\CarlosArturoArevaloM\Documents\Proyectos\qa-starter-kit\HAIDA\gener
 ```
 
 **Verificar outputs:**
+
 - ✅ test-results/test-results.json (existe y tiene 10 resultados)
 - ✅ bugs-detected.json (existe y tiene bugs analizados)
 - ✅ test-cases-with-results.csv (existe y tiene 10 filas + columnas nuevas)
@@ -58,6 +61,7 @@ cd "c:\Users\CarlosArturoArevaloM\Documents\Proyectos\qa-starter-kit\HAIDA\gener
 ---
 
 ### **Paso 3: Revisar los Outputs (3 min)**
+
 ```powershell
 # Ver resultados de ejecución
 cat test-results/test-results.json | ConvertFrom-Json | Select -First 1
@@ -73,6 +77,7 @@ Get-Content bugs-for-excel.csv | Select -First 3
 ```
 
 **Validar:**
+
 - ✅ 10 casos en test-results (8 PASS, 1 FAIL, 1 BLOCKED)
 - ✅ Bugs con análisis automático (ErrorType, Severity, Solution, etc)
 - ✅ CSV con columnas originales + nuevas
@@ -93,18 +98,18 @@ Get-Content bugs-for-excel.csv | Select -First 3
 2. Crear/activar Sheet "Ejecución"
    → Copiar encabezados de test-cases-with-results.csv
    → Pegar datos de primeras 10 filas (demo)
-   
+
 3. Crear/activar Sheet "Defectos"
    → Copiar encabezados de bugs-for-excel.csv
    → Pegar datos (bugs deduplicados)
-   
+
 4. Crear Sheet "Cobertura" (métricas)
    → Total test cases: 10 (demo), 440 (full)
    → PASS: 8 (80%)
    → FAIL: 1 (10%) - 1 bug detectado
    → BLOCKED: 1 (10%)
    → Bugs únicos: (número de bugs-for-excel.csv)
-   
+
 5. Guardar Excel
    → Versión: v1.0-FASE-E-DEMO
 ```
@@ -114,6 +119,7 @@ Get-Content bugs-for-excel.csv | Select -First 3
 ---
 
 ### **Paso 5: Leer la Documentación Técnica (5 min)**
+
 ```
 Para entender en profundidad:
 
@@ -143,12 +149,14 @@ Para entender en profundidad:
 Marca los que completaste:
 
 ### **Scripts Entregados:**
+
 - [ ] ✅ analyze-test-failures.ps1 (ejecutó sin errores)
 - [ ] ✅ map-csv-input-output.ps1 (ejecutó sin errores)
 - [ ] ✅ generate-bugs-report.ps1 (ejecutó sin errores)
 - [ ] ✅ execute-test-batch.ps1 (actualizado con error capture)
 
 ### **Documentación Entregada:**
+
 - [ ] ✅ INDICE-MAESTRO.md (leído)
 - [ ] ✅ REFERENCIA-RAPIDA.md (leído)
 - [ ] ✅ FASE-E-BUGS-AND-CSV-MAPPING.md (leído)
@@ -157,18 +165,21 @@ Marca los que completaste:
 - [ ] ✅ ENTREGA-COMPLETA-FASES-AE.md (leído)
 
 ### **Demo Ejecutado:**
+
 - [ ] ✅ execute-test-batch.ps1 completó 10 casos
 - [ ] ✅ analyze-test-failures.ps1 detectó bugs
 - [ ] ✅ map-csv-input-output.ps1 generó CSV enriquecido
 - [ ] ✅ generate-bugs-report.ps1 deduplicó bugs
 
 ### **Outputs Validados:**
+
 - [ ] ✅ test-results.json existe y está válido
 - [ ] ✅ bugs-detected.json existe y está válido
 - [ ] ✅ test-cases-with-results.csv existe y está válido
 - [ ] ✅ bugs-for-excel.csv existe y está válido
 
 ### **Excel Actualizado:**
+
 - [ ] ✅ Descargado del SharePoint
 - [ ] ✅ Sheet "Ejecución" con 10 casos
 - [ ] ✅ Sheet "Defectos" con bugs deduplicados
@@ -179,12 +190,12 @@ Marca los que completaste:
 
 ## 🚨 Troubleshooting Rápido
 
-| Problema | Solución |
-|----------|----------|
-| Error "Script no encontrado" | Verifica que estás en `generators/` |
-| CSV vacío | Asegúrate que `test-results.json` existe y tiene datos |
-| Bugs detectados = 0 | Verifica que al menos 1 test tiene `Status: FAIL` |
-| Columnas faltantes en CSV | El script debería agregar 20+ columnas automáticamente |
+| Problema                     | Solución                                               |
+| ---------------------------- | ------------------------------------------------------ |
+| Error "Script no encontrado" | Verifica que estás en `generators/`                    |
+| CSV vacío                    | Asegúrate que `test-results.json` existe y tiene datos |
+| Bugs detectados = 0          | Verifica que al menos 1 test tiene `Status: FAIL`      |
+| Columnas faltantes en CSV    | El script debería agregar 20+ columnas automáticamente |
 
 ---
 
@@ -215,9 +226,10 @@ A: Paso 5 → Lee FASE-E-BUGS-AND-CSV-MAPPING.md
 ✅ Ver el flujo en acción (demo 10 casos)  
 ✅ Validar que los scripts funcionan correctamente  
 ✅ Tener Excel actualizado con resultados reales  
-✅ Conocer el impacto (99.4% mejora)  
+✅ Conocer el impacto (99.4% mejora)
 
 **Estará listo para:**
+
 - Escalar a 440 test cases (mismos scripts)
 - Integrar en pipeline de CI/CD
 - Publicar reportes ejecutivos
@@ -230,18 +242,21 @@ A: Paso 5 → Lee FASE-E-BUGS-AND-CSV-MAPPING.md
 Una vez completados estos pasos:
 
 ### **FASE F: Reportes Finales (1-2 horas)**
+
 - [ ] Generar Allure Report con screenshots
 - [ ] Crear Executive Summary (PDF)
 - [ ] Documentar recomendaciones
 - [ ] Definir next steps
 
 ### **FASE G: Scaling (4-8 horas)**
+
 - [ ] Ejecutar 440 test cases (no 10)
 - [ ] Documentar resultados en Excel
 - [ ] Crear dashboard de KPIs
 - [ ] Integrar en CI/CD
 
 ### **FASE H: Publicación (2 horas)**
+
 - [ ] Subir Excel a SharePoint
 - [ ] Compartir reportes con stakeholders
 - [ ] Documentar lecciones aprendidas
@@ -252,6 +267,7 @@ Una vez completados estos pasos:
 ## 🎬 ¡Vamos!
 
 **Ahora:**
+
 1. Abre INDICE-MAESTRO.md
 2. Sigue los pasos en orden
 3. ¡Ejecuta el demo!
@@ -263,4 +279,3 @@ Tiempo total: ~20 minutos para estar operativo.
 ---
 
 **¡Buena suerte! 🚀**
-

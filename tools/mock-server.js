@@ -208,17 +208,29 @@ const server = http.createServer((req, res) => {
     res.end(mockHTML);
   } else if (req.url === '/page1') {
     res.writeHead(200);
-    res.end(`<html><head><title>Página 1</title></head><body><h1>Página 1</h1><p>Contenido de prueba</p><a href="/">Volver</a></body></html>`);
+    res.end(
+      `<html><head><title>Página 1</title></head><body><h1>Página 1</h1><p>Contenido de prueba</p><a href="/">Volver</a></body></html>`
+    );
   } else if (req.url === '/page2') {
     res.writeHead(200);
-    res.end(`<html><head><title>Página 2</title></head><body><h1>Página 2</h1><p>Otra página de prueba</p><a href="/">Volver</a></body></html>`);
+    res.end(
+      `<html><head><title>Página 2</title></head><body><h1>Página 2</h1><p>Otra página de prueba</p><a href="/">Volver</a></body></html>`
+    );
   } else if (req.url === '/api') {
     res.setHeader('Content-Type', 'application/json');
     res.writeHead(200);
-    res.end(JSON.stringify({ status: 'ok', message: 'Servidor local funcionando', timestamp: new Date().toISOString() }));
+    res.end(
+      JSON.stringify({
+        status: 'ok',
+        message: 'Servidor local funcionando',
+        timestamp: new Date().toISOString(),
+      })
+    );
   } else {
     res.writeHead(404);
-    res.end(`<html><head><title>404 - No encontrado</title></head><body><h1>404</h1><p>Página no encontrada: ${req.url}</p><a href="/">Volver</a></body></html>`);
+    res.end(
+      `<html><head><title>404 - No encontrado</title></head><body><h1>404</h1><p>Página no encontrada: ${req.url}</p><a href="/">Volver</a></body></html>`
+    );
   }
 });
 

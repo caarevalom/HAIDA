@@ -3,6 +3,7 @@
 ## Pre-Deployment Validation
 
 ### Phase 1: Prerequisites ✓
+
 - [ ] Docker installed (v20.10+)
   - Check: `docker --version`
 - [ ] Docker Compose installed (v1.29+)
@@ -18,7 +19,9 @@
 - [ ] Network connectivity to external URLs
 
 ### Phase 2: File Structure ✓
+
 - [ ] Directory structure created:
+
   ```
   haida/
   ├── change-detection/
@@ -52,6 +55,7 @@
   - [ ] Documentation files
 
 ### Phase 3: Environment Configuration ✓
+
 - [ ] .env file created from .env.example
 - [ ] Environment variables configured:
   - [ ] PORT=3001
@@ -70,6 +74,7 @@
   - Check: `git log --all -S "password" -p` (should be empty)
 
 ### Phase 4: Docker Build ✓
+
 - [ ] Docker images available:
   - [ ] Run: `docker images | grep haida`
   - [ ] Expected images:
@@ -87,6 +92,7 @@
   - [ ] Health checks configured
 
 ### Phase 5: Service Startup ✓
+
 - [ ] Docker services running:
   - [ ] Run: `docker-compose ps`
   - [ ] Expected status:
@@ -112,10 +118,11 @@
     - Expected: PONG
 
 ### Phase 6: Webhook Endpoint ✓
+
 - [ ] Webhook endpoint accessible:
   - [ ] Run: `curl -X POST http://localhost:3001/webhook/change-detected \
-    -H "Content-Type: application/json" \
-    -d '{"url":"http://test.com","tag":"test","uuid":"123"}'`
+-H "Content-Type: application/json" \
+-d '{"url":"http://test.com","tag":"test","uuid":"123"}'`
   - [ ] Expected response: `{"status":"accepted",...}`
 
 - [ ] Webhook processing logic:
@@ -123,6 +130,7 @@
   - [ ] Should show: Webhook received, profile selected, tests queued
 
 ### Phase 7: Test Configuration ✓
+
 - [ ] Playwright installed:
   - [ ] Run: `npx playwright --version`
   - [ ] Expected: Version number
@@ -143,6 +151,7 @@
   - [ ] Reporter configuration present
 
 ### Phase 8: Changedetection.io Setup ✓
+
 - [ ] Web UI accessible:
   - [ ] Open: http://localhost:5000
   - [ ] Page loads without errors
@@ -167,6 +176,7 @@
   - [ ] Verify webhook ID returned
 
 ### Phase 9: Slack Integration (if enabled) ✓
+
 - [ ] Slack webhook configured:
   - [ ] SLACK_WEBHOOK in .env is set
   - [ ] Value starts with: `https://hooks.slack.com/...`
@@ -182,6 +192,7 @@
   - [ ] All fields present (URL, profile, status, etc.)
 
 ### Phase 10: Database Setup ✓
+
 - [ ] PostgreSQL initialized:
   - [ ] Run: `docker exec haida-postgres psql -U haida_user -d haida_results -c "SELECT COUNT(*) FROM information_schema.tables;"`
   - [ ] Should return number without error
@@ -194,6 +205,7 @@
   - [ ] After test execution, check: `docker exec haida-postgres psql -U haida_user -d haida_results -c "SELECT * FROM test_results LIMIT 1;"`
 
 ### Phase 11: Manual Test Execution ✓
+
 - [ ] Run tests locally:
   - [ ] Command: `npm test`
   - [ ] All tests should pass or run without fatal errors
@@ -211,6 +223,7 @@
   - [ ] Shows test results, timeline, trace
 
 ### Phase 12: Allure Reports ✓
+
 - [ ] Allure service running:
   - [ ] Access: http://localhost:4040
   - [ ] Dashboard loads
@@ -222,6 +235,7 @@
   - [ ] Trends/statistics displayed
 
 ### Phase 13: Integration Testing ✓
+
 - [ ] Full workflow test:
   1. [ ] Verify all services running
   2. [ ] Trigger webhook manually
@@ -236,6 +250,7 @@
   - [ ] Results available in logs: < 30 seconds
 
 ### Phase 14: Documentation Verification ✓
+
 - [ ] All documentation files present:
   - [ ] INTEGRATION-GUIDE-COMPLETE.md (8+ phases)
   - [ ] CHANGE-DETECTION-FRAMEWORK.md (architecture + code)
@@ -251,6 +266,7 @@
   - [ ] Contact/support info
 
 ### Phase 15: Security Validation ✓
+
 - [ ] Sensitive data not exposed:
   - [ ] .env not in git
   - [ ] Passwords not in logs
@@ -268,6 +284,7 @@
   - [ ] Secrets management in place
 
 ### Phase 16: Backup & Recovery ✓
+
 - [ ] Backup strategy defined:
   - [ ] PostgreSQL backup scheduled
   - [ ] Test results backed up
@@ -279,6 +296,7 @@
   - [ ] No data loss verified
 
 ### Phase 17: CI/CD Integration ✓
+
 - [ ] CI/CD pipeline configured:
   - [ ] GitHub Actions (if using GitHub):
     - [ ] Workflow file created
@@ -300,6 +318,7 @@
   - [ ] Notifications sent from CI
 
 ### Phase 18: Team Training ✓
+
 - [ ] Documentation reviewed by team:
   - [ ] QA team read integration guide
   - [ ] Developers understand architecture
@@ -318,6 +337,7 @@
   - [ ] How to scale system
 
 ### Phase 19: Monitoring & Alerting ✓
+
 - [ ] Monitoring configured:
   - [ ] Health checks running
   - [ ] Metrics collected
@@ -334,6 +354,7 @@
   - [ ] Key metrics displayed
 
 ### Phase 20: Go-Live Readiness ✓
+
 - [ ] Completion checklist:
   - [ ] All tests passing
   - [ ] All services healthy
@@ -353,12 +374,14 @@
 **System Ready for Production:** `____` (Initial) | Date: `__________`
 
 **Approved By:**
-- [ ] QA Lead: ________________________
-- [ ] DevOps Lead: ____________________
-- [ ] Product Owner: __________________
-- [ ] Security Lead: __________________
+
+- [ ] QA Lead: **********\_\_\_\_**********
+- [ ] DevOps Lead: ********\_\_\_\_********
+- [ ] Product Owner: ********\_\_********
+- [ ] Security Lead: ********\_\_********
 
 **Notes:**
+
 ```
 _________________________________________________________________
 _________________________________________________________________
@@ -370,6 +393,7 @@ _________________________________________________________________
 ## 📊 Post-Launch Monitoring (First 2 Weeks)
 
 ### Week 1:
+
 - [ ] Daily health checks
 - [ ] Monitor false positive rate
 - [ ] Collect team feedback
@@ -377,6 +401,7 @@ _________________________________________________________________
 - [ ] Document any issues
 
 ### Week 2:
+
 - [ ] Validate all test profiles working
 - [ ] Fine-tune detection sensitivity
 - [ ] Optimize test execution time
@@ -388,17 +413,20 @@ _________________________________________________________________
 ## 🔄 Maintenance Schedule
 
 ### Daily:
+
 - [ ] Check service health
 - [ ] Review failed tests
 - [ ] Monitor webhook success rate
 
 ### Weekly:
+
 - [ ] Review test results summary
 - [ ] Update documentation
 - [ ] Check for Playwright/dependency updates
 - [ ] Analyze false positives
 
 ### Monthly:
+
 - [ ] Performance optimization review
 - [ ] Capacity planning
 - [ ] Security audit
@@ -411,21 +439,23 @@ _________________________________________________________________
 
 This checklist confirms HAIDA Change Detection System meets all requirements for production deployment.
 
-**System Status:** 
+**System Status:**
+
 - [ ] ✅ READY FOR PRODUCTION
 - [ ] 🟡 READY WITH EXCEPTIONS (see notes)
 - [ ] ❌ NOT READY (see issues)
 
 **Outstanding Issues/Exceptions:**
+
 ```
 _________________________________________________________________
 _________________________________________________________________
 _________________________________________________________________
 ```
 
-**Sign-off Date:** _______________
-**Verified By:** _________________
-**Role:** _______________________
+**Sign-off Date:** ******\_\_\_******
+**Verified By:** ********\_********
+**Role:** **********\_\_\_**********
 
 ---
 
