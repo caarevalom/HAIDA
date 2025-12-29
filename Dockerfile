@@ -1,5 +1,5 @@
 # HAIDA Backend - FastAPI + Python 3.11
-FROM python:3.11-slim
+FROM python:3.14-slim
 
 # Metadata
 LABEL maintainer="HAIDA Team"
