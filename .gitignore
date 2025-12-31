@@ -70,5 +70,18 @@ allure-report/
 # Playwright
 playwright/.cache/
 
+.env
+.env.local
+.env.*.local
+
+# Local tooling
+chat-sdk/
+supabase/.temp/
+
 .vercel
 .env*.local
+# Python virtualenv
+venv/
+.venv/
+ENV/
+env/
