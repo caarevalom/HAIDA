@@ -1,0 +1,110 @@
+version: '3.8'
+
+services:
+  # FastAPI Backend
+  api:
+    build: .
+    container_name: haida-api
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres123@postgres:5432/haida
+      REDIS_URL: redis://redis:6379
+    volumes:
+      - ./app:/app/app
+      - ./tests:/app/tests
+      - ./allure-results:/app/allure-results
+      - ./allure-reports:/app/allure-reports
+    depends_on:
+      - postgres
+      - redis
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    networks:
+      - haida-network
+
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: haida-postgres
+    environment:
+      POSTGRES_DB: haida
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - haida-network
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: haida-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - haida-network
+
+  # Telegram Bot
+  bot:
+    build: .
+    container_name: haida-bot
+    env_file:
+      - .env
+    command: python3 scripts/telegram_bot_v2.py
+    depends_on:
+      - api
+    restart: unless-stopped
+    networks:
+      - haida-network
+
+  # Playwright (Test Runner)
+  playwright:
+    image: mcr.microsoft.com/playwright:v1.41.0-jammy
+    container_name: haida-playwright
+    volumes:
+      - ./tests/playwright:/tests
+      - ./allure-results:/allure-results
+    working_dir: /tests
+    command: tail -f /dev/null
+    networks:
+      - haida-network
+
+  # Newman (API Tests)
+  newman:
+    image: postman/newman:latest
+    container_name: haida-newman
+    volumes:
+      - ./tests/newman:/etc/newman
+      - ./allure-results:/allure-results
+    command: tail -f /dev/null
+    networks:
+      - haida-network
+
+  # Allure Reports
+  allure:
+    image: frankescobar/allure-docker-service:latest
+    container_name: haida-allure
+    ports:
+      - "5050:5050"
+    environment:
+      CHECK_RESULTS_EVERY_SECONDS: 3
+      KEEP_HISTORY: 1
+    volumes:
+      - ./allure-results:/app/allure-results
+      - ./allure-reports:/app/allure-reports
+    networks:
+      - haida-network
+
+networks:
+  haida-network:
+    driver: bridge
+
+volumes:
+  postgres-data:
+  redis-data:
