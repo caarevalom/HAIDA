@@ -13,7 +13,7 @@ class Settings(BaseSettings):
     API_WORKERS: int = 4
 
     # Database
-    DATABASE_URL: str
+    DATABASE_URL: str = ""
     SUPABASE_URL: str = ""
     SUPABASE_KEY: str = ""
 
@@ -21,24 +21,24 @@ class Settings(BaseSettings):
     REDIS_URL: str = "redis://localhost:6379"
 
     # JWT
-    JWT_SECRET: str
+    JWT_SECRET: str = "development-secret-key"
     JWT_ALGORITHM: str = "HS256"
     JWT_EXPIRATION_MINUTES: int = 30
 
     # Atlassian
-    ATLASSIAN_URL: str
-    ATLASSIAN_EMAIL: str
-    ATLASSIAN_API_TOKEN: str
-    CONFLUENCE_SPACE: str
+    ATLASSIAN_URL: str = ""
+    ATLASSIAN_EMAIL: str = ""
+    ATLASSIAN_API_TOKEN: str = ""
+    CONFLUENCE_SPACE: str = ""
     JIRA_PROJECT_KEY: str = "HAIDA"
 
     # Telegram
-    TELEGRAM_BOT_TOKEN: str
+    TELEGRAM_BOT_TOKEN: str = ""
     WEBHOOK_URL: str = ""
 
     # LM Studio
     LM_STUDIO_URL: str = "http://localhost:1234/v1"
-    LM_STUDIO_MODEL: str
+    LM_STUDIO_MODEL: str = "lmstudio-community/DeepSeek-R1-0528-Qwen3-8B-MLX-4bit"
     LM_STUDIO_API_KEY: str = "lm-studio"
 
     # RouteLLM / Chat LLM (OpenAI-compatible)
