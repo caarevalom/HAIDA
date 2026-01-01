@@ -5,6 +5,7 @@ OAuth2 flow with Supabase integration
 from fastapi import APIRouter, HTTPException, status
 from pydantic import BaseModel
 from typing import Optional, Dict, Any
+import base64
 import jwt
 import os
 import msal
@@ -16,22 +17,65 @@ router = APIRouter()
 # Supabase Configuration
 SUPABASE_URL = os.environ.get("SUPABASE_URL")
 SUPABASE_SERVICE_ROLE_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY")
-supabase: Client = create_client(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)
+supabase: Optional[Client] = None
+if SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY:
+    supabase = create_client(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)
 
 # Entra ID Configuration
 ENTRA_AUTHORITY = os.environ.get("ENTRA_AUTHORITY", "https://login.microsoftonline.com/common")
 ENTRA_CLIENT_ID = os.environ.get("ENTRA_CLIENT_ID", "")
 ENTRA_CLIENT_SECRET = os.environ.get("ENTRA_CLIENT_SECRET", "")
+ENTRA_CLIENT_CERT_THUMBPRINT = os.environ.get("ENTRA_CLIENT_CERT_THUMBPRINT", "")
+ENTRA_CLIENT_CERT_PRIVATE_KEY_B64 = os.environ.get("ENTRA_CLIENT_CERT_PRIVATE_KEY_B64", "")
+ENTRA_CLIENT_CERT_PRIVATE_KEY = os.environ.get("ENTRA_CLIENT_CERT_PRIVATE_KEY", "")
 ENTRA_REDIRECT_URI = os.environ.get("ENTRA_REDIRECT_URI", "https://haida-frontend.vercel.app/auth/callback")
 ENTRA_SCOPES = ["User.Read", "email", "profile", "openid"]
 
 # JWT Configuration
 JWT_SECRET = os.environ.get("JWT_SECRET", "development-secret-key")
 JWT_ALGORITHM = "HS256"
-JWT_EXPIRATION_HOURS = int(os.environ.get("JWT_EXPIRATION_HOURS", "24"))
+def _get_jwt_expiration_delta() -> timedelta:
+    minutes = os.environ.get("JWT_EXPIRATION_MINUTES")
+    if minutes:
+        try:
+            return timedelta(minutes=int(minutes))
+        except ValueError:
+            pass
+    hours = os.environ.get("JWT_EXPIRATION_HOURS")
+    if hours:
+        try:
+            return timedelta(hours=int(hours))
+        except ValueError:
+            pass
+    return timedelta(hours=24)
+
+JWT_EXPIRATION = _get_jwt_expiration_delta()
+JWT_EXPIRATION_SECONDS = int(JWT_EXPIRATION.total_seconds())
 
 # Verificar si Entra está configurado
-ENTRA_CONFIGURED = bool(ENTRA_CLIENT_ID and ENTRA_CLIENT_SECRET)
+ENTRA_CONFIGURED = bool(
+    ENTRA_CLIENT_ID
+    and (
+        ENTRA_CLIENT_SECRET
+        or (ENTRA_CLIENT_CERT_THUMBPRINT and (ENTRA_CLIENT_CERT_PRIVATE_KEY_B64 or ENTRA_CLIENT_CERT_PRIVATE_KEY))
+    )
+)
+
+def _get_client_credential():
+    if ENTRA_CLIENT_CERT_THUMBPRINT and (ENTRA_CLIENT_CERT_PRIVATE_KEY_B64 or ENTRA_CLIENT_CERT_PRIVATE_KEY):
+        private_key = ENTRA_CLIENT_CERT_PRIVATE_KEY
+        if ENTRA_CLIENT_CERT_PRIVATE_KEY_B64:
+            try:
+                private_key = base64.b64decode(ENTRA_CLIENT_CERT_PRIVATE_KEY_B64).decode("utf-8")
+            except Exception as exc:
+                raise HTTPException(
+                    status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                    detail="ENTRA_CLIENT_CERT_PRIVATE_KEY_B64 no es valido",
+                ) from exc
+        return {"private_key": private_key, "thumbprint": ENTRA_CLIENT_CERT_THUMBPRINT}
+    if ENTRA_CLIENT_SECRET:
+        return ENTRA_CLIENT_SECRET
+    return None
 
 class EntraTokenResponse(BaseModel):
     access_token: str
@@ -46,6 +90,11 @@ async def get_or_create_user(email: str, name: str, microsoft_id: str) -> Dict[s
     Get or create user in Supabase using REST API
     Links Microsoft account with HAIDA user
     """
+    if not supabase:
+        raise HTTPException(
+            status_code=status.HTTP_501_NOT_IMPLEMENTED,
+            detail="Supabase not configured for Microsoft SSO",
+        )
     try:
         # Check if user exists
         response = supabase.table("users").select("*").eq("email", email.lower()).execute()
@@ -92,6 +141,8 @@ async def store_microsoft_tokens(user_id: str, access_token: str, refresh_token:
     """
     Store Microsoft tokens in Supabase for future API calls
     """
+    if not supabase:
+        return
     try:
         token_data = {
             "user_id": user_id,
@@ -124,7 +175,7 @@ def create_jwt_token(user_data: Dict[str, Any], microsoft_token: Optional[str] =
         "email": user_data["email"],
         "role": user_data.get("role", "viewer"),
         "name": user_data.get("name"),
-        "exp": datetime.utcnow() + timedelta(hours=JWT_EXPIRATION_HOURS),
+        "exp": datetime.utcnow() + JWT_EXPIRATION,
         "iat": datetime.utcnow(),
         "provider": "microsoft",
         "has_microsoft_token": microsoft_token is not None
@@ -144,11 +195,17 @@ async def entra_login():
         )
 
     try:
+        client_credential = _get_client_credential()
+        if not client_credential:
+            raise HTTPException(
+                status_code=status.HTTP_501_NOT_IMPLEMENTED,
+                detail="Microsoft Entra ID not configured. Missing client secret or certificate.",
+            )
         # Create MSAL Confidential Client Application
         app = msal.ConfidentialClientApplication(
             ENTRA_CLIENT_ID,
             authority=ENTRA_AUTHORITY,
-            client_credential=ENTRA_CLIENT_SECRET
+            client_credential=client_credential
         )
 
         # Generate authorization URL
@@ -183,11 +240,17 @@ async def entra_callback(code: str):
         )
 
     try:
+        client_credential = _get_client_credential()
+        if not client_credential:
+            raise HTTPException(
+                status_code=status.HTTP_501_NOT_IMPLEMENTED,
+                detail="Microsoft Entra ID not configured. Missing client secret or certificate.",
+            )
         # Create MSAL client
         app = msal.ConfidentialClientApplication(
             ENTRA_CLIENT_ID,
             authority=ENTRA_AUTHORITY,
-            client_credential=ENTRA_CLIENT_SECRET
+            client_credential=client_credential
         )
 
         # Acquire token by authorization code
@@ -234,7 +297,7 @@ async def entra_callback(code: str):
 
         return EntraTokenResponse(
             access_token=haida_token,
-            expires_in=JWT_EXPIRATION_HOURS * 3600,
+            expires_in=JWT_EXPIRATION_SECONDS,
             user={
                 "id": user["id"],
                 "email": user["email"],
@@ -262,6 +325,11 @@ async def entra_status():
         "configured": ENTRA_CONFIGURED,
         "client_id_set": bool(ENTRA_CLIENT_ID),
         "client_secret_set": bool(ENTRA_CLIENT_SECRET),
+        "client_cert_set": bool(
+            ENTRA_CLIENT_CERT_THUMBPRINT
+            and (ENTRA_CLIENT_CERT_PRIVATE_KEY_B64 or ENTRA_CLIENT_CERT_PRIVATE_KEY)
+        ),
+        "supabase_configured": bool(SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY),
         "redirect_uri": ENTRA_REDIRECT_URI if ENTRA_CONFIGURED else None,
         "authority": ENTRA_AUTHORITY if ENTRA_CONFIGURED else None
     }

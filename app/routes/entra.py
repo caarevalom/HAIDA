@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 from fastapi import APIRouter, HTTPException, status
+import base64
 import jwt
 import os, msal
 from app.core.db import fetch_one
@@ -10,6 +11,9 @@ router = APIRouter()
 AUTHORITY = os.environ.get("ENTRA_AUTHORITY", "https://login.microsoftonline.com/common")
 CLIENT_ID = os.environ.get("ENTRA_CLIENT_ID", "")
 CLIENT_SECRET = os.environ.get("ENTRA_CLIENT_SECRET", "")
+CLIENT_CERT_THUMBPRINT = os.environ.get("ENTRA_CLIENT_CERT_THUMBPRINT", "")
+CLIENT_CERT_PRIVATE_KEY_B64 = os.environ.get("ENTRA_CLIENT_CERT_PRIVATE_KEY_B64", "")
+CLIENT_CERT_PRIVATE_KEY = os.environ.get("ENTRA_CLIENT_CERT_PRIVATE_KEY", "")
 REDIRECT_URI = os.environ.get("ENTRA_REDIRECT_URI", "http://localhost:8000/entra/callback")
 SCOPES = os.environ.get("GRAPH_SCOPES", "User.Read").split()
 STATE_TOKEN = os.environ.get("ENTRA_STATE", "local-dev-state")
@@ -21,12 +25,50 @@ ALLOWED_SSO_EMAILS = {
 }
 JWT_SECRET = os.environ.get("JWT_SECRET", "development-secret-key")
 JWT_ALGORITHM = "HS256"
-JWT_EXPIRATION_HOURS = int(os.environ.get("JWT_EXPIRATION_HOURS", "24"))
+def _get_jwt_expiration_delta() -> timedelta:
+    minutes = os.environ.get("JWT_EXPIRATION_MINUTES")
+    if minutes:
+        try:
+            return timedelta(minutes=int(minutes))
+        except ValueError:
+            pass
+    hours = os.environ.get("JWT_EXPIRATION_HOURS")
+    if hours:
+        try:
+            return timedelta(hours=int(hours))
+        except ValueError:
+            pass
+    return timedelta(hours=24)
+
+JWT_EXPIRATION = _get_jwt_expiration_delta()
+JWT_EXPIRATION_SECONDS = int(JWT_EXPIRATION.total_seconds())
 DASHBOARD_PATH = os.environ.get("DASHBOARD_PATH", "/dashboard")
 COPILOT_URL = os.environ.get("COPILOT_URL", "https://m365.cloud.microsoft/chat/?auth=2&origindomain=Offic")
 
 # Verificar si Entra está configurado
-ENTRA_CONFIGURED = bool(CLIENT_ID and CLIENT_SECRET)
+ENTRA_CONFIGURED = bool(
+    CLIENT_ID
+    and (
+        CLIENT_SECRET
+        or (CLIENT_CERT_THUMBPRINT and (CLIENT_CERT_PRIVATE_KEY_B64 or CLIENT_CERT_PRIVATE_KEY))
+    )
+)
+
+def _get_client_credential():
+    if CLIENT_CERT_THUMBPRINT and (CLIENT_CERT_PRIVATE_KEY_B64 or CLIENT_CERT_PRIVATE_KEY):
+        private_key = CLIENT_CERT_PRIVATE_KEY
+        if CLIENT_CERT_PRIVATE_KEY_B64:
+            try:
+                private_key = base64.b64decode(CLIENT_CERT_PRIVATE_KEY_B64).decode("utf-8")
+            except Exception as exc:
+                raise HTTPException(
+                    status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                    detail="ENTRA_CLIENT_CERT_PRIVATE_KEY_B64 no es valido",
+                ) from exc
+        return {"private_key": private_key, "thumbprint": CLIENT_CERT_THUMBPRINT}
+    if CLIENT_SECRET:
+        return CLIENT_SECRET
+    return None
 
 def _get_or_create_user(email: str, name: str):
     """
@@ -79,7 +121,7 @@ def _issue_local_token(user: dict) -> str:
         "email": user["email"],
         "role": user.get("role", "viewer"),
         "name": user.get("name", ""),
-        "exp": datetime.utcnow() + timedelta(hours=JWT_EXPIRATION_HOURS),
+        "exp": datetime.utcnow() + JWT_EXPIRATION,
         "iat": datetime.utcnow(),
         "provider": "microsoft",
     }
@@ -88,9 +130,19 @@ def _issue_local_token(user: dict) -> str:
 @router.get("/login")
 def login():
     if not ENTRA_CONFIGURED:
-        raise HTTPException(status_code=501, detail="Microsoft Entra ID not configured. Set ENTRA_CLIENT_ID and ENTRA_CLIENT_SECRET in .env")
+        raise HTTPException(
+            status_code=501,
+            detail="Microsoft Entra ID not configured. Set ENTRA_CLIENT_ID and a client secret or certificate in .env",
+        )
 
-    app = msal.ConfidentialClientApplication(CLIENT_ID, authority=AUTHORITY, client_credential=CLIENT_SECRET)
+    client_credential = _get_client_credential()
+    if not client_credential:
+        raise HTTPException(
+            status_code=501,
+            detail="Microsoft Entra ID not configured. Missing client secret or certificate.",
+        )
+
+    app = msal.ConfidentialClientApplication(CLIENT_ID, authority=AUTHORITY, client_credential=client_credential)
     auth_url = app.get_authorization_request_url(SCOPES, redirect_uri=REDIRECT_URI, state=STATE_TOKEN)
     return {
         "auth_url": auth_url,
@@ -108,7 +160,14 @@ async def callback(code: str, state: str):
     if state != STATE_TOKEN:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Estado inválido en callback de Microsoft")
 
-    app = msal.ConfidentialClientApplication(CLIENT_ID, authority=AUTHORITY, client_credential=CLIENT_SECRET)
+    client_credential = _get_client_credential()
+    if not client_credential:
+        raise HTTPException(
+            status_code=501,
+            detail="Microsoft Entra ID not configured. Missing client secret or certificate.",
+        )
+
+    app = msal.ConfidentialClientApplication(CLIENT_ID, authority=AUTHORITY, client_credential=client_credential)
     result = app.acquire_token_by_authorization_code(code, scopes=SCOPES, redirect_uri=REDIRECT_URI)
     if "error" in result:
         raise HTTPException(
@@ -131,7 +190,7 @@ async def callback(code: str, state: str):
     return {
         "token": local_token,
         "token_type": "bearer",
-        "expires_in": JWT_EXPIRATION_HOURS * 3600,
+        "expires_in": JWT_EXPIRATION_SECONDS,
         "redirect_to": DASHBOARD_PATH,
         "copilot_url": COPILOT_URL,
         "user": {

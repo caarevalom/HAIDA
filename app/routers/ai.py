@@ -17,7 +17,7 @@ async def chat_with_ai(
     conversation_id: str | None = None,
     task_type: str = "general"
 ):
-    """Chat with DeepSeek R1"""
+    """Chat with configured LLM provider"""
     response = await run_in_threadpool(
         assistant.chat,
         user_message=message,
@@ -30,7 +30,8 @@ async def chat_with_ai(
         "conversation_id": conversation_id or "default",
         "message": message,
         "response": response,
-        "model": settings.LM_STUDIO_MODEL,
+        "model": settings.ROUTE_LLM_MODEL if settings.LLM_PROVIDER.lower() != "lmstudio" else settings.LM_STUDIO_MODEL,
+        "provider": settings.LLM_PROVIDER,
         "timestamp": datetime.now().isoformat()
     }
 
