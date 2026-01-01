@@ -4,10 +4,14 @@ from pydantic import BaseModel
 from typing import List, Optional
 from datetime import datetime
 import uuid
+from starlette.concurrency import run_in_threadpool
 from app.core.supabase_client import get_supabase_client
 from app.core.request_context import get_tenant_id, get_user_id
+from app.ai import get_assistant
+from app.config import settings
 
 router = APIRouter()
+assistant = get_assistant()
 
 class MessageCreate(BaseModel):
     content: str
@@ -151,12 +155,32 @@ async def send_message(request: Request, thread_id: str, message: MessageCreate)
     }
     supabase.table("chat_messages").insert(user_payload).execute()
 
+    provider = (message.provider or "copilot-studio").lower()
     assistant_content = "Copilot integration not configured"
+    assistant_content_type = "error"
+    copilot_ready = bool(settings.direct_line_secret)
+    llm_ready = settings.LLM_PROVIDER.lower() == "lmstudio" or bool(settings.ROUTE_LLM_API_KEY)
+
+    if provider == "copilot-studio" and not copilot_ready:
+        provider = "llm-fallback"
+
+    if provider != "copilot-studio":
+        if not llm_ready:
+            assistant_content = "Chat LLM no configurado: falta ROUTE_LLM_API_KEY"
+        else:
+            assistant_content = await run_in_threadpool(
+                assistant.chat,
+                user_message=message.content,
+                conversation_id=thread_id,
+                context=None,
+                task_type="general"
+            )
+            assistant_content_type = "text"
     assistant_payload = {
         "thread_id": thread_id,
         "role": "assistant",
         "content": assistant_content,
-        "content_type": "error",
+        "content_type": assistant_content_type,
         "created_at": datetime.utcnow().isoformat(),
     }
     assistant_result = supabase.table("chat_messages").insert(assistant_payload).execute()

@@ -16,7 +16,23 @@ SUPABASE_URL = os.environ.get("SUPABASE_URL")
 SUPABASE_SERVICE_ROLE_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY")
 JWT_SECRET = os.environ.get("JWT_SECRET", "development-secret-key")
 JWT_ALGORITHM = "HS256"
-JWT_EXPIRATION_HOURS = int(os.environ.get("JWT_EXPIRATION_HOURS", "24"))
+def _get_jwt_expiration_delta() -> timedelta:
+    minutes = os.environ.get("JWT_EXPIRATION_MINUTES")
+    if minutes:
+        try:
+            return timedelta(minutes=int(minutes))
+        except ValueError:
+            pass
+    hours = os.environ.get("JWT_EXPIRATION_HOURS")
+    if hours:
+        try:
+            return timedelta(hours=int(hours))
+        except ValueError:
+            pass
+    return timedelta(hours=24)
+
+JWT_EXPIRATION = _get_jwt_expiration_delta()
+JWT_EXPIRATION_SECONDS = int(JWT_EXPIRATION.total_seconds())
 
 if not SUPABASE_URL or not SUPABASE_SERVICE_ROLE_KEY:
     raise RuntimeError("SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY must be set")
@@ -56,7 +72,7 @@ def create_jwt_token(user_data: Dict[str, Any]) -> str:
         "email": user_data["email"],
         "role": user_data.get("role", "viewer"),
         "name": user_data.get("name"),
-        "exp": datetime.utcnow() + timedelta(hours=JWT_EXPIRATION_HOURS),
+        "exp": datetime.utcnow() + JWT_EXPIRATION,
         "iat": datetime.utcnow()
     }
     return jwt.encode(payload, JWT_SECRET, algorithm=JWT_ALGORITHM)
@@ -129,7 +145,7 @@ async def login(request: LoginRequest):
 
         return TokenResponse(
             access_token=token,
-            expires_in=JWT_EXPIRATION_HOURS * 3600,
+            expires_in=JWT_EXPIRATION_SECONDS,
             user={
                 "id": user["id"],
                 "email": user["email"],
@@ -204,7 +220,7 @@ async def register(request: RegisterRequest):
 
         return TokenResponse(
             access_token=token,
-            expires_in=JWT_EXPIRATION_HOURS * 3600,
+            expires_in=JWT_EXPIRATION_SECONDS,
             user={
                 "id": user["id"],
                 "email": user["email"],
@@ -311,7 +327,7 @@ async def refresh_token(authorization: Optional[str] = Header(None)):
 
         return TokenResponse(
             access_token=new_token,
-            expires_in=JWT_EXPIRATION_HOURS * 3600,
+            expires_in=JWT_EXPIRATION_SECONDS,
             user={
                 "id": user["id"],
                 "email": user["email"],

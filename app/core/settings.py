@@ -23,11 +23,20 @@ class Settings:
     entra_authority: str = os.environ.get("ENTRA_AUTHORITY", "")
     entra_client_id: str = os.environ.get("ENTRA_CLIENT_ID", "")
     entra_client_secret: str = os.environ.get("ENTRA_CLIENT_SECRET", "")
+    entra_client_cert_thumbprint: str = os.environ.get("ENTRA_CLIENT_CERT_THUMBPRINT", "")
+    entra_client_cert_private_key_b64: str = os.environ.get("ENTRA_CLIENT_CERT_PRIVATE_KEY_B64", "")
+    entra_client_cert_private_key: str = os.environ.get("ENTRA_CLIENT_CERT_PRIVATE_KEY", "")
     entra_redirect_uri: str = os.environ.get("ENTRA_REDIRECT_URI", "")
     graph_scopes: list[str] = os.environ.get("GRAPH_SCOPES", "User.Read").split()
 
-    direct_line_secret: str = os.environ.get("DIRECT_LINE_SECRET", "")
-    direct_line_endpoint: str = os.environ.get("DIRECT_LINE_ENDPOINT", "https://directline.botframework.com/v3/directline")
+    direct_line_secret: str = os.environ.get(
+        "DIRECT_LINE_SECRET",
+        os.environ.get("COPILOT_DIRECTLINE_SECRET", ""),
+    )
+    direct_line_endpoint: str = os.environ.get(
+        "DIRECT_LINE_ENDPOINT",
+        os.environ.get("COPILOT_DIRECTLINE_ENDPOINT", "https://directline.botframework.com/v3/directline"),
+    )
 
     locales_supported: list[str] = os.environ.get("SUPPORTED_LOCALES", "es,en,fr").split(",")
     default_locale: str = os.environ.get("DEFAULT_LOCALE", "es")

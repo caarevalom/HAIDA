@@ -41,6 +41,12 @@ class Settings(BaseSettings):
     LM_STUDIO_MODEL: str
     LM_STUDIO_API_KEY: str = "lm-studio"
 
+    # RouteLLM / Chat LLM (OpenAI-compatible)
+    LLM_PROVIDER: str = "lmstudio"
+    ROUTE_LLM_URL: str = "https://routellm.abacus.ai/v1"
+    ROUTE_LLM_MODEL: str = "gpt-5"
+    ROUTE_LLM_API_KEY: str = ""
+
     # Railway
     RAILWAY_TOKEN: str = ""
 
