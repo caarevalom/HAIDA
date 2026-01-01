@@ -52,5 +52,7 @@ async def health():
     }
 
 app.mount("/api", main_app)
+# Allow non-/api routes (e.g. /auth, /entra) to reach the main app.
+app.mount("/", main_app)
 
 application = app
