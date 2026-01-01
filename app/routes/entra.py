@@ -206,3 +206,18 @@ async def callback(code: str, state: str):
             "redirect_uri": REDIRECT_URI,
         },
     }
+
+@router.get("/status")
+def entra_status():
+    """Check if Microsoft Entra ID is configured"""
+    return {
+        "configured": ENTRA_CONFIGURED,
+        "client_id_set": bool(CLIENT_ID),
+        "client_secret_set": bool(CLIENT_SECRET),
+        "client_cert_set": bool(
+            CLIENT_CERT_THUMBPRINT
+            and (CLIENT_CERT_PRIVATE_KEY_B64 or CLIENT_CERT_PRIVATE_KEY)
+        ),
+        "redirect_uri": REDIRECT_URI if ENTRA_CONFIGURED else None,
+        "authority": AUTHORITY if ENTRA_CONFIGURED else None,
+    }
