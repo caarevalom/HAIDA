@@ -12,6 +12,8 @@ class JsonFormatter(logging.Formatter):
             "func": record.funcName,
             "line": record.lineno,
         }
+        if record.exc_info:
+            payload["exc_info"] = self.formatException(record.exc_info)
         # Extra fields (correlationId, user, tenant) si existen
         if hasattr(record, "extra"):
             payload.update(record.extra)  # dict con claves conocidas

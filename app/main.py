@@ -18,7 +18,11 @@ app.add_middleware(RequestIdMiddleware, header_name=os.environ.get("REQUEST_ID_H
 @app.exception_handler(Exception)
 async def unhandled_exc_handler(request: Request, exc: Exception):
     req_id = getattr(request.state, "request_id", None)
-    logging.getLogger("haida.error").error("Unhandled exception", extra={"extra": {"correlationId": req_id, "path": request.url.path}})
+    logging.getLogger("haida.error").error(
+        "Unhandled exception",
+        exc_info=True,
+        extra={"extra": {"correlationId": req_id, "path": request.url.path}},
+    )
     return JSONResponse(status_code=500, content={"error": "internal_error", "message": "Ha ocurrido un error inesperado", "correlationId": req_id})
 
 from fastapi import HTTPException
