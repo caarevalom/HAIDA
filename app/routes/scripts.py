@@ -6,6 +6,8 @@ from pydantic import BaseModel
 from typing import List, Optional
 from datetime import datetime
 import uuid
+import jwt
+import os
 from app.core.db import fetch_one, fetch_all, execute
 from app.routes.auth import get_current_user
 
@@ -60,8 +62,6 @@ async def get_current_user_id(authorization: str = None) -> str:
         )
     
     try:
-        import jwt
-        import os
         JWT_SECRET = os.environ.get("JWT_SECRET", "development-secret-key")
         JWT_ALGORITHM = "HS256"
         
