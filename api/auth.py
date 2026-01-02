@@ -16,6 +16,8 @@ SUPABASE_URL = os.environ.get("SUPABASE_URL")
 SUPABASE_SERVICE_ROLE_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY")
 JWT_SECRET = os.environ.get("JWT_SECRET", "development-secret-key")
 JWT_ALGORITHM = "HS256"
+AUTH_AUTO_PROVISION = os.environ.get("AUTH_AUTO_PROVISION", "true").lower() == "true"
+AUTH_REGISTER_ENABLED = os.environ.get("AUTH_REGISTER_ENABLED", "true").lower() == "true"
 def _get_jwt_expiration_delta() -> timedelta:
     minutes = os.environ.get("JWT_EXPIRATION_MINUTES")
     if minutes:
@@ -128,6 +130,11 @@ async def login(request: LoginRequest):
         # Get or create user in our database
         user = await get_user_from_database(request.email)
         if not user:
+            if not AUTH_AUTO_PROVISION:
+                raise HTTPException(
+                    status_code=status.HTTP_403_FORBIDDEN,
+                    detail="Auto-provisioning disabled. Contact admin to enable access."
+                )
             # Create user in our database
             user_data = {
                 "id": auth_response.user.id,
@@ -170,6 +177,11 @@ async def register(request: RegisterRequest):
     when Supabase Auth creates the user in auth.users. We just need to wait and
     fetch the user data from public.users.
     """
+    if not AUTH_REGISTER_ENABLED:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Registration disabled. Contact admin to provision users."
+        )
     try:
         # Create user in Supabase Auth
         auth_response = supabase.auth.sign_up({
