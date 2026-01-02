@@ -9,7 +9,8 @@ from app.core.supabase_client import get_supabase_client
 from app.core.db import fetch_one, fetch_all
 from app.core.request_context import get_tenant_id, get_user_id
 from app.ai import get_assistant
-from app.config import settings
+from app.config import settings as config_settings
+from app.core.settings import settings as core_settings
 
 router = APIRouter()
 assistant = get_assistant()
@@ -23,7 +24,7 @@ class Message(BaseModel):
     thread_id: str
     role: str  # user, assistant, system
     content: str
-    provider: str
+    provider: Optional[str] = "copilot-studio"
     created_at: datetime
 
 class Thread(BaseModel):
@@ -219,71 +220,81 @@ async def send_message(request: Request, thread_id: str, message: MessageCreate)
             (thread_id, "user", message.content, "text", datetime.utcnow()),
         )
 
-    provider = (message.provider or "copilot-studio").lower()
-    assistant_content = "Copilot integration not configured"
-    assistant_content_type = "error"
-    copilot_ready = bool(settings.direct_line_secret)
-    llm_ready = settings.LLM_PROVIDER.lower() == "lmstudio" or bool(settings.ROUTE_LLM_API_KEY)
-
-    if provider == "copilot-studio" and not copilot_ready:
-        provider = "llm-fallback"
-
-    if provider != "copilot-studio":
-        if not llm_ready:
-            assistant_content = "Chat LLM no configurado: falta ROUTE_LLM_API_KEY"
-        else:
-            assistant_content = await run_in_threadpool(
-                assistant.chat,
-                user_message=message.content,
-                conversation_id=thread_id,
-                context=None,
-                task_type="general"
-            )
-            assistant_content_type = "text"
-    assistant_payload = {
-        "thread_id": thread_id,
-        "role": "assistant",
-        "content": assistant_content,
-        "content_type": assistant_content_type,
-        "created_at": datetime.utcnow().isoformat(),
-    }
     try:
-        supabase = get_supabase_client()
-        assistant_result = supabase.table("chat_messages").insert(assistant_payload).execute()
-        if not assistant_result.data:
-            raise HTTPException(status_code=500, detail="Assistant response failed")
-        assistant = assistant_result.data[0]
-        supabase.table("chat_threads")\
-            .update({"updated_at": datetime.utcnow().isoformat()})\
-            .eq("id", thread_id)\
-            .execute()
-    except Exception:
-        assistant = fetch_one(
-            """
-            INSERT INTO chat_messages (thread_id, role, content, content_type, created_at)
-            VALUES (%s, %s, %s, %s, %s)
-            RETURNING id, thread_id, role, content, created_at
-            """,
-            (
-                thread_id,
-                "assistant",
-                assistant_content,
-                assistant_content_type,
-                datetime.utcnow(),
-            ),
-        )
-        if not assistant:
-            raise HTTPException(status_code=500, detail="Assistant response failed")
-        fetch_one(
-            "UPDATE chat_threads SET updated_at = %s WHERE id = %s RETURNING id",
-            (datetime.utcnow(), thread_id),
-        )
+        provider = (message.provider or "copilot-studio").lower()
+        assistant_content = "Copilot integration not configured"
+        assistant_content_type = "error"
+        copilot_ready = bool(core_settings.direct_line_secret)
+        llm_ready = config_settings.LLM_PROVIDER.lower() == "lmstudio" or bool(config_settings.ROUTE_LLM_API_KEY)
 
-    return Message(
-        id=assistant["id"],
-        thread_id=assistant["thread_id"],
-        role=assistant["role"],
-        content=assistant["content"],
-        provider=message.provider,
-        created_at=assistant.get("created_at") or datetime.utcnow()
-    )
+        if provider == "copilot-studio" and not copilot_ready:
+            provider = "llm-fallback"
+
+        response_provider = "copilot-studio"
+        if provider != "copilot-studio":
+            response_provider = config_settings.LLM_PROVIDER.lower()
+            if not llm_ready:
+                assistant_content = "Chat LLM no configurado: falta ROUTE_LLM_API_KEY"
+            else:
+                assistant_content = await run_in_threadpool(
+                    assistant.chat,
+                    user_message=message.content,
+                    conversation_id=thread_id,
+                    context=None,
+                    task_type="general"
+                )
+                assistant_content_type = "text"
+        assistant_payload = {
+            "thread_id": thread_id,
+            "role": "assistant",
+            "content": assistant_content,
+            "content_type": assistant_content_type,
+            "created_at": datetime.utcnow().isoformat(),
+        }
+        try:
+            supabase = get_supabase_client()
+            assistant_result = supabase.table("chat_messages").insert(assistant_payload).execute()
+            if not assistant_result.data:
+                raise HTTPException(status_code=500, detail="Assistant response failed")
+            assistant_row = assistant_result.data[0]
+            assistant_row["provider"] = response_provider
+            supabase.table("chat_threads")\
+                .update({"updated_at": datetime.utcnow().isoformat()})\
+                .eq("id", thread_id)\
+                .execute()
+        except Exception:
+            assistant_row = fetch_one(
+                """
+                INSERT INTO chat_messages (thread_id, role, content, content_type, created_at)
+                VALUES (%s, %s, %s, %s, %s)
+                RETURNING id, thread_id, role, content, created_at
+                """,
+                (
+                    thread_id,
+                    "assistant",
+                    assistant_content,
+                    assistant_content_type,
+                    datetime.utcnow(),
+                ),
+            )
+            if not assistant_row:
+                raise HTTPException(status_code=500, detail="Assistant response failed")
+            assistant_row["provider"] = response_provider
+            fetch_one(
+                "UPDATE chat_threads SET updated_at = %s WHERE id = %s RETURNING id",
+                (datetime.utcnow(), thread_id),
+            )
+
+        assistant_id = assistant_row.get("id") if assistant_row else str(uuid.uuid4())
+        assistant_created_at = assistant_row.get("created_at") if assistant_row else datetime.utcnow()
+
+        return Message(
+            id=str(assistant_id),
+            thread_id=thread_id,
+            role="assistant",
+            content=assistant_content,
+            provider=response_provider,
+            created_at=assistant_created_at or datetime.utcnow(),
+        )
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=f"Chat send failed: {type(exc).__name__}: {exc}")
