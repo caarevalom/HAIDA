@@ -1,84 +1,83 @@
-"""
-HAIDA - Hiberus AI-Driven Automation
-FastAPI Main Application
-"""
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-from contextlib import asynccontextmanager
+import os, logging
+from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
 
-from app.config import settings
-from app.routers import auth, tests, reports, jira, confluence, ai, health
-from app.db.database import init_db, check_db_connection
-from app.models import *  # Importar todos los modelos para que SQLAlchemy los registre
+from app.core.logging import setup_logging
+from app.core.middleware import RequestIdMiddleware
+from app.core.cors import setup_cors
 
-
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    """Lifecycle events"""
-    print("🚀 HAIDA API Starting...")
-
-    # Verificar conexión a BD
-    print("🔍 Verificando conexión a base de datos...")
-    if check_db_connection():
-        print("✅ Conexión a base de datos exitosa")
-    else:
-        print("⚠️  No se pudo conectar a la base de datos")
-
-    # Inicializar tablas (crear si no existen)
-    try:
-        init_db()
-        print("✅ Tablas de base de datos inicializadas")
-    except Exception as e:
-        print(f"⚠️  Error inicializando BD: {str(e)}")
-
-    yield
-    print("👋 HAIDA API Shutting down...")
-
-
-app = FastAPI(
-    title="HAIDA API",
-    description="Hiberus AI-Driven Automation - QA Testing Platform",
-    version="2.0.0",
-    lifespan=lifespan,
-    docs_url="/docs",
-    redoc_url="/redoc"
-)
+setup_logging()
+app = FastAPI(title=os.environ.get("APP_NAME", "HAIDA"))
 
 # CORS
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=settings.cors_origins_list,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+setup_cors(app, os.environ)
+# Request ID
+app.add_middleware(RequestIdMiddleware, header_name=os.environ.get("REQUEST_ID_HEADER", "X-Request-Id"))
 
-# Routers
-app.include_router(auth.router, prefix="/api/auth", tags=["Authentication"])
-app.include_router(tests.router, prefix="/api/tests", tags=["Tests"])
-app.include_router(reports.router, prefix="/api/reports", tags=["Reports"])
-app.include_router(jira.router, prefix="/api/jira", tags=["Jira"])
-app.include_router(confluence.router, prefix="/api/confluence", tags=["Confluence"])
-app.include_router(ai.router, prefix="/api/ai", tags=["AI"])
-app.include_router(health.router, tags=["Health"])
-
-
-@app.get("/")
-async def root():
-    return {
-        "name": "HAIDA API",
-        "version": "2.0.0",
-        "description": "Hiberus AI-Driven Automation",
-        "docs": "/docs",
-        "health": "/health"
-    }
-
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(
-        "app.main:app",
-        host=settings.API_HOST,
-        port=settings.API_PORT,
-        reload=settings.API_RELOAD
+# Handlers
+@app.exception_handler(Exception)
+async def unhandled_exc_handler(request: Request, exc: Exception):
+    req_id = getattr(request.state, "request_id", None)
+    logging.getLogger("haida.error").error(
+        "Unhandled exception",
+        exc_info=True,
+        extra={"extra": {"correlationId": req_id, "path": request.url.path}},
     )
+    return JSONResponse(status_code=500, content={"error": "internal_error", "message": "Ha ocurrido un error inesperado", "correlationId": req_id})
+
+from fastapi import HTTPException
+@app.exception_handler(HTTPException)
+async def http_exc_handler(request: Request, exc: HTTPException):
+    req_id = getattr(request.state, "request_id", None)
+    logging.getLogger("haida.http").warning(f"HTTP {exc.status_code}: {exc.detail}", extra={"extra": {"correlationId": req_id, "path": request.url.path}})
+    return JSONResponse(status_code=exc.status_code, content={"error": "http_error", "message": exc.detail, "correlationId": req_id})
+
+# Routers (sólo imports, Cline completará implementación)
+# Import routers (only the ones that exist and work)
+try:
+    from app.routes.system import router as system_router
+    app.include_router(system_router, tags=["system"])
+    print("✅ System router loaded")
+except ImportError as e:
+    print(f"⚠️ System router not available: {e}")
+
+try:
+    from app.routes.auth import router as auth_router
+    app.include_router(auth_router, prefix="/auth", tags=["auth"])
+    print("✅ Auth router loaded")
+except ImportError as e:
+    print(f"⚠️ Auth router not available: {e}")
+
+try:
+    from app.routes.entra import router as entra_router
+    app.include_router(entra_router, prefix="/entra", tags=["entra"])
+    print("✅ Entra router loaded")
+except ImportError as e:
+    print(f"⚠️ Entra router not available: {e}")
+
+# Optional routers - load if available
+optional_routers = [
+    ("docs", "/docs"),
+    ("flags", "/flags"),
+    ("chat", "/chat"),
+    ("projects", "/projects"),
+    ("scripts", "/scripts"),
+    ("runs", "/script-runs"),
+    ("notifications", "/notifications"),
+    ("reports", "/reports"),
+    ("files", "/files"),
+    ("i18n", "/i18n"),
+    ("admin", "/admin"),
+]
+
+for router_name, prefix in optional_routers:
+    try:
+        module = __import__(f"app.routes.{router_name}", fromlist=["router"])
+        router = getattr(module, "router")
+        app.include_router(router, prefix=prefix, tags=[router_name])
+        print(f"✅ {router_name.capitalize()} router loaded")
+    except (ImportError, AttributeError) as e:
+        print(f"ℹ️ {router_name.capitalize()} router not available: {e}")
+
+# Fallback health endpoint (no longer needed - system router handles it)
+# System router already loaded above and provides /health endpoint

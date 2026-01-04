@@ -26,8 +26,16 @@ class HAIDAAssistant:
     """
 
     def __init__(self):
-        self.api_url = settings.LM_STUDIO_URL
-        self.model = settings.LM_STUDIO_MODEL
+        self.provider = settings.LLM_PROVIDER.lower()
+        if self.provider in {"routellm", "chat-llm", "chat_llm", "abacus"}:
+            self.api_url = settings.ROUTE_LLM_URL
+            self.model = settings.ROUTE_LLM_MODEL
+            self.api_key = settings.ROUTE_LLM_API_KEY
+        else:
+            self.provider = "lmstudio"
+            self.api_url = settings.LM_STUDIO_URL
+            self.model = settings.LM_STUDIO_MODEL
+            self.api_key = settings.LM_STUDIO_API_KEY
         self.conversation_history: Dict[str, List[Dict]] = {}
 
         # Configuración del modelo
@@ -133,7 +141,7 @@ class HAIDAAssistant:
         # Usar configuración por defecto si no se proporciona
         model_config = config or self.default_config
 
-        # Payload para LM Studio (compatible con OpenAI API)
+        # Payload para API compatible con OpenAI
         payload = {
             "model": self.model,
             "messages": messages,
@@ -146,10 +154,15 @@ class HAIDAAssistant:
         }
 
         try:
-            # Llamar a LM Studio API
+            headers = {}
+            if self.api_key and (self.provider != "lmstudio" or self.api_key != "lm-studio"):
+                headers["Authorization"] = f"Bearer {self.api_key}"
+
+            # Llamar a API compatible con OpenAI
             response = requests.post(
                 f"{self.api_url}/chat/completions",
                 json=payload,
+                headers=headers or None,
                 timeout=120  # 2 minutos timeout
             )
 
@@ -163,11 +176,15 @@ class HAIDAAssistant:
                 return "Error: No se recibió respuesta del modelo"
 
         except requests.exceptions.ConnectionError:
-            return "⚠️ **LM Studio no está corriendo**\n\nPara usar la IA:\n1. Abre LM Studio\n2. Carga el modelo DeepSeek R1\n3. Inicia el servidor local\n4. Intenta nuevamente"
+            if self.provider == "lmstudio":
+                return "⚠️ **LM Studio no está corriendo**\n\nPara usar la IA:\n1. Abre LM Studio\n2. Carga el modelo DeepSeek R1\n3. Inicia el servidor local\n4. Intenta nuevamente"
+            return "⚠️ **No se pudo conectar con el proveedor de IA**\n\nVerifica la URL y conectividad del servicio."
         except requests.exceptions.Timeout:
             return "⚠️ **Timeout**: El modelo tardó demasiado en responder. Intenta con una pregunta más corta."
         except Exception as e:
-            return f"❌ **Error**: {str(e)}\n\nVerifica que LM Studio esté corriendo correctamente."
+            if self.provider == "lmstudio":
+                return f"❌ **Error**: {str(e)}\n\nVerifica que LM Studio esté corriendo correctamente."
+            return f"❌ **Error**: {str(e)}\n\nVerifica la configuración del proveedor de IA."
 
     def _save_to_history(
         self,
