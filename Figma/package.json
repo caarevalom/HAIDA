@@ -67,7 +67,7 @@
     "sharp": "^0.34.5",
     "tailwindcss": "4.1.12",
     "terser": "^5.44.1",
-    "vite": "6.3.5",
+    "vite": "^7.3.0",
     "vite-plugin-image-optimizer": "^2.0.3"
   },
   "peerDependencies": {
