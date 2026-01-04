@@ -14,8 +14,8 @@
 import { test, expect } from '@playwright/test';
 
 // URLs de producción
-const FRONTEND_URL = 'https://haida.carlosarta.com';
-const BACKEND_URL = 'https://back.carlosarta.com';
+const FRONTEND_URL = 'https://haida.stayarta.com';
+const BACKEND_URL = 'https://haidapi.stayarta.com';
 
 // Credenciales de admin
 const ADMIN_USER = {
@@ -175,14 +175,14 @@ test.describe('🚀 HAIDA - Flujo Completo de Producción', () => {
     const backendRequests: string[] = [];
 
     page.on('request', request => {
-      if (request.url().includes('back.carlosarta.com')) {
+      if (request.url().includes('haidapi.stayarta.com')) {
         backendRequests.push(`${request.method()} ${request.url()}`);
         console.log(`📡 Backend request: ${request.method()} ${request.url()}`);
       }
     });
 
     page.on('response', response => {
-      if (response.url().includes('back.carlosarta.com')) {
+      if (response.url().includes('haidapi.stayarta.com')) {
         console.log(`📥 Backend response: ${response.status()} ${response.url()}`);
       }
     });
