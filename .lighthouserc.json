@@ -2,9 +2,9 @@
   "ci": {
     "collect": {
       "url": [
-        "https://haida.carlosarta.com",
-        "https://haida.carlosarta.com/login",
-        "https://haida.carlosarta.com/dashboard"
+        "https://haida.stayarta.com",
+        "https://haida.stayarta.com/login",
+        "https://haida.stayarta.com/dashboard"
       ],
       "numberOfRuns": 3,
       "settings": {

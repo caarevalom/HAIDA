@@ -14,8 +14,8 @@
 
 import { test, expect, Page } from '@playwright/test';
 
-const FRONTEND_URL = process.env.FRONTEND_URL || 'https://haida.carlosarta.com';
-const BACKEND_URL = process.env.BASE_URL || 'https://back.carlosarta.com';
+const FRONTEND_URL = process.env.FRONTEND_URL || 'https://haida.stayarta.com';
+const BACKEND_URL = process.env.BASE_URL || 'https://haidapi.stayarta.com';
 
 // Test user credentials
 const TEST_USER = {
