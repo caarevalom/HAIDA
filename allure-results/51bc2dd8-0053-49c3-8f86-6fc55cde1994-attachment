@@ -1,0 +1,55 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e2]:
+  - heading "QA Testing - Servidor Local" [level=1] [ref=e3]
+  - generic [ref=e4]: ✓ Servidor ejecutándose en entorno local seguro
+  - generic [ref=e5]:
+    - strong [ref=e6]: "ℹ️ Información importante:"
+    - text: Este es un servidor de prueba local. Todos los datos están siendo procesados de forma segura en tu máquina sin conexión a internet.
+  - generic [ref=e7]:
+    - heading "📋 Estado del servidor" [level=2] [ref=e8]
+    - list [ref=e9]:
+      - listitem [ref=e10]:
+        - strong [ref=e11]: "URL base:"
+        - text: http://localhost:3000
+      - listitem [ref=e12]:
+        - strong [ref=e13]: "Puerto:"
+        - text: 3000 (local)
+      - listitem [ref=e14]:
+        - strong [ref=e15]: "Entorno:"
+        - text: Corporativo - Local seguro
+      - listitem [ref=e16]:
+        - strong [ref=e17]: "Conexión externa:"
+        - text: Deshabilitada
+      - listitem [ref=e18]:
+        - strong [ref=e19]: "Datos personales:"
+        - text: Ninguno recopilado
+  - generic [ref=e20]:
+    - heading "✅ Navegación de prueba" [level=2] [ref=e21]
+    - generic [ref=e22]:
+      - link "Home" [ref=e23] [cursor=pointer]:
+        - /url: /
+      - link "Página 1" [ref=e24] [cursor=pointer]:
+        - /url: /page1
+      - link "Página 2" [ref=e25] [cursor=pointer]:
+        - /url: /page2
+      - link "API Test" [ref=e26] [cursor=pointer]:
+        - /url: /api
+      - link "Enlace roto (test)" [ref=e27] [cursor=pointer]:
+        - /url: /broken
+  - generic [ref=e28]:
+    - heading "🔐 Seguridad corporativa" [level=2] [ref=e29]
+    - list [ref=e30]:
+      - listitem [ref=e31]: ✓ Sin conexión a servidores externos
+      - listitem [ref=e32]: ✓ Sin transmisión de datos corporativos
+      - listitem [ref=e33]: ✓ Sin cookies o tracking
+      - listitem [ref=e34]: ✓ Completamente local y privado
+      - listitem [ref=e35]: ✓ Auditable y controlado
+  - generic [ref=e36]:
+    - strong [ref=e37]: "⚠️ Nota de cumplimiento corporativo:"
+    - text: Este servidor es únicamente para testing local. No debe usarse para conectarse a servidores públicos ni transmitir datos sensibles.
+  - contentinfo [ref=e38]:
+    - paragraph [ref=e39]: Servidor de QA Testing Local | Generado automáticamente
+    - paragraph [ref=e40]: "Hora: 15/12/2025, 21:02:21"
+```

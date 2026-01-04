@@ -1,0 +1,541 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - link "Ir al contenido" [ref=e4] [cursor=pointer]:
+        - /url: "#contentarea"
+      - navigation [ref=e8]:
+        - img "Logo Turisme Barcelona" [ref=e11]
+        - list [ref=e12]:
+          - listitem [ref=e13]:
+            - link "Visit Barcelona" [ref=e14] [cursor=pointer]:
+              - /url: https://mcprod.thisisbarcelona.com/es/tickets/visit-barcelona/
+              - generic [ref=e15]: Visit Barcelona
+          - listitem [ref=e16]:
+            - link "Tickets" [ref=e17] [cursor=pointer]:
+              - /url: https://mcprod.thisisbarcelona.com/es/tickets/tickets/
+              - generic [ref=e18]: Tickets
+          - listitem [ref=e19]:
+            - link "Professionals" [ref=e20] [cursor=pointer]:
+              - /url: https://mcprod.thisisbarcelona.com/es/tickets/professionals/
+              - generic [ref=e21]: Professionals
+          - listitem [ref=e22]:
+            - link "Barcelona Convention Bureau" [ref=e23] [cursor=pointer]:
+              - /url: https://mcprod.thisisbarcelona.com/es/tickets/barcelona-convention-bureau/
+              - generic [ref=e24]: Barcelona Convention Bureau
+          - listitem [ref=e25]:
+            - link "Quienes somos" [ref=e26] [cursor=pointer]:
+              - /url: https://mcprod.thisisbarcelona.com/es/tickets/quienes-somos/
+              - generic [ref=e27]: Quienes somos
+      - generic [ref=e29]:
+        - navigation "Navegación" [ref=e30]:
+          - button "Abrir menú" [ref=e31] [cursor=pointer]:
+            - img [ref=e32]
+        - link "Ir a la página de inicio" [ref=e35] [cursor=pointer]:
+          - /url: https://mcprod.thisisbarcelona.com/es/tickets/
+          - img "Logotipo de la tienda" [ref=e36]
+        - search [ref=e41]:
+          - generic [ref=e42]:
+            - generic [ref=e45]:
+              - generic:
+                - img
+              - combobox "Buscar actividades" [ref=e46]
+            - generic [ref=e47]:
+              - button [ref=e48] [cursor=pointer]:
+                - img [ref=e50]
+              - button "Buscar" [ref=e52] [cursor=pointer]:
+                - generic [ref=e53]: Buscar
+        - list [ref=e55]:
+          - listitem [ref=e56]:
+            - link "0 Favoritos" [ref=e57] [cursor=pointer]:
+              - /url: https://mcprod.thisisbarcelona.com/es/tickets/wishlist/
+              - generic [ref=e58]:
+                - img [ref=e59]
+                - generic [ref=e61]: "0"
+              - generic [ref=e62]: Favoritos
+          - listitem [ref=e63]:
+            - link "Ver carrito" [disabled] [ref=e64] [cursor=pointer]:
+              - /url: https://mcprod.thisisbarcelona.com/es/tickets/checkout/cart/index/
+              - img [ref=e66]
+              - generic [ref=e69]: Cesta
+          - listitem [ref=e70]:
+            - link "Ayuda" [ref=e71] [cursor=pointer]:
+              - /url: https://mcprod.thisisbarcelona.com/es/tickets/help/
+              - img [ref=e72]
+              - generic [ref=e74]: Ayuda
+          - listitem [ref=e75]:
+            - link "Mi cuenta" [ref=e76] [cursor=pointer]:
+              - /url: https://mcprod.thisisbarcelona.com/es/tickets/customer/account/
+              - img [ref=e77]
+              - generic [ref=e79]: Mi cuenta
+          - listitem [ref=e80]:
+            - navigation "Selector de idioma" [ref=e81]:
+              - button "Español" [ref=e83] [cursor=pointer]:
+                - generic [ref=e84]:
+                  - img [ref=e85]
+                  - generic [ref=e89]: Español
+                  - img [ref=e90]
+    - main [ref=e92]:
+      - generic [ref=e94]:
+        - link "Disfruta de Barcelona Explora, vive y conecta con lo mejor de Barcelona." [ref=e97] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=e101]:
+            - heading "Disfruta de Barcelona" [level=2] [ref=e102]
+            - paragraph [ref=e103]: Explora, vive y conecta con lo mejor de Barcelona.
+        - generic [ref=e106]:
+          - paragraph
+          - generic [ref=e107]:
+            - heading "Explora nuestras categorías" [level=2] [ref=e108]
+            - list [ref=e109]:
+              - listitem [ref=e110]:
+                - link "Arte y Cultura Arte y Cultura" [ref=e111] [cursor=pointer]:
+                  - /url: https://mcprod.thisisbarcelona.com/es/tickets/arte-y-cultura
+                  - img "Arte y Cultura" [ref=e112]
+                  - generic [ref=e114]:
+                    - generic [ref=e116]: Arte y Cultura
+                    - img [ref=e117]
+              - listitem [ref=e120]:
+                - link "Aventura y aire libre Aventura y aire libre" [ref=e121] [cursor=pointer]:
+                  - /url: https://mcprod.thisisbarcelona.com/es/tickets/aventura-y-aire-libre
+                  - img "Aventura y aire libre" [ref=e122]
+                  - generic [ref=e124]:
+                    - generic [ref=e126]: Aventura y aire libre
+                    - img [ref=e127]
+              - listitem [ref=e130]:
+                - link "Movilidad y servicios Movilidad y servicios" [ref=e131] [cursor=pointer]:
+                  - /url: https://mcprod.thisisbarcelona.com/es/tickets/movilidad-y-servicios
+                  - img "Movilidad y servicios" [ref=e132]
+                  - generic [ref=e134]:
+                    - generic [ref=e136]: Movilidad y servicios
+                    - img [ref=e137]
+              - listitem [ref=e140]:
+                - link "Gastronomía Gastronomía" [ref=e141] [cursor=pointer]:
+                  - /url: https://mcprod.thisisbarcelona.com/es/tickets/gastronomia
+                  - img "Gastronomía" [ref=e142]
+                  - generic [ref=e144]:
+                    - generic [ref=e146]: Gastronomía
+                    - img [ref=e147]
+              - listitem [ref=e150]:
+                - link "Música y espectáculos Música y espectáculos" [ref=e151] [cursor=pointer]:
+                  - /url: https://mcprod.thisisbarcelona.com/es/tickets/musica-y-espectaculos
+                  - img "Música y espectáculos" [ref=e152]
+                  - generic [ref=e154]:
+                    - generic [ref=e156]: Música y espectáculos
+                    - img [ref=e157]
+              - listitem [ref=e160]:
+                - link "Barcelona card Barcelona card" [ref=e161] [cursor=pointer]:
+                  - /url: https://mcprod.thisisbarcelona.com/es/tickets/barcelona-card
+                  - img "Barcelona card" [ref=e162]
+                  - generic [ref=e164]:
+                    - generic [ref=e166]: Barcelona card
+                    - img [ref=e167]
+        - generic [ref=e171]:
+          - heading "Empieza tu aventura" [level=3] [ref=e172]
+          - generic [ref=e174]:
+            - generic [ref=e177]:
+              - generic [ref=e179]:
+                - generic [ref=e181]:
+                  - 'img "Accés preferent: Sagrada Família + Torres i Park Güell"'
+                - generic [ref=e182]:
+                  - generic [ref=e184]:
+                    - list [ref=e185]:
+                      - listitem [ref=e186]: Diario
+                    - 'link "Accés preferent: Sagrada Família + Torres i Park Güell" [ref=e187] [cursor=pointer]':
+                      - /url: https://mcprod.thisisbarcelona.com/es/tickets/acces-preferent-sagrada-familia-torres-i-park-guell
+                  - generic [ref=e188]:
+                    - generic [ref=e189]:
+                      - paragraph [ref=e190]: Desde
+                      - generic [ref=e193]: 124,00 €
+                    - img [ref=e195]
+                  - 'button "Añadir a la Lista de Deseos Accés preferent: Sagrada Família + Torres i Park Güell" [ref=e198] [cursor=pointer]':
+                    - img [ref=e199]
+              - generic [ref=e202]:
+                - generic [ref=e204]:
+                  - 'img "Accés preferent: Sagrada Família i Park Güell"'
+                - generic [ref=e205]:
+                  - generic [ref=e207]:
+                    - list [ref=e208]:
+                      - listitem [ref=e209]: Diario
+                    - 'link "Accés preferent: Sagrada Família i Park Güell" [ref=e210] [cursor=pointer]':
+                      - /url: https://mcprod.thisisbarcelona.com/es/tickets/acces-preferent-sagrada-familia-i-park-guell
+                  - generic [ref=e211]:
+                    - generic [ref=e212]:
+                      - paragraph [ref=e213]: Desde
+                      - generic [ref=e216]: 0,00 €
+                    - img [ref=e218]
+                  - 'button "Añadir a la Lista de Deseos Accés preferent: Sagrada Família i Park Güell" [ref=e221] [cursor=pointer]':
+                    - img [ref=e222]
+              - generic [ref=e225]:
+                - generic [ref=e227]:
+                  - 'img "Accés ràpid: Museu Picasso"'
+                - generic [ref=e228]:
+                  - generic [ref=e230]:
+                    - list [ref=e231]:
+                      - listitem [ref=e232]: Diario
+                    - 'link "Accés ràpid: Museu Picasso" [ref=e233] [cursor=pointer]':
+                      - /url: https://mcprod.thisisbarcelona.com/es/tickets/acces-rapid-museu-picasso
+                  - generic [ref=e234]:
+                    - generic [ref=e235]:
+                      - paragraph [ref=e236]: Desde
+                      - generic [ref=e239]: 53,00 €
+                    - img [ref=e241]
+                  - 'button "Añadir a la Lista de Deseos Accés ràpid: Museu Picasso" [ref=e244] [cursor=pointer]':
+                    - img [ref=e245]
+              - generic [ref=e248]:
+                - generic [ref=e250]:
+                  - img "Aerobús"
+                - generic [ref=e251]:
+                  - generic [ref=e253]:
+                    - list [ref=e254]:
+                      - listitem [ref=e255]: Diario
+                    - link "Aerobús" [ref=e256] [cursor=pointer]:
+                      - /url: https://mcprod.thisisbarcelona.com/es/tickets/aerobus
+                  - generic [ref=e257]:
+                    - generic [ref=e258]:
+                      - paragraph [ref=e259]: Desde
+                      - generic [ref=e262]: 7,45 €
+                    - img [ref=e264]
+                  - button "Añadir a la Lista de Deseos Aerobús" [ref=e267] [cursor=pointer]:
+                    - img [ref=e268]
+              - generic [ref=e271]:
+                - generic [ref=e273]:
+                  - img "Aire Ancient Baths Barcelona"
+                - generic [ref=e274]:
+                  - generic [ref=e276]:
+                    - list
+                    - link "Aire Ancient Baths Barcelona" [ref=e277] [cursor=pointer]:
+                      - /url: https://mcprod.thisisbarcelona.com/es/tickets/aire-ancient-baths-barcelona
+                  - generic [ref=e278]:
+                    - generic [ref=e279]:
+                      - paragraph [ref=e280]: Desde
+                      - generic [ref=e283]: 72,00 €
+                    - img [ref=e285]
+                  - button "Añadir a la Lista de Deseos Aire Ancient Baths Barcelona" [ref=e288] [cursor=pointer]:
+                    - img [ref=e289]
+              - generic [ref=e292]:
+                - generic [ref=e294]:
+                  - img "Aire Flamenco Patio Andaluz"
+                - generic [ref=e295]:
+                  - generic [ref=e297]:
+                    - list
+                    - link "Aire Flamenco Patio Andaluz" [ref=e298] [cursor=pointer]:
+                      - /url: https://mcprod.thisisbarcelona.com/es/tickets/aire-flamenco-patio-andaluz
+                  - generic [ref=e299]:
+                    - generic [ref=e300]:
+                      - paragraph [ref=e301]: Desde
+                      - generic [ref=e304]: 15,00 €
+                    - img [ref=e306]
+                  - button "Añadir a la Lista de Deseos Aire Flamenco Patio Andaluz" [ref=e309] [cursor=pointer]:
+                    - img [ref=e310]
+              - generic [ref=e313]:
+                - generic [ref=e314]:
+                  - img "Antarctica Experience"
+                - generic [ref=e315]:
+                  - generic [ref=e317]:
+                    - list
+                    - link "Antarctica Experience" [ref=e318] [cursor=pointer]:
+                      - /url: https://mcprod.thisisbarcelona.com/es/tickets/antarctica-experience
+                  - generic [ref=e319]:
+                    - generic [ref=e320]:
+                      - paragraph [ref=e321]: Desde
+                      - generic [ref=e324]: 16,90 €
+                    - img [ref=e326]
+                  - button "Añadir a la Lista de Deseos Antarctica Experience" [ref=e329] [cursor=pointer]:
+                    - img [ref=e330]
+              - generic [ref=e333]:
+                - generic [ref=e335]:
+                  - img "Art Flamenc al Palau de la Música Catalana"
+                - generic [ref=e336]:
+                  - generic [ref=e338]:
+                    - list
+                    - link "Art Flamenc al Palau de la Música Catalana" [ref=e339] [cursor=pointer]:
+                      - /url: https://mcprod.thisisbarcelona.com/es/tickets/art-flamenc-al-palau-de-la-musica-catalana
+                  - generic [ref=e340]:
+                    - generic [ref=e341]:
+                      - paragraph [ref=e342]: Desde
+                      - generic [ref=e345]: 0,00 €
+                    - img [ref=e347]
+                  - button "Añadir a la Lista de Deseos Art Flamenc al Palau de la Música Catalana" [ref=e350] [cursor=pointer]:
+                    - img [ref=e351]
+              - generic [ref=e354]:
+                - generic [ref=e355]:
+                  - img "Articket Barcelona"
+                - generic [ref=e356]:
+                  - generic [ref=e358]:
+                    - list [ref=e359]:
+                      - listitem [ref=e360]: Diario
+                    - link "Articket Barcelona" [ref=e361] [cursor=pointer]:
+                      - /url: https://mcprod.thisisbarcelona.com/es/tickets/articket-barcelona
+                  - generic [ref=e362]:
+                    - generic [ref=e363]:
+                      - paragraph [ref=e364]: Desde
+                      - generic [ref=e367]: 38,00 €
+                    - img [ref=e369]
+                  - button "Añadir a la Lista de Deseos Articket Barcelona" [ref=e372] [cursor=pointer]:
+                    - img [ref=e373]
+              - generic [ref=e376]:
+                - generic [ref=e378]:
+                  - 'img "Barcelona 360º: Land, Sea and Air"'
+                - generic [ref=e379]:
+                  - generic [ref=e381]:
+                    - list [ref=e382]:
+                      - listitem [ref=e383]: Diario
+                    - 'link "Barcelona 360º: Land, Sea and Air" [ref=e384] [cursor=pointer]':
+                      - /url: https://mcprod.thisisbarcelona.com/es/tickets/barcelona-360-land-sea-and-air
+                  - generic [ref=e385]:
+                    - generic [ref=e386]:
+                      - paragraph [ref=e387]: Desde
+                      - generic [ref=e390]: 59,99 €
+                    - img [ref=e392]
+                  - 'button "Añadir a la Lista de Deseos Barcelona 360º: Land, Sea and Air" [ref=e395] [cursor=pointer]':
+                    - img [ref=e396]
+              - generic [ref=e399]:
+                - generic [ref=e401]:
+                  - img "Barcelona amb GoCar"
+                - generic [ref=e402]:
+                  - generic [ref=e404]:
+                    - list
+                    - link "Barcelona amb GoCar" [ref=e405] [cursor=pointer]:
+                      - /url: https://mcprod.thisisbarcelona.com/es/tickets/barcelona-amb-gocar
+                  - generic [ref=e406]:
+                    - generic [ref=e407]:
+                      - paragraph [ref=e408]: Desde
+                      - generic [ref=e411]: 50,00 €
+                    - img [ref=e413]
+                  - button "Añadir a la Lista de Deseos Barcelona amb GoCar" [ref=e416] [cursor=pointer]:
+                    - img [ref=e417]
+              - generic [ref=e420]:
+                - generic [ref=e422]:
+                  - img "Barcelona Bike Tour by Barcelona CicloTour"
+                - generic [ref=e423]:
+                  - generic [ref=e425]:
+                    - list
+                    - link "Barcelona Bike Tour by Barcelona CicloTour" [ref=e426] [cursor=pointer]:
+                      - /url: https://mcprod.thisisbarcelona.com/es/tickets/barcelona-bike-tour-by-barcelona-ciclotour
+                  - generic [ref=e427]:
+                    - generic [ref=e428]:
+                      - paragraph [ref=e429]: Desde
+                      - generic [ref=e432]: 29,50 €
+                    - img [ref=e434]
+                  - button "Añadir a la Lista de Deseos Barcelona Bike Tour by Barcelona CicloTour" [ref=e437] [cursor=pointer]:
+                    - img [ref=e438]
+              - generic [ref=e441]:
+                - generic [ref=e442]:
+                  - img "Barcelona Bus Turístic Hop on Hop off"
+                - generic [ref=e443]:
+                  - generic [ref=e445]:
+                    - list [ref=e446]:
+                      - listitem [ref=e447]: Diario
+                    - link "Barcelona Bus Turístic Hop on Hop off" [ref=e448] [cursor=pointer]:
+                      - /url: https://mcprod.thisisbarcelona.com/es/tickets/barcelona-bus-turistic-hop-on-hop-off
+                  - generic [ref=e449]:
+                    - generic [ref=e450]:
+                      - paragraph [ref=e451]: Desde
+                      - generic [ref=e454]: 29,70 €
+                    - img [ref=e456]
+                  - button "Añadir a la Lista de Deseos Barcelona Bus Turístic Hop on Hop off" [ref=e459] [cursor=pointer]:
+                    - img [ref=e460]
+              - generic [ref=e463]:
+                - generic [ref=e465]:
+                  - img "Barcelona Card Express"
+                - generic [ref=e466]:
+                  - generic [ref=e468]:
+                    - list [ref=e469]:
+                      - listitem [ref=e470]: Diario
+                    - link "Barcelona Card Express" [ref=e471] [cursor=pointer]:
+                      - /url: https://mcprod.thisisbarcelona.com/es/tickets/barcelona-card-express
+                  - generic [ref=e472]:
+                    - generic [ref=e473]:
+                      - paragraph [ref=e474]: Desde
+                      - generic [ref=e477]: 24,30 €
+                    - img [ref=e479]
+                  - button "Añadir a la Lista de Deseos Barcelona Card Express" [ref=e482] [cursor=pointer]:
+                    - img [ref=e483]
+              - generic [ref=e486]:
+                - generic [ref=e488]:
+                  - img "Barcelona Card Family"
+                - generic [ref=e489]:
+                  - generic [ref=e491]:
+                    - list
+                    - link "Barcelona Card Family" [ref=e492] [cursor=pointer]:
+                      - /url: https://mcprod.thisisbarcelona.com/es/tickets/barcelona-card-family
+                  - generic [ref=e493]:
+                    - generic [ref=e494]:
+                      - paragraph [ref=e495]: Desde
+                      - generic [ref=e498]: 70,00 €
+                    - img [ref=e500]
+                  - button "Añadir a la Lista de Deseos Barcelona Card Family" [ref=e503] [cursor=pointer]:
+                    - img [ref=e504]
+              - generic [ref=e507]:
+                - generic [ref=e509]:
+                  - img "Barcelona Card Modernista"
+                - generic [ref=e510]:
+                  - generic [ref=e512]:
+                    - list [ref=e513]:
+                      - listitem [ref=e514]: Diario
+                    - link "Barcelona Card Modernista" [ref=e515] [cursor=pointer]:
+                      - /url: https://mcprod.thisisbarcelona.com/es/tickets/barcelona-card-modernista
+                  - generic [ref=e516]:
+                    - generic [ref=e517]:
+                      - paragraph [ref=e518]: Desde
+                      - generic [ref=e521]: 40,00 €
+                    - img [ref=e523]
+                  - button "Añadir a la Lista de Deseos Barcelona Card Modernista" [ref=e526] [cursor=pointer]:
+                    - img [ref=e527]
+              - generic [ref=e530]:
+                - generic [ref=e532]:
+                  - img "Barcelona Christmas Tour"
+                - generic [ref=e533]:
+                  - generic [ref=e535]:
+                    - list [ref=e536]:
+                      - listitem [ref=e537]: Diario
+                    - link "Barcelona Christmas Tour" [ref=e538] [cursor=pointer]:
+                      - /url: https://mcprod.thisisbarcelona.com/es/tickets/barcelona-christmas-tour
+                  - generic [ref=e539]:
+                    - generic [ref=e540]:
+                      - paragraph [ref=e541]: Desde
+                      - generic [ref=e544]: 0,00 €
+                    - img [ref=e546]
+                  - button "Añadir a la Lista de Deseos Barcelona Christmas Tour" [ref=e549] [cursor=pointer]:
+                    - img [ref=e550]
+              - generic [ref=e553]:
+                - generic [ref=e555]:
+                  - img "Barcelona City Tour Hop on Hop off"
+                - generic [ref=e556]:
+                  - generic [ref=e558]:
+                    - list
+                    - link "Barcelona City Tour Hop on Hop off" [ref=e559] [cursor=pointer]:
+                      - /url: https://mcprod.thisisbarcelona.com/es/tickets/barcelona-city-tour-hop-on-hop-off
+                  - generic [ref=e560]:
+                    - generic [ref=e561]:
+                      - paragraph [ref=e562]: Desde
+                      - generic [ref=e565]: 33,00 €
+                    - img [ref=e567]
+                  - button "Añadir a la Lista de Deseos Barcelona City Tour Hop on Hop off" [ref=e570] [cursor=pointer]:
+                    - img [ref=e571]
+              - generic [ref=e574]:
+                - generic [ref=e576]:
+                  - img "Barcelona Cooking Classes i Boqueria"
+                - generic [ref=e577]:
+                  - generic [ref=e579]:
+                    - list
+                    - link "Barcelona Cooking Classes i Boqueria" [ref=e580] [cursor=pointer]:
+                      - /url: https://mcprod.thisisbarcelona.com/es/tickets/barcelona-cooking-classes-i-boqueria
+                  - generic [ref=e581]:
+                    - generic [ref=e582]:
+                      - paragraph [ref=e583]: Desde
+                      - generic [ref=e586]: 80,00 €
+                    - img [ref=e588]
+                  - button "Añadir a la Lista de Deseos Barcelona Cooking Classes i Boqueria" [ref=e591] [cursor=pointer]:
+                    - img [ref=e592]
+              - generic [ref=e595]:
+                - generic [ref=e597]:
+                  - img "Barcelona highlights morning"
+                - generic [ref=e598]:
+                  - generic [ref=e600]:
+                    - list
+                    - link "Barcelona highlights morning" [ref=e601] [cursor=pointer]:
+                      - /url: https://mcprod.thisisbarcelona.com/es/tickets/barcelona-highlights-morning
+                  - generic [ref=e602]:
+                    - generic [ref=e603]:
+                      - paragraph [ref=e604]: Desde
+                      - generic [ref=e607]: 52,00 €
+                    - img [ref=e609]
+                  - button "Añadir a la Lista de Deseos Barcelona highlights morning" [ref=e612] [cursor=pointer]:
+                    - img [ref=e613]
+            - generic [ref=e615]:
+              - tablist [ref=e616]:
+                - button "Page 1" [ref=e617] [cursor=pointer]
+                - button "Page 2" [ref=e618] [cursor=pointer]
+                - button "Page 3" [ref=e619] [cursor=pointer]
+                - button "Page 4" [ref=e620] [cursor=pointer]
+                - button "Page 5" [ref=e621] [cursor=pointer]
+                - button "Page 6" [ref=e622] [cursor=pointer]
+              - generic [ref=e623]:
+                - button "Anterior" [disabled] [ref=e624]:
+                  - img [ref=e625]
+                - button "Siguiente" [ref=e628] [cursor=pointer]:
+                  - img [ref=e629]
+    - contentinfo [ref=e632]:
+      - generic [ref=e633]:
+        - generic [ref=e634]:
+          - generic [ref=e638]:
+            - generic [ref=e639]:
+              - generic:
+                - paragraph
+            - generic [ref=e641]:
+              - heading "Descubre" [level=2] [ref=e642]
+              - generic [ref=e643]:
+                - list [ref=e644]:
+                  - listitem [ref=e645]:
+                    - link "Barcelona Card" [ref=e646] [cursor=pointer]:
+                      - /url: https://mcprod.thisisbarcelona.com/
+                  - listitem [ref=e647]:
+                    - link "Arte y Cultura" [ref=e648] [cursor=pointer]:
+                      - /url: https://mcprod.thisisbarcelona.com/
+                  - listitem [ref=e649]:
+                    - link "Música y espectáculos" [ref=e650] [cursor=pointer]:
+                      - /url: https://mcprod.thisisbarcelona.com/
+                  - listitem [ref=e651]:
+                    - link "Aventura y aire libre" [ref=e652] [cursor=pointer]:
+                      - /url: https://mcprod.thisisbarcelona.com/
+                - list [ref=e653]:
+                  - listitem [ref=e654]:
+                    - link "Gastronomía" [ref=e655] [cursor=pointer]:
+                      - /url: https://mcprod.thisisbarcelona.com/
+                  - listitem [ref=e656]:
+                    - link "Movilidad y servicios" [ref=e657] [cursor=pointer]:
+                      - /url: https://mcprod.thisisbarcelona.com/
+          - generic:
+            - generic:
+              - generic:
+                - paragraph
+          - list [ref=e661]:
+            - listitem [ref=e662]:
+              - img "Logo Mastercard y Visa" [ref=e663]
+            - listitem [ref=e664]:
+              - img "Logo PayPal" [ref=e665]
+            - listitem [ref=e666]:
+              - img "Logo Amazon Pay" [ref=e667]
+        - list [ref=e671]:
+          - listitem [ref=e672]: ©Turisme de Barcelona
+          - listitem [ref=e673]:
+            - link "Información legal" [ref=e674] [cursor=pointer]:
+              - /url: https://mcprod.thisisbarcelona.com/
+          - listitem [ref=e675]:
+            - link "Política de privacidad" [ref=e676] [cursor=pointer]:
+              - /url: https://mcprod.thisisbarcelona.com/
+          - listitem [ref=e677]:
+            - link "Sistema interno de información" [ref=e678] [cursor=pointer]:
+              - /url: https://mcprod.thisisbarcelona.com/
+          - listitem [ref=e679]:
+            - link "Otras webs" [ref=e680] [cursor=pointer]:
+              - /url: https://mcprod.thisisbarcelona.com/
+          - listitem [ref=e681]:
+            - link "Condiciones de compra" [ref=e682] [cursor=pointer]:
+              - /url: https://mcprod.thisisbarcelona.com/
+          - listitem [ref=e683]:
+            - link "Mapa web" [ref=e684] [cursor=pointer]:
+              - /url: https://mcprod.thisisbarcelona.com/
+          - listitem [ref=e685]:
+            - link "Accesibilidad" [ref=e686] [cursor=pointer]:
+              - /url: https://mcprod.thisisbarcelona.com/
+  - dialog "About cookies on this site" [active] [ref=e688]:
+    - generic [ref=e689]:
+      - heading "About cookies on this site" [level=2] [ref=e690]:
+        - strong [ref=e691]: About cookies on this site
+      - paragraph [ref=e692]: We use cookies to collect and analyse information on site performance and usage, to provide social media features and to enhance and customise content and advertisements.
+      - paragraph [ref=e693]:
+        - link "Learn more" [ref=e694] [cursor=pointer]:
+          - /url: https://www.cookiehub.com/about-cookies
+    - generic [ref=e695]:
+      - button "Allow all cookies" [ref=e696] [cursor=pointer]
+      - button "Deny all" [ref=e697] [cursor=pointer]
+      - button "Cookie settings" [ref=e698] [cursor=pointer]
+    - generic [ref=e699]:
+      - text: Powered by
+      - link "CookieHub Consent Management" [ref=e700] [cursor=pointer]:
+        - /url: https://www.cookiehub.com/welcome
+```

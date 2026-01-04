@@ -1,0 +1,304 @@
+name: HAIDA CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: '18'
+  PYTHON_VERSION: '3.11'
+
+jobs:
+  backend-tests:
+    runs-on: ubuntu-latest
+    name: Backend Tests
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        
+    - name: Cache pip dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+          
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        
+    - name: Run linting
+      run: |
+        pip install flake8 black isort
+        flake8 app/ --max-line-length=88 --extend-ignore=E203,W503
+        black --check app/
+        isort --check-only app/
+        
+    - name: Run type checking
+      run: |
+        pip install mypy
+        mypy app/ --ignore-missing-imports
+        
+    - name: Run unit tests
+      run: |
+        pip install pytest pytest-cov pytest-asyncio httpx
+        pytest tests/ -v --cov=app --cov-report=xml --cov-report=html
+        
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./coverage.xml
+        flags: backend
+        name: backend-coverage
+        
+    - name: Security scan
+      run: |
+        pip install bandit safety
+        bandit -r app/ -f json -o bandit-report.json
+        safety check --json --output safety-report.json || true
+        
+    - name: Upload security reports
+      uses: actions/upload-artifact@v3
+      with:
+        name: security-reports
+        path: |
+          bandit-report.json
+          safety-report.json
+          
+  frontend-tests:
+    runs-on: ubuntu-latest
+    name: Frontend Tests
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+        cache-dependency-path: Figma/package-lock.json
+        
+    - name: Install frontend dependencies
+      working-directory: ./Figma
+      run: |
+        npm ci
+        
+    - name: Run ESLint
+      working-directory: ./Figma
+      run: |
+        npm run lint || true
+        
+    - name: Run type checking
+      working-directory: ./Figma
+      run: |
+        npm run type-check || true
+        
+    - name: Build frontend
+      working-directory: ./Figma
+      run: |
+        npm run build
+        
+    - name: Run E2E tests
+      working-directory: ./Figma
+      run: |
+        npx playwright install --with-deps
+        npm run test:e2e || true
+        
+    - name: Upload test results
+      uses: actions/upload-artifact@v3
+      with:
+        name: frontend-test-results
+        path: |
+          Figma/playwright-report/
+          Figma/coverage/
+          
+  integration-tests:
+    runs-on: ubuntu-latest
+    name: Integration Tests
+    needs: [backend-tests, frontend-tests]
+    
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: haida_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+          
+      redis:
+        image: redis:7-alpine
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 6379:6379
+          
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        
+    - name: Setup test database
+      run: |
+        pip install psycopg2-binary
+        python -c "
+        import psycopg2
+        conn = psycopg2.connect('dbname=haida_test user=postgres password=postgres host=localhost port=5432')
+        cur = conn.cursor()
+        cur.execute('CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\";')
+        conn.commit()
+        conn.close()
+        "
+        
+    - name: Run database migrations
+      run: |
+        psql 'dbname=haida_test user=postgres password=postgres host=localhost port=5432' -f database/01-schema-haida.sql
+        
+    - name: Run integration tests
+      env:
+        DATABASE_URL: postgresql://postgres:postgres@localhost:5432/haida_test
+        REDIS_URL: redis://localhost:6379
+        SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+        SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        JWT_SECRET: test-secret-key
+      run: |
+        pip install pytest pytest-asyncio
+        pytest tests/integration/ -v || true
+        
+  deploy-backend:
+    runs-on: ubuntu-latest
+    name: Deploy Backend
+    needs: [backend-tests, frontend-tests, integration-tests]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Deploy to Vercel
+      uses: amondnet/vercel-action@v25
+      with:
+        vercel-token: ${{ secrets.VERCEL_TOKEN }}
+        vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+        vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+        vercel-args: '--prod'
+        
+  deploy-frontend:
+    runs-on: ubuntu-latest
+    name: Deploy Frontend
+    needs: [backend-tests, frontend-tests, integration-tests]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+        cache-dependency-path: Figma/package-lock.json
+        
+    - name: Install dependencies
+      working-directory: ./Figma
+      run: npm ci
+      
+    - name: Build frontend
+      working-directory: ./Figma
+      run: npm run build
+      env:
+        VITE_API_URL: ${{ secrets.PRODUCTION_API_URL }}
+        VITE_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+        VITE_SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        
+    - name: Deploy to Vercel
+      uses: amondnet/vercel-action@v25
+      with:
+        vercel-token: ${{ secrets.VERCEL_TOKEN }}
+        vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+        vercel-project-id: ${{ secrets.VERCEL_FRONTEND_PROJECT_ID }}
+        working-directory: ./Figma
+        vercel-args: '--prod'
+        
+  post-deploy-tests:
+    runs-on: ubuntu-latest
+    name: Post-deploy Tests
+    needs: [deploy-backend, deploy-frontend]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        
+    - name: Install Newman
+      run: npm install -g newman
+      
+    - name: Run API smoke tests
+      run: |
+        newman run tests/api/collection.json \
+          --environment tests/api/production.postman_environment.json \
+          --reporters cli,junit \
+          --reporter-junit-export newman-results.xml
+      env:
+        API_URL: ${{ secrets.PRODUCTION_API_URL }}
+        
+    - name: Upload post-deploy results
+      uses: actions/upload-artifact@v3
+      with:
+        name: post-deploy-results
+        path: newman-results.xml
+        
+  notify:
+    runs-on: ubuntu-latest
+    name: Notify Results
+    needs: [post-deploy-tests]
+    if: always()
+    
+    steps:
+    - name: Notify success
+      if: needs.post-deploy-tests.result == 'success'
+      run: |
+        echo "✅ HAIDA deployed successfully!"
+        # Add Slack/Teams notification here if needed
+        
+    - name: Notify failure
+      if: needs.post-deploy-tests.result == 'failure'
+      run: |
+        echo "❌ HAIDA deployment failed!"
+        # Add Slack/Teams notification here if needed

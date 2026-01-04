@@ -2,109 +2,114 @@ version: '3.8'
 
 services:
   # FastAPI Backend
-  api:
-    build: .
-    container_name: haida-api
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - NODE_ENV=${NODE_ENV:-development}
+    container_name: haida-backend
     ports:
-      - "8000:8000"
-    env_file:
-      - .env
+      - "${PORT:-8000}:8000"
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
     environment:
-      DATABASE_URL: postgresql://postgres:postgres123@postgres:5432/haida
-      REDIS_URL: redis://redis:6379
-    volumes:
-      - ./app:/app/app
-      - ./tests:/app/tests
-      - ./allure-results:/app/allure-results
-      - ./allure-reports:/app/allure-reports
-    depends_on:
-      - postgres
-      - redis
-    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
-    networks:
-      - haida-network
+      # App Config
+      - APP_NAME=HAIDA
+      - NODE_ENV=${NODE_ENV:-development}
+      - PORT=8000
 
-  # PostgreSQL Database
-  postgres:
-    image: postgres:15-alpine
-    container_name: haida-postgres
-    environment:
-      POSTGRES_DB: haida
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres123
-    ports:
-      - "5432:5432"
+      # CORS - Required validation
+      - CORS_ORIGINS=${CORS_ORIGINS:?CORS_ORIGINS is required}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS:-localhost,127.0.0.1}
+
+      # Supabase - Required validation
+      - SUPABASE_URL=${SUPABASE_URL:?SUPABASE_URL is required}
+      - SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY:?SUPABASE_ANON_KEY is required}
+      - SUPABASE_SERVICE_ROLE_KEY=${SUPABASE_SERVICE_ROLE_KEY:?SUPABASE_SERVICE_ROLE_KEY is required}
+
+      # Database - Required validation
+      - DATABASE_URL=${DATABASE_URL:?DATABASE_URL is required}
+      - POSTGRES_HOST=${POSTGRES_HOST:?POSTGRES_HOST is required}
+      - POSTGRES_PORT=${POSTGRES_PORT:-5432}
+      - POSTGRES_DATABASE=${POSTGRES_DATABASE:?POSTGRES_DATABASE is required}
+      - POSTGRES_USER=${POSTGRES_USER:?POSTGRES_USER is required}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}
+
+      # Redis
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379}
+
+      # Microsoft Entra ID - Required validation
+      - AZURE_CLIENT_ID=${AZURE_CLIENT_ID:?AZURE_CLIENT_ID is required}
+      - AZURE_TENANT_ID=${AZURE_TENANT_ID:?AZURE_TENANT_ID is required}
+      - AZURE_CLIENT_SECRET=${AZURE_CLIENT_SECRET:?AZURE_CLIENT_SECRET is required}
+
+      # JWT - Required validation
+      - JWT_SECRET=${JWT_SECRET:?JWT_SECRET is required (minimum 32 characters)}
+      - JWT_ALGORITHM=${JWT_ALGORITHM:-HS256}
+      - ACCESS_TOKEN_EXPIRE_MINUTES=${ACCESS_TOKEN_EXPIRE_MINUTES:-30}
+      - REFRESH_TOKEN_EXPIRE_DAYS=${REFRESH_TOKEN_EXPIRE_DAYS:-7}
+
+      # Rate Limiting
+      - RATE_LIMIT_MAX_REQUESTS=${RATE_LIMIT_MAX_REQUESTS:-100}
+      - RATE_LIMIT_WINDOW_MS=${RATE_LIMIT_WINDOW_MS:-900000}
+
+      # Logging
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - REQUEST_ID_HEADER=X-Request-Id
+
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - ./app:/app/app:ro
+      - ./.env:/app/.env:ro
+    depends_on:
+      redis:
+        condition: service_healthy
     networks:
       - haida-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /run
 
   # Redis Cache
   redis:
     image: redis:7-alpine
     container_name: haida-redis
     ports:
-      - "6379:6379"
+      - "${REDIS_PORT:-6379}:6379"
     volumes:
       - redis-data:/data
     networks:
       - haida-network
-
-  # Telegram Bot
-  bot:
-    build: .
-    container_name: haida-bot
-    env_file:
-      - .env
-    command: python3 scripts/telegram_bot_v2.py
-    depends_on:
-      - api
     restart: unless-stopped
-    networks:
-      - haida-network
-
-  # Playwright (Test Runner)
-  playwright:
-    image: mcr.microsoft.com/playwright:v1.41.0-jammy
-    container_name: haida-playwright
-    volumes:
-      - ./tests/playwright:/tests
-      - ./allure-results:/allure-results
-    working_dir: /tests
-    command: tail -f /dev/null
-    networks:
-      - haida-network
-
-  # Newman (API Tests)
-  newman:
-    image: postman/newman:latest
-    container_name: haida-newman
-    volumes:
-      - ./tests/newman:/etc/newman
-      - ./allure-results:/allure-results
-    command: tail -f /dev/null
-    networks:
-      - haida-network
-
-  # Allure Reports
-  allure:
-    image: frankescobar/allure-docker-service:latest
-    container_name: haida-allure
-    ports:
-      - "5050:5050"
-    environment:
-      CHECK_RESULTS_EVERY_SECONDS: 3
-      KEEP_HISTORY: 1
-    volumes:
-      - ./allure-results:/app/allure-results
-      - ./allure-reports:/app/allure-reports
-    networks:
-      - haida-network
+    command: >
+      redis-server
+      --appendonly yes
+      --requirepass ${REDIS_PASSWORD:-}
+      --maxmemory 256mb
+      --maxmemory-policy allkeys-lru
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    security_opt:
+      - no-new-privileges:true
 
 networks:
   haida-network:
     driver: bridge
 
 volumes:
-  postgres-data:
   redis-data:

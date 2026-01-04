@@ -1,0 +1,194 @@
+version: '3.8'
+
+# HAIDA Change Detection System - Docker Compose Configuration
+# Este archivo debe estar en la raíz del proyecto HAIDA
+
+services:
+  # ============================================
+  # Changedetection.io - Monitoreo de cambios en UI
+  # ============================================
+  changedetection:
+    image: ghcr.io/dgtlmoon/changedetection.io:latest
+    container_name: haida-changedetection
+    ports:
+      - "5000:5000"
+    volumes:
+      - changedetection_data:/datastore
+      - ./change-detection/config.json:/app/changedetection/config.json:ro
+    environment:
+      - WEBHOOK_VERIFY_SSL=false
+      - FETCH_BACKEND=selenium
+      - PLAYWRIGHT_INSTALL=1
+    networks:
+      - haida-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # ============================================
+  # Selenium Hub - Browser automation
+  # ============================================
+  selenium:
+    image: selenium/standalone-chrome:latest
+    container_name: haida-selenium
+    ports:
+      - "4444:4444"
+    volumes:
+      - /dev/shm:/dev/shm
+    environment:
+      - SE_NODE_MAX_SESSIONS=5
+      - SE_NODE_SESSION_TIMEOUT=300
+    networks:
+      - haida-network
+    restart: unless-stopped
+    shm_size: '2gb'
+
+  # ============================================
+  # HAIDA API - Webhook receiver & test orchestrator
+  # ============================================
+  haida-api:
+    build:
+      context: ./change-detection
+      dockerfile: Dockerfile
+    container_name: haida-api
+    ports:
+      - "${PORT:-3001}:3001"
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=${NODE_ENV:-production}
+      - PORT=3001
+      - CHANGEDETECTION_URL=http://changedetection:5000
+      - DB_HOST=postgres
+      - REDIS_HOST=redis
+      - ALLURE_URL=http://allure:4040
+    depends_on:
+      changedetection:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    volumes:
+      - ./haida-api:/app
+      - ./tests:/app/tests
+      - ./test-results:/app/test-results
+      - ./reports:/app/reports
+      - ./logs:/app/logs
+    networks:
+      - haida-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3001/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1); })"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # ============================================
+  # PostgreSQL - Test results storage
+  # ============================================
+  postgres:
+    image: postgres:15-alpine
+    container_name: haida-postgres
+    environment:
+      - POSTGRES_DB=${DB_NAME:-haida_results}
+      - POSTGRES_USER=${DB_USER:-haida_user}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_INITDB_ARGS=--encoding=UTF-8
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./change-detection/init-db.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    networks:
+      - haida-network
+    restart: unless-stopped
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-haida_user} -d ${DB_NAME:-haida_results}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ============================================
+  # Redis - Caching & session management
+  # ============================================
+  redis:
+    image: redis:7-alpine
+    container_name: haida-redis
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    command: >
+      redis-server
+      --appendonly yes
+      --appendfilename "appendonly.aof"
+      --requirepass "${REDIS_PASSWORD:-}"
+    volumes:
+      - redis_data:/data
+    networks:
+      - haida-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ============================================
+  # Allure - Test reporting dashboard
+  # ============================================
+  allure:
+    image: frankescobar/allure-docker-service:latest
+    container_name: haida-allure
+    ports:
+      - "4040:4040"
+      - "4041:4041"
+    environment:
+      - CHECK_RESULTS_EVERY_SECONDS=5
+      - KEEP_HISTORY=1
+      - KEEP_HISTORY_LATEST=25
+    volumes:
+      - ./test-results/allure:/app/allure-results
+      - ./reports/allure:/app/allure-report
+    networks:
+      - haida-network
+    restart: unless-stopped
+
+# ============================================
+# NETWORKS
+# ============================================
+networks:
+  haida-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+# ============================================
+# VOLUMES
+# ============================================
+volumes:
+  changedetection_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./data/changedetection
+
+  postgres_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./data/postgres
+
+  redis_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./data/redis

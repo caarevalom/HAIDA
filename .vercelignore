@@ -1,0 +1,51 @@
+# Vercel Ignore File - HAIDA
+
+# Node modules
+node_modules/
+
+# Test results
+test-results/
+playwright-report/
+allure-results/
+allure-report/
+reports/
+
+# Environment files (use Vercel dashboard for env vars)
+.env
+.env.local
+.env.development
+.env.test
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Docker
+docker-compose.yml
+Dockerfile
+.dockerignore
+
+# Documentation (not needed in deployment)
+*.md
+!README.md
+
+# Scripts
+*.ps1
+*.sh
+
+# Database
+database/
+
+# Examples
+examples/
+demos/

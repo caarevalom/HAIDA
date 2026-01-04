@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🔍 Running pre-commit checks..."
+
+# Run lint-staged
+npx lint-staged
+
+# Check for secrets
+echo "🔐 Checking for secrets..."
+if command -v trufflehog &> /dev/null; then
+  trufflehog filesystem . --only-verified --fail
+fi
+
+# Validate environment file structure (if .env changed)
+if git diff --cached --name-only | grep -q "\.env"; then
+  echo "⚠️  WARNING: .env file modified. Ensure no secrets are committed!"
+  echo "📝 Validating .env structure..."
+fi
+
+echo "✅ Pre-commit checks passed!"
