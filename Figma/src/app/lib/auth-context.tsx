@@ -13,6 +13,7 @@ const supabaseAnonKey =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndkZWJ5eHZ0dW5yb21zbmtxYnJkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzQxMzQzODYsImV4cCI6MjA0OTcxMDM4Nn0.wZ_3yV0gPOT-gG3vLRBt9Gv-VRgp7qfz8lJWr0YCcbM';
 
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
+const ENTRA_STATE_KEY = 'haida_entra_state';
 
 interface AuthContextType {
   user: User | null;
@@ -43,51 +44,47 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const initAuth = async () => {
       try {
-        // Check for OAuth session from Supabase (Microsoft login)
-        const {
-          data: { session },
-        } = await supabase.auth.getSession();
+        const params = new URLSearchParams(window.location.search);
+        const code = params.get('code');
+        const errorParam = params.get('error');
+        const errorDescription = params.get('error_description');
+        const stateParam = params.get('state');
 
-        if (session?.user) {
-          // User logged in with Microsoft OAuth
-          console.log('Microsoft OAuth session detected:', session.user.email);
+        if (code || errorParam) {
+          if (errorParam) {
+            const message = decodeURIComponent(errorDescription || errorParam);
+            setError(message);
+            localStorage.removeItem(ENTRA_STATE_KEY);
+            window.history.replaceState({}, document.title, window.location.origin);
+            return;
+          }
 
-          // Create/sync user in our backend
+          const storedState = localStorage.getItem(ENTRA_STATE_KEY);
+          const state = stateParam || storedState || undefined;
+          const response = await authApi.microsoftCallback(code as string, state || undefined);
+          if (response.user) {
+            setUser(response.user as User);
+          }
+          if (state) {
+            localStorage.removeItem(ENTRA_STATE_KEY);
+          }
+          window.history.replaceState({}, document.title, window.location.origin);
+          return;
+        }
+
+        // Check for email/password auth token
+        const token = storage.getToken();
+        const storedUser = storage.getStoredUser();
+
+        if (token && storedUser) {
           try {
-            // Try to get existing user from backend
             const currentUser = await authApi.getCurrentUser();
             setUser(currentUser);
             storage.setUser(currentUser);
           } catch (err) {
-            // User doesn't exist in backend, create it
-            console.log('Creating user from Microsoft OAuth session');
-            // For now, we'll set a basic user object from Supabase data
-            const oauthUser = {
-              id: session.user.id,
-              email: session.user.email || '',
-              name: session.user.user_metadata?.full_name || session.user.email || 'Microsoft User',
-              role: 'viewer',
-              is_active: true,
-              created_at: new Date().toISOString(),
-            };
-            setUser(oauthUser);
-            storage.setUser(oauthUser);
-          }
-        } else {
-          // Check for email/password auth token
-          const token = storage.getToken();
-          const storedUser = storage.getStoredUser();
-
-          if (token && storedUser) {
-            try {
-              const currentUser = await authApi.getCurrentUser();
-              setUser(currentUser);
-              storage.setUser(currentUser);
-            } catch (err) {
-              console.error('Token validation failed:', err);
-              storage.clear();
-              setUser(null);
-            }
+            console.error('Token validation failed:', err);
+            storage.clear();
+            setUser(null);
           }
         }
       } catch (err) {
@@ -99,34 +96,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     };
 
     initAuth();
-
-    // Listen for auth state changes from Supabase
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange(async (event, session) => {
-      console.log('Supabase auth state changed:', event);
-
-      if (event === 'SIGNED_IN' && session?.user) {
-        // User signed in with Microsoft
-        const oauthUser = {
-          id: session.user.id,
-          email: session.user.email || '',
-          name: session.user.user_metadata?.full_name || session.user.email || 'Microsoft User',
-          role: 'viewer',
-          is_active: true,
-          created_at: new Date().toISOString(),
-        };
-        setUser(oauthUser);
-        storage.setUser(oauthUser);
-      } else if (event === 'SIGNED_OUT') {
-        setUser(null);
-        storage.clear();
-      }
-    });
-
-    return () => {
-      subscription.unsubscribe();
-    };
   }, []);
 
   const refreshUser = async () => {
@@ -201,22 +170,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setIsLoading(true);
       setError(null);
 
-      // Use Supabase OAuth for Microsoft
-      const { data, error } = await supabase.auth.signInWithOAuth({
-        provider: 'azure',
-        options: {
-          redirectTo: `${window.location.origin}`,
-          scopes: 'openid email profile',
-        },
-      });
-
-      if (error) {
-        setError(error.message);
-        return { success: false, error: error.message };
+      const login = await authApi.microsoftLogin();
+      if (!login?.auth_url) {
+        setError('Microsoft SSO is not configured');
+        return { success: false, error: 'Microsoft SSO is not configured' };
       }
 
-      // OAuth will redirect to Microsoft, then back to the app
-      // The actual user creation happens in the callback
+      if (login.state) {
+        localStorage.setItem(ENTRA_STATE_KEY, login.state);
+      }
+      window.location.href = login.auth_url;
       return { success: true };
     } catch (err: any) {
       const errorMessage = err.message || 'Microsoft sign-in failed';

@@ -256,7 +256,7 @@ export const db = {
     let query = supabase
       .from('test_executions')
       .select('*')
-      .order('created_at', { ascending: false });
+      .order('started_at', { ascending: false });
 
     if (projectId) {
       query = query.eq('project_id', projectId);

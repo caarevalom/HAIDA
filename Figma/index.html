@@ -6,6 +6,15 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>HAIDA - AI-Driven QA Automation</title>
 
+      <!-- DNS Prefetch & Preconnect for faster external resource loading -->
+      <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+      <link rel="dns-prefetch" href="https://wdebyxvtunromsnkqbrd.supabase.co" />
+      <link rel="preconnect" href="https://wdebyxvtunromsnkqbrd.supabase.co" crossorigin />
+
+      <!-- Preload Critical Resources -->
+      <link rel="modulepreload" href="/src/main.tsx" />
+      <link rel="preload" href="/manifest.json" as="fetch" crossorigin />
+
       <!-- PWA Configuration -->
       <link rel="manifest" href="/manifest.json" />
       <meta name="theme-color" content="#000000" />
@@ -26,6 +35,23 @@
 
       <!-- iOS Specific -->
       <link rel="apple-touch-startup-image" href="/icon-512x512.png" />
+
+      <!-- Critical CSS Inline for Faster First Paint -->
+      <style>
+        /* Critical above-the-fold styles */
+        *,::before,::after{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}
+        html{line-height:1.5;-webkit-text-size-adjust:100%;tab-size:4;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif}
+        body{margin:0;line-height:inherit;overflow:hidden;width:100%;height:100%}
+        #root{height:100vh;width:100vw;overflow:hidden}
+
+        /* Loading spinner for lazy components */
+        @keyframes spin{to{transform:rotate(360deg)}}
+        .animate-spin{animation:spin 1s linear infinite}
+
+        /* Prevent layout shift */
+        img,video{max-width:100%;height:auto;display:block}
+        img[loading="lazy"]{min-height:1px}
+      </style>
     </head>
 
     <body>
