@@ -1,6 +1,7 @@
 {
   "name": "HAIDA - AI-Driven QA Automation",
   "short_name": "HAIDA",
+  "version": "2.0.0",
   "description": "Comprehensive QA automation platform with AI-powered test generation and multi-platform testing capabilities",
   "start_url": "/",
   "display": "standalone",
