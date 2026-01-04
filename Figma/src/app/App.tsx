@@ -1,18 +1,20 @@
 import { ThemeProvider } from './components/theme-provider';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
-import { Dashboard } from './pages/Dashboard';
-import { Chat } from './pages/Chat';
-import { Login } from './pages/Login';
-import { Documentation } from './pages/Documentation';
-import { Projects } from './pages/Projects';
-import { Designer } from './pages/Designer';
-import { Executor } from './pages/Executor';
-import { Reporter } from './pages/Reporter';
-import { Profile } from './pages/Profile';
-import { StyleGuide } from './components/StyleGuide';
 import { ProtectedRoute } from './components/ProtectedRoute';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
+
+// Lazy load pages for better code splitting
+const Dashboard = lazy(() => import('./pages/Dashboard').then(m => ({ default: m.Dashboard })));
+const Chat = lazy(() => import('./pages/Chat').then(m => ({ default: m.Chat })));
+const Login = lazy(() => import('./pages/Login').then(m => ({ default: m.Login })));
+const Documentation = lazy(() => import('./pages/Documentation').then(m => ({ default: m.Documentation })));
+const Projects = lazy(() => import('./pages/Projects').then(m => ({ default: m.Projects })));
+const Designer = lazy(() => import('./pages/Designer').then(m => ({ default: m.Designer })));
+const Executor = lazy(() => import('./pages/Executor').then(m => ({ default: m.Executor })));
+const Reporter = lazy(() => import('./pages/Reporter').then(m => ({ default: m.Reporter })));
+const Profile = lazy(() => import('./pages/Profile').then(m => ({ default: m.Profile })));
+const StyleGuide = lazy(() => import('./components/StyleGuide').then(m => ({ default: m.StyleGuide })));
 import { Home, Folder, MessageSquare, PenTool, PlayCircle, BarChart3 } from 'lucide-react';
 import { cn } from './components/ui/utils';
 import { DataProvider } from './lib/data-context';
@@ -176,7 +178,15 @@ export default function App() {
                       isLoginPage ? '' : 'pb-20 md:pb-0'
                     )}
                   >
-                    {renderPage()}
+                    <Suspense
+                      fallback={
+                        <div className="flex items-center justify-center h-full">
+                          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+                        </div>
+                      }
+                    >
+                      {renderPage()}
+                    </Suspense>
                   </main>
                 </div>
 
