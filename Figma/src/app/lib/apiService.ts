@@ -4,7 +4,7 @@
  */
 
 // API Configuration
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://haida-one.vercel.app';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://haidapi.stayarta.com';
 
 // Token management
 const TOKEN_KEY = 'haida_auth_token';
@@ -32,6 +32,19 @@ export interface TokenResponse {
     name: string;
     role: string;
   };
+}
+
+export interface EntraLoginResponse {
+  auth_url: string;
+  redirect_uri: string;
+  scopes: string[];
+  configured: boolean;
+  state?: string;
+}
+
+export interface EntraTokenResponse extends TokenResponse {
+  microsoft_token?: string;
+  microsoft_refresh_token?: string;
 }
 
 export interface User {
@@ -258,6 +271,33 @@ export const authApi = {
       // Always clear local storage, even if API call fails
       storage.clear();
     }
+  },
+
+  /**
+   * Start Microsoft Entra login flow
+   */
+  async microsoftLogin(): Promise<EntraLoginResponse> {
+    return apiClient.get<EntraLoginResponse>('/entra/login');
+  },
+
+  /**
+   * Exchange Entra auth code for HAIDA token
+   */
+  async microsoftCallback(code: string, state?: string): Promise<EntraTokenResponse> {
+    const payload: { code: string; state?: string } = { code };
+    if (state) {
+      payload.state = state;
+    }
+    const response = await apiClient.post<EntraTokenResponse>('/entra/callback', payload);
+
+    if (response.access_token) {
+      storage.setToken(response.access_token);
+    }
+    if (response.user) {
+      storage.setUser(response.user as User);
+    }
+
+    return response;
   },
 
   /**
