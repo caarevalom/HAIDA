@@ -3,8 +3,8 @@
  * Tests all realtime functionality in production environment
  */
 
-const { createClient } = require('@supabase/supabase-js')
-const { test, expect } = require('@playwright/test')
+import { createClient } from '@supabase/supabase-js'
+import { test, expect } from '@playwright/test'
 
 // Test configuration
 const SUPABASE_URL = process.env.VITE_SUPABASE_URL || 'your_supabase_url'
