@@ -6,7 +6,8 @@ from datetime import datetime
 import uuid
 import re
 from app.core.supabase_client import get_supabase_client
-from app.core.tenants import resolve_tenant_id
+from app.core.tenants import resolve_tenant_id, require_tenant_membership
+from app.core.request_context import get_user_id
 
 router = APIRouter()
 
@@ -50,6 +51,8 @@ async def list_projects(
     tenant_id = resolve_tenant_id(request) or request.headers.get("X-Tenant-Id")
     if not tenant_id:
         raise HTTPException(status_code=400, detail="Tenant id required")
+    user_id = get_user_id(request)
+    require_tenant_membership(tenant_id, user_id)
 
     supabase = get_supabase_client()
 
@@ -71,6 +74,8 @@ async def create_project(request: Request, project: ProjectCreate):
     tenant_id = resolve_tenant_id(request) or request.headers.get("X-Tenant-Id")
     if not tenant_id:
         raise HTTPException(status_code=400, detail="Tenant id required")
+    user_id = get_user_id(request)
+    require_tenant_membership(tenant_id, user_id)
     if not project.base_url:
         raise HTTPException(status_code=400, detail="base_url is required")
 
@@ -110,6 +115,8 @@ async def get_project(request: Request, project_id: str):
     tenant_id = resolve_tenant_id(request) or request.headers.get("X-Tenant-Id")
     if not tenant_id:
         raise HTTPException(status_code=400, detail="Tenant id required")
+    user_id = get_user_id(request)
+    require_tenant_membership(tenant_id, user_id)
 
     supabase = get_supabase_client()
 
@@ -132,6 +139,8 @@ async def update_project(request: Request, project_id: str, project: ProjectCrea
     tenant_id = resolve_tenant_id(request) or request.headers.get("X-Tenant-Id")
     if not tenant_id:
         raise HTTPException(status_code=400, detail="Tenant id required")
+    user_id = get_user_id(request)
+    require_tenant_membership(tenant_id, user_id)
 
     supabase = get_supabase_client()
     payload = {
@@ -159,6 +168,8 @@ async def delete_project(request: Request, project_id: str):
     tenant_id = resolve_tenant_id(request) or request.headers.get("X-Tenant-Id")
     if not tenant_id:
         raise HTTPException(status_code=400, detail="Tenant id required")
+    user_id = get_user_id(request)
+    require_tenant_membership(tenant_id, user_id)
 
     supabase = get_supabase_client()
     result = supabase.table('projects')\
@@ -172,15 +183,31 @@ async def delete_project(request: Request, project_id: str):
     return {"message": "Project archived successfully"}
 
 @router.get("/{project_id}/test-suites")
-async def list_test_suites(project_id: str):
+async def list_test_suites(request: Request, project_id: str):
     """
     List test suites for a project
     """
+    tenant_id = get_tenant_id(request)
+    user_id = get_user_id(request)
+    require_tenant_membership(tenant_id, user_id)
+
     supabase = get_supabase_client()
+
+    # Verify project belongs to tenant
+    project = supabase.table('projects')\
+        .select('id')\
+        .eq('id', project_id)\
+        .eq('tenant_id', tenant_id)\
+        .limit(1)\
+        .execute()
+
+    if not project.data:
+        raise HTTPException(status_code=404, detail="Project not found")
 
     result = supabase.table('test_suites')\
         .select('*')\
         .eq('project_id', project_id)\
+        .eq('tenant_id', tenant_id)\
         .order('created_at', desc=True)\
         .execute()
 

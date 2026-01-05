@@ -30,3 +30,4 @@ def execute(sql: str, params: tuple = ()):
     with get_conn() as conn:
         with conn.cursor() as cur:
             cur.execute(sql, params)
+        conn.commit()  # Ensure changes persist

@@ -1,7 +1,7 @@
 """
 Test Scripts management endpoints
 """
-from fastapi import APIRouter, HTTPException, Depends, status
+from fastapi import APIRouter, HTTPException, Depends, status, Header
 from pydantic import BaseModel
 from typing import List, Optional
 from datetime import datetime
@@ -82,7 +82,7 @@ async def list_scripts(
     status: Optional[str] = None,
     page: int = 1,
     per_page: int = 20,
-    authorization: str = None
+    authorization: str = Header(None)
 ):
     """List scripts with filters and pagination"""
     user_id = await get_current_user_id(authorization)
@@ -146,7 +146,7 @@ async def list_scripts(
     )
 
 @router.post("", response_model=Script)
-async def create_script(script: ScriptCreate, authorization: str = None):
+async def create_script(script: ScriptCreate, authorization: str = Header(None)):
     """Create new test script"""
     user_id = await get_current_user_id(authorization)
     
@@ -234,7 +234,7 @@ async def create_script(script: ScriptCreate, authorization: str = None):
         )
 
 @router.get("/{script_id}", response_model=Script)
-async def get_script(script_id: str, authorization: str = None):
+async def get_script(script_id: str, authorization: str = Header(None)):
     """Get specific script by ID"""
     user_id = await get_current_user_id(authorization)
     
@@ -263,7 +263,7 @@ async def get_script(script_id: str, authorization: str = None):
     return Script(**script_data)
 
 @router.put("/{script_id}", response_model=Script)
-async def update_script(script_id: str, script_update: ScriptUpdate, authorization: str = None):
+async def update_script(script_id: str, script_update: ScriptUpdate, authorization: str = Header(None)):
     """Update existing script"""
     user_id = await get_current_user_id(authorization)
     
@@ -358,7 +358,7 @@ async def update_script(script_id: str, script_update: ScriptUpdate, authorizati
         )
 
 @router.delete("/{script_id}")
-async def delete_script(script_id: str, authorization: str = None):
+async def delete_script(script_id: str, authorization: str = Header(None)):
     """Delete script"""
     user_id = await get_current_user_id(authorization)
     
@@ -386,7 +386,7 @@ async def delete_script(script_id: str, authorization: str = None):
         )
 
 @router.post("/{script_id}/run")
-async def run_script(script_id: str, authorization: str = None):
+async def run_script(script_id: str, authorization: str = Header(None)):
     """Execute script - creates a test execution record"""
     user_id = await get_current_user_id(authorization)
     

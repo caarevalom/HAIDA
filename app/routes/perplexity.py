@@ -1,12 +1,11 @@
-"""AI Chat endpoints - Copilot Studio integration"""
-from fastapi import APIRouter, HTTPException, Request
+"""Perplexity AI Chat Integration for HAIDA"""
+from fastapi import APIRouter, HTTPException, Request, Header
 from pydantic import BaseModel
-from typing import List, Optional
+from typing import List, Optional, Dict, Any
 from datetime import datetime
 import uuid
 import asyncio
 import os
-import time
 import httpx
 from app.core.supabase_client import get_supabase_client
 from app.core.request_context import get_tenant_id, get_user_id
@@ -14,12 +13,19 @@ from app.core.tenants import require_tenant_membership
 from app.core.limiter import rate_limit
 
 router = APIRouter()
-DIRECT_LINE_DEFAULT_ENDPOINT = os.environ.get("DIRECT_LINE_ENDPOINT", "https://directline.botframework.com/v3/directline")
-DIRECT_LINE_SECRET = os.environ.get("DIRECT_LINE_SECRET", "")
+
+# Perplexity Configuration
+PERPLEXITY_API_KEY = os.environ.get("PERPLEXITY_API_KEY", "")
+PERPLEXITY_BASE_URL = os.environ.get("PERPLEXITY_BASE_URL", "https://api.perplexity.ai")
+PERPLEXITY_MODEL = os.environ.get("PERPLEXITY_MODEL", "llama-2-70b-chat")
+PERPLEXITY_MAX_TOKENS = int(os.environ.get("PERPLEXITY_MAX_TOKENS", "2048"))
+
+# Verificar si Perplexity está configurado
+PERPLEXITY_CONFIGURED = bool(PERPLEXITY_API_KEY)
 
 class MessageCreate(BaseModel):
     content: str
-    provider: Optional[str] = "copilot-studio"
+    provider: Optional[str] = "perplexity"
 
 class Message(BaseModel):
     id: str
@@ -41,24 +47,23 @@ class ProviderSummary(BaseModel):
     provider: str
     is_active: bool
     config: dict
-    has_direct_line_secret: bool
+    has_api_key: bool
     usage_limits: dict
 
 class ProviderUpdate(BaseModel):
     is_active: Optional[bool] = None
-    direct_line_secret: Optional[str] = None
-    direct_line_endpoint: Optional[str] = None
+    api_key: Optional[str] = None
+    model: Optional[str] = None
+    max_tokens: Optional[int] = None
 
-def _normalize_endpoint(endpoint: str) -> str:
-    return endpoint.rstrip("/")
-
-async def _get_copilot_config(supabase, tenant_id: str) -> tuple[str, str]:
+async def _get_perplexity_config(supabase, tenant_id: str) -> tuple[str, str, int]:
+    """Get Perplexity configuration from database or environment"""
     config = {}
     try:
         result = supabase.table("chat_providers")\
             .select("config")\
             .eq("tenant_id", tenant_id)\
-            .eq("provider", "copilot-studio")\
+            .eq("provider", "perplexity")\
             .limit(1)\
             .execute()
         if result.data:
@@ -66,9 +71,10 @@ async def _get_copilot_config(supabase, tenant_id: str) -> tuple[str, str]:
     except Exception:
         config = {}
 
-    secret = config.get("direct_line_secret") or DIRECT_LINE_SECRET
-    endpoint = config.get("direct_line_endpoint") or DIRECT_LINE_DEFAULT_ENDPOINT
-    return secret, _normalize_endpoint(endpoint)
+    api_key = config.get("api_key") or PERPLEXITY_API_KEY
+    model = config.get("model") or PERPLEXITY_MODEL
+    max_tokens = int(config.get("max_tokens") or PERPLEXITY_MAX_TOKENS)
+    return api_key, model, max_tokens
 
 def _sanitize_provider_row(row: dict) -> dict:
     config = row.get("config") or {}
@@ -76,14 +82,16 @@ def _sanitize_provider_row(row: dict) -> dict:
         "provider": row.get("provider"),
         "is_active": row.get("is_active", True),
         "config": {
-            "direct_line_endpoint": config.get("direct_line_endpoint") or DIRECT_LINE_DEFAULT_ENDPOINT,
+            "model": config.get("model") or PERPLEXITY_MODEL,
+            "max_tokens": int(config.get("max_tokens") or PERPLEXITY_MAX_TOKENS),
         },
-        "has_direct_line_secret": bool(config.get("direct_line_secret") or DIRECT_LINE_SECRET),
+        "has_api_key": bool(config.get("api_key") or PERPLEXITY_API_KEY),
         "usage_limits": row.get("usage_limits") or {},
     }
 
 @router.get("/providers", response_model=List[ProviderSummary])
 async def list_providers(request: Request):
+    """List available chat providers"""
     tenant_id = get_tenant_id(request)
     user_id = get_user_id(request)
     require_tenant_membership(tenant_id, user_id)
@@ -98,10 +106,13 @@ async def list_providers(request: Request):
     if not providers:
         providers = [
             {
-                "provider": "copilot-studio",
-                "is_active": True,
-                "config": {"direct_line_endpoint": DIRECT_LINE_DEFAULT_ENDPOINT},
-                "has_direct_line_secret": bool(DIRECT_LINE_SECRET),
+                "provider": "perplexity",
+                "is_active": PERPLEXITY_CONFIGURED,
+                "config": {
+                    "model": PERPLEXITY_MODEL,
+                    "max_tokens": PERPLEXITY_MAX_TOKENS,
+                },
+                "has_api_key": PERPLEXITY_CONFIGURED,
                 "usage_limits": {},
             }
         ]
@@ -109,11 +120,12 @@ async def list_providers(request: Request):
 
 @router.put("/providers/{provider}", response_model=ProviderSummary)
 async def update_provider(request: Request, provider: str, payload: ProviderUpdate):
+    """Update chat provider configuration"""
     tenant_id = get_tenant_id(request)
     user_id = get_user_id(request)
     require_tenant_membership(tenant_id, user_id)
 
-    if provider not in {"copilot-studio", "openai", "anthropic"}:
+    if provider not in {"perplexity", "copilot-studio", "openai", "anthropic"}:
         raise HTTPException(status_code=400, detail="Unsupported provider")
 
     supabase = get_supabase_client()
@@ -130,10 +142,12 @@ async def update_provider(request: Request, provider: str, payload: ProviderUpda
         config = existing.data[0].get("config") or {}
         is_active = existing.data[0].get("is_active", True)
 
-    if payload.direct_line_secret is not None:
-        config["direct_line_secret"] = payload.direct_line_secret
-    if payload.direct_line_endpoint is not None:
-        config["direct_line_endpoint"] = payload.direct_line_endpoint
+    if payload.api_key is not None:
+        config["api_key"] = payload.api_key
+    if payload.model is not None:
+        config["model"] = payload.model
+    if payload.max_tokens is not None:
+        config["max_tokens"] = payload.max_tokens
 
     row_payload = {
         "tenant_id": tenant_id,
@@ -162,95 +176,6 @@ async def update_provider(request: Request, provider: str, payload: ProviderUpda
 
     return _sanitize_provider_row(result.data[0])
 
-async def _ensure_conversation(supabase, tenant_id: str, thread: dict) -> dict:
-    secret, endpoint = await _get_copilot_config(supabase, tenant_id)
-    if not secret:
-        return {"configured": False, "reason": "Direct Line secret not configured"}
-
-    metadata = thread.get("metadata") or {}
-    direct_line = metadata.get("direct_line") or {}
-    conversation_id = thread.get("thread_id")
-    token = direct_line.get("token")
-    expires_at = direct_line.get("expires_at", 0)
-
-    if conversation_id and token and expires_at > int(time.time()) + 30:
-        return {
-            "configured": True,
-            "endpoint": endpoint,
-            "conversation_id": conversation_id,
-            "token": token,
-            "watermark": direct_line.get("watermark"),
-        }
-
-    headers = {"Authorization": f"Bearer {secret}"}
-    async with httpx.AsyncClient(timeout=15) as client:
-        response = await client.post(f"{endpoint}/conversations", headers=headers)
-        response.raise_for_status()
-        data = response.json()
-
-    conversation_id = data.get("conversationId")
-    token = data.get("token")
-    expires_in = int(data.get("expires_in") or data.get("expiresIn") or 1800)
-    stream_url = data.get("streamUrl")
-
-    direct_line = {
-        "token": token,
-        "expires_at": int(time.time()) + expires_in - 30,
-        "stream_url": stream_url,
-        "watermark": direct_line.get("watermark"),
-    }
-    metadata["direct_line"] = direct_line
-    supabase.table("chat_threads")\
-        .update({"thread_id": conversation_id, "metadata": metadata})\
-        .eq("id", thread["id"])\
-        .execute()
-
-    return {
-        "configured": True,
-        "endpoint": endpoint,
-        "conversation_id": conversation_id,
-        "token": token,
-        "watermark": direct_line.get("watermark"),
-    }
-
-async def _send_direct_line_message(endpoint: str, token: str, conversation_id: str, user_id: str, text: str, watermark: Optional[str]):
-    headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
-    payload = {
-        "type": "message",
-        "from": {"id": str(user_id)},
-        "text": text,
-    }
-    async with httpx.AsyncClient(timeout=20) as client:
-        post_resp = await client.post(
-            f"{endpoint}/conversations/{conversation_id}/activities",
-            json=payload,
-            headers=headers,
-        )
-        post_resp.raise_for_status()
-
-        updated_watermark = watermark
-        for _ in range(4):
-            params = {"watermark": updated_watermark} if updated_watermark else None
-            get_resp = await client.get(
-                f"{endpoint}/conversations/{conversation_id}/activities",
-                params=params,
-                headers=headers,
-            )
-            get_resp.raise_for_status()
-            data = get_resp.json()
-            updated_watermark = data.get("watermark", updated_watermark)
-            activities = data.get("activities") or []
-            bot_messages = [
-                activity for activity in activities
-                if activity.get("type") == "message"
-                and activity.get("from", {}).get("id") != str(user_id)
-            ]
-            if bot_messages:
-                return bot_messages[-1].get("text") or "", updated_watermark
-            await asyncio.sleep(0.5)
-
-    return None, updated_watermark
-
 @router.get("/threads", response_model=List[Thread])
 async def list_threads(request: Request):
     """List chat threads"""
@@ -263,6 +188,7 @@ async def list_threads(request: Request):
         .select("*")\
         .eq("tenant_id", tenant_id)\
         .eq("user_id", user_id)\
+        .eq("provider", "perplexity")\
         .eq("status", "active")\
         .order("updated_at", desc=True)\
         .execute()
@@ -276,8 +202,8 @@ async def list_threads(request: Request):
         message_count = count_result.count or 0
         threads.append(Thread(
             id=thread["id"],
-            title=thread.get("title") or "Conversation",
-            provider=thread.get("provider") or "copilot-studio",
+            title=thread.get("title") or "Perplexity Conversation",
+            provider="perplexity",
             message_count=message_count,
             created_at=thread.get("created_at") or datetime.utcnow(),
             updated_at=thread.get("updated_at") or datetime.utcnow()
@@ -297,7 +223,7 @@ async def create_thread(request: Request, title: Optional[str] = "New Conversati
         "tenant_id": tenant_id,
         "user_id": user_id,
         "title": title,
-        "provider": "copilot-studio",
+        "provider": "perplexity",
         "status": "active",
         "created_at": datetime.utcnow().isoformat(),
         "updated_at": datetime.utcnow().isoformat(),
@@ -309,7 +235,7 @@ async def create_thread(request: Request, title: Optional[str] = "New Conversati
     return Thread(
         id=thread["id"],
         title=thread.get("title") or "Conversation",
-        provider=thread.get("provider") or "copilot-studio",
+        provider="perplexity",
         message_count=0,
         created_at=thread.get("created_at") or datetime.utcnow(),
         updated_at=thread.get("updated_at") or datetime.utcnow()
@@ -345,28 +271,76 @@ async def list_messages(request: Request, thread_id: str):
             thread_id=msg["thread_id"],
             role=msg["role"],
             content=msg["content"],
-            provider="copilot-studio",
+            provider="perplexity",
             created_at=msg.get("created_at") or datetime.utcnow()
         ))
 
     return messages
 
+async def _call_perplexity_api(api_key: str, model: str, max_tokens: int, messages: List[Dict[str, str]]) -> str:
+    """Call Perplexity AI API and return response"""
+    if not api_key:
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="Perplexity API key not configured"
+        )
+
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json"
+    }
+
+    payload = {
+        "model": model,
+        "messages": messages,
+        "max_tokens": max_tokens,
+        "temperature": 0.7,
+    }
+
+    try:
+        async with httpx.AsyncClient(timeout=30) as client:
+            response = await client.post(
+                f"{PERPLEXITY_BASE_URL}/chat/completions",
+                json=payload,
+                headers=headers
+            )
+            response.raise_for_status()
+            result = response.json()
+
+            if "error" in result:
+                raise HTTPException(
+                    status_code=status.HTTP_400_BAD_REQUEST,
+                    detail=f"Perplexity API error: {result.get('error', {}).get('message', 'Unknown error')}"
+                )
+
+            # Extract response text
+            if result.get("choices") and len(result["choices"]) > 0:
+                return result["choices"][0].get("message", {}).get("content", "No response from Perplexity")
+            else:
+                return "No response from Perplexity API"
+
+    except httpx.HTTPError as e:
+        raise HTTPException(
+            status_code=status.HTTP_502_BAD_GATEWAY,
+            detail=f"Perplexity API connection error: {str(e)}"
+        )
+
 @router.post("/threads/{thread_id}/messages", response_model=Message)
 async def send_message(request: Request, thread_id: str, message: MessageCreate):
-    """Send message and get AI response"""
+    """Send message and get AI response from Perplexity"""
     tenant_id = get_tenant_id(request)
     user_id = get_user_id(request)
     require_tenant_membership(tenant_id, user_id)
     rate_limit(
         user_id,
-        "chat_send",
-        max_calls=int(os.environ.get("RATE_LIMIT_CHAT_MAX", "30")),
-        window_sec=int(os.environ.get("RATE_LIMIT_CHAT_WINDOW", "60")),
+        "chat_perplexity",
+        max_calls=int(os.environ.get("RATE_LIMIT_PERPLEXITY_MAX", "30")),
+        window_sec=int(os.environ.get("RATE_LIMIT_PERPLEXITY_WINDOW", "60")),
     )
     supabase = get_supabase_client()
 
     thread_result = supabase.table("chat_threads")\
-        .select("id")\
+        .select("*")\
         .eq("id", thread_id)\
         .eq("tenant_id", tenant_id)\
         .eq("user_id", user_id)\
@@ -374,6 +348,9 @@ async def send_message(request: Request, thread_id: str, message: MessageCreate)
     if not thread_result.data:
         raise HTTPException(status_code=404, detail="Thread not found")
 
+    thread = thread_result.data[0]
+
+    # Save user message
     user_payload = {
         "thread_id": thread_id,
         "role": "user",
@@ -383,35 +360,39 @@ async def send_message(request: Request, thread_id: str, message: MessageCreate)
     }
     supabase.table("chat_messages").insert(user_payload).execute()
 
-    thread = thread_result.data[0]
-    conversation = await _ensure_conversation(supabase, tenant_id, thread)
+    # Get configuration and conversation history
+    api_key, model, max_tokens = await _get_perplexity_config(supabase, tenant_id)
 
-    assistant_content = "Copilot integration not configured"
-    if conversation.get("configured"):
-        try:
-            assistant_content, watermark = await _send_direct_line_message(
-                conversation["endpoint"],
-                conversation["token"],
-                conversation["conversation_id"],
-                user_id,
-                message.content,
-                conversation.get("watermark"),
-            )
-            metadata = thread.get("metadata") or {}
-            direct_line = metadata.get("direct_line") or {}
-            direct_line["watermark"] = watermark
-            metadata["direct_line"] = direct_line
-            supabase.table("chat_threads")\
-                .update({"metadata": metadata})\
-                .eq("id", thread_id)\
-                .execute()
-        except Exception as exc:
-            assistant_content = f"Copilot integration error: {exc}"
+    # Fetch conversation history
+    messages_result = supabase.table("chat_messages")\
+        .select("*")\
+        .eq("thread_id", thread_id)\
+        .order("created_at", desc=False)\
+        .execute()
+
+    # Build messages for API
+    api_messages = []
+    for msg in messages_result.data or []:
+        api_messages.append({
+            "role": msg["role"],
+            "content": msg["content"]
+        })
+
+    # Call Perplexity API
+    assistant_content = "Perplexity integration error"
+    try:
+        assistant_content = await _call_perplexity_api(api_key, model, max_tokens, api_messages)
+    except HTTPException:
+        raise
+    except Exception as e:
+        assistant_content = f"Error calling Perplexity: {str(e)}"
+
+    # Save assistant message
     assistant_payload = {
         "thread_id": thread_id,
         "role": "assistant",
-        "content": assistant_content or "Copilot integration returned no response",
-        "content_type": "error" if "error" in (assistant_content or "").lower() else "text",
+        "content": assistant_content,
+        "content_type": "error" if "error" in assistant_content.lower() else "text",
         "created_at": datetime.utcnow().isoformat(),
     }
     assistant_result = supabase.table("chat_messages").insert(assistant_payload).execute()
@@ -419,6 +400,7 @@ async def send_message(request: Request, thread_id: str, message: MessageCreate)
         raise HTTPException(status_code=500, detail="Assistant response failed")
     assistant = assistant_result.data[0]
 
+    # Update thread updated_at
     supabase.table("chat_threads")\
         .update({"updated_at": datetime.utcnow().isoformat()})\
         .eq("id", thread_id)\
@@ -429,6 +411,17 @@ async def send_message(request: Request, thread_id: str, message: MessageCreate)
         thread_id=assistant["thread_id"],
         role=assistant["role"],
         content=assistant["content"],
-        provider=message.provider,
+        provider="perplexity",
         created_at=assistant.get("created_at") or datetime.utcnow()
     )
+
+@router.get("/status")
+async def status():
+    """Check Perplexity integration status"""
+    return {
+        "configured": PERPLEXITY_CONFIGURED,
+        "api_key_set": bool(PERPLEXITY_API_KEY),
+        "model": PERPLEXITY_MODEL,
+        "base_url": PERPLEXITY_BASE_URL,
+        "max_tokens": PERPLEXITY_MAX_TOKENS,
+    }

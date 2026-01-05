@@ -14,16 +14,16 @@ class Settings:
 
     jwt_secret: str = os.environ.get("JWT_SECRET", "change_me_super_secret")
     jwt_alg: str = os.environ.get("JWT_ALGORITHM", "HS256")
-    jwt_ttl_min: int = int(os.environ.get("JWT_ACCESS_TTL_MIN", "60"))
+    jwt_expiration_hours: int = int(os.environ.get("JWT_EXPIRATION_HOURS", "24"))
 
     supabase_url: str = os.environ.get("SUPABASE_URL", "")
     supabase_db_url: str = os.environ.get("DATABASE_URL", "")
     redis_url: str = os.environ.get("REDIS_URL", "")
 
-    entra_authority: str = os.environ.get("ENTRA_AUTHORITY", "")
-    entra_client_id: str = os.environ.get("ENTRA_CLIENT_ID", "")
-    entra_client_secret: str = os.environ.get("ENTRA_CLIENT_SECRET", "")
-    entra_redirect_uri: str = os.environ.get("ENTRA_REDIRECT_URI", "")
+    entra_authority: str = os.environ.get("ENTRA_AUTHORITY", "") or os.environ.get("AZURE_AUTHORITY", "")
+    entra_client_id: str = os.environ.get("ENTRA_CLIENT_ID", "") or os.environ.get("AZURE_CLIENT_ID", "")
+    entra_client_secret: str = os.environ.get("ENTRA_CLIENT_SECRET", "") or os.environ.get("AZURE_CLIENT_SECRET", "")
+    entra_redirect_uri: str = os.environ.get("ENTRA_REDIRECT_URI", "") or os.environ.get("AZURE_REDIRECT_URI", "")
     graph_scopes: list[str] = os.environ.get("GRAPH_SCOPES", "User.Read").split()
 
     direct_line_secret: str = os.environ.get("DIRECT_LINE_SECRET", "")

@@ -1,7 +1,7 @@
 """
 Test Runs (Script Executions) endpoints
 """
-from fastapi import APIRouter, HTTPException, Depends, status
+from fastapi import APIRouter, HTTPException, Depends, status, Header
 from pydantic import BaseModel
 from typing import List, Optional
 from datetime import datetime
@@ -112,7 +112,7 @@ async def list_executions(
     execution_type: Optional[str] = None,
     page: int = 1,
     per_page: int = 20,
-    authorization: str = None
+    authorization: str = Header(None)
 ):
     """List test executions with filters and pagination"""
     user_id = await get_current_user_id(authorization)
@@ -175,7 +175,7 @@ async def list_executions(
     )
 
 @router.post("", response_model=TestExecution)
-async def create_execution(execution: TestExecutionCreate, authorization: str = None):
+async def create_execution(execution: TestExecutionCreate, authorization: str = Header(None)):
     """Create new test execution"""
     user_id = await get_current_user_id(authorization)
     
@@ -254,7 +254,7 @@ async def create_execution(execution: TestExecutionCreate, authorization: str = 
         )
 
 @router.get("/{execution_id}", response_model=TestExecution)
-async def get_execution(execution_id: str, authorization: str = None):
+async def get_execution(execution_id: str, authorization: str = Header(None)):
     """Get specific execution by ID"""
     user_id = await get_current_user_id(authorization)
     
@@ -282,7 +282,7 @@ async def get_execution(execution_id: str, authorization: str = None):
     return TestExecution(**execution_data)
 
 @router.put("/{execution_id}", response_model=TestExecution)
-async def update_execution(execution_id: str, execution_update: TestExecutionUpdate, authorization: str = None):
+async def update_execution(execution_id: str, execution_update: TestExecutionUpdate, authorization: str = Header(None)):
     """Update existing execution"""
     user_id = await get_current_user_id(authorization)
     
@@ -383,7 +383,7 @@ async def update_execution(execution_id: str, execution_update: TestExecutionUpd
         )
 
 @router.get("/{execution_id}/results", response_model=List[TestResult])
-async def get_execution_results(execution_id: str, authorization: str = None):
+async def get_execution_results(execution_id: str, authorization: str = Header(None)):
     """Get test results for a specific execution"""
     user_id = await get_current_user_id(authorization)
     
@@ -423,7 +423,7 @@ async def get_execution_results(execution_id: str, authorization: str = None):
     return result_list
 
 @router.get("/{execution_id}/status")
-async def get_execution_status(execution_id: str, authorization: str = None):
+async def get_execution_status(execution_id: str, authorization: str = Header(None)):
     """Get execution status and progress"""
     user_id = await get_current_user_id(authorization)
     
@@ -479,7 +479,7 @@ async def get_execution_status(execution_id: str, authorization: str = None):
     }
 
 @router.delete("/{execution_id}")
-async def delete_execution(execution_id: str, authorization: str = None):
+async def delete_execution(execution_id: str, authorization: str = Header(None)):
     """Delete execution and its results"""
     user_id = await get_current_user_id(authorization)
     
@@ -515,7 +515,7 @@ async def delete_execution(execution_id: str, authorization: str = None):
         )
 
 @router.post("/{execution_id}/cancel")
-async def cancel_execution(execution_id: str, authorization: str = None):
+async def cancel_execution(execution_id: str, authorization: str = Header(None)):
     """Cancel a running execution"""
     user_id = await get_current_user_id(authorization)
     

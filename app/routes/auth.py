@@ -5,6 +5,7 @@ from fastapi import APIRouter, HTTPException, Depends, status
 from pydantic import BaseModel, EmailStr
 from typing import Optional, Dict, Any
 import jwt
+from jwt import ExpiredSignatureError, InvalidTokenError
 import os
 from datetime import datetime, timedelta
 from supabase import create_client, Client
@@ -18,6 +19,12 @@ SUPABASE_SERVICE_ROLE_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY")
 JWT_SECRET = os.environ.get("JWT_SECRET", "development-secret-key")
 JWT_ALGORITHM = "HS256"
 JWT_EXPIRATION_HOURS = int(os.environ.get("JWT_EXPIRATION_HOURS", "24"))
+ALLOWED_PUBLIC_ROLES = {
+    role.strip()
+    for role in os.environ.get("PUBLIC_ROLES", "viewer").split(",")
+    if role.strip()
+}
+ALLOW_ADMIN_SIGNUP_FALLBACK = os.environ.get("ALLOW_ADMIN_SIGNUP_FALLBACK", "false").lower() == "true"
 
 if not SUPABASE_URL or not SUPABASE_SERVICE_ROLE_KEY:
     raise RuntimeError("SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY must be set")
@@ -52,6 +59,7 @@ class UserResponse(BaseModel):
 
 def create_jwt_token(user_data: Dict[str, Any]) -> str:
     """Create JWT token with user data"""
+    default_tenant = os.environ.get("DEFAULT_TENANT_ID")
     payload = {
         "sub": user_data["id"],
         "email": user_data["email"],
@@ -60,6 +68,8 @@ def create_jwt_token(user_data: Dict[str, Any]) -> str:
         "exp": datetime.utcnow() + timedelta(hours=JWT_EXPIRATION_HOURS),
         "iat": datetime.utcnow()
     }
+    if default_tenant:
+        payload["tenant_id"] = default_tenant
     return jwt.encode(payload, JWT_SECRET, algorithm=JWT_ALGORITHM)
 
 async def get_user_from_database(email: str) -> Optional[Dict[str, Any]]:
@@ -148,9 +158,10 @@ async def login(request: LoginRequest):
         
     except Exception as e:
         print(f"Login error: {e}")
+        message = str(e) or "Authentication failed"
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Authentication failed"
+            detail=message
         )
 
 @router.post("/register", response_model=TokenResponse)
@@ -159,8 +170,12 @@ async def register(request: RegisterRequest):
     Register new user with Supabase
     """
     try:
+        # Normalize role for public registration
+        role = request.role if request.role in ALLOWED_PUBLIC_ROLES else "viewer"
+
         # Create user in Supabase Auth (public signup)
         auth_response = None
+        auth_error_msg = None
         try:
             auth_response = supabase.auth.sign_up({
                 "email": request.email,
@@ -168,14 +183,20 @@ async def register(request: RegisterRequest):
                 "options": {
                     "data": {
                         "full_name": request.full_name,
-                        "role": request.role
+                        "role": role
                     }
                 }
             })
-        except Exception:
+        except Exception as e:
             auth_response = None
+            auth_error_msg = str(e)
 
         if not auth_response or not auth_response.user:
+            if not ALLOW_ADMIN_SIGNUP_FALLBACK:
+                raise HTTPException(
+                    status_code=status.HTTP_400_BAD_REQUEST,
+                    detail=auth_error_msg or "Registration failed"
+                )
             # Fallback: create user via admin API (service role)
             try:
                 admin_response = supabase.auth.admin.create_user({
@@ -184,7 +205,7 @@ async def register(request: RegisterRequest):
                     "email_confirm": True,
                     "user_metadata": {
                         "full_name": request.full_name,
-                        "role": request.role
+                        "role": role
                     }
                 })
                 auth_user = admin_response.user if admin_response else None
@@ -207,7 +228,7 @@ async def register(request: RegisterRequest):
             "id": auth_user.id,
             "email": auth_user.email,
             "name": request.full_name or auth_user.email,
-            "role": request.role
+            "role": role
         }
         user = await create_user_in_database(user_data)
 
@@ -227,9 +248,10 @@ async def register(request: RegisterRequest):
 
     except Exception as e:
         print(f"Registration error: {e}")
+        message = str(e) or "Registration failed"
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Registration failed"
+            detail=message
         )
 
 @router.get("/me", response_model=UserResponse)
@@ -267,12 +289,12 @@ async def get_current_user(authorization: str = None):
         
         return UserResponse(**user)
         
-    except jwt.ExpiredSignatureError:
+    except ExpiredSignatureError:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Token expired"
         )
-    except jwt.JWTError:
+    except InvalidTokenError:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid token"

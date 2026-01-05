@@ -55,7 +55,10 @@ except ImportError as e:
 optional_routers = [
     ("docs", "/docs"),
     ("flags", "/flags"),
+    ("m365", "/m365"),
     ("chat", "/chat"),
+    ("perplexity", "/perplexity"),
+    ("telegram", "/telegram"),
     ("projects", "/projects"),
     ("scripts", "/scripts"),
     ("runs", "/script-runs"),

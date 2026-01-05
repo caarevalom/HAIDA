@@ -9,6 +9,7 @@ import uuid
 
 from app.core.db import fetch_one, fetch_all, execute
 from app.core.request_context import get_tenant_id, get_user_id
+from app.core.tenants import require_tenant_membership
 from app.core.supabase_client import get_supabase_client
 
 router = APIRouter()
@@ -162,6 +163,7 @@ async def list_reports(
     """List reports with filters and pagination"""
     tenant_id = get_tenant_id(request)
     user_id = get_user_id(request)
+    require_tenant_membership(tenant_id, user_id)
 
     where_conditions = ["tenant_id = %s", "created_by = %s"]
     params = [tenant_id, user_id]
@@ -211,6 +213,7 @@ async def generate_report(request: Request, payload: ReportGenerationRequest):
     """Generate a new report"""
     tenant_id = get_tenant_id(request)
     user_id = get_user_id(request)
+    require_tenant_membership(tenant_id, user_id)
 
     project = fetch_one(
         "SELECT id FROM projects WHERE id = %s AND tenant_id = %s",
@@ -473,6 +476,7 @@ async def get_report(request: Request, report_id: str):
     """Get specific report by ID"""
     tenant_id = get_tenant_id(request)
     user_id = get_user_id(request)
+    require_tenant_membership(tenant_id, user_id)
 
     report = fetch_one(
         """
@@ -499,6 +503,7 @@ async def update_report(request: Request, report_id: str, report_update: ReportU
     """Update existing report"""
     tenant_id = get_tenant_id(request)
     user_id = get_user_id(request)
+    require_tenant_membership(tenant_id, user_id)
 
     existing_report = fetch_one(
         "SELECT id FROM reports WHERE id = %s AND tenant_id = %s AND created_by = %s",
@@ -561,6 +566,7 @@ async def delete_report(request: Request, report_id: str):
     """Delete report"""
     tenant_id = get_tenant_id(request)
     user_id = get_user_id(request)
+    require_tenant_membership(tenant_id, user_id)
 
     existing_report = fetch_one(
         "SELECT id FROM reports WHERE id = %s AND tenant_id = %s AND created_by = %s",
