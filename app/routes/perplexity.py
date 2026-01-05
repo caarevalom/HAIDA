@@ -1,5 +1,5 @@
 """Perplexity AI Chat Integration for HAIDA"""
-from fastapi import APIRouter, HTTPException, Request, Header
+from fastapi import APIRouter, HTTPException, Request, Header, status
 from pydantic import BaseModel
 from typing import List, Optional, Dict, Any
 from datetime import datetime
@@ -7,12 +7,14 @@ import uuid
 import asyncio
 import os
 import httpx
+import logging
 from app.core.supabase_client import get_supabase_client
 from app.core.request_context import get_tenant_id, get_user_id
 from app.core.tenants import require_tenant_membership
 from app.core.limiter import rate_limit
 
 router = APIRouter()
+logger = logging.getLogger("haida.perplexity")
 
 # Perplexity Configuration
 PERPLEXITY_API_KEY = os.environ.get("PERPLEXITY_API_KEY", "")
@@ -280,6 +282,7 @@ async def list_messages(request: Request, thread_id: str):
 async def _call_perplexity_api(api_key: str, model: str, max_tokens: int, messages: List[Dict[str, str]]) -> str:
     """Call Perplexity AI API and return response"""
     if not api_key:
+        logger.error("Perplexity API key not configured")
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
             detail="Perplexity API key not configured"
@@ -298,6 +301,8 @@ async def _call_perplexity_api(api_key: str, model: str, max_tokens: int, messag
     }
 
     try:
+        logger.info(f"Calling Perplexity API with model={model}, messages={len(messages)}")
+
         async with httpx.AsyncClient(timeout=30) as client:
             response = await client.post(
                 f"{PERPLEXITY_BASE_URL}/chat/completions",
@@ -308,21 +313,33 @@ async def _call_perplexity_api(api_key: str, model: str, max_tokens: int, messag
             result = response.json()
 
             if "error" in result:
+                error_msg = result.get('error', {}).get('message', 'Unknown error')
+                logger.error(f"Perplexity API error: {error_msg}")
                 raise HTTPException(
                     status_code=status.HTTP_400_BAD_REQUEST,
-                    detail=f"Perplexity API error: {result.get('error', {}).get('message', 'Unknown error')}"
+                    detail=f"Perplexity API error: {error_msg}"
                 )
 
             # Extract response text
             if result.get("choices") and len(result["choices"]) > 0:
-                return result["choices"][0].get("message", {}).get("content", "No response from Perplexity")
+                response_text = result["choices"][0].get("message", {}).get("content", "No response from Perplexity")
+                logger.info(f"Perplexity API response received: {len(response_text)} chars")
+                return response_text
             else:
+                logger.warning("Perplexity API returned no choices")
                 return "No response from Perplexity API"
 
     except httpx.HTTPError as e:
+        logger.error(f"Perplexity API connection error: {str(e)}")
         raise HTTPException(
             status_code=status.HTTP_502_BAD_GATEWAY,
             detail=f"Perplexity API connection error: {str(e)}"
+        )
+    except Exception as e:
+        logger.error(f"Unexpected error calling Perplexity API: {str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Failed to process Perplexity API response"
         )
 
 @router.post("/threads/{thread_id}/messages", response_model=Message)
