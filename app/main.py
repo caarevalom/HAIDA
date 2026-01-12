@@ -1,6 +1,12 @@
 import os, logging
+from pathlib import Path
+from dotenv import load_dotenv
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
+from fastapi.staticfiles import StaticFiles
+
+# Load environment variables from .env file
+load_dotenv()
 
 from app.core.logging import setup_logging
 from app.core.middleware import RequestIdMiddleware
@@ -81,3 +87,15 @@ for router_name, prefix in optional_routers:
 
 # Fallback health endpoint (no longer needed - system router handles it)
 # System router already loaded above and provides /health endpoint
+
+# Serve static frontend files (Vite build output)
+# Get the absolute path to the dist folder (one level up from app directory, then into dist)
+app_dir = Path(__file__).parent.parent
+dist_dir = app_dir / "dist"
+
+# Mount the static files
+if dist_dir.exists():
+    app.mount("/", StaticFiles(directory=str(dist_dir), html=True), name="static")
+    logging.getLogger("haida").info(f"✅ Static files mounted from {dist_dir}")
+else:
+    logging.getLogger("haida").warning(f"⚠️ dist directory not found at {dist_dir}. Frontend files not available.")
