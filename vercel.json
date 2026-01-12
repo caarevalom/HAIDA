@@ -48,6 +48,14 @@
       "dest": "/api/index.py"
     },
     {
+      "src": "/openapi.json",
+      "dest": "/api/index.py"
+    },
+    {
+      "src": "/copilot/(.*)",
+      "dest": "/api/index.py"
+    },
+    {
       "src": "/(.+)",
       "dest": "/dist/$1"
     },
