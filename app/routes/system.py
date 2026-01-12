@@ -272,8 +272,10 @@ def openapi_spec():
                 "oauth2": {
                     "type": "oauth2",
                     "flows": {
-                        "implicit": {
-                            "authorizationUrl": "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
+                        "authorizationCode": {
+                            "authorizationUrl": "https://login.microsoftonline.com/9b7594d6-2c7d-4fe2-b248-213f64996877/oauth2/v2.0/authorize",
+                            "tokenUrl": "https://login.microsoftonline.com/9b7594d6-2c7d-4fe2-b248-213f64996877/oauth2/v2.0/token",
+                            "refreshUrl": "https://login.microsoftonline.com/9b7594d6-2c7d-4fe2-b248-213f64996877/oauth2/v2.0/token",
                             "scopes": {
                                 "User.Read": "Read user profile",
                                 "email": "Read user email",
