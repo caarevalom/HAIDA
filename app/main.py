@@ -13,7 +13,8 @@ from app.core.middleware import RequestIdMiddleware
 from app.core.cors import setup_cors
 
 setup_logging()
-app = FastAPI(title=os.environ.get("APP_NAME", "HAIDA"))
+# Disable auto-generated OpenAPI spec to use custom /openapi.json endpoint
+app = FastAPI(title=os.environ.get("APP_NAME", "HAIDA"), openapi_url=None)
 
 # CORS
 setup_cors(app, os.environ)
