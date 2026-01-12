@@ -9,10 +9,12 @@ import os
 
 from app.main import app as main_app
 
+# Disable auto-generated OpenAPI spec to use custom endpoint from main_app
 app = FastAPI(
     title="HAIDA API",
     description="HAIDA Backend API - AI-Driven QA Automation",
-    version="2.0.0"
+    version="2.0.0",
+    openapi_url=None  # Disabled - use custom /openapi.json from main_app
 )
 
 app.add_middleware(
