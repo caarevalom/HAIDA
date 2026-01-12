@@ -54,6 +54,7 @@ async def health():
         "timestamp": datetime.utcnow().isoformat()
     }
 
-app.mount("/api", main_app)
+# Mount the main FastAPI app at root level to expose all routes
+app.mount("", main_app)
 
 application = app
