@@ -20,6 +20,9 @@ app.add_middleware(
     allow_origins=[
         "https://haida-frontend.vercel.app",
         "https://haida-one.vercel.app",
+        "https://haida.stayarta.com",
+        "https://haidapi.stayarta.com",
+        "https://bothaida.stayarta.com",
         "http://localhost:3000",
         "http://localhost:5173",
         "*"
@@ -52,7 +55,5 @@ async def health():
     }
 
 app.mount("/api", main_app)
-# Allow non-/api routes (e.g. /auth, /entra) to reach the main app.
-app.mount("/", main_app)
 
 application = app
