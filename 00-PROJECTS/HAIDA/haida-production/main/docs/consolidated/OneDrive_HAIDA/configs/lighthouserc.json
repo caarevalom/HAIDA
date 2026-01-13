@@ -1,0 +1,23 @@
+{
+  "ci": {
+    "collect": {
+      "url": ["${BASE_URL:-https://mcprod.thisisbarcelona.com}"]
+    },
+    "assert": {
+      "assertions": {
+        "categories:performance": [
+          "warn",
+          {
+            "minScore": 0.6
+          }
+        ],
+        "categories:accessibility": [
+          "warn",
+          {
+            "minScore": 0.8
+          }
+        ]
+      }
+    }
+  }
+}

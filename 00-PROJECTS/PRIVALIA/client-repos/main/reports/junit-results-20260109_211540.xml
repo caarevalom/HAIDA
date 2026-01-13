@@ -1,0 +1,1467 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Checkout Error Handling API - PSP Testing" tests="18" time="0.000">
+  <testsuite name="Cybersource - Denegaciones / DECLINED - EXPIRED_CARD" id="e1850a0c-3cc5-4af6-a77e-88e2188055af" timestamp="2026-01-09T20:15:41.180Z" tests="7" failures="7" errors="1" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND api-checkout-staging.example.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:121:26)
+
+---
+]]></system-err>
+    <testcase name="Response time es menor a 2000ms" time="0.000" classname="CybersourceDenegacionesDeclinedExpiredCard">
+      <failure type="AssertionFailure" message="expected undefined to be a number or a date">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Denegaciones / DECLINED - EXPIRED_CARD.]]>
+        <![CDATA[Test description: Response time es menor a 2000ms.]]>
+        <![CDATA[Error message: expected undefined to be a number or a date.]]>
+        <![CDATA[Stacktrace: AssertionError: expected undefined to be a number or a date
+   at Object.eval sandbox-script.js:1:1).]]>
+      </failure>
+    </testcase>
+    <testcase name="Content-Type es application/json" time="0.000" classname="CybersourceDenegacionesDeclinedExpiredCard">
+      <failure type="AssertionFailure" message="expected response to have header with key 'Content-Type'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Denegaciones / DECLINED - EXPIRED_CARD.]]>
+        <![CDATA[Test description: Content-Type es application/json.]]>
+        <![CDATA[Error message: expected response to have header with key 'Content-Type'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have header with key 'Content-Type'
+   at Object.eval sandbox-script.js:2:1).]]>
+      </failure>
+    </testcase>
+    <testcase name="HTTP Status es 201" time="0.000" classname="CybersourceDenegacionesDeclinedExpiredCard">
+      <failure type="AssertionFailure" message="expected PostmanResponse{ …(5) } to have property 'code'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Denegaciones / DECLINED - EXPIRED_CARD.]]>
+        <![CDATA[Test description: HTTP Status es 201.]]>
+        <![CDATA[Error message: expected PostmanResponse{ …(5) } to have property 'code'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected PostmanResponse{ …(5) } to have property 'code'
+   at Object.eval sandbox-script.js:1:1).]]>
+      </failure>
+    </testcase>
+    <testcase name="Status es DECLINED" time="0.000" classname="CybersourceDenegacionesDeclinedExpiredCard">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Denegaciones / DECLINED - EXPIRED_CARD.]]>
+        <![CDATA[Test description: Status es DECLINED.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:2:1).]]>
+      </failure>
+    </testcase>
+    <testcase name="Reason es EXPIRED_CARD" time="0.000" classname="CybersourceDenegacionesDeclinedExpiredCard">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Denegaciones / DECLINED - EXPIRED_CARD.]]>
+        <![CDATA[Test description: Reason es EXPIRED_CARD.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:3:1).]]>
+      </failure>
+    </testcase>
+    <testcase name="Mensaje al cliente es correcto" time="0.000" classname="CybersourceDenegacionesDeclinedExpiredCard">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Denegaciones / DECLINED - EXPIRED_CARD.]]>
+        <![CDATA[Test description: Mensaje al cliente es correcto.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:4:1).]]>
+      </failure>
+    </testcase>
+    <testcase name="No requiere alerta" time="0.000" classname="CybersourceDenegacionesDeclinedExpiredCard">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Denegaciones / DECLINED - EXPIRED_CARD.]]>
+        <![CDATA[Test description: No requiere alerta.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:5:1).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="Cybersource - Denegaciones / DECLINED - PROCESSOR_DECLINED" id="a7f1f1b2-17e4-43e2-bacf-d63d15d58b7e" timestamp="2026-01-09T20:15:41.180Z" tests="6" failures="6" errors="1" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND api-checkout-staging.example.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:121:26)
+
+---
+]]></system-err>
+    <testcase name="Response time es menor a 2000ms" time="0.000" classname="CybersourceDenegacionesDeclinedProcessorDeclined">
+      <failure type="AssertionFailure" message="expected undefined to be a number or a date">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Denegaciones / DECLINED - PROCESSOR_DECLINED.]]>
+        <![CDATA[Test description: Response time es menor a 2000ms.]]>
+        <![CDATA[Error message: expected undefined to be a number or a date.]]>
+        <![CDATA[Stacktrace: AssertionError: expected undefined to be a number or a date
+   at Object.eval sandbox-script.js:1:2).]]>
+      </failure>
+    </testcase>
+    <testcase name="Content-Type es application/json" time="0.000" classname="CybersourceDenegacionesDeclinedProcessorDeclined">
+      <failure type="AssertionFailure" message="expected response to have header with key 'Content-Type'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Denegaciones / DECLINED - PROCESSOR_DECLINED.]]>
+        <![CDATA[Test description: Content-Type es application/json.]]>
+        <![CDATA[Error message: expected response to have header with key 'Content-Type'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have header with key 'Content-Type'
+   at Object.eval sandbox-script.js:2:2).]]>
+      </failure>
+    </testcase>
+    <testcase name="HTTP Status es 201" time="0.000" classname="CybersourceDenegacionesDeclinedProcessorDeclined">
+      <failure type="AssertionFailure" message="expected PostmanResponse{ …(5) } to have property 'code'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Denegaciones / DECLINED - PROCESSOR_DECLINED.]]>
+        <![CDATA[Test description: HTTP Status es 201.]]>
+        <![CDATA[Error message: expected PostmanResponse{ …(5) } to have property 'code'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected PostmanResponse{ …(5) } to have property 'code'
+   at Object.eval sandbox-script.js:1:2).]]>
+      </failure>
+    </testcase>
+    <testcase name="Status es DECLINED" time="0.000" classname="CybersourceDenegacionesDeclinedProcessorDeclined">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Denegaciones / DECLINED - PROCESSOR_DECLINED.]]>
+        <![CDATA[Test description: Status es DECLINED.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:2:2).]]>
+      </failure>
+    </testcase>
+    <testcase name="Reason es PROCESSOR_DECLINED" time="0.000" classname="CybersourceDenegacionesDeclinedProcessorDeclined">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Denegaciones / DECLINED - PROCESSOR_DECLINED.]]>
+        <![CDATA[Test description: Reason es PROCESSOR_DECLINED.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:3:2).]]>
+      </failure>
+    </testcase>
+    <testcase name="Mensaje al cliente es correcto" time="0.000" classname="CybersourceDenegacionesDeclinedProcessorDeclined">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Denegaciones / DECLINED - PROCESSOR_DECLINED.]]>
+        <![CDATA[Test description: Mensaje al cliente es correcto.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:4:2).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="Cybersource - Denegaciones / DECLINED - INSUFFICIENT_FUND" id="e4e94e96-90ad-467c-aba8-5fc2cc1eb673" timestamp="2026-01-09T20:15:41.180Z" tests="6" failures="6" errors="1" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND api-checkout-staging.example.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:121:26)
+
+---
+]]></system-err>
+    <testcase name="Response time es menor a 2000ms" time="0.000" classname="CybersourceDenegacionesDeclinedInsufficientFund">
+      <failure type="AssertionFailure" message="expected undefined to be a number or a date">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Denegaciones / DECLINED - INSUFFICIENT_FUND.]]>
+        <![CDATA[Test description: Response time es menor a 2000ms.]]>
+        <![CDATA[Error message: expected undefined to be a number or a date.]]>
+        <![CDATA[Stacktrace: AssertionError: expected undefined to be a number or a date
+   at Object.eval sandbox-script.js:1:3).]]>
+      </failure>
+    </testcase>
+    <testcase name="Content-Type es application/json" time="0.000" classname="CybersourceDenegacionesDeclinedInsufficientFund">
+      <failure type="AssertionFailure" message="expected response to have header with key 'Content-Type'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Denegaciones / DECLINED - INSUFFICIENT_FUND.]]>
+        <![CDATA[Test description: Content-Type es application/json.]]>
+        <![CDATA[Error message: expected response to have header with key 'Content-Type'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have header with key 'Content-Type'
+   at Object.eval sandbox-script.js:2:3).]]>
+      </failure>
+    </testcase>
+    <testcase name="HTTP Status es 201" time="0.000" classname="CybersourceDenegacionesDeclinedInsufficientFund">
+      <failure type="AssertionFailure" message="expected PostmanResponse{ …(5) } to have property 'code'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Denegaciones / DECLINED - INSUFFICIENT_FUND.]]>
+        <![CDATA[Test description: HTTP Status es 201.]]>
+        <![CDATA[Error message: expected PostmanResponse{ …(5) } to have property 'code'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected PostmanResponse{ …(5) } to have property 'code'
+   at Object.eval sandbox-script.js:1:3).]]>
+      </failure>
+    </testcase>
+    <testcase name="Status es DECLINED" time="0.000" classname="CybersourceDenegacionesDeclinedInsufficientFund">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Denegaciones / DECLINED - INSUFFICIENT_FUND.]]>
+        <![CDATA[Test description: Status es DECLINED.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:2:3).]]>
+      </failure>
+    </testcase>
+    <testcase name="Reason es INSUFFICIENT_FUND" time="0.000" classname="CybersourceDenegacionesDeclinedInsufficientFund">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Denegaciones / DECLINED - INSUFFICIENT_FUND.]]>
+        <![CDATA[Test description: Reason es INSUFFICIENT_FUND.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:3:3).]]>
+      </failure>
+    </testcase>
+    <testcase name="Mensaje al cliente es correcto" time="0.000" classname="CybersourceDenegacionesDeclinedInsufficientFund">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Denegaciones / DECLINED - INSUFFICIENT_FUND.]]>
+        <![CDATA[Test description: Mensaje al cliente es correcto.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:4:3).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="Cybersource - Denegaciones / DECLINED - CVN_NOT_MATCH" id="f547e68b-b551-47b9-b672-456839bae984" timestamp="2026-01-09T20:15:41.180Z" tests="6" failures="6" errors="1" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND api-checkout-staging.example.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:121:26)
+
+---
+]]></system-err>
+    <testcase name="Response time es menor a 2000ms" time="0.000" classname="CybersourceDenegacionesDeclinedCvnNotMatch">
+      <failure type="AssertionFailure" message="expected undefined to be a number or a date">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Denegaciones / DECLINED - CVN_NOT_MATCH.]]>
+        <![CDATA[Test description: Response time es menor a 2000ms.]]>
+        <![CDATA[Error message: expected undefined to be a number or a date.]]>
+        <![CDATA[Stacktrace: AssertionError: expected undefined to be a number or a date
+   at Object.eval sandbox-script.js:1:4).]]>
+      </failure>
+    </testcase>
+    <testcase name="Content-Type es application/json" time="0.000" classname="CybersourceDenegacionesDeclinedCvnNotMatch">
+      <failure type="AssertionFailure" message="expected response to have header with key 'Content-Type'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Denegaciones / DECLINED - CVN_NOT_MATCH.]]>
+        <![CDATA[Test description: Content-Type es application/json.]]>
+        <![CDATA[Error message: expected response to have header with key 'Content-Type'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have header with key 'Content-Type'
+   at Object.eval sandbox-script.js:2:4).]]>
+      </failure>
+    </testcase>
+    <testcase name="HTTP Status es 201" time="0.000" classname="CybersourceDenegacionesDeclinedCvnNotMatch">
+      <failure type="AssertionFailure" message="expected PostmanResponse{ …(5) } to have property 'code'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Denegaciones / DECLINED - CVN_NOT_MATCH.]]>
+        <![CDATA[Test description: HTTP Status es 201.]]>
+        <![CDATA[Error message: expected PostmanResponse{ …(5) } to have property 'code'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected PostmanResponse{ …(5) } to have property 'code'
+   at Object.eval sandbox-script.js:1:4).]]>
+      </failure>
+    </testcase>
+    <testcase name="Status es DECLINED" time="0.000" classname="CybersourceDenegacionesDeclinedCvnNotMatch">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Denegaciones / DECLINED - CVN_NOT_MATCH.]]>
+        <![CDATA[Test description: Status es DECLINED.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:2:4).]]>
+      </failure>
+    </testcase>
+    <testcase name="Reason es CVN_NOT_MATCH" time="0.000" classname="CybersourceDenegacionesDeclinedCvnNotMatch">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Denegaciones / DECLINED - CVN_NOT_MATCH.]]>
+        <![CDATA[Test description: Reason es CVN_NOT_MATCH.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:3:4).]]>
+      </failure>
+    </testcase>
+    <testcase name="Mensaje al cliente es correcto" time="0.000" classname="CybersourceDenegacionesDeclinedCvnNotMatch">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Denegaciones / DECLINED - CVN_NOT_MATCH.]]>
+        <![CDATA[Test description: Mensaje al cliente es correcto.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:4:4).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="Cybersource - Denegaciones / AUTHORIZED_RISK_DECLINED - SCORE_EXCEEDS_THRESHOLD" id="4aa9cf81-f4a3-4eb7-a478-b82e6035ac50" timestamp="2026-01-09T20:15:41.180Z" tests="6" failures="6" errors="1" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND api-checkout-staging.example.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:121:26)
+
+---
+]]></system-err>
+    <testcase name="Response time es menor a 2000ms" time="0.000" classname="CybersourceDenegacionesAuthorizedRiskDeclinedScoreExceedsThreshold">
+      <failure type="AssertionFailure" message="expected undefined to be a number or a date">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Denegaciones / AUTHORIZED_RISK_DECLINED - SCORE_EXCEEDS_THRESHOLD.]]>
+        <![CDATA[Test description: Response time es menor a 2000ms.]]>
+        <![CDATA[Error message: expected undefined to be a number or a date.]]>
+        <![CDATA[Stacktrace: AssertionError: expected undefined to be a number or a date
+   at Object.eval sandbox-script.js:1:5).]]>
+      </failure>
+    </testcase>
+    <testcase name="Content-Type es application/json" time="0.000" classname="CybersourceDenegacionesAuthorizedRiskDeclinedScoreExceedsThreshold">
+      <failure type="AssertionFailure" message="expected response to have header with key 'Content-Type'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Denegaciones / AUTHORIZED_RISK_DECLINED - SCORE_EXCEEDS_THRESHOLD.]]>
+        <![CDATA[Test description: Content-Type es application/json.]]>
+        <![CDATA[Error message: expected response to have header with key 'Content-Type'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have header with key 'Content-Type'
+   at Object.eval sandbox-script.js:2:5).]]>
+      </failure>
+    </testcase>
+    <testcase name="HTTP Status es 201" time="0.000" classname="CybersourceDenegacionesAuthorizedRiskDeclinedScoreExceedsThreshold">
+      <failure type="AssertionFailure" message="expected PostmanResponse{ …(5) } to have property 'code'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Denegaciones / AUTHORIZED_RISK_DECLINED - SCORE_EXCEEDS_THRESHOLD.]]>
+        <![CDATA[Test description: HTTP Status es 201.]]>
+        <![CDATA[Error message: expected PostmanResponse{ …(5) } to have property 'code'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected PostmanResponse{ …(5) } to have property 'code'
+   at Object.eval sandbox-script.js:1:5).]]>
+      </failure>
+    </testcase>
+    <testcase name="Status es AUTHORIZED_RISK_DECLINED" time="0.000" classname="CybersourceDenegacionesAuthorizedRiskDeclinedScoreExceedsThreshold">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Denegaciones / AUTHORIZED_RISK_DECLINED - SCORE_EXCEEDS_THRESHOLD.]]>
+        <![CDATA[Test description: Status es AUTHORIZED_RISK_DECLINED.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:2:5).]]>
+      </failure>
+    </testcase>
+    <testcase name="Reason es SCORE_EXCEEDS_THRESHOLD" time="0.000" classname="CybersourceDenegacionesAuthorizedRiskDeclinedScoreExceedsThreshold">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Denegaciones / AUTHORIZED_RISK_DECLINED - SCORE_EXCEEDS_THRESHOLD.]]>
+        <![CDATA[Test description: Reason es SCORE_EXCEEDS_THRESHOLD.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:3:5).]]>
+      </failure>
+    </testcase>
+    <testcase name="Mensaje al cliente es correcto" time="0.000" classname="CybersourceDenegacionesAuthorizedRiskDeclinedScoreExceedsThreshold">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Denegaciones / AUTHORIZED_RISK_DECLINED - SCORE_EXCEEDS_THRESHOLD.]]>
+        <![CDATA[Test description: Mensaje al cliente es correcto.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:4:5).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="Cybersource - Errores Técnicos / INVALID_REQUEST - INVALID_MERCHANT_CONFIGURATION" id="d42d7c62-165d-477f-8d15-8e5c8e5b7d2e" timestamp="2026-01-09T20:15:41.180Z" tests="7" failures="7" errors="1" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND api-checkout-staging.example.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:121:26)
+
+---
+]]></system-err>
+    <testcase name="Response time es menor a 2000ms" time="0.000" classname="CybersourceErroresTecnicosInvalidRequestInvalidMerchantConfiguration">
+      <failure type="AssertionFailure" message="expected undefined to be a number or a date">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Errores Técnicos / INVALID_REQUEST - INVALID_MERCHANT_CONFIGURATION.]]>
+        <![CDATA[Test description: Response time es menor a 2000ms.]]>
+        <![CDATA[Error message: expected undefined to be a number or a date.]]>
+        <![CDATA[Stacktrace: AssertionError: expected undefined to be a number or a date
+   at Object.eval sandbox-script.js:1:6).]]>
+      </failure>
+    </testcase>
+    <testcase name="Content-Type es application/json" time="0.000" classname="CybersourceErroresTecnicosInvalidRequestInvalidMerchantConfiguration">
+      <failure type="AssertionFailure" message="expected response to have header with key 'Content-Type'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Errores Técnicos / INVALID_REQUEST - INVALID_MERCHANT_CONFIGURATION.]]>
+        <![CDATA[Test description: Content-Type es application/json.]]>
+        <![CDATA[Error message: expected response to have header with key 'Content-Type'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have header with key 'Content-Type'
+   at Object.eval sandbox-script.js:2:6).]]>
+      </failure>
+    </testcase>
+    <testcase name="HTTP Status es 201" time="0.000" classname="CybersourceErroresTecnicosInvalidRequestInvalidMerchantConfiguration">
+      <failure type="AssertionFailure" message="expected PostmanResponse{ …(5) } to have property 'code'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Errores Técnicos / INVALID_REQUEST - INVALID_MERCHANT_CONFIGURATION.]]>
+        <![CDATA[Test description: HTTP Status es 201.]]>
+        <![CDATA[Error message: expected PostmanResponse{ …(5) } to have property 'code'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected PostmanResponse{ …(5) } to have property 'code'
+   at Object.eval sandbox-script.js:1:6).]]>
+      </failure>
+    </testcase>
+    <testcase name="Status es INVALID_REQUEST" time="0.000" classname="CybersourceErroresTecnicosInvalidRequestInvalidMerchantConfiguration">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Errores Técnicos / INVALID_REQUEST - INVALID_MERCHANT_CONFIGURATION.]]>
+        <![CDATA[Test description: Status es INVALID_REQUEST.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:2:6).]]>
+      </failure>
+    </testcase>
+    <testcase name="Reason es INVALID_MERCHANT_CONFIGURATION" time="0.000" classname="CybersourceErroresTecnicosInvalidRequestInvalidMerchantConfiguration">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Errores Técnicos / INVALID_REQUEST - INVALID_MERCHANT_CONFIGURATION.]]>
+        <![CDATA[Test description: Reason es INVALID_MERCHANT_CONFIGURATION.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:3:6).]]>
+      </failure>
+    </testcase>
+    <testcase name="Mensaje al cliente es correcto" time="0.000" classname="CybersourceErroresTecnicosInvalidRequestInvalidMerchantConfiguration">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Errores Técnicos / INVALID_REQUEST - INVALID_MERCHANT_CONFIGURATION.]]>
+        <![CDATA[Test description: Mensaje al cliente es correcto.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:4:6).]]>
+      </failure>
+    </testcase>
+    <testcase name="Requiere alerta de criticidad Alta" time="0.000" classname="CybersourceErroresTecnicosInvalidRequestInvalidMerchantConfiguration">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Errores Técnicos / INVALID_REQUEST - INVALID_MERCHANT_CONFIGURATION.]]>
+        <![CDATA[Test description: Requiere alerta de criticidad Alta.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:5:6).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="Cybersource - Errores Técnicos / INVALID_REQUEST - MISSING_FIELD (400)" id="fad8e49c-0921-487a-b678-471a078eaaf3" timestamp="2026-01-09T20:15:41.180Z" tests="7" failures="7" errors="1" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND api-checkout-staging.example.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:121:26)
+
+---
+]]></system-err>
+    <testcase name="Response time es menor a 2000ms" time="0.000" classname="CybersourceErroresTecnicosInvalidRequestMissingField400">
+      <failure type="AssertionFailure" message="expected undefined to be a number or a date">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Errores Técnicos / INVALID_REQUEST - MISSING_FIELD (400).]]>
+        <![CDATA[Test description: Response time es menor a 2000ms.]]>
+        <![CDATA[Error message: expected undefined to be a number or a date.]]>
+        <![CDATA[Stacktrace: AssertionError: expected undefined to be a number or a date
+   at Object.eval sandbox-script.js:1:7).]]>
+      </failure>
+    </testcase>
+    <testcase name="Content-Type es application/json" time="0.000" classname="CybersourceErroresTecnicosInvalidRequestMissingField400">
+      <failure type="AssertionFailure" message="expected response to have header with key 'Content-Type'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Errores Técnicos / INVALID_REQUEST - MISSING_FIELD (400).]]>
+        <![CDATA[Test description: Content-Type es application/json.]]>
+        <![CDATA[Error message: expected response to have header with key 'Content-Type'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have header with key 'Content-Type'
+   at Object.eval sandbox-script.js:2:7).]]>
+      </failure>
+    </testcase>
+    <testcase name="HTTP Status es 400" time="0.000" classname="CybersourceErroresTecnicosInvalidRequestMissingField400">
+      <failure type="AssertionFailure" message="expected PostmanResponse{ …(5) } to have property 'code'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Errores Técnicos / INVALID_REQUEST - MISSING_FIELD (400).]]>
+        <![CDATA[Test description: HTTP Status es 400.]]>
+        <![CDATA[Error message: expected PostmanResponse{ …(5) } to have property 'code'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected PostmanResponse{ …(5) } to have property 'code'
+   at Object.eval sandbox-script.js:1:7).]]>
+      </failure>
+    </testcase>
+    <testcase name="Status es INVALID_REQUEST" time="0.000" classname="CybersourceErroresTecnicosInvalidRequestMissingField400">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Errores Técnicos / INVALID_REQUEST - MISSING_FIELD (400).]]>
+        <![CDATA[Test description: Status es INVALID_REQUEST.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:2:7).]]>
+      </failure>
+    </testcase>
+    <testcase name="Reason es MISSING_FIELD" time="0.000" classname="CybersourceErroresTecnicosInvalidRequestMissingField400">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Errores Técnicos / INVALID_REQUEST - MISSING_FIELD (400).]]>
+        <![CDATA[Test description: Reason es MISSING_FIELD.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:3:7).]]>
+      </failure>
+    </testcase>
+    <testcase name="Mensaje al cliente es correcto" time="0.000" classname="CybersourceErroresTecnicosInvalidRequestMissingField400">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Errores Técnicos / INVALID_REQUEST - MISSING_FIELD (400).]]>
+        <![CDATA[Test description: Mensaje al cliente es correcto.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:4:7).]]>
+      </failure>
+    </testcase>
+    <testcase name="Requiere alerta de criticidad Alta" time="0.000" classname="CybersourceErroresTecnicosInvalidRequestMissingField400">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Errores Técnicos / INVALID_REQUEST - MISSING_FIELD (400).]]>
+        <![CDATA[Test description: Requiere alerta de criticidad Alta.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:5:7).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="Cybersource - Errores Técnicos / INVALID_REQUEST - DUPLICATE_REQUEST (400)" id="55f06e53-96c0-42c6-ac0e-242ce77f764d" timestamp="2026-01-09T20:15:41.180Z" tests="7" failures="7" errors="1" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND api-checkout-staging.example.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:121:26)
+
+---
+]]></system-err>
+    <testcase name="Response time es menor a 2000ms" time="0.000" classname="CybersourceErroresTecnicosInvalidRequestDuplicateRequest400">
+      <failure type="AssertionFailure" message="expected undefined to be a number or a date">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Errores Técnicos / INVALID_REQUEST - DUPLICATE_REQUEST (400).]]>
+        <![CDATA[Test description: Response time es menor a 2000ms.]]>
+        <![CDATA[Error message: expected undefined to be a number or a date.]]>
+        <![CDATA[Stacktrace: AssertionError: expected undefined to be a number or a date
+   at Object.eval sandbox-script.js:1:8).]]>
+      </failure>
+    </testcase>
+    <testcase name="Content-Type es application/json" time="0.000" classname="CybersourceErroresTecnicosInvalidRequestDuplicateRequest400">
+      <failure type="AssertionFailure" message="expected response to have header with key 'Content-Type'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Errores Técnicos / INVALID_REQUEST - DUPLICATE_REQUEST (400).]]>
+        <![CDATA[Test description: Content-Type es application/json.]]>
+        <![CDATA[Error message: expected response to have header with key 'Content-Type'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have header with key 'Content-Type'
+   at Object.eval sandbox-script.js:2:8).]]>
+      </failure>
+    </testcase>
+    <testcase name="HTTP Status es 400" time="0.000" classname="CybersourceErroresTecnicosInvalidRequestDuplicateRequest400">
+      <failure type="AssertionFailure" message="expected PostmanResponse{ …(5) } to have property 'code'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Errores Técnicos / INVALID_REQUEST - DUPLICATE_REQUEST (400).]]>
+        <![CDATA[Test description: HTTP Status es 400.]]>
+        <![CDATA[Error message: expected PostmanResponse{ …(5) } to have property 'code'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected PostmanResponse{ …(5) } to have property 'code'
+   at Object.eval sandbox-script.js:1:8).]]>
+      </failure>
+    </testcase>
+    <testcase name="Status es INVALID_REQUEST" time="0.000" classname="CybersourceErroresTecnicosInvalidRequestDuplicateRequest400">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Errores Técnicos / INVALID_REQUEST - DUPLICATE_REQUEST (400).]]>
+        <![CDATA[Test description: Status es INVALID_REQUEST.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:2:8).]]>
+      </failure>
+    </testcase>
+    <testcase name="Reason es DUPLICATE_REQUEST" time="0.000" classname="CybersourceErroresTecnicosInvalidRequestDuplicateRequest400">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Errores Técnicos / INVALID_REQUEST - DUPLICATE_REQUEST (400).]]>
+        <![CDATA[Test description: Reason es DUPLICATE_REQUEST.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:3:8).]]>
+      </failure>
+    </testcase>
+    <testcase name="Mensaje al cliente es correcto" time="0.000" classname="CybersourceErroresTecnicosInvalidRequestDuplicateRequest400">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Errores Técnicos / INVALID_REQUEST - DUPLICATE_REQUEST (400).]]>
+        <![CDATA[Test description: Mensaje al cliente es correcto.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:4:8).]]>
+      </failure>
+    </testcase>
+    <testcase name="Requiere alerta de criticidad Alta" time="0.000" classname="CybersourceErroresTecnicosInvalidRequestDuplicateRequest400">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Errores Técnicos / INVALID_REQUEST - DUPLICATE_REQUEST (400).]]>
+        <![CDATA[Test description: Requiere alerta de criticidad Alta.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:5:8).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="Cybersource - Errores Técnicos / SERVER_ERROR - SYSTEM_ERROR (502)" id="5351e271-5900-4ae9-b11e-2324d5d2ffd6" timestamp="2026-01-09T20:15:41.180Z" tests="7" failures="7" errors="1" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND api-checkout-staging.example.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:121:26)
+
+---
+]]></system-err>
+    <testcase name="Response time es menor a 2000ms" time="0.000" classname="CybersourceErroresTecnicosServerErrorSystemError502">
+      <failure type="AssertionFailure" message="expected undefined to be a number or a date">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Errores Técnicos / SERVER_ERROR - SYSTEM_ERROR (502).]]>
+        <![CDATA[Test description: Response time es menor a 2000ms.]]>
+        <![CDATA[Error message: expected undefined to be a number or a date.]]>
+        <![CDATA[Stacktrace: AssertionError: expected undefined to be a number or a date
+   at Object.eval sandbox-script.js:1:9).]]>
+      </failure>
+    </testcase>
+    <testcase name="Content-Type es application/json" time="0.000" classname="CybersourceErroresTecnicosServerErrorSystemError502">
+      <failure type="AssertionFailure" message="expected response to have header with key 'Content-Type'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Errores Técnicos / SERVER_ERROR - SYSTEM_ERROR (502).]]>
+        <![CDATA[Test description: Content-Type es application/json.]]>
+        <![CDATA[Error message: expected response to have header with key 'Content-Type'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have header with key 'Content-Type'
+   at Object.eval sandbox-script.js:2:9).]]>
+      </failure>
+    </testcase>
+    <testcase name="HTTP Status es 502" time="0.000" classname="CybersourceErroresTecnicosServerErrorSystemError502">
+      <failure type="AssertionFailure" message="expected PostmanResponse{ …(5) } to have property 'code'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Errores Técnicos / SERVER_ERROR - SYSTEM_ERROR (502).]]>
+        <![CDATA[Test description: HTTP Status es 502.]]>
+        <![CDATA[Error message: expected PostmanResponse{ …(5) } to have property 'code'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected PostmanResponse{ …(5) } to have property 'code'
+   at Object.eval sandbox-script.js:1:9).]]>
+      </failure>
+    </testcase>
+    <testcase name="Status es SERVER_ERROR" time="0.000" classname="CybersourceErroresTecnicosServerErrorSystemError502">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Errores Técnicos / SERVER_ERROR - SYSTEM_ERROR (502).]]>
+        <![CDATA[Test description: Status es SERVER_ERROR.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:2:9).]]>
+      </failure>
+    </testcase>
+    <testcase name="Reason es SYSTEM_ERROR" time="0.000" classname="CybersourceErroresTecnicosServerErrorSystemError502">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Errores Técnicos / SERVER_ERROR - SYSTEM_ERROR (502).]]>
+        <![CDATA[Test description: Reason es SYSTEM_ERROR.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:3:9).]]>
+      </failure>
+    </testcase>
+    <testcase name="Mensaje al cliente es correcto" time="0.000" classname="CybersourceErroresTecnicosServerErrorSystemError502">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Errores Técnicos / SERVER_ERROR - SYSTEM_ERROR (502).]]>
+        <![CDATA[Test description: Mensaje al cliente es correcto.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:4:9).]]>
+      </failure>
+    </testcase>
+    <testcase name="Requiere alerta de criticidad Alta" time="0.000" classname="CybersourceErroresTecnicosServerErrorSystemError502">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Cybersource - Errores Técnicos / SERVER_ERROR - SYSTEM_ERROR (502).]]>
+        <![CDATA[Test description: Requiere alerta de criticidad Alta.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:5:9).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="PayPal - Flujos Exitosos / Agreement Created - 201" id="46c47107-1094-4a94-ae63-895d0d2c6fe2" timestamp="2026-01-09T20:15:41.180Z" tests="6" failures="6" errors="1" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND api-checkout-staging.example.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:121:26)
+
+---
+]]></system-err>
+    <testcase name="Response time es menor a 2000ms" time="0.000" classname="PayPalFlujosExitososAgreementCreated201">
+      <failure type="AssertionFailure" message="expected undefined to be a number or a date">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Flujos Exitosos / Agreement Created - 201.]]>
+        <![CDATA[Test description: Response time es menor a 2000ms.]]>
+        <![CDATA[Error message: expected undefined to be a number or a date.]]>
+        <![CDATA[Stacktrace: AssertionError: expected undefined to be a number or a date
+   at Object.eval sandbox-script.js:1:10).]]>
+      </failure>
+    </testcase>
+    <testcase name="Content-Type es application/json" time="0.000" classname="PayPalFlujosExitososAgreementCreated201">
+      <failure type="AssertionFailure" message="expected response to have header with key 'Content-Type'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Flujos Exitosos / Agreement Created - 201.]]>
+        <![CDATA[Test description: Content-Type es application/json.]]>
+        <![CDATA[Error message: expected response to have header with key 'Content-Type'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have header with key 'Content-Type'
+   at Object.eval sandbox-script.js:2:10).]]>
+      </failure>
+    </testcase>
+    <testcase name="HTTP Status es 201" time="0.000" classname="PayPalFlujosExitososAgreementCreated201">
+      <failure type="AssertionFailure" message="expected PostmanResponse{ …(5) } to have property 'code'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Flujos Exitosos / Agreement Created - 201.]]>
+        <![CDATA[Test description: HTTP Status es 201.]]>
+        <![CDATA[Error message: expected PostmanResponse{ …(5) } to have property 'code'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected PostmanResponse{ …(5) } to have property 'code'
+   at Object.eval sandbox-script.js:1:10).]]>
+      </failure>
+    </testcase>
+    <testcase name="Status es Created" time="0.000" classname="PayPalFlujosExitososAgreementCreated201">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Flujos Exitosos / Agreement Created - 201.]]>
+        <![CDATA[Test description: Status es Created.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:2:10).]]>
+      </failure>
+    </testcase>
+    <testcase name="Agreement ID está presente" time="0.000" classname="PayPalFlujosExitososAgreementCreated201">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Flujos Exitosos / Agreement Created - 201.]]>
+        <![CDATA[Test description: Agreement ID está presente.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:3:10).]]>
+      </failure>
+    </testcase>
+    <testcase name="No requiere mensaje de error" time="0.000" classname="PayPalFlujosExitososAgreementCreated201">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Flujos Exitosos / Agreement Created - 201.]]>
+        <![CDATA[Test description: No requiere mensaje de error.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:4:10).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="PayPal - Flujos Exitosos / Payment Success - 200" id="79bd2626-7001-43f0-a618-e0a460b84a89" timestamp="2026-01-09T20:15:41.180Z" tests="6" failures="6" errors="1" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND api-checkout-staging.example.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:121:26)
+
+---
+]]></system-err>
+    <testcase name="Response time es menor a 2000ms" time="0.000" classname="PayPalFlujosExitososPaymentSuccess200">
+      <failure type="AssertionFailure" message="expected undefined to be a number or a date">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Flujos Exitosos / Payment Success - 200.]]>
+        <![CDATA[Test description: Response time es menor a 2000ms.]]>
+        <![CDATA[Error message: expected undefined to be a number or a date.]]>
+        <![CDATA[Stacktrace: AssertionError: expected undefined to be a number or a date
+   at Object.eval sandbox-script.js:1:11).]]>
+      </failure>
+    </testcase>
+    <testcase name="Content-Type es application/json" time="0.000" classname="PayPalFlujosExitososPaymentSuccess200">
+      <failure type="AssertionFailure" message="expected response to have header with key 'Content-Type'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Flujos Exitosos / Payment Success - 200.]]>
+        <![CDATA[Test description: Content-Type es application/json.]]>
+        <![CDATA[Error message: expected response to have header with key 'Content-Type'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have header with key 'Content-Type'
+   at Object.eval sandbox-script.js:2:11).]]>
+      </failure>
+    </testcase>
+    <testcase name="HTTP Status es 200" time="0.000" classname="PayPalFlujosExitososPaymentSuccess200">
+      <failure type="AssertionFailure" message="expected PostmanResponse{ …(5) } to have property 'code'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Flujos Exitosos / Payment Success - 200.]]>
+        <![CDATA[Test description: HTTP Status es 200.]]>
+        <![CDATA[Error message: expected PostmanResponse{ …(5) } to have property 'code'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected PostmanResponse{ …(5) } to have property 'code'
+   at Object.eval sandbox-script.js:1:11).]]>
+      </failure>
+    </testcase>
+    <testcase name="Status es OK" time="0.000" classname="PayPalFlujosExitososPaymentSuccess200">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Flujos Exitosos / Payment Success - 200.]]>
+        <![CDATA[Test description: Status es OK.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:2:11).]]>
+      </failure>
+    </testcase>
+    <testcase name="Payment ID está presente" time="0.000" classname="PayPalFlujosExitososPaymentSuccess200">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Flujos Exitosos / Payment Success - 200.]]>
+        <![CDATA[Test description: Payment ID está presente.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:3:11).]]>
+      </failure>
+    </testcase>
+    <testcase name="Debe redirigir a página de confirmación" time="0.000" classname="PayPalFlujosExitososPaymentSuccess200">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Flujos Exitosos / Payment Success - 200.]]>
+        <![CDATA[Test description: Debe redirigir a página de confirmación.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:4:11).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="PayPal - Errores Técnicos / Bad Request - 400" id="e3508988-5c75-41c0-9608-527c363bd73a" timestamp="2026-01-09T20:15:41.180Z" tests="6" failures="6" errors="1" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND api-checkout-staging.example.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:121:26)
+
+---
+]]></system-err>
+    <testcase name="Response time es menor a 2000ms" time="0.000" classname="PayPalErroresTecnicosBadRequest400">
+      <failure type="AssertionFailure" message="expected undefined to be a number or a date">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Errores Técnicos / Bad Request - 400.]]>
+        <![CDATA[Test description: Response time es menor a 2000ms.]]>
+        <![CDATA[Error message: expected undefined to be a number or a date.]]>
+        <![CDATA[Stacktrace: AssertionError: expected undefined to be a number or a date
+   at Object.eval sandbox-script.js:1:12).]]>
+      </failure>
+    </testcase>
+    <testcase name="Content-Type es application/json" time="0.000" classname="PayPalErroresTecnicosBadRequest400">
+      <failure type="AssertionFailure" message="expected response to have header with key 'Content-Type'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Errores Técnicos / Bad Request - 400.]]>
+        <![CDATA[Test description: Content-Type es application/json.]]>
+        <![CDATA[Error message: expected response to have header with key 'Content-Type'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have header with key 'Content-Type'
+   at Object.eval sandbox-script.js:2:12).]]>
+      </failure>
+    </testcase>
+    <testcase name="HTTP Status es 400" time="0.000" classname="PayPalErroresTecnicosBadRequest400">
+      <failure type="AssertionFailure" message="expected PostmanResponse{ …(5) } to have property 'code'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Errores Técnicos / Bad Request - 400.]]>
+        <![CDATA[Test description: HTTP Status es 400.]]>
+        <![CDATA[Error message: expected PostmanResponse{ …(5) } to have property 'code'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected PostmanResponse{ …(5) } to have property 'code'
+   at Object.eval sandbox-script.js:1:12).]]>
+      </failure>
+    </testcase>
+    <testcase name="Status es Bad Request" time="0.000" classname="PayPalErroresTecnicosBadRequest400">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Errores Técnicos / Bad Request - 400.]]>
+        <![CDATA[Test description: Status es Bad Request.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:2:12).]]>
+      </failure>
+    </testcase>
+    <testcase name="Mensaje al cliente es correcto" time="0.000" classname="PayPalErroresTecnicosBadRequest400">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Errores Técnicos / Bad Request - 400.]]>
+        <![CDATA[Test description: Mensaje al cliente es correcto.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:3:12).]]>
+      </failure>
+    </testcase>
+    <testcase name="Requiere alerta de criticidad Alta" time="0.000" classname="PayPalErroresTecnicosBadRequest400">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Errores Técnicos / Bad Request - 400.]]>
+        <![CDATA[Test description: Requiere alerta de criticidad Alta.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:4:12).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="PayPal - Errores Técnicos / Unauthorized - 401" id="544f53f5-4e1c-4dda-a34b-8a6116d0ffa2" timestamp="2026-01-09T20:15:41.180Z" tests="6" failures="6" errors="1" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND api-checkout-staging.example.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:121:26)
+
+---
+]]></system-err>
+    <testcase name="Response time es menor a 2000ms" time="0.000" classname="PayPalErroresTecnicosUnauthorized401">
+      <failure type="AssertionFailure" message="expected undefined to be a number or a date">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Errores Técnicos / Unauthorized - 401.]]>
+        <![CDATA[Test description: Response time es menor a 2000ms.]]>
+        <![CDATA[Error message: expected undefined to be a number or a date.]]>
+        <![CDATA[Stacktrace: AssertionError: expected undefined to be a number or a date
+   at Object.eval sandbox-script.js:1:13).]]>
+      </failure>
+    </testcase>
+    <testcase name="Content-Type es application/json" time="0.000" classname="PayPalErroresTecnicosUnauthorized401">
+      <failure type="AssertionFailure" message="expected response to have header with key 'Content-Type'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Errores Técnicos / Unauthorized - 401.]]>
+        <![CDATA[Test description: Content-Type es application/json.]]>
+        <![CDATA[Error message: expected response to have header with key 'Content-Type'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have header with key 'Content-Type'
+   at Object.eval sandbox-script.js:2:13).]]>
+      </failure>
+    </testcase>
+    <testcase name="HTTP Status es 401" time="0.000" classname="PayPalErroresTecnicosUnauthorized401">
+      <failure type="AssertionFailure" message="expected PostmanResponse{ …(5) } to have property 'code'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Errores Técnicos / Unauthorized - 401.]]>
+        <![CDATA[Test description: HTTP Status es 401.]]>
+        <![CDATA[Error message: expected PostmanResponse{ …(5) } to have property 'code'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected PostmanResponse{ …(5) } to have property 'code'
+   at Object.eval sandbox-script.js:1:13).]]>
+      </failure>
+    </testcase>
+    <testcase name="Status es Unauthorized" time="0.000" classname="PayPalErroresTecnicosUnauthorized401">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Errores Técnicos / Unauthorized - 401.]]>
+        <![CDATA[Test description: Status es Unauthorized.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:2:13).]]>
+      </failure>
+    </testcase>
+    <testcase name="Mensaje al cliente es correcto" time="0.000" classname="PayPalErroresTecnicosUnauthorized401">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Errores Técnicos / Unauthorized - 401.]]>
+        <![CDATA[Test description: Mensaje al cliente es correcto.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:3:13).]]>
+      </failure>
+    </testcase>
+    <testcase name="Requiere alerta de criticidad Alta" time="0.000" classname="PayPalErroresTecnicosUnauthorized401">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Errores Técnicos / Unauthorized - 401.]]>
+        <![CDATA[Test description: Requiere alerta de criticidad Alta.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:4:13).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="PayPal - Errores Técnicos / Unprocessable Entity - 422" id="6b6a826f-6791-4afd-93b9-0310cd24ee51" timestamp="2026-01-09T20:15:41.180Z" tests="5" failures="5" errors="1" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND api-checkout-staging.example.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:121:26)
+
+---
+]]></system-err>
+    <testcase name="Response time es menor a 2000ms" time="0.000" classname="PayPalErroresTecnicosUnprocessableEntity422">
+      <failure type="AssertionFailure" message="expected undefined to be a number or a date">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Errores Técnicos / Unprocessable Entity - 422.]]>
+        <![CDATA[Test description: Response time es menor a 2000ms.]]>
+        <![CDATA[Error message: expected undefined to be a number or a date.]]>
+        <![CDATA[Stacktrace: AssertionError: expected undefined to be a number or a date
+   at Object.eval sandbox-script.js:1:14).]]>
+      </failure>
+    </testcase>
+    <testcase name="Content-Type es application/json" time="0.000" classname="PayPalErroresTecnicosUnprocessableEntity422">
+      <failure type="AssertionFailure" message="expected response to have header with key 'Content-Type'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Errores Técnicos / Unprocessable Entity - 422.]]>
+        <![CDATA[Test description: Content-Type es application/json.]]>
+        <![CDATA[Error message: expected response to have header with key 'Content-Type'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have header with key 'Content-Type'
+   at Object.eval sandbox-script.js:2:14).]]>
+      </failure>
+    </testcase>
+    <testcase name="HTTP Status es 422" time="0.000" classname="PayPalErroresTecnicosUnprocessableEntity422">
+      <failure type="AssertionFailure" message="expected PostmanResponse{ …(5) } to have property 'code'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Errores Técnicos / Unprocessable Entity - 422.]]>
+        <![CDATA[Test description: HTTP Status es 422.]]>
+        <![CDATA[Error message: expected PostmanResponse{ …(5) } to have property 'code'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected PostmanResponse{ …(5) } to have property 'code'
+   at Object.eval sandbox-script.js:1:14).]]>
+      </failure>
+    </testcase>
+    <testcase name="Status es Unprocessable Entity" time="0.000" classname="PayPalErroresTecnicosUnprocessableEntity422">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Errores Técnicos / Unprocessable Entity - 422.]]>
+        <![CDATA[Test description: Status es Unprocessable Entity.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:2:14).]]>
+      </failure>
+    </testcase>
+    <testcase name="Mensaje al cliente es correcto" time="0.000" classname="PayPalErroresTecnicosUnprocessableEntity422">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Errores Técnicos / Unprocessable Entity - 422.]]>
+        <![CDATA[Test description: Mensaje al cliente es correcto.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:3:14).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="PayPal - Errores Técnicos / Too Many Requests - 429" id="857795fb-465d-458b-95e4-e56ee5aed3b7" timestamp="2026-01-09T20:15:41.180Z" tests="6" failures="6" errors="1" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND api-checkout-staging.example.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:121:26)
+
+---
+]]></system-err>
+    <testcase name="Response time es menor a 2000ms" time="0.000" classname="PayPalErroresTecnicosTooManyRequests429">
+      <failure type="AssertionFailure" message="expected undefined to be a number or a date">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Errores Técnicos / Too Many Requests - 429.]]>
+        <![CDATA[Test description: Response time es menor a 2000ms.]]>
+        <![CDATA[Error message: expected undefined to be a number or a date.]]>
+        <![CDATA[Stacktrace: AssertionError: expected undefined to be a number or a date
+   at Object.eval sandbox-script.js:1:15).]]>
+      </failure>
+    </testcase>
+    <testcase name="Content-Type es application/json" time="0.000" classname="PayPalErroresTecnicosTooManyRequests429">
+      <failure type="AssertionFailure" message="expected response to have header with key 'Content-Type'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Errores Técnicos / Too Many Requests - 429.]]>
+        <![CDATA[Test description: Content-Type es application/json.]]>
+        <![CDATA[Error message: expected response to have header with key 'Content-Type'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have header with key 'Content-Type'
+   at Object.eval sandbox-script.js:2:15).]]>
+      </failure>
+    </testcase>
+    <testcase name="HTTP Status es 429" time="0.000" classname="PayPalErroresTecnicosTooManyRequests429">
+      <failure type="AssertionFailure" message="expected PostmanResponse{ …(5) } to have property 'code'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Errores Técnicos / Too Many Requests - 429.]]>
+        <![CDATA[Test description: HTTP Status es 429.]]>
+        <![CDATA[Error message: expected PostmanResponse{ …(5) } to have property 'code'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected PostmanResponse{ …(5) } to have property 'code'
+   at Object.eval sandbox-script.js:1:15).]]>
+      </failure>
+    </testcase>
+    <testcase name="Status es Too Many Requests" time="0.000" classname="PayPalErroresTecnicosTooManyRequests429">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Errores Técnicos / Too Many Requests - 429.]]>
+        <![CDATA[Test description: Status es Too Many Requests.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:2:15).]]>
+      </failure>
+    </testcase>
+    <testcase name="Mensaje al cliente es correcto" time="0.000" classname="PayPalErroresTecnicosTooManyRequests429">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Errores Técnicos / Too Many Requests - 429.]]>
+        <![CDATA[Test description: Mensaje al cliente es correcto.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:3:15).]]>
+      </failure>
+    </testcase>
+    <testcase name="Requiere alerta de criticidad Alta" time="0.000" classname="PayPalErroresTecnicosTooManyRequests429">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Errores Técnicos / Too Many Requests - 429.]]>
+        <![CDATA[Test description: Requiere alerta de criticidad Alta.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:4:15).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="PayPal - Errores Técnicos / Internal Server Error - 500" id="a7bf3b25-88a3-4a54-a77a-5b18c21f67ea" timestamp="2026-01-09T20:15:41.180Z" tests="6" failures="6" errors="1" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND api-checkout-staging.example.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:121:26)
+
+---
+]]></system-err>
+    <testcase name="Response time es menor a 2000ms" time="0.000" classname="PayPalErroresTecnicosInternalServerError500">
+      <failure type="AssertionFailure" message="expected undefined to be a number or a date">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Errores Técnicos / Internal Server Error - 500.]]>
+        <![CDATA[Test description: Response time es menor a 2000ms.]]>
+        <![CDATA[Error message: expected undefined to be a number or a date.]]>
+        <![CDATA[Stacktrace: AssertionError: expected undefined to be a number or a date
+   at Object.eval sandbox-script.js:1:16).]]>
+      </failure>
+    </testcase>
+    <testcase name="Content-Type es application/json" time="0.000" classname="PayPalErroresTecnicosInternalServerError500">
+      <failure type="AssertionFailure" message="expected response to have header with key 'Content-Type'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Errores Técnicos / Internal Server Error - 500.]]>
+        <![CDATA[Test description: Content-Type es application/json.]]>
+        <![CDATA[Error message: expected response to have header with key 'Content-Type'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have header with key 'Content-Type'
+   at Object.eval sandbox-script.js:2:16).]]>
+      </failure>
+    </testcase>
+    <testcase name="HTTP Status es 500" time="0.000" classname="PayPalErroresTecnicosInternalServerError500">
+      <failure type="AssertionFailure" message="expected PostmanResponse{ …(5) } to have property 'code'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Errores Técnicos / Internal Server Error - 500.]]>
+        <![CDATA[Test description: HTTP Status es 500.]]>
+        <![CDATA[Error message: expected PostmanResponse{ …(5) } to have property 'code'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected PostmanResponse{ …(5) } to have property 'code'
+   at Object.eval sandbox-script.js:1:16).]]>
+      </failure>
+    </testcase>
+    <testcase name="Status es Internal Server Error" time="0.000" classname="PayPalErroresTecnicosInternalServerError500">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Errores Técnicos / Internal Server Error - 500.]]>
+        <![CDATA[Test description: Status es Internal Server Error.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:2:16).]]>
+      </failure>
+    </testcase>
+    <testcase name="Mensaje al cliente es correcto" time="0.000" classname="PayPalErroresTecnicosInternalServerError500">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Errores Técnicos / Internal Server Error - 500.]]>
+        <![CDATA[Test description: Mensaje al cliente es correcto.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:3:16).]]>
+      </failure>
+    </testcase>
+    <testcase name="Requiere alerta de criticidad Alta" time="0.000" classname="PayPalErroresTecnicosInternalServerError500">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Errores Técnicos / Internal Server Error - 500.]]>
+        <![CDATA[Test description: Requiere alerta de criticidad Alta.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:4:16).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="PayPal - Errores Técnicos / Service Unavailable - 503" id="817a584f-f0f9-4609-9554-57fad4d2f22d" timestamp="2026-01-09T20:15:41.180Z" tests="6" failures="6" errors="1" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND api-checkout-staging.example.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:121:26)
+
+---
+]]></system-err>
+    <testcase name="Response time es menor a 2000ms" time="0.000" classname="PayPalErroresTecnicosServiceUnavailable503">
+      <failure type="AssertionFailure" message="expected undefined to be a number or a date">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Errores Técnicos / Service Unavailable - 503.]]>
+        <![CDATA[Test description: Response time es menor a 2000ms.]]>
+        <![CDATA[Error message: expected undefined to be a number or a date.]]>
+        <![CDATA[Stacktrace: AssertionError: expected undefined to be a number or a date
+   at Object.eval sandbox-script.js:1:17).]]>
+      </failure>
+    </testcase>
+    <testcase name="Content-Type es application/json" time="0.000" classname="PayPalErroresTecnicosServiceUnavailable503">
+      <failure type="AssertionFailure" message="expected response to have header with key 'Content-Type'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Errores Técnicos / Service Unavailable - 503.]]>
+        <![CDATA[Test description: Content-Type es application/json.]]>
+        <![CDATA[Error message: expected response to have header with key 'Content-Type'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have header with key 'Content-Type'
+   at Object.eval sandbox-script.js:2:17).]]>
+      </failure>
+    </testcase>
+    <testcase name="HTTP Status es 503" time="0.000" classname="PayPalErroresTecnicosServiceUnavailable503">
+      <failure type="AssertionFailure" message="expected PostmanResponse{ …(5) } to have property 'code'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Errores Técnicos / Service Unavailable - 503.]]>
+        <![CDATA[Test description: HTTP Status es 503.]]>
+        <![CDATA[Error message: expected PostmanResponse{ …(5) } to have property 'code'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected PostmanResponse{ …(5) } to have property 'code'
+   at Object.eval sandbox-script.js:1:17).]]>
+      </failure>
+    </testcase>
+    <testcase name="Status es Service Unavailable" time="0.000" classname="PayPalErroresTecnicosServiceUnavailable503">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Errores Técnicos / Service Unavailable - 503.]]>
+        <![CDATA[Test description: Status es Service Unavailable.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:2:17).]]>
+      </failure>
+    </testcase>
+    <testcase name="Mensaje al cliente es correcto" time="0.000" classname="PayPalErroresTecnicosServiceUnavailable503">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Errores Técnicos / Service Unavailable - 503.]]>
+        <![CDATA[Test description: Mensaje al cliente es correcto.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:3:17).]]>
+      </failure>
+    </testcase>
+    <testcase name="Requiere alerta de criticidad Alta" time="0.000" classname="PayPalErroresTecnicosServiceUnavailable503">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: PayPal - Errores Técnicos / Service Unavailable - 503.]]>
+        <![CDATA[Test description: Requiere alerta de criticidad Alta.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:4:17).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="Edge Cases / Error Code No Documentado - Mensaje Genérico" id="f5e45222-6dff-4caa-bb52-178903a5943a" timestamp="2026-01-09T20:15:41.180Z" tests="4" failures="4" errors="1" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND api-checkout-staging.example.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:121:26)
+
+---
+]]></system-err>
+    <testcase name="Response time es menor a 2000ms" time="0.000" classname="EdgeCasesErrorCodeNoDocumentadoMensajeGenerico">
+      <failure type="AssertionFailure" message="expected undefined to be a number or a date">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Edge Cases / Error Code No Documentado - Mensaje Genérico.]]>
+        <![CDATA[Test description: Response time es menor a 2000ms.]]>
+        <![CDATA[Error message: expected undefined to be a number or a date.]]>
+        <![CDATA[Stacktrace: AssertionError: expected undefined to be a number or a date
+   at Object.eval sandbox-script.js:1:18).]]>
+      </failure>
+    </testcase>
+    <testcase name="Content-Type es application/json" time="0.000" classname="EdgeCasesErrorCodeNoDocumentadoMensajeGenerico">
+      <failure type="AssertionFailure" message="expected response to have header with key 'Content-Type'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Edge Cases / Error Code No Documentado - Mensaje Genérico.]]>
+        <![CDATA[Test description: Content-Type es application/json.]]>
+        <![CDATA[Error message: expected response to have header with key 'Content-Type'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have header with key 'Content-Type'
+   at Object.eval sandbox-script.js:2:18).]]>
+      </failure>
+    </testcase>
+    <testcase name="Código de error no documentado" time="0.000" classname="EdgeCasesErrorCodeNoDocumentadoMensajeGenerico">
+      <failure type="AssertionFailure" message="expected PostmanResponse{ …(5) } to have property 'code'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Edge Cases / Error Code No Documentado - Mensaje Genérico.]]>
+        <![CDATA[Test description: Código de error no documentado.]]>
+        <![CDATA[Error message: expected PostmanResponse{ …(5) } to have property 'code'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected PostmanResponse{ …(5) } to have property 'code'
+   at Object.eval sandbox-script.js:1:18).]]>
+      </failure>
+    </testcase>
+    <testcase name="Mensaje genérico mostrado" time="0.000" classname="EdgeCasesErrorCodeNoDocumentadoMensajeGenerico">
+      <failure type="AssertionFailure" message="&quot;undefined&quot; is not valid JSON">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890.]]>
+        <![CDATA[Collection name: Checkout Error Handling API - PSP Testing.]]>
+        <![CDATA[Request name: Edge Cases / Error Code No Documentado - Mensaje Genérico.]]>
+        <![CDATA[Test description: Mensaje genérico mostrado.]]>
+        <![CDATA[Error message: "undefined" is not valid JSON.]]>
+        <![CDATA[Stacktrace: JSONError: "undefined" is not valid JSON
+   at Object.eval sandbox-script.js:2:18).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+</testsuites>

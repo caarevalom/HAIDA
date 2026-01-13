@@ -1,0 +1,33 @@
+{
+  "dev_config": {
+    "project_id": "uuid-project-001",
+    "environment": "dev",
+    "configs": {
+      "database_url": "postgresql://localhost/haida_dev",
+      "api_key": "dev-key-12345",
+      "debug": true,
+      "log_level": "DEBUG"
+    }
+  },
+  "prod_config": {
+    "project_id": "uuid-project-001",
+    "environment": "prod",
+    "configs": {
+      "database_url": "postgresql://prod-server/haida_prod",
+      "api_key": "prod-key-secret-xyz",
+      "debug": false,
+      "log_level": "WARNING",
+      "cdn_url": "https://cdn.example.com"
+    }
+  },
+  "staging_config": {
+    "project_id": "uuid-project-002",
+    "environment": "staging",
+    "configs": {
+      "database_url": "postgresql://staging-server/haida_staging",
+      "api_key": "staging-key-temp",
+      "debug": true,
+      "log_level": "INFO"
+    }
+  }
+}

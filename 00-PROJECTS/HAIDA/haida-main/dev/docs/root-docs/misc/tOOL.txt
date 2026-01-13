@@ -1,0 +1,62 @@
+Write-Host "=== HAIDA Prerequisites Check ===" -ForegroundColor Cyan
+
+# Node.js
+try {
+    $nodeVersion = node --version
+    Write-Host "✓ Node.js: $nodeVersion" -ForegroundColor Green
+} catch {
+    Write-Host "✗ Node.js: NOT INSTALLED" -ForegroundColor Red
+}
+
+# NPM
+try {
+    $npmVersion = npm --version
+    Write-Host "✓ NPM: v$npmVersion" -ForegroundColor Green
+} catch {
+    Write-Host "✗ NPM: NOT INSTALLED" -ForegroundColor Red
+}
+
+# Java
+try {
+    $javaVersion = java -version 2>&1 | Select-Object -First 1
+    Write-Host "✓ Java: $javaVersion" -ForegroundColor Green
+} catch {
+    Write-Host "✗ Java: NOT INSTALLED" -ForegroundColor Red
+}
+
+# Git
+try {
+    $gitVersion = git --version
+    Write-Host "✓ Git: $gitVersion" -ForegroundColor Green
+} catch {
+    Write-Host "✗ Git: NOT INSTALLED" -ForegroundColor Red
+}
+
+# Docker
+try {
+    $dockerVersion = docker --version
+    Write-Host "✓ Docker: $dockerVersion" -ForegroundColor Green
+} catch {
+    Write-Host "✗ Docker: NOT INSTALLED" -ForegroundColor Red
+}
+
+# Docker Compose
+try {
+    $composeVersion = docker-compose --version
+    Write-Host "✓ Docker Compose: $composeVersion" -ForegroundColor Green
+} catch {
+    Write-Host "✗ Docker Compose: NOT INSTALLED" -ForegroundColor Red
+}
+
+# PowerShell
+Write-Host "✓ PowerShell: $($PSVersionTable.PSVersion)" -ForegroundColor Green
+
+# k6 (Optional)
+try {
+    $k6Version = k6 version
+    Write-Host "✓ k6: $k6Version" -ForegroundColor Green
+} catch {
+    Write-Host "⚠ k6: NOT INSTALLED (Optional)" -ForegroundColor Yellow
+}
+
+Write-Host "`n=== Check Complete ===" -ForegroundColor Cyan

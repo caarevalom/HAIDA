@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<project>
+    <projectId>10371</projectId>
+    <projectKey>P20F</projectKey>
+    <exportDate>2025-12-24 11:02:35 UTC</exportDate>
+    <folders>
+        <folder fullPath="QA HIBERUS /Sprint 14/Estructura del site/404" index="0"/>
+    </folders>
+    <testCases>
+        <testCase id="282457596" key="P20F-T1919">
+            <attachments/>
+            <confluencePageLinks/>
+            <createdBy>Fernando Nozar [QA-Hiberus]</createdBy>
+            <createdOn>2025-12-01 10:40:55 UTC</createdOn>
+            <customFields>
+                <customField name="Historia de Usuario" type="MULTI_LINE_TEXT">
+                    <value><![CDATA[<a href="https://privalia-mexico.atlassian.net/wiki/spaces/p2/pages/217252020/P+gina+de+error+404" data-pasted="true">Página de error 404 - Privalia 2.0 - Confluence</a>]]></value>
+                </customField>
+                <customField name="Tipo de prueba " type="MULTI_LINE_TEXT">
+                    <value><![CDATA[Funcional&nbsp;<br>Manual]]></value>
+                </customField>
+                <customField name="Requisitos para probar " type="MULTI_LINE_TEXT">
+                    <value><![CDATA[<ul data-indent-level="1" style='margin: 10px 0px 0px; padding: 0px 0px 0px 24px; list-style-type: disc; box-sizing: border-box; display: flow-root; color: rgb(41, 42, 46); font-family: "Atlassian Sans", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Ubuntu, "Helvetica Neue", sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;' data-pasted="true"><li><p data-renderer-start-pos="436" style='margin: 0px; padding: 0px; font: 400 16px / 1.714 "Atlassian Sans", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Ubuntu, "Helvetica Neue", sans-serif;'>La página muestra un mensaje claro indicando que la URL solicitada no existe o no está operativa.</p></li><li style="margin-top: 4px;"><p data-renderer-start-pos="537" style='margin: 0px; padding: 0px; font: 400 16px / 1.714 "Atlassian Sans", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Ubuntu, "Helvetica Neue", sans-serif;'>El header y el footer habituales del ecommerce deben estar visibles y plenamente operativos (con menú, buscador, enlaces, etc.).</p></li><li style="margin-top: 4px;"><p data-renderer-start-pos="669" style='margin: 0px; padding: 0px; font: 400 16px / 1.714 "Atlassian Sans", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Ubuntu, "Helvetica Neue", sans-serif;'>En el body se presenta:</p><ul data-indent-level="2" style="margin: 4px 0px 0px; padding: 0px 0px 0px 24px; list-style-type: circle; box-sizing: border-box; display: flow-root;"><li><p data-renderer-start-pos="696" style='margin: 0px; padding: 0px; font: 400 16px / 1.714 "Atlassian Sans", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Ubuntu, "Helvetica Neue", sans-serif;'>Un mensaje de error con tono claro y coherente con la marca.</p></li><li style="margin-top: 4px;"><p data-renderer-start-pos="760" style='margin: 0px; padding: 0px; font: 400 16px / 1.714 "Atlassian Sans", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Ubuntu, "Helvetica Neue", sans-serif;'>Un bloque de recomendación de campañas dinámico, con posibilidad de clic hacia la landing de cada campaña.</p></li></ul></li><li style="margin-top: 4px;"><p data-renderer-start-pos="872" style='margin: 0px; padding: 0px; font: 400 16px / 1.714 "Atlassian Sans", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Ubuntu, "Helvetica Neue", sans-serif;'>El diseño debe mantener la coherencia visual con el resto del ecommerce (tipografía, colores, estilos).</p></li><li style="margin-top: 4px;"><p data-renderer-start-pos="979" style='margin: 0px; padding: 0px; font: 400 16px / 1.714 "Atlassian Sans", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Ubuntu, "Helvetica Neue", sans-serif;'>El usuario debe poder acceder fácilmente a otras secciones del site mediante las opciones del header, footer o las recomendaciones.</p></li></ul>]]></value>
+                </customField>
+            </customFields>
+            <folder><![CDATA[QA HIBERUS /Sprint 14/Estructura del site/404]]></folder>
+            <issues/>
+            <labels/>
+            <name><![CDATA[Visualización del error 404]]></name>
+            <objective><![CDATA[Validar que el usuario es informado ante un error 404]]></objective>
+            <owner>712020:dc28a2e5-1b5b-4b82-b232-c1ee1519bb0c</owner>
+            <priority><![CDATA[Normal]]></priority>
+            <status><![CDATA[Draft]]></status>
+            <parameters/>
+            <testDataWrapper/>
+            <testScript type="steps">
+                <steps>
+                    <step index="0">
+                        <customFields>
+                            <customField name="Responsable " type="USER_LIST">
+<value><![CDATA[712020:dc28a2e5-1b5b-4b82-b232-c1ee1519bb0c]]></value>
+                            </customField>
+                        </customFields>
+                        <description><![CDATA[1. Acceder al sitio web de privalia<br>2. Navegar hacia un segmento de ruta que no exista]]></description>
+                        <expectedResult><![CDATA[<ul><li>Se muestra un mensaje de error 404, que contiene un bloque de recomendación de campañas clickeable</li><li>El menú y el header son visibles</li></ul><br>]]></expectedResult>
+                    </step>
+                </steps>
+            </testScript>
+        </testCase>
+    </testCases>
+</project>

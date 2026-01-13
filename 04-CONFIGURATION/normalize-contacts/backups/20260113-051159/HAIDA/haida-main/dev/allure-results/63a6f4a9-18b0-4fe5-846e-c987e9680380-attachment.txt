@@ -1,0 +1,6 @@
+✅ Health check: {
+  "status": "healthy",
+  "service": "HAIDA Backend",
+  "version": "2.0.0",
+  "timestamp": "2026-01-11T12:44:+34662652300"
+}

@@ -1,0 +1,11 @@
+ID,TestName,Module,Type,Requirement,Steps,ExpectedResult,Priority,Platform,Status,Evidence,BugID,ExecutedBy,ExecutionDate
+TC_AUTH_001,Login con email válido,AUTH,Funcional,REQ-AUTH-001,"1) Ir a login 2) Email hola@stayarta.com 3) Password Test123 4) Click Login",Usuario autenticado y redirigido a home,CRÍTICA,Desktop,PENDING,/evidencias/TC_AUTH_001,-,automation,2025-12-16
+TC_AUTH_002,Email inválido,AUTH,Funcional,REQ-AUTH-002,"1) Ir a login 2) Email invalido 3) Password Test123 4) Click Login",Mensaje de error "Email inválido",ALTA,Desktop,PENDING,/evidencias/TC_AUTH_002,-,automation,2025-12-16
+TC_AUTH_003,Password vacío,AUTH,Funcional,REQ-AUTH-003,"1) Ir a login 2) Email hola@stayarta.com 3) Password vacío 4) Click Login",Mensaje de error "Password requerido",ALTA,Desktop,PENDING,/evidencias/TC_AUTH_003,-,automation,2025-12-16
+TC_NAV_001,Buscar producto,NAV,Funcional,REQ-NAV-002,"1) En home 2) Click búsqueda 3) Escribir 'hotel' 4) Enter",Mostrar resultados de búsqueda,ALTA,Desktop,PENDING,/evidencias/TC_NAV_001,-,automation,2025-12-16
+TC_NAV_002,Cambiar idioma,NAV,Funcional,REQ-NAV-007,"1) Click selector idioma 2) Seleccionar Inglés 3) Verificar cambio",Página en inglés,MEDIA,Desktop,PENDING,/evidencias/TC_NAV_002,-,automation,2025-12-16
+TC_FAV_001,Agregar favorito,FAV,Funcional,REQ-FAV-001,"1) Ir a producto 2) Click corazón 3) Verificar marcado",Corazón marcado en rojo,MEDIA,Desktop,PENDING,/evidencias/TC_FAV_001,-,automation,2025-12-16
+TC_PROFILE_001,Ver perfil usuario,PROFILE,Funcional,REQ-PROFILE-001,"1) Login 2) Click perfil 3) Ver datos",Mostrar email y nombre usuario,MEDIA,Desktop,PENDING,/evidencias/TC_PROFILE_001,-,automation,2025-12-16
+TC_CART_001,Agregar al carrito,CART,Funcional,REQ-CART-001,"1) Ir a producto 2) Click 'Agregar carrito' 3) Verificar",Carrito actualizado con producto,ALTA,Desktop,PENDING,/evidencias/TC_CART_001,-,automation,2025-12-16
+TC_HOME_001,Banner principal visible,HOME,UI,REQ-HOME-001,"1) Cargar home 2) Verificar banner",Banner visible con imagen y texto,MEDIA,Desktop,PENDING,/evidencias/TC_HOME_001,-,automation,2025-12-16
+TC_SEARCH_001,Filtrar por precio,SEARCH,Funcional,REQ-SEARCH-005,"1) Búsqueda 2) Filtro precio 3) Min 50 Max 200 4) Aplicar",Resultados filtrados por precio,ALTA,Desktop,PENDING,/evidencias/TC_SEARCH_001,-,automation,2025-12-16

@@ -1,0 +1,17 @@
+[core]
+	hooksPath = /Users/carlosa/.git-hooks
+[secrets]
+	providers = git secrets --aws-provider
+	patterns = (A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}
+	patterns = (\"|')?(AWS|aws|Aws)?_?(SECRET|secret|Secret)?_?(ACCESS|access|Access)?_?(KEY|key|Key)(\"|')?\\s*(:|=>|=)\\s*(\"|')?[A-Za-z0-9/\\+=]{40}(\"|')?
+	patterns = (\"|')?(AWS|aws|Aws)?_?(ACCOUNT|account|Account)_?(ID|id|Id)?(\"|')?\\s*(:|=>|=)\\s*(\"|')?[0-9]{4}\\-?[0-9]{4}\\-?[0-9]{4}(\"|')?
+	allowed = AKIAIOSFODNN7EXAMPLE
+	allowed = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+	patterns = (supabase_key|SUPABASE_KEY).*['\\\"]?eyJ[A-Za-z0-9\\-_\\.]*['\\\"]?
+	patterns = (database_url|DATABASE_URL).*postgresql://.*password
+	patterns = (aws_access_key_id|aws_secret_access_key)\\s*=
+	patterns = (api_key|API_KEY|apiKey)\\s*[=:]\\s*['\\\"]?[a-zA-Z0-9]{20,}['\\\"]?
+	patterns = (token|TOKEN|authorization|Authorization)\\s*[=:]\\s*['\\\"]?eyJ[A-Za-z0-9\\-_\\.]*['\\\"]?
+	patterns = (ENTRA_CLIENT_SECRET|azure.*secret)\\s*=
+	patterns = (password|passwd|pwd)\\s*[=:]\\s*['\\\"]?[^'\\\"]{8,}['\\\"]?
+	patterns = (BEGIN PRIVATE KEY|BEGIN RSA PRIVATE KEY)

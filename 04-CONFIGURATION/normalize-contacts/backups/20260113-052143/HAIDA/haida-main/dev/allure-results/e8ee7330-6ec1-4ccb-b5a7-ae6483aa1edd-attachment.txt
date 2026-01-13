@@ -1,0 +1,16 @@
+🗄️ Consulta a Supabase status: 200
+🗄️ Usuarios encontrados: [
+  {
+    "id": "62d24b20-f4d4-4347-8f3b-e3e6eb88a065",
+    "email": "hola@stayarta.com",
+    "name": "Test User HAIDA",
+    "role": "viewer",
+    "is_active": true,
+    "created_at": "2026-01-11T10:42:+34662652300+00:00",
+    "updated_at": "2026-01-11T12:44:+34662652300+00:00",
+    "last_login_at": "2026-01-11T12:44:+34662652300+00:00",
+    "metadata": {},
+    "full_name": null
+  }
+]
+✅ Usuario verificado en base de datos Supabase

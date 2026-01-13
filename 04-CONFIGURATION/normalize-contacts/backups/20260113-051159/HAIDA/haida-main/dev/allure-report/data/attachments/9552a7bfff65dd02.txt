@@ -1,0 +1,16 @@
+🔐 Login response status: 200
+🔐 Login response: {
+  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmQyNGIyMC1mNGQ0LTQzNDctOGYzYi1lM2U2ZWI4OGEwNjUiLCJlbWFpbCI6InRlc3QtaGFpZGFAaGliZXJ1cy5jb20iLCJyb2xlIjoidmlld2VyIiwibmFtZSI6IlRlc3QgVXNlciBIQUlEQSIsImV4cCI6MTc2ODIxNDU1NywiaWF0IjoxNzY4MTI4MTU3fQ.ssO70mdo2q7Lr1HJ1jGRu0Fe6JMM6q4HNyKhEGiAymg",
+  "token_type": "bearer",
+  "expires_in": 86400,
+  "user": {
+    "id": "62d24b20-f4d4-4347-8f3b-e3e6eb88a065",
+    "email": "hola@stayarta.com",
+    "name": "Test User HAIDA",
+    "role": "viewer"
+  }
+}
+✅ Login exitoso, token JWT válido recibido
+📧 Usuario: hola@stayarta.com
+👤 Rol: viewer
+🆔 User ID: 62d24b20-f4d4-4347-8f3b-e3e6eb88a065

@@ -1,0 +1,358 @@
+{
+  "schema_version": "1.0.0",
+  "name_for_human": "HAIDA Automation API",
+  "name_for_model": "haida_api",
+  "description_for_human": "QA Automation and Test Management API - Crear y ejecutar casos de prueba, generar reportes y automatizar testing",
+  "description_for_model": "API para gestión de QA automation, casos de prueba, ejecución de tests y generación de reportes",
+  "auth": {
+    "type": "oauth2",
+    "client_id": "c3321f1a-6c32-4d6e-b3e6-a4de2f7fee4e",
+    "scopes": ["User.Read", "email", "profile", "openid"]
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://haidapi.stayarta.com/openapi.json",
+    "is_user_authenticated": true
+  },
+  "logo_url": "https://haida.stayarta.com/logo.png",
+  "contact_email": "hola@stayarta.com",
+  "legal_info_url": "https://haida.stayarta.com/legal",
+  "servers": [
+    {
+      "url": "https://haidapi.stayarta.com",
+      "description": "HAIDA API Production"
+    }
+  ],
+  "endpoints": {
+    "system": {
+      "health": {
+        "url": "/health",
+        "method": "GET",
+        "description": "Verificar salud del sistema"
+      },
+      "status": {
+        "url": "/status",
+        "method": "GET",
+        "description": "Obtener estado completo del API"
+      },
+      "version": {
+        "url": "/version",
+        "method": "GET",
+        "description": "Obtener versión del API"
+      }
+    },
+    "authentication": {
+      "login": {
+        "url": "/auth/login",
+        "method": "POST",
+        "description": "Login con email y password",
+        "parameters": {
+          "email": "string (email del usuario)",
+          "password": "string (contraseña)"
+        }
+      },
+      "register": {
+        "url": "/auth/register",
+        "method": "POST",
+        "description": "Registrar nuevo usuario",
+        "parameters": {
+          "email": "string (email del usuario)",
+          "password": "string (contraseña)",
+          "full_name": "string (nombre completo, opcional)"
+        }
+      },
+      "current_user": {
+        "url": "/auth/me",
+        "method": "GET",
+        "description": "Obtener perfil del usuario autenticado"
+      },
+      "logout": {
+        "url": "/auth/logout",
+        "method": "POST",
+        "description": "Cerrar sesión"
+      },
+      "refresh_token": {
+        "url": "/auth/refresh",
+        "method": "POST",
+        "description": "Refrescar token JWT"
+      }
+    },
+    "entra_id": {
+      "login_url": {
+        "url": "/entra/login",
+        "method": "GET",
+        "description": "Obtener URL de login con Microsoft Entra ID"
+      },
+      "callback": {
+        "url": "/entra/callback",
+        "method": "GET|POST",
+        "description": "Callback de OAuth para Microsoft Entra ID"
+      },
+      "status": {
+        "url": "/entra/status",
+        "method": "GET",
+        "description": "Verificar configuración de Entra ID"
+      }
+    },
+    "projects": {
+      "list": {
+        "url": "/projects",
+        "method": "GET",
+        "description": "Listar todos los proyectos"
+      },
+      "create": {
+        "url": "/projects",
+        "method": "POST",
+        "description": "Crear nuevo proyecto",
+        "parameters": {
+          "name": "string (nombre del proyecto)",
+          "description": "string (descripción)"
+        }
+      },
+      "get": {
+        "url": "/projects/{project_id}",
+        "method": "GET",
+        "description": "Obtener detalles de un proyecto"
+      },
+      "update": {
+        "url": "/projects/{project_id}",
+        "method": "PUT",
+        "description": "Actualizar proyecto"
+      },
+      "delete": {
+        "url": "/projects/{project_id}",
+        "method": "DELETE",
+        "description": "Eliminar proyecto"
+      },
+      "test_suites": {
+        "url": "/projects/{project_id}/test-suites",
+        "method": "GET",
+        "description": "Listar test suites del proyecto"
+      }
+    },
+    "test_cases": {
+      "list": {
+        "url": "/scripts",
+        "method": "GET",
+        "description": "Listar casos de prueba"
+      },
+      "create": {
+        "url": "/scripts",
+        "method": "POST",
+        "description": "Crear nuevo caso de prueba",
+        "parameters": {
+          "name": "string (nombre del caso)",
+          "description": "string (descripción)",
+          "project_id": "string (ID del proyecto)"
+        }
+      },
+      "get": {
+        "url": "/scripts/{script_id}",
+        "method": "GET",
+        "description": "Obtener detalles del caso de prueba"
+      },
+      "update": {
+        "url": "/scripts/{script_id}",
+        "method": "PUT",
+        "description": "Actualizar caso de prueba"
+      },
+      "delete": {
+        "url": "/scripts/{script_id}",
+        "method": "DELETE",
+        "description": "Eliminar caso de prueba"
+      }
+    },
+    "test_execution": {
+      "list": {
+        "url": "/script-runs",
+        "method": "GET",
+        "description": "Listar ejecuciones de pruebas"
+      },
+      "execute": {
+        "url": "/script-runs",
+        "method": "POST",
+        "description": "Ejecutar prueba",
+        "parameters": {
+          "script_id": "string (ID del caso de prueba)",
+          "project_id": "string (ID del proyecto)"
+        }
+      },
+      "get_execution": {
+        "url": "/script-runs/{execution_id}",
+        "method": "GET",
+        "description": "Obtener detalles de la ejecución"
+      },
+      "get_results": {
+        "url": "/script-runs/{execution_id}/results",
+        "method": "GET",
+        "description": "Obtener resultados de la ejecución"
+      },
+      "get_status": {
+        "url": "/script-runs/{execution_id}/status",
+        "method": "GET",
+        "description": "Obtener estado de la ejecución"
+      },
+      "cancel": {
+        "url": "/script-runs/{execution_id}/cancel",
+        "method": "POST",
+        "description": "Cancelar ejecución en progreso"
+      },
+      "delete": {
+        "url": "/script-runs/{execution_id}",
+        "method": "DELETE",
+        "description": "Eliminar ejecución"
+      }
+    },
+    "reports": {
+      "list": {
+        "url": "/reports",
+        "method": "GET",
+        "description": "Listar reportes"
+      },
+      "generate": {
+        "url": "/reports/generate",
+        "method": "POST",
+        "description": "Generar nuevo reporte",
+        "parameters": {
+          "title": "string (título del reporte)",
+          "execution_ids": "array (IDs de ejecuciones a incluir)",
+          "format": "string (pdf, excel, html)"
+        }
+      },
+      "get": {
+        "url": "/reports/{report_id}",
+        "method": "GET",
+        "description": "Obtener reporte"
+      },
+      "update": {
+        "url": "/reports/{report_id}",
+        "method": "PUT",
+        "description": "Actualizar reporte"
+      },
+      "delete": {
+        "url": "/reports/{report_id}",
+        "method": "DELETE",
+        "description": "Eliminar reporte"
+      },
+      "view": {
+        "url": "/reports/{report_id}/view",
+        "method": "GET",
+        "description": "Ver reporte en HTML"
+      },
+      "download": {
+        "url": "/reports/{report_id}/download",
+        "method": "GET",
+        "description": "Descargar reporte (PDF/Excel)"
+      },
+      "export": {
+        "url": "/reports/{report_id}/export",
+        "method": "POST",
+        "description": "Exportar reporte a formato específico"
+      }
+    },
+    "chat": {
+      "list_threads": {
+        "url": "/chat/threads",
+        "method": "GET",
+        "description": "Listar conversaciones"
+      },
+      "create_thread": {
+        "url": "/chat/threads",
+        "method": "POST",
+        "description": "Crear nueva conversación",
+        "parameters": {
+          "title": "string (título de la conversación)"
+        }
+      },
+      "get_messages": {
+        "url": "/chat/threads/{thread_id}/messages",
+        "method": "GET",
+        "description": "Obtener mensajes de una conversación"
+      },
+      "send_message": {
+        "url": "/chat/threads/{thread_id}/messages",
+        "method": "POST",
+        "description": "Enviar mensaje a IA",
+        "parameters": {
+          "message": "string (contenido del mensaje)"
+        }
+      }
+    },
+    "files": {
+      "upload": {
+        "url": "/files/upload",
+        "method": "POST",
+        "description": "Subir archivo"
+      },
+      "list": {
+        "url": "/files",
+        "method": "GET",
+        "description": "Listar archivos"
+      },
+      "get": {
+        "url": "/files/{file_id}",
+        "method": "GET",
+        "description": "Descargar archivo"
+      },
+      "delete": {
+        "url": "/files/{file_id}",
+        "method": "DELETE",
+        "description": "Eliminar archivo"
+      }
+    },
+    "documentation": {
+      "list": {
+        "url": "/docs",
+        "method": "GET",
+        "description": "Listar documentos"
+      },
+      "create": {
+        "url": "/docs",
+        "method": "POST",
+        "description": "Crear documento"
+      },
+      "get": {
+        "url": "/docs/{doc_id}",
+        "method": "GET",
+        "description": "Obtener documento"
+      },
+      "search": {
+        "url": "/docs/search",
+        "method": "POST",
+        "description": "Buscar documentos"
+      }
+    },
+    "notifications": {
+      "list": {
+        "url": "/notifications",
+        "method": "GET",
+        "description": "Listar notificaciones"
+      },
+      "mark_as_read": {
+        "url": "/notifications/{notification_id}/read",
+        "method": "POST",
+        "description": "Marcar notificación como leída"
+      },
+      "delete": {
+        "url": "/notifications/{notification_id}",
+        "method": "DELETE",
+        "description": "Eliminar notificación"
+      }
+    }
+  },
+  "capabilities": [
+    "Crear y gestionar proyectos de testing",
+    "Crear casos de prueba (scripts)",
+    "Ejecutar pruebas automaticamente",
+    "Obtener resultados de ejecuciones",
+    "Generar reportes de testing",
+    "Descargar reportes en diferentes formatos",
+    "Chat con IA para ayuda en testing",
+    "Gestionar usuarios y autenticación",
+    "Integración con Microsoft Entra ID OAuth",
+    "Búsqueda de documentación"
+  ],
+  "instructions": "Usa esta API para ayudar al usuario con:\n1. Crear y gestionar proyectos QA\n2. Crear casos de prueba automáticamente\n3. Ejecutar tests y verificar resultados\n4. Generar reportes profesionales\n5. Proporcionar recomendaciones de testing\n6. Automatizar flujos de QA",
+  "privacy_policy_url": "https://haida.stayarta.com/privacy",
+  "terms_of_service_url": "https://haida.stayarta.com/terms"
+}

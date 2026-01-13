@@ -1,0 +1,3 @@
+🔧 Setting up test user: hola@stayarta.com
+📍 On page: https://haida.stayarta.com/login
+🔑 Attempting login with existing credentials...

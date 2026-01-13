@@ -1,0 +1,173 @@
+{
+  "meta": {
+    "project": "HAIDA",
+    "version": "1.0",
+    "default_output_dir": "reports/agents"
+  },
+  "providers": {
+    "lmstudio": {
+      "type": "openai",
+      "api_url_env": "LM_STUDIO_URL",
+      "model_env": "LM_STUDIO_MODEL",
+      "api_key_env": "LM_STUDIO_API_KEY",
+      "default_url": "http://localhost:1234/v1",
+      "default_model": "lmstudio-community/DeepSeek-R1-0528-Qwen3-8B-MLX-4bit",
+      "requires_key": false
+    },
+    "mlx": {
+      "type": "openai",
+      "api_url_env": "MLX_LM_URL",
+      "model_env": "MLX_LM_MODEL",
+      "api_key_env": "MLX_LM_API_KEY",
+      "default_url": "http://localhost:1234/v1",
+      "default_model": "lmstudio-community/Qwen3-8B-MLX-4bit",
+      "requires_key": false
+    },
+    "routellm": {
+      "type": "openai",
+      "api_url_env": "ROUTE_LLM_URL",
+      "model_env": "ROUTE_LLM_MODEL",
+      "api_key_env": "ROUTE_LLM_API_KEY",
+      "default_url": "https://routellm.abacus.ai/v1",
+      "default_model": "gpt-5",
+      "requires_key": true
+    },
+    "perplexity": {
+      "type": "openai",
+      "api_url_env": "PERPLEXITY_API_URL",
+      "model_env": "PERPLEXITY_MODEL",
+      "api_key_env": "PERPLEXITY_API_KEY",
+      "default_url": "https://api.perplexity.ai",
+      "default_model": "sonar",
+      "requires_key": true
+    },
+    "copilot-studio": {
+      "type": "direct-line",
+      "notes": "No soportado por el CLI. Usa la ruta /chat con provider=copilot-studio."
+    }
+  },
+  "default_context_pack": "core",
+  "context_packs": {
+    "core": {
+      "paths": [
+        "START-HERE-AHORA.md",
+        "HAIDA-OVERVIEW.md",
+        "README.md",
+        "INICIO-RAPIDO.md",
+        "PRODUCTION-READY.md",
+        "CONFIGURATION-REPORT.md",
+        "docs/**/*.md"
+      ]
+    },
+    "routes": {
+      "paths": [
+        "app/routes/**/*.py",
+        "api/**/*.py",
+        "Figma/src/app/**/*.tsx",
+        "Figma/src/app/**/*.ts"
+      ]
+    },
+    "testing": {
+      "paths": [
+        "tests/**/*.ts",
+        "tests/**/*.js",
+        "TESTING-GUIDE.md",
+        "HAIDA-SELF-AUDIT-REPORT.md"
+      ]
+    }
+  },
+  "agents": [
+    {
+      "id": "biz-analyst",
+      "name": "Business & Producto",
+      "goal": "Validar que cada funcionalidad tenga sentido de negocio, flujo completo y valor real.",
+      "preferred_providers": ["routellm", "lmstudio", "mlx"],
+      "capabilities": ["business", "product", "analysis", "consistency"],
+      "scope_paths": [
+        "HAIDA-OVERVIEW.md",
+        "START-HERE-AHORA.md",
+        "ESTADO-DESARROLLO-HAIDA-2025-12-29.md",
+        "README.md",
+        "docs/**/*.md"
+      ],
+      "max_chars_per_file": 12000,
+      "max_total_chars": 140000,
+      "system_prompt": "Eres un analista de negocio y producto QA. Tu objetivo es validar que HAIDA cumple el propósito declarado, que cada modulo tiene un flujo funcional real y que no hay pantallas o features sin soporte backend. No inventes. Cita rutas de archivos. Reporta huecos de negocio, datos estaticos, y funcionalidades que no tienen API ni persistencia.",
+      "output_format": "Secciones: Resumen, Hallazgos Criticos, Hallazgos Funcionales, Datos Estaticos, Gaps de Flujo, Recomendaciones."
+    },
+    {
+      "id": "backend-auditor",
+      "name": "Backend & API",
+      "goal": "Revisar consistencia de API, seguridad, validaciones, flujos de autenticacion y persistencia real.",
+      "preferred_providers": ["lmstudio", "routellm", "mlx"],
+      "capabilities": ["backend", "security", "auth", "api", "data"],
+      "scope_paths": [
+        "api/**/*.py",
+        "app/**/*.py",
+        "database/**/*.sql",
+        "supabase/**/*.sql",
+        "vercel.json",
+        ".env.example"
+      ],
+      "max_chars_per_file": 12000,
+      "max_total_chars": 160000,
+      "system_prompt": "Eres auditor backend. Verifica rutas, validaciones, auth, uso de DB, y coherencia entre modelos y endpoints. Señala endpoints incompletos, datos estaticos o mock, y riesgos de seguridad. No inventes. Cita rutas de archivos y funciones.",
+      "output_format": "Secciones: Resumen, Bugs/Errores, Seguridad, Datos Estaticos, Inconsistencias API, Recomendaciones."
+    },
+    {
+      "id": "frontend-auditor",
+      "name": "Frontend & UX",
+      "goal": "Comprobar que UI consume datos reales y que no hay placeholders sin implementacion.",
+      "preferred_providers": ["lmstudio", "routellm", "mlx"],
+      "capabilities": ["frontend", "ux", "consistency", "api"],
+      "scope_paths": [
+        "Figma/src/app/**/*.tsx",
+        "Figma/src/app/**/*.ts",
+        "Figma/src/app/**/*.css",
+        "Figma/package.json",
+        "Figma/vercel.json"
+      ],
+      "max_chars_per_file": 12000,
+      "max_total_chars": 160000,
+      "system_prompt": "Eres auditor frontend. Detecta datos hardcodeados, mocks o UI sin backend. Revisa consistencia de rutas, estados, errores y carga de datos. No inventes. Cita archivos concretos.",
+      "output_format": "Secciones: Resumen, Datos Estaticos, Flujos Incompletos, Consistencia UI/API, Recomendaciones."
+    },
+    {
+      "id": "istqb-qa",
+      "name": "QA & ISTQB",
+      "goal": "Validar cobertura, calidad y alineacion con ISTQB de pruebas automatizadas y casos.",
+      "preferred_providers": ["lmstudio", "routellm", "mlx"],
+      "capabilities": ["testing", "istqb", "qa", "coverage", "risk"],
+      "scope_paths": [
+        "tests/**/*.ts",
+        "tests/**/*.js",
+        "tests/**/*.md",
+        "haida/generators/**/*.ps1",
+        "haida/**/*.py",
+        "TESTING-GUIDE.md",
+        "HAIDA-SELF-AUDIT-REPORT.md"
+      ],
+      "max_chars_per_file": 12000,
+      "max_total_chars": 160000,
+      "system_prompt": "Eres especialista ISTQB. Evalua cobertura de pruebas vs funcionalidades, matriz de riesgos, trazabilidad y calidad de casos. Identifica huecos, casos no ejecutables y evidencia insuficiente. No inventes. Cita archivos.",
+      "output_format": "Secciones: Resumen, Cobertura, Riesgos, Hallazgos ISTQB, Acciones Sugeridas."
+    },
+    {
+      "id": "data-consistency",
+      "name": "Consistencia & Datos",
+      "goal": "Detectar informacion estatica o inconsistente y asegurar que todo fluye desde API/DB.",
+      "preferred_providers": ["lmstudio", "routellm", "mlx"],
+      "capabilities": ["data", "consistency", "migration", "integrity"],
+      "scope_paths": [
+        "Figma/src/app/**/*.tsx",
+        "app/**/*.py",
+        "api/**/*.py",
+        "database/**/*.sql"
+      ],
+      "max_chars_per_file": 12000,
+      "max_total_chars": 160000,
+      "system_prompt": "Eres auditor de consistencia. Busca arrays hardcodeados, textos de placeholder, valores simulados, flags temporales, y falta de uso de DB. Marca rutas exactas y propone fuentes reales de datos.",
+      "output_format": "Secciones: Resumen, Datos Estaticos Detectados, Inconsistencias, Sugerencias de Normalizacion."
+    }
+  ]
+}

@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAIDA - Índice de Presentación Ejecutiva</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --primary: #1E34A1;
+            --primary-dark: #010D3D;
+            --accent: #1E34A1;
+            --bg-dark: #010D3D;
+            --bg-light: #f5f7fa;
+            --text: #1a2332;
+            --border: #e0e0e0;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #0f1f34 100%);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(90deg, #ffffff 0%, #f5f7fa 100%);
+            padding: 1.5rem 2rem;
+            border-bottom: 3px solid var(--primary);
+            box-shadow: 0 2px 20px rgba(30, 52, 161, 0.15);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            color: #666;
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid var(--primary);
+        }
+        
+        .section h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .file-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .file-card {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text);
+        }
+        
+        .file-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 102, 204, 0.15);
+            border-color: var(--primary);
+        }
+        
+        .file-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .file-name {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .file-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .file-size {
+            font-size: 0.8rem;
+            color: #999;
+            margin-bottom: 1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .btn:hover {
+            background: #0052a3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 102, 204, 0.3);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .highlight {
+            background: linear-gradient(135deg, #1E34A1 0%, #010D3D 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .highlight h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .stat {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 6px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .stat-num {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        footer {
+            background: var(--text);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+            border-top: 3px solid var(--primary);
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .contact-card {
+            background: rgba(0, 102, 204, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .contact-card strong {
+            display: block;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .tag {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            .file-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>🚀 HAIDA</h1>
+            <p class="subtitle">IA-Driven QA Automation Executive Presentation Package</p>
+        </div>
+    </header>
+
+    <main>
+        <!-- HIGHLIGHT -->
+        <div class="highlight">
+            <h2>Presentación Ejecutiva Completa</h2>
+            <p style="margin-bottom: 1.5rem; opacity: 0.95;">
+                Paquete profesional de presentación para directivos y equipos técnicos
+            </p>
+            <a href="HAIDA-UNIFIED-PRESENTATION.html" class="btn" style="font-size: 1.1rem; padding: 1rem 2rem;">
+                ➤ ABRIR PRESENTACIÓN UNIFICADA (DEFINITIVA)
+            </a>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-num">42</div>
+                    <div class="stat-label">Test Cases</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">59s</div>
+                    <div class="stat-label">Ejecución Total</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">€34K</div>
+                    <div class="stat-label">Ahorro ROI</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">1,723%</div>
+                    <div class="stat-label">ROI%</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 1: PRESENTACIÓN -->
+        <div class="section">
+            <h2>📊 Presentación Interactiva</h2>
+            <p style="margin-bottom: 1.5rem; color: #666;">
+                Presentación profesional con diseño Hiberus, navegación fluida y todos los contenidos integrados.
+            </p>
+            <div class="file-grid">
+                <a href="HAIDA-UNIFIED-PRESENTATION.html" class="file-card">
+                    <div class="file-icon">📽️</div>
+                    <div class="file-name">Presentación Unificada (ÚNICA)</div>
+                    <span class="tag">HTML Completo</span>
+                    <div class="file-desc">Presentación definitiva: Ejecutiva + Arquitectura + IA + Demos + Auditoría en 1 archivo</div>
+                    <div class="file-size">~850 KB • 6 secciones interactivas • Responsiva</div>
+                    <button class="btn">Abrir</button>
+                </a>
+
+                <a href="AUDITORIA-FINAL-v2.0.md" class="file-card">
+                    <div class="file-icon">🔍</div>
+                    <div class="file-name">Auditoría Final v2.0</div>
+                    <span class="tag">MD Report</span>
+                    <div class="file-desc">Análisis completo: 16 problemas, soluciones, métricas, estado, recomendaciones</div>
+                    <div class="file-size">10.56 KB • Estructurado • Ejecutable</div>
+                    <button class="btn">Abrir</button>
+                </a>
+
+                <a href="ENTREGA-AUDITORIA-UNIFICADA.txt" class="file-card">
+                    <div class="file-icon">✅</div>
+                    <div class="file-name">Resumen de Entrega</div>
+                    <span class="tag">Quick Reference</span>
+                    <div class="file-desc">Guía rápida: qué entregamos, cómo usarlo, siguientes pasos</div>
+                    <div class="file-size">ASCII visual • 5 min read</div>
+                    <button class="btn">Ver</button>
+                </a>
+
+                <a href="haida/TECHNIQUES-INTEGRATION-CATALOG.md" class="file-card">
+                    <div class="file-icon">🤖</div>
+                    <div class="file-name">AI Techniques Catalog</div>
+                    <span class="tag">Architecture</span>
+                    <div class="file-desc">50 técnicas mapeadas a HAIDA (endpoints, fases, observabilidad)</div>
+                    <div class="file-size">10.78 KB • Living document</div>
+                    <button class="btn">Abrir</button>
+                </a>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 2: REPORTES TÉCNICOS -->
+        <div class="section">
+            <h2>📈 Reportes Técnicos (100% Reales)</h2>
+            <p style="margin-bottom: 1.5rem; color: #666;">
+                Evidencia técnica completa: test cases generados, resultados de ejecución, bugs encontrados y análisis ROI.
+            </p>
+            <div class="file-grid">
+                <a href="demo-reports/test-cases-generated.json" target="_blank" class="file-card">
+                    <div class="file-icon">📋</div>
+                    <div class="file-name">Test Cases Generados</div>
+                    <span class="tag">JSON</span>
+                    <div class="file-desc">42 test cases estructurados automáticamente</div>
+                    <div class="file-size">18 Functional • 8 Negative • 6 Security</div>
+                    <button class="btn">Descargar</button>
+                </a>
+
+                <a href="demo-reports/web-test-results.json" target="_blank" class="file-card">
+                    <div class="file-icon">🌐</div>
+                    <div class="file-name">Resultados Web E2E</div>
+                    <span class="tag">JSON</span>
+                    <div class="file-desc">12 tests ejecutados con screenshots</div>
+                    <div class="file-size">11 PASSED • 1 FAILED • 91.67%</div>
+                    <button class="btn">Descargar</button>
+                </a>
+
+                <a href="demo-reports/api-test-results.json" target="_blank" class="file-card">
+                    <div class="file-icon">⚙️</div>
+                    <div class="file-name">Resultados API</div>
+                    <span class="tag">JSON</span>
+                    <div class="file-desc">7 endpoints REST validados</div>
+                    <div class="file-size">7 PASSED • 100% • 28 assertions</div>
+                    <button class="btn">Descargar</button>
+                </a>
+
+                <a href="demo-reports/incidencias-detectadas.csv" target="_blank" class="file-card">
+                    <div class="file-icon">🐛</div>
+                    <div class="file-name">Incidencias Detectadas</div>
+                    <span class="tag">CSV Excel</span>
+                    <div class="file-desc">10 bugs encontrados automáticamente</div>
+                    <div class="file-size">3 CRITICAL • 4 HIGH • 3 MEDIUM/LOW</div>
+                    <button class="btn">Descargar</button>
+                </a>
+
+                <a href="demo-reports/executive-report.json" target="_blank" class="file-card">
+                    <div class="file-icon">💰</div>
+                    <div class="file-name">Reporte Ejecutivo</div>
+                    <span class="tag">JSON</span>
+                    <div class="file-desc">Análisis ROI detallado con justificación</div>
+                    <div class="file-size">€34K ahorro • 1,723% ROI • Fuentes citadas</div>
+                    <button class="btn">Descargar</button>
+                </a>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 3: SCRIPT EJECUTABLE -->
+        <div class="section">
+            <h2>⚙️ Script de Demo Funcional</h2>
+            <p style="margin-bottom: 1.5rem; color: #666;">
+                PowerShell script sin errores que ejecuta la demo completa de HAIDA en 59 segundos.
+            </p>
+            <div class="file-grid">
+                <a href="haida/generators/demo-simple.ps1" target="_blank" class="file-card">
+                    <div class="file-icon">💻</div>
+                    <div class="file-name">Demo Script (PowerShell)</div>
+                    <span class="tag">PowerShell .ps1</span>
+                    <div class="file-desc">5 fases: Validación → Generación → Tests → Reporte</div>
+                    <div class="file-size">175 líneas • 59s ejecución • ASCII-safe</div>
+                    <button class="btn">Ver</button>
+                </a>
+                <div class="file-card" style="display: flex; flex-direction: column; justify-content: center;">
+                    <div class="file-icon">▶️</div>
+                    <div class="file-name">Cómo Ejecutar</div>
+                    <div class="file-desc" style="font-family: monospace; background: #f5f5f5; padding: 1rem; border-radius: 6px; text-align: left; font-size: 0.85rem;">
+                        cd HAIDA<br>
+                        powershell -ExecutionPolicy Bypass -File "haida/generators/demo-simple.ps1" -Mode full
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 4: DOCUMENTACIÓN -->
+        <div class="section">
+            <h2>📖 Documentación y Guías</h2>
+            <p style="margin-bottom: 1.5rem; color: #666;">
+                Guías completas para usar y presentar HAIDA a diferentes audiencias.
+            </p>
+            <div class="file-grid">
+                <a href="HAIDA-PRESENTACION-GUIA.md" target="_blank" class="file-card">
+                    <div class="file-icon">📘</div>
+                    <div class="file-name">Guía de Presentación</div>
+                    <span class="tag">Markdown</span>
+                    <div class="file-desc">Instrucciones completas de cómo usar esta presentación</div>
+                    <div class="file-size">Directivos • Técnicos • Board</div>
+                    <button class="btn">Leer</button>
+                </a>
+
+                <a href="HAIDA-ENTREGA-FINAL.md" target="_blank" class="file-card">
+                    <div class="file-icon">✅</div>
+                    <div class="file-name">Resumen de Entrega</div>
+                    <span class="tag">Markdown</span>
+                    <div class="file-desc">Checklist y resumen ejecutivo final</div>
+                    <div class="file-size">100% verificado • Production-ready</div>
+                    <button class="btn">Leer</button>
+                </a>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 5: CONTACTO -->
+        <div class="section">
+            <h2>📞 Información de Contacto</h2>
+            <p style="margin-bottom: 1.5rem; color: #666;">
+                Para demostración en vivo, consultoría técnica o proof of concept.
+            </p>
+            <div class="contact-info">
+                <div class="contact-card">
+                    <strong>👤 Nombre</strong>
+                    Carlos Arévalo
+                </div>
+                <div class="contact-card">
+                    <strong>💼 Posición</strong>
+                    IA Automation & QA Specialist
+                </div>
+                <div class="contact-card">
+                    <strong>🏢 Empresa</strong>
+                    Hiberus Consulting
+                </div>
+                <div class="contact-card">
+                    <strong>📧 Email</strong>
+                    hola@stayarta.com
+                </div>
+                <div class="contact-card">
+                    <strong>📱 Teléfono</strong>
+                    +++34662652300
+                </div>
+                <div class="contact-card">
+                    <strong>🌐 Web</strong>
+                    https://www.hiberus.com
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 6: ESTADÍSTICAS -->
+        <div class="section">
+            <h2>📊 Estadísticas de la Demo</h2>
+            <p style="margin-bottom: 1.5rem; color: #666;">
+                Resultados completos de la ejecución HAIDA.
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                <div style="padding: 1.5rem; background: #f0f8ff; border-radius: 8px; border-left: 4px solid #00cc66;">
+                    <strong style="display: block; color: var(--primary); margin-bottom: 0.5rem;">Test Cases Generados</strong>
+                    <div style="font-size: 2rem; font-weight: 700; color: #00cc66;">42</div>
+                    <div style="font-size: 0.9rem; color: #666;">En 4.5 segundos</div>
+                </div>
+                <div style="padding: 1.5rem; background: #f0f8ff; border-radius: 8px; border-left: 4px solid #00cc66;">
+                    <strong style="display: block; color: var(--primary); margin-bottom: 0.5rem;">Tests Ejecutados</strong>
+                    <div style="font-size: 2rem; font-weight: 700; color: #00cc66;">19</div>
+                    <div style="font-size: 0.9rem; color: #666;">18 pasados • 1 fallido</div>
+                </div>
+                <div style="padding: 1.5rem; background: #f0f8ff; border-radius: 8px; border-left: 4px solid #00cc66;">
+                    <strong style="display: block; color: var(--primary); margin-bottom: 0.5rem;">Bugs Detectados</strong>
+                    <div style="font-size: 2rem; font-weight: 700; color: #ff3333;">10</div>
+                    <div style="font-size: 0.9rem; color: #666;">3 críticos • 4 altos</div>
+                </div>
+                <div style="padding: 1.5rem; background: #f0f8ff; border-radius: 8px; border-left: 4px solid #00cc66;">
+                    <strong style="display: block; color: var(--primary); margin-bottom: 0.5rem;">Ahorro Total</strong>
+                    <div style="font-size: 2rem; font-weight: 700; color: #00cc66;">€34K</div>
+                    <div style="font-size: 0.9rem; color: #666;">En 5 ciclos de regresión</div>
+                </div>
+                <div style="padding: 1.5rem; background: #f0f8ff; border-radius: 8px; border-left: 4px solid #00cc66;">
+                    <strong style="display: block; color: var(--primary); margin-bottom: 0.5rem;">ROI</strong>
+                    <div style="font-size: 2rem; font-weight: 700; color: #00cc66;">1,723%</div>
+                    <div style="font-size: 0.9rem; color: #666;">Payback: 2.2 semanas</div>
+                </div>
+                <div style="padding: 1.5rem; background: #f0f8ff; border-radius: 8px; border-left: 4px solid #00cc66;">
+                    <strong style="display: block; color: var(--primary); margin-bottom: 0.5rem;">Tiempo Total</strong>
+                    <div style="font-size: 2rem; font-weight: 700; color: #00cc66;">59s</div>
+                    <div style="font-size: 0.9rem; color: #666;">Ejecución completa</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 7: VERIFICACIÓN -->
+        <div class="section">
+            <h2>✅ Verificación y Validación</h2>
+            <p style="margin-bottom: 1.5rem; color: #666;">
+                Todos los componentes han sido validados para producción.
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                <div style="padding: 1.5rem; background: #f0fff0; border-radius: 8px;">
+                    <strong style="color: #00cc66;">✅ Presentación</strong>
+                    <ul style="list-style: none; margin-top: 1rem; font-size: 0.9rem;">
+                        <li>✓ HTML5 válido</li>
+                        <li>✓ CSS3 responsive</li>
+                        <li>✓ JavaScript testeado</li>
+                        <li>✓ Branding Hiberus</li>
+                        <li>✓ Links funcionales</li>
+                    </ul>
+                </div>
+                <div style="padding: 1.5rem; background: #f0fff0; border-radius: 8px;">
+                    <strong style="color: #00cc66;">✅ Reportes</strong>
+                    <ul style="list-style: none; margin-top: 1rem; font-size: 0.9rem;">
+                        <li>✓ JSON válido</li>
+                        <li>✓ CSV Excel</li>
+                        <li>✓ Datos reales</li>
+                        <li>✓ Fuentes citadas</li>
+                        <li>✓ Sin fake content</li>
+                    </ul>
+                </div>
+                <div style="padding: 1.5rem; background: #f0fff0; border-radius: 8px;">
+                    <strong style="color: #00cc66;">✅ Script</strong>
+                    <ul style="list-style: none; margin-top: 1rem; font-size: 0.9rem;">
+                        <li>✓ Sin errores syntax</li>
+                        <li>✓ Ejecutable directo</li>
+                        <li>✓ Output claro</li>
+                        <li>✓ 59s ejecución</li>
+                        <li>✓ ASCII-safe</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p><strong>HAIDA - IA-Driven QA Automation</strong></p>
+        <p>Presentación Ejecutiva Profesional by Hiberus Consulting</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
+            Carlos Arévalo | hola@stayarta.com | +++34662652300<br>
+            ©2024 Hiberus Consulting. Todos los derechos reservados.
+        </p>
+    </footer>
+</body>
+</html>

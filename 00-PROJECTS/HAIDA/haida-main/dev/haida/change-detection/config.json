@@ -1,0 +1,136 @@
+{
+  "watches": [
+    {
+      "uuid": "login-form-monitor",
+      "title": "Login Form UI Monitor",
+      "url": "https://app.example.com/login",
+      "tag": "frontend-ui-login",
+      "enabled": true,
+      "check_interval": 300,
+      "fetch_backend": "selenium",
+      "headers": {
+        "User-Agent": "HAIDA-ChangeDetection/1.0"
+      },
+      "notification_urls": [
+        {
+          "name": "HAIDA Test Trigger",
+          "url": "http://haida-api:3001/webhook/change-detected",
+          "method": "POST",
+          "format": "json"
+        }
+      ],
+      "subfilters": [
+        {
+          "title": "Login Button",
+          "filter": "xpath://*[@class='btn-submit']",
+          "ignore_whitespace": false,
+          "ignore_regex": ""
+        },
+        {
+          "title": "Error Messages",
+          "filter": "xpath://*[@class='form-error']",
+          "ignore_whitespace": true,
+          "ignore_regex": ""
+        },
+        {
+          "title": "Form Labels",
+          "filter": "xpath://label[@for='email']|//label[@for='password']",
+          "ignore_whitespace": false,
+          "ignore_regex": ""
+        }
+      ]
+    },
+    {
+      "uuid": "dashboard-monitor",
+      "title": "Dashboard UI Monitor",
+      "url": "https://app.example.com/dashboard",
+      "tag": "frontend-ui-dashboard",
+      "enabled": true,
+      "check_interval": 600,
+      "fetch_backend": "selenium",
+      "notification_urls": [
+        {
+          "name": "HAIDA Test Trigger",
+          "url": "http://haida-api:3001/webhook/change-detected",
+          "method": "POST",
+          "format": "json"
+        }
+      ],
+      "subfilters": [
+        {
+          "title": "Widget Cards",
+          "filter": "xpath://div[@class='card']",
+          "ignore_whitespace": true,
+          "ignore_regex": ""
+        },
+        {
+          "title": "Navigation Menu",
+          "filter": "xpath://nav",
+          "ignore_whitespace": true,
+          "ignore_regex": ""
+        }
+      ]
+    },
+    {
+      "uuid": "checkout-monitor",
+      "title": "Checkout Flow Monitor",
+      "url": "https://app.example.com/checkout",
+      "tag": "frontend-ui-checkout",
+      "enabled": true,
+      "check_interval": 300,
+      "fetch_backend": "selenium",
+      "notification_urls": [
+        {
+          "name": "HAIDA Test Trigger",
+          "url": "http://haida-api:3001/webhook/change-detected",
+          "method": "POST",
+          "format": "json"
+        }
+      ],
+      "subfilters": [
+        {
+          "title": "Payment Form",
+          "filter": "xpath://form[@id='payment-form']",
+          "ignore_whitespace": true,
+          "ignore_regex": ""
+        },
+        {
+          "title": "Submit Button",
+          "filter": "xpath://button[@type='submit']",
+          "ignore_whitespace": false,
+          "ignore_regex": ""
+        },
+        {
+          "title": "Price Display",
+          "filter": "xpath://*[@class='price-total']",
+          "ignore_whitespace": false,
+          "ignore_regex": ""
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "requests": {
+      "timeout": 10,
+      "retries": 3
+    },
+    "notification": {
+      "email": {
+        "enabled": false,
+        "smtp_server": "smtp.gmail.com",
+        "smtp_port": 587,
+        "smtp_username": "${SMTP_USERNAME}",
+        "smtp_password": "${SMTP_PASSWORD}",
+        "from_address": "haida-alerts@hiberus.com"
+      },
+      "slack": {
+        "enabled": true,
+        "webhook_url": "${SLACK_WEBHOOK}"
+      }
+    },
+    "storage": {
+      "backend": "file",
+      "path": "/datastore"
+    }
+  }
+}

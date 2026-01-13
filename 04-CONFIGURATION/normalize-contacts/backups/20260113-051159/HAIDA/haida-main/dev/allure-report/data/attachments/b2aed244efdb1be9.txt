@@ -1,0 +1,2 @@
+📝 [TC-INT-001] Probando sincronización DB para: hola@stayarta.com
+   Usuario creado con ID: 013bdf6c-4b51-4314-bee1-a854ad433c0b

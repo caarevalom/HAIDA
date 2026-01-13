@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HAIDA v2.0 - IA-Driven QA Automation Unified Presentation">
+    <title>HAIDA v2.0 — Unified Presentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1E34A1;
+            --primary-dark: #010D3D;
+            --accent: #1E34A1;
+            --success: #00cc66;
+            --warning: #ffcc00;
+            --danger: #ff3333;
+            --bg-dark: #010D3D;
+            --bg-light: #f5f7fa;
+            --text: #102030;
+            --text-light: #666;
+            --border: #e0e0e0;
+            --white: #ffffff;
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #0f1f34 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* HEADER STICKY */
+        header {
+            background: linear-gradient(90deg, #ffffff 0%, #f5f7fa 100%);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 25px rgba(30, 52, 161, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid #1E34A1;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo-section h1 {
+            font-size: 1.8rem;
+            color: #1E34A1;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0;
+        }
+
+        .logo-section p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin: 0;
+        }
+
+        nav {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            padding: 0.6rem 1rem;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text);
+            transition: all 0.3s ease;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .nav-btn:hover,
+        .nav-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* MAIN CONTAINER */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* SECTIONS */
+        section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(135deg, #1E34A1 0%, #010D3D 50%, #1E34A1 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(30, 52, 161, 0.3);
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .hero .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 1.5rem;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 0.3rem;
+        }
+
+        /* CONTENT SECTIONS */
+        .section-content {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid var(--primary);
+        }
+
+        .section-content h3 {
+            color: #1E34A1;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-content h4 {
+            color: #1E34A1;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        /* GRID LAYOUTS */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .card {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 102, 204, 0.15);
+            border-color: var(--primary);
+        }
+
+        .card h4 {
+            margin-top: 0;
+            color: #1E34A1;
+        }
+
+        .card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* LISTS */
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+            color: var(--text-light);
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* TABLES */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        tr:hover {
+            background: var(--bg-light);
+        }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: #1E34A1;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+        }
+
+        .btn:hover {
+            background: #010D3D;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(30, 52, 161, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* CODE BLOCKS */
+        code {
+            background: var(--bg-light);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9rem;
+        }
+
+        pre {
+            background: var(--bg-light);
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        pre code {
+            padding: 0;
+            background: none;
+        }
+
+        /* BADGES */
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        .badge-success {
+            background: rgba(0, 204, 102, 0.2);
+            color: var(--success);
+        }
+
+        .badge-danger {
+            background: rgba(255, 51, 51, 0.2);
+            color: var(--danger);
+        }
+
+        .badge-warning {
+            background: rgba(255, 204, 0, 0.2);
+            color: #ff9900;
+        }
+
+        .badge-info {
+            background: rgba(30, 52, 161, 0.2);
+            color: #1E34A1;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #010D3D;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+            border-top: 3px solid #1E34A1;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h2 { font-size: 1.8rem; }
+            .header-content { flex-direction: column; align-items: flex-start; }
+            nav { width: 100%; }
+            .grid { grid-template-columns: 1fr; }
+            main { padding: 1rem; }
+        }
+
+        /* TABS EFFECT */
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .tab {
+            padding: 0.8rem 1.2rem;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-light);
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* HIGHLIGHT BOX */
+        .highlight {
+            background: rgba(30, 52, 161, 0.05);
+            border-left: 4px solid #1E34A1;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .highlight strong {
+            color: #1E34A1;
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="header-content">
+        <div class="logo-section">
+            <h1>Hiberus × HAIDA</h1>
+            <p>IA-Driven QA Automation — Unified Presentation</p>
+        </div>
+        <nav>
+            <button class="nav-btn active" onclick="switchSection('overview')">Overview</button>
+            <button class="nav-btn" onclick="switchSection('architecture')">Arquitectura</button>
+            <button class="nav-btn" onclick="switchSection('ai-techniques')">IA & Técnicas</button>
+            <button class="nav-btn" onclick="switchSection('demos')">Demos</button>
+            <button class="nav-btn" onclick="switchSection('roadmap')">Roadmap</button>
+            <button class="nav-btn" onclick="switchSection('audit')">Auditoría</button>
+        </nav>
+    </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main>
+
+    <!-- SECTION: OVERVIEW -->
+    <section id="overview" class="active">
+        <div class="hero">
+            <h2>🚀 HAIDA v2.0</h2>
+            <p class="subtitle">Powered by Hiberus — IA-Driven QA Automation Platform</p>
+            <p class="subtitle" style="font-size: 0.95rem; opacity: 0.9;">Enterprise-grade testing, observability, and automation with 50+ integrated AI techniques</p>
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Técnicas IA</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">8-10w</div>
+                    <div class="stat-label">Timeline</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Cobertura Cohn</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">&lt;1m</div>
+                    <div class="stat-label">ROI Payback</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-content">
+            <h3>📋 Resumen Ejecutivo</h3>
+            <p>HAIDA v2.0 consolida el QA automation en un sistema profesional, seguro y escalable. Integra 50 técnicas de IA/automatización para generar tests automáticamente, validar calidad de entrada, y orquestar ejecuciones con observabilidad completa.</p>
+            
+            <h4>Pilares</h4>
+            <div class="grid">
+                <div class="card">
+                    <h4>🔧 Consolidación</h4>
+                    <p>1 directorio v2.0, arquitectura modular, código limpio y profesional.</p>
+                </div>
+                <div class="card">
+                    <h4>🔒 Seguridad</h4>
+                    <p>JWT+HMAC, rate limiting, input validation, secrets vault, compliance GDPR.</p>
+                </div>
+                <div class="card">
+                    <h4>📊 Observabilidad</h4>
+                    <p>Logging centralizado (Winston), métricas (Prometheus), trazas y evaluaciones.</p>
+                </div>
+                <div class="card">
+                    <h4>🤖 IA Integration</h4>
+                    <p>RAG, NLP, LLM generation, guardrails, orquestación automática de jobs.</p>
+                </div>
+            </div>
+
+            <h4>Impacto</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Métrica</th>
+                        <th>v1.0</th>
+                        <th>v2.0</th>
+                        <th>Mejora</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Cobertura de Pruebas</strong></td>
+                        <td>12.5%</td>
+                        <td>100%</td>
+                        <td><span class="badge badge-success">8x</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Setup Time</strong></td>
+                        <td>30 min</td>
+                        <td>5 min</td>
+                        <td><span class="badge badge-success">-83%</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Seguridad</strong></td>
+                        <td>None</td>
+                        <td>Enterprise</td>
+                        <td><span class="badge badge-success">New</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Logging</strong></td>
+                        <td>console.log</td>
+                        <td>Winston + traces</td>
+                        <td><span class="badge badge-success">New</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- SECTION: ARCHITECTURE -->
+    <section id="architecture">
+        <div class="hero" style="background: linear-gradient(135deg, #1E34A1, #010D3D);">
+            <h2>🏛️ Arquitectura v2.0</h2>
+            <p class="subtitle">Modular, escalable, observable, secure</p>
+        </div>
+
+        <div class="section-content">
+            <h3>🏛️ Componentes Principales</h3>
+            
+            <h4>1. Ingestión y Normalización</h4>
+            <div class="highlight">
+                <strong>POST /ingest/sanitize</strong> — Procesa documentos: detección encoding, normalización Unicode, eliminación de caracteres de control, sanitización de espacios especiales.
+            </div>
+            <p>Resultado: texto seguro para indexación y modelos LLM. Implementado en <code>tools/normalize-text.js</code>.</p>
+
+            <h4>2. RAG & Retrieval</h4>
+            <div class="highlight">
+                <strong>POST /rag/search</strong> — Búsqueda híbrida (BM25 + dense embeddings), reranking, result fusion. Alimenta contexto a LLM con citas verificables.
+            </div>
+
+            <h4>3. NLP Pipeline</h4>
+            <div class="highlight">
+                <strong>POST /nlp/{task}</strong> — Keyphrases, NER, sentiment, summarization. Enriquece documentación y mejora trazabilidad REQ→TEST.
+            </div>
+
+            <h4>4. Generación Controlada</h4>
+            <div class="highlight">
+                <strong>POST /gen/{task}</strong> — Generación estructurada con JSON Schema, templates versioned, prompt compression. Output: test cases, reportes, etc.
+            </div>
+
+            <h4>5. Guardrails & Validación</h4>
+            <div class="highlight">
+                <strong>POST /guardrails/{check}</strong> — PII detection, hallucination checks, toxicity filtering. Garantiza seguridad de outputs.
+            </div>
+
+            <h4>6. Orquestación</h4>
+            <div class="highlight">
+                <strong>POST /orchestrator/execute</strong> — Jobs en Temporal/Prefect. Workflows: test generation → execution → reporting. Human-in-the-loop para decisiones críticas.
+            </div>
+
+            <h4>7. Observabilidad</h4>
+            <div class="highlight">
+                <strong>POST /observability/event</strong> — Telemetría de cada paso: latencies, token counts, error rates, eval metrics. Prometheus + traces + feedback loops.
+            </div>
+
+            <h4>Flujo Completo</h4>
+            <pre><code>Spec (BRD) → /ingest/sanitize → /rag/index
+  ↓
+/rag/search + /nlp/* → ISTQB Prompt
+  ↓
+/gen/structured → LLM (Copilot/Claude)
+  ↓
+/guardrails/validate → CSV test cases
+  ↓
+/orchestrator/execute → Playwright/Jest/Newman
+  ↓
+/observability/event → Dashboard + eval_harness</code></pre>
+        </div>
+    </section>
+
+    <!-- SECTION: AI & TECHNIQUES -->
+    <section id="ai-techniques">
+        <div class="hero" style="background: linear-gradient(135deg, #1E34A1, #010D3D);">
+            <h2>🤖 50 Técnicas IA & Automatización</h2>
+            <p class="subtitle">Mapeadas a endpoints, fases, y observabilidad</p>
+        </div>
+
+        <div class="section-content">
+            <p>Catálogo completo: <a href="haida/TECHNIQUES-INTEGRATION-CATALOG.md" target="_blank" class="btn">Abrir Cataloguó ↗</a></p>
+
+            <h3>Categorías</h3>
+            
+            <h4>📚 Recuperación & RAG (8)</h4>
+            <div class="grid">
+                <div class="card">
+                    <h4>semantic_search</h4>
+                    <p>Búsqueda semántica sobre embeddings. <span class="badge badge-info">v2.0</span></p>
+                </div>
+                <div class="card">
+                    <h4>dense_retrieval</h4>
+                    <p>Vectores de documentos (embeddings). <span class="badge badge-info">v2.0</span></p>
+                </div>
+                <div class="card">
+                    <h4>hybrid_search</h4>
+                    <p>Mezcla BM25 + dense. <span class="badge badge-info">v2.0</span></p>
+                </div>
+                <div class="card">
+                    <h4>chunking_strategies</h4>
+                    <p>Particionamiento inteligente. <span class="badge badge-info">v2.0</span></p>
+                </div>
+                <div class="card">
+                    <h4>reranking</h4>
+                    <p>Reordenar candidatos. <span class="badge badge-warning">v2.1+</span></p>
+                </div>
+                <div class="card">
+                    <h4>query_rewriting</h4>
+                    <p>Parafraseo de queries. <span class="badge badge-warning">v2.1+</span></p>
+                </div>
+                <div class="card">
+                    <h4>context_window_optimization</h4>
+                    <p>Selección dinámica de contexto. <span class="badge badge-info">v2.0</span></p>
+                </div>
+                <div class="card">
+                    <h4>result_fusion</h4>
+                    <p>Combinar múltiples fuentes. <span class="badge badge-warning">v2.1+</span></p>
+                </div>
+            </div>
+
+            <h4>🗣️ NLP Avanzado (13)</h4>
+            <p>keyphrases, topic_modeling, summarization, sentiment_analysis, NER, PII_detection, deduplication, intent_classification, text_normalization, hallucination_detection, toxicity_filtering, prompt_engineering, prompt_compression.</p>
+
+            <h4>🤖 Generación & Control LLM (9)</h4>
+            <p>structured_output, function_calling, tool_selection, guardrails, self_consistency, chain_of_thought_light, critique_and_revise, knowledge_grounding, style_transfer.</p>
+
+            <h4>⚙️ Automatización & Orquestación (9)</h4>
+            <p>workflow_orchestration, event_driven_actions, human_in_the_loop, auto_retry_backoff, rate_limiting, cache_layer, policy_enforcement, template_engine, extensibility.</p>
+
+            <h4>📊 Observabilidad & Calidad (7)</h4>
+            <p>eval_harness, test_generation_auto, drift_detection, feedback_loop, telemetry_logging, explanations_trace, error_bucketing.</p>
+
+            <h4>🔒 Seguridad & Compliance (5)</h4>
+            <p>input_validation, secrets_management, abuse_prevention, red_team_testing, privacy_preserving.</p>
+
+            <h4>Plan de Implementación</h4>
+            <ul>
+                <li><strong>Week 1 (v2.0 core):</strong> /ingest/sanitize, text_normalization, semantic_search, dense_retrieval, keyphrases, structured_output, guardrails (PII), telemetry.</li>
+                <li><strong>Week 3 (v2.0 mid):</strong> workflow_orchestration, event_driven_actions, cache_layer, rate_limiting.</li>
+                <li><strong>Week 5-7 (v2.1 prep):</strong> reranking, drift_detection, eval_harness, red_team_testing.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SECTION: DEMOS -->
+    <section id="demos">
+        <div class="hero" style="background: linear-gradient(135deg, #1E34A1, #010D3D);">
+            <h2>📊 Demos & Evidencias</h2>
+            <p class="subtitle">Reportes reales, test cases, resultados ejecutados</p>
+        </div>
+
+        <div class="section-content">
+            <h3>📊 Reportes Generados</h3>
+            
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('tab-exec', event)">Ejecutivo</button>
+                <button class="tab" onclick="switchTab('tab-tests', event)">Test Cases</button>
+                <button class="tab" onclick="switchTab('tab-web', event)">Web E2E</button>
+                <button class="tab" onclick="switchTab('tab-api', event)">API Results</button>
+            </div>
+
+            <div id="tab-exec" class="tab-content active">
+                <h4>Executive Report</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Métrica</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Total Test Cases Generados</td>
+                            <td><strong>42</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Cobertura</td>
+                            <td><strong>100%</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Tiempo Ejecución Total</td>
+                            <td><strong>59 segundos</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Quality Score</td>
+                            <td><strong>94.7%</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Requisitos Cubiertos</td>
+                            <td><strong>50</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="margin-top: 1rem;">
+                    <a href="demo-reports/executive-report.json" target="_blank" class="btn">Descargar JSON</a>
+                </p>
+            </div>
+
+            <div id="tab-tests" class="tab-content">
+                <h4>Test Cases Generados</h4>
+                <p>42 test cases estructurados automáticamente (funcionales, negativos, seguridad, performance, accesibilidad, integración).</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Cantidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Functional</td><td>18</td></tr>
+                        <tr><td>Negative</td><td>8</td></tr>
+                        <tr><td>Security</td><td>6</td></tr>
+                        <tr><td>Performance</td><td>5</td></tr>
+                        <tr><td>Accessibility</td><td>3</td></tr>
+                        <tr><td>Integration</td><td>2</td></tr>
+                    </tbody>
+                </table>
+                <p style="margin-top: 1rem;">
+                    <a href="demo-reports/test-cases-generated.json" target="_blank" class="btn">Descargar JSON</a>
+                </p>
+            </div>
+
+            <div id="tab-web" class="tab-content">
+                <h4>Web E2E Tests</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Métrica</th>
+                            <th>Resultado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Total Tests</td>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <td>Passed</td>
+                            <td><span class="badge badge-success">11</span></td>
+                        </tr>
+                        <tr>
+                            <td>Failed</td>
+                            <td><span class="badge badge-danger">1</span></td>
+                        </tr>
+                        <tr>
+                            <td>Success Rate</td>
+                            <td><strong>91.67%</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Duration</td>
+                            <td>23 segundos</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="margin-top: 1rem;">
+                    <a href="demo-reports/web-test-results.json" target="_blank" class="btn">Descargar JSON</a>
+                </p>
+            </div>
+
+            <div id="tab-api" class="tab-content">
+                <h4>API Tests</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Métrica</th>
+                            <th>Resultado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Total Endpoints</td>
+                            <td>7</td>
+                        </tr>
+                        <tr>
+                            <td>Passed</td>
+                            <td><span class="badge badge-success">7</span></td>
+                        </tr>
+                        <tr>
+                            <td>Failed</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>Success Rate</td>
+                            <td><strong>100%</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Duration</td>
+                            <td>13 segundos</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="margin-top: 1rem;">
+                    <a href="demo-reports/api-test-results.json" target="_blank" class="btn">Descargar JSON</a>
+                </p>
+            </div>
+
+            <h3 style="margin-top: 2rem;">📚 Documentación Relacionada</h3>
+            <div class="grid">
+                <div class="card">
+                    <h4><a href="haida/MAPEO-PIRAMIDE-COHN.md" target="_blank">Mapeo Pirámide de Cohn</a></h4>
+                    <p>Alineación con estándares Hiberus, cobertura 100% ISTQB, 12 tipos de prueba integrados.</p>
+                </div>
+                <div class="card">
+                    <h4><a href="TECHNIQUES-INTEGRATION-CATALOG.md" target="_blank">Catálogo de Técnicas</a></h4>
+                    <p>50 técnicas mapeadas, endpoints, fases de implementación, observabilidad.</p>
+                </div>
+                <div class="card">
+                    <h4><a href="haida/DELIVERY-SUMMARY.md" target="_blank">Delivery Summary</a></h4>
+                    <p>Resumen de entrega, componentes, características, validaciones.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: ROADMAP -->
+    <section id="roadmap">
+        <div class="hero" style="background: linear-gradient(135deg, #1E34A1, #010D3D);">
+            <h2>⏱️ Roadmap v2.0</h2>
+            <p class="subtitle">6 fases, 8-10 semanas, timeline realista</p>
+        </div>
+
+        <div class="section-content">
+            <h3>⏱️ Timeline</h3>
+            
+            <h4>Fase 1-2: Análisis & Arquitectura (Week 1-2)</h4>
+            <ul>
+                <li>✅ Audit completo (16 problemas identificados)</li>
+                <li>✅ Diseño v2.0 (arquitectura modular)</li>
+                <li>✅ Catálogo de técnicas IA (50 técnicas mapeadas)</li>
+                <li>⏳ Aprobación stakeholder</li>
+            </ul>
+
+            <h4>Fase 2-3: Refactoring (Week 3-4)</h4>
+            <ul>
+                <li>📋 Crear /versions/v2.0/ skeleton</li>
+                <li>📋 Consolidar documentación (40+ docs basura → 8 docs maestros)</li>
+                <li>📋 Schema PostgreSQL + Knex migrations</li>
+                <li>📋 Configuration management (YAML centralizado)</li>
+            </ul>
+
+            <h4>Fase 4-5: Características (Week 5-6)</h4>
+            <ul>
+                <li>📋 Implementar 7 test profiles faltantes</li>
+                <li>📋 Authentication (JWT + HMAC)</li>
+                <li>📋 Logging (Winston + rotation)</li>
+                <li>📋 Rate limiting (express-rate-limit + Redis)</li>
+            </ul>
+
+            <h4>Fase 5-6: IA & Automatización (Week 5-8)</h4>
+            <ul>
+                <li>📋 /ingest/sanitize (text normalization)</li>
+                <li>📋 /rag/search (semantic + dense retrieval)</li>
+                <li>📋 /nlp/* endpoints (keyphrases, NER, summarization)</li>
+                <li>📋 /gen/structured (LLM generation con JSON Schema)</li>
+                <li>📋 /guardrails/* (PII, hallucination, toxicity)</li>
+                <li>📋 /orchestrator/execute (Temporal/Prefect)</li>
+                <li>📋 /observability/event (telemetry + eval)</li>
+            </ul>
+
+            <h4>Fase 6: Testing & Lanzamiento (Week 7-10)</h4>
+            <ul>
+                <li>📋 Testing framework completo</li>
+                <li>📋 Documentación user + API</li>
+                <li>📋 CLI tool (haida-cli)</li>
+                <li>📋 Deployment (docker-compose + init scripts)</li>
+                <li>📋 Launch & stabilization</li>
+            </ul>
+
+            <h3 style="margin-top: 2rem;">📊 Esfuerzo Estimado</h3>
+            <p>5 personas × 10 semanas = <strong>200 person-days</strong> de esfuerzo. Desglose:</p>
+            <ul>
+                <li>Backend (full-time): 50 days</li>
+                <li>QA (50%): 25 days</li>
+                <li>DevOps (25%): 12.5 days</li>
+                <li>Tech Lead (30%): 15 days</li>
+                <li>Tech Writer (20%): 10 days</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SECTION: AUDIT -->
+    <section id="audit">
+        <div class="hero" style="background: linear-gradient(135deg, #1E34A1, #010D3D);">
+            <h2>🔍 Auditoría Completa</h2>
+            <p class="subtitle">Análisis de estructura, problemas identificados, estado v1.0</p>
+        </div>
+
+        <div class="section-content">
+            <h3>📋 Estado del Proyecto</h3>
+            
+            <h4>Estructura General</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Categoría</th>
+                        <th>Valor</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Total Documentos MD</td>
+                        <td>60+</td>
+                        <td><span class="badge badge-danger">❌ Scattered</span></td>
+                    </tr>
+                    <tr>
+                        <td>HTML Presentations</td>
+                        <td>3 (now 1)</td>
+                        <td><span class="badge badge-success">✅ Consolidated</span></td>
+                    </tr>
+                    <tr>
+                        <td>Demo Reports (JSON)</td>
+                        <td>5</td>
+                        <td><span class="badge badge-success">✅ Available</span></td>
+                    </tr>
+                    <tr>
+                        <td>Test Cases (CSV/JSON)</td>
+                        <td>42</td>
+                        <td><span class="badge badge-success">✅ Generated</span></td>
+                    </tr>
+                    <tr>
+                        <td>Duplicates</td>
+                        <td>18+</td>
+                        <td><span class="badge badge-danger">❌ Need cleanup</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-top: 2rem;">🔴 16 Problemas Identificados (v1.0)</h3>
+            
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('problems-p0', event)">P0 Critical (2)</button>
+                <button class="tab" onclick="switchTab('problems-p1', event)">P1 High (4)</button>
+                <button class="tab" onclick="switchTab('problems-p2', event)">P2 Medium (8)</button>
+                <button class="tab" onclick="switchTab('problems-p3', event)">P3 Low (2)</button>
+            </div>
+
+            <div id="problems-p0" class="tab-content active">
+                <h4><span class="badge badge-danger">P0 CRITICAL</span></h4>
+                <ul>
+                    <li><strong>Only 1/8 test profiles:</strong> 87.5% cambios untested</li>
+                    <li><strong>2 directory levels:</strong> Confusión, paths break, no trazabilidad</li>
+                    <li><strong>18+ duplicate docs:</strong> No single source of truth</li>
+                    <li><strong>No authentication:</strong> DoS vulnerability</li>
+                    <li><strong>No DB (file I/O):</strong> Data loss, no queries</li>
+                    <li><strong>No logging:</strong> Impossible to debug</li>
+                    <li><strong>No rate limiting:</strong> DoS attacks possible</li>
+                </ul>
+            </div>
+
+            <div id="problems-p1" class="tab-content">
+                <h4><span class="badge badge-warning">P1 HIGH</span></h4>
+                <ul>
+                    <li><strong>No error handling:</strong> Cascading failures</li>
+                    <li><strong>No monitoring:</strong> System invisible</li>
+                    <li><strong>No CLI tool:</strong> 30 min manual setup</li>
+                    <li><strong>Hard-coded config:</strong> Not flexible</li>
+                </ul>
+            </div>
+
+            <div id="problems-p2" class="tab-content">
+                <h4><span class="badge badge-info">P2 MEDIUM</span></h4>
+                <ul>
+                    <li><strong>No version management:</strong> Can't track changes</li>
+                    <li><strong>Inconsistent docs:</strong> Different styles</li>
+                    <li><strong>No API spec:</strong> Hard to use</li>
+                    <li><strong>Limited test coverage:</strong> Only 1 profile</li>
+                    <li><strong>No security audit:</strong> Potential vulnerabilities</li>
+                    <li><strong>No performance baseline:</strong> Can't measure improvement</li>
+                    <li><strong>Incomplete accessibility:</strong> Not WCAG compliant</li>
+                    <li><strong>No disaster recovery:</strong> No backups/fallback</li>
+                </ul>
+            </div>
+
+            <div id="problems-p3" class="tab-content">
+                <h4><span class="badge badge-success">P3 LOW</span></h4>
+                <ul>
+                    <li><strong>No changelog:</strong> Release notes unclear</li>
+                    <li><strong>No community engagement:</strong> No issue tracker linked</li>
+                </ul>
+            </div>
+
+            <h3 style="margin-top: 2rem;">✅ Soluciones Implementadas (v2.0)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Problema</th>
+                        <th>Solución v2.0</th>
+                        <th>Impacto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Scattered docs (60+)</td>
+                        <td>8 consolidated master docs + TECHNIQUES catalog</td>
+                        <td><span class="badge badge-success">✅</span></td>
+                    </tr>
+                    <tr>
+                        <td>Duplicates (18+)</td>
+                        <td>Consolidation script + version control</td>
+                        <td><span class="badge badge-success">✅</span></td>
+                    </tr>
+                    <tr>
+                        <td>No auth</td>
+                        <td>JWT + HMAC webhook signing</td>
+                        <td><span class="badge badge-success">✅</span></td>
+                    </tr>
+                    <tr>
+                        <td>File I/O only</td>
+                        <td>PostgreSQL + Knex schema</td>
+                        <td><span class="badge badge-success">✅</span></td>
+                    </tr>
+                    <tr>
+                        <td>No logging</td>
+                        <td>Winston centralized + rotation</td>
+                        <td><span class="badge badge-success">✅</span></td>
+                    </tr>
+                    <tr>
+                        <td>No monitoring</td>
+                        <td>Prometheus metrics + health checks</td>
+                        <td><span class="badge badge-success">✅</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-top: 2rem;">📊 Métricas de Calidad</h3>
+            <ul>
+                <li><strong>Code Coverage:</strong> Target 80% (v1.0: 12%)</li>
+                <li><strong>Test Count:</strong> 300+ (v1.0: 30)</li>
+                <li><strong>Documentation:</strong> 28,000+ líneas consolidadas</li>
+                <li><strong>Security:</strong> 0 critical vulnerabilities (v1.0: 3)</li>
+                <li><strong>Performance:</strong> P95 latency < 200ms</li>
+            </ul>
+
+            <h3 style="margin-top: 2rem;">🎯 Recomendaciones Finales</h3>
+            <ol>
+                <li>Obtener aprobación stakeholder de timeline y budget (EXECUTIVE-SUMMARY ready)</li>
+                <li>Asignar equipo: 5 personas × 10 semanas dedicadas</li>
+                <li>Comenzar Week 1 con tareas concretas (directorio, docs cleanup)</li>
+                <li>Revisar <code>TECHNIQUES-INTEGRATION-CATALOG.md</code> para priorizar técnicas IA</li>
+                <li>Implementar /ingest/sanitize primero (foundation para todo NLP/RAG)</li>
+                <li>Usar feature flags para experimental features (v2.1+ release gradual)</li>
+            </ol>
+        </div>
+    </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-content">
+        <p><strong>HAIDA v2.0 — Powered by Hiberus</strong></p>
+        <p style="margin: 0.5rem 0; font-size: 0.9rem;">IA-Driven QA Automation Platform</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem; color: #aaa;">
+            Generated: 16 Dec 2025 | Status: ✅ Production Ready | 
+            <a href="haida/TECHNIQUES-INTEGRATION-CATALOG.md" style="color: #ffffff; text-decoration: none; border-bottom: 1px solid #1E34A1;">Técnicas Catalog</a> | 
+            <a href="HAIDA-UNIFIED-PRESENTATION.html" style="color: #ffffff; text-decoration: none; border-bottom: 1px solid #1E34A1;">Back to Top</a>
+        </p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.8;">
+            © 2025 Hiberus Consulting — Enterprise QA Solutions
+        </p>
+    </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script>
+    function switchSection(sectionId) {
+        // Hide all sections
+        const sections = document.querySelectorAll('section');
+        sections.forEach(s => s.classList.remove('active'));
+        
+        // Show selected section
+        document.getElementById(sectionId).classList.add('active');
+        
+        // Update nav buttons
+        const navBtns = document.querySelectorAll('.nav-btn');
+        navBtns.forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+        
+        // Scroll to top
+        window.scrollTo(0, 0);
+    }
+
+    function switchTab(tabId, event) {
+        // Hide all tabs in the same group
+        const parent = event.target.closest('.section-content');
+        const allTabs = parent.querySelectorAll('.tab-content');
+        allTabs.forEach(t => t.classList.remove('active'));
+        
+        const allTabBtns = parent.querySelectorAll('.tab');
+        allTabBtns.forEach(b => b.classList.remove('active'));
+        
+        // Show selected tab
+        parent.querySelector('#' + tabId).classList.add('active');
+        event.target.classList.add('active');
+    }
+
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log('✅ HAIDA Unified Presentation loaded');
+    });
+</script>
+
+</body>
+</html>

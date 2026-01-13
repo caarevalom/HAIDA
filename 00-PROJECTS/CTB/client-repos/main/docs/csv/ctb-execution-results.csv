@@ -1,0 +1,589 @@
+TEST_ID|DISPOSITIVO|RESULTADO|ENTORNO|EVIDENCIA|NOTAS
+TC_AFI_AUTH_001|Desktop|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_AFI_AUTH_001|iOS|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_AFI_AUTH_001|Android|PASS|mcprod||
+TC_AFI_AUTH_002|Desktop|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_AFI_AUTH_002|iOS|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_AFI_AUTH_002|Android|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_AFI_AUTH_003|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_AUTH_003|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_AUTH_003|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_DASH_001|Desktop|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_AFI_DASH_001|iOS|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_AFI_DASH_001|Android|PASS|mcprod||
+TC_AFI_PROD_001|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_PROD_001|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_PROD_001|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_PROD_002|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_PROD_002|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_PROD_002|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_PROD_003|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_PROD_003|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_PROD_003|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_AVAIL_001|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_AVAIL_001|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_AVAIL_001|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_AVAIL_002|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_AVAIL_002|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_AVAIL_002|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_BOOK_001|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_BOOK_001|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_BOOK_001|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_BOOK_002|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_BOOK_002|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_BOOK_002|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_REPORT_001|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_REPORT_001|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_REPORT_001|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_PROFILE_001|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_PROFILE_001|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_PROFILE_001|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_SETTINGS_001|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_SETTINGS_001|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_SETTINGS_001|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_ACCESS_001|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_ACCESS_001|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_ACCESS_001|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AUTH_001|Desktop|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_AUTH_001|iOS|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_AUTH_001|Android|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_AUTH_002|Desktop|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_AUTH_002|iOS|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_AUTH_002|Android|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_AUTH_003|Desktop|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_AUTH_003|iOS|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_AUTH_003|Android|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_AUTH_004|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AUTH_004|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AUTH_004|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AUTH_005|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AUTH_005|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AUTH_005|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AUTH_006|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AUTH_006|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AUTH_006|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AUTH_007|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AUTH_007|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AUTH_007|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AUTH_008|Desktop|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_AUTH_008|iOS|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_AUTH_008|Android|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_AUTH_009|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AUTH_009|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AUTH_009|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AUTH_010|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AUTH_010|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AUTH_010|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AUTH_011|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AUTH_011|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AUTH_011|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AUTH_012|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AUTH_012|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AUTH_012|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AUTH_013|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AUTH_013|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AUTH_013|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AUTH_014|Desktop|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_AUTH_014|iOS|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_AUTH_014|Android|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_AUTH_015|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AUTH_015|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AUTH_015|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CAL_001|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CAL_001|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CAL_001|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CAL_002|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CAL_002|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CAL_002|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CAL_003|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CAL_003|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CAL_003|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CAL_004|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CAL_004|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CAL_004|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CAL_005|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CAL_005|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CAL_005|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CAL_006|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CAL_006|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CAL_006|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CAL_007|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CAL_007|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CAL_007|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CAL_008|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CAL_008|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CAL_008|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CAL_009|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CAL_009|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CAL_009|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CAL_010|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CAL_010|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CAL_010|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CAL_011|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CAL_011|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CAL_011|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CAL_012|Desktop|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_CAL_012|iOS|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_CAL_012|Android|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_CART_001|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_001|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_001|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_002|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_002|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_002|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_003|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_003|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_003|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_004|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_004|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_004|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_005|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_005|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_005|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_006|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_006|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_006|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_007|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_007|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_007|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_008|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_008|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_008|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_009|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_009|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_009|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_010|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_010|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_010|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_011|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_011|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_011|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_012|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_012|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_012|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_013|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_013|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_013|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_014|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_014|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_014|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_015|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_015|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CART_015|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_001|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_001|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_001|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_002|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_002|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_002|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_003|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_003|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_003|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_004|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_004|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_004|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_005|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_005|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_005|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_006|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_006|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_006|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_007|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_007|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_007|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_008|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_008|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_008|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_009|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_009|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_009|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_010|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_010|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_010|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_011|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_011|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_011|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_012|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_012|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_012|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_013|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_013|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_013|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_014|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_014|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_014|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_015|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_015|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_CHECK_015|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_FAV_001|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_FAV_001|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_FAV_001|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_FAV_002|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_FAV_002|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_FAV_002|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_FAV_003|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_FAV_003|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_FAV_003|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_FAV_004|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_FAV_004|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_FAV_004|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_FAV_005|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_FAV_005|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_FAV_005|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_FAV_006|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_FAV_006|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_FAV_006|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_FAV_007|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_FAV_007|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_FAV_007|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_FAV_008|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_FAV_008|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_FAV_008|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_FAV_009|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_FAV_009|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_FAV_009|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_FAV_010|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_FAV_010|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_FAV_010|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_FOOTER_001|Desktop|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_FOOTER_001|iOS|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_FOOTER_001|Android|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_FOOTER_002|Desktop|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_FOOTER_002|iOS|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_FOOTER_002|Android|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_NEWS_001|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NEWS_001|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NEWS_001|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NEWS_002|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NEWS_002|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NEWS_002|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_001|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_001|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_001|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_002|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_002|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_002|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_003|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_003|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_003|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_004|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_004|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_004|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_005|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_005|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_005|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_006|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_006|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_006|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_007|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_007|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_007|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_008|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_008|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_008|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_009|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_009|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_009|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_010|Desktop|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_HOME_010|iOS|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_HOME_010|Android|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_HOME_011|Desktop|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_HOME_011|iOS|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_HOME_011|Android|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_HOME_012|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_012|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_012|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_013|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_013|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_013|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_014|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_014|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_014|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_015|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_015|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_HOME_015|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_001|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_001|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_001|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_002|Desktop|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_NAV_002|iOS|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_NAV_002|Android|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_NAV_003|Desktop|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_NAV_003|iOS|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_NAV_003|Android|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_NAV_004|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_004|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_004|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_005|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_005|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_005|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_006|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_006|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_006|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_007|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_007|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_007|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_008|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_008|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_008|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_009|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_009|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_009|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_010|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_010|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_010|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_011|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_011|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_011|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_012|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_012|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_012|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_013|Desktop|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_NAV_013|iOS|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_NAV_013|Android|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_NAV_014|Desktop|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_NAV_014|iOS|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_NAV_014|Android|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_NAV_015|Desktop|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_NAV_015|iOS|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_NAV_015|Android|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_NAV_016|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_016|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_016|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_017|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_017|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_017|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_018|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_018|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_018|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_019|Desktop|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_NAV_019|iOS|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_NAV_019|Android|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_NAV_020|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_020|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_NAV_020|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_A11Y_001|Desktop|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_AFI_A11Y_001|iOS|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_AFI_A11Y_001|Android|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_AFI_PERF_001|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_PERF_001|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_AFI_PERF_001|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_OFI_A11Y_002|Desktop|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_OFI_A11Y_002|iOS|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_OFI_A11Y_002|Android|FAIL|mcprod|web-e2e-ctb-basic-CTB-Ofic-a12f1-cinas-cumple-WCAG-AA-basico-Pixel-7/test-failed-1.png, web-e2e-ctb-basic-CTB-Ofic-a12f1-cinas-cumple-WCAG-AA-basico-Pixel-7/video-1.webm, web-e2e-ctb-basic-CTB-Ofic-a12f1-cinas-cumple-WCAG-AA-basico-Pixel-7/video.webm, web-e2e-ctb-basic-CTB-Ofic-a12f1-cinas-cumple-WCAG-AA-basico-Pixel-7/error-context.md|
+TC_B2C_A11Y_002|Desktop|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_B2C_A11Y_002|iOS|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_B2C_A11Y_002|Android|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_B2C_PERF_002|Desktop|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_B2C_PERF_002|iOS|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_B2C_PERF_002|Android|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_OFI_MAP_001|Desktop|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_OFI_MAP_001|iOS|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_OFI_MAP_001|Android|BLOQUEADO|mcprod||
+TC_OFI_MAP_002|Desktop|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_OFI_MAP_002|iOS|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_OFI_MAP_002|Android|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_OFI_SEARCH_001|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_OFI_SEARCH_001|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_OFI_SEARCH_001|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_OFI_FILTER_001|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_OFI_FILTER_001|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_OFI_FILTER_001|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_OFI_LIST_001|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_OFI_LIST_001|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_OFI_LIST_001|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_OFI_DETAIL_001|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_OFI_DETAIL_001|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_OFI_DETAIL_001|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_OFI_ROUTE_001|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_OFI_ROUTE_001|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_OFI_ROUTE_001|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_OFI_HOURS_001|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_OFI_HOURS_001|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_OFI_HOURS_001|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_OFI_CONTACT_001|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_OFI_CONTACT_001|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_OFI_CONTACT_001|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_OFI_CONTACT_002|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_OFI_CONTACT_002|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_OFI_CONTACT_002|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_OFI_ACCESS_001|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_OFI_ACCESS_001|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_OFI_ACCESS_001|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_OFI_PERF_001|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_OFI_PERF_001|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_OFI_PERF_001|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PLP_001|Desktop|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_PLP_001|iOS|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_PLP_001|Android|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_PLP_002|Desktop|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_PLP_002|iOS|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_PLP_002|Android|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_PLP_003|Desktop|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_PLP_003|iOS|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_PLP_003|Android|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_PLP_004|Desktop|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_PLP_004|iOS|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_PLP_004|Android|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_PLP_005|Desktop|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_PLP_005|iOS|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_PLP_005|Android|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_PDP_001|Desktop|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_PDP_001|iOS|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_PDP_001|Android|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_PDP_002|Desktop|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_PDP_002|iOS|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_PDP_002|Android|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_PDP_003|Desktop|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_PDP_003|iOS|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_PDP_003|Android|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_PDP_004|Desktop|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_PDP_004|iOS|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_PDP_004|Android|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_PDP_005|Desktop|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_PDP_005|iOS|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_PDP_005|Android|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_PROFILE_001|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_001|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_001|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_002|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_002|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_002|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_003|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_003|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_003|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_004|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_004|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_004|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_005|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_005|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_005|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_006|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_006|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_006|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_007|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_007|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_007|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_008|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_008|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_008|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_009|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_009|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_009|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_010|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_010|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_010|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_011|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_011|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_011|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_012|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_012|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_012|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_013|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_013|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_013|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_014|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_014|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_014|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_015|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_015|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_015|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_016|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_016|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_016|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_017|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_017|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_017|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_018|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_018|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_018|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_019|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_019|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_019|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_020|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_020|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROFILE_020|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROMO_001|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROMO_001|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROMO_001|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROMO_002|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROMO_002|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROMO_002|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROMO_003|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROMO_003|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROMO_003|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROMO_004|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROMO_004|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROMO_004|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROMO_005|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROMO_005|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROMO_005|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROMO_006|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROMO_006|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROMO_006|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROMO_007|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROMO_007|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROMO_007|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROMO_008|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROMO_008|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_PROMO_008|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_001|Desktop|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_SEARCH_001|iOS|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_SEARCH_001|Android|NO_EJECUTADO|mcprod||Pendiente de automatizacion
+TC_SEARCH_002|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_002|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_002|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_003|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_003|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_003|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_004|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_004|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_004|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_005|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_005|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_005|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_006|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_006|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_006|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_007|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_007|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_007|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_008|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_008|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_008|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_009|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_009|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_009|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_010|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_010|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_010|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_011|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_011|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_011|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_012|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_012|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_012|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_013|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_013|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_013|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_014|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_014|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_014|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_015|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_015|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_015|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_016|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_016|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_016|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_017|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_017|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_017|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_018|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_018|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_018|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_019|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_019|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_019|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_020|Desktop|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_020|iOS|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual
+TC_SEARCH_020|Android|BLOQUEADO|mcprod||Datos de prueba no disponibles o requiere ejecucion manual

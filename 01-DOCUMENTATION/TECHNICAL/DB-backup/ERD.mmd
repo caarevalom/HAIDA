@@ -1,0 +1,573 @@
+erDiagram
+    %% ============================================
+    %% HAIDA DATABASE ERD v2.0 - Mermaid
+    %% Multi-tenant + RBAC + Feature Flags + Docs + Chat
+    %% ============================================
+
+    %% AUTHENTICATION & TENANTS
+    auth_users {
+        uuid id PK
+        text email UK
+        text encrypted_password
+        text email_confirmed_at
+        text invited_at
+        text confirmation_token
+        text recovery_token
+        text email_change_token_new
+        text user_metadata
+        text app_metadata
+        text is_super_admin
+        text created_at
+        text updated_at
+        text phone
+        text phone_confirmed_at
+        text confirmed_at
+        text last_sign_in_at
+        text role
+        text instance_id
+    }
+
+    tenants {
+        uuid id PK
+        text name
+        text slug UK
+        text description
+        text logo_url
+        text website_url
+        text industry
+        text size
+        text timezone
+        text locale
+        jsonb settings
+        text subscription_plan
+        text subscription_status
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    tenant_members {
+        uuid tenant_id FK
+        uuid user_id FK
+        text role
+        timestamp invited_at
+        timestamp joined_at
+        timestamp last_active_at
+        jsonb permissions
+        PK(tenant_id, user_id)
+    }
+
+    user_profiles {
+        uuid id FK,PK → auth_users.id
+        text email UK
+        text full_name
+        text avatar_url
+        text bio
+        text job_title
+        text department
+        text phone
+        text timezone
+        text locale
+        jsonb preferences
+        timestamp last_login_at
+        integer login_count
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    user_sso_providers {
+        uuid user_id FK → auth_users.id
+        text provider
+        text provider_id
+        jsonb provider_data
+        timestamp linked_at
+        timestamp last_used_at
+        PK(user_id, provider)
+    }
+
+    %% RBAC SYSTEM
+    roles {
+        uuid id PK
+        text name UK
+        text display_name
+        text description
+        boolean is_system_role
+        jsonb permissions
+        timestamp created_at
+    }
+
+    permissions {
+        uuid id PK
+        text name UK
+        text resource
+        text action
+        text description
+        timestamp created_at
+    }
+
+    role_permissions {
+        uuid role_id FK → roles.id
+        uuid permission_id FK → permissions.id
+        uuid granted_by FK → auth_users.id
+        timestamp granted_at
+        PK(role_id, permission_id)
+    }
+
+    %% FEATURE FLAGS SYSTEM
+    feature_flags {
+        text key PK
+        text name
+        text description
+        text type
+        jsonb default_value
+        integer rollout_percentage
+        boolean is_active
+        uuid created_by FK → auth_users.id
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    tenant_feature_flags {
+        uuid tenant_id FK → tenants.id
+        text flag_key FK → feature_flags.key
+        jsonb value
+        boolean is_enabled
+        integer rollout_percentage
+        uuid set_by FK → auth_users.id
+        timestamp set_at
+        PK(tenant_id, flag_key)
+    }
+
+    user_feature_flags {
+        uuid user_id FK → auth_users.id
+        text flag_key FK → feature_flags.key
+        jsonb value
+        boolean is_enabled
+        uuid set_by FK → auth_users.id
+        timestamp set_at
+        PK(user_id, flag_key)
+    }
+
+    %% RATE LIMITING SYSTEM
+    rate_limit_counters {
+        uuid user_id FK → auth_users.id
+        uuid tenant_id FK → tenants.id
+        text endpoint
+        timestamp window_start
+        integer request_count
+        timestamp blocked_until
+        timestamp created_at
+        PK(user_id, tenant_id, endpoint, window_start)
+    }
+
+    rate_limit_policies {
+        uuid id PK
+        text name UK
+        text description
+        integer requests_per_minute
+        integer requests_per_hour
+        integer burst_limit
+        text applies_to
+        boolean is_active
+        timestamp created_at
+    }
+
+    %% PROJECTS & TESTING
+    projects {
+        uuid id PK
+        uuid tenant_id FK → tenants.id
+        text name
+        text slug
+        text description
+        text base_url
+        text repository_url
+        text documentation_url
+        text status
+        text type
+        jsonb settings
+        jsonb metadata
+        uuid created_by FK → auth_users.id
+        timestamp created_at
+        timestamp updated_at
+        UK(tenant_id, slug)
+    }
+
+    test_suites {
+        uuid id PK
+        uuid project_id FK → projects.id
+        text name
+        text description
+        text suite_type
+        text priority
+        text[] tags
+        boolean is_active
+        jsonb configuration
+        uuid created_by FK → auth_users.id
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    test_cases {
+        uuid id PK
+        uuid test_suite_id FK → test_suites.id
+        text test_id UK
+        text name
+        text description
+        text test_type
+        text component
+        text module
+        text[] requirement_ids
+        text preconditions
+        text test_steps
+        text expected_result
+        text priority
+        text risk_level
+        boolean is_automated
+        text automation_script_path
+        text automation_framework
+        text status
+        text[] tags
+        integer estimated_duration
+        uuid created_by FK → auth_users.id
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    %% EXECUTIONS & RESULTS
+    test_executions {
+        uuid id PK
+        uuid project_id FK → projects.id
+        uuid test_suite_id FK → test_suites.id
+        uuid change_detection_id FK → change_detections.id
+        text execution_type
+        text trigger_source
+        text environment
+        text browser
+        text platform
+        text status
+        timestamp started_at
+        timestamp completed_at
+        integer duration_ms
+        integer total_tests
+        integer passed_tests
+        integer failed_tests
+        integer skipped_tests
+        integer blocked_tests
+        decimal coverage_percentage
+        text allure_report_url
+        text playwright_report_url
+        text artifacts_path
+        text logs_summary
+        uuid triggered_by FK → auth_users.id
+        jsonb configuration
+        jsonb metadata
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    test_results {
+        uuid id PK
+        uuid test_execution_id FK → test_executions.id
+        uuid test_case_id FK → test_cases.id
+        text test_name
+        text test_file
+        text test_id_ref
+        text status
+        text error_message
+        text error_stack
+        integer duration_ms
+        integer retries
+        text browser
+        text platform
+        text screenshot_url
+        text video_url
+        text trace_url
+        text logs
+        integer assertions_passed
+        integer assertions_failed
+        timestamp started_at
+        timestamp completed_at
+        jsonb step_details
+        jsonb metadata
+        timestamp created_at
+    }
+
+    %% CHANGE DETECTION & AUTOMATION
+    change_detections {
+        uuid id PK
+        uuid project_id FK → projects.id
+        text url
+        text tag
+        text change_type
+        text previous_md5
+        text current_md5
+        text diff_summary
+        jsonb diff_details
+        jsonb webhook_payload
+        text selected_test_profile
+        uuid[] test_suite_ids
+        text status
+        timestamp processed_at
+        timestamp detected_at
+        timestamp created_at
+        jsonb metadata
+    }
+
+    %% DOCUMENTATION SYSTEM
+    docs {
+        uuid id PK
+        uuid tenant_id FK → tenants.id
+        uuid project_id FK → projects.id
+        text slug UK
+        text title
+        uuid current_version_id FK → doc_versions.id
+        text[] tags
+        text category
+        boolean is_published
+        uuid created_by FK → auth_users.id
+        timestamp created_at
+        timestamp updated_at
+        timestamp published_at
+    }
+
+    doc_versions {
+        uuid id PK
+        uuid doc_id FK → docs.id
+        integer version
+        text title
+        text content_md
+        text content_html
+        uuid author_id FK → auth_users.id
+        text change_summary
+        boolean is_minor_version
+        timestamp created_at
+    }
+
+    doc_search_index {
+        uuid doc_id FK → docs.id
+        uuid version_id FK → doc_versions.id
+        tsvector search_vector
+        timestamp last_indexed_at
+        PK(doc_id, version_id)
+    }
+
+    %% CHAT/IA SYSTEM
+    chat_threads {
+        uuid id PK
+        uuid tenant_id FK → tenants.id
+        uuid project_id FK → projects.id
+        uuid user_id FK → auth_users.id
+        text title
+        text provider
+        text thread_id UK
+        text status
+        jsonb metadata
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    chat_messages {
+        uuid id PK
+        uuid thread_id FK → chat_threads.id
+        text role
+        text content
+        text content_type
+        jsonb attachments
+        jsonb metadata
+        timestamp created_at
+    }
+
+    chat_providers {
+        uuid tenant_id FK → tenants.id
+        text provider
+        boolean is_active
+        jsonb config
+        jsonb usage_limits
+        uuid created_by FK → auth_users.id
+        timestamp created_at
+        timestamp updated_at
+        PK(tenant_id, provider)
+    }
+
+    %% SCRIPTS & AUTOMATION
+    scripts {
+        uuid id PK
+        uuid tenant_id FK → tenants.id
+        uuid project_id FK → projects.id
+        text name
+        text description
+        text script_type
+        text content
+        text version
+        text[] tags
+        jsonb parameters
+        jsonb outputs
+        boolean is_active
+        boolean is_template
+        uuid created_by FK → auth_users.id
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    script_runs {
+        uuid id PK
+        uuid script_id FK → scripts.id
+        text execution_id UK
+        text status
+        jsonb parameters
+        text environment
+        timestamp started_at
+        timestamp completed_at
+        integer duration_ms
+        integer exit_code
+        text stdout
+        text stderr
+        jsonb artifacts
+        uuid triggered_by FK → auth_users.id
+        text worker_id
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    %% REPORTS & ANALYTICS
+    report_templates {
+        uuid id PK
+        uuid tenant_id FK → tenants.id
+        text name
+        text description
+        text template_type
+        jsonb config
+        boolean is_public
+        uuid created_by FK → auth_users.id
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    reports {
+        uuid id PK
+        uuid tenant_id FK → tenants.id
+        uuid template_id FK → report_templates.id
+        text name
+        text description
+        text report_type
+        text status
+        text format
+        text file_url
+        jsonb parameters
+        jsonb data
+        timestamp generated_at
+        timestamp expires_at
+        uuid created_by FK → auth_users.id
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    %% AUDIT & LOGGING
+    audit_log {
+        uuid id PK
+        uuid tenant_id FK → tenants.id
+        uuid user_id FK → auth_users.id
+        text action
+        text resource_type
+        uuid resource_id
+        jsonb old_values
+        jsonb new_values
+        inet ip_address
+        text user_agent
+        jsonb metadata
+        timestamp created_at
+    }
+
+    system_events {
+        uuid id PK
+        text event_type
+        text severity
+        text message
+        jsonb details
+        uuid tenant_id FK → tenants.id
+        uuid user_id FK → auth_users.id
+        timestamp created_at
+    }
+
+    %% RELATIONSHIPS
+    auth_users ||--o{ user_profiles : "extends"
+    auth_users ||--o{ tenant_members : "belongs_to"
+    auth_users ||--o{ user_sso_providers : "has"
+    auth_users ||--o{ audit_log : "creates"
+    auth_users ||--o{ system_events : "triggers"
+
+    tenants ||--o{ tenant_members : "has"
+    tenants ||--o{ projects : "owns"
+    tenants ||--o{ docs : "owns"
+    tenants ||--o{ chat_threads : "owns"
+    tenants ||--o{ chat_providers : "configures"
+    tenants ||--o{ scripts : "owns"
+    tenants ||--o{ reports : "owns"
+    tenants ||--o{ report_templates : "owns"
+    tenants ||--o{ tenant_feature_flags : "overrides"
+    tenants ||--o{ rate_limit_counters : "limits"
+    tenants ||--o{ audit_log : "logs"
+    tenants ||--o{ system_events : "events"
+
+    tenant_members }o--|| tenants : "belongs_to"
+    tenant_members }o--|| auth_users : "member"
+
+    user_profiles }o--|| auth_users : "extends"
+
+    user_sso_providers }o--|| auth_users : "belongs_to"
+
+    roles ||--o{ role_permissions : "has"
+    permissions ||--o{ role_permissions : "assigned_to"
+
+    role_permissions }o--|| roles : "grants"
+    role_permissions }o--|| permissions : "to"
+
+    feature_flags ||--o{ tenant_feature_flags : "overridden_by"
+    feature_flags ||--o{ user_feature_flags : "overridden_by"
+
+    tenant_feature_flags }o--|| tenants : "overrides"
+    tenant_feature_flags }o--|| feature_flags : "for"
+
+    user_feature_flags }o--|| auth_users : "overrides"
+    user_feature_flags }o--|| feature_flags : "for"
+
+    rate_limit_counters }o--|| auth_users : "limited"
+    rate_limit_counters }o--|| tenants : "in"
+
+    projects ||--o{ test_suites : "has"
+    projects ||--o{ test_executions : "executes"
+    projects ||--o{ change_detections : "monitors"
+    projects ||--o{ docs : "documents"
+    projects ||--o{ chat_threads : "discusses"
+    projects ||--o{ scripts : "automates"
+
+    test_suites ||--o{ test_cases : "contains"
+    test_suites ||--o{ test_executions : "executed_as"
+
+    test_cases ||--o{ test_results : "produces"
+
+    test_executions ||--o{ test_results : "contains"
+    test_executions }o--o{ change_detections : "triggered_by"
+
+    change_detections }o--o{ test_executions : "triggers"
+
+    docs ||--o{ doc_versions : "has"
+    docs ||--o{ doc_search_index : "indexed"
+
+    doc_versions }o--|| docs : "version_of"
+    doc_versions ||--o{ doc_search_index : "indexed"
+
+    chat_threads ||--o{ chat_messages : "contains"
+    chat_providers }o--|| tenants : "configured_for"
+
+    scripts ||--o{ script_runs : "executed"
+
+    script_runs }o--|| scripts : "execution_of"
+
+    report_templates ||--o{ reports : "generates"
+    reports }o--o{ report_templates : "based_on"
+
+    audit_log }o--o{ tenants : "in"
+    audit_log }o--o{ auth_users : "by"
+
+    system_events }o--o{ tenants : "in"
+    system_events }o--o{ auth_users : "by"

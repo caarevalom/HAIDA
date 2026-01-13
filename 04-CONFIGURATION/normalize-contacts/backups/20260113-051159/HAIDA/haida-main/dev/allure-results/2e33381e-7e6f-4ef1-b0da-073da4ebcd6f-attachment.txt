@@ -1,0 +1,7 @@
+📝 Registro response status: 400
+📝 Registro response: {
+  "error": "http_error",
+  "message": "Registration failed",
+  "correlationId": "0b97dfd4-+34662652300-a06d-072783bed9c4"
+}
+⚠️ Usuario ya existe en la base de datos

@@ -1,0 +1,14 @@
+{
+  "executor": [
+    {
+      "id": "placeholder-fix",
+      "command": "echo \"executor: add fix commands here\""
+    }
+  ],
+  "tester": [
+    {
+      "id": "placeholder-test",
+      "command": "echo \"tester: add test commands here\""
+    }
+  ]
+}

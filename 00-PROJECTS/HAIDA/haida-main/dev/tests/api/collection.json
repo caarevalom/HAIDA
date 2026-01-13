@@ -1,0 +1,32 @@
+{
+  "info": {
+    "name": "API Smoke",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GET Base URL",
+      "request": {
+        "method": "GET",
+        "url": "{{BASE_URL}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status < 400', function () { pm.response.to.not.have.status(400); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "BASE_URL",
+      "value": "https://haidapi.stayarta.com"
+    }
+  ]
+}

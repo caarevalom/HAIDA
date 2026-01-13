@@ -1,0 +1,7 @@
+
+🔧 STEP 1: Creating test user
+📧 Email: hola@stayarta.com
+🔑 Password: HaidaTest2025Pass!
+
+📍 On page: https://haida.stayarta.com/login
+🔗 Looking for "Sign up" link...

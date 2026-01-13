@@ -1,0 +1,66 @@
+{
+  "name": "@haida/mcp-server",
+  "version": "1.0.0",
+  "description": "Enterprise-grade Model Context Protocol server for HAIDA QA Automation Platform",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "haida-mcp": "./dist/index.js"
+  },
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc && chmod +x dist/index.js",
+    "start": "node dist/index.js",
+    "test": "vitest",
+    "test:unit": "vitest run --reporter=verbose",
+    "test:integration": "vitest run --config vitest.integration.config.ts",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write 'src/**/*.ts'",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "haida",
+    "qa-automation",
+    "testing",
+    "playwright",
+    "ai-assistant"
+  ],
+  "author": "HAIDA Team",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "@supabase/supabase-js": "^2.49.2",
+    "axios": "^1.7.9",
+    "dotenv": "^16.4.7",
+    "ioredis": "^5.4.2",
+    "jsonwebtoken": "^9.0.2",
+    "pino": "^9.6.0",
+    "pino-pretty": "^13.0.0",
+    "rate-limiter-flexible": "^5.0.3",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.7",
+    "@types/node": "^22.10.5",
+    "@typescript-eslint/eslint-plugin": "^8.21.0",
+    "@typescript-eslint/parser": "^8.21.0",
+    "@vitest/coverage-v8": "^3.0.6",
+    "eslint": "^9.19.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.3",
+    "prettier": "^3.4.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^3.0.6"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  }
+}

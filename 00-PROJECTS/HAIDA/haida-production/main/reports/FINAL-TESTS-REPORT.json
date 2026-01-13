@@ -1,0 +1,5009 @@
+{
+  "base_url": "https://haidapi.stayarta.com",
+  "rounds": 10,
+  "total": 500,
+  "passed": 500,
+  "failed": 0,
+  "results": [
+    {
+      "round": 1,
+      "name": "Health",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Version",
+      "method": "GET",
+      "path": "/version",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Status",
+      "method": "GET",
+      "path": "/status",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Root",
+      "method": "GET",
+      "path": "/",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Entra status",
+      "method": "GET",
+      "path": "/entra/status",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Entra status api",
+      "method": "GET",
+      "path": "/api/entra/status",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Auth login missing",
+      "method": "POST",
+      "path": "/auth/login",
+      "expected_status": 422,
+      "status": 422,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Auth register missing",
+      "method": "POST",
+      "path": "/auth/register",
+      "expected_status": 422,
+      "status": 422,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Auth me missing",
+      "method": "GET",
+      "path": "/auth/me",
+      "expected_status": 401,
+      "status": 401,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Auth refresh missing",
+      "method": "POST",
+      "path": "/auth/refresh",
+      "expected_status": 401,
+      "status": 401,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Auth logout",
+      "method": "POST",
+      "path": "/auth/logout",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Chat list threads",
+      "method": "GET",
+      "path": "/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Chat create thread",
+      "method": "POST",
+      "path": "/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Chat list threads api",
+      "method": "GET",
+      "path": "/api/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Chat create thread api",
+      "method": "POST",
+      "path": "/api/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Chat list threads missing headers",
+      "method": "GET",
+      "path": "/chat/threads",
+      "expected_status": 400,
+      "status": 400,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Chat create thread missing headers",
+      "method": "POST",
+      "path": "/chat/threads",
+      "expected_status": 400,
+      "status": 400,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Chat list messages",
+      "method": "GET",
+      "path": "/chat/threads/1288a5f5-6916-4303-80ed-271bfb492dda/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Chat list messages api",
+      "method": "GET",
+      "path": "/api/chat/threads/1288a5f5-6916-4303-80ed-271bfb492dda/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Chat message routellm",
+      "method": "POST",
+      "path": "/chat/threads/1288a5f5-6916-4303-80ed-271bfb492dda/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Chat message copilot",
+      "method": "POST",
+      "path": "/chat/threads/1288a5f5-6916-4303-80ed-271bfb492dda/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Chat list messages invalid",
+      "method": "GET",
+      "path": "/chat/threads/00000000-0000-0000-0000-000000000000/messages",
+      "expected_status": 404,
+      "status": 404,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Chat send invalid thread",
+      "method": "POST",
+      "path": "/chat/threads/00000000-0000-0000-0000-000000000000/messages",
+      "expected_status": 404,
+      "status": 404,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Health repeat 23",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Health repeat 24",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Health repeat 25",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Health repeat 26",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Health repeat 27",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Health repeat 28",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Health repeat 29",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Health repeat 30",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Health repeat 31",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Health repeat 32",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Health repeat 33",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Health repeat 34",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Health repeat 35",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Health repeat 36",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Health repeat 37",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Health repeat 38",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Health repeat 39",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Health repeat 40",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Health repeat 41",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Health repeat 42",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Health repeat 43",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Health repeat 44",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Health repeat 45",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Health repeat 46",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Health repeat 47",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Health repeat 48",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 1,
+      "name": "Health repeat 49",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Health",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Version",
+      "method": "GET",
+      "path": "/version",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Status",
+      "method": "GET",
+      "path": "/status",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Root",
+      "method": "GET",
+      "path": "/",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Entra status",
+      "method": "GET",
+      "path": "/entra/status",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Entra status api",
+      "method": "GET",
+      "path": "/api/entra/status",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Auth login missing",
+      "method": "POST",
+      "path": "/auth/login",
+      "expected_status": 422,
+      "status": 422,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Auth register missing",
+      "method": "POST",
+      "path": "/auth/register",
+      "expected_status": 422,
+      "status": 422,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Auth me missing",
+      "method": "GET",
+      "path": "/auth/me",
+      "expected_status": 401,
+      "status": 401,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Auth refresh missing",
+      "method": "POST",
+      "path": "/auth/refresh",
+      "expected_status": 401,
+      "status": 401,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Auth logout",
+      "method": "POST",
+      "path": "/auth/logout",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Chat list threads",
+      "method": "GET",
+      "path": "/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Chat create thread",
+      "method": "POST",
+      "path": "/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Chat list threads api",
+      "method": "GET",
+      "path": "/api/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Chat create thread api",
+      "method": "POST",
+      "path": "/api/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Chat list threads missing headers",
+      "method": "GET",
+      "path": "/chat/threads",
+      "expected_status": 400,
+      "status": 400,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Chat create thread missing headers",
+      "method": "POST",
+      "path": "/chat/threads",
+      "expected_status": 400,
+      "status": 400,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Chat list messages",
+      "method": "GET",
+      "path": "/chat/threads/6c349ffa-35c9-45e3-9b03-f7591aa5b2e7/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Chat list messages api",
+      "method": "GET",
+      "path": "/api/chat/threads/6c349ffa-35c9-45e3-9b03-f7591aa5b2e7/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Chat message routellm",
+      "method": "POST",
+      "path": "/chat/threads/6c349ffa-35c9-45e3-9b03-f7591aa5b2e7/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Chat message copilot",
+      "method": "POST",
+      "path": "/chat/threads/6c349ffa-35c9-45e3-9b03-f7591aa5b2e7/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Chat list messages invalid",
+      "method": "GET",
+      "path": "/chat/threads/00000000-0000-0000-0000-000000000000/messages",
+      "expected_status": 404,
+      "status": 404,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Chat send invalid thread",
+      "method": "POST",
+      "path": "/chat/threads/00000000-0000-0000-0000-000000000000/messages",
+      "expected_status": 404,
+      "status": 404,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Health repeat 23",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Health repeat 24",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Health repeat 25",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Health repeat 26",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Health repeat 27",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Health repeat 28",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Health repeat 29",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Health repeat 30",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Health repeat 31",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Health repeat 32",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Health repeat 33",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Health repeat 34",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Health repeat 35",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Health repeat 36",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Health repeat 37",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Health repeat 38",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Health repeat 39",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Health repeat 40",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Health repeat 41",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Health repeat 42",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Health repeat 43",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Health repeat 44",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Health repeat 45",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Health repeat 46",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Health repeat 47",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Health repeat 48",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 2,
+      "name": "Health repeat 49",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Health",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Version",
+      "method": "GET",
+      "path": "/version",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Status",
+      "method": "GET",
+      "path": "/status",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Root",
+      "method": "GET",
+      "path": "/",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Entra status",
+      "method": "GET",
+      "path": "/entra/status",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Entra status api",
+      "method": "GET",
+      "path": "/api/entra/status",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Auth login missing",
+      "method": "POST",
+      "path": "/auth/login",
+      "expected_status": 422,
+      "status": 422,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Auth register missing",
+      "method": "POST",
+      "path": "/auth/register",
+      "expected_status": 422,
+      "status": 422,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Auth me missing",
+      "method": "GET",
+      "path": "/auth/me",
+      "expected_status": 401,
+      "status": 401,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Auth refresh missing",
+      "method": "POST",
+      "path": "/auth/refresh",
+      "expected_status": 401,
+      "status": 401,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Auth logout",
+      "method": "POST",
+      "path": "/auth/logout",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Chat list threads",
+      "method": "GET",
+      "path": "/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Chat create thread",
+      "method": "POST",
+      "path": "/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Chat list threads api",
+      "method": "GET",
+      "path": "/api/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Chat create thread api",
+      "method": "POST",
+      "path": "/api/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Chat list threads missing headers",
+      "method": "GET",
+      "path": "/chat/threads",
+      "expected_status": 400,
+      "status": 400,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Chat create thread missing headers",
+      "method": "POST",
+      "path": "/chat/threads",
+      "expected_status": 400,
+      "status": 400,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Chat list messages",
+      "method": "GET",
+      "path": "/chat/threads/75d55c9a-b661-4805-a846-b36716bde2db/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Chat list messages api",
+      "method": "GET",
+      "path": "/api/chat/threads/75d55c9a-b661-4805-a846-b36716bde2db/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Chat message routellm",
+      "method": "POST",
+      "path": "/chat/threads/75d55c9a-b661-4805-a846-b36716bde2db/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Chat message copilot",
+      "method": "POST",
+      "path": "/chat/threads/75d55c9a-b661-4805-a846-b36716bde2db/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Chat list messages invalid",
+      "method": "GET",
+      "path": "/chat/threads/00000000-0000-0000-0000-000000000000/messages",
+      "expected_status": 404,
+      "status": 404,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Chat send invalid thread",
+      "method": "POST",
+      "path": "/chat/threads/00000000-0000-0000-0000-000000000000/messages",
+      "expected_status": 404,
+      "status": 404,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Health repeat 23",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Health repeat 24",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Health repeat 25",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Health repeat 26",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Health repeat 27",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Health repeat 28",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Health repeat 29",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Health repeat 30",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Health repeat 31",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Health repeat 32",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Health repeat 33",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Health repeat 34",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Health repeat 35",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Health repeat 36",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Health repeat 37",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Health repeat 38",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Health repeat 39",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Health repeat 40",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Health repeat 41",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Health repeat 42",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Health repeat 43",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Health repeat 44",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Health repeat 45",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Health repeat 46",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Health repeat 47",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Health repeat 48",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 3,
+      "name": "Health repeat 49",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Health",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Version",
+      "method": "GET",
+      "path": "/version",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Status",
+      "method": "GET",
+      "path": "/status",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Root",
+      "method": "GET",
+      "path": "/",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Entra status",
+      "method": "GET",
+      "path": "/entra/status",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Entra status api",
+      "method": "GET",
+      "path": "/api/entra/status",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Auth login missing",
+      "method": "POST",
+      "path": "/auth/login",
+      "expected_status": 422,
+      "status": 422,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Auth register missing",
+      "method": "POST",
+      "path": "/auth/register",
+      "expected_status": 422,
+      "status": 422,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Auth me missing",
+      "method": "GET",
+      "path": "/auth/me",
+      "expected_status": 401,
+      "status": 401,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Auth refresh missing",
+      "method": "POST",
+      "path": "/auth/refresh",
+      "expected_status": 401,
+      "status": 401,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Auth logout",
+      "method": "POST",
+      "path": "/auth/logout",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Chat list threads",
+      "method": "GET",
+      "path": "/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Chat create thread",
+      "method": "POST",
+      "path": "/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Chat list threads api",
+      "method": "GET",
+      "path": "/api/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Chat create thread api",
+      "method": "POST",
+      "path": "/api/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Chat list threads missing headers",
+      "method": "GET",
+      "path": "/chat/threads",
+      "expected_status": 400,
+      "status": 400,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Chat create thread missing headers",
+      "method": "POST",
+      "path": "/chat/threads",
+      "expected_status": 400,
+      "status": 400,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Chat list messages",
+      "method": "GET",
+      "path": "/chat/threads/4ebfef38-4c34-4892-bcdb-1dc106ac0aea/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Chat list messages api",
+      "method": "GET",
+      "path": "/api/chat/threads/4ebfef38-4c34-4892-bcdb-1dc106ac0aea/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Chat message routellm",
+      "method": "POST",
+      "path": "/chat/threads/4ebfef38-4c34-4892-bcdb-1dc106ac0aea/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Chat message copilot",
+      "method": "POST",
+      "path": "/chat/threads/4ebfef38-4c34-4892-bcdb-1dc106ac0aea/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Chat list messages invalid",
+      "method": "GET",
+      "path": "/chat/threads/00000000-0000-0000-0000-000000000000/messages",
+      "expected_status": 404,
+      "status": 404,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Chat send invalid thread",
+      "method": "POST",
+      "path": "/chat/threads/00000000-0000-0000-0000-000000000000/messages",
+      "expected_status": 404,
+      "status": 404,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Health repeat 23",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Health repeat 24",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Health repeat 25",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Health repeat 26",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Health repeat 27",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Health repeat 28",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Health repeat 29",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Health repeat 30",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Health repeat 31",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Health repeat 32",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Health repeat 33",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Health repeat 34",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Health repeat 35",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Health repeat 36",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Health repeat 37",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Health repeat 38",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Health repeat 39",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Health repeat 40",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Health repeat 41",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Health repeat 42",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Health repeat 43",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Health repeat 44",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Health repeat 45",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Health repeat 46",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Health repeat 47",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Health repeat 48",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 4,
+      "name": "Health repeat 49",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Health",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Version",
+      "method": "GET",
+      "path": "/version",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Status",
+      "method": "GET",
+      "path": "/status",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Root",
+      "method": "GET",
+      "path": "/",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Entra status",
+      "method": "GET",
+      "path": "/entra/status",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Entra status api",
+      "method": "GET",
+      "path": "/api/entra/status",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Auth login missing",
+      "method": "POST",
+      "path": "/auth/login",
+      "expected_status": 422,
+      "status": 422,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Auth register missing",
+      "method": "POST",
+      "path": "/auth/register",
+      "expected_status": 422,
+      "status": 422,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Auth me missing",
+      "method": "GET",
+      "path": "/auth/me",
+      "expected_status": 401,
+      "status": 401,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Auth refresh missing",
+      "method": "POST",
+      "path": "/auth/refresh",
+      "expected_status": 401,
+      "status": 401,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Auth logout",
+      "method": "POST",
+      "path": "/auth/logout",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Chat list threads",
+      "method": "GET",
+      "path": "/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Chat create thread",
+      "method": "POST",
+      "path": "/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Chat list threads api",
+      "method": "GET",
+      "path": "/api/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Chat create thread api",
+      "method": "POST",
+      "path": "/api/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Chat list threads missing headers",
+      "method": "GET",
+      "path": "/chat/threads",
+      "expected_status": 400,
+      "status": 400,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Chat create thread missing headers",
+      "method": "POST",
+      "path": "/chat/threads",
+      "expected_status": 400,
+      "status": 400,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Chat list messages",
+      "method": "GET",
+      "path": "/chat/threads/d7613b82-4562-4645-83b1-7d36b3b17de4/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Chat list messages api",
+      "method": "GET",
+      "path": "/api/chat/threads/d7613b82-4562-4645-83b1-7d36b3b17de4/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Chat message routellm",
+      "method": "POST",
+      "path": "/chat/threads/d7613b82-4562-4645-83b1-7d36b3b17de4/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Chat message copilot",
+      "method": "POST",
+      "path": "/chat/threads/d7613b82-4562-4645-83b1-7d36b3b17de4/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Chat list messages invalid",
+      "method": "GET",
+      "path": "/chat/threads/00000000-0000-0000-0000-000000000000/messages",
+      "expected_status": 404,
+      "status": 404,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Chat send invalid thread",
+      "method": "POST",
+      "path": "/chat/threads/00000000-0000-0000-0000-000000000000/messages",
+      "expected_status": 404,
+      "status": 404,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Health repeat 23",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Health repeat 24",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Health repeat 25",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Health repeat 26",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Health repeat 27",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Health repeat 28",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Health repeat 29",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Health repeat 30",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Health repeat 31",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Health repeat 32",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Health repeat 33",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Health repeat 34",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Health repeat 35",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Health repeat 36",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Health repeat 37",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Health repeat 38",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Health repeat 39",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Health repeat 40",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Health repeat 41",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Health repeat 42",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Health repeat 43",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Health repeat 44",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Health repeat 45",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Health repeat 46",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Health repeat 47",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Health repeat 48",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 5,
+      "name": "Health repeat 49",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Health",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Version",
+      "method": "GET",
+      "path": "/version",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Status",
+      "method": "GET",
+      "path": "/status",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Root",
+      "method": "GET",
+      "path": "/",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Entra status",
+      "method": "GET",
+      "path": "/entra/status",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Entra status api",
+      "method": "GET",
+      "path": "/api/entra/status",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Auth login missing",
+      "method": "POST",
+      "path": "/auth/login",
+      "expected_status": 422,
+      "status": 422,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Auth register missing",
+      "method": "POST",
+      "path": "/auth/register",
+      "expected_status": 422,
+      "status": 422,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Auth me missing",
+      "method": "GET",
+      "path": "/auth/me",
+      "expected_status": 401,
+      "status": 401,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Auth refresh missing",
+      "method": "POST",
+      "path": "/auth/refresh",
+      "expected_status": 401,
+      "status": 401,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Auth logout",
+      "method": "POST",
+      "path": "/auth/logout",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Chat list threads",
+      "method": "GET",
+      "path": "/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Chat create thread",
+      "method": "POST",
+      "path": "/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Chat list threads api",
+      "method": "GET",
+      "path": "/api/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Chat create thread api",
+      "method": "POST",
+      "path": "/api/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Chat list threads missing headers",
+      "method": "GET",
+      "path": "/chat/threads",
+      "expected_status": 400,
+      "status": 400,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Chat create thread missing headers",
+      "method": "POST",
+      "path": "/chat/threads",
+      "expected_status": 400,
+      "status": 400,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Chat list messages",
+      "method": "GET",
+      "path": "/chat/threads/efbbfa13-980d-4449-aced-dbad7b6c8866/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Chat list messages api",
+      "method": "GET",
+      "path": "/api/chat/threads/efbbfa13-980d-4449-aced-dbad7b6c8866/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Chat message routellm",
+      "method": "POST",
+      "path": "/chat/threads/efbbfa13-980d-4449-aced-dbad7b6c8866/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Chat message copilot",
+      "method": "POST",
+      "path": "/chat/threads/efbbfa13-980d-4449-aced-dbad7b6c8866/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Chat list messages invalid",
+      "method": "GET",
+      "path": "/chat/threads/00000000-0000-0000-0000-000000000000/messages",
+      "expected_status": 404,
+      "status": 404,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Chat send invalid thread",
+      "method": "POST",
+      "path": "/chat/threads/00000000-0000-0000-0000-000000000000/messages",
+      "expected_status": 404,
+      "status": 404,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Health repeat 23",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Health repeat 24",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Health repeat 25",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Health repeat 26",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Health repeat 27",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Health repeat 28",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Health repeat 29",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Health repeat 30",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Health repeat 31",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Health repeat 32",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Health repeat 33",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Health repeat 34",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Health repeat 35",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Health repeat 36",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Health repeat 37",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Health repeat 38",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Health repeat 39",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Health repeat 40",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Health repeat 41",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Health repeat 42",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Health repeat 43",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Health repeat 44",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Health repeat 45",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Health repeat 46",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Health repeat 47",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Health repeat 48",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 6,
+      "name": "Health repeat 49",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Health",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Version",
+      "method": "GET",
+      "path": "/version",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Status",
+      "method": "GET",
+      "path": "/status",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Root",
+      "method": "GET",
+      "path": "/",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Entra status",
+      "method": "GET",
+      "path": "/entra/status",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Entra status api",
+      "method": "GET",
+      "path": "/api/entra/status",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Auth login missing",
+      "method": "POST",
+      "path": "/auth/login",
+      "expected_status": 422,
+      "status": 422,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Auth register missing",
+      "method": "POST",
+      "path": "/auth/register",
+      "expected_status": 422,
+      "status": 422,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Auth me missing",
+      "method": "GET",
+      "path": "/auth/me",
+      "expected_status": 401,
+      "status": 401,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Auth refresh missing",
+      "method": "POST",
+      "path": "/auth/refresh",
+      "expected_status": 401,
+      "status": 401,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Auth logout",
+      "method": "POST",
+      "path": "/auth/logout",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Chat list threads",
+      "method": "GET",
+      "path": "/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Chat create thread",
+      "method": "POST",
+      "path": "/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Chat list threads api",
+      "method": "GET",
+      "path": "/api/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Chat create thread api",
+      "method": "POST",
+      "path": "/api/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Chat list threads missing headers",
+      "method": "GET",
+      "path": "/chat/threads",
+      "expected_status": 400,
+      "status": 400,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Chat create thread missing headers",
+      "method": "POST",
+      "path": "/chat/threads",
+      "expected_status": 400,
+      "status": 400,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Chat list messages",
+      "method": "GET",
+      "path": "/chat/threads/cd836f1f-180a-41e7-aca2-ff92bf55e174/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Chat list messages api",
+      "method": "GET",
+      "path": "/api/chat/threads/cd836f1f-180a-41e7-aca2-ff92bf55e174/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Chat message routellm",
+      "method": "POST",
+      "path": "/chat/threads/cd836f1f-180a-41e7-aca2-ff92bf55e174/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Chat message copilot",
+      "method": "POST",
+      "path": "/chat/threads/cd836f1f-180a-41e7-aca2-ff92bf55e174/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Chat list messages invalid",
+      "method": "GET",
+      "path": "/chat/threads/00000000-0000-0000-0000-000000000000/messages",
+      "expected_status": 404,
+      "status": 404,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Chat send invalid thread",
+      "method": "POST",
+      "path": "/chat/threads/00000000-0000-0000-0000-000000000000/messages",
+      "expected_status": 404,
+      "status": 404,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Health repeat 23",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Health repeat 24",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Health repeat 25",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Health repeat 26",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Health repeat 27",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Health repeat 28",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Health repeat 29",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Health repeat 30",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Health repeat 31",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Health repeat 32",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Health repeat 33",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Health repeat 34",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Health repeat 35",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Health repeat 36",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Health repeat 37",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Health repeat 38",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Health repeat 39",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Health repeat 40",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Health repeat 41",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Health repeat 42",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Health repeat 43",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Health repeat 44",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Health repeat 45",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Health repeat 46",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Health repeat 47",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Health repeat 48",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 7,
+      "name": "Health repeat 49",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Health",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Version",
+      "method": "GET",
+      "path": "/version",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Status",
+      "method": "GET",
+      "path": "/status",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Root",
+      "method": "GET",
+      "path": "/",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Entra status",
+      "method": "GET",
+      "path": "/entra/status",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Entra status api",
+      "method": "GET",
+      "path": "/api/entra/status",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Auth login missing",
+      "method": "POST",
+      "path": "/auth/login",
+      "expected_status": 422,
+      "status": 422,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Auth register missing",
+      "method": "POST",
+      "path": "/auth/register",
+      "expected_status": 422,
+      "status": 422,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Auth me missing",
+      "method": "GET",
+      "path": "/auth/me",
+      "expected_status": 401,
+      "status": 401,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Auth refresh missing",
+      "method": "POST",
+      "path": "/auth/refresh",
+      "expected_status": 401,
+      "status": 401,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Auth logout",
+      "method": "POST",
+      "path": "/auth/logout",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Chat list threads",
+      "method": "GET",
+      "path": "/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Chat create thread",
+      "method": "POST",
+      "path": "/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Chat list threads api",
+      "method": "GET",
+      "path": "/api/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Chat create thread api",
+      "method": "POST",
+      "path": "/api/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Chat list threads missing headers",
+      "method": "GET",
+      "path": "/chat/threads",
+      "expected_status": 400,
+      "status": 400,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Chat create thread missing headers",
+      "method": "POST",
+      "path": "/chat/threads",
+      "expected_status": 400,
+      "status": 400,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Chat list messages",
+      "method": "GET",
+      "path": "/chat/threads/afb31976-cc21-425f-8323-a887d7634c3f/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Chat list messages api",
+      "method": "GET",
+      "path": "/api/chat/threads/afb31976-cc21-425f-8323-a887d7634c3f/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Chat message routellm",
+      "method": "POST",
+      "path": "/chat/threads/afb31976-cc21-425f-8323-a887d7634c3f/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Chat message copilot",
+      "method": "POST",
+      "path": "/chat/threads/afb31976-cc21-425f-8323-a887d7634c3f/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Chat list messages invalid",
+      "method": "GET",
+      "path": "/chat/threads/00000000-0000-0000-0000-000000000000/messages",
+      "expected_status": 404,
+      "status": 404,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Chat send invalid thread",
+      "method": "POST",
+      "path": "/chat/threads/00000000-0000-0000-0000-000000000000/messages",
+      "expected_status": 404,
+      "status": 404,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Health repeat 23",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Health repeat 24",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Health repeat 25",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Health repeat 26",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Health repeat 27",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Health repeat 28",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Health repeat 29",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Health repeat 30",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Health repeat 31",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Health repeat 32",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Health repeat 33",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Health repeat 34",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Health repeat 35",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Health repeat 36",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Health repeat 37",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Health repeat 38",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Health repeat 39",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Health repeat 40",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Health repeat 41",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Health repeat 42",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Health repeat 43",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Health repeat 44",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Health repeat 45",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Health repeat 46",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Health repeat 47",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Health repeat 48",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 8,
+      "name": "Health repeat 49",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Health",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Version",
+      "method": "GET",
+      "path": "/version",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Status",
+      "method": "GET",
+      "path": "/status",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Root",
+      "method": "GET",
+      "path": "/",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Entra status",
+      "method": "GET",
+      "path": "/entra/status",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Entra status api",
+      "method": "GET",
+      "path": "/api/entra/status",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Auth login missing",
+      "method": "POST",
+      "path": "/auth/login",
+      "expected_status": 422,
+      "status": 422,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Auth register missing",
+      "method": "POST",
+      "path": "/auth/register",
+      "expected_status": 422,
+      "status": 422,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Auth me missing",
+      "method": "GET",
+      "path": "/auth/me",
+      "expected_status": 401,
+      "status": 401,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Auth refresh missing",
+      "method": "POST",
+      "path": "/auth/refresh",
+      "expected_status": 401,
+      "status": 401,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Auth logout",
+      "method": "POST",
+      "path": "/auth/logout",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Chat list threads",
+      "method": "GET",
+      "path": "/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Chat create thread",
+      "method": "POST",
+      "path": "/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Chat list threads api",
+      "method": "GET",
+      "path": "/api/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Chat create thread api",
+      "method": "POST",
+      "path": "/api/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Chat list threads missing headers",
+      "method": "GET",
+      "path": "/chat/threads",
+      "expected_status": 400,
+      "status": 400,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Chat create thread missing headers",
+      "method": "POST",
+      "path": "/chat/threads",
+      "expected_status": 400,
+      "status": 400,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Chat list messages",
+      "method": "GET",
+      "path": "/chat/threads/5dd46180-e39f-4a33-b3fe-d7384aed48bf/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Chat list messages api",
+      "method": "GET",
+      "path": "/api/chat/threads/5dd46180-e39f-4a33-b3fe-d7384aed48bf/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Chat message routellm",
+      "method": "POST",
+      "path": "/chat/threads/5dd46180-e39f-4a33-b3fe-d7384aed48bf/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Chat message copilot",
+      "method": "POST",
+      "path": "/chat/threads/5dd46180-e39f-4a33-b3fe-d7384aed48bf/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Chat list messages invalid",
+      "method": "GET",
+      "path": "/chat/threads/00000000-0000-0000-0000-000000000000/messages",
+      "expected_status": 404,
+      "status": 404,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Chat send invalid thread",
+      "method": "POST",
+      "path": "/chat/threads/00000000-0000-0000-0000-000000000000/messages",
+      "expected_status": 404,
+      "status": 404,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Health repeat 23",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Health repeat 24",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Health repeat 25",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Health repeat 26",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Health repeat 27",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Health repeat 28",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Health repeat 29",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Health repeat 30",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Health repeat 31",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Health repeat 32",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Health repeat 33",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Health repeat 34",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Health repeat 35",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Health repeat 36",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Health repeat 37",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Health repeat 38",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Health repeat 39",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Health repeat 40",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Health repeat 41",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Health repeat 42",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Health repeat 43",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Health repeat 44",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Health repeat 45",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Health repeat 46",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Health repeat 47",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Health repeat 48",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 9,
+      "name": "Health repeat 49",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Health",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Version",
+      "method": "GET",
+      "path": "/version",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Status",
+      "method": "GET",
+      "path": "/status",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Root",
+      "method": "GET",
+      "path": "/",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Entra status",
+      "method": "GET",
+      "path": "/entra/status",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Entra status api",
+      "method": "GET",
+      "path": "/api/entra/status",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Auth login missing",
+      "method": "POST",
+      "path": "/auth/login",
+      "expected_status": 422,
+      "status": 422,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Auth register missing",
+      "method": "POST",
+      "path": "/auth/register",
+      "expected_status": 422,
+      "status": 422,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Auth me missing",
+      "method": "GET",
+      "path": "/auth/me",
+      "expected_status": 401,
+      "status": 401,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Auth refresh missing",
+      "method": "POST",
+      "path": "/auth/refresh",
+      "expected_status": 401,
+      "status": 401,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Auth logout",
+      "method": "POST",
+      "path": "/auth/logout",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Chat list threads",
+      "method": "GET",
+      "path": "/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Chat create thread",
+      "method": "POST",
+      "path": "/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Chat list threads api",
+      "method": "GET",
+      "path": "/api/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Chat create thread api",
+      "method": "POST",
+      "path": "/api/chat/threads",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Chat list threads missing headers",
+      "method": "GET",
+      "path": "/chat/threads",
+      "expected_status": 400,
+      "status": 400,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Chat create thread missing headers",
+      "method": "POST",
+      "path": "/chat/threads",
+      "expected_status": 400,
+      "status": 400,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Chat list messages",
+      "method": "GET",
+      "path": "/chat/threads/000e58e9-e705-4b3f-9d27-865c6816aea5/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Chat list messages api",
+      "method": "GET",
+      "path": "/api/chat/threads/000e58e9-e705-4b3f-9d27-865c6816aea5/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Chat message routellm",
+      "method": "POST",
+      "path": "/chat/threads/000e58e9-e705-4b3f-9d27-865c6816aea5/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Chat message copilot",
+      "method": "POST",
+      "path": "/chat/threads/000e58e9-e705-4b3f-9d27-865c6816aea5/messages",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Chat list messages invalid",
+      "method": "GET",
+      "path": "/chat/threads/00000000-0000-0000-0000-000000000000/messages",
+      "expected_status": 404,
+      "status": 404,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Chat send invalid thread",
+      "method": "POST",
+      "path": "/chat/threads/00000000-0000-0000-0000-000000000000/messages",
+      "expected_status": 404,
+      "status": 404,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Health repeat 23",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Health repeat 24",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Health repeat 25",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Health repeat 26",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Health repeat 27",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Health repeat 28",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Health repeat 29",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Health repeat 30",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Health repeat 31",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Health repeat 32",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Health repeat 33",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Health repeat 34",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Health repeat 35",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Health repeat 36",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Health repeat 37",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Health repeat 38",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Health repeat 39",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Health repeat 40",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Health repeat 41",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Health repeat 42",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Health repeat 43",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Health repeat 44",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Health repeat 45",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Health repeat 46",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Health repeat 47",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Health repeat 48",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    {
+      "round": 10,
+      "name": "Health repeat 49",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "status": 200,
+      "ok": true,
+      "error": null
+    }
+  ]
+}

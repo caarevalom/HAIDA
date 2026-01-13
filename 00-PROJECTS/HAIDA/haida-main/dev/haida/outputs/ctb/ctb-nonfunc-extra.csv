@@ -1,0 +1,6 @@
+TEST_ID|TIPO_PRUEBA|COMPONENTE|MODULO|REQUISITO_ID|DESCRIPCION|PRECONDICIONES|PASOS|RESULTADO_ESPERADO|PRIORIDAD|RIESGO|ETIQUETA_AUTOMATIZACION|ESTADO
+TC_AFI_A11Y_001|Accessibility|Afiliats|Accessibility|REQ-AFI-016|Afiliats cumple WCAG AA basico|Usuario no autenticado.|1. Ejecutar axe en login afiliats|Sin violaciones criticas|P2|Medio|@afi @a11y @desktop @ios @android|Generado
+TC_AFI_PERF_001|Performance|Afiliats|Performance|REQ-AFI-017|Login afiliats carga dentro de presupuesto|Usuario no autenticado.|1. Ejecutar Lighthouse en login afiliats|LCP y TTI en rango|P2|Medio|@afi @performance @desktop @ios @android|Generado
+TC_OFI_A11Y_002|Accessibility|Oficinas|Accessibility|REQ-OFI-013|Listado oficinas cumple WCAG AA basico|Usuario no autenticado.|1. Ejecutar axe en listado oficinas|Sin violaciones criticas|P2|Medio|@ofi @a11y @desktop @ios @android|Generado
+TC_B2C_A11Y_002|Accessibility|B2C|Search|REQ-GENERAL|Resultados busqueda cumplen WCAG AA basico|Usuario no autenticado.|1. Ejecutar axe en resultados|Sin violaciones criticas|P2|Medio|@b2c @a11y @desktop @ios @android|Generado
+TC_B2C_PERF_002|Performance|B2C|PDP|REQ-GENERAL|PDP carga dentro de presupuesto|Usuario no autenticado.|1. Ejecutar Lighthouse en PDP|LCP y TTI en rango|P2|Medio|@b2c @performance @desktop @ios @android|Generado

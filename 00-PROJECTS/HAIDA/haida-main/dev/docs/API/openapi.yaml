@@ -1,0 +1,1857 @@
+openapi: 3.0.3
+info:
+  title: HAIDA API
+  description: |
+    HAIDA - Quality Assurance Platform with AI Integration
+
+    A comprehensive testing and auditing platform that combines traditional QA automation
+    with AI-powered insights for enterprise software quality assurance.
+
+    ## Key Features
+    - Multi-tenant architecture with RBAC
+    - Automated testing execution and monitoring
+    - AI-powered chat and assistance (Copilot Studio)
+    - Comprehensive documentation management
+    - Real-time analytics and reporting
+    - Enterprise SSO integration (Microsoft Entra ID)
+  version: 2.0.0
+  contact:
+    name: HAIDA Development Team
+    email: hola@stayarta.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: https://haida.vercel.app/api/v2
+    description: Production server
+  - url: http://localhost:8000/api/v2
+    description: Development server
+
+security:
+  - bearerAuth: []
+  - entraAuth: []
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token for authenticated requests
+    entraAuth:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.microsoftonline.com/{tenant}/oauth2/v2.0/authorize
+          tokenUrl: https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token
+          scopes:
+            User.Read: Read user profile
+            Files.Read.All: Read files
+            Calendars.Read: Read calendar
+            Mail.Read: Read mail
+
+  schemas:
+    # Common Types
+    UUID:
+      type: string
+      format: uuid
+      example: "550e8400-e29b-41d4-a716-446655440000"
+
+    Timestamp:
+      type: string
+      format: date-time
+      example: "2025-12-16T10:30:00Z"
+
+    Email:
+      type: string
+      format: email
+      example: "user@company.com"
+
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+          minimum: 1
+          default: 1
+        limit:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 20
+        total:
+          type: integer
+          minimum: 0
+        total_pages:
+          type: integer
+          minimum: 0
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              example: "VALIDATION_ERROR"
+            message:
+              type: string
+              example: "Invalid input data"
+            details:
+              type: object
+              additionalProperties: true
+        timestamp:
+          $ref: '#/components/schemas/Timestamp'
+
+    # User & Auth
+    User:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        email:
+          $ref: '#/components/schemas/Email'
+        full_name:
+          type: string
+          example: "John Doe"
+        avatar_url:
+          type: string
+          format: uri
+        role:
+          type: string
+          enum: [owner, admin, editor, viewer]
+        is_active:
+          type: boolean
+          default: true
+        tenant_id:
+          $ref: '#/components/schemas/UUID'
+        preferences:
+          type: object
+          properties:
+            theme:
+              type: string
+              enum: [light, dark]
+              default: light
+            notifications:
+              type: object
+              properties:
+                email:
+                  type: boolean
+                  default: true
+                push:
+                  type: boolean
+                  default: true
+            dashboard_layout:
+              type: string
+              default: default
+        created_at:
+          $ref: '#/components/schemas/Timestamp'
+        updated_at:
+          $ref: '#/components/schemas/Timestamp'
+
+    Tenant:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        name:
+          type: string
+          example: "Acme Corp"
+        slug:
+          type: string
+          pattern: '^[a-z0-9-]+$'
+          example: "acme-corp"
+        description:
+          type: string
+        logo_url:
+          type: string
+          format: uri
+        settings:
+          type: object
+          properties:
+            allow_public_signup:
+              type: boolean
+              default: false
+            max_users:
+              type: integer
+              default: 100
+            max_projects:
+              type: integer
+              default: 50
+        subscription_plan:
+          type: string
+          enum: [free, starter, professional, enterprise]
+          default: free
+        created_at:
+          $ref: '#/components/schemas/Timestamp'
+
+    # Projects & Testing
+    Project:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        tenant_id:
+          $ref: '#/components/schemas/UUID'
+        name:
+          type: string
+          example: "E-commerce Platform"
+        slug:
+          type: string
+          example: "ecommerce-platform"
+        description:
+          type: string
+        base_url:
+          type: string
+          format: uri
+          example: "https://shop.example.com"
+        status:
+          type: string
+          enum: [active, inactive, archived]
+          default: active
+        type:
+          type: string
+          enum: [web, mobile, api, desktop]
+          default: web
+        settings:
+          type: object
+          properties:
+            test_framework:
+              type: string
+              enum: [playwright, cypress, selenium]
+              default: playwright
+        created_by:
+          $ref: '#/components/schemas/UUID'
+        created_at:
+          $ref: '#/components/schemas/Timestamp'
+        updated_at:
+          $ref: '#/components/schemas/Timestamp'
+
+    TestSuite:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        project_id:
+          $ref: '#/components/schemas/UUID'
+        name:
+          type: string
+          example: "User Authentication Tests"
+        description:
+          type: string
+        suite_type:
+          type: string
+          enum: [smoke, regression, integration, e2e, api, performance, accessibility, security]
+        priority:
+          type: string
+          enum: [critical, high, medium, low]
+          default: medium
+        tags:
+          type: array
+          items:
+            type: string
+        is_active:
+          type: boolean
+          default: true
+        configuration:
+          type: object
+          properties:
+            timeout:
+              type: integer
+              default: 30000
+            retries:
+              type: integer
+              default: 2
+            browsers:
+              type: array
+              items:
+                type: string
+                enum: [chromium, firefox, webkit]
+        created_at:
+          $ref: '#/components/schemas/Timestamp'
+
+    TestCase:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        test_suite_id:
+          $ref: '#/components/schemas/UUID'
+        test_id:
+          type: string
+          example: "TC_LOGIN_001"
+        name:
+          type: string
+          example: "User Login with Valid Credentials"
+        description:
+          type: string
+        test_type:
+          type: string
+          enum: [unit, integration, e2e, api, smoke, manual]
+        priority:
+          type: string
+          enum: [p0, p1, p2, p3, p4]
+          default: p3
+        is_automated:
+          type: boolean
+          default: false
+        automation_script_path:
+          type: string
+        status:
+          type: string
+          enum: [active, deprecated, archived]
+          default: active
+        created_by:
+          $ref: '#/components/schemas/UUID'
+
+    TestExecution:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        project_id:
+          $ref: '#/components/schemas/UUID'
+        test_suite_id:
+          $ref: '#/components/schemas/UUID'
+        execution_type:
+          type: string
+          enum: [manual, scheduled, webhook, api, ci_cd]
+        environment:
+          type: string
+          enum: [development, staging, production, qa]
+          default: staging
+        status:
+          type: string
+          enum: [pending, running, completed, failed, cancelled, timeout]
+          default: pending
+        total_tests:
+          type: integer
+          default: 0
+        passed_tests:
+          type: integer
+          default: 0
+        failed_tests:
+          type: integer
+          default: 0
+        duration_ms:
+          type: integer
+        triggered_by:
+          $ref: '#/components/schemas/UUID'
+        created_at:
+          $ref: '#/components/schemas/Timestamp'
+
+    # Scripts & Automation
+    Script:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        tenant_id:
+          $ref: '#/components/schemas/UUID'
+        project_id:
+          $ref: '#/components/schemas/UUID'
+        name:
+          type: string
+          example: "User Registration Test"
+        description:
+          type: string
+        script_type:
+          type: string
+          enum: [playwright, postman, k6, python, bash, powershell]
+        content:
+          type: string
+        version:
+          type: string
+          default: "1.0.0"
+        parameters:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              type:
+                type: string
+                enum: [string, number, boolean, json]
+              required:
+                type: boolean
+                default: false
+              default:
+                oneOf:
+                  - type: string
+                  - type: number
+                  - type: boolean
+        is_active:
+          type: boolean
+          default: true
+
+    ScriptRun:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        script_id:
+          $ref: '#/components/schemas/UUID'
+        execution_id:
+          type: string
+        status:
+          type: string
+          enum: [queued, running, completed, failed, cancelled]
+        parameters:
+          type: object
+        environment:
+          type: string
+          default: staging
+        stdout:
+          type: string
+        stderr:
+          type: string
+        exit_code:
+          type: integer
+        triggered_by:
+          $ref: '#/components/schemas/UUID'
+        started_at:
+          $ref: '#/components/schemas/Timestamp'
+        completed_at:
+          $ref: '#/components/schemas/Timestamp'
+
+    # Documentation
+    Doc:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        tenant_id:
+          $ref: '#/components/schemas/UUID'
+        project_id:
+          $ref: '#/components/schemas/UUID'
+        slug:
+          type: string
+        title:
+          type: string
+        category:
+          type: string
+          enum: [user_guide, api_docs, technical, process, requirements]
+        is_published:
+          type: boolean
+          default: false
+        tags:
+          type: array
+          items:
+            type: string
+        current_version_id:
+          $ref: '#/components/schemas/UUID'
+        created_by:
+          $ref: '#/components/schemas/UUID'
+
+    # Chat/IA
+    ChatThread:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        tenant_id:
+          $ref: '#/components/schemas/UUID'
+        project_id:
+          $ref: '#/components/schemas/UUID'
+        user_id:
+          $ref: '#/components/schemas/UUID'
+        title:
+          type: string
+        provider:
+          type: string
+          enum: [copilot-studio, openai, anthropic]
+          default: copilot-studio
+        thread_id:
+          type: string
+        status:
+          type: string
+          enum: [active, archived, deleted]
+          default: active
+
+    ChatMessage:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        thread_id:
+          $ref: '#/components/schemas/UUID'
+        role:
+          type: string
+          enum: [user, assistant, system]
+        content:
+          type: string
+        content_type:
+          type: string
+          enum: [text, markdown, json, error]
+          default: text
+        attachments:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              url:
+                type: string
+              name:
+                type: string
+
+    # Reports
+    Report:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        tenant_id:
+          $ref: '#/components/schemas/UUID'
+        template_id:
+          $ref: '#/components/schemas/UUID'
+        name:
+          type: string
+        report_type:
+          type: string
+          enum: [test_execution, coverage, performance, custom]
+        status:
+          type: string
+          enum: [generating, completed, failed]
+        format:
+          type: string
+          enum: [pdf, html, json, xlsx]
+          default: pdf
+        file_url:
+          type: string
+        generated_at:
+          $ref: '#/components/schemas/Timestamp'
+
+  parameters:
+    tenantId:
+      name: tenant_id
+      in: header
+      description: Tenant/workspace identifier (UUID or slug)
+      required: false
+      schema:
+        type: string
+
+    page:
+      name: page
+      in: query
+      description: Page number for pagination
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+
+    limit:
+      name: limit
+      in: query
+      description: Number of items per page
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+
+    search:
+      name: search
+      in: query
+      description: Search query string
+      schema:
+        type: string
+
+    sortBy:
+      name: sort_by
+      in: query
+      description: Field to sort by
+      schema:
+        type: string
+
+    sortOrder:
+      name: sort_order
+      in: query
+      description: Sort order (asc or desc)
+      schema:
+        type: string
+        enum: [asc, desc]
+        default: desc
+
+paths:
+  # Health & System
+  /health:
+    get:
+      summary: Health check
+      description: Check if the API is healthy and responsive
+      tags: [system]
+      responses:
+        '200':
+          description: API is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: healthy
+                  timestamp:
+                    $ref: '#/components/schemas/Timestamp'
+                  version:
+                    type: string
+                    example: "2.0.0"
+
+  /version:
+    get:
+      summary: API version information
+      tags: [system]
+      responses:
+        '200':
+          description: Version information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  version:
+                    type: string
+                  build_date:
+                    $ref: '#/components/schemas/Timestamp'
+                  environment:
+                    type: string
+                    enum: [development, staging, production]
+
+  # Authentication
+  /auth/login:
+    post:
+      summary: Local user login
+      description: Authenticate user with email/password
+      tags: [auth]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email:
+                  $ref: '#/components/schemas/Email'
+                password:
+                  type: string
+                  format: password
+                  minLength: 8
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                    description: JWT access token
+                  refresh_token:
+                    type: string
+                    description: JWT refresh token
+                  token_type:
+                    type: string
+                    example: bearer
+                  expires_in:
+                    type: integer
+                    description: Token expiration in seconds
+                  user:
+                    $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /auth/register:
+    post:
+      summary: User registration
+      description: Register a new user account
+      tags: [auth]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password, full_name]
+              properties:
+                email:
+                  $ref: '#/components/schemas/Email'
+                password:
+                  type: string
+                  format: password
+                  minLength: 8
+                full_name:
+                  type: string
+                  minLength: 2
+      responses:
+        '201':
+          description: User registered successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "User registered successfully. Please check your email for verification."
+                  user_id:
+                    $ref: '#/components/schemas/UUID'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+
+  /auth/logout:
+    post:
+      summary: User logout
+      description: Invalidate the current session
+      tags: [auth]
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Logout successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Logged out successfully"
+
+  /auth/refresh:
+    post:
+      summary: Refresh access token
+      description: Get a new access token using refresh token
+      tags: [auth]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [refresh_token]
+              properties:
+                refresh_token:
+                  type: string
+      responses:
+        '200':
+          description: Token refreshed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                  token_type:
+                    type: string
+                    example: bearer
+                  expires_in:
+                    type: integer
+
+  /auth/me:
+    get:
+      summary: Get current user profile
+      description: Get the profile of the currently authenticated user
+      tags: [auth]
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: User profile retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  # Microsoft Entra ID SSO
+  /entra/login:
+    get:
+      summary: Initiate Entra ID login
+      description: Redirect to Microsoft login page
+      tags: [entra]
+      parameters:
+        - name: redirect_uri
+          in: query
+          description: Redirect URI after login
+          schema:
+            type: string
+            format: uri
+      responses:
+        '302':
+          description: Redirect to Microsoft login
+
+  /entra/callback:
+    get:
+      summary: Entra ID callback
+      description: Handle OAuth callback from Microsoft
+      tags: [entra]
+      parameters:
+        - name: code
+          in: query
+          description: Authorization code from Microsoft
+          schema:
+            type: string
+        - name: state
+          in: query
+          description: State parameter for CSRF protection
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Authentication successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                  refresh_token:
+                    type: string
+                  user:
+                    $ref: '#/components/schemas/User'
+
+  # Tenants
+  /tenants:
+    get:
+      summary: List user tenants
+      description: Get all tenants the user belongs to
+      tags: [tenants]
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/search'
+      responses:
+        '200':
+          description: Tenants retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Tenant'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+
+    post:
+      summary: Create tenant
+      description: Create a new tenant/workspace
+      tags: [tenants]
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, slug]
+              properties:
+                name:
+                  type: string
+                  minLength: 2
+                  maxLength: 100
+                slug:
+                  type: string
+                  pattern: '^[a-z0-9-]+$'
+                  minLength: 3
+                  maxLength: 50
+                description:
+                  type: string
+                  maxLength: 500
+      responses:
+        '201':
+          description: Tenant created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+        '403':
+          description: Insufficient permissions
+
+  /tenants/{tenantId}:
+    get:
+      summary: Get tenant details
+      description: Get detailed information about a specific tenant
+      tags: [tenants]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: tenantId
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/UUID'
+      responses:
+        '200':
+          description: Tenant details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+        '404':
+          description: Tenant not found
+
+    patch:
+      summary: Update tenant
+      description: Update tenant information
+      tags: [tenants]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: tenantId
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/UUID'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 2
+                  maxLength: 100
+                description:
+                  type: string
+                  maxLength: 500
+                settings:
+                  type: object
+      responses:
+        '200':
+          description: Tenant updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+
+  # Projects
+  /projects:
+    get:
+      summary: List projects
+      description: Get all projects in the current tenant
+      tags: [projects]
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/tenantId'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/search'
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [active, inactive, archived]
+      responses:
+        '200':
+          description: Projects retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Project'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+
+    post:
+      summary: Create project
+      description: Create a new project
+      tags: [projects]
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/tenantId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, slug, base_url]
+              properties:
+                name:
+                  type: string
+                  minLength: 2
+                  maxLength: 100
+                slug:
+                  type: string
+                  pattern: '^[a-z0-9-]+$'
+                description:
+                  type: string
+                base_url:
+                  type: string
+                  format: uri
+                repository_url:
+                  type: string
+                  format: uri
+                type:
+                  type: string
+                  enum: [web, mobile, api, desktop]
+      responses:
+        '201':
+          description: Project created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+
+  /projects/{projectId}:
+    get:
+      summary: Get project details
+      tags: [projects]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/UUID'
+      responses:
+        '200':
+          description: Project details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+
+    patch:
+      summary: Update project
+      tags: [projects]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/UUID'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                base_url:
+                  type: string
+                  format: uri
+                status:
+                  type: string
+                  enum: [active, inactive, archived]
+      responses:
+        '200':
+          description: Project updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+
+  # Test Suites
+  /projects/{projectId}/test-suites:
+    get:
+      summary: List test suites
+      tags: [testing]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/UUID'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/limit'
+        - name: suite_type
+          in: query
+          schema:
+            type: string
+            enum: [smoke, regression, integration, e2e, api, performance, accessibility, security]
+        - name: is_active
+          in: query
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Test suites retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TestSuite'
+
+    post:
+      summary: Create test suite
+      tags: [testing]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/UUID'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, suite_type]
+              properties:
+                name:
+                  type: string
+                  minLength: 2
+                  maxLength: 100
+                description:
+                  type: string
+                suite_type:
+                  type: string
+                  enum: [smoke, regression, integration, e2e, api, performance, accessibility, security]
+                priority:
+                  type: string
+                  enum: [critical, high, medium, low]
+                tags:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '201':
+          description: Test suite created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TestSuite'
+
+  # Scripts
+  /scripts:
+    get:
+      summary: List scripts
+      description: Get all scripts in the current tenant
+      tags: [scripts]
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/tenantId'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/search'
+        - name: script_type
+          in: query
+          schema:
+            type: string
+            enum: [playwright, postman, k6, python, bash, powershell]
+        - name: is_active
+          in: query
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Scripts retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Script'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+
+    post:
+      summary: Create script
+      tags: [scripts]
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/tenantId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, script_type, content]
+              properties:
+                name:
+                  type: string
+                  minLength: 2
+                  maxLength: 100
+                description:
+                  type: string
+                script_type:
+                  type: string
+                  enum: [playwright, postman, k6, python, bash, powershell]
+                content:
+                  type: string
+                project_id:
+                  $ref: '#/components/schemas/UUID'
+                parameters:
+                  $ref: '#/components/schemas/Script/properties/parameters'
+                tags:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '201':
+          description: Script created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Script'
+
+  /scripts/{scriptId}/run:
+    post:
+      summary: Execute script
+      description: Queue a script for execution
+      tags: [scripts]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: scriptId
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/UUID'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                parameters:
+                  type: object
+                  description: Runtime parameters for the script
+                environment:
+                  type: string
+                  enum: [development, staging, production, qa]
+                  default: staging
+      responses:
+        '202':
+          description: Script execution queued
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  execution_id:
+                    type: string
+                  status:
+                    type: string
+                    example: queued
+                  estimated_start:
+                    $ref: '#/components/schemas/Timestamp'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /script-runs/{runId}:
+    get:
+      summary: Get script execution status
+      tags: [scripts]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: runId
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/UUID'
+      responses:
+        '200':
+          description: Execution status retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScriptRun'
+
+  /script-runs/{runId}/logs:
+    get:
+      summary: Get script execution logs
+      tags: [scripts]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: runId
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/UUID'
+      responses:
+        '200':
+          description: Execution logs retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  stdout:
+                    type: string
+                  stderr:
+                    type: string
+                  execution_time:
+                    type: integer
+                    description: Execution time in milliseconds
+
+  # Documentation
+  /docs:
+    get:
+      summary: List documents
+      tags: [docs]
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/tenantId'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/search'
+        - name: category
+          in: query
+          schema:
+            type: string
+            enum: [user_guide, api_docs, technical, process, requirements]
+        - name: is_published
+          in: query
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Documents retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Doc'
+
+    post:
+      summary: Create document
+      tags: [docs]
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/tenantId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [title, content_md]
+              properties:
+                title:
+                  type: string
+                  minLength: 2
+                  maxLength: 200
+                content_md:
+                  type: string
+                project_id:
+                  $ref: '#/components/schemas/UUID'
+                category:
+                  type: string
+                  enum: [user_guide, api_docs, technical, process, requirements]
+                tags:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '201':
+          description: Document created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Doc'
+
+  /docs/search:
+    post:
+      summary: Search documents
+      description: Perform semantic search across documents
+      tags: [docs]
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/tenantId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [query]
+              properties:
+                query:
+                  type: string
+                  minLength: 2
+                  maxLength: 500
+                category:
+                  type: string
+                  enum: [user_guide, api_docs, technical, process, requirements]
+                project_id:
+                  $ref: '#/components/schemas/UUID'
+                limit:
+                  type: integer
+                  minimum: 1
+                  maximum: 50
+                  default: 20
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        doc_id:
+                          $ref: '#/components/schemas/UUID'
+                        title:
+                          type: string
+                        excerpt:
+                          type: string
+                        relevance_score:
+                          type: number
+                          minimum: 0
+                          maximum: 1
+                  total:
+                    type: integer
+
+  # Chat/IA
+  /chat/threads:
+    get:
+      summary: List chat threads
+      tags: [chat]
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/tenantId'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: Chat threads retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ChatThread'
+
+    post:
+      summary: Create chat thread
+      tags: [chat]
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/tenantId'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  maxLength: 200
+                project_id:
+                  $ref: '#/components/schemas/UUID'
+      responses:
+        '201':
+          description: Chat thread created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatThread'
+
+  /chat/threads/{threadId}/messages:
+    get:
+      summary: Get thread messages
+      tags: [chat]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: threadId
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/UUID'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: Messages retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ChatMessage'
+
+    post:
+      summary: Send message to thread
+      tags: [chat]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: threadId
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/UUID'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [content]
+              properties:
+                content:
+                  type: string
+                  minLength: 1
+                  maxLength: 10000
+                attachments:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        enum: [file, image, link]
+                      url:
+                        type: string
+                        format: uri
+                      name:
+                        type: string
+      responses:
+        '201':
+          description: Message sent and processed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_message:
+                    $ref: '#/components/schemas/ChatMessage'
+                  assistant_response:
+                    $ref: '#/components/schemas/ChatMessage'
+                  thread_id:
+                    $ref: '#/components/schemas/UUID'
+
+  # Reports
+  /reports:
+    get:
+      summary: List reports
+      tags: [reports]
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/tenantId'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/limit'
+        - name: report_type
+          in: query
+          schema:
+            type: string
+            enum: [test_execution, coverage, performance, custom]
+      responses:
+        '200':
+          description: Reports retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Report'
+
+    post:
+      summary: Generate report
+      tags: [reports]
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/tenantId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, report_type]
+              properties:
+                name:
+                  type: string
+                  minLength: 2
+                  maxLength: 100
+                description:
+                  type: string
+                report_type:
+                  type: string
+                  enum: [test_execution, coverage, performance, custom]
+                template_id:
+                  $ref: '#/components/schemas/UUID'
+                parameters:
+                  type: object
+                format:
+                  type: string
+                  enum: [pdf, html, json, xlsx]
+                  default: pdf
+      responses:
+        '202':
+          description: Report generation started
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  report_id:
+                    $ref: '#/components/schemas/UUID'
+                  status:
+                    type: string
+                    example: generating
+                  estimated_completion:
+                    $ref: '#/components/schemas/Timestamp'
+
+  /reports/{reportId}/download:
+    get:
+      summary: Download report
+      tags: [reports]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: reportId
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/UUID'
+      responses:
+        '200':
+          description: Report file download
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Report not found or not ready
+
+  # System & Observability
+  /system/status:
+    get:
+      summary: System status and metrics
+      tags: [system]
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: System status retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  database:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        enum: [healthy, degraded, down]
+                      connections:
+                        type: integer
+                      latency_ms:
+                        type: number
+                  redis:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        enum: [healthy, degraded, down]
+                      memory_usage:
+                        type: number
+                  queue:
+                    type: object
+                    properties:
+                      pending_jobs:
+                        type: integer
+                      active_workers:
+                        type: integer
+                  uptime_seconds:
+                    type: integer
+
+  # Feature Flags
+  /flags:
+    get:
+      summary: List feature flags
+      description: Get all feature flags and their effective status
+      tags: [flags]
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Feature flags retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  flags:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        key:
+                          type: string
+                        name:
+                          type: string
+                        description:
+                          type: string
+                        enabled:
+                          type: boolean
+                        rollout_percentage:
+                          type: integer
+
+  # Rate Limiting Status
+  /system/rate:
+    get:
+      summary: Rate limiting status
+      tags: [system]
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Rate limiting status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_limits:
+                    type: object
+                    properties:
+                      requests_per_minute:
+                        type: integer
+                      requests_per_hour:
+                        type: integer
+                      current_usage:
+                        type: object
+                        properties:
+                          minute:
+                            type: integer
+                          hour:
+                            type: integer
+                  tenant_limits:
+                    type: object
+                    properties:
+                      requests_per_minute:
+                        type: integer
+                      requests_per_hour:
+                        type: integer
+                      current_usage:
+                        type: object
+                        properties:
+                          minute:
+                            type: integer
+                          hour:
+                            type: integer
+                  reset_times:
+                    type: object
+                    properties:
+                      minute:
+                        $ref: '#/components/schemas/Timestamp'
+                      hour:
+                        $ref: '#/components/schemas/Timestamp'
+
+responses:
+  UnauthorizedError:
+    description: Authentication failed
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Error'
+
+  ValidationError:
+    description: Invalid input data
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Error'
+
+  ForbiddenError:
+    description: Insufficient permissions
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Error'
+
+  NotFoundError:
+    description: Resource not found
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Error'
+
+  RateLimitError:
+    description: Rate limit exceeded
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Error'
+        example:
+          error:
+            code: RATE_LIMIT_EXCEEDED
+            message: "Rate limit exceeded. Try again in 60 seconds."
+            details:
+              retry_after: 60
+              limit: 60
+              window: minute

@@ -1,0 +1,17 @@
+/opt/homebrew/AGENTS.md
+/Users/carlosa/unified_codex_config.txt
+/Users/carlosa/00-PROJECTS/HAIDA/haida-production/main/docs/consolidated/CTB_docs_md/AGENTS.md
+/Users/carlosa/00-PROJECTS/CTB/client-repos/main/docs/md/AGENTS.md
+/Users/carlosa/08-ARCHIVE/old-haida-versions/HAIDA_Instalador/documentation/CTB_docs/md/AGENTS.md
+/Users/carlosa/08-ARCHIVE/legacy-projects/AgentsToolkitProjects/haida/AGENTS.md
+/Users/carlosa/.codex/skills/context-engineering/examples/digital-brain-skill/agents/AGENTS.md
+/Users/carlosa/.codex/skills/sheets-cli-skill/AGENTS.md
+/Users/carlosa/.codex/log/codex-tui.log
+/Users/carlosa/codex_system_scan.txt
+/Users/carlosa/08-ARCHIVE/legacy-projects/Agente-Seguridad/AGENTS.md
+/Users/carlosa/08-ARCHIVE/legacy-projects/BrowserOS/packages/browseros/resources/binaries/codex/codex-x86_64-pc-windows-msvc.exe
+/Users/carlosa/08-ARCHIVE/legacy-projects/BrowserOS/packages/browseros/resources/binaries/codex/codex-aarch64-apple-darwin
+/Users/carlosa/08-ARCHIVE/legacy-projects/BrowserOS/packages/browseros/resources/binaries/codex/codex-x86_64-unknown-linux-musl
+/Users/carlosa/08-ARCHIVE/legacy-projects/BrowserOS/packages/browseros/resources/binaries/codex/codex-aarch64-pc-windows-msvc.exe
+/Users/carlosa/08-ARCHIVE/legacy-projects/BrowserOS/packages/browseros/resources/binaries/codex/codex-x86_64-apple-darwin
+/Users/carlosa/08-ARCHIVE/legacy-projects/BrowserOS/packages/browseros/resources/binaries/codex/codex-aarch64-unknown-linux-musl

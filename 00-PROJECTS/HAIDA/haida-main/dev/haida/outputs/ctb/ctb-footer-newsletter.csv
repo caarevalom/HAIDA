@@ -1,0 +1,5 @@
+TEST_ID|TIPO_PRUEBA|COMPONENTE|MODULO|REQUISITO_ID|DESCRIPCION|PRECONDICIONES|PASOS|RESULTADO_ESPERADO|PRIORIDAD|RIESGO|ETIQUETA_AUTOMATIZACION|ESTADO
+TC_FOOTER_001|Interface|Layout|Footer|REQ-GENERAL|Footer visible con enlaces legales|Usuario no autenticado.|1. Scroll al footer 2. Ver enlaces legales|Enlaces visibles|P3|Bajo|@footer @b2c @desktop @ios @android|Generado
+TC_FOOTER_002|Interface|Layout|Footer|REQ-GENERAL|Enlace condiciones de compra abre pagina|Usuario no autenticado.|1. Click condiciones de compra|Pagina legal carga|P2|Medio|@footer @b2c @desktop @ios @android|Generado
+TC_NEWS_001|Interface|Marketing|Newsletter|REQ-GENERAL|Newsletter acepta email valido|Usuario no autenticado.|1. Ir a footer 2. Ingresar email valido 3. Enviar|Suscripcion confirmada|P2|Medio|@newsletter @b2c @desktop @ios @android|Generado
+TC_NEWS_002|Unit|Marketing|Newsletter|REQ-GENERAL|Newsletter muestra error con email invalido|Usuario no autenticado.|1. Ingresar email invalido 2. Enviar|Mensaje de error visible|P2|Medio|@newsletter @b2c @desktop @ios @android|Generado

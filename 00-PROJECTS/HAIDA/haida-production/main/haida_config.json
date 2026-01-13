@@ -1,0 +1,49 @@
+{
+  "project_path": "/Users/carlosa/Hiberus/HAIDA-PROJECT",
+  "default_provider": "lmstudio",
+  
+  "providers": [
+    {
+      "name": "lmstudio",
+      "endpoint": "http://localhost:1234/v1/chat/completions",
+      "api_key": "lm-studio",
+      "models": ["lmstudio-community/DeepSeek-R1-0528-Qwen3-8B-MLX-4bit"]
+    },
+    {
+      "name": "openai", 
+      "endpoint": "https://api.openai.com/v1",
+      "api_key": "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",
+      "models": ["gpt-4o-mini", "gpt-4o"]
+    },
+    {
+      "name": "gemini",
+      "endpoint": "https://generativelanguage.googleapis.com/v1",
+      "api_key": "AIzaSyAcALT2NEFcT0OltzhYzjot3m7YZue9OTA", 
+      "models": ["gemini-2.5-flash-lite", "gemini-2.0-flash-001"]
+    }
+  ],
+
+  "services": {
+    "supabase": {
+      "url": "https://wdebyxvtunromsnkqbrd.supabase.co",
+      "anon_key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndkZWJ5eHZ0dW5yb21zbmtxYnJkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU4OTU3NTEsImV4cCI6MjA4MTQ3MTc1MX0._VYypgb2tV9u_4jSAt3sbcFj-drhufB0oN9o3BcgHTs",
+      "service_key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndkZWJ5eHZ0dW5yb21zbmtxYnJkIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2NTg5NTc1MSwiZXhwIjoyMDgxNDcxNzUxfQ.Jg6UBGpYDBBKvB4pgaKW_OJCTx0VOm9UMI18vqdUEJc"
+    },
+    "atlassian": {
+      "url": "https://stayarta.atlassian.net/jira/projects?page=1&sortKey=name&sortOrder=ASC",
+      "email": "hola@stayarta.com", 
+      "token": "ATATT3xFfGF0ifmwmETk0aQ_AIqJWC53nvyigYErgHi8OUmBS5Qk5OXzrNMM8lGewcbzg-HXhj0-0JdjRGirS__INC7roykJF5nrhRbBpck5zhU43u-agD_p2Jbz5M5V_lLkwA8ZIw1g82nI4RyvLGkyud_bYiS0ajO-gUa2SLh4wTTs-NN0dsg=04797642"
+    },
+    "railway": {
+      "project_id": "6fc7e05c-f562-4bcd-a2b9-29be2b722fef",
+      "token": "6c3d6f30-6c6a-441c-b5bc-5e1b6ff098ad"
+    }
+  },
+
+  "paths": {
+    "backend": "api/",
+    "frontend": "app/",
+    "tests": "tests/",
+    "database": "database/"
+  }
+}

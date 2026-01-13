@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAIDA - Master Presentation</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f6f8fb; color:#102030; margin:0 }
+        header { background:#fff; padding:1rem 2rem; border-bottom:4px solid #0066cc}
+        .container { max-width:1100px; margin:2rem auto; padding:0 2rem }
+        .hero { background:linear-gradient(90deg,#0066cc,#00d9ff); color:white; padding:2rem; border-radius:10px }
+        h1{margin:0 0 .3rem 0}
+        nav{margin-top:1rem}
+        nav a{margin-right:1rem; color:white; text-decoration:none; font-weight:600}
+        section{background:#fff;padding:1.5rem;border-radius:8px;margin-top:1.5rem}
+        .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem}
+        .card{padding:1rem;border:1px solid #e7eef8;border-radius:8px}
+        footer{margin:2rem 0;text-align:center;color:#666}
+        .btn{display:inline-block;padding:.6rem 1rem;background:#0066cc;color:white;border-radius:6px;text-decoration:none}
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>HAIDA — Master Presentation</h1>
+        <div class="tagline">Unificada — Ejecutiva + Interactiva + Arquitectura IA</div>
+    </div>
+</header>
+
+<main class="container">
+    <div class="hero">
+        <h2>IA-Driven QA Automation</h2>
+        <p>Visión estratégica y técnica. Un único artefacto que engloba todo lo necesario para stakeholders y equipos.</p>
+        <nav>
+            <a href="#overview">Overview</a>
+            <a href="#architecture">Arquitectura</a>
+            <a href="#ai-techniques">IA & Técnicas</a>
+            <a href="#ingestion">Ingestión</a>
+            <a href="#demo">Demo / Evidencia</a>
+        </nav>
+    </div>
+
+    <section id="overview">
+        <h3>Resumen Ejecutivo</h3>
+        <p>HAIDA v2.0: consolidación, seguridad enterprise-grade, observabilidad y capa IA que automatiza generación de test cases y orquestación de ejecuciones.</p>
+        <div class="grid">
+            <div class="card">
+                <strong>Plazo</strong>
+                <p>8-10 semanas (6 fases)</p>
+            </div>
+            <div class="card">
+                <strong>ROI</strong>
+                <p>Recuperación < 1 mes estimada en casos reales</p>
+            </div>
+            <div class="card">
+                <strong>Alcance</strong>
+                <p>100% Pirámide de Cohn, 50 técnicas IA integradas</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="architecture">
+        <h3>Arquitectura (Alto nivel)</h3>
+        <ul>
+            <li>Ingestión → Sanitización → Indexación (RAG) → LLM (gen controlado) → Guardrails → Orquestación</li>
+            <li>Endpoints: <code>/ingest/sanitize</code>, <code>/rag/search</code>, <code>/nlp/*</code>, <code>/gen/*</code>, <code>/guardrails/*</code></li>
+            <li>Orquestación: Temporal / Prefect. Observabilidad: Prometheus + traces + eval harness</li>
+        </ul>
+    </section>
+
+    <section id="ai-techniques">
+        <h3>IA & Técnicas (Visión)</h3>
+        <p>Se han mapeado las 50 técnicas (RAG, NLP, LLM, Orquestación, Observabilidad, Seguridad) en <a href="haida/TECHNIQUES-INTEGRATION-CATALOG.md" class="btn">Abrir Catalogue</a>.</p>
+        <div class="grid" style="margin-top:1rem">
+            <div class="card"><strong>RAG</strong><p>semantic_search, dense_retrieval, chunking, context_window</p></div>
+            <div class="card"><strong>NLP</strong><p>keyphrases, NER, summarization, PII detection</p></div>
+            <div class="card"><strong>LLM Control</strong><p>structured_output, guardrails, grounding</p></div>
+            <div class="card"><strong>Orquestación</strong><p>workflows, human-in-the-loop, retries</p></div>
+        </div>
+    </section>
+
+    <section id="ingestion">
+        <h3>Ingestión y Gestión de Caracteres Extraños</h3>
+        <p>Se incorpora un paso obligatorio de sanitización antes de indexar o pasar a modelos:</p>
+        <ol>
+            <li>Detect encoding → Convertir a UTF-8</li>
+            <li>Normalizar Unicode (NFKC) y eliminar control chars</li>
+            <li>Transliterate opcional y mantener original_text + sanitized_text</li>
+            <li>Endpoint: <code>POST /ingest/sanitize</code>, utilitario: <code>tools/normalize-text.js</code></li>
+        </ol>
+        <p>Implementación: ver `tools/normalize-text.js` y `TECHNIQUES-INTEGRATION-CATALOG.md` (sección Ingestión).</p>
+    </section>
+
+    <section id="demo">
+        <h3>Demo y Evidencias</h3>
+        <p>Reports, test outputs y ejemplos disponibles:</p>
+        <div class="grid">
+            <div class="card"><a href="demo-reports/test-cases-generated.json">Test cases generated (JSON)</a></div>
+            <div class="card"><a href="demo-reports/web-test-results.json">Web E2E results</a></div>
+            <div class="card"><a href="haida/MAPEO-PIRAMIDE-COHN.md">Mapping Pirámide + IA</a></div>
+        </div>
+    </section>
+
+    <footer>
+        <p>HAIDA — v2.0 Vision • © 2025</p>
+    </footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,16 @@
+TEST_ID|TIPO_PRUEBA|COMPONENTE|MODULO|REQUISITO_ID|DESCRIPCION|PRECONDICIONES|PASOS|RESULTADO_ESPERADO|PRIORIDAD|RIESGO|ETIQUETA_AUTOMATIZACION|ESTADO
+TC_CART_001|Smoke|Cart|Cart|REQ-CART-001|Agregar producto al carrito|Usuario no autenticado.|1. Abrir PDP 2. Click agregar al carrito|Producto agregado|P0|Alto|@cart @smoke @desktop @ios @android|Generado
+TC_CART_002|Interface|Cart|Cart|REQ-CART-002|Mostrar total del carrito|Usuario con items.|1. Abrir carrito|Total visible y correcto|P1|Medio|@cart @interface @desktop @ios @android|Generado
+TC_CART_003|Interface|Cart|Cart|REQ-CART-003|Modificar cantidad|Usuario con items.|1. Cambiar cantidad 2. Actualizar|Cantidad y total actualizados|P1|Medio|@cart @interface @desktop @ios @android|Generado
+TC_CART_004|Interface|Cart|Cart|REQ-CART-004|Eliminar producto del carrito|Usuario con items.|1. Click eliminar item|Item eliminado|P2|Medio|@cart @interface @desktop @ios @android|Generado
+TC_CART_005|Interface|Cart|Cart|REQ-CART-005|Ver resumen del carrito|Usuario con items.|1. Abrir carrito|Resumen visible|P3|Bajo|@cart @interface @desktop @ios @android|Generado
+TC_CART_006|Compatibility|Cart|Cart|REQ-CART-006|Persistencia de carrito tras logout|Usuario autenticado con items.|1. Agregar item 2. Logout 3. Login|Carrito persiste|P2|Medio|@cart @compatibility @desktop @ios @android|Generado
+TC_CART_007|Integration|Cart|Cart|REQ-CART-007|Validar stock al agregar|Usuario no autenticado.|1. Agregar item sin stock|Se muestra mensaje sin stock|P1|Alto|@cart @integration @desktop @ios @android|Generado
+TC_CART_008|Regression|Cart|Cart|REQ-CART-008|Precio actualizado en carrito|Usuario con items.|1. Abrir carrito 2. Ver precio|Precio coincide con PDP|P2|Medio|@cart @regression @desktop @ios @android|Generado
+TC_CART_009|Interface|Cart|Discount|REQ-CART-009|Aplicar cupon de descuento|Usuario con items.|1. Ingresar cupon 2. Aplicar|Descuento aplicado|P2|Medio|@cart @interface @desktop @ios @android|Generado
+TC_CART_010|Unit|Cart|Discount|REQ-CART-010|Validar cupon invalido|Usuario con items.|1. Ingresar cupon invalido 2. Aplicar|Mensaje de cupon invalido|P2|Medio|@cart @unit @desktop @ios @android|Generado
+TC_CART_011|Interface|Cart|Discount|REQ-CART-011|Mostrar descuento en resumen|Usuario con cupon valido.|1. Aplicar cupon 2. Ver resumen|Descuento visible|P3|Bajo|@cart @interface @desktop @ios @android|Generado
+TC_CART_012|Interface|Cart|Discount|REQ-CART-012|Eliminar descuento|Usuario con cupon aplicado.|1. Quitar cupon|Descuento eliminado|P3|Bajo|@cart @interface @desktop @ios @android|Generado
+TC_CART_013|Data Quality|Cart|Totals|REQ-CART-013|Impuestos y envio calculados|Usuario con items.|1. Abrir carrito 2. Ver totales|Impuestos y envio correctos|P2|Medio|@cart @data @desktop @ios @android|Generado
+TC_CART_014|E2E|Cart|Checkout|REQ-CART-014|Proceder a checkout|Usuario con items.|1. Click proceder a checkout|Navega a checkout|P1|Medio|@cart @e2e @desktop @ios @android|Generado
+TC_CART_015|Compatibility|Cart|Cart|REQ-CART-015|Carrito persistente multi dispositivo|Usuario autenticado.|1. Agregar item en desktop 2. Abrir mobile|Carrito sincronizado|P2|Medio|@cart @compatibility @desktop @ios @android|Generado

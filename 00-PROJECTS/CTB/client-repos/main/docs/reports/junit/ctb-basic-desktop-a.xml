@@ -1,0 +1,102 @@
+<testsuites id="" name="" tests="10" failures="1" skipped="4" errors="0" time="87.533292">
+<testsuite name="web-e2e/ctb-basic.spec.ts" timestamp="2025-12-26T15:08:22.228Z" hostname="Desktop Chrome" tests="10" failures="1" skipped="4" time="73.122" errors="0">
+<testcase name="CTB B2C - Home/Nav/Search › TC_HOME_010 - Meta tags SEO presentes" classname="web-e2e/ctb-basic.spec.ts" time="3.486">
+</testcase>
+<testcase name="CTB B2C - Home/Nav/Search › TC_HOME_011 - Home cumple WCAG AA basico" classname="web-e2e/ctb-basic.spec.ts" time="3.422">
+<failure message="ctb-basic.spec.ts:86:3 TC_HOME_011 - Home cumple WCAG AA basico" type="FAILURE">
+<![CDATA[  [Desktop Chrome] › web-e2e/ctb-basic.spec.ts:86:3 › CTB B2C - Home/Nav/Search › TC_HOME_011 - Home cumple WCAG AA basico 
+
+    Error: Violaciones: aria-required-attr, button-name
+
+    expect(received).toHaveLength(expected)
+
+    Expected length: 0
+    Received length: 2
+    Received array:  [{"description": "Ensure elements with ARIA roles have all required ARIA attributes", "help": "Required ARIA attributes must be provided", "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/aria-required-attr?application=playwright", "id": "aria-required-attr", "impact": "critical", "nodes": [{"all": [], "any": [{"data": ["aria-expanded", "aria-controls"], "id": "aria-required-attr", "impact": "critical", "message": "Required ARIA attributes not present: aria-expanded, aria-controls", "relatedNodes": []}], "failureSummary": "Fix any of the following:
+      Required ARIA attributes not present: aria-expanded, aria-controls", "html": "<input type=\"search\" name=\"q\" value=\"\" class=\"form-input w-full p-...\" id=\"search\" autocomplete=\"off\" role=\"combobox\" aria-haspopup=\"\" aria-autocomplete=\"both\" aria-expanded=\"\" placeholder=\"Buscar actividades\" maxlength=\"128\" @focus.once=\"$dispatch('loadLiveS...\" x-ref=\"input\" data-group-target=\"\">", "impact": "critical", "none": [], "target": ["#search"]}], "tags": ["cat.aria", "wcag2a", "wcag412", "EN-301-549", "EN-9.4.1.2", "RGAAv4", "RGAA-7.1.1"]}, {"description": "Ensure buttons have discernible text", "help": "Buttons must have discernible text", "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/button-name?application=playwright", "id": "button-name", "impact": "critical", "nodes": [{"all": [], "any": [{"data": null, "id": "button-has-visible-text", "impact": "critical", "message": "Element does not have inner text that is visible to screen readers", "relatedNodes": []}, {"data": null, "id": "aria-label", "impact": "critical", "message": "aria-label attribute does not exist or is empty", "relatedNodes": []}, {"data": null, "id": "aria-labelledby", "impact": "critical", "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty", "relatedNodes": []}, {"data": {"messageKey": "noAttr"}, "id": "non-empty-title", "impact": "critical", "message": "Element has no title attribute", "relatedNodes": []}, {"data": null, "id": "implicit-label", "impact": "critical", "message": "Element does not have an implicit (wrapped) <label>", "relatedNodes": []}, {"data": null, "id": "explicit-label", "impact": "critical", "message": "Element does not have an explicit <label>", "relatedNodes": []}, {"data": null, "id": "presentational-role", "impact": "critical", "message": "Element's default semantics were not overridden with role=\"none\" or role=\"presentation\"", "relatedNodes": []}], "failureSummary": "Fix any of the following:
+      Element does not have inner text that is visible to screen readers
+      aria-label attribute does not exist or is empty
+      aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+      Element has no title attribute
+      Element does not have an implicit (wrapped) <label>
+      Element does not have an explicit <label>
+      Element's default semantics were not overridden with role=\"none\" or role=\"presentation\"", "html": "<button type=\"button\" class=\"\" name=\"calendar-modal\" x-data=\"\" x-on:click.prevent=\"$dispatch('open\\u002Dmodal\\u002Dcalendar\\u002Dmodal')\">", "impact": "critical", "none": [], "target": ["button[x-data=\"\"]"]}], "tags": ["cat.name-role-value", "wcag2a", "wcag412", "section508", "section508.22.a", "TTv5", "TT6.a", "EN-301-549", "EN-9.4.1.2", "ACT", …]}]
+
+       96 |     await dismissCookieBanner(page);
+       97 |     const results = await new AxeBuilder({ page }).analyze();
+    >  98 |     expect(results.violations, `Violaciones: ${results.violations.map((v) => v.id).join(', ')}`).toHaveLength(0);
+          |                                                                                                  ^
+       99 |   });
+      100 |
+      101 |   test('TC_FOOTER_001 - Footer visible con enlaces legales', async ({ page }) => {
+        at /Users/carlosa/Library/CloudStorage/OneDrive-HIBERUSITDEVELOPMENTSERVICES,S.L.U/HAIDA/tests/web-e2e/ctb-basic.spec.ts:98:98
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/web-e2e-ctb-basic-CTB-B2C--ce25b--Home-cumple-WCAG-AA-basico-Desktop-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/web-e2e-ctb-basic-CTB-B2C--ce25b--Home-cumple-WCAG-AA-basico-Desktop-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/web-e2e-ctb-basic-CTB-B2C--ce25b--Home-cumple-WCAG-AA-basico-Desktop-Chrome/video-1.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/web-e2e-ctb-basic-CTB-B2C--ce25b--Home-cumple-WCAG-AA-basico-Desktop-Chrome/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../../../../../Library/CloudStorage/OneDrive-HIBERUSITDEVELOPMENTSERVICES,S.L.U/HAIDA/test-results/web-e2e-ctb-basic-CTB-B2C--ce25b--Home-cumple-WCAG-AA-basico-Desktop-Chrome/test-failed-1.png]]
+
+[[ATTACHMENT|../../../../../Library/CloudStorage/OneDrive-HIBERUSITDEVELOPMENTSERVICES,S.L.U/HAIDA/test-results/web-e2e-ctb-basic-CTB-B2C--ce25b--Home-cumple-WCAG-AA-basico-Desktop-Chrome/video.webm]]
+
+[[ATTACHMENT|../../../../../Library/CloudStorage/OneDrive-HIBERUSITDEVELOPMENTSERVICES,S.L.U/HAIDA/test-results/web-e2e-ctb-basic-CTB-B2C--ce25b--Home-cumple-WCAG-AA-basico-Desktop-Chrome/video-1.webm]]
+
+[[ATTACHMENT|../../../../../Library/CloudStorage/OneDrive-HIBERUSITDEVELOPMENTSERVICES,S.L.U/HAIDA/test-results/web-e2e-ctb-basic-CTB-B2C--ce25b--Home-cumple-WCAG-AA-basico-Desktop-Chrome/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="CTB B2C - Home/Nav/Search › TC_FOOTER_001 - Footer visible con enlaces legales" classname="web-e2e/ctb-basic.spec.ts" time="3.205">
+</testcase>
+<testcase name="CTB B2C - Home/Nav/Search › TC_FOOTER_002 - Enlace condiciones de compra abre pagina" classname="web-e2e/ctb-basic.spec.ts" time="4.393">
+</testcase>
+<testcase name="CTB B2C - Home/Nav/Search › TC_NAV_013 - Enlaces legales en footer" classname="web-e2e/ctb-basic.spec.ts" time="4.505">
+</testcase>
+<testcase name="CTB B2C - Home/Nav/Search › TC_NAV_015 - Links redes sociales abren destino" classname="web-e2e/ctb-basic.spec.ts" time="6.048">
+<properties>
+<property name="skip" value="No se encontraron enlaces sociales en footer">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="CTB B2C - Home/Nav/Search › TC_NAV_014 - Suscripcion a newsletter" classname="web-e2e/ctb-basic.spec.ts" time="16.905">
+<properties>
+<property name="skip" value="No se encontro input de newsletter">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="CTB B2C - Home/Nav/Search › TC_NAV_002 - Busqueda desde header devuelve resultados" classname="web-e2e/ctb-basic.spec.ts" time="10.279">
+</testcase>
+<testcase name="CTB B2C - Home/Nav/Search › TC_SEARCH_001 - Busqueda por termino devuelve resultados" classname="web-e2e/ctb-basic.spec.ts" time="11.878">
+<properties>
+<property name="skip" value="No se encontro URL de busqueda operativa">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="CTB B2C - Home/Nav/Search › TC_FAV_008 - Favoritos requieren login" classname="web-e2e/ctb-basic.spec.ts" time="9.001">
+<properties>
+<property name="skip" value="No se encontro icono de favoritos">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+</testsuites>

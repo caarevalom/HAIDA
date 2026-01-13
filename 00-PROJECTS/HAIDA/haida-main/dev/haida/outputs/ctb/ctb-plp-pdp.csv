@@ -1,0 +1,11 @@
+TEST_ID|TIPO_PRUEBA|COMPONENTE|MODULO|REQUISITO_ID|DESCRIPCION|PRECONDICIONES|PASOS|RESULTADO_ESPERADO|PRIORIDAD|RIESGO|ETIQUETA_AUTOMATIZACION|ESTADO
+TC_PLP_001|Interface|Catalog|PLP|REQ-GENERAL|PLP carga con listado de productos|Usuario no autenticado.|1. Abrir categoria 2. Ver listado|Listado visible con cards|P1|Medio|@plp @b2c @desktop @ios @android|Generado
+TC_PLP_002|Interface|Catalog|PLP|REQ-GENERAL|Paginacion de PLP funciona|Usuario no autenticado.|1. Scroll en PLP 2. Ir a pagina 2|Pagina 2 carga|P2|Bajo|@plp @b2c @desktop @ios @android|Generado
+TC_PLP_003|Interface|Catalog|PLP|REQ-GENERAL|Ordenar PLP por precio|Usuario no autenticado.|1. Abrir sort 2. Seleccionar precio asc|Listado ordenado|P2|Bajo|@plp @b2c @desktop @ios @android|Generado
+TC_PLP_004|Interface|Catalog|PLP|REQ-GENERAL|Filtros de PLP aplican y muestran chips|Usuario no autenticado.|1. Aplicar filtro 2. Ver chips|Chips visibles y filtro aplicado|P2|Medio|@plp @b2c @desktop @ios @android|Generado
+TC_PLP_005|Compatibility|Catalog|PLP|REQ-GENERAL|PLP responsive en mobile|Usuario no autenticado.|1. Abrir PLP en mobile|Cards y grid no se rompen|P2|Medio|@plp @b2c @desktop @ios @android|Generado
+TC_PDP_001|Smoke|Catalog|PDP|REQ-GENERAL|PDP carga con imagenes y CTA|Usuario no autenticado.|1. Abrir PDP 2. Ver imagenes y CTA|PDP visible y CTA disponible|P0|Alto|@pdp @b2c @desktop @ios @android|Generado
+TC_PDP_002|Interface|Catalog|PDP|REQ-GENERAL|Galeria de imagenes navega|Usuario no autenticado.|1. Click siguiente en galeria|Imagen cambia|P2|Bajo|@pdp @b2c @desktop @ios @android|Generado
+TC_PDP_003|Interface|Catalog|PDP|REQ-GENERAL|Seleccion de variante o fecha habilita CTA|Usuario no autenticado.|1. Seleccionar variante o fecha 2. Ver CTA|CTA habilitado|P1|Medio|@pdp @b2c @desktop @ios @android|Generado
+TC_PDP_004|Interface|Catalog|PDP|REQ-GENERAL|Descripcion y detalles visibles|Usuario no autenticado.|1. Ver seccion detalles|Detalle visible|P3|Bajo|@pdp @b2c @desktop @ios @android|Generado
+TC_PDP_005|Integration|Catalog|PDP|REQ-GENERAL|Disponibilidad se actualiza por fecha|Usuario no autenticado.|1. Cambiar fecha 2. Ver disponibilidad|Disponibilidad cambia|P2|Medio|@pdp @b2c @desktop @ios @android|Generado

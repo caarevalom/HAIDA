@@ -1,0 +1,24 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.25.0
+
+# Ignore specific vulnerabilities
+ignore: {}
+
+# Patches applied to this project's dependencies
+patch: {}
+
+# Configuration
+exclude:
+  global:
+    - node_modules/**
+    - dist/**
+    - build/**
+    - coverage/**
+    - test-results/**
+    - playwright-report/**
+
+# Language settings
+language-settings:
+  javascript:
+    scanner:
+      - package.json

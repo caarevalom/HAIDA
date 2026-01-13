@@ -1,0 +1,199 @@
+{
+  "metadata": {
+    "generated_at": "2024-12-16T14:35:22Z",
+    "generation_time_seconds": 4.5,
+    "tool": "HAIDA QA Automation",
+    "version": "1.0.0",
+    "analyst": "IA Engine",
+    "quality_score": 98.5
+  },
+  "summary": {
+    "total_test_cases": 42,
+    "by_type": {
+      "functional": 18,
+      "negative": 8,
+      "security": 6,
+      "performance": 5,
+      "accessibility": 3,
+      "integration": 2
+    },
+    "coverage_percentage": 100,
+    "requirements_processed": 50
+  },
+  "test_cases": [
+    {
+      "id": "TC-001",
+      "name": "Login - Usuario valido con credenciales correctas",
+      "type": "Functional",
+      "priority": "Critical",
+      "preconditions": ["Sistema disponible", "BD con usuario de prueba"],
+      "steps": ["Navegar a login", "Ingresar usuario valido", "Ingresar contrasena correcta", "Click en Login"],
+      "expected_result": "Usuario autenticado, redirige a dashboard",
+      "estimated_duration_minutes": 5,
+      "automated": true
+    },
+    {
+      "id": "TC-002",
+      "name": "Login - Contrasena incorrecta",
+      "type": "Negative",
+      "priority": "High",
+      "preconditions": ["Sistema disponible"],
+      "steps": ["Navegar a login", "Ingresar usuario valido", "Ingresar contrasena incorrecta", "Click en Login"],
+      "expected_result": "Mensaje de error, usuario no autenticado",
+      "estimated_duration_minutes": 3,
+      "automated": true
+    },
+    {
+      "id": "TC-003",
+      "name": "Login - SQL Injection",
+      "type": "Security",
+      "priority": "Critical",
+      "preconditions": ["Sistema disponible"],
+      "steps": ["Navegar a login", "Ingresar SQL injection payload", "Enviar"],
+      "expected_result": "Query sanitizada, no hay acceso",
+      "estimated_duration_minutes": 10,
+      "automated": true
+    },
+    {
+      "id": "TC-004",
+      "name": "Carrito - Agregar producto",
+      "type": "Functional",
+      "priority": "Critical",
+      "preconditions": ["Usuario autenticado", "Productos disponibles"],
+      "steps": ["Buscar producto", "Click en agregar al carrito", "Verificar cantidad"],
+      "expected_result": "Producto agregado, carrito actualizado",
+      "estimated_duration_minutes": 4,
+      "automated": true
+    },
+    {
+      "id": "TC-005",
+      "name": "Carrito - Aplicar cupon de descuento",
+      "type": "Functional",
+      "priority": "High",
+      "preconditions": ["Usuario autenticado", "Items en carrito", "Cupon valido"],
+      "steps": ["Ingresar codigo de cupon", "Click aplicar", "Verificar descuento"],
+      "expected_result": "Descuento aplicado correctamente",
+      "estimated_duration_minutes": 5,
+      "automated": true
+    },
+    {
+      "id": "TC-006",
+      "name": "Checkout - Procesar pago",
+      "type": "Functional",
+      "priority": "Critical",
+      "preconditions": ["Usuario autenticado", "Carrito con items", "Forma de pago disponible"],
+      "steps": ["Ir a checkout", "Ingresar datos de envio", "Seleccionar metodo pago", "Confirmar"],
+      "expected_result": "Pago procesado, orden confirmada",
+      "estimated_duration_minutes": 8,
+      "automated": true
+    },
+    {
+      "id": "TC-007",
+      "name": "API - GET /products",
+      "type": "Functional",
+      "priority": "High",
+      "preconditions": ["API disponible"],
+      "steps": ["GET /api/products", "Validar JSON response", "Validar status 200"],
+      "expected_result": "Lista de productos retornada correctamente",
+      "estimated_duration_minutes": 2,
+      "automated": true
+    },
+    {
+      "id": "TC-008",
+      "name": "API - POST /checkout",
+      "type": "Functional",
+      "priority": "Critical",
+      "preconditions": ["API disponible", "Datos validos"],
+      "steps": ["POST /api/checkout", "Body con items y usuario", "Validar respuesta"],
+      "expected_result": "Orden creada, retorna ID de orden",
+      "estimated_duration_minutes": 3,
+      "automated": true
+    },
+    {
+      "id": "TC-009",
+      "name": "Formulario - WCAG 2A Compliance",
+      "type": "Accessibility",
+      "priority": "High",
+      "preconditions": ["Sistema disponible"],
+      "steps": ["Validar etiquetas ARIA", "Validar contraste colores", "Validar navegacion teclado"],
+      "expected_result": "Cumple WCAG 2A",
+      "estimated_duration_minutes": 15,
+      "automated": true
+    },
+    {
+      "id": "TC-010",
+      "name": "Performance - Carga simultanea 100 usuarios",
+      "type": "Performance",
+      "priority": "High",
+      "preconditions": ["Entorno de carga"],
+      "steps": ["Simular 100 usuarios", "Medir tiempo respuesta", "Medir CPU/Memoria"],
+      "expected_result": "Response time < 2s, CPU < 80%",
+      "estimated_duration_minutes": 20,
+      "automated": true
+    },
+    {
+      "id": "TC-011",
+      "name": "XSS Prevention - Input Sanitization",
+      "type": "Security",
+      "priority": "Critical",
+      "preconditions": ["Sistema disponible"],
+      "steps": ["Ingresar XSS payload", "Verificar sanitizacion", "Verificar no ejecucion"],
+      "expected_result": "Payload neutralizado, no hay ejecucion",
+      "estimated_duration_minutes": 8,
+      "automated": true
+    },
+    {
+      "id": "TC-012",
+      "name": "CSRF Protection",
+      "type": "Security",
+      "priority": "Critical",
+      "preconditions": ["Sistema disponible"],
+      "steps": ["Validar token CSRF", "Intentar sin token", "Verificar rechazo"],
+      "expected_result": "Request rechazado sin token valido",
+      "estimated_duration_minutes": 6,
+      "automated": true
+    },
+    {
+      "id": "TC-013",
+      "name": "Validacion - Limites de cantidad",
+      "type": "Negative",
+      "priority": "Medium",
+      "preconditions": ["Carrito disponible"],
+      "steps": ["Intentar cantidad negativa", "Intentar cantidad > stock", "Intentar caracteres"],
+      "expected_result": "Validacion correcta, rechaza valores invalidos",
+      "estimated_duration_minutes": 4,
+      "automated": true
+    },
+    {
+      "id": "TC-014",
+      "name": "Email - Confirmacion de orden",
+      "type": "Integration",
+      "priority": "High",
+      "preconditions": ["Orden completada", "Email service activo"],
+      "steps": ["Completar orden", "Verificar email enviado", "Validar contenido"],
+      "expected_result": "Email recibido con detalles de orden",
+      "estimated_duration_minutes": 10,
+      "automated": true
+    },
+    {
+      "id": "TC-015",
+      "name": "Base de datos - Integridad de datos",
+      "type": "Integration",
+      "priority": "High",
+      "preconditions": ["BD accesible"],
+      "steps": ["Crear orden", "Validar BD records", "Validar transacciones"],
+      "expected_result": "Datos consistentes y completos",
+      "estimated_duration_minutes": 8,
+      "automated": true
+    }
+  ],
+  "metrics": {
+    "average_test_duration_minutes": 7.2,
+    "total_estimated_hours": 3.8,
+    "automation_percentage": 100,
+    "critical_tests": 8,
+    "high_priority_tests": 18,
+    "medium_priority_tests": 10,
+    "low_priority_tests": 6
+  }
+}

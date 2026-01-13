@@ -1,0 +1,4 @@
+📝 [TC-AUTH-001] Probando registro con email: hola@stayarta.com
+   Status: 200
+   Usuario creado: hola@stayarta.com
+   ✅ TC-AUTH-001 PASSED

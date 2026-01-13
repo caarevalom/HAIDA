@@ -1,0 +1,4 @@
+📝 [TC-AUTH-004] Probando registro duplicado: hola@stayarta.com
+   Primer registro: 200
+   Segundo registro: 400
+   ✅ TC-AUTH-004 PASSED

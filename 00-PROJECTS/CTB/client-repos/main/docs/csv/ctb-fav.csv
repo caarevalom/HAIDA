@@ -1,0 +1,11 @@
+TEST_ID|TIPO_PRUEBA|COMPONENTE|MODULO|REQUISITO_ID|DESCRIPCION|PRECONDICIONES|PASOS|RESULTADO_ESPERADO|PRIORIDAD|RIESGO|ETIQUETA_AUTOMATIZACION|ESTADO
+TC_FAV_001|Interface|Favorites|Wishlist|REQ-FAV-001|Agregar a favoritos|Usuario autenticado.|1. Abrir PDP 2. Click icono favorito|Favorito agregado|P2|Medio|@fav @interface @desktop @ios @android|Generado
+TC_FAV_002|Interface|Favorites|Wishlist|REQ-FAV-002|Icono refleja estado favorito|Usuario autenticado.|1. Click favorito 2. Ver icono|Icono cambia de estado|P3|Bajo|@fav @interface @desktop @ios @android|Generado
+TC_FAV_003|Interface|Favorites|Wishlist|REQ-FAV-003|Ver lista de favoritos|Usuario autenticado con favoritos.|1. Ir a wishlist|Lista muestra items|P3|Bajo|@fav @interface @desktop @ios @android|Generado
+TC_FAV_004|Integration|Favorites|Share|REQ-FAV-004|Compartir favoritos por email|Usuario autenticado.|1. Ir a wishlist 2. Click compartir email|Email preparado con link|P3|Bajo|@fav @integration @desktop @ios @android|Generado
+TC_FAV_005|Integration|Favorites|Share|REQ-FAV-005|Compartir favoritos en redes|Usuario autenticado.|1. Ir a wishlist 2. Click compartir red|Se abre dialogo red social|P3|Bajo|@fav @integration @desktop @ios @android|Generado
+TC_FAV_006|Interface|Favorites|Wishlist|REQ-FAV-006|Eliminar favorito|Usuario autenticado con favoritos.|1. Abrir wishlist 2. Click eliminar|Favorito eliminado|P2|Medio|@fav @interface @desktop @ios @android|Generado
+TC_FAV_007|Compatibility|Favorites|Sync|REQ-FAV-007|Sincronizar favoritos multi dispositivo|Usuario autenticado.|1. Agregar favorito en desktop 2. Abrir mobile|Favorito sincronizado|P2|Medio|@fav @compatibility @desktop @ios @android|Generado
+TC_FAV_008|Security|Favorites|Auth|REQ-FAV-008|Favoritos requieren login|Usuario no autenticado.|1. Click favorito en PDP|Se solicita login|P2|Medio|@fav @security @desktop @ios @android|Generado
+TC_FAV_009|Interface|Favorites|Header|REQ-FAV-009|Contador favoritos en header|Usuario autenticado con favoritos.|1. Ver icono favoritos|Contador correcto|P3|Bajo|@fav @interface @desktop @ios @android|Generado
+TC_FAV_010|Data Quality|Favorites|PriceAlert|REQ-FAV-010|Notificacion por bajada de precio|Usuario autenticado con alertas.|1. Configurar alerta 2. Simular bajada|Notificacion enviada|P3|Bajo|@fav @data @desktop @ios @android|Generado

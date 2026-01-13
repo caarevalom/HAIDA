@@ -1,0 +1,5 @@
+   Setup: Usuario creado para tests de login
+📝 [TC-AUTH-005] Login con: hola@stayarta.com
+   Status: 200
+   Token recibido: eyJhbGciOiJIUzI1NiIsInR5cCI6Ik...
+   ✅ TC-AUTH-005 PASSED

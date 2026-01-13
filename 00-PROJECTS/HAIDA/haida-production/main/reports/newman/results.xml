@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="API Smoke" tests="1" time="0.000">
+  <testsuite name="GET Base URL" id="96e995e8-2a16-484c-8239-74f5fdc548ec" timestamp="2025-12-15T19:59:34.276Z" tests="1" failures="1" errors="1" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: write EPROTO D0570000:error:0A000410:SSL routines:ssl3_read_bytes:ssl/tls alert handshake failure:openssl\ssl\record\rec_layer_s3.c:916:SSL alert number 40
+
+    at WriteWrap.onWriteComplete [as oncomplete] (node:internal/stream_base_commons:87:19)
+
+---
+]]></system-err>
+    <testcase name="Status &lt; 400" time="0.000" classname="GetBaseUrl">
+      <failure type="AssertionFailure" message="expected PostmanResponse{ …(5) } to have property 'code'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 1b131908-a2fc-41ce-a30b-70e4d871f643.]]>
+        <![CDATA[Collection name: API Smoke.]]>
+        <![CDATA[Request name: GET Base URL.]]>
+        <![CDATA[Test description: Status < 400.]]>
+        <![CDATA[Error message: expected PostmanResponse{ …(5) } to have property 'code'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected PostmanResponse{ …(5) } to have property 'code'
+   at Object.eval sandbox-script.js:1:1).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+</testsuites>

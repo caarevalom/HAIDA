@@ -1,0 +1,158 @@
+# ===========================================
+# HAIDA Project - Git Ignore Configuration
+# ===========================================
+
+# -------------------------------------------
+# ARCHIVOS SENSIBLES - NUNCA VERSIONAR
+# -------------------------------------------
+# Contraseñas y credenciales
+**/Contraseñas*.csv
+**/passwords*.csv
+**/credentials*.csv
+**/*.credentials
+**/*.secret
+**/.env
+**/.env.*
+**/secrets/
+**/*.pem
+**/*.key
+**/*.p12
+**/*.pfx
+
+# -------------------------------------------
+# CARPETAS GRANDES - EXCLUIR DEL REPO
+# -------------------------------------------
+# Instaladores y backups grandes
+05-INSTALLERS/
+08-ARCHIVE/
+iCloud Drive (archivado)/
+Security_Backup_0907/
+
+# Aplicaciones
+Visual Studio Code.app/
+*.app/
+
+# Copias de seguridad del sistema
+Documentos - MacBook Air de Carlos (2)/
+Música copia/
+
+# -------------------------------------------
+# NODE.JS / NPM
+# -------------------------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm/
+.yarn/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# -------------------------------------------
+# SISTEMA OPERATIVO
+# -------------------------------------------
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+.fseventsd
+.TemporaryItems
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+.directory
+
+# -------------------------------------------
+# IDEs Y EDITORES
+# -------------------------------------------
+# VSCode
+.vscode/
+*.code-workspace
+
+# JetBrains
+.idea/
+*.iml
+
+# Vim
+*.swp
+*.swo
+*~
+
+# -------------------------------------------
+# LOGS Y ARCHIVOS TEMPORALES
+# -------------------------------------------
+*.log
+logs/
+*.tmp
+*.temp
+*.cache
+.cache/
+orchestration_*/
+
+# -------------------------------------------
+# CARPETAS VACIAS O TEMPORALES
+# -------------------------------------------
+carpeta sin título*/
+Desktop/
+Documents/
+Downloads/
+Movies/
+Music/
+Pictures/
+Public/
+
+# -------------------------------------------
+# OTROS
+# -------------------------------------------
+# Chrome Apps
+Chrome Apps.localized/
+
+# Firebase
+firebase-debug.log
+.firebase/
+
+# Configuración local de Claude
+.claude/
+CLAUDE.md
+
+# Archivos de configuración unificada
+unified_codex_config.txt
+
+# Whiteboards
+Whiteboards/
+
+# -------------------------------------------
+# ARCHIVOS ADICIONALES A EXCLUIR
+# -------------------------------------------
+# Memoria de Claude
+memory.jsonl
+
+# PDFs grandes
+*.pdf
+
+# Carpeta Applications
+Applications/
+
+# Cline (MCP config)
+Cline/
+
+# VSCode Live Server
+vscode-live-server/
+
+# Copilot CLI
+copilot-cli/
+
+# Nova
+nova/
+
+# Issues exportados
+issuesCTB.csv

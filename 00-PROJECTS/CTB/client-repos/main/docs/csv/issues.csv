@@ -1,0 +1,2305 @@
+#;Proyecto;Tipo;Tarea padre;Estado;Prioridad;Asunto;Autor;Asignado a;Actualizado;Categora;Versin prevista;Fecha de inicio;Fecha fin;Tiempo estimado;Total de Tiempo Estimado;Tiempo dedicado;Tiempo total dedicado;% Realizado;Creado;Cerrada;Peticiones relacionadas;rea responsable;Privada;Etiquetas;Descripcin
+468491;CTB QA;Incidencias;461092;Cerrada;Alta;CTB-388 [DSK] Carrito ? No se puede modificar la cantidad de productos;Diana Vallina Canella;"";2025-12-02 08:57;"";"";"";"";"";"";0,00;0,00;0;2025-11-26 17:06;2025-11-27 09:44;"";;No;"";"Historia de usuario:
+CTB-388 [DSK] Carrito ? Edicin de cantidad de producto
+Pasos para reproducir la incidencia:
+Acceder al portal B2C e iniciar sesin con un usuario que tenga productos aadidos al carrito.
+Ir a la seccin ?Mi carrito?.
+Intentar modificar la cantidad de un producto desde el carrito.
+Resultado esperado:
+El usuario debera poder editar la cantidad del producto directamente en el carrito y el total general debera actualizarse automticamente sin recargar la pgina.
+Resultado obtenido:
+No se puede modificar la cantidad de los productos en el carrito. El campo no es editable y no se refleja ningn cambio en el total.
+Evidencia:
+Entorno:
+mcprod
+Navegadores:
+Chrome, Firefox, Edge, Safari"
+467202;CTB QA;Incidencias;465387;Cerrada;Alta;CTB-351 [DSK] Error tcnico tras introducir contrasea incorrecta en edicin de contacto;Diana Vallina Canella;Jael Masllorens;++34662652300:35;"";"";"";"";"";"";0,00;0,00;100;++34662652300:16;++34662652300:35;"";;No;"";"Historia de usuario:
+CTB-351 [DSK] Informacin de contacto - Edicin - Validacin contrasea actual
+Comprobar que si el usuario introduce una contrasea actual incorrecta al intentar modificar el correo o la contrasea, el sistema muestra un mensaje de error y no permite guardar los cambios.
+Pasos para reproducir la incidencia:
+Acceder al portal B2C, ir a ""Mi cuenta"" e iniciar sesin.
+Ir a editar la informacin de contacto en ""Mis datos personales"".
+Activar el checkbox ?Cambiar correo electrnico?.
+Introducir una contrasea actual incorrecta.
+Pulsar el botn ?Guardar?.
+Resultado esperado:
+El sistema muestra un mensaje de error indicando que la contrasea no coincide con la de la cuenta y no guarda los cambios. El usuario permanece en la pantalla de edicin.
+Resultado obtenido:
+Tras pulsar ?Guardar?, se muestra una pantalla de error tcnico: There has been an error processing your request.
+El usuario no recibe un mensaje claro sobre la contrasea incorrecta y debe retroceder manualmente en el navegador para volver al formulario.
+Evidencia:
+Entorno:
+mcprod
+Navegadores:
+Chrome, Firefox, Edge, Safari"
+466988;CTB QA;Incidencias;465387;Cerrada;Alta;CTB-374 [DSK] Error tcnico tras guardar cambios en nombre y apellidos;Diana Vallina Canella;Jael Masllorens;2025-12-10 13:50;"";"";"";"";"";"";0,00;0,00;100;2025-11-17 17:28;2025-12-10 13:50;"";;No;"";"Historia de usuario:
+CTB-374 [DSK] Informacin de contacto - Edicin de nombre y apellidos
+Comprobar que el usuario puede modificar correctamente su nombre y apellidos desde el formulario de edicin.
+Pasos para reproducir la incidencia:
+Acceder al portal B2C.
+Iniciar sesin con un usuario vlido.
+Ir al apartado ""Mi cuenta"" &gt; ""Datos personales"".
+Pulsar el botn ?Editar? en el bloque ""Informacin del contacto"".
+Modificar el nombre y/o los apellidos.
+Pulsar el botn ?Guardar?.
+Resultado esperado:
+Se muestra un mensaje de confirmacin y se vuelve a la pantalla ?Mi cuenta? con los datos actualizados, manteniendo la sesin iniciada.
+Resultado obtenido:
+Tras pulsar ?Guardar?, se muestra una pantalla de error tcnico: There has been an error processing your request.
+Si el usuario pulsa la flecha de atrs en el navegador, vuelve al formulario de edicin y los datos aparecen actualizados correctamente.
+Evidencia:
+Entorno:
+mcprod
+Navegadores:
+Chrome, Firefox, Edge, Safari"
+466139;CTB QA;Incidencias;461099;Bloqueada;Alta;CTB-320 [MOB] Botones sociales sin funcionalidad;Laura Ovelleiro;Javier Lpez Girela;2025-12-04 11:51;"";"";"";"";"";"";0,00;0,00;0;2025-11-11 10:35;"";"";;No;"";"Historia de usuario:CTB-320 [MOB] Botones sociales.
+Pasos para reproducir la incidencia:
+Visualizar los distintos botones sociales:
+Google
+Facebook
+Apple
+Pulsar sobre el botn social representado con el logo de la plataforma.
+Autentificarse con el proveedor externo.
+Resultado esperado:
+El usuario es redirigidosiguiendoel flujo de autentificacin del proveedor externo seleccionado.
+El usuario se autentifica automticamente en la plataforma.
+Resultado obtenido
+ Los botones no presentan funcionalidad.
+ El usuario no se puede autentificar porque no se accede al flujo de autentificacin.
+Evidencia
+  Safari:
+  Chrome:
+"
+465839;CTB QA;Incidencias;461100;Bloqueada;Alta;CTB-276 [MOB] Botones sociales sin funcionalidad.;Laura Ovelleiro;Jael Masllorens;2025-12-09 14:49;"";"";"";"";"";"";0,00;0,00;0;2025-11-10 10:18;"";"";;No;"";"Descripcin
+Historia de usuario:CTB-276 [MOB] Botones sociales.
+Pasos para reproducir la incidencia:
+Visualizar los distintos botones sociales:
+Google
+Facebook
+Apple
+Pulsar sobre el botn social representado con el logo de la plataforma.
+Autentificarse con el proveedor externo.
+Resultado esperado:
+El usuario es redirigidosiguiendoel flujo de autentificacin del proveedor externo seleccionado.
+El usuario se autentifica automticamente en la plataforma.
+Resultado obtenido
+ Los botones no presentan funcionalidad.
+ El usuario no se puede autentificar porque no se accede al flujo de autentificacin.
+Evidencia
+  Safari:
+ Chrome:
+ "
+465410;CTB QA;Incidencias;461100;Cerrada;Alta;CTB-308 [DSK] Recuperacin ? No se valida formato de correo sin dominio;Diana Vallina Canella;Jael Masllorens;2025-12-11 10:11;"";"";"";"";"";"";0,00;0,00;100;2025-11-05 16:18;2025-12-11 10:11;"";;No;"";"Historia de usuario:
+CTB-308 [DSK] Recuperacin - Validacin de formato de correo electrnico
+Pasos para reproducir la incidencia:
+Acceder al portal B2C y hacer clic en el enlace ?Mi Cuenta? ubicado en el header.
+Hacer clic en el enlace ?He olvidado mi contrasea?.
+Introducir un correo incompleto, sin dominio (ej. diana@hotmail).
+Pulsar ?Enviar?.
+Resultado esperado:
+El sistema debera mostrar un mensaje indicando que el formato del correo electrnico es incorrecto y que debe completarse correctamente.
+Resultado obtenido:
+No se muestra ningn mensaje de validacin en el campo de correo electrnico. En su lugar, aparece un mensaje emergente indicando ?CAPTCHA Incorrecto?, lo que impide continuar con el flujo.
+Evidencia:
+Entorno:
+mcprod
+Navegadores:
+Chrome, Firefox, Edge, Safari"
+465407;CTB QA;Incidencias;461100;Cerrada;Alta;CTB-307 [DSK] Recuperacin ? Error CAPTCHA al enviar correo no registrado;Diana Vallina Canella;Jael Masllorens;2025-11-27 17:37;"";"";"";"";"";"";1,00;1,00;100;2025-11-05 15:58;2025-11-27 17:37;"";;No;"";"Historia de usuario:
+CTB-307 :: Versin : 1 :: [DSK] Recuperacin - Correo no registrado
+Pasos para reproducir la incidencia:
+Acceder al portal B2C y hacer clic en el enlace ?Mi Cuenta? ubicado en el header.
+Hacer clic en el enlace ?He olvidado mi contrasea?.
+Introducir un correo no registrado.
+Pulsar ?Enviar?.
+Resultado esperado:
+El sistema debera mostrar un mensaje indicando que el correo no est registrado.
+Resultado obtenido:
+Se muestra un mensaje emergente indicando ?CAPTCHA Incorrecto?, lo que impide continuar con el flujo, aunque el error no est relacionado con el registro del correo.
+Evidencia:
+Entorno:
+mcprod
+Navegadores:
+Chrome, Firefox, Edge, Safari"
+465398;CTB QA;Incidencias;461100;Cerrada;Alta;CTB-306 [DSK] Recuperacin ? Error CAPTCHA al enviar correo;Diana Vallina Canella;Jael Masllorens;2025-12-01 13:48;"";"";"";"";"";"";0,00;0,00;100;2025-11-05 15:42;2025-12-01 13:48;"";;No;"";"Historia de usuario:
+CTB-306 [DSK] Recuperacin - Correo registrado
+Verificar que se enva un correo de recuperacin si el correo est registrado.
+Pasos para reproducir la incidencia:
+Acceder al portal B2C y hacer clic en el enlace ?Mi Cuenta? ubicado en el header.
+Hacer clic en el enlace ?He olvidado mi contrasea?.
+Introducir un correo registrado.
+Pulsar ?Enviar?.
+Resultado esperado:
+Se enva un correo con enlace seguro para restablecer la contrasea.
+Resultado obtenido:
+Se muestra un mensaje emergente indicando ?CAPTCHA Incorrecto?, impidiendo el envo del correo de recuperacin, aunque el correo est registrado.
+Evidencia:
+Entorno:
+mcprod
+Navegadores:
+Chrome, Firefox, Edge, Safari"
+464924;CTB QA;Incidencias;461099;Bloqueada;Alta;CTB-288 [DSK] Registro - Proveedor externo - Redireccin incorrecta;Diana Vallina Canella;Jael Masllorens;2025-12-10 11:23;"";"";"";"";"";"";0,00;0,00;0;2025-11-03 17:11;"";"";;No;"";"Historia de usuario:CTB-288 [DSK] Registro - Proveedor externo (Google/Facebook/Apple)
+Pasos para reproducir la incidencia:
+Acceder a la pantalla de registro del portal B2C.
+Hacer clic en cualquiera de los botones de registro con proveedor externo (Google, Facebook o Apple).
+Resultado esperado:
+El sistema debe redirigir al flujo de autenticacin del proveedor seleccionado (Google, Facebook o Apple).
+Resultado obtenido:
+Al hacer clic en cualquiera de los botones de proveedor externo, la URL cambia a https://mcprod.thisisbarcelona.com/tickets/customer/account/create/#, y no se inicia ningn flujo de autenticacin.
+Evidencia:
+Entorno:mcprod
+Navegadores:Chrome, Firefox, Edge, Safari"
+462257;CTB QA;Incidencias;458236;En curso;Alta;CTB-148/149 [DSK] Secciones Destacadas ? Botn de favoritos no se activa al aadir producto;Diana Vallina Canella;Jael Masllorens;2025-11-07 15:10;"";"";"";"";"";"";1,50;1,50;90;2025-10-20 13:41;"";"";;No;"";"Historia de usuario: CTB-148 [DSK] Secciones Destacadas ? Favoritos (usuario autenticado)
+Pasos para reproducir la incidencia:
+Acceder al portal B2C y navegar a la seccin destacada.
+Hacer clic en el botn ?Aadir a favoritos? de una tarjeta (usuario logueado).
+volver al producto aadido como favorito y observar el botn de favoritos de la tarjeta tras aadir el producto.
+Resultado esperado:
+Al aadir un producto a favoritos, el botn de favoritos de la tarjeta debe activarse (corazn en rojo) para reflejar visualmente que el producto est aadido.
+Resultado obtenido:
+Aunque el producto se aade correctamente a favoritos, el botn de favoritos de la tarjeta no se pone en rojo, no reflejando visualmente la accin realizada.
+Evidencia:
+Entorno: mcprod
+Navegadores:Chrome, Firefox, Safari, Edge
+"
+462186;CTB QA;Incidencias;458236;Cerrada;Alta;CTB-143 [DSK] Calendario banner ? No se visualiza correctamente;Diana Vallina Canella;Juan Martinez Oliver;2025-12-02 09:02;"";"";"";"";"";"";7,00;7,00;0;2025-10-20 10:31;2025-11-06 17:22;"";;No;"";"Historia de usuario: CTB-143 [DSK] Calendario banner ? Visualizacin
+Pasos para reproducir la incidencia:
+Acceder al portal B2C.
+Hacer clic en el calendario del buscador del banner ?Explora Actividades nicas?.
+Resultado esperado:
+El calendario debe mostrarse correctamente, con un nico carrusel que muestre dos meses consecutivos (por ejemplo, octubre y noviembre), y con todos los elementos visibles:
+Ttulo ""Aadir fechas""
+Botones ?Hoy?, ?Maana?, ?Siguiente Semana?.
+Carrusel con dos calendarios, el del mes actual y el siguiente.
+Da actual marcado con un punto negro.
+Das no disponibles tachados.
+Resaltado con crculo rojo al situarse sobre un da.
+Al seleccionar manualmente una fecha en el calendario, la fecha seleccionada se resalta con un crculo rojo.
+Al seleccionar nuevamente la misma fecha, se muestra un crculo rojo principal y un crculo gris ligeramente desplazado hacia la derecha, indicando una seleccin doble (inicio y fin de rango coincidentes).
+Al seleccionar manualmente un rango de fechas (inicio y fin), el rango debe mostrarse resaltado correctamente.
+Botones ?Aplicar? y ?Cancelar?.
+Resultado obtenido:
+El calendario no se visualiza correctamente: aparecen dos carruseles independientes, ambos iniciando en el mes de actual, en lugar de un nico carrusel con dos meses consecutivos.
+Adems, no se muestran los botones ?Hoy?, ?Maana?, ?Siguiente Semana?, ?Aplicar? ni ?Cancelar?.
+En la parte superior del calendario no se muestra el texto ?Aadir fechas?.
+Evidencia:
+Entorno: mcprod
+Navegadores: Chrome, Firefox, Edge, Safari"
+461100;CTB QA;Evolutivos;"";En curso;Alta;Login y recuperacin de contrasea;Fernando Nozar;Jael Masllorens;2025-12-10 11:16;"";"";"";"";"";0,00;0,00;61,00;84;2025-10-13 17:10;"";"";;No;"";"Descripcin
+Como usuario registrado,
+quiero iniciar sesin en la plataforma usando mi correo y contrasea o cuentas externas (Google, Facebook o Apple), y recuperar mi contrasea si la olvido,
+para acceder a mis reservas, favoritos y funcionalidades personalizadas, incluso si no recuerdo mis credenciales.
+Flujos de Usuario
+Flujo 1: Login con correo y contrasea
+El usuario accede a la pantalla de login desde ?Mi Cuenta? o el header.
+Introduce:
+Correo electrnico
+Contrasea
+Todos los campos son obligatorios.
+Al enviar los datos, el sistema valida:
+Formato del correo.
+Coincidencia con una cuenta registrada.
+Contrasea correcta.
+Si la validacin es correcta, el usuario queda autenticado y accede a su cuenta.
+Si algn dato es incorrecto, se muestra un mensaje de error indicando el problema.
+Flujo 2: Login con cuentas externas
+El usuario puede iniciar sesin usando:
+Google
+Facebook
+Apple
+Al seleccionar uno de estos mtodos, se inicia el flujo de autenticacin del proveedor externo.
+Si la autenticacin es correcta, el usuario queda autenticado automticamente en la plataforma.
+Flujo 3: Recuperacin de contrasea
+En la pantalla de login, el usuario hace clic en el enlace ?Olvidaste tu contrasea??.
+El sistema muestra un formulario solicitando el correo electrnico asociado a la cuenta.
+El usuario introduce su correo y hace clic en ?Enviar?.
+El sistema valida que el correo corresponda a una cuenta registrada:
+Si el correo no existe, se muestra un mensaje de error informando que no se ha encontrado la cuenta.
+Si el correo es vlido, el sistema enva un correo de recuperacin con un enlace temporal y seguro para restablecer la contrasea.
+El usuario recibe el correo, hace clic en el enlace y es dirigido a una pgina para crear una nueva contrasea.
+El usuario completa:
+Nueva contrasea
+Confirmacin de contrasea
+El sistema valida que:
+La contrasea cumpla los criterios de seguridad (mnimo de caracteres o requisitos visibles en UI).
+La confirmacin coincida con la contrasea.
+Al enviar, la contrasea se actualiza y el usuario puede iniciar sesin con la nueva contrasea.
+Flujo 4: Enlace para usuarios nuevos
+La pantalla de login incluye un enlace ?No tienes cuenta? Regstrate?.
+Al hacer clic, el usuario es dirigido a la pantalla de registro.
+Criterios de aceptacin
+Login con correo y contrasea funciona solo si los campos son vlidos y coinciden con una cuenta registrada.
+Campos de correo y contrasea son obligatorios.
+Login con Google, Facebook o Apple autentica correctamente al usuario.
+El enlace ?No tienes cuenta? Regstrate? redirige a la pantalla de registro.
+El enlace ?Olvidaste tu contrasea?? inicia correctamente el flujo de recuperacin.
+El correo de recuperacin se enva solo si el correo est registrado.
+La contrasea puede ser restablecida usando el enlace seguro enviado por correo.
+La interfaz mantiene consistencia visual con fichas, listas y paneles de usuario.
+Casos de test (WIP)
+LOGIN01: Login con correo y contrasea correctos
+Dado que el usuario tiene una cuenta registrada,
+cuando introduce correo y contrasea correctos y hace clic en ?Iniciar sesin?,
+entonces queda autenticado y accede a su cuenta.
+LOGIN02: Login con correo o contrasea incorrectos
+Dado que el usuario introduce datos incorrectos,
+cuando intenta iniciar sesin,
+entonces se muestra un mensaje de error indicando que los datos no son correctos.
+LOGIN03: Campos obligatorios
+Dado que el usuario deja algn campo vaco,
+cuando intenta iniciar sesin,
+entonces se muestra un mensaje de error indicando que todos los campos son obligatorios.
+LOGIN04: Login con Google/Facebook/Apple
+Dado que el usuario selecciona un proveedor externo,
+cuando completa la autenticacin correctamente,
+entonces queda autenticado y accede a su cuenta.
+LOGIN05: Enlace a registro
+Dado que el usuario hace clic en ?No tienes cuenta? Regstrate?,
+entonces es redirigido a la pantalla de registro.
+LOGIN06: Inicio de recuperacin de contrasea
+Dado que el usuario hace clic en ?Olvidaste tu contrasea??,
+entonces se muestra el formulario para ingresar el correo.
+LOGIN07: Envo de correo de recuperacin
+Dado que el usuario introduce un correo registrado,
+cuando hace clic en ?Enviar?,
+entonces se enva un correo de recuperacin con enlace seguro.
+LOGIN08: Correo no registrado
+Dado que el usuario introduce un correo no registrado,
+cuando hace clic en ?Enviar?,
+entonces se muestra un mensaje de error indicando que no se encontr la cuenta.
+LOGIN09: Restablecimiento de contrasea
+Dado que el usuario accede al enlace de recuperacin,
+cuando introduce nueva contrasea y confirmacin coincidente,
+entonces la contrasea se actualiza y puede iniciar sesin con la nueva.
+LOGIN10: Contrasea y confirmacin no coinciden
+Dado que el usuario introduce nueva contrasea y confirmacin distinta,
+cuando hace clic en ?Enviar?,
+entonces se muestra un mensaje de error indicando que las contraseas no coinciden."
+461099;CTB QA;Evolutivos;"";En curso;Alta;Registro de Usuario;Fernando Nozar;Jael Masllorens;2025-12-04 12:00;"";"";"";"";"";0,00;0,00;0,00;33;2025-10-13 17:07;"";"";;No;"";"Descripcin
+Como usuario nuevo,
+quiero crear una cuenta en la plataforma completando mis datos o utilizando mis cuentas de Google, Facebook o Apple,
+para poder acceder a todas las funcionalidades de la plataforma, gestionar mis reservas y favoritos, y personalizar mi experiencia.
+Flujos de Usuario
+Flujo 1: Registro con formulario
+El usuario selecciona la opcin ?Registrarse?.
+Completa los campos obligatorios:
+Nombre
+Correo electrnico
+Contrasea
+Confirmar contrasea
+Todos los campos deben ser completados para poder continuar.
+Al enviar el formulario, se valida que:
+El correo tenga formato correcto.
+La contrasea cumpla los criterios de seguridad (mnimo de caracteres o requisitos visibles en el UI).
+La confirmacin de contrasea coincida con la contrasea.
+Si todo es correcto, la cuenta se crea y el usuario queda registrado en la plataforma.
+Flujo 2: Registro con cuentas externas
+El usuario puede registrarse usando su cuenta de:
+Google
+Facebook
+Apple
+Al seleccionar uno de estos mtodos, se inicia el flujo de autenticacin del proveedor externo.
+Si la autenticacin es exitosa, la cuenta se crea automticamente y el usuario queda registrado.
+Flujo 3: Enlace para usuarios existentes
+En la pantalla de registro se muestra un enlace: ?Ya tienes cuenta??
+Al hacer clic, el usuario es dirigido a la pantalla de inicio de sesin.
+Criterios de aceptacin
+Todos los campos del formulario (nombre, correo, contrasea, confirmar contrasea) son obligatorios.
+La validacin de correo y contrasea se realiza correctamente.
+La confirmacin de contrasea debe coincidir con la contrasea ingresada.
+El registro con Google, Facebook o Apple funciona correctamente y autentica al usuario.
+El enlace ?Ya tienes cuenta?? redirige a la pantalla de inicio de sesin.
+Al completar el registro correctamente, el usuario queda autenticado en la plataforma.
+Casos de test (WIP)
+REG01: Registro con formulario completo
+Dado que el usuario completa todos los campos obligatorios correctamente,
+cuando hace clic en ?Registrarse?,
+entonces la cuenta se crea y el usuario queda autenticado.
+REG02: Registro con campos incompletos
+Dado que el usuario deja algn campo obligatorio vaco,
+cuando intenta registrarse,
+entonces se muestra un mensaje de error indicando que todos los campos son obligatorios.
+REG03: Validacin de correo
+Dado que el usuario introduce un correo con formato incorrecto,
+cuando intenta registrarse,
+entonces se muestra un mensaje de error indicando que el correo no es vlido.
+REG04: Validacin de contrasea
+Dado que la contrasea no cumple los criterios de seguridad,
+cuando el usuario intenta registrarse,
+entonces se muestra un mensaje de error.
+REG05: Confirmacin de contrasea
+Dado que la contrasea y la confirmacin no coinciden,
+cuando el usuario intenta registrarse,
+entonces se muestra un mensaje de error.
+REG06: Registro con Google/Facebook/Apple
+Dado que el usuario selecciona un proveedor externo,
+cuando completa la autenticacin correctamente,
+entonces la cuenta se crea y el usuario queda autenticado.
+REG07: Enlace para usuarios existentes
+Dado que el usuario hace clic en ?Ya tienes cuenta??,
+entonces es redirigido a la pantalla de inicio de sesin."
+458236;CTB QA;Evolutivos;"";En curso;Alta;HOME;Fernando Nozar;Jael Masllorens;2025-12-10 13:36;"";"";"";"";"";0,00;1,50;55,50;88;2025-09-24 10:41;"";"";;No;"";"Comousuario que visita la pgina principal,
+Quierover secciones organizadas con contenido atractivo y relevante,
+Paradescubrir categoras, actividades destacadas, promociones y servicios que me inviten a explorar ms.
+Flujos de Usuario
+Flujo 1: Exploracin general
+El usuario accede a la Home.
+Ve el banner principal con imagen destacada y CTA.
+Recorre la seccin de ?Categoras? y accede a una.
+Explora ?Actividades nicas? y accede a una actividad.
+Ve la seccin ?Barcelona Card? y hace clic para ms informacin.
+Revisa ?Estrellas del momento? y aade una actividad a favoritos.
+Llega a ?Empieza tu aventura? y accede a una experiencia.
+Ve ?Que no se te escape!? y consulta una oferta.
+Revisa ?Descuentos que inspiran? y accede a una actividad con descuento.
+Se suscribe al newsletter desde el CTA.
+Consulta la seccin ?Servicios? para conocer beneficios adicionales.
+Criterios de Aceptacin
+Banner principal
+Debe mostrar una imagen destacada.
+Debe incluir un CTA visible y funcional.
+Seccin ?Categoras?
+Debe mostrar banners de categoras con imagen y ttulo.
+Cada categora debe ser clicable y llevar a su pgina correspondiente.
+Secciones destacadas
+?Actividades nicas?, ?Estrellas del momento?, ?Empieza tu aventura?, ?Que no se te escape!?, ?Descuentos que inspiran?:
+Cada seccin debe mostrar productos con:
+Imagen.
+Ttulo.
+Precio.
+Tags como ?Descuento? o ?Skip the line!? si aplican.
+Botn ?Aadir a favoritos?.
+Hover con flecha ???.
+Enlace al detalle del producto.
+Seccin ?Barcelona Card?
+Debe mostrar informacin relevante y enlace a detalle.
+CTA Newsletter
+Debe incluir campo de email y botn de suscripcin.
+Debe validar el formato del email.
+Seccin ?Servicios?
+Debe mostrar beneficios o caractersticas del servicio.
+Cada tem debe ser visualmente claro y accesible.
+WIP Tests (Work In Progress)
+UI Tests
+Verificar que el banner principal se renderiza correctamente.
+Validar que cada seccin se muestra en el orden correcto.
+Comprobar que los productos tienen imagen, ttulo, precio y tags.
+Testear que el botn de favoritos cambia de estado.
+Validar que el hover muestra la flecha ???.
+Comprobar que el CTA del newsletter valida el email correctamente.
+Verificar que los enlaces de cada seccin funcionan.
+Casos Funcionales
+Validar que los productos con descuento muestran el tag correspondiente.
+Testear que los productos ?Skip the line!? muestran el tag.
+Comprobar que el clic en el banner de producto lleva al detalle correcto.
+Verificar que el formulario de newsletter guarda correctamente el email.
+Casos Frontera
+Secciones sin productos ? mostrar mensaje o estado vaco.
+Productos sin imagen ? mostrar imagen por defecto.
+Productos sin precio ? mostrar ?Consultar?.
+Favoritos sin sesin iniciada ? mostrar mensaje de login.
+Email invlido en newsletter ? mostrar mensaje de error."
+469987;CTB QA;Evolutivos;"";Nueva;Normal;Error al querer hacer un credit memo;Alejandra Snchez Marta;Javier Lpez Girela;2025-12-05 20:29;"";"";"";"";"";"";0,00;0,00;0;2025-12-05 20:29;"";"";;No;"";"Puede ser por el agregador pero sale este error al querer hacer un credit memo del pedido:
+#000000509"
+469986;CTB QA;Evolutivos;"";Nueva;Normal;Errores crear sesiones;Alejandra Snchez Marta;Javier Lpez Girela;2025-12-05 20:27;"";"";"";"";"";"";0,00;0,00;0;2025-12-05 20:27;"";"";;No;"";"Al crear dentro de un producto las sesiones y modalidades a la tercera sesin que se crea te da un error de:
+"
+469294;CTB QA;Tarea;457526;Nueva;Normal;B2C ? [DSK] Cesta de la compra ? Informe;Diana Vallina Canella;Alejandra Snchez Marta;2025-12-02 09:50;"";"";"";"";"";"";0,00;0,00;0;2025-12-01 17:43;"";"";"";No;"";Se adjuntan los informes correspondientes a las pruebas delCesta de la compradentro del portalB2C en desktop,en el marco del proyectoCTB.
+468523;CTB QA;Incidencias;461092;Nueva;Normal;CTB-390 [DSK] Carrito ? No se muestra el texto ?Descuento aplicado?;Diana Vallina Canella;Juan Martinez Oliver;2025-11-27 09:36;"";"";"";"";"";"";0,00;0,00;0;2025-11-26 17:35;"";"";;No;"";"Historia de usuario:
+CTB-390 [DSK] Carrito ? Visualizacin del resumen de compra
+Pasos para reproducir la incidencia:
+Acceder al portal B2C e iniciar sesin con un usuario que tenga productos aadidos al carrito.
+Ir a la seccin ?Mi carrito?.
+Comprobar el resumen del pedido cuando no hay descuentos aplicados.
+Resultado esperado:
+El resumen debe mostrar el texto ?Descuento aplicado? siempre, incluso si el valor es 0 , tal como se indica en el diseo de Figma.
+Resultado obtenido:
+El texto ?Descuento aplicado? no aparece en el resumen cuando no hay descuentos aplicados.
+Observacin:
+Los textos ?Subtotal?, ?Total general? y ?Tramitar pedido? tampoco coinciden con los del diseo.
+Evidencia:
+Figma
+
+Entorno:
+mcprod
+Navegadores:
+Chrome, Firefox, Edge, Safari"
+468456;CTB QA;Incidencias;461092;Nueva;Normal;CTB-387 [DSK] Carrito ? Formato incorrecto de fecha y ausencia de hora;Diana Vallina Canella;Juan Martinez Oliver;2025-11-27 09:45;"";"";"";"";"";"";0,00;0,00;0;2025-11-26 16:43;"";"";;No;"";"Historia de usuario:
+CTB-387 [DSK] Carrito ? Visualizacin de productos
+Pasos para reproducir la incidencia:
+Acceder al portal B2C e iniciar sesin con un usuario que tenga productos aadidos al carrito.
+Ir a la seccin ?Mi carrito?.
+Comprobar la visualizacin de la fecha y hora asociadas a los productos.
+Resultado esperado:
+La fecha y la hora deben mostrarse en el formato definido en el diseo aprobado
+Resultado obtenido:
+La fecha se muestra en formato tcnico (2025-11-26) y no se visualiza la hora, lo que no coincide con el diseo esperado.
+Evidencia:
+Entorno:
+mcprod
+Navegadores:
+Chrome, Firefox, Edge, Safari"
+468265;CTB QA;Tarea;457526;Nueva;Normal;B2C ? [DSK] Favoritos ? Informe;Diana Vallina Canella;Alejandra Snchez Marta;2025-11-25 17:42;"";"";"";"";"";"";0,00;0,00;0;2025-11-25 17:42;"";"";"";No;"";Se adjuntan los informes correspondientes a las pruebas del Favoritosdentro del portalB2C en desktop,en el marco del proyectoCTB.
+468264;CTB QA;Tarea;457526;Nueva;Normal;B2C ? [DSK] Perfil ? Informe;Diana Vallina Canella;Alejandra Snchez Marta;2025-11-25 17:42;"";"";"";"";"";"";0,00;0,00;0;2025-11-25 17:41;"";"";"";No;"";Se adjuntan los informes correspondientes a las pruebas del Perfildentro del portalB2C en desktop,en el marco del proyectoCTB.
+468228;CTB QA;Incidencias;463317;Nueva;Normal;CTB-315 [DSK] Favoritos ? El correo recibido tras compartir la lista no muestra imgenes de los productos;Diana Vallina Canella;Alejandra Snchez Marta;2025-11-25 13:50;"";"";"";"";"";"";0,00;0,00;0;2025-11-25 13:50;"";"";;No;"";"Historia de usuario:
+CTB-315 [DSK] Favoritos - Compartir la lista de deseos
+
+Pasos para reproducir la incidencia:
+Acceder al portal B2C.
+Iniciar sesin con un usuario que tenga productos aadidos a la lista de deseos.
+Ir a ?Mi cuenta? ? ?Mi perfil? ? ?Favoritos?.
+Pulsar el botn ?Compartir favoritos?.
+Introducir una o varias direcciones de correo electrnicoy un mensaje personalizado.
+Pulsar el botn ?Compartir favoritos?.
+Acceder al correo del destinatario y revisar el contenido recibido.
+
+Resultado esperado:
+El correo recibido debe mostrar:
+El mensaje personalizado enviado por el usuario.
+La lista de productos compartidos con todos los elementos relevantes (incluyendo imgenes de los productos).
+Resultado obtenido:
+El correo recibido muestra el mensaje enviado y la lista de productos, pero no se muestran las imgenes de los productos.
+
+Evidencia:
+Entorno:
+mcprod
+Navegadores:
+Chrome, Firefox, Edge, Safari
+"
+468215;CTB QA;Incidencias;463317;Nueva;Normal;CTB-312 [DSK] Favoritos ? Visualizacin incompleta en la lista de deseos;Diana Vallina Canella;Alejandra Snchez Marta;2025-11-25 13:24;"";"";"";"";"";"";0,00;0,00;0;2025-11-25 13:23;"";"";;No;"";"Historia de usuario:
+CTB-312 [DSK] Favoritos - Visualizacin con productos en la lista de deseos
+Pasos para reproducir la incidencia:
+Acceder al portal B2C.
+Iniciar sesin con un usuario que tenga productos aadidos a la lista de deseos.
+Ir a ?Mi cuenta? ? ?Mi perfil? ? ?Favoritos?.
+Comprobar los elementos visibles en las tarjetas de productos.
+Resultado esperado:
+Se debera mostrar la informacin completa definida para cada producto en la lista de deseos (imagen, ttulo, precio, botones y tags segn aplique).
+Resultado obtenido:
+Actualmente solo se visualizan:
+El ttulo del producto.
+El precio.
+El icono de papelera.
+No se muestra la imagen del producto, aunque la tenga.
+No se puede comprobar si deberan aparecer tags como ?Descuento? o ?Skip the line!? porque no hay productos con esas caractersticas.
+Se debe valorar si faltan otros elementos como botones adicionales (Aadir al carrito, Compartir favoritos) y si el precio debe incluir la palabra ?Desde?.
+Evidencia:
+Entorno:
+mcprod
+Navegadores:
+Chrome, Firefox, Edge, Safari"
+467766;CTB QA;Incidencias;465387;Cerrada;Normal;CTB-377 [DSK] Error tcnico al guardar correo ya registrado;Diana Vallina Canella;Jael Masllorens;2025-12-10 14:06;"";"";"";"";"";"";0,00;0,00;100;2025-11-21 13:54;2025-12-10 14:06;"";;No;"";"Historia de usuario:
+CTB-377 [DSK] Informacin de contacto - Validacin de correo ya registrado
+
+Pasos para reproducir la incidencia:
+Acceder al portal B2C.
+Iniciar sesin con un usuario vlido.
+Ir al apartado ""Mi cuenta"" &gt; ""Datos personales"".
+Pulsar el botn ?Editar? en el bloque ""Informacin del contacto"".
+Introducir una direccin de correo electrnico que ya est registrada en otro cliente.
+Introducir la contrasea actual.
+Pulsar ?Guardar?.
+
+Resultado esperado:
+El sistema muestra un mensaje emergente indicando que el correo ya est registrado y no permite guardar los cambios.
+Resultado obtenido:
+Se muestra una pantalla de error tcnico con el siguiente mensaje:
+""There has been an error processing your request. Exception printing is disabled by default for security reasons. Error log record number: 3480a5f86ff9b0aeea0e066242e3c2f15d447377eacab4b7670e43bf80a529b6""
+Evidencia:
+Entorno:mcprod
+Navegadores:Chrome, Firefox, Edge, Safari"
+467755;CTB QA;Incidencias;465387;Cerrada;Normal;CTB-349 [DSK] Campos vacos - Mensajes de error mezclan ingls y espaol;Diana Vallina Canella;Jael Masllorens;2025-12-01 17:20;"";"";"";"";"";"";0,00;0,00;0;2025-11-21 13:13;2025-12-01 15:34;"";;No;"";"Historia de usuario:
+CTB-349 [DSK] Informacin de contacto - Edicin - Campos vacos
+Pasos para reproducir la incidencia:
+Acceder al portal B2C, ir a ""Mi cuenta"" e iniciar sesin.
+Ir a editar la informacin de contacto de ""Mis datos personales"".
+Borrar el contenido de los campos de nombre y apellidos.
+Activar el checkbox ?Cambiar correo electrnico? y dejar el campo de correo y contrasea vacos.
+Activar el checkbox ?Cambiar la contrasea? y dejar vacos los campos de nueva contrasea y confirmacin.
+Pulsar el botn ?Guardar?.
+
+Resultado esperado:
+El sistema debe mostrar mensajes de error claros y coherentes en espaol, indicando que los campos obligatorios no pueden estar vacos.
+Resultado obtenido:
+El sistema muestra mensajes de error que mezclan ingls y espaol en varios campos. Ejemplos:
+Nombre field is required.
+Apellidos field is required.
+Correo electrnico field is required.
+Contrasea actual field is required.
+Nueva Contrasea field is required.
+Evidencia:
+Entorno:
+mcprod
+Navegadores:
+Chrome, Firefox, Edge, Safari"
+467719;CTB QA;Incidencias;465387;Cerrada;Normal;CTB-342 [DSK] Cierre sesin mltiple - No se cierra en otros navegadores;Diana Vallina Canella;Jael Masllorens;2025-12-02 09:08;"";"";"";"";"";"";0,00;0,00;0;2025-11-21 12:33;2025-12-01 15:48;"";;No;"";"Historia de usuario:
+CTB-342 [DSK] Mi perfil - Cierre de sesin en mltiples navegadores
+Pasos para reproducir la incidencia:
+Acceder al portal B2C. Ir a ""Mi cuenta"" e iniciar sesin desde el navegador A (por ejemplo, Chrome) con una cuenta registrada.
+Acceder al portal B2C. Ir a ""Mi cuenta"" e iniciar sesin desde el navegador B (por ejemplo, Firefox) con la misma cuenta.
+Acceder tambin desde un tercer navegador (por ejemplo, Edge) con la misma cuenta.
+En el navegador A, hacer clic en ""Cerrar sesin"".
+Actualizar la pgina en los navegadores B y C.
+Resultado esperado:
+Al cerrar sesin en uno de los navegadores, la sesin debera cerrarse tambin en los dems navegadores. Al actualizar la pgina en los otros navegadores, la sesin debe cerrarse.
+Resultado obtenido:
+La sesin se cierra correctamente en el navegador A, pero al actualizar los navegadores B y C, la sesin sigue activa y el usuario puede seguir navegando por el portal sin ser redirigido al login.
+Evidencia:
+Entorno:
+mcprod
+Navegadores:
+Chrome, Firefox, Edge, Safari"
+467583;CTB QA;Incidencias;465387;Cerrada;Normal;CTB-350 [DSK] Validacin de correo - Mensaje de error mezcla ingls y espaol;Diana Vallina Canella;Jael Masllorens;2025-12-01 17:19;"";"";"";"";"";"";0,00;0,00;0;2025-11-20 17:20;2025-12-01 15:32;"";;No;"";"Historia de usuario:
+CTB-350 [DSK] Informacin de contacto - Edicin - Validacin correo
+Pasos para reproducir la incidencia:
+Acceder al portal B2C, ir a ""Mi cuenta"" e iniciar sesin.
+Ir a editar la informacin de contacto de ""Mis datos personales"".
+Activar el checkbox ?Cambiar correo electrnico? e introducir un correo con formato incorrecto (por ejemplo, ?usuario@? o ?usuario.com?).
+Resultado esperado:
+El sistema debe mostrar un mensaje de error claro y coherente en espaol, indicando que el formato del correo electrnico no es vlido.
+Resultado obtenido:
+El sistema muestra un mensaje de error que mezcla ingls y espaol:
+""Correo electrnico field must contain a valid email address (Ex: hola@stayarta.com).""
+Evidencia:
+Entorno:
+mcprod
+Navegadores:
+Chrome, Firefox, Edge, Safari"
+467566;CTB QA;Incidencias;465387;Cerrada;Normal;CTB-340 [DSK] Cierre de sesin - Mensaje de confirmacin confuso tras cerrar sesin;Diana Vallina Canella;Jael Masllorens;2025-12-10 10:56;"";"";"";"";"";"";0,00;0,00;100;2025-11-20 15:52;2025-12-10 10:56;"";;No;"";"Historia de usuario:
+CTB-340 [DSK] Mi perfil - Cierre de sesin
+Pasos para reproducir la incidencia:
+Acceder al portal B2C.
+Ir a ""Mi cuenta"" e iniciar sesin.
+Hacer clic en el apartado ""Cerrar sesin"".
+Resultado esperado:
+El sistema debe cerrar la sesin correctamente, mostrar un mensaje claro y coherente con el contexto de cierre de sesin, y redirigir al usuario a la home.
+Resultado obtenido:
+El sistema cierra la sesin y muestra el siguiente mensaje:
+""Se ha dado de baja. Ha cerrado la sesin y ser redirigido a nuestra pgina de inicio en 5 segundos. Gracias por su visita, esperamos volver a verle pronto.""
+El texto ?Se ha dado de baja? puede inducir a error, ya que se asocia comnmente con la cancelacin de cuenta, no con un cierre de sesin estndar.
+Evidencia:
+Entorno:
+mcprod
+Navegadores:
+Chrome, Firefox, Edge, Safari"
+467559;CTB QA;Incidencias;465387;Cerrada;Normal;CTB-365 / CTB-363 [DSK] Edicin de direccin - El campo Estado/Provincia no se muestra si fue introducido manualmente;Diana Vallina Canella;Jael Masllorens;2025-12-11 12:49;"";"";"";"";"";"";0,00;0,00;100;2025-11-20 15:27;2025-12-11 12:49;"";;No;"";"Historia de usuario:
+CTB-365 [DSK] Libreta de direcciones - Editar direccin adicional
+CTB-363 [DSK] Libreta de direcciones - Editar direccin de facturacin
+Pasos para reproducir la incidencia:
+Acceder al portal B2C. Ir a ""Mi cuenta"" e iniciar sesin.
+Ir al apartado ""Datos personales"".
+Pulsar el enlace ?Gestionar direcciones?.
+Crear una nueva direccin (ya sea de facturacin o adicional) seleccionando un pas que no tenga desplegable en el campo ?Estado/Provincia?.
+Introducir manualmente un valor en el campo ?Estado/Provincia? y guardar la direccin.
+Volver a ?Gestionar direcciones? y pulsar ?Editar? sobre la direccin creada.
+Resultado esperado:
+El formulario de edicin debe mostrar el campo ?Estado/Provincia? con el valor previamente introducido, independientemente de si fue seleccionado de un desplegable o introducido manualmente.
+Resultado obtenido:
+Si el pas seleccionado no tiene desplegable para ?Estado/Provincia? y el valor fue introducido manualmente, al editar la direccin el campo no se muestra, aunque el dato s aparece correctamente en la vista general de la direccin, si es de facturacin.
+Evidencia:
+Entorno:
+mcprod
+Navegadores:
+Chrome, Firefox, Edge, Safari"
+467354;CTB QA;Incidencias;465387;Cerrada;Normal;CTB-376 [DSK] Cambio de contrasea - Redireccin incorrecta tras guardar;Diana Vallina Canella;Jael Masllorens;2025-12-02 09:11;"";"";"";"";"";"";0,00;0,00;0;2025-11-19 16:49;2025-11-28 08:50;"";;No;"";"Historia de usuario:
+CTB-376 [DSK] Informacin de contacto - Cambio de contrasea
+Pasos para reproducir la incidencia:
+Acceder al portal B2C. Ir a ""Mi cuenta"" e iniciar sesin.
+Pulsar el botn ?Editar? en el bloque ""Informacin del contacto"".
+Activar el checkbox ?Cambiar la contrasea?.
+Rellenar los tres campos de contrasea (actual, nueva y confirmacin) con datos vlidos.
+Pulsar el botn ?Guardar?.
+Resultado esperado:
+El sistema guarda correctamente la nueva contrasea y permanece en la seccin ""Mi cuenta"", mostrando un mensaje de confirmacin.
+Resultado obtenido:
+Tras pulsar ?Guardar?, el sistema cierra la sesin del usuario y redirige a la pantalla de login, en lugar de permanecer en ""Mi cuenta"".
+Evidencia:
+Entorno:
+mcprod
+Navegadores:
+Chrome, Firefox, Edge, Safari"
+467349;CTB QA;Incidencias;465387;Cerrada;Normal;CTB-353 [DSK] Confirmacin de contrasea - Mensaje de error mezcla ingls y espaol;Diana Vallina Canella;Jael Masllorens;2025-12-01 17:10;"";"";"";"";"";"";0,00;0,00;0;2025-11-19 16:15;2025-12-01 15:28;"";;No;"";"Historia de usuario:
+CTB-353 [DSK] Informacin de contacto - Edicin - Validacin confirmacin de contrasea
+Pasos para reproducir la incidencia:
+Acceder al portal B2C, ir a ""Mi cuenta"" e iniciar sesin.
+Ir a editar la informacin de contacto de ""Mis datos personales"".
+Activar el checkbox ?Cambiar la contrasea?.
+Introducir una nueva contrasea vlida en el campo ""Nueva contrasea"".
+Introducir una contrasea distinta en el campo ""Confirmar nueva contrasea"".
+Resultado esperado:
+El sistema debe mostrar un mensaje de error claro y coherente en espaol, indicando que las contraseas no coinciden.
+Resultado obtenido:
+El sistema muestra un mensaje de error que mezcla ingls y espaol:
+""Confirmar contrasea nueva field value must be the same as 'Nueva Contrasea'.""
+Evidencia:
+Entorno:
+mcprod
+Navegadores:
+Chrome, Firefox, Edge, Safari"
+467339;CTB QA;Incidencias;465387;Cerrada;Normal;CTB-352 [DSK] Validacin de contrasea - Mensaje de error mezcla ingls y espaol;Diana Vallina Canella;Jael Masllorens;2025-12-01 17:07;"";"";"";"";"";"";0,00;0,00;0;2025-11-19 15:58;2025-12-01 15:28;"";;No;"";"Historia de usuario:
+CTB-352 [DSK] Informacin de contacto - Edicin - Validacin nueva contrasea
+Comprobar que si el usuario introduce una nueva contrasea que no cumple con los requisitos mnimos de seguridad, el sistema muestra un mensaje de error y no permite guardar los cambios.
+Pasos para reproducir la incidencia:
+Acceder al portal B2C, ir a ""Mi cuenta"" e iniciar sesin.
+Ir a editar la informacin de contacto de ""Mis datos personales"".
+Activar el checkbox ?Cambiar la contrasea? e introducir una nueva contrasea con menos de 8 caracteres.
+Resultado esperado:
+El sistema debe mostrar un mensaje de error claro y coherente en espaol, indicando que la contrasea no cumple con los requisitos mnimos de seguridad.
+Resultado obtenido:
+El sistema muestra un mensaje de error que mezcla ingls y espaol:
+""Nueva Contrasea field must be at least 8 characters long.""
+Evidencia:
+Entorno:
+mcprod
+Navegadores:
+Chrome, Firefox, Edge, Safari"
+467332;CTB QA;Incidencias;465387;Cerrada;Normal;CTB-347 [DSK] Redireccin al login tras editar todos los campos de informacin personal;Diana Vallina Canella;Jael Masllorens;2025-12-02 09:12;"";"";"";"";"";"";0,00;0,00;0;2025-11-19 14:12;2025-11-28 08:49;"";;No;"";"Historia de usuario:
+CTB-347 [DSK] Informacin de contacto - Edicin todos los campos
+Comprobar que el usuario puede modificar correctamente su nombre, apellidos, correo y contrasea desde el formulario de edicin, y que los cambios se guardan y se actualizan en el sistema.
+Pasos para reproducir la incidencia:
+Acceder al portal B2C. Ir a ""Mi cuenta"" e iniciar sesin.
+Pulsar el botn ?Editar? en el bloque ""Informacin del contacto"".
+Modificar nombre y apellidos.
+Activar el checkbox ?Cambiar correo electrnico?.
+Introducir nuevo correo y contrasea actual.
+Activar el checkbox ?Cambiar la contrasea?.
+Rellenar los campos de nueva contrasea y confirmacin.
+Activar el checkbox ?Permitir asistente de compras remoto?.
+Pulsar el botn ?Guardar?.
+Resultado esperado:
+Se muestra un mensaje de confirmacin y se vuelve a la pantalla ?Mi cuenta? con los datos actualizados, manteniendo la sesin iniciada.
+Resultado obtenido:
+Se muestra el mensaje de confirmacin correctamente, pero el sistema redirige al formulario de login. El usuario debe volver a iniciar sesin manualmente, aunque no ha cerrado sesin de forma explcita.
+Evidencia:
+Entorno:
+mcprod
+Navegadores:
+Chrome, Firefox, Edge, Safari
+Notas:
+Corregir el texto del correo, algunas palabras no llevan espacio entre ellas
+"
+466992;CTB QA;Incidencias;465387;Cerrada;Normal;CTB-375 [DSK] Correos de suscripcin al boletn enviados tras editar el correo sin modificar la suscripcin;Diana Vallina Canella;Jael Masllorens;2025-12-11 13:03;"";"";"";"";"";"";4,50;4,50;100;2025-11-17 17:41;2025-12-11 13:03;"";;No;"";"Historia de usuario:
+CTB-375 [DSK] Informacin de contacto - Edicin de correo electrnico
+Comprobar que el usuario puede modificar su correo electrnico introduciendo la contrasea actual.
+Pasos para reproducir la incidencia:
+Acceder al portal B2C.
+Iniciar sesin con un usuario vlido.
+Ir al apartado ""Mi cuenta"" &gt; ""Datos personales"".
+Pulsar el botn ?Editar? en el bloque ""Informacin del contacto"".
+Activar el checkbox ?Cambiar correo electrnico?.
+Introducir un nuevo correo electrnico y la contrasea actual.
+Pulsar el botn ?Guardar?.
+Verificar los correos recibidos en el antiguo y en el nuevo correo electrnico.
+Resultado esperado:
+Se recibe nicamente el correo de confirmacin del cambio de direccin.
+No se debera enviar ningn correo relacionado con la suscripcin al boletn, ya que el usuario no ha modificado esa opcin.
+Resultado obtenido:
+Adems del correo de confirmacin del cambio, se recibe un correo adicional:
+? Si el usuario estaba suscrito al boletn, el nuevo correo recibe un mensaje de alta en el boletn.
+? Si el usuario no estaba suscrito, el nuevo correo recibe un mensaje de baja del boletn.
+Esto ocurre aunque el usuario no haya interactuado con la opcin de suscripcin.
+Nota:
+Corregir el texto del correo de los boletines, algunas palabras no llevan espacio entre ellas
+Evidencia:
+Entorno:
+mcprod
+Navegadores:
+Chrome, Firefox, Edge, Safari"
+466991;CTB QA;Incidencias;465387;Cerrada;Normal;CTB-375 [DSK] Redireccin al login tras editar el correo electrnico;Diana Vallina Canella;Jael Masllorens;2025-12-02 09:13;"";"";"";"";"";"";0,00;0,00;0;2025-11-17 17:36;2025-11-28 08:47;"";;No;"";"Historia de usuario:
+CTB-375 [DSK] Informacin de contacto - Edicin de correo electrnico
+Comprobar que el usuario puede modificar su correo electrnico introduciendo la contrasea actual.
+Pasos para reproducir la incidencia:
+Acceder al portal B2C.
+Iniciar sesin con un usuario vlido.
+Ir al apartado ""Mi cuenta"" &gt; ""Datos personales"".
+Pulsar el botn ?Editar? en el bloque ""Informacin del contacto"".
+Activar el checkbox ?Cambiar correo electrnico?.
+Introducir un nuevo correo electrnico y la contrasea actual.
+Pulsar el botn ?Guardar?.
+Resultado esperado:
+Se muestra un mensaje de confirmacin y se vuelve a la pantalla ?Mi cuenta? con los datos actualizados, manteniendo la sesin iniciada.
+Resultado obtenido:
+Se muestra el mensaje de confirmacin correctamente, pero el sistema redirige al formulario de login. El usuario debe volver a iniciar sesin manualmente, aunque no ha cerrado sesin de forma explcita.
+Evidencia:
+Entorno:
+mcprod
+Navegadores:
+Chrome, Firefox, Edge, Safari"
+466184;CTB QA;Tarea;457526;Nueva;Normal;[MOB] Registro - Informe;Laura Ovelleiro;Alejandra Snchez Marta;++34662652300:34;"";"";"";"";"";"";0,00;0,00;0;++34662652300:20;"";"";"";No;"";Se adjuntan los informes correspondientes a las pruebas deRegistrodentro del portalB2C en mobile,en el marco del proyectoCTB.
+466131;CTB QA;Tarea;457526;Nueva;Normal;[MOB] Recuperar contrasea - Informe;Laura Ovelleiro;Alejandra Snchez Marta;++34662652300:39;"";"";"";"";"";"";0,00;0,00;0;++34662652300:17;"";"";"";No;"";Se adjuntan los informes correspondientes a las pruebas de Recuperar contraseadentro del portalB2C en mobile,en el marco del proyectoCTB.
+466125;CTB QA;Incidencias;461100;Resuelta;Normal;CTB-290 [MOB] Error CAPTCHA y no envo de correo de recuperacin;Laura Ovelleiro;Jael Masllorens;2025-12-04 11:53;"";"";"";"";"";"";41,50;41,50;100;2025-11-11 10:10;"";"";;No;"";"Historia de usuario:CTB-290 [MOB] Correo registrado (correo de confirmacin)
+Pasos para reproducir la incidencia:
+ Introducir un correo electrnico registrado en el campo de texto y pulsar en el botn ""Enviar"".
+Resultado esperado:
+ El usuario recibe un mensaje en el correo electrnico introducido que le facilita recuperar la contrasea de su cuenta a travs de un enlace temporal y seguro para restablecer la contrasea.
+ Aparece un snackbar informativo en la parte inferior de la pantalla indicando del correcto envo del mensaje al email.
+ El campo de texto se limpia.
+Resultado obtenido
+
+Aparece un error CAPTCHA.
+El usuario no recibe el mensaje de recuperacin al correo.
+Evidencia
+  Safari:
+ 
+  Chrome:
+ "
+466119;CTB QA;Incidencias;461100;Cerrada;Normal;CTB-293 [MOB] Muestra error CAPTCHA y mensaje errneo en snackbar;Laura Ovelleiro;Jael Masllorens;2025-12-12 09:57;"";"";"";"";"";"";0,00;0,00;100;2025-11-11 10:05;2025-12-12 09:57;"";;No;"";"Historia de usuario:CTB-293 [MOB] Correo no registrado
+Pasos para reproducir la incidencia:
+ Introducir un correo electrnico no registrado en el campo de texto y pulser ""Enviar"".
+Resultado esperado:
+ Se muestra al usuario un mensaje de error como snackbar informando que no se ha encontrado la cuenta.
+Resultado obtenido
+
+ Se muestra un snackbar con un CAPTCHA. Debera mostrar un mensaje de error informando que el correo no est registrado.
+Evidencia
+  Safari:
+ 
+ Chrome:
+ "
+466109;CTB QA;Incidencias;461100;Resuelta;Normal; CTB-292  [MOB] Acepta formato de correo invlido;Laura Ovelleiro;Juan Martinez Oliver;2025-12-04 11:58;"";"";"";"";"";"";8,50;8,50;100;2025-11-11 09:58;"";"";;No;"";"Historia de usuario:CTB-292 [MOB] Formato de correo invlido.
+Pasos para reproducir la incidencia:
+ Introducir un correo invlido en el campo de texto (ejemplo: ""correo"", ""correo@"", ""correo@correo"", ""correo@correo."") y pulsar botn ""Enviar"".
+Resultado esperado:
+ Se muestra un ""tooltip"" sobre el campo con elmensajede error por formato de correo electrnico no vlido.
+Resultado obtenido
+
+Acepta ""correo@correo"" teniendo un formato de correo incorrecto.
+Aparece un CAPTCHA de error.
+Evidencia
+  Safari:
+ 
+ Chrome:
+ "
+466100;CTB QA;Incidencias;461099;Resuelta;Normal;CTB-326 [MOB] Visualizacin - Error en formato;Laura Ovelleiro;Juan Martinez Oliver;2025-12-04 11:59;"";"";"";"";"";"";0,00;0,00;100;2025-11-11 09:41;"";"";;No;"";"Historia de usuario:CTB-326 [MOB] Visualizacin.
+Pasos para reproducir la incidencia:
+ Visualizar la pantalla ""Registro"".
+Resultado esperado:
+ La pantalla consta de los siguientes elementos, en orden descendente:
+Barra superior, con:
+Botn ""Volver"" alineado a la izquierda.
+Texto centrado.
+Ttulo.
+Texto descriptivo.
+Botones sociales, de izquierda a derecha:
+Google.
+Facebook.
+Apple.
+Separador.
+Texto descriptivo.
+Formulario concampos de textoobligatorios:
+Nombre.
+Correo electrnico.
+Contrasea.
+Confirmar contrasea.
+Botn ""Completar registro"" centrado con fondo rojo.
+Texto con enlace ""Iniciar sesin"" en color rojo subrayado.
+ Todo el texto permanece alineado a la izquierda menos el correspondiente al enlace ""Inicio de sesin"".
+ El botn ""Completar registro"", los botones sociales y los campos de textoestn centrados.
+ El diseo y formato coincide con el presentado en Figma.
+Resultado obtenido
+ No aparece la barra superior.
+Evidencia
+  Safari:
+ 
+  Chrome:
+ 
+  Figma:
+ ?"
+465956;CTB QA;Tarea;461100;Cerrada;Normal;CTB-297 [DSK] Login ? Redireccin incorrecta desde ?Mi cuenta? en el header;Diana Vallina Canella;Jael Masllorens;2025-12-11 12:52;"";"";"";"";"";"";0,00;0,00;100;2025-11-10 16:30;2025-12-11 12:52;"";"";No;"";"Durante la navegacin por el portal se ha detectado un cambio en el comportamiento del login. Al iniciar sesin desde el enlace ?Mi cuenta? ubicado en el header, el usuario ya no es redirigido a la pantalla ""Mi cuenta"", como se valid originalmente en el caso de prueba CTB-297.
+Historia de usuario:CTB-297 [DSK] Login - Credenciales correctas
+Pasos para reproducir la incidencia:
+Acceder al portal B2C sin iniciar sesin.
+Hacer clic en ?Mi cuenta? desde el header.
+Introducir credenciales vlidas y pulsar ?Iniciar sesin?.
+Resultado esperado:
+El usuario debera ser redirigido a la pantalla ""Mi cuenta"" tras iniciar sesin desde el header, como se valid en el caso de prueba CTB-297.
+Resultado obtenido:
+Actualmente, al iniciar sesin desde ?Mi cuenta? en el header, el usuario no es redirigido a la pantalla ""Mi cuenta"", sino que permanece en la pgina en la que estaba navegando.
+Nota:
+Se ha comprobado que al iniciar sesin desde el men lateral (hamburguesa), el usuario permanece correctamente en la misma pgina, lo cual es el comportamiento esperado en ese contexto.
+Evidencia:
+Se adjunta video.
+Entorno:
+mcprod
+Navegadores:
+Chrome, Firefox, Edge, Safari"
+465943;CTB QA;Incidencias;461100;Resuelta;Normal;CTB-281 [MOB]  Visualizacin - Error en formato;Laura Ovelleiro;Juan Martinez Oliver;2025-12-04 12:00;"";"";"";"";"";"";0,00;0,00;100;2025-11-10 15:43;"";"";;No;"";"Descripcin
+Historia de usuario:CTB-281 [MOB] Visualizacin.
+Pasos para reproducir la incidencia:
+ Visualizar la pantalla ""Recuperar contrasea"".
+Resultado esperado:
+ Presenta en la parte superior y, a continuacin verticalmente:
+Barra superior, con:
+Botn ""Volver"" alineado a la izquierda.
+Texto centrado.
+Ttulo en negrita
+Texto descriptivo.
+Campo de entrada de texto para emailcon ttulo.
+Botn ""Enviar"" con fondo rojo.
+Texto con enlace a la pantalla ""Inicio de sesin""representado en rojo.
+?
+ Todo el texto est alineado a la izquierda menos el correspondiente al enlace a la pantalla ""Inicio de sesin"", el botn ""Enviar"" y el campo de texto, que se presentan centrados.
+ El diseo y formato coincide con el presentado en Figma.
+Resultado obtenido
+
+No aparece la barra superior.
+El ttulo ""Olvidaste tu contrasea?"" no presenta el margen correspondiente.
+Evidencia
+  Safari:
+ 
+Chrome:
+ 
+ Figma:"
+465911;CTB QA;Tarea;457526;Nueva;Normal;[MOB] Login - Informe;Laura Ovelleiro;Alejandra Snchez Marta;++34662652300:39;"";"";"";"";"";"";0,00;0,00;0;++34662652300:05;"";"";"";No;"";Se adjuntan los informes correspondientes a las pruebas delLogindentro del portalB2C en mobile,en el marco del proyectoCTB.
+465902;CTB QA;Incidencias;461100;Resuelta;Normal;CTB-278 [MOB] Login - Acepta formatos invlidos;Laura Ovelleiro;Juan Martinez Oliver;2025-12-04 12:01;"";"";"";"";"";"";0,00;0,00;100;2025-11-10 12:23;"";"";;No;"";"Descripcin
+Historia de usuario:CTB-278 [MOB] Login - Formato de correo invlido
+Pasos para reproducir la incidencia:
+
+Pulsar sobre el campo de texto
+Introducir un correo invlido en el campo de texto (ejemplo: ""correo"", ""correo@"", ""correo@correo"", ""correo@correo."") y pulsar botn ""Iniciar sesin"".
+Resultado esperado:
+ Se muestra un ""tooltip"" con unmensajede error por formato de correo electrnico no vlido.
+
+Resultado obtenido
+ Acepta ""correo@correo""y no debera ya que no es un formato de correo vlido.
+Evidencia
+  Safari:
+ 
+ Chrome:
+ "
+465579;CTB QA;Tarea;457526;Nueva;Normal;B2C ? [DSK] Login y Recuperacin de contrasea ? Informe;Diana Vallina Canella;Alejandra Snchez Marta;2025-11-06 15:25;"";"";"";"";"";"";0,00;0,00;0;2025-11-06 15:25;"";"";"";No;"";"Se adjuntan los informes correspondientes a las pruebas del Login y Recuperacin de contrasea dentro del portal B2C en desktop, en el marco del proyecto CTB.
+"
+465568;CTB QA;Tarea;457526;Nueva;Normal;B2C ? [MOB] Calendario ? Informe;Laura Ovelleiro;Alejandra Snchez Marta;++34662652300:40;"";"";"";"";"";"";0,00;0,00;0;++34662652300:30;"";"";"";No;"";Se adjuntan los informes correspondientes a las pruebas delCalendariodentro del portalB2C en mobile,en el marco del proyectoCTB.
+465514;CTB QA;Tarea;457526;Nueva;Normal;B2C ? [MOB] Header ? Informe;Laura Ovelleiro;Alejandra Snchez Marta;++34662652300:40;"";"";"";"";"";"";0,00;0,00;0;++34662652300:16;"";"";"";No;"";Se adjuntan los informes correspondientes a las pruebas delHeaderdentro del portalB2C en mobile,en el marco del proyectoCTB.
+465455;CTB QA;Tarea;457526;Nueva;Normal;B2C ? [MOB] Footer ? Informe;Laura Ovelleiro;Alejandra Snchez Marta;++34662652300:41;"";"";"";"";"";"";0,00;0,00;0;++34662652300:49;"";"";"";No;"";"Se adjuntan los informes correspondientes a las pruebas delFooterdentro del portalB2C en mobile,en el marco del proyectoCTB.
+"
+465421;CTB QA;Incidencias;461100;Nueva;Normal;CTB-304 [DSK] Login ? Error de idioma en validacin campos Safari;Diana Vallina Canella;Alejandra Snchez Marta;2025-11-05 17:08;"";"";"";"";"";"";0,00;0,00;0;2025-11-05 17:08;"";"";;No;"";"Historia de usuario:
+CTB-304 [DSK] Login - Validacin de formato de correo electrnico
+Pasos para reproducir la incidencia:
+Acceder al portal B2C desde el navegador Safari.
+Hacer clic en el enlace ?Mi Cuenta? ubicado en el header.
+Introducir un correo sin el smbolo @ (ej. diana) o con @ pero sin texto despus (ej. diana@).
+Pulsar ?Iniciar sesin?.
+Resultado esperado:
+El sistema debera mostrar los mensajes de validacin en espaol, ya que el portal est configurado en ese idioma.
+Resultado obtenido:
+Los mensajes de validacin del campo de correo electrnico se muestran en ingls en el navegador Safari, a pesar de que el portal est en espaol.
+Evidencia:
+Entorno:
+mcprod
+Navegadores:
+Safari"
+465390;CTB QA;Tarea;457526;Nueva;Normal;B2C ? [DSK] Registro ? Informe;Diana Vallina Canella;Alejandra Snchez Marta;2025-11-06 15:25;"";"";"";"";"";"";0,00;0,00;0;2025-11-05 15:19;"";"";"";No;"";Se adjuntan los informes correspondientes a las pruebas del Registrodentro del portalB2C en desktop,en el marco del proyectoCTB.
+465387;CTB QA;Evolutivos;"";En curso;Normal;Mi perfil;Laura Ovelleiro;Alejandra Snchez Marta;2025-12-10 16:35;"";"";"";"";"";0,00;12,50;17,00;100;2025-11-05 14:52;"";"";;No;"";"Descripcin
+Comousuario logueado,
+quieroacceder a la seccin ""Mi perfil"",
+para consultar y gestionar mi informacin personal, boletn informativo y direcciones.
+
+Flujos de Usuario
+Flujo 1: Acceso a Mi perfil
+El usuario inicia sesin y abre el men desplegable del header.
+Selecciona la opcin ""Mi perfil"".
+Se muestra la pantalla ""Mi cuenta"" con las siguientes secciones:
+Informacin del contacto.
+Boletines informativos.
+Libreta de direcciones.
+Direccin de facturacin por defecto.
+Flujo 2: Modificar la informacin de contacto
+El usuario pulsa el enlace ""Editar"" en la seccin ""Informacin del contacto"".
+Se abre la pantalla con un formulario para poder modificar nombre, apellidos, correo y contrasea.
+Guarda los cambos pulsando el botn ""Guardar"".
+Se confirman los cambios y devuelve al usuario a la pantalla ""Mi perfil"".
+Si se ha modificado el nombre, apellidos y/o el correo, la seccin se muestra con los datos actualizados.
+Flujo 3: Suscripcin a boletines
+El usuario pulsa el enlace ""Editar"" en la seccin ""Boletines informativos"".
+Se le redirige a la pantalla ""Suscripcin al boletn informativo"" con las diferentes opciones de suscripcin disponibles.
+Selecciona las opciones a lasque deseasuscribirse.
+Guarda su seleccin al pulsar el botn ""Guardar"".
+Se confirman los cambios y devuelve al usuario a la pantalla ""Mi perfil"".
+Se actualiza la seccin mostrando las suscripciones a las que est inscrito el usuario.
+Flujo 4: Gestionar direcciones
+El usuario pulsa el enlace ""Gestionar direcciones"".
+Se le redirige a la pantalla ""Libreta de direcciones"" donde puede visualizar la direccin de facturacin por defecto, as como las direcciones aadidas a mayores.
+Si pulsa el enlace ""Cambiar la direccin de facturacin"":
+Redirige al usuario a la pantalla ""Editar direccin"" donde puede modificar los datos y guardarlos.
+Una vez confirmados, se actualizanen el sistema.
+Si pulsa el enlace ""Editar""de la libreta de direcciones:
+Redirige al usuario a la pantalla ""Editar direccin"" donde puede modificar los datos con la opcin para establecerla como direccin predetermiadahabilitada y guardar los cambios.
+Una vez confirmados, se actualizanen el sistema.
+Si pulsa el enlace ""Borrar"" de la libreta de direcciones:
+Aparece un cuadro de dilogo donde confirmar o cancelar la accin de borrar la direccin correspondiente.
+Si se pulsa ""OK"" aparece un mensaje confirmando la eliminacin de la direccin y se actualiza el sistema.
+Si se pulsa ""Cancelar"" no se elimina la direccin y la libreta se mantiene sin cambios.
+Flujo 5: Agregar una direccin
+El usuario pulsa el enlace ""Gestionar direcciones"".
+Se le redirige a la pantalla ""Libreta de direcciones"".
+Pulsa el botn ""Agregar nueva direccin"".
+Redirige al usuario a la pantalla ""Editar direccin"" donde puede modificar modificar los datos con la opcin para establecerla como direccin predeterminadahabilitada y guardar los cambios.
+Una vez confirmados, se actualizanen el sistema aadiendo la direccin a la libreta, y, si se hubiese seleccionado la opcin para estableerla como predeterminada, tambin se actualizara en la seccin.
+Flujo 6: Editar la direccin de facturacin por defecto
+En la seccin ""Direccin de facturacin por defecto"" se muestranlos datos personalesy la direccin de la facturacin por defecto insertada.
+El usuario pulsa el enlace ""Editar direccin"".
+Se le redirige a la pantalla ""Editar direccin"".
+Modifica los datos del formulario completando como mnimo los campos obligatorios de forma correcta.
+Guarda los cambios pulsando ""Guardar direccin"".
+Se confirman los cambios y devuelve al usuario a la pantalla ""Mi perfil"".
+Se actualiza la seccin mostrando la direccin por defecto modificada.
+
+Criterios de aceptacin
+La pantalla ""Mi cuenta"" muestra las cuatro secciones con ttutos, texto y enlaces visibles.
+El enlace ""Editar"" de la seccin ""Informacin del contacto"" redirige a la pantalla de modificacin con los datos actuales autorrellenados.
+El enlace ""Editar"" de la seccin ""Boletines informativos"" redirige a la pantalla donde suscripcin con las opciones disponibles.
+El enlace ""Gestionar direcciones"" redirige a la pantalla donde poder visualizar y modificar las direcciones del usuario.
+El enlace ""Editar direccin"" redirige a la pantalla donde modificar la direccin de facturacin por defecto.
+Al modificar y guardar los cambios en cualquier pantalla, el sistema muestra un mensaje de confirmacin y vuelve a ""Mi cuenta"" con los datos actualizados.
+Se cumplen las siguientes validaciones:
+Los campos de texto obligatorios no pueden estar vacos.
+El correo debe tener un formato vlido.
+La contrasea cumple con los requisitos (nmero mnimo de caracteres, etc.).
+Se informa al usuario mediante un toolbar sobre un icono lo que conlleva la opcin ""permitir la asistencia remota en compras"".
+La seleccin/deseleccin de la opcin ""Cambiar correo"" o ""Cambiar la contrasea"" en la pantalla ""Informacin de la cuenta"" muestra/oculta los campos relacionados con la opcin correspondiente.
+
+Casos de test (WIP)
+PER01: Modificacin de informacin del contacto
+Dado que el usuario completa todos los campos obligatorios correctamente,
+cuando pulsa ?Guardar?,
+entonces se guardan los cambios realizados y actualizan en el sistema.
+PER02: Suscripcin en boletines informativos
+Dado que el usuario selecciona las suscripciones a las que quiere inscribirse,
+cuando pulsa ?Guardar?,
+entonces se guardan los cambios realizados y actualizan en el sistema.
+PER03: Modificacin de la direccin de facturacin por defecto
+Dado que el usuario completa todos los campos obligatorios correctamente,
+cuando pulsa ?Guardar direccin?,
+entonces se guardan los cambios realizados y actualizan en el sistema.
+PER04: Agregar una nueva direccin
+Dado que el usuario completa todos los campos obligatorios correctamente,
+cuando pulsa ?Guardar direccin?,
+entonces se guardan los cambios realizados y actualizan en el sistema.
+PER05: Validacin de correo
+Dado que el usuario introduce un correo con formato incorrecto,
+cuando intenta guardarlo,
+entonces se muestra un mensaje de error indicando que el correo no es vlido.
+PER06: Validacin de contrasea
+Dado que la contrasea no cumple los criterios de seguridad,
+cuando el usuario intenta guardarla,
+entonces se muestra un mensaje de error.
+PER07: Contrasea actual errnea
+Dado que la contrasea actual no coincide con la registrada,
+cuando el usuario intenta guardar al modificar el correo,
+entonces se muestra un mensaje de error y no permite guardar los cambios.
+PER08: Campos obligatorios vacos
+Dado que el usuario deja uno o ms campos obligatorios sin completar,
+cuando intenta guardar los cambios,
+entonces se muestra un mensaje de error indicando que son obligatorios y no permite guardar los cambios.
+PER09: Cancelar borrar la direccin
+Dado que el usuario pulsa el botn ""Borrar"" de una direccin en la libreta,
+cuando pulsa ""Cancelar"" en el cuadro de dilogo de confirmacin,
+entonces la direccin no se borra y se mantiene en la libreta sin cambios.
+PER10: Eliminar una direccin
+Dado que el usuario pulsa el botn ""Borrar"" de una direccin en la libreta,
+cuando pulsa ""OK"" en el cuadro de dilogo de confirmacin,
+entonces la direccin se elimina y se actualiza en el sistema.
+PER11: Confirmacin de contrasea nueva
+Dado que la contrasea nueva y la confirmacin no coinciden,
+cuando el usuario intenta guardar los datos modificados,
+entonces se muestra un mensaje de error.
+PER12: Mostrar campos al seleccionar ""Cambiar la contrasea""y/o ""Cambiar correo electrnico""
+Dado que el usuario quiere modificar la contrasea y/o el correo,
+cuando pulsa la opcin ""Cambiar la contrasea"" y/o ""Cambiar correo electrnico"",
+entonces se muestran los campos necesarios para el proceso.
+PER13: Ocultar campos al deseleccionar ""Cambiar la contrasea""y/o ""Cambiar correo electrnico""
+Dado que el usuario no quiere modificar la contrasea y/o el correo,
+cuando pulsa la opcin ""Cambiar la contrasea"" y/o ""Cambiar correo electrnico"" estando previamente pulsados,
+entonces se ocultan los campos relacionados con la opcin correspondiente."
+465349;CTB QA;Incidencias;457530;Nueva;Normal;CTB-1 [DSK] Header ? En Safari aparece una ?X? en el campo del buscador;Diana Vallina Canella;Javier Lpez Girela;2025-11-20 11:59;"";"";"";"";"";"";0,00;0,00;0;2025-11-05 13:22;"";"";;No;"";"Historia de usuario:
+CTB-1 [DSK] Header visible
+Pasos para reproducir la incidencia:
+Acceder al portal B2C desde el navegador Safari.
+Localizar el buscador en el header.
+Observar el campo donde se introduce el trmino de bsqueda.
+Resultado esperado:
+El campo de bsqueda debe mostrarse limpio, sin iconos adicionales que no estn definidos en el diseo.
+Resultado obtenido:
+En Safari, aparece una ?X? dentro del campo de bsqueda, similar a la que se usa para borrar texto, aunque no se haya escrito nada. Este icono no est contemplado en el diseo.
+Evidencia:
+Entorno:
+mcprod
+Navegadores:
+Safari"
+464927;CTB QA;Incidencias;461100;Pendiente;Normal;CTB-300 [DSK] Login - Mensajes de error en ingls al dejar campos vacos;Diana Vallina Canella;Juan Martinez Oliver;2025-11-21 13:04;"";"";"";"";"";"";0,00;0,00;90;2025-11-03 17:20;"";"";;No;"";"Historia de usuario:CTB-300 [DSK] Login - Campos obligatorios
+
+Pasos para reproducir la incidencia:
+Acceder al portal B2C y hacer clic en el enlace ?Mi Cuenta? ubicado en el header.
+Rellenar el campo de correo y dejar vaco el campo de contrasea.
+Hacer clic en el botn ?Iniciar sesin?.
+Rellenar el campo de contrasea y dejar vaco el campo de correo.
+Hacer clic en el botn ?Iniciar sesin?.
+Resultado esperado:
+Se muestra un mensaje de error indicando que se debe completar el campo correspondiente, en el idioma del portal (espaol).
+Resultado obtenido:
+En el navegador Safari, los mensajes de error se muestran en ingls, aunque el idioma del portal es espaol.
+Evidencia:
+Entorno:mcprod
+Navegadores:Safari"
+464599;CTB QA;Incidencias;461100;Cerrada;Normal;CTB-304 [DSK] Login ? No se valida el dominio en el campo de correo electrnico;Diana Vallina Canella;Juan Martinez Oliver;2025-12-01 09:40;"";"";"";"";"";"";10,00;10,00;100;2025-10-31 13:30;2025-11-25 16:50;"";;No;"";"Historia de usuario:CTB-304 [DSK] Login - Validacin de formato de correo electrnico
+Pasos para reproducir la incidencia:
+Acceder al portal B2C y hacer clic en el enlace ?Mi Cuenta? ubicado en el header.
+Introducir una direccin de correo electrnico incompleta, sin dominio (ej. diana@hotmail) y una contrasea cualquiera.
+Hacer clic en el botn de iniciar sesin.
+Resultado esperado:
+El sistema debera mostrar sobre el campo un mensaje de error indicando que la direccin de correo electrnico est incompleta, validando que falta el dominio (por ejemplo, "".com"", "".es"", etc.) antes de permitir el intento de inicio de sesin.
+Resultado obtenido:
+El sistema permite intentar iniciar sesin con una direccin de correo electrnico sin dominio. Posteriormente, muestra un error indicando que la cuenta no est activa, pero no valida el formato incorrecto en el campo de correo como en los casos anteriores.
+Evidencia:
+Entorno:mcprod
+Navegadores:Chrome, Firefox, Edge, Safari"
+463317;CTB QA;Evolutivos;"";En curso;Normal;Favoritos;Laura Ovelleiro;Alejandra Snchez Marta;2025-11-05 10:29;"";"";"";"";"";0,00;0,00;0,00;0;2025-10-25 17:38;"";"";;No;"";"Descripcin
+Comousuario del sitio,
+quierovisualizar, editar y gestionar los productos agregados a mi lista de deseos,
+para quepueda revisar losproductosque me interesan sin tener que buscarlos de nuevo y facilitar mi proceso de compra cuando quiera adquirirlos.
+Diseos
+Diseo responsivo que se adapte a cualquier dispositivo, de forma fluida.
+Interfaz clara con botones de accin visibles (eliminar, compartir la lista, acceder al detalle del producto).
+Visualizacin de nmero de productos en la lista y precios.
+Flujos de negocio/funcionales
+Flujo 1: Aadir productos a la lista de deseos
+El sistema permite aadir productos a la lista de deseos slo si el usuario ha iniciado sesin.
+De no estar logueadoel usuario, se le redirigea la pantalla de ""Login"" para que se registre o inicie sesin y as poderutilizar la funcionalidad.
+Flujo 2: Visualizacin de productos
+El usuario accede a la lista de deseosy visualizatodos los productos aadidos con su imagen, nombre yprecio.
+Flujo 3: Gestin de productos
+El usuario puedeeliminar productos, acceder al detalle del productoo moverlos al carrito de la compra.
+Flujo 4: Compartir la lista de deseos
+El usuario puede compartir la lista con los productos que ha aadido.
+Flujo 5: Continuar navegando
+El usuario puede volver a la tienda sin perder el contenido de la lista de deseos.
+Criterios de aceptacin
+El sistema de favoritos est disponible nicamente para usuarios logueados.
+Se debe mostrar correctamente la imagen, nombre yprecio decada producto y el nmero total de productos aadidos a la lista.
+Las acciones de eliminar, acceder al detalle del producto y compartir el listado deben reflejarse en tiempo real.
+El listado debe actualizarse automticamente ante cualquier cambio.
+El diseo debe ser completamente responsivo.
+Casos de test (WIP)
+FAVO01: Visualizacin de productos en la lista de deseos
+Dado que el usuario ha aadido productos a la lista de deseos,
+cuando accede a la seccin ?Mi lista de deseos?,
+entonces se muestran los productos con su detalle completo (imagen, nombre y precio).
+FAVO02: Eliminacin de productos de la lista de deseos
+Dado que el usuario tiene productos en la lista de deseos,
+cuando se pulsa el botn ""Eliminar"" en uno de ellos,
+entonces el producto se elimina de la lista y se actualiza la vista.
+FAVO03: Mover productos al carrito desde la lista de deseos
+Dado que el usuario tiene productos en la lista de deseos,
+cuando se pulsa el botn ""Aadir al carrito"" en uno de ellos,
+entonces el producto se mueve a la cesta de compra y se elimina de la lista de deseos.
+FAVO04: Compartir la lista de deseos
+Dado que el usuario tiene productos en la lista de deseos,
+cuando se pulsa el botn ""Compartir favoritos"",
+entonces se muestran las opciones para compartir (RRSS, enlace, mail).
+FAVO05: Acceso limitado a usuarios logueados
+Dado que el usuario no ha iniciado sesin,
+cuando intenta aadir un producto a la lista de deseos,
+entonces el sistema redirige al usuario a la pantalla de inicio de sesin."
+462411;CTB QA;Incidencias;458236;En curso;Normal;"CTB-162 [MOB] Cards - Botn ""Favoritos"" no se marca";Laura Ovelleiro;Jael Masllorens;2025-12-04 12:02;"";"";"";"";"";"";27,50;27,50;90;2025-10-21 10:10;"";"";;No;"";"Historia de usuario:CTB-162 [MOB] Cards - Botn ""Favoritos""
+Pasos para reproducir la incidencia:
+
+Sin estar logueado el usuario, pulsar sobre el botn ""favoritos"" representado con un icono de un corazn.
+Logueado el usuario, pulsar sobre el botn ""favoritos"" representado con un icono de un corazn.
+Resultado esperado:
+
+ Al estar logueado, aade el producto a la lista de deseos, indicndolo cambiando el diseo del botn ""favorito"".
+ Aparece un snackbar notificando que el producto se ha agregado correctamente a la lista de deseos.
+
+Resultado obtenido
+
+ No presenta la animacin o el cambio de diseo del botn. No queda marcado cuando se vuelve a la pantalla que est aadido.
+Evidencia
+  Safari:
+"
+462384;CTB QA;Incidencias;458236;Resuelta;Normal;CTB-121 [MOB] Cards - Tamao diferente;Laura Ovelleiro;Juan Martinez Oliver;2025-12-04 12:08;"";"";"";"";"";"";0,00;0,00;100;2025-10-21 09:27;"";"";;No;"";"Historia de usuario:CTB-121: [MOB] Cards - Visualizacin
+Pasos para reproducir la incidencia:
+
+Visualizar la card del carrusel.
+Resultado esperado:
+  El diseo presenta dos zonas diferenciadas separadas por, aproximadamente, la mitad de la altura de la card:
+Parte superior:
+Imagen del producto de fondo.
+Etiqueta de descuento en la parte izquierda.
+Etiqueta de beneficio debajo de la de descuento, si presenta.
+Botn de lista de deseos/favoritos.
+Parte inferior:
+Texto ""Cancelacin gratuita"" + "" |"" + duracin.
+Ttulo en negrita.
+Precio en rojo y negrita.
+Botn ""flecha"" en la esquina derecha.
+  Todas las cards presentan el mismo tamao, diseo y formato.
+Resultado obtenido
+
+  No presentan todas las cards el mismo tamao.
+Evidencia
+  Safari:
+   
+ "
+462375;CTB QA;Incidencias;458236;Resuelta;Normal;CTB-117 [MOB]  No permite deslizar ;Laura Ovelleiro;Juan Martinez Oliver;2025-12-04 12:09;"";"";"";"";"";"";0,00;0,00;100;2025-10-21 09:15;"";"";;No;"";"Historia de usuario:CTB-117 [MOB] Carrusel de cards
+Pasos para reproducir la incidencia:
+
+Partiendo de la posicin inicial, deslizar hacia la derecha hasta el lmite derecho.
+Deslizar hacia la izquierda hasta el lmite izquierdo del carrusel.
+
+Resultado esperado:
+
+Al no haber ms cards a la derecha de la final, no permite avanzar ms all de la ltima card.
+Al no haber ms cards a la izquierda de la inicial, no permite retroceder ms all de la primera card.
+Resultado obtenido
+
+ No permite deslizar de un lado a otro en el carrusel.
+"
+462330;CTB QA;Tarea;457526;Nueva;Normal;B2C ? [DSK] Home ? Informe;Diana Vallina Canella;Jael Masllorens;2025-10-23 13:50;"";"";"";"";"";"";0,00;0,00;0;2025-10-20 17:37;"";"";"";No;"";Se adjuntan los informes correspondientes a las pruebas de la Home dentro del portalB2C en desktop,en el marco del proyectoCTB.
+462329;CTB QA;Tarea;457526;Nueva;Normal;B2C ? [DSK] Header ? Informe;Diana Vallina Canella;Jael Masllorens;2025-10-23 13:50;"";"";"";"";"";"";0,00;0,00;0;2025-10-20 17:36;"";"";"";No;"";Se adjuntan los informes correspondientes a las pruebas del Header dentro del portalB2C en desktop,en el marco del proyectoCTB.
+462320;CTB QA;Incidencias;458236;Cerrada;Normal;CTB-154 [DSK] Secciones Destacadas ? Falta imagen por defecto en productos sin imagen;Diana Vallina Canella;Juan Martinez Oliver;2025-11-25 16:58;"";"";"";"";"";"";0,00;0,00;100;2025-10-20 16:56;2025-11-25 16:58;"";;No;"";"Historia de usuario:
+CTB-154 [DSK] Secciones Destacadas ? Producto sin imagen
+Pasos para reproducir la incidencia:
+Acceder al portal B2C.
+Localizar la seccin destacada en la Home.
+Identificar un producto que no disponga de imagen asignada.
+Resultado esperado:
+Se muestra la imagen por defecto (placeholder) segn el diseo establecido.
+Resultado obtenido:
+En lugar de la imagen por defecto, se visualiza un espacio vaco con el icono de imagen rota y el nombre.
+Navegadores afectados:
+Chrome, Firefox, Edge y Safari.
+Evidencia:"
+462267;CTB QA;Incidencias;458236;Bloqueada;Normal;CTB-116 [MOB] Faltan apartados;Laura Ovelleiro;Jael Masllorens;2025-12-10 11:18;"";"";"";"";"";"";0,00;0,00;0;2025-10-20 14:21;"";"";;No;"";"Historia de usuario:CTB-112 [MOB] Visualizacin
+Pasos para reproducir la incidencia:
+
+  Visualizar la seccin ""secciones destacadas"".
+Resultado esperado:
+  Presenta los siguientes apartados en orden:
+Barcelona Cards
+Estrellas del momento
+Empieza tu aventura
+Que no se te escape
+Descuentos que inspiran
+  Para cada una se cumple el siguiente formato:
+Ttulo del apartado alineado a la izquierda y en negrita
+Carrusel de cards horizontal
+Puntos indicadores alineados a la izquierda y a la derecha dos botones con iconos de ""flechas"" para avanzar o retroceder
+Resultado obtenido
+
+ Faltan apartados con sus respectivos carruseles, est incompleto.
+Evidencia
+  Safari:
+ 
+ Chrome:
+ "
+462214;CTB QA;Incidencias;458236;Desestimada;Normal;CTB - 113 [MOB] Campo de entrada con respuesta incorrecta;Laura Ovelleiro;Juan Martinez Oliver;2025-12-04 08:52;"";"";"";"";"";"";0,00;0,00;0;2025-10-20 11:56;2025-11-17 11:24;"";;No;"";"Historia de usuario:CTB-113 [MOB] Campo de entrada
+Pasos para reproducir la incidencia:
+
+Visualizar el campo de entrada
+Pulsar sobre el campo de entrada.
+Seleccionar la/s fecha/s en el calendaio y aplicar.
+Resultado esperado:
+
+Al pulsar sobre el campo de entrada, redirige a la pantalla corresponte al calendario, pudiendo seleccionar fechas y una vez aplicadas, aparezcan en el campo de entrada.
+Resultado obtenido
+
+ Aparece un cuadro de dilogo encima del campo de entrada, adems no permite seleccionar ni aplicarfecha/s, por lo que tampoco aparece en el campo de entrada.
+Evidencia
+  Safari:
+   
+ Chrome:
+   
+  "
+462188;CTB QA;Incidencias;458236;Cerrada;Normal;CTB-147 [DSK] Secciones Destacadas ? Visualizacin incorrecta de tarjetas en Safari;Diana Vallina Canella;Juan Martinez Oliver;2025-11-25 17:02;"";"";"";"";"";"";0,00;0,00;100;2025-10-20 10:37;2025-11-25 17:02;"";;No;"";"Historia de usuario: CTB-147 [DSK] Secciones Destacadas ? Visualizacin general
+Pasos para reproducir la incidencia:
+Acceder al portal B2C en Safari.
+Localizar la seccin destacada (carrusel) en la Home.
+Comprobar todas las tarjetas y su altura visual.
+Resultado esperado:
+Todas las tarjetas deben mantener una altura uniforme, mostrando correctamente la imagen asociada o un placeholder genrico si no hay imagen.
+Las tarjetas deben mantenerse alineadas independientemente de la disponibilidad de imagen.
+Resultado obtenido:
+Algunas tarjetas sin imagen se muestran ms altas que las dems, generando desalineamiento en la visualizacin general.
+Esto solo ocurre en Safari.
+Recomendaciones / sugerencias:
+Podra considerarse mostrar un placeholder genrico para tarjetas sin imagen, con el fin de mantener la consistencia visual.
+Revisar la altura uniforme de las tarjetas para que la experiencia visual sea consistente entre todas.
+En Chrome y otros navegadores, actualmente la ausencia de imagen no afecta la altura, pero igualmente se podra valorar el uso de un placeholder.
+Evidencia:
+Entorno: mcprod
+Navegadores: Safari"
+462128;CTB QA;Incidencias;458236;Cerrada;Normal;CTB-159 [DSK] Calendario - Botn Cancelar ? Error al mostrar fechas seleccionadas;Diana Vallina Canella;Jael Masllorens;2025-11-05 13:06;"";"";"";"";"";"";0,00;0,00;100;2025-10-20 08:31;2025-11-05 13:06;"";;No;"";"Historia de usuario: CTB-159 [DSK] Calendario ? Botn Cancelar
+Pasos para reproducir la incidencia:
+Acceder al portal B2C y desplegar el calendario del buscador del header.
+Seleccionar un da o un rango de fechas en el calendario.
+Hacer clic en el botn ?Cancelar?.?
+Resultado esperado:
+El calendario se cierra y las fechas seleccionadas no deben aparecer reflejadas en el buscador.
+Resultado obtenido:
+Las fechas seleccionadas se muestran en el buscador aunque se haya cancelado la seleccin.
+Evidencia:
+?
+Entorno: mcprod
+Navegadores: Chrome Desktop, Firefox, Edge."
+462018;CTB QA;Incidencias;457530;Cerrada;Normal;CTB-125 [DSK] ? Men hamburguesa ? Enlace ?Inicia sesin o regstrate? ? Redireccin incorrecta para usuario no autenticado;Diana Vallina Canella;Jael Masllorens;2025-11-25 17:12;"";"";"";"";"";"";12,00;12,00;100;2025-10-17 13:04;2025-11-25 17:12;"";;No;"";"Historia de usuario:
+CTB-125 [DSK] Men hamburguesa ? Enlace ?Inicia sesin o regstrate? ? Usuario no autenticado
+Pasos para reproducir la incidencia:
+Acceder al portal B2C y desplegar el men hamburguesa.
+Hacer clic en el enlace ?Inicia sesin o regstrate?.
+Iniciar sesin con credenciales vlidas.
+Resultado esperado:
+El usuario accede correctamente a la seccin ?Mi cuenta?.
+Resultado obtenido:
+En lugar de acceder a la seccin ?Mi cuenta?, el usuario es redirigido a la home. Adems, se muestra momentneamente un mensaje emergente con el texto ?No encontrado?.
+Evidencia:
+Entorno:
+mcprod
+Navegadores:
+Chrome, Edge, Firefox, Safari
+Observaciones:
+El mensaje emergente ?No encontrado? aparece momentneamente al iniciar sesin. La redireccin no cumple con el comportamiento esperado."
+462017;CTB QA;Incidencias;458236;Nueva;Normal;CTB-110 [MOB] Texto indebido;Laura Ovelleiro;Juan Martinez Oliver;2025-12-04 08:51;"";"";"";"";"";"";0,00;0,00;100;2025-10-17 13:03;"";"";;No;"";"Historia de usuario:CTB-110 [MOB] Visualizacin
+Pasos para reproducir la incidencia:
+  Visualizar seccin ""Explora nuestras categoras"".
+Resultado esperado:
+  
+  Presenta un ttulo en negrita y, a continuacin, un grid con las diferentes categoras disponibles.
+  El formato de las cards es el siguiente:
+Imagen representativa
+Ttulo en blanco y negrita en la parte inferior izquierda alineado a ese mismo lado.
+Icono de una ""flecha""en la parte inferior derecha.
+?
+Resultado obtenido
+
+  Aparece el texto ""Adobe Target"" que no debera.
+Evidencia
+  Chrome:
+  
+ Safari:
+"
+462014;CTB QA;Incidencias;458236;Resuelta;Normal;CTB-109 [MOB] Imagen no visible ;Laura Ovelleiro;Juan Martinez Oliver;2025-12-04 08:50;"";"";"";"";"";"";7,00;7,00;100;2025-10-17 12:50;"";"";;No;"";"Historia de usuario:CTB-109 [MOB] Imagen no visible
+Pasos para reproducir la incidencia:
+  Visualizar la imagen.
+Resultado esperado:
+  
+  Aparece una imagen con el formato correcto,con el tamao y la definicin adecuada.
+  Presenta un degradado azul tanto en la partte superior como inferior.
+Resultado obtenido
+
+  No aparece la imagen.
+Evidencia
+  Chrome:
+
+  
+ Safari:
+? 
+  "
+461919;CTB QA;Incidencias;458236;Resuelta;Normal;CTB-100 [MOB] Posible seleccin de fecha anterior a la actual;Laura Ovelleiro;Jael Masllorens;2025-12-04 08:49;"";"";"";"";"";"";1,00;1,00;100;2025-10-16 23:56;"";"";;No;"";"Historia de usuario:CTB-100 [MOB] Seleccin de fecha anterior a la actual
+Pasos para reproducir la incidencia:
+  Seleccionar un da anterior al actual.
+Resultado esperado:
+  No es posible seleccionar la fecha.
+Resultado obtenido
+
+  Estando a 9 de octubre de 2025 me permite seleccionar y aplicar una fecha anterior y no debera de ser posible.
+Evidencia
+  Chrome:
+  
+  
+
+  Safari:
+?
+  
+"
+461918;CTB QA;Incidencias;458236;Resuelta;Normal;CTB-100 [MOB] Posible seleccionar mes anterior al actual;Laura Ovelleiro;Jael Masllorens;2025-12-04 08:49;"";"";"";"";"";"";2,00;2,00;100;2025-10-16 23:49;"";"";;No;"";"Historia de usuario:CTB-100 [MOB] Seleccin de mes anterior al actual
+Pasos para reproducir la incidencia:
+   Pulsar el botn ""Anterior"".
+Resultado esperado:
+  El mnimo mes que aparece en la pantalla en la parte superior corresponde al mes actual. No muestra meses anteriores.
+Resultado obtenido
+  Estando en octubre, al pulsar el botn ""Anterior"", en la pantalla aparecen los dos meses anteriores, y no debera poderse.
+Evidencia
+  Safari:
+  
+ Chrome:
+ 
+  "
+461917;CTB QA;Incidencias;458236;Resuelta;Normal;"CTB-97 [MOB]  Botn ""Cancelar"" aplica ";Laura Ovelleiro;Jael Masllorens;2025-12-04 08:48;"";"";"";"";"";"";2,50;2,50;100;2025-10-16 23:41;"";"";;No;"";"Historia de usuario:CTB-97 [MOB] Botn ""Cancelar""
+Pasos para reproducir la incidencia:
+  Pulsar el botn ""Cancelar"".
+Resultado esperado:
+  Al pulsar el botn ""Cancelar"", la nueva fecha seleccionada diferente a la que estaba establecida no debera aplicarse, se cierra la pantalla del calendario y vuelve a la pgina de la que se parta manteniendo la fecha inicial.
+?
+Resultado obtenido
+  Al pulsar el botn ""Cancelar"" la nueva fecha seleccionada diferente a la que estaba establecida no debera aplicarse y debera mantenerse la inicial, pero al pulsar el botn se modifica.
+Evidencia
+  
+  Chrome:
+  
+ 
+  Safari:
+  
+
+"
+461916;CTB QA;Incidencias;"";Resuelta;Normal;CTB-96 [MOB] Error das sueltos;Laura Ovelleiro;Jael Masllorens;2025-10-28 10:11;"";"";"";"";"";"";1,00;1,00;100;2025-10-16 22:56;"";"";;No;"";"Historia de usuario:CTB-96 [MOB] Botn ""Aplicar""
+Pasos para reproducir la incidencia:
+
+Sin seleccionar una/sfecha/s pulsar el botn ""Aplicar"".
+Seleccionar una/s fecha/s.
+Pulsar el botn ""Aplicar"".
+Resultado esperado:
+  2. El botn ""Aplicar"" cambia de fondo de color a rojo.
+  3.La/s fecha/s seleccionada/s se establecen como filtro de bsqueda en ese da o rango.
+?
+Resultado obtenido
+  2. Si solo se pulsa una vez un da, el botn ""Aplicar"" sigue sin funcionalidad, pero si se pulsa dos veces el mismo da ya se activa, por eso si se elige un rango no hay problema (porque ya se pulsa dos veces un da del calendario).
+  3.Si se selecciona solo un da, te lo guarda como rango en el mismo da. Debera aparecer slo el da en solitario. En el rango de das funciona bien.
+Evidencia
+  2.
+    Chrome:
+    
+    Safari:
+   
+ 3.
+  Safari:
+  
+ Chrome:
+  ?"
+461915;CTB QA;Incidencias;458236;Resuelta;Normal;CTB-93 [MOB]  Header del calendario oculto;Laura Ovelleiro;Juan Martinez Oliver;2025-12-04 08:47;"";"";"";"";"";"";5,50;5,50;100;2025-10-16 22:39;"";"";;No;"";"
+Historia de usuario:CTB-93 [MOB] Visualizacin
+Pasos para reproducir la incidencia:
+
+Visualizar la pantalla del calendario.
+Visualizar el diseo del calendario.
+Resultado esperado:
+ Presenta el siguiente diseo:
+Header: con ttulo alineado a la izquierda y botn de cerrar la pantallaa la derecha.
+Chips de opciones con fechas predefinidas (hoy, maana, etc.) alineados a la izquierda.
+Calendario.
+Botones en la zona inferior: ""Cancelar"" y ""Aplicar"".
+Resultado obtenido
+ No se visualiza correctamente, el header queda oculto.
+Evidencia
+ Safari:
+  
+ Chrome:
+ "
+461914;CTB QA;Incidencias;457530;Bloqueada;Normal;"CTB-33 [MOB] Botn ""Idioma""";Laura Ovelleiro;Jael Masllorens;2025-12-09 14:52;"";"";"";"";"";"";0,00;0,00;0;2025-10-16 22:24;"";"";;No;"";"Historia de usuario:CTB-33 [MOB] Botn ""Idioma""
+Pasos para reproducir la incidencia:
+
+Pulsar el botn de idiomas representado con un icono ""planeta"".
+Seleccionar idioma.
+Resultado esperado:
+
+Despliegue de un men con los idiomas disponibles.
+El texto del portal B2C se actualiza al idioma seleccionado y se sigue visualizando de forma correcta.
+Resultado obtenido
+ Al cambiar de idioma no se actualiza en la pgina.
+Evidencia
+"
+461778;CTB QA;Incidencias;457530;Cerrada;Normal;CTB-131 [DSK] ? Buscador mantiene error de longitud mnima tras intento invlido con filtro de fechas;Diana Vallina Canella;Jael Masllorens;2025-11-05 13:04;"";"";"";"";"";"";1,00;1,00;100;2025-10-16 17:43;2025-11-05 13:04;"";;No;"";"Historia de usuario:
+CTB-131 [DSK] Buscador ? Filtro por fechas tras error longitud
+Pasos para reproducir la incidencia:
+Acceder al portal B2C.
+Aplicar un filtro de fechas o seleccionar un rango de fechas en el buscador.
+Introducir un trmino de bsqueda con menos de 3 caracteres y hacer clic en ?Buscar?.
+Introducir un trmino de bsqueda con 3 o ms caracteres y hacer clic en ?Buscar?.
+Resultado esperado:
+La bsqueda con trmino vlido (?3 caracteres) se realiza correctamente, mostrando los resultados correspondientes al trmino y al filtro aplicado.
+Resultado obtenido:
+Tras introducir un trmino de menos de 3 caracteres, se muestra el mensaje de validacin. Al introducir un trmino vlido posteriormente, el buscador contina mostrando el mensaje de error ?Longitud mnima de consulta de bsqueda es 3? y no realiza la bsqueda correctamente.
+Evidencia:
+Entorno:
+mcprod
+Navegadores:
+Chrome, Edge, Firefox, Safari"
+461742;CTB QA;Incidencias;459577;Resuelta;Normal;CTB-77: [MOB] Visualizacin ;Laura Ovelleiro;Jael Masllorens;2025-12-04 08:45;"";"";"";"";"";"";0,00;0,00;100;2025-10-16 15:45;"";"";;No;"";"Descripcin
+Historia de usuario:CTB-77: [MOB] Visualizacin
+Pasos para reproducir la incidencia:
+
+Visualizar el tercer bloque
+Resultado esperado:
+
+ Aparecen el copyright con el titular de los derechos""Turisme de Barcelona""y, a continuacin,los siguientes enlaces:
+Informacin legal.
+Poltica de privacidad.
+Sistema interno de informacin.
+Otras webs.
+Condiciones de compra.
+Mapa web.
+Accesibilidad.
+ Todos siguen el mismo patrn: ""enlace"" subrayado y alineado a la izquierda.
+Resultado obtenido
+ Falta el enlace ""Condiciones de compra""."
+461723;CTB QA;Incidencias;457530;Bloqueada;Normal;CTB-128 [DSK] ? Dropdown multiidioma en men hamburguesa muestra error al cambiar idioma;Diana Vallina Canella;Jael Masllorens;2025-12-10 11:27;"";"";"";"";"";"";0,00;0,00;0;2025-10-16 14:12;"";"";;No;"";"CTB-128 [DSK] ? Dropdown multiidioma en men hamburguesa muestra error al cambiar idioma
+Historia de usuario:
+CTB-128 [DSK] Men hamburguesa ? Dropdown multiidioma
+Pasos para reproducir la incidencia:
+Acceder al portal B2C y desplegar el men hamburguesa.
+Hacer clic en el dropdown multiidioma dentro del apartado Perfil y seleccionar un idioma distinto al actual.
+Resultado esperado:
+El sitio debe cambiar correctamente al idioma seleccionado y actualizar la interfaz segn corresponda.
+Resultado obtenido:
+Aparece un mensaje emergente con el texto ""Not Found"" y el idioma no se actualiza.
+Evidencia:
+Entorno:
+mcprod
+Navegadores:
+Chrome, Edge, Firefox, Safari"
+461445;CTB QA;Incidencias;457530;Cerrada;Normal;CTB-124 [DSK] ? Men hamburguesa: apartado ?Explorar? no se muestra;Diana Vallina Canella;Juan Martinez Oliver;2025-11-25 17:15;"";"";"";"";"";"";0,00;0,00;100;2025-10-15 17:12;2025-11-25 17:15;"";;No;"";"Historia de usuario:CTB-124 [DSK] Men hamburguesa ? Apartado Explorar
+Pasos para reproducir la incidencia:
+Acceder al portal B2C.
+Hacer clic en el icono de men hamburguesa.
+Resultado esperado:
+El apartado Explorar debe mostrarse correctamente, incluyendo las tarjetas con todas las categoras:
+Arte y Cultura
+Aventura y Aire Libre
+Movilidad y Servicios
+Gastronoma
+Msica y Espectculos
+Barcelona Card
+Resultado obtenido:
+El apartado Explorar no se visualiza al desplegar el men hamburguesa.
+Evidencia:
+Entorno:
+mcprod
+Navegadores:
+Chrome, Edge, Firefox, Safari"
+461435;CTB QA;Incidencias;457530;En curso;Normal;CTB-8 [DSK] ? Logo ?Visit Barcelona? desaparece momentneamente al navegar y volver a la home;Diana Vallina Canella;Juan Martinez Oliver;2025-10-31 10:00;"";"";"";"";"";"";2,00;2,00;0;2025-10-15 16:27;"";"";;No;"";"Historia de usuario:CTB-8 [DSK] Logo ?Visit Barcelona Tickets?
+Pasos para reproducir la incidencia:
+Acceder al portal B2C.
+Navegar por cualquier enlace del portal (por ejemplo, ?Visit Barcelona?, ?Tickets?, etc.).
+Hacer clic en el logo ?Visit Barcelona Tickets? del header para volver a la home.
+Resultado esperado:
+Al hacer clic en el logo ?Visit Barcelona Tickets?, se redirige a la home del portal y el enlace?Visit Barcelona"" permanece visible en todo momento.
+Resultado obtenido:
+Al hacer clic en el logo ?Visit Barcelona Tickets?, la muestra la home, pero el logo ?Visit Barcelona"" desaparece momentneamente antes de mostrarse de nuevo.
+Evidencia:
+Entorno:
+mcprod
+Navegadores:
+Chrome, Firefox, Safari"
+461330;CTB QA;Incidencias;457530;En curso;Normal;CTB-7 [DSK] ? Enlace activo en el header no se resalta al hacer clic;Diana Vallina Canella;Jael Masllorens;2025-10-27 11:09;"";"";"";"";"";"";2,00;2,00;90;2025-10-14 17:41;"";"";;No;"";"Historia de usuario: CTB-7 [DSK] Enlace activo resaltado
+Pasos para reproducir la incidencia:
+Acceder al portal B2C en entorno mcprod.
+Hacer clic en uno de los enlaces de ?Barcelona Turisme? del header (Visit Barcelona, Tickets, Professionals, Barcelona Convention Bureau o Quines somos).
+Resultado esperado:
+El enlace seleccionado se visualiza en negrita y subrayado, indicando que est activo.
+Resultado obtenido:
+Al hacer clic en el enlace, en este caso ?Visit Barcelona?, el enlace no permanece en negrita ni subrayado.
+Entorno: mcprod
+Navegadores:Chrome, Firefox, Edge, Safari
+Evidencias:
+
+Chrome:
+Firefox
+Edge:
+Safari:
+"
+461098;CTB QA;Evolutivos;"";Nueva;Normal;Detalle de Reserva;Fernando Nozar;Jael Masllorens;2025-10-20 12:27;"";"";"";"";"";"";0,00;0,00;0;2025-10-13 17:05;"";"";;No;"";"Descripcin
+Como usuario registrado,
+quiero ver toda la informacin de una reserva especfica,
+para consultar los datos de mi compra y acciones posibles segn el estado de la reserva.
+Flujos de Usuario
+Flujo 1: Visualizacin de detalles
+El usuario accede desde ?Mis Reservas? seleccionando una reserva.
+Se muestra informacin completa de la reserva:
+Ttulo del producto/actividad
+Fecha y hora de la actividad
+Nmero y tipo de entradas
+Precio total y descuentos aplicados
+Estado de la reserva (confirmada o cancelada)
+Informacin del proveedor y condiciones de la compra
+Posibilidad de descargar voucher, QR o comprobante
+Flujo 2: Acciones segn estado
+Si la reserva est confirmada, puede:
+Contactar al proveedor o soporte
+Cancelarla si la poltica lo permite
+Compartir o aadir a favoritos
+Si la reserva est cancelada, solo puede:
+Consultar informacin y descargar comprobante
+Criterios de aceptacin
+El detalle muestra toda la informacin mencionada en el flujo 1.
+Las acciones disponibles dependen del estado de la reserva.
+Se puede descargar comprobante o voucher asociado.
+La interfaz mantiene consistencia visual con el listado de reservas y fichas de producto.
+Casos de test (WIP)
+DR01: Acceso al detalle
+Dado que el usuario selecciona una reserva desde ?Mis Reservas?,
+cuando hace clic sobre ella,
+entonces se muestra toda la informacin de la reserva.
+DR02: Estado de la reserva y acciones
+Dado que la reserva tiene un estado,
+cuando el usuario consulta acciones,
+entonces solo se muestran las permitidas por la poltica del producto.
+DR03: Descarga de comprobantes
+Dado que la reserva tiene un voucher o QR,
+cuando el usuario selecciona descargar,
+entonces se genera y descarga correctamente.
+DR04: Consistencia visual
+Dado que el usuario accede al detalle,
+cuando navega por la informacin,
+entonces la interfaz mantiene consistencia con el listado y ficha de producto."
+461097;CTB QA;Evolutivos;"";Nueva;Normal;Mis Reservas;Fernando Nozar;Jael Masllorens;2025-12-10 12:42;"";"";"";"";"";"";0,00;0,00;0;2025-10-13 17:05;"";"";;No;"";"Descripcin
+Como usuario registrado,
+quiero acceder a la seccin ?Mis Reservas? dentro de ?Mi Cuenta? y consultar mis reservas prximas y pasadas,
+para tener un control sobre mis actividades tursticas y acceder al detalle de cada reserva si existe.
+Flujos de Usuario
+Flujo 1: Acceso a Mis Reservas
+El usuario inicia sesin y abre el men ?Mi Cuenta?.
+Selecciona la opcin ?Mis Reservas?.
+La seccin muestra dos pestaas:
+Prximas reservas
+Reservas pasadas
+Flujo 2: Escenario con reservas realizadas
+Cada pestaa lista las reservas correspondientes.
+Para cada reserva se muestra informacin bsica: ttulo del producto, fecha de la actividad, nmero de entradas y estado de la reserva (confirmada o cancelada).
+El usuario puede seleccionar una reserva para acceder al detalle completo.
+Flujo 3: Escenario sin reservas realizadas
+Si no hay reservas en alguna pestaa, se muestra un mensaje informativo.
+Aparece un botn ?Explorar? que permite volver a la seccin de productos para realizar nuevas reservas.
+Criterios de aceptacin
+?Mis Reservas? debe estar accesible desde ?Mi Cuenta?.
+Debe existir la divisin en pestaas: prximas y pasadas.
+Cada reserva listada debe mostrar ttulo, fecha, nmero de entradas y estado (confirmada o cancelada).
+Al seleccionar una reserva, el sistema lleva al detalle de la reserva.
+Si no hay reservas, se muestra un mensaje y un botn ?Explorar? que lleva a los productos.
+La interfaz debe ser consistente con el resto del sitio.
+Casos de test (WIP)
+MR01: Acceso a Mis Reservas
+Dado que el usuario ha iniciado sesin,
+cuando accede a ?Mi Cuenta? ? ?Mis Reservas?,
+entonces se muestran las pestaas ?Prximas? y ?Pasadas?.
+MR02: Listado de reservas existentes
+Dado que existen reservas,
+cuando el usuario selecciona una pestaa,
+entonces se listan todas las reservas correspondientes con ttulo, fecha, entradas y estado.
+MR03: Sin reservas
+Dado que no hay reservas,
+cuando el usuario selecciona una pestaa vaca,
+entonces se muestra un mensaje informativo y el botn ?Explorar?.
+MR04: Acceso al detalle de reserva
+Dado que el usuario selecciona una reserva,
+cuando hace clic sobre ella,
+entonces se abre la pantalla de detalle de la reserva."
+461096;CTB QA;Evolutivos;"";Nueva;Normal;Sistema de Valoraciones;Fernando Nozar;Jael Masllorens;2025-10-20 12:27;"";"";"";"";"";"";0,00;0,00;0;2025-10-13 16:55;"";"";;No;"";"Descripcin
+Como usuario de la plataforma,
+quiero poder dejar valoraciones y reseas sobre productos o servicios adquiridos y visualizarlas de manera clara,
+para que otros usuarios puedan conocer la opinin de los clientes y la empresa reciba retroalimentacin para mejorar continuamente su oferta.
+Diseos
+Las valoraciones y comentarios estarn visibles en un apartado especfico dentro de la ficha de producto, con un resumen que incluya:
+Calificacin media.
+Distribucin grfica de las estrellas (por ejemplo, cuntos usuarios votaron con 5, 4, etc.).
+Comentarios destacados o ms tiles.
+En la pgina de listado o categora, se mostrar una vista previa de la calificacin media directamente en las tarjetas de producto.
+Campos especficos en la resea:
+Ttulo (opcional).
+Apartados como ?Lo mejor de la experiencia?, ?Aspectos a mejorar? y ?Recomendaciones?.
+Sistema de puntuacin por estrellas (1 a 5) visible en la ficha del producto.
+Filtros y ordenacin de reseas por puntuacin, relevancia, fecha o utilidad.
+Funcionalidad de moderacin y respuestas de administradores.
+Posibilidad de incentivar la participacin mediante descuentos, promociones o recompensas simblicas.
+Flujos de negocio / funcionales
+Flujo 1: Creacin de resea
+El usuario deja un comentario detallado sobre un producto o servicio adquirido.
+Puede aadir un ttulo opcional y completar los apartados especficos (?Lo mejor de la experiencia?, ?Aspectos a mejorar?, ?Recomendaciones?).
+Asigna una puntuacin de 1 a 5 estrellas.
+Flujo 2: Visualizacin de reseas en ficha de producto
+La ficha del producto muestra la calificacin media, distribucin de estrellas y comentarios destacados o ms tiles.
+Los usuarios pueden filtrar reseas por puntuacin y ordenarlas por relevancia, fecha o utilidad.
+Flujo 3: Visualizacin de reseas en listado/categora
+En la vista de listado o categora, cada tarjeta de producto muestra una vista previa de la calificacin media para identificar rpidamente los productos mejor valorados.
+Flujo 4: Moderacin y control de calidad desde administracin
+Los administradores pueden aprobar, editar o eliminar valoraciones.
+Pueden configurar si solo los compradores verificados pueden dejar valoraciones.
+Pueden marcar reseas especficas como ?ms tiles? o ?ms relevantes?.
+Flujo 5: Incentivos para valorar
+Posibilidad de ofrecer descuentos, promociones o recompensas simblicas a los usuarios que dejen una valoracin despus de realizar una compra.
+Criterios de aceptacin
+Los usuarios pueden dejar reseas detalladas con ttulo opcional y apartados especficos.
+Cada resea incluye puntuacin de 1 a 5 estrellas y esta informacin se refleja en la ficha del producto.
+La ficha del producto muestra calificacin media, distribucin de estrellas y comentarios destacados o ms tiles.
+En los listados/categoras, se muestra la calificacin media de cada producto en la tarjeta correspondiente.
+Los comentarios se someten a moderacin antes de publicarse.
+Los administradores pueden aprobar, editar o eliminar valoraciones.
+Se puede configurar si solo los compradores verificados pueden opinar.
+Los administradores pueden marcar reseas como ms tiles o ms relevantes.
+Se pueden aplicar filtros y ordenacin por puntuacin, relevancia, fecha o utilidad.
+Es posible ofrecer incentivos a los usuarios que dejen valoraciones.
+Casos de test (WIP)
+REV01: Creacin de resea
+Dado que un usuario ha adquirido un producto,
+cuando deja un comentario con ttulo opcional, apartados especficos y puntuacin,
+entonces la resea se registra y queda pendiente de moderacin.
+REV02: Visualizacin en ficha de producto
+Dado que hay reseas aprobadas,
+cuando un usuario accede a la ficha del producto,
+entonces se muestra calificacin media, distribucin de estrellas y comentarios destacados.
+REV03: Visualizacin en listado/categora
+Dado que hay productos con valoraciones,
+cuando el usuario ve la pgina de listados o categora,
+entonces cada tarjeta muestra la calificacin media del producto.
+REV04: Moderacin y control desde administracin
+Dado que hay reseas pendientes,
+cuando un administrador las gestiona,
+entonces puede aprobar, editar o eliminar valoraciones y marcar reseas como ms tiles o relevantes.
+REV05: Configuracin de compradores verificados
+Dado que un administrador configura la opcin,
+cuando un usuario intenta valorar sin haber comprado,
+entonces no puede dejar la resea si la opcin ?solo compradores verificados? est activada.
+REV06: Incentivos por valorar
+Dado que un usuario deja una valoracin despus de una compra,
+cuando se aplica el incentivo,
+entonces el usuario recibe el descuento, promocin o recompensa correspondiente."
+461095;CTB QA;Evolutivos;"";Nueva;Normal;Proceso de compra - Confirmacin;Fernando Nozar;Jael Masllorens;2025-10-20 12:27;"";"";"";"";"";"";0,00;0,00;0;2025-10-13 16:48;"";"";;No;"";"Descripcin
+Como usuario que ha completado una compra,
+quiero recibir una confirmacin detallada con el resumen del pedido,
+para que pueda verificar que la transaccin fue exitosa y disponer de mis comprobantes de compra.
+Diseos
+Pgina de confirmacin clara con nmero de pedido y resumen.
+Botones para descargar voucher, QR o archivo.
+Confirmacin por correo electrnico.
+Flujos de negocio/funcionales
+Flujo 1: Visualizacin del resumen de compra
+El sistema muestra una pgina con los detalles de la orden (productos, importes, mtodos de pago).
+Flujo 2: Envo automtico de comprobante
+Se genera y enva un correo con el voucher, QR o archivo descargable.
+Flujo 3: Soporte post-venta
+Se muestran datos de contacto para asistencia en caso de incidencias con el pedido o el pago.
+Criterios de aceptacin
+La pgina de confirmacin debe cargarse tras una compra exitosa.
+El correo debe enviarse con todos los datos del pedido.
+Los enlaces de descarga deben ser funcionales.
+Los canales de soporte deben estar visibles y activos.
+Casos de test (WIP)
+CNF01: Confirmacin de pedido exitosa
+Dado que el usuario ha completado el pago,
+cuando el sistema finaliza la transaccin,
+entonces muestra la pgina de confirmacin con el resumen del pedido.
+CNF02: Envo automtico de voucher
+Dado que el usuario complet una compra,
+cuando se procesa el pedido,
+entonces recibe un correo con el voucher y detalles del producto adquirido."
+461094;CTB QA;Evolutivos;"";Nueva;Normal;Proceso de compra - Pago;Fernando Nozar;Jael Masllorens;2025-10-20 12:27;"";"";"";"";"";"";0,00;0,00;0;2025-10-13 16:47;"";"";;No;"";"Descripcin
+Como usuario comprador,
+quiero elegir mi mtodo de pago preferido de entre mltiples opciones,
+para que pueda finalizar la transaccin de forma segura y adaptada a mis preferencias.
+Diseos
+Interfaz limpia con iconos de los mtodos de pago disponibles.
+Mensajes de error claros ante fallos de pago.
+Indicadores visuales de carga y confirmacin.
+Flujos de negocio/funcionales
+Flujo 1: Seleccin del mtodo de pago
+El usuario puede escoger entre:
+Tarjetas (Visa, MasterCard, Amex, etc.)
+PayPal
+Amazon Pay
+AliPay
+WeChat Pay
+Google Pay
+Apple Pay
+Flujo 2: Procesamiento del pago
+El sistema inicia la transaccin segn el mtodo seleccionado.
+En caso de error, muestra mensaje explicativo y permite reintentar.
+Flujo 3: Seguridad y cumplimiento
+Se implementa SSL/TLS para cifrar los datos.
+Se cumplen las normativas de proteccin de datos (RGPD).
+Criterios de aceptacin
+Los mtodos de pago deben cargarse correctamente.
+Las transacciones deben realizarse bajo conexin segura.
+El sistema debe manejar errores de pago sin perder la sesin del usuario.
+Debe registrarse correctamente el estado de la transaccin (xito/fallo).
+Casos de test (WIP)
+PAY01: Seleccin y validacin del mtodo de pago
+Dado que el usuario se encuentra en el paso de pago,
+cuando selecciona un mtodo disponible y confirma la compra,
+entonces el sistema procesa la transaccin y redirige a la pgina de confirmacin.
+PAY02: Error en el proceso de pago
+Dado que el usuario intenta pagar,
+cuando ocurre un fallo en la transaccin,
+entonces el sistema muestra un mensaje de error y permite reintentar."
+461093;CTB QA;Evolutivos;"";Nueva;Normal;Proceso de compra - Datos personales;Fernando Nozar;Jael Masllorens;2025-10-20 12:27;"";"";"";"";"";"";0,00;0,00;0;2025-10-13 16:46;"";"";;No;"";"Descripcin
+Como usuario,
+quiero introducir mis datos personales y seleccionar mis preferencias antes del pago,
+para que el sistema pueda generar correctamente la factura, enviar la confirmacin y respetar mis decisiones de privacidad.
+Diseos
+Formulario claro y segmentado.
+Campos obligatorios y opcionales bien diferenciados.
+Casillas de aceptacin con textos legales visibles.
+Flujos de negocio/funcionales
+Flujo 1: Datos personales del comprador
+El usuario ingresa nombre, apellidos, correo electrnico y, si aplica, direccin de facturacin.
+Flujo 2: Clusulas de aceptacin
+Antes de proceder, el usuario debe aceptar:
+Condiciones de compra (obligatorio).
+Clusulas de privacidad (obligatorio).
+Opcionalmente, puede:
+Aportar ? solidario?.
+Suscribirse al boletn (?Newsletter?).
+Autorizar la comunicacin por WhatsApp (pendiente de validacin legal).
+Flujo 3: Continuar al pago
+Una vez validados los campos, el sistema permite avanzar al paso de pago.
+Criterios de aceptacin
+Los campos obligatorios deben validarse antes de continuar.
+Las casillas de aceptacin deben funcionar correctamente y registrarse en la base de datos.
+Las opciones opcionales deben poder seleccionarse o no, sin bloquear el flujo.
+El sistema debe permitir avanzar al pago solo si se cumplen las condiciones obligatorias.
+Casos de test (WIP)
+CHK01: Validacin de datos personales
+Dado que el usuario est en el formulario de compra,
+cuando intenta continuar sin completar los campos obligatorios,
+entonces el sistema muestra un mensaje de error indicando los campos faltantes.
+CHK02: Aceptacin de clusulas
+Dado que el usuario complet sus datos,
+cuando no marca las casillas obligatorias,
+entonces el sistema no permite avanzar al paso de pago."
+461092;CTB QA;Evolutivos;"";En curso;Normal;Cesta de la compra;Fernando Nozar;Juan Martinez Oliver;2025-12-02 18:06;"";"";"";"";"";0,00;0,00;0,00;33;2025-10-13 16:44;"";"";;No;"";"Descripcin
+Como usuario del sitio,
+quiero visualizar, editar y gestionar los productos agregados a mi carrito,
+para que pueda revisar mi pedido antes de iniciar el proceso de pago y realizar modificaciones si es necesario.
+Diseos
+Diseo responsivo que se adapte a cualquier dispositivo.
+Interfaz clara con botones de accin visibles (editar, eliminar, aadir unidades).
+Visualizacin de precios, impuestos, descuentos y promociones conjuntas.
+Flujos de negocio/funcionales
+Flujo 1: Visualizacin de productos
+El usuario accede al carrito y ve todos los productos aadidos con su nombre, precio, cantidad y opciones personalizadas.
+Flujo 2: Gestin de productos
+El usuario puede editar cantidades, eliminar productos o agregar nuevas unidades directamente desde el carrito.
+Flujo 3: Resumen de compra
+Se muestra el desglose de precios: total por producto, impuestos, descuentos aplicables y total general.
+Flujo 4: Promociones y productos relacionados
+Si hay promociones combinadas (ej. ?Barcelona Card? + otro producto), el sistema sugiere la oferta.
+Se muestran productos complementarios para fomentar ventas cruzadas.
+Flujo 5: Continuar comprando
+El usuario puede volver a la tienda sin perder el contenido del carrito.
+Criterios de aceptacin
+Se debe mostrar correctamente el nombre, precio, cantidad y opciones personalizadas de cada producto.
+Las acciones de editar, eliminar y aadir unidades deben reflejarse en tiempo real.
+El total general debe actualizarse automticamente ante cualquier cambio.
+Las promociones combinadas deben aparecer cuando corresponda.
+El diseo debe ser completamente responsivo.
+Casos de test (WIP)
+CART01: Visualizacin de productos en el carrito
+Dado que el usuario ha aadido productos al carrito,
+cuando accede a la seccin ?Mi carrito?,
+entonces se muestran los productos con su detalle completo (nombre, precio, cantidad, personalizacin).
+CART02: Edicin de cantidad de producto
+Dado que el usuario tiene productos en el carrito,
+cuando modifica la cantidad de un producto,
+entonces el total general se actualiza automticamente."
+460997;CTB QA;Tarea;457526;Nueva;Normal;B2C ? [DSK] Footer ? Informe;Diana Vallina Canella;Jael Masllorens;2025-10-20 12:26;"";"";"";"";"";"";0,00;0,00;0;2025-10-10 14:59;"";"";"";No;"";"Se adjuntan los informes correspondientes a las pruebas del Footer dentro del portal B2C en desktop,en el marco del proyecto CTB.
+
+"
+460990;CTB QA;Incidencias;459577;Reabierta;Normal; CTB-64  [MOB] Newsletter - Error por correo invlido  (Safari);Laura Ovelleiro;Juan Martinez Oliver;2025-12-04 08:43;"";"";"";"";"";"";0,00;0,00;100;2025-10-10 14:43;"";"";;No;"";"Historia de usuario:CTB-64 [MOB] Newsletter - Error por correo invlido
+Pasos para reproducir la incidencia:
+
+Pulsar sobre el campo de texto.
+Introducir un correo invlido en el campo de texto (ejemplo: ""correo"") y pulsar botn ""Suscribirse"".
+Introducir un correo invlido en el campo de texto (ejemplo: ""correo@"") y pulsar botn ""Suscribirse"".
+Introducir un correo invlido en el campo de texto (ejemplo: ""correo@correo"") y pulsar botn ""Suscribirse"".
+Resultado esperado:
+ Para cada paso, se muestra un ""tooltip"" con los siguientes mensajes:
+  2. ""Incluye un signo ""@"" en la direccin de correo electrnico. La direccin ""correo"" no incluye el signo ""@"""" .
+  3.""Introduce texto detrs del signo ""@"" . La direccin ""correo@"" est incompleta."" .
+  4.""Por favor, introduce una direccin de correo electrnico vlida"".
+
+Adems no permite la suscripcin.
+Resultado obtenido:
+ El mensaje del ""tooltip"" es ""Introduce un correo electrnico"" no corresponde con los esperados para cada caso.
+ En el paso 4 no aparece un ""tooltip"", al pulsar el botn ""Suscribirse"" redirige al usuario al inicio de la pantalla ""Home"" y muestra el mensaje como un ""snackbar"".
+
+"
+460426;CTB QA;Incidencias;459577;Reabierta;Normal;CTB-40 [DSK] Newsletter ? Mensaje de campo vaco en ingls en Safari / Firefox;Diana Vallina Canella;Juan Martinez Oliver;2025-12-10 11:34;"";"";"";"";"";"";3,50;3,50;100;2025-10-07 13:49;"";"";;No;"";"Historia de usuario: CTB-40 [DSK] Newsletter ? Sin correo introducido
+Pasos para reproducir la incidencia:
+Acceder al portal B2C.
+Dejar vaco el campo de newsletter del footer y pulsar el botn ""Suscribirse"".
+Resultado esperado:
+El sistema muestra un mensaje indicando que se debe completar el campo, en espaol, consistente con el idioma del portal.
+Resultado obtenido:
+El mensaje se muestra en ingls, en lugar de espaol.
+Evidencia:
+Entorno: mcprod
+Navegadores: Safari (Mac) / Firefox"
+460421;CTB QA;Incidencias;459577;Reabierta;Normal;CTB-41 [DSK] Newsletter ? Mensaje de validacin no personalizado en Safari / Firefox;Diana Vallina Canella;Juan Martinez Oliver;2025-11-04 17:56;"";"";"";"";"";"";4,00;4,00;100;2025-10-07 13:36;"";"";;No;"";"Historia de usuario: CTB-41 [DSK] Newsletter ? Error por correo invlido
+Pasos para reproducir la incidencia:
+Acceder al portal B2C en Safari/Mac.
+Introducir un correo invlido en el campo newsletter del footer, por ejemplo ""test"", y pulsar ""Suscribirse"".
+Introducir un correo invlido como ""test@"" y pulsar ""Suscribirse"".
+Resultado esperado:
+Los mensajes de validacin aparecen en el idioma del portal y cada tipo de error muestra un mensaje personalizado:
+""Incluye un signo ""@"" en la direccin de correo electrnico. La direccin ""test"" no incluye el signo ""@""
+?""Introduce texto detrs del signo ""@"". La direccin ""test@"" est incompleta.""
+Resultado obtenido:
+Los mensajes de validacin aparecen en ingls.
+En ambos casos semuestra un mensaje genrico.
+
+Entorno: mcprod
+Navegadores: Safari (Mac) / Firefox
+Evidencias:
+
+
+
+"
+460301;CTB QA;Incidencias;459577;Cerrada;Normal;CTB-37 [DSK] Falta enlace ?Condiciones de compra? en el footer;Diana Vallina Canella;Jael Masllorens;2025-11-04 17:35;"";"";"";"";"";"";1,00;1,00;100;2025-10-06 17:33;2025-11-04 17:35;"";;No;"";"Historia de usuario: CTB-37 [DSK] Footer ? Alineacin y presentacin
+Pasos para reproducir la incidencia:
+Acceder al portal B2C.
+Hacer scroll hasta el footer.
+Resultado esperado:
+Se visualice el enlace ?Condiciones de compra? en el footer.
+Resultado obtenido:
+No se visualiza el enlace ?Condiciones de compra?.
+Entorno: mcprod ? navegadores: Chrome, Firefox, Edge, Safari
+Evidencia:
+
+"
+459577;CTB QA;Evolutivos;"";En curso;Normal;Footer;Diana Vallina Canella;Jael Masllorens;2025-10-30 14:52;"";"";"";"";"";0,00;0,00;8,50;100;2025-10-01 17:22;"";"";;No;"";"Como usuario que navega por el sitio,
+Quiero visualizar un footer completo
+Para acceder fcilmente a newsletter, seccin Descubre,servicios y enlaces legales.
+
+Flujos de Usuario
+Flujo 1: Navegacin general
+El usuario accede al sitio y visualiza el header en la parte inferior.
+Ve tres bloques diferenciados: Newsletter, Servicios y Enlaces legales.
+Flujo 2: Bloque Newsletter
+El usuario visualiza el bloque del newsletter
+El usuario introduce su correo electrnico en el campo de newsletter.
+Pulsa el botn Suscribirse y recibe un mensaje de xito o error segn el formato del correo.
+Hace clic en los enlaces de Descubre (Barcelona Card, Arte y Cultura, Msica y Espectculos, Aventura y Aire Libre, Astronoma, Movilidad y Servicios) y se redirige a la seccin correspondiente.
+Flujo 3: Bloque Servicios
+El usuario visualiza el bloque de servicios en el footer.
+Hace clic en el botn Ir a afiliados y se redirige correctamente al portal de afiliados.
+Hace clic en el botn Descargay descarga el documento correspondiente.
+Visualiza los logos de Visa, PayPal y Amazon Pay.
+Flujo 4: Bloque Legal
+El usuario visualiza los enlaces legales en el footer.
+Hace clic en los enlaces: Informacin legal, Poltica de privacidad, Sistema interno de informacin, Otras webs, Mapa web, Accesibilidad.
+Cada enlace lleva a la pgina o seccin correcta.
+Criterios de Aceptacin
+Bloque 1 ? Newsletter / Descubre
+Campo de newsletter visible correctamente y permite introducir correo.
+Validacin de formato de correo (correcto/incorrecto).
+Botn Suscribirse funcional y muestra mensaje de xito/error.
+Enlaces de Descubre clicables y redirigen correctamente.
+Bloque 2 ? Servicios
+Bloque visible correctamente.
+Botn Ir a afiliados funcional y redirige al portal de afiliados.
+Botn Descargafuncional y descarga el documento.
+Logos de Visa, PayPal y Amazon Pay visibles.
+Bloque 3 ? Legal / Informacin institucional
+bloque visible correctamente
+Todos los enlaces visibles y clicables.
+Cada enlace redirige a la pgina o seccin correspondiente.
+WIP Tests (Work In Progress)
+UI Tests
+Verificar visibilidad de los tres bloques del footer.
+Validar alineacin y presentacin de elementos (botones, enlaces, logos).
+Comprobar que el campo de newsletter acepta texto y que el botn Suscribirse responde.
+Casos Funcionales
+Verificar funcionamiento del botn Ir a afiliados.
+Verificar funcionamiento del botn Descargar.
+Introducir correo vlido e invlido en newsletter y comprobar mensajes de xito/error.
+Comprobar que los enlaces de Descubre y legales redirigen correctamente.
+Casos Frontera
+Newsletter sin correo o con formato incorrecto ? mostrar mensaje de error.
+Bloques con contenido faltante ? comprobar fallback visual.
+Enlaces no disponibles ? mostrar mensaje de error."
+458326;CTB QA;Evolutivos;"";Nueva;Normal;Ficha de Producto;Fernando Nozar;Jael Masllorens;2025-10-20 12:27;"";"";"";"";"";"";0,00;0,00;0;2025-09-24 15:26;"";"";;No;"";"Como visitante interesado en una actividad turstica,
+Quiero ver una ficha de producto completa y atractiva,
+Para entender todos los detalles antes de realizar la compra.
+Flujos de Usuario
+Flujo 1: Exploracin y compra
+El usuario accede a una ficha desde una categora o bsqueda.
+Visualiza el breadcrumb para entender la navegacin.
+Ve el ttulo del producto, las valoraciones y el carrusel de imgenes.
+En el panel derecho, consulta:
+Botn de compartir.
+Botn de aadir a favoritos.
+Precio (con descuento si aplica).
+Calendario de fechas.
+Selector de horarios.
+Selector de entradas con +/-, por edades.
+Botn de aadir al carrito.
+Debajo del carrusel, lee la descripcin del producto.
+Consulta las FAQs y la caja de comentarios y valoraciones.
+Revisa el widget de ?Otras sugerencias? con productos relacionados.
+Aade el producto al carrito y contina con la compra.
+Criterios de Aceptacin
+Contenido obligatorio
+La ficha debe incluir:
+Breadcrumb.
+Ttulo del producto.
+Valoraciones.
+Carrusel de imgenes.
+Descripcin.
+Mapa de ubicacin.
+Tags (descuento, sostenibilidad, ?Skip the line!?).
+Proveedor.
+Condiciones.
+Widget de productos relacionados (?Otras sugerencias?).
+FAQs.
+Caja de comentarios y valoraciones.
+Panel derecho
+Debe incluir:
+Botn de compartir.
+Botn de aadir a favoritos.
+Precio (mostrar descuento si aplica).
+Calendario de fechas.
+Selector de horarios.
+Selector de entradas con +/-, por edades.
+Botn de aadir al carrito.
+Interaccin
+Debe permitir seleccionar opciones antes de aadir al carrito.
+Debe mostrar recomendaciones y botones de compartir.
+El botn de favoritos debe funcionar correctamente.
+El botn de aadir al carrito debe validar las opciones seleccionadas.
+WIP Tests (Work In Progress)
+UI Tests
+ Verificar que el breadcrumb se muestra correctamente.
+ Validar que el ttulo, valoraciones y carrusel se renderizan.
+ Comprobar que el panel derecho incluye todos los elementos.
+ Testear que el botn de compartir abre el modal o accin correspondiente.
+ Validar que el botn de favoritos cambia de estado.
+ Comprobar que el precio muestra el descuento si aplica.
+ Verificar que el calendario y selector de horarios funcionan.
+ Testear el selector de entradas por edades con +/?.
+ Validar que el botn de aadir al carrito responde correctamente.
+ Comprobar que la descripcin, FAQs y comentarios se muestran.
+ Verificar que el widget ?Otras sugerencias? muestra productos relacionados.
+Casos Funcionales
+ Validar que el usuario puede seleccionar fecha, horario y entradas antes de aadir al carrito.
+ Testear que el botn de aadir al carrito valida las opciones seleccionadas.
+ Comprobar que los productos relacionados son relevantes.
+ Verificar que los comentarios se cargan correctamente.
+ Validar que los tags se muestran segn los datos del producto.
+Casos Frontera
+ Producto sin imgenes ? fallback.
+ Producto sin precio ? fallback.
+ Producto sin disponibilidad ? fallback.
+ Usuario sin sesin ? favoritos muestran mensaje de login.
+ Producto sin valoraciones ? mostrar ?Sin reseas an?."
+458295;CTB QA;Evolutivos;458272;En curso;Normal;Subcategora;Fernando Nozar;Jael Masllorens;2025-12-03 08:57;"";"";"";"";"";"";0,00;0,00;0;2025-09-24 13:33;"";"";;No;"";"Como usuario interesado en tours
+Quiero acceder a una pgina que muestre claramente la subcategora actual con informacin relevante y opciones de filtrado,
+Para poder encontrar fcilmente experiencias que se ajusten a mis preferencias de horario, idioma y lugar.
+Criterios de Aceptacin:
+Breadcrumb visible que indique la subcategora actual.
+Banner de subcategora que incluya:
+Ttulo de la subcategora.
+Imagen representativa.
+Descripcin breve.
+Encabezado principal que indique ?Todas las rutas y tours?.
+Filtros disponibles:
+Dropdown para horario.
+Dropdown para idioma.
+Dropdown para lugar.
+Botn para aplicar filtros.
+Indicador de resultados que muestre el nmero total de tours encontrados.
+Dropdown de ordenacin para organizar los resultados (por relevancia, precio, nombre).
+Listado de productos en formato grilla con banners individuales.
+Botn ?Cargar ms? que aparece si hay ms resultados disponibles.
+Widget de ?Tours ms populares? en formato carrusel.
+Widget de ?Experiencias nicas? tambin en formato carrusel.
+
+WIP Tests (Work In Progress)
+UI Tests
+ Verificar que el breadcrumb se renderiza correctamente.
+ Validar que el banner muestra ttulo, imagen y descripcin.
+ Comprobar que los dropdowns de filtro se despliegan y seleccionan opciones.
+ Testear que el botn de filtros aplica correctamente los criterios.
+ Validar que el nmero de resultados se actualiza tras aplicar filtros.
+ Verificar que el botn ?Cargar ms? carga nuevos resultados sin duplicados.
+ Comprobar que los carruseles funcionan con swipe y flechas.
+Casos Funcionales
+ Validar que los filtros combinados devuelven resultados coherentes.
+ Testear que la ordenacin modifica el orden de los productos.
+ Verificar que los widgets muestran tours relevantes segn popularidad.
+ Comprobar que los enlaces de productos llevan al detalle correcto.
+Casos frontera
+ Subcategora sin productos ? mostrar mensaje de ?sin resultados?.
+ Filtros que no devuelven resultados ? mostrar mensaje adecuado.
+ Productos sin imagen ? mostrarfallback.
+ Carruseles con menos de 3 elementos ? comportamiento adaptativo."
+458272;CTB QA;Evolutivos;458234;En curso;Normal;Categora;Fernando Nozar;Jael Masllorens;2025-12-03 08:56;"";"";"";"";"";0,00;0,00;0,00;0;2025-09-24 12:19;"";"";;No;"";"Contiene un banner con el nombre de la categora y una breve descripcin de la misma
+Hay una seccin para ""Subcategoras relacinadas"":
+Ttulo de ""Explora nuestras categoras""
+Cada subcategora se muestra por medio de un banner que contiene:
+Una imagen
+Un ttulo
+""-&gt;"" y enlace a la subcategora
+Al hacer hover sobre una subcategora, se produce una animacin
+Carrusel de ofertas especiales:Navegacin por medio de swipe, y flechas; al navegar, la barra muestra la posicin actual
+Compuesto por banners de productos; cada uno contiene:
+Tag de desceuntos (si aplica)
+Tag de ""Skip the line!"" (si aplica)
+Botn de ""Aadir a favoritos""
+Nombre del producto
+Precio del producto
+Al hacer hover, se muestra una ""-&gt;""
+Al hacer click sobre el botn de ""Aadir a favoritos"", se aade a favoritos.
+El usuario puede acceder al detalle del prodcuto a travs del banner.
+
+Comousuario que explora actividades tursticas,
+Quierovisualizar una categora con su descripcin, acceder a subcategoras relacionadas y explorar ofertas especiales,
+Paradescubrir experiencias relevantes de forma atractiva y funcional.
+Flujos de Usuario
+Flujo 1: Exploracin de categora
+El usuario accede a una categora
+Ve el banner con el nombre y descripcin de la categora.
+Visualiza la seccin ?Explora nuestras categoras?.
+Recorre los banners de subcategoras con imagen, ttulo y flecha ???.
+Al hacer hover, se activa una animacin.
+Hace clic en una subcategora y accede a su contenido.
+Flujo 2: Interaccin con ofertas especiales
+El usuario navega por el carrusel de ofertas especiales.
+Usa swipe o flechas para moverse entre productos.
+Observa la barra de posicin del carrusel.
+Ve tags como ?Descuento? o ?Skip the line!? si aplican.
+Marca un producto como favorito.
+Hace clic en el banner y accede al detalle del producto.
+Criterios de Aceptacin
+Banner de categora
+Debe mostrar el nombre de la categora.
+Debe incluir una breve descripcin.
+Subcategoras relacionadas
+Seccin con ttulo ?Explora nuestras categoras?.
+Cada subcategora debe mostrarse como un banner con:
+Imagen representativa.
+Ttulo.
+Flecha ??? y enlace funcional.
+Al hacer hover, debe activarse una animacin visual.
+El enlace debe llevar al contenido de la subcategora.
+Carrusel de ofertas especiales
+Navegacin por swipe (mvil) y flechas (desktop).
+Barra de progreso visible que indica la posicin actual.
+Cada banner de producto debe incluir:
+Tag de descuento (si aplica).
+Tag ?Skip the line!? (si aplica).
+Botn ?Aadir a favoritos?.
+Nombre del producto.
+Precio del producto.
+Hover con flecha ???.
+Al hacer clic en el botn de favoritos, el producto se aade correctamente.
+El banner debe ser clicable y llevar al detalle del producto.
+WIP Tests (Work In Progress)
+UI Tests
+Verificar que el banner de categora se renderiza correctamente.
+Validar que cada subcategora muestra imagen, ttulo y flecha.
+Comprobar que la animacin de hover se activa correctamente.
+Testear que los enlaces de subcategoras funcionan.
+Validar que el carrusel responde a swipe y flechas.
+Comprobar que la barra de posicin del carrusel se actualiza.
+Casos Funcionales
+Validar que los tags de descuento y ?Skip the line!? se muestran segn datos.
+Testear que el botn ?Aadir a favoritos? cambia de estado y guarda correctamente.
+Verificar que el clic en el banner lleva al detalle del producto.
+Comprobar que el carrusel no se rompe con menos de 3 productos.
+Casos Frontera
+Categora sin subcategoras ? mostrar mensaje o estado vaco.
+Producto sin imagen ? mostrar imagen por defecto.
+Producto sin precio ? mostrar ?Consultar?.
+Favoritos sin sesin iniciada ? mostrar mensaje de login.
+ModificarTiempo dedicadoMonitorizar"
+458234;CTB QA;Evolutivos;458236;En curso;Normal;"Men ""Categoras""";Fernando Nozar;Jael Masllorens;2025-10-22 16:20;"";"";"";"";"";0,00;0,00;0,00;0;2025-09-24 10:33;"";"";;No;"";"El usuario puede acceder directamente, a travs del men, a los diferentes contenidos
+Las categoras y subcategoras son fcilmente identificables
+Animaciones al realizar hover
+Como:usuario del portal turstico
+Quiero:acceder a un men de categoras temticas claras y ordenadas
+Para:encontrar fcilmente productos tursticos que se ajusten a mis intereses
+Flujos de usuario:
+- El usuario accede al portal B2C.
+- Visualiza el men de navegacin con categoras y subcategoras.
+- Selecciona una categora para ver los productos relacionados.
+- Accede a una ficha de producto desde el listado.
+Criterios de aceptacin:
+1.1.Las categoras deben ser fcilmente identificables y desplegables.
+1.2.El men debe ser modificable desde el backoffice.
+1.3.Los productos deben estar correctamente clasificados y filtrables.
+WIP TEST:
+- Givenque el usuario accede al men de navegacin
+- Whenselecciona una categora
+- Thense muestran subcategoras y un listado de productos
+Tareas para QA:
+Visualizacin de categoras en el men principal
+Verificar que el men se despliega correctamente en desktop y mvil.
+Validar que todas las categoras y subcategoras estn visibles y ordenadas.
+Acceso a productos desde una categora
+Comprobar que al hacer clic en una categora se muestra el listado correcto.
+Validar que los productos pertenecen realmente a la categora seleccionada.
+Acceso a la ficha de producto desde el listado
+Validar que el enlace lleva a la PDP correcta.
+Comprobar que se conserva el contexto (categora, filtros aplicados).
+Escenarios:
+
+Escenario 1: Usuario casual en mvil
+Accede al portal desde su telfono.
+Abre el men hamburguesa y ve ?Arte y Cultura?.
+Hace clic y se muestra un listado con filtros.
+Encuentra una actividad y accede a la ficha.
+Verificar que todo el flujo es fluido y sin errores.
+Escenario 2: Usuario internacional en desktop
+Accede desde Reino Unido.
+El sistema muestra el men en ingls.
+Selecciona ?Museums &amp; Exhibitions?.
+Accede a una ficha y la comparte por WhatsApp."
+457530;CTB QA;Evolutivos;"";En curso;Normal;Header y Buscador LiveSearch;Fernando Nozar;Jael Masllorens;2025-12-04 08:46;"";"";"";"";"";0,00;1,00;18,00;49;2025-09-19 13:31;"";"";;No;"";"Comousuario que navega por el sitio,
+Quieroacceder fcilmente a enlaces clave, gestionar mi cuenta y favoritos, y realizar bsquedas inteligentes con sugerencias relevantes,
+Paraencontrar rpidamente productos y servicios que me interesan.
+Flujos de Usuario
+Flujo 1: Navegacin general
+El usuario accede al sitio y visualiza el header en la parte superior.
+Ve los enlaces de ?BarcelonaTurisme? y accede a ?Visit Barcelona?.
+Hace clic en el logo ?Visit Barcelona Tickets? para volver a la home.
+Cambia el idioma desde el dropdown multiidioma.
+Accede a su cuenta desde ?Mi Cuenta?.
+Consulta sus favoritos y la cesta.
+Accede a la seccin de ayuda.
+Flujo 2: Bsqueda inteligente
+El usuario comienza a escribir en el buscador.
+El motor de inteligencia sugiere productos mientras escribe.
+Las sugerencias incluyen productos populares, promociones activas y relacionados.
+El orden de resultados se optimiza por relevancia, sinnimos y datos histricos.
+El usuario aplica un filtro de fechas.
+Hace clic en una sugerencia y accede al detalle del producto.
+El trmino buscado se registra para anlisis posterior.
+Criterios de Aceptacin
+Header
+Debe estar visible en todas las pantallas (desktop y mvil).
+Debe incluir los siguientes enlaces:
+Visit Barcelona
+Tickets
+Professionals
+Barcelona Convention Bureau
+Quines somos
+El logo ?Visit Barcelona Tickets? debe ser clicable y llevar a la home.
+Debe incluir botones funcionales para:
+Favoritos
+Cesta
+Ayuda
+Mi Cuenta
+Dropdown multiidioma debe permitir cambiar el idioma del sitio.
+Buscador inteligente
+Debe estar visible en todas las pantallas.
+Al escribir, debe mostrar sugerencias en tiempo real.
+Debe manejar sinnimos
+Las sugerencias deben incluir:
+Productos relacionados.
+Productos populares.
+Promociones activas.
+El orden de resultados debe considerar:
+Relevancia.
+Sinnimos.
+Historial de navegacin del usuario.
+Debe permitir aplicar filtros de fechas.
+Al hacer clic en una sugerencia, debe llevar al detalle del producto.
+Debe registrar los trminos buscados para anlisis.
+WIP Tests (Work In Progress)
+UI Tests
+Verificar que el header se muestra correctamente en desktop y mvil.
+Validar que todos los enlaces del header funcionan.
+Comprobar que el logo lleva a la home.
+Testear que los botones de favoritos, cesta, ayuda y cuenta funcionan.
+Validar que el dropdown multiidioma cambia el idioma del sitio.
+Casos Funcionales
+Verificar que el buscador muestra sugerencias en tiempo real.
+Testear que las sugerencias incluyen productos populares y promociones.
+Validar que el orden de resultados cambia segn relevancia y sinnimos.
+Comprobar que el filtro de fechas funciona correctamente.
+Verificar que al hacer clic en una sugerencia se accede al producto.
+Validar que los trminos buscados se registran correctamente.
+Casos Frontera
+Bsqueda sin resultados ? mostrar mensaje adecuado.
+Usuario sin historial ? mostrar resultados por popularidad.
+Producto sin imagen ? mostrar imagen por defecto.
+Cambio de idioma ? validar que el contenido se actualiza correctamente.
+Buscador sin conexin ? mostrar fallback o mensaje de error."
+457528;CTB QA;Evolutivos;"";En curso;Normal;Resultados de bsqueda;Fernando Nozar;Jael Masllorens;2025-10-21 12:50;"";"";"";"";"";"";0,00;0,00;0;2025-09-19 13:30;"";"";;No;"";"Comousuario que busca actividades tursticas,
+Quieropoder aplicar filtros por horario, idioma y lugar, ordenar los resultados, ver informacin clara de cada actividad y gestionar mis favoritos,
+Paraencontrar fcilmente experiencias que se ajusten a mis preferencias.
+Flujos de Usuario
+Flujo 1: Bsqueda bsica
+El usuario accede a la pgina de actividades.
+Visualiza el banner de resultados con ttulo y nmero de actividades.
+Usa los dropdowns de horario, idioma y lugar.
+Aplica los filtros.
+Viualiza los resultados actualizados con tags de filtros aplicados.
+Borra un filtro desde el tag.
+Ordena los resultados por precio.
+Marca una actividad como favorita.
+Flujo 2: Bsqueda avanzada
+El usuario abre el panel de filtros.
+Selecciona mltiples criterios (ej. idioma + lugar).
+Aplica los filtros.
+Ve el nmero de resultados actualizado.
+Cancela los filtros y vuelve al estado inicial.
+Explora las bsquedas destacadas sugeridas.
+Criterios de Aceptacin
+Filtros y bsqueda
+Se deben mostrar dropdowns para horario, idioma y lugar.
+El botn de filtros debe abrir un panel con opciones avanzadas.
+El botn ?Aplicar? debe actualizar los resultados segn los filtros seleccionados.
+El botn ?Cancelar? debe cerrar el panel sin aplicar cambios.
+Los filtros aplicados deben mostrarse como tags visibles.
+Debe existir un enlace para borrar cada filtro individualmente.
+Resultados
+El banner debe mostrar el ttulo de la bsqueda y el nmero de resultados.
+Cada actividad debe mostrar:
+Ttulo.
+Precio.
+Enlace a la actividad.
+Botn para marcar como favorito.
+Ordenacin
+Debe existir un dropdown para ordenar por criterios como:
+Precio.
+Popularidad.
+Duracin.
+Al cambiar el orden, los resultados deben actualizarse sin recargar la pgina.
+Bsquedas destacadas
+Deben mostrarse sugerencias de bsquedas destacadas en base a popularidad o tendencias.
+WIP Tests (Work In Progress)
+UI Tests
+Verificar que los dropdowns se despliegan correctamente.
+Validar que los botones de aplicar y cancelar funcionan como esperado.
+Comprobar que los tags de filtros aplicados se muestran correctamente.
+Testear que el botn para borrar filtros individuales elimina el filtro y actualiza los resultados.
+Validar que el banner muestra el nmero correcto de resultados.
+Verificar que el botn de favoritos cambia de estado (activo/inactivo).
+Casos Funcionales
+Validar que la combinacin de filtros devuelve resultados coherentes.
+Testear que el ordenamiento modifica el orden de los resultados.
+Comprobar que el enlace ??? lleva al detalle correcto de la actividad.
+Verificar que las bsquedas destacadas son clicables y aplican filtros predefinidos.
+Casos Frontera
+Filtros que no devuelven resultados ? mostrar mensaje adecuado.
+Actividades sin precio ? mostrar ?Consultar?.
+Favoritos sin sesin iniciada ? mostrar mensaje de login.
+Filtros aplicados y luego cancelados ? volver al estado inicial sin errores."
+457526;CTB QA;Tarea;"";Reabierta;Normal;Wiki QA;Fernando Nozar;Jael Masllorens;2025-11-05 15:13;"";"";"";"";"";0,00;0,00;0,00;0;2025-09-19 13:28;"";"";"";No;"";"Esta wiki rene toda la informacin relacionada con los procesos, estndares y buenas prcticas del rea de Quality Assurancepara el proyecto de CTB.
+Su propsito es servir como fuente nica de referencia para el equipo, facilitando la documentacin, el aprendizaje y la colaboracin en torno a las actividades de testing.
+En ella se detallan metodologas, productos y guas de trabajo, flujos de validacin, convenciones de redaccin, herramientas utilizadas y ejemplos prcticos.
+El contenido se mantiene actualizado de forma colaborativa para asegurar la consistencia y la mejora continua en las tareas de QA."
+461739;CTB QA;Incidencias;458236;Cerrada;Baja;"CTB-112 [MOB] Diseo del botn ""Buscar""";Laura Ovelleiro;Juan Martinez Oliver;2025-12-11 12:54;"";"";"";"";"";"";0,00;0,00;0;2025-10-16 15:41;2025-11-06 17:15;"";;No;"";"Historia de usuario:CTB-112 [MOB] Visualizacin
+Pasos para reproducir la incidencia:
+
+Visualizar el campo de entrada
+Pulsar sobre el campo de entrada.
+Seleccionar la/s fecha/s en el calendaio y aplicar.
+Resultado esperado:
+
+  El formato cumple con lo siguiente:
+Imagen de fondo con un degradado inferior.
+En la parte inferior:
+Ttulo en negrita.
+Descripcin.
+Campo de entrada correspondiente al seleccionador de fechas con un icono a la izquierda de un ""calendario"" y a continuacin un texto de ayuda..
+Botn ""Buscar"".
+  Todo el texto est alineado a la izquierda, en cambio, tanto el campo de entrada como el botn estn centrados.
+Resultado obtenido
+
+  El diseo del botn ""Buscar"" es diferente al representado en Figma.
+
+Evidencia
+  Safari:
+  
+ Chrome:
+  "

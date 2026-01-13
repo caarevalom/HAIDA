@@ -1,0 +1,46 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/index.py",
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "50mb"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/auth/(.*)",
+      "dest": "/api/index.py"
+    },
+    {
+      "src": "/entra/(.*)",
+      "dest": "/api/index.py"
+    },
+    {
+      "src": "/m365/(.*)",
+      "dest": "/api/index.py"
+    },
+    {
+      "src": "/chat/(.*)",
+      "dest": "/api/index.py"
+    },
+    {
+      "src": "/debug",
+      "dest": "/api/index.py"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/index.py"
+    },
+    {
+      "src": "/health",
+      "dest": "/api/index.py"
+    },
+    {
+      "src": "/",
+      "dest": "/api/index.py"
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+ID,Tipo,Estado,Prioridad,Plataforma,Modulo,Asunto,Asignado,Actualizado,Creado,Source
+468491,Incidencias,Cerrada,Alta,DSK,Carrito,CTB-388 [DSK] Carrito ? No se puede modificar la cantidad de productos,,2025-12-02 08:57,2025-11-26 17:06,issues (5).csv
+467202,Incidencias,Cerrada,Alta,DSK,Login/Registro,CTB-351 [DSK] Error técnico tras introducir contraseña incorrecta en edición de contacto,Jael Masllorens,++34662652300:35,++34662652300:16,issues (5).csv
+466988,Incidencias,Cerrada,Alta,DSK,Perfil,CTB-374 [DSK] Error técnico tras guardar cambios en nombre y apellidos,Jael Masllorens,2025-12-10 13:50,2025-11-17 17:28,issues (5).csv
+466139,Incidencias,Bloqueada,Alta,MOB,Otros,CTB-320 [MOB] Botones sociales sin funcionalidad,Javier López Girela,2025-12-04 11:51,2025-11-11 10:35,issues (5).csv
+465839,Incidencias,Bloqueada,Alta,MOB,Otros,CTB-276 [MOB] Botones sociales sin funcionalidad.,Jael Masllorens,2025-12-09 14:49,2025-11-10 10:18,issues (5).csv
+465410,Incidencias,Cerrada,Alta,DSK,Login/Registro,CTB-308 [DSK] Recuperación ? No se valida formato de correo sin dominio,Jael Masllorens,2025-12-11 10:11,2025-11-05 16:18,issues (5).csv
+465407,Incidencias,Cerrada,Alta,DSK,Login/Registro,CTB-307 [DSK] Recuperación ? Error CAPTCHA al enviar correo no registrado,Jael Masllorens,2025-11-27 17:37,2025-11-05 15:58,issues (5).csv
+465398,Incidencias,Cerrada,Alta,DSK,Login/Registro,CTB-306 [DSK] Recuperación ? Error CAPTCHA al enviar correo,Jael Masllorens,2025-12-01 13:48,2025-11-05 15:42,issues (5).csv
+464924,Incidencias,Bloqueada,Alta,DSK,Login/Registro,CTB-288 [DSK] Registro - Proveedor externo - Redirección incorrecta,Jael Masllorens,2025-12-10 11:23,2025-11-03 17:11,issues (5).csv
+462257,Incidencias,En curso,Alta,DSK,Login/Registro,CTB-148/149 [DSK] Secciones Destacadas ? Botón de favoritos no se activa al añadir producto,Jael Masllorens,2025-11-07 15:10,2025-10-20 13:41,issues (5).csv
+462186,Incidencias,Cerrada,Alta,DSK,Calendario,CTB-143 [DSK] Calendario banner ? No se visualiza correctamente,Juan Martinez Oliver,2025-12-02 09:02,2025-10-20 10:31,issues (5).csv
+461100,Evolutivos,En curso,Alta,UNK,Login/Registro,Login y recuperación de contraseña,Jael Masllorens,2025-12-10 11:16,2025-10-13 17:10,issues (5).csv
+461099,Evolutivos,En curso,Alta,UNK,Login/Registro,Registro de Usuario,Jael Masllorens,2025-12-04 12:00,2025-10-13 17:07,issues (5).csv
+458236,Evolutivos,En curso,Alta,UNK,Login/Registro,HOME,Jael Masllorens,2025-12-10 13:36,2025-09-24 10:41,issues (5).csv
+469987,Evolutivos,Nueva,Normal,UNK,Otros,Error al querer hacer un credit memo,Javier López Girela,2025-12-05 20:29,2025-12-05 20:29,issues (5).csv
+469986,Evolutivos,Nueva,Normal,UNK,PDP,Errores crear sesiones,Javier López Girela,2025-12-05 20:27,2025-12-05 20:27,issues (5).csv
+469294,Tarea,Nueva,Normal,DSK,Otros,B2C ? [DSK] Cesta de la compra ? Informe,Alejandra Sánchez Marta,2025-12-02 09:50,2025-12-01 17:43,issues (5).csv
+468523,Incidencias,Nueva,Normal,DSK,Carrito,CTB-390 [DSK] Carrito ? No se muestra el texto ?Descuento aplicado?,Juan Martinez Oliver,2025-11-27 09:36,2025-11-26 17:35,issues (5).csv
+468456,Incidencias,Nueva,Normal,DSK,Carrito,CTB-387 [DSK] Carrito ? Formato incorrecto de fecha y ausencia de hora,Juan Martinez Oliver,2025-11-27 09:45,2025-11-26 16:43,issues (5).csv
+468265,Tarea,Nueva,Normal,DSK,Favoritos,B2C ? [DSK] Favoritos ? Informe,Alejandra Sánchez Marta,2025-11-25 17:42,2025-11-25 17:42,issues (5).csv
+468264,Tarea,Nueva,Normal,DSK,Perfil,B2C ? [DSK] Perfil ? Informe,Alejandra Sánchez Marta,2025-11-25 17:42,2025-11-25 17:41,issues (5).csv
+468228,Incidencias,Nueva,Normal,DSK,Perfil,CTB-315 [DSK] Favoritos ? El correo recibido tras compartir la lista no muestra imágenes de los productos,Alejandra Sánchez Marta,2025-11-25 13:50,2025-11-25 13:50,issues (5).csv
+468215,Incidencias,Nueva,Normal,DSK,Carrito,CTB-312 [DSK] Favoritos ? Visualización incompleta en la lista de deseos,Alejandra Sánchez Marta,2025-11-25 13:24,2025-11-25 13:23,issues (5).csv
+467766,Incidencias,Cerrada,Normal,DSK,Login/Registro,CTB-377 [DSK] Error técnico al guardar correo ya registrado,Jael Masllorens,2025-12-10 14:06,2025-11-21 13:54,issues (5).csv
+467755,Incidencias,Cerrada,Normal,DSK,Login/Registro,CTB-349 [DSK] Campos vacíos - Mensajes de error mezclan inglés y español,Jael Masllorens,2025-12-01 17:20,2025-11-21 13:13,issues (5).csv
+467719,Incidencias,Cerrada,Normal,DSK,Login/Registro,CTB-342 [DSK] Cierre sesión múltiple - No se cierra en otros navegadores,Jael Masllorens,2025-12-02 09:08,2025-11-21 12:33,issues (5).csv
+467583,Incidencias,Cerrada,Normal,DSK,Perfil,CTB-350 [DSK] Validación de correo - Mensaje de error mezcla inglés y español,Jael Masllorens,2025-12-01 17:19,2025-11-20 17:20,issues (5).csv
+467566,Incidencias,Cerrada,Normal,DSK,Perfil,CTB-340 [DSK] Cierre de sesión - Mensaje de confirmación confuso tras cerrar sesión,Jael Masllorens,2025-12-10 10:56,2025-11-20 15:52,issues (5).csv
+467559,Incidencias,Cerrada,Normal,DSK,Perfil,CTB-365 / CTB-363 [DSK] Edición de dirección - El campo Estado/Provincia no se muestra si fue introducido manualmente,Jael Masllorens,2025-12-11 12:49,2025-11-20 15:27,issues (5).csv
+467354,Incidencias,Cerrada,Normal,DSK,Login/Registro,CTB-376 [DSK] Cambio de contraseña - Redirección incorrecta tras guardar,Jael Masllorens,2025-12-02 09:11,2025-11-19 16:49,issues (5).csv
+467349,Incidencias,Cerrada,Normal,DSK,Login/Registro,CTB-353 [DSK] Confirmación de contraseña - Mensaje de error mezcla inglés y español,Jael Masllorens,2025-12-01 17:10,2025-11-19 16:15,issues (5).csv
+467339,Incidencias,Cerrada,Normal,DSK,Login/Registro,CTB-352 [DSK] Validación de contraseña - Mensaje de error mezcla inglés y español,Jael Masllorens,2025-12-01 17:07,2025-11-19 15:58,issues (5).csv
+467332,Incidencias,Cerrada,Normal,DSK,Login/Registro,CTB-347 [DSK] Redirección al login tras editar todos los campos de información personal,Jael Masllorens,2025-12-02 09:12,2025-11-19 14:12,issues (5).csv
+466992,Incidencias,Cerrada,Normal,DSK,Login/Registro,CTB-375 [DSK] Correos de suscripción al boletín enviados tras editar el correo sin modificar la suscripción,Jael Masllorens,2025-12-11 13:03,2025-11-17 17:41,issues (5).csv
+466991,Incidencias,Cerrada,Normal,DSK,Login/Registro,CTB-375 [DSK] Redirección al login tras editar el correo electrónico,Jael Masllorens,2025-12-02 09:13,2025-11-17 17:36,issues (5).csv
+466184,Tarea,Nueva,Normal,MOB,Login/Registro,[MOB] Registro - Informe,Alejandra Sánchez Marta,2025-12-05 09:34,2025-11-11 13:20,issues (5).csv
+466131,Tarea,Nueva,Normal,MOB,Login/Registro,[MOB] Recuperar contraseña - Informe,Alejandra Sánchez Marta,2025-12-05 09:39,2025-11-11 10:17,issues (5).csv
+466125,Incidencias,Resuelta,Normal,MOB,Login/Registro,CTB-290 [MOB] Error CAPTCHA y no envío de correo de recuperación,Jael Masllorens,2025-12-04 11:53,2025-11-11 10:10,issues (5).csv
+466119,Incidencias,Cerrada,Normal,MOB,Login/Registro,CTB-293 [MOB] Muestra error CAPTCHA y mensaje erróneo en snackbar,Jael Masllorens,2025-12-12 09:57,2025-11-11 10:05,issues (5).csv
+466109,Incidencias,Resuelta,Normal,MOB,Login/Registro,CTB-292  [MOB] Acepta formato de correo inválido,Juan Martinez Oliver,2025-12-04 11:58,2025-11-11 09:58,issues (5).csv
+466100,Incidencias,Resuelta,Normal,MOB,Login/Registro,CTB-326 [MOB] Visualización - Error en formato,Juan Martinez Oliver,2025-12-04 11:59,2025-11-11 09:41,issues (5).csv
+465956,Tarea,Cerrada,Normal,DSK,Login/Registro,CTB-297 [DSK] Login ? Redirección incorrecta desde ?Mi cuenta? en el header,Jael Masllorens,2025-12-11 12:52,2025-11-10 16:30,issues (5).csv
+465943,Incidencias,Resuelta,Normal,MOB,Login/Registro,CTB-281 [MOB]  Visualización - Error en formato,Juan Martinez Oliver,2025-12-04 12:00,2025-11-10 15:43,issues (5).csv
+465911,Tarea,Nueva,Normal,MOB,Login/Registro,[MOB] Login - Informe,Alejandra Sánchez Marta,2025-12-05 09:39,2025-11-10 13:05,issues (5).csv
+465902,Incidencias,Resuelta,Normal,MOB,Login/Registro,CTB-278 [MOB] Login - Acepta formatos inválidos,Juan Martinez Oliver,2025-12-04 12:01,2025-11-10 12:23,issues (5).csv
+465579,Tarea,Nueva,Normal,DSK,Login/Registro,B2C ? [DSK] Login y Recuperación de contraseña ? Informe,Alejandra Sánchez Marta,2025-11-06 15:25,2025-11-06 15:25,issues (5).csv
+465568,Tarea,Nueva,Normal,MOB,Calendario,B2C ? [MOB] Calendario ? Informe,Alejandra Sánchez Marta,2025-12-05 09:40,2025-11-06 14:30,issues (5).csv
+465514,Tarea,Nueva,Normal,MOB,Header/Nav,B2C ? [MOB] Header ? Informe,Alejandra Sánchez Marta,2025-12-05 09:40,2025-11-06 12:16,issues (5).csv
+465455,Tarea,Nueva,Normal,MOB,Footer,B2C ? [MOB] Footer ? Informe,Alejandra Sánchez Marta,2025-12-05 09:41,2025-11-06 09:49,issues (5).csv
+465421,Incidencias,Nueva,Normal,DSK,Login/Registro,CTB-304 [DSK] Login ? Error de idioma en validación campos Safari,Alejandra Sánchez Marta,2025-11-05 17:08,2025-11-05 17:08,issues (5).csv
+465390,Tarea,Nueva,Normal,DSK,Login/Registro,B2C ? [DSK] Registro ? Informe,Alejandra Sánchez Marta,2025-11-06 15:25,2025-11-05 15:19,issues (5).csv
+465387,Evolutivos,En curso,Normal,UNK,Login/Registro,Mi perfil,Alejandra Sánchez Marta,2025-12-10 16:35,2025-11-05 14:52,issues (5).csv
+465349,Incidencias,Nueva,Normal,DSK,Header/Nav,CTB-1 [DSK] Header ? En Safari aparece una ?X? en el campo del buscador,Javier López Girela,2025-11-20 11:59,2025-11-05 13:22,issues (5).csv
+464927,Incidencias,Pendiente,Normal,DSK,Login/Registro,CTB-300 [DSK] Login - Mensajes de error en inglés al dejar campos vacíos,Juan Martinez Oliver,2025-11-21 13:04,2025-11-03 17:20,issues (5).csv
+464599,Incidencias,Cerrada,Normal,DSK,Login/Registro,CTB-304 [DSK] Login ? No se valida el dominio en el campo de correo electrónico,Juan Martinez Oliver,2025-12-01 09:40,2025-10-31 13:30,issues (5).csv
+463317,Evolutivos,En curso,Normal,UNK,Carrito,Favoritos,Alejandra Sánchez Marta,2025-11-05 10:29,2025-10-25 17:38,issues (5).csv
+462411,Incidencias,En curso,Normal,MOB,Favoritos,"CTB-162 [MOB] Cards - Botón ""Favoritos"" no se marca",Jael Masllorens,2025-12-04 12:02,2025-10-21 10:10,issues (5).csv
+462384,Incidencias,Resuelta,Normal,MOB,Favoritos,CTB-121 [MOB] Cards - Tamaño diferente,Juan Martinez Oliver,2025-12-04 12:08,2025-10-21 09:27,issues (5).csv
+462375,Incidencias,Resuelta,Normal,MOB,Otros,CTB-117 [MOB]  No permite deslizar,Juan Martinez Oliver,2025-12-04 12:09,2025-10-21 09:15,issues (5).csv
+462330,Tarea,Nueva,Normal,DSK,Home,B2C ? [DSK] Home ? Informe,Jael Masllorens,2025-10-23 13:50,2025-10-20 17:37,issues (5).csv
+462329,Tarea,Nueva,Normal,DSK,Header/Nav,B2C ? [DSK] Header ? Informe,Jael Masllorens,2025-10-23 13:50,2025-10-20 17:36,issues (5).csv
+462320,Incidencias,Cerrada,Normal,DSK,Home,CTB-154 [DSK] Secciones Destacadas ? Falta imagen por defecto en productos sin imagen,Juan Martinez Oliver,2025-11-25 16:58,2025-10-20 16:56,issues (5).csv
+462267,Incidencias,Bloqueada,Normal,MOB,Footer,CTB-116 [MOB] Faltan apartados,Jael Masllorens,2025-12-10 11:18,2025-10-20 14:21,issues (5).csv
+462214,Incidencias,Desestimada,Normal,MOB,Calendario,CTB - 113 [MOB] Campo de entrada con respuesta incorrecta,Juan Martinez Oliver,2025-12-04 08:52,2025-10-20 11:56,issues (5).csv
+462188,Incidencias,Cerrada,Normal,DSK,Home,CTB-147 [DSK] Secciones Destacadas ? Visualización incorrecta de tarjetas en Safari,Juan Martinez Oliver,2025-11-25 17:02,2025-10-20 10:37,issues (5).csv
+462128,Incidencias,Cerrada,Normal,DSK,Calendario,CTB-159 [DSK] Calendario - Botón Cancelar ? Error al mostrar fechas seleccionadas,Jael Masllorens,2025-11-05 13:06,2025-10-20 08:31,issues (5).csv
+462018,Incidencias,Cerrada,Normal,DSK,Login/Registro,CTB-125 [DSK] ? Menú hamburguesa ? Enlace ?Inicia sesión o regístrate? ? Redirección incorrecta para usuario no autenticado,Jael Masllorens,2025-11-25 17:12,2025-10-17 13:04,issues (5).csv
+462017,Incidencias,Nueva,Normal,MOB,Listado/PLP,CTB-110 [MOB] Texto indebido,Juan Martinez Oliver,2025-12-04 08:51,2025-10-17 13:03,issues (5).csv
+462014,Incidencias,Resuelta,Normal,MOB,Otros,CTB-109 [MOB] Imagen no visible,Juan Martinez Oliver,2025-12-04 08:50,2025-10-17 12:50,issues (5).csv
+461919,Incidencias,Resuelta,Normal,MOB,Calendario,CTB-100 [MOB] Posible selección de fecha anterior a la actual,Jael Masllorens,2025-12-04 08:49,2025-10-16 23:56,issues (5).csv
+461918,Incidencias,Resuelta,Normal,MOB,Otros,CTB-100 [MOB] Posible seleccionar mes anterior al actual,Jael Masllorens,2025-12-04 08:49,2025-10-16 23:49,issues (5).csv
+461917,Incidencias,Resuelta,Normal,MOB,Calendario,"CTB-97 [MOB]  Botón ""Cancelar"" aplica",Jael Masllorens,2025-12-04 08:48,2025-10-16 23:41,issues (5).csv
+461916,Incidencias,Resuelta,Normal,MOB,Calendario,CTB-96 [MOB] Error días sueltos,Jael Masllorens,2025-10-28 10:11,2025-10-16 22:56,issues (5).csv
+461915,Incidencias,Resuelta,Normal,MOB,Calendario,CTB-93 [MOB]  Header del calendario oculto,Juan Martinez Oliver,2025-12-04 08:47,2025-10-16 22:39,issues (5).csv
+461914,Incidencias,Bloqueada,Normal,MOB,Header/Nav,"CTB-33 [MOB] Botón ""Idioma""",Jael Masllorens,2025-12-09 14:52,2025-10-16 22:24,issues (5).csv
+461778,Incidencias,Cerrada,Normal,DSK,Calendario,CTB-131 [DSK] ? Buscador mantiene error de longitud mínima tras intento inválido con filtro de fechas,Jael Masllorens,2025-11-05 13:04,2025-10-16 17:43,issues (5).csv
+461742,Incidencias,Resuelta,Normal,MOB,Otros,CTB-77: [MOB] Visualización,Jael Masllorens,2025-12-04 08:45,2025-10-16 15:45,issues (5).csv
+461723,Incidencias,Bloqueada,Normal,DSK,Perfil,CTB-128 [DSK] ? Dropdown multiidioma en menú hamburguesa muestra error al cambiar idioma,Jael Masllorens,2025-12-10 11:27,2025-10-16 14:12,issues (5).csv
+461445,Incidencias,Cerrada,Normal,DSK,Header/Nav,CTB-124 [DSK] ? Menú hamburguesa: apartado ?Explorar? no se muestra,Juan Martinez Oliver,2025-11-25 17:15,2025-10-15 17:12,issues (5).csv
+461435,Incidencias,En curso,Normal,DSK,Home,CTB-8 [DSK] ? Logo ?Visit Barcelona? desaparece momentáneamente al navegar y volver a la home,Juan Martinez Oliver,2025-10-31 10:00,2025-10-15 16:27,issues (5).csv
+461330,Incidencias,En curso,Normal,DSK,Header/Nav,CTB-7 [DSK] ? Enlace activo en el header no se resalta al hacer clic,Jael Masllorens,2025-10-27 11:09,2025-10-14 17:41,issues (5).csv
+461098,Evolutivos,Nueva,Normal,UNK,Favoritos,Detalle de Reserva,Jael Masllorens,2025-10-20 12:27,2025-10-13 17:05,issues (5).csv
+461097,Evolutivos,Nueva,Normal,UNK,Perfil,Mis Reservas,Jael Masllorens,2025-12-10 12:42,2025-10-13 17:05,issues (5).csv
+461096,Evolutivos,Nueva,Normal,UNK,Calendario,Sistema de Valoraciones,Jael Masllorens,2025-10-20 12:27,2025-10-13 16:55,issues (5).csv
+461095,Evolutivos,Nueva,Normal,UNK,Perfil,Proceso de compra - Confirmación,Jael Masllorens,2025-10-20 12:27,2025-10-13 16:48,issues (5).csv
+461094,Evolutivos,Nueva,Normal,UNK,Checkout/Pago,Proceso de compra - Pago,Jael Masllorens,2025-10-20 12:27,2025-10-13 16:47,issues (5).csv
+461093,Evolutivos,Nueva,Normal,UNK,Perfil,Proceso de compra - Datos personales,Jael Masllorens,2025-10-20 12:27,2025-10-13 16:46,issues (5).csv
+461092,Evolutivos,En curso,Normal,UNK,Carrito,Cesta de la compra,Juan Martinez Oliver,2025-12-02 18:06,2025-10-13 16:44,issues (5).csv
+460997,Tarea,Nueva,Normal,DSK,Footer,B2C ? [DSK] Footer ? Informe,Jael Masllorens,2025-10-20 12:26,2025-10-10 14:59,issues (5).csv
+460990,Incidencias,Reabierta,Normal,MOB,Home,CTB-64  [MOB] Newsletter - Error por correo inválido  (Safari),Juan Martinez Oliver,2025-12-04 08:43,2025-10-10 14:43,issues (5).csv
+460426,Incidencias,Reabierta,Normal,DSK,Header/Nav,CTB-40 [DSK] Newsletter ? Mensaje de campo vacío en inglés en Safari / Firefox,Juan Martinez Oliver,2025-12-10 11:34,2025-10-07 13:49,issues (5).csv
+460421,Incidencias,Reabierta,Normal,DSK,Header/Nav,CTB-41 [DSK] Newsletter ? Mensaje de validación no personalizado en Safari / Firefox,Juan Martinez Oliver,2025-11-04 17:56,2025-10-07 13:36,issues (5).csv
+460301,Incidencias,Cerrada,Normal,DSK,Header/Nav,CTB-37 [DSK] Falta enlace ?Condiciones de compra? en el footer,Jael Masllorens,2025-11-04 17:35,2025-10-06 17:33,issues (5).csv
+459577,Evolutivos,En curso,Normal,UNK,Header/Nav,Footer,Jael Masllorens,2025-10-30 14:52,2025-10-01 17:22,issues (5).csv
+458326,Evolutivos,Nueva,Normal,UNK,Carrito,Ficha de Producto,Jael Masllorens,2025-10-20 12:27,2025-09-24 15:26,issues (5).csv
+458295,Evolutivos,En curso,Normal,UNK,Home,Subcategoría,Jael Masllorens,2025-12-03 08:57,2025-09-24 13:33,issues (5).csv
+458272,Evolutivos,En curso,Normal,UNK,Login/Registro,Categoría,Jael Masllorens,2025-12-03 08:56,2025-09-24 12:19,issues (5).csv
+458234,Evolutivos,En curso,Normal,UNK,Header/Nav,"Menú ""Categorías""",Jael Masllorens,2025-10-22 16:20,2025-09-24 10:33,issues (5).csv
+457530,Evolutivos,En curso,Normal,UNK,Perfil,Header y Buscador LiveSearch,Jael Masllorens,2025-12-04 08:46,2025-09-19 13:31,issues (5).csv
+457528,Evolutivos,En curso,Normal,UNK,Login/Registro,Resultados de búsqueda,Jael Masllorens,2025-10-21 12:50,2025-09-19 13:30,issues (5).csv
+457526,Tarea,Reabierta,Normal,UNK,PDP,Wiki QA,Jael Masllorens,2025-11-05 15:13,2025-09-19 13:28,issues (5).csv
+461739,Incidencias,Cerrada,Baja,MOB,Calendario,"CTB-112 [MOB] Diseño del botón ""Buscar""",Juan Martinez Oliver,2025-12-11 12:54,2025-10-16 15:41,issues (5).csv

@@ -1,0 +1,199 @@
+ID,Módulo,Requisito,Descripción,Tipo de Prueba,Nivel de Prueba,Prioridad,Precondiciones,Pasos,Datos de Entrada,Resultado Esperado,Resultado Real,Estado,Defecto Asociado,Comentarios
+TC-AUTH-001,Autenticación,RF-01,Registro exitoso con datos válidos,Funcional,API,Alta,"Sistema accesible, email no registrado","1. Enviar POST a /auth/register
+2. Payload: email válido, password seguro, full_name
+3. Verificar response status
+4. Verificar estructura de respuesta
+5. Verificar token JWT","Email: hola@stayarta.com
+Password: SecurePass2025!
+Full Name: HAIDA Test User 001
+Role: qa_engineer","Status: 200 o 201
+Response contiene: access_token, user (id, email, name, role)
+Token JWT decodificable
+Usuario en public.users",,Pendiente,,Caso base - Happy Path
+TC-AUTH-002,Autenticación,RF-02,Registro con email inválido debe fallar,Validación,API,Alta,Sistema accesible,"1. Enviar POST a /auth/register
+2. Payload: email inválido
+3. Verificar response status
+4. Verificar mensaje de error","Email: invalid-email-format
+Password: SecurePass2025!","Status: 422 (Unprocessable Entity)
+Mensaje error indica validación de email
+No se crea usuario",,Pendiente,,Validación de entrada
+TC-AUTH-003,Autenticación,RF-02,Registro con password débil debe fallar,Validación,API,Alta,Sistema accesible,"1. Enviar POST a /auth/register
+2. Payload: password débil
+3. Verificar response status
+4. Verificar mensaje de error","Email: hola@stayarta.com
+Password: 123","Status: 400
+Mensaje indica password débil
+No se crea usuario",,Pendiente,,Política de seguridad
+TC-AUTH-004,Autenticación,RF-07,Registro con email duplicado debe fallar,Validación,API,Media,Usuario ya registrado con mismo email,"1. Intentar registrar usuario con email existente
+2. Verificar response status
+3. Verificar mensaje de error","Email: hola@stayarta.com (ya existe)
+Password: NewPassword2025!","Status: 400 o 409
+Mensaje indica usuario ya existe
+No se crea duplicado",,Pendiente,,Integridad de datos
+TC-AUTH-005,Autenticación,RF-01,Login exitoso con credenciales válidas,Funcional,API,Alta,Usuario registrado previamente,"1. Enviar POST a /auth/login
+2. Payload: email y password correctos
+3. Verificar response status
+4. Verificar token JWT
+5. Verificar datos de usuario","Email: hola@stayarta.com
+Password: SecurePass2025!","Status: 200
+Response contiene: access_token, user
+Token válido con claims correctos
+Campo last_login_at actualizado en DB",,Pendiente,,Autenticación básica
+TC-AUTH-006,Autenticación,RF-04,Login con credenciales incorrectas debe fallar,Seguridad,API,Alta,Usuario existe,"1. Enviar POST a /auth/login
+2. Payload: password incorrecto
+3. Verificar response status
+4. Verificar mensaje de error","Email: hola@stayarta.com
+Password: WrongPassword123!","Status: 401 (Unauthorized)
+Mensaje error genérico (no revelar si usuario existe)
+No se genera token",,Pendiente,,Seguridad - Prevent enumeration
+TC-AUTH-007,Autenticación,RF-04,Acceso a /auth/me con token válido,Funcional,API,Alta,Usuario autenticado con token,"1. Obtener token de login
+2. Enviar GET a /auth/me con header Authorization
+3. Verificar response status
+4. Verificar datos de usuario","Authorization: Bearer {valid_token}","Status: 200
+Response contiene perfil completo: id, email, name, role, is_active, created_at, last_login_at",,Pendiente,,Endpoint protegido
+TC-AUTH-008,Autenticación,RF-04,Acceso a /auth/me sin token debe fallar,Seguridad,API,Alta,Sin autenticación,"1. Enviar GET a /auth/me sin header Authorization
+2. Verificar response status
+3. Verificar mensaje de error",Sin Authorization header,"Status: 401
+Mensaje indica autorización requerida
+No se revelan datos de usuario",,Pendiente,,Protección de endpoints
+TC-AUTH-009,Autenticación,RF-03,Token JWT contiene claims correctos,Seguridad,API,Alta,Usuario autenticado,"1. Obtener token de login
+2. Decodificar token JWT
+3. Verificar claims presentes
+4. Verificar valores correctos","Token de TC-AUTH-005","Token contiene:
+- sub (user ID)
+- email
+- role
+- name
+- exp (expiración)
+- iat (issued at)
+Algoritmo: HS256",,Pendiente,,Estructura de token
+TC-AUTH-010,Autenticación,RF-03,Token expirado debe ser rechazado,Seguridad,API,Media,Token expirado (simulado),"1. Crear token con exp pasado
+2. Intentar acceder a /auth/me
+3. Verificar rechazo","Token con exp < now()","Status: 401
+Mensaje indica token expirado",,Pendiente,,Validación de expiración
+TC-INT-001,Integración,RF-05,Usuario se sincroniza de auth.users a public.users,Integración,Database,Alta,"Trigger on_auth_user_created activo, RLS deshabilitado","1. Registrar nuevo usuario vía API
+2. Verificar creación en auth.users (Supabase)
+3. Verificar creación en public.users
+4. Comparar datos entre tablas","Email: hola@stayarta.com
+Password: IntegrationTest2025!
+Full Name: Integration Test User","Usuario en ambas tablas
+Datos coinciden:
+- id (mismo UUID)
+- email
+- full_name
+- role
+Timestamp created_at presente",,Pendiente,,Sincronización automática
+TC-INT-002,Integración,RF-08,CORS permite requests desde frontend,Integración,API,Media,Frontend desplegado,"1. Enviar OPTIONS request a /auth/login
+2. Verificar headers CORS
+3. Enviar POST desde origen diferente","Origin: https://haida-frontend.vercel.app","Headers response incluyen:
+- Access-Control-Allow-Origin: *
+- Access-Control-Allow-Methods: POST, GET, OPTIONS
+- Access-Control-Allow-Headers: Content-Type, Authorization",,Pendiente,,Configuración CORS
+TC-OAUTH-001,OAuth,RF-04,Endpoint /entra/login existe y responde,Funcional,API,Baja,Backend desplegado,"1. Enviar GET a /entra/login
+2. Verificar response status
+3. Si configurado, verificar auth_url
+4. Si no configurado, verificar mensaje",Sin payload,"Si configurado (CLIENT_ID set):
+  Status: 200, auth_url presente
+Si no configurado:
+  Status: 501, mensaje indica configuración faltante",,Pendiente,,OAuth Microsoft
+TC-OAUTH-002,OAuth,RF-04,Redirect URI configurado correctamente,Configuración,API,Baja,Variables de entorno configuradas,"1. Enviar GET a /entra/status
+2. Verificar redirect_uri
+3. Validar formato URL",Sin payload,"redirect_uri: https://haida-frontend.vercel.app/auth/callback
+No contiene localhost",,Pendiente,,Evitar error producción
+TC-PERF-001,Performance,RNF-01,Tiempo de respuesta < 2 segundos,Performance,API,Alta,Sistema en producción,"1. Enviar 100 requests a /auth/login
+2. Medir tiempo de respuesta de cada una
+3. Calcular percentil 95
+4. Verificar < 2000ms","100 requests válidos secuenciales","95% de requests < 2000ms
+0% timeouts
+Sin errores 5xx",,Pendiente,,SLA de performance
+TC-PERF-002,Performance,RNF-02,Concurrencia de 50 usuarios,Performance,API,Media,k6 o Artillery instalado,"1. Configurar test de carga: 50 usuarios virtuales
+2. Cada usuario: register → login → /me
+3. Ejecutar durante 1 minuto
+4. Medir tasas de error y latencia","50 VUs concurrentes
+Ramp-up: 10s
+Duration: 60s","Tasa de error < 5%
+Latencia p95 < 3000ms
+Throughput > 40 req/s",,Pendiente,,Prueba de carga
+TC-SEC-001,Seguridad,RNF-03,Passwords nunca en texto plano,Seguridad,Database,Alta,Usuario registrado,"1. Registrar usuario
+2. Consultar tabla auth.users en Supabase
+3. Verificar campo encrypted_password
+4. Confirmar que NO es texto plano","Usuario de prueba cualquiera","Campo encrypted_password:
+- NO es texto plano
+- Formato hash (bcrypt)
+- Longitud > 50 caracteres",,Pendiente,,Encriptación obligatoria
+TC-SEC-002,Seguridad,RNF-03,Tokens incluyen expiración adecuada,Seguridad,API,Alta,Usuario autenticado,"1. Obtener token
+2. Decodificar y verificar exp
+3. Calcular tiempo hasta expiración","Token de login reciente","Tiempo expiración: 24 horas (86400 segundos)
+exp > iat
+exp > now()",,Pendiente,,Política de tokens
+TC-DB-001,Base de Datos,RF-05,Trigger on_auth_user_created existe,Database,Database,Alta,Acceso a Supabase SQL,"1. Ejecutar query para verificar trigger
+2. Verificar función asociada
+3. Confirmar está habilitado","Query: SELECT tgname, tgenabled FROM pg_trigger WHERE tgname = 'on_auth_user_created'","Trigger existe
+tgenabled = 'O' (enabled)
+Función sync_auth_user_to_public existe",,Pendiente,,Infraestructura DB
+TC-DB-002,Base de Datos,RF-05,RLS deshabilitado en public.users,Database,Database,Alta,Acceso a Supabase SQL,"1. Ejecutar query para verificar RLS
+2. Confirmar deshabilitado","Query: SELECT relrowsecurity FROM pg_class WHERE relname = 'users'","relrowsecurity = false (RLS disabled)
+Permite INSERT desde backend",,Pendiente,,Fix aplicado previamente
+TC-HEALTH-001,Health Check,General,Endpoint /health responde correctamente,Smoke,API,Alta,Sistema desplegado,"1. Enviar GET a /health
+2. Verificar status
+3. Verificar estructura response",Sin payload,"Status: 200
+Response JSON:
+  - status: healthy
+  - service: HAIDA Backend o HAIDA API
+  - version: 2.0.0 o superior
+  - timestamp presente",,Pendiente,,Monitoreo básico
+TC-HEALTH-002,Health Check,General,Endpoint /api/health con info de DB,Smoke,API,Media,Sistema desplegado,"1. Enviar GET a /api/health
+2. Verificar conexión DB",Sin payload,"Status: 200
+database: connected
+Timestamp presente",,Pendiente,,Salud de DB
+TC-REG-001,Regresión,Todos,Suite completa de autenticación pasa,Regresión,E2E,Alta,Todos los tests unitarios pasando,"1. Ejecutar suite completa de tests
+2. Verificar 95%+ pasan
+3. No errores críticos","Ejecutar: npx playwright test tests/web-e2e/auth-api.spec.ts","60/60 tests pasando (100%)
+0 failed
+0 skipped
+Tiempo < 2 minutos",,Pendiente,,Validación completa
+TC-CROSS-001,Compatibilidad,RNF-04,Tests pasan en múltiples navegadores,Compatibilidad,E2E,Media,Playwright configurado con 5 browsers,"1. Ejecutar tests en Chrome
+2. Ejecutar tests en Firefox
+3. Ejecutar tests en Safari
+4. Ejecutar tests en Mobile (iPhone, Android)
+5. Comparar resultados","Suite auth-api.spec.ts en 5 browsers","Todos los browsers:
+- 12/12 tests pasando
+- Sin errores específicos de navegador",,Pendiente,,Cross-browser
+TC-SMOKE-001,Smoke Test,Crítico,Flujo completo Registro + Login + Acceso,Smoke,E2E,Alta,Sistema limpio,"1. Registrar usuario único
+2. Login con mismo usuario
+3. Acceder a /auth/me con token
+4. Verificar datos consistentes","Email único: smoke-{timestamp}@test.com","Todas las operaciones exitosas
+Datos consistentes en cada paso
+Usuario en DB al final",,Pendiente,,Critical path
+TC-VAL-001,Validación,RF-01,Estructura de respuesta de registro completa,Validación,API,Alta,Usuario puede registrarse,"1. Registrar usuario
+2. Validar estructura JSON response
+3. Verificar campos requeridos presentes","Usuario válido de prueba","Response incluye:
+- access_token (string)
+- token_type: bearer
+- expires_in: 86400
+- user (object con id, email, name, role)",,Pendiente,,Contrato API
+TC-VAL-002,Validación,RF-01,Estructura de respuesta de login completa,Validación,API,Alta,Usuario registrado,"1. Login usuario
+2. Validar estructura JSON response
+3. Verificar campos requeridos presentes","Credenciales válidas","Response incluye:
+- access_token (string, longitud > 100)
+- token_type: bearer
+- expires_in: 86400
+- user (object completo)",,Pendiente,,Contrato API
+TC-DATA-001,Integridad de Datos,RF-06,Last login actualizado en cada login,Funcional,Database,Media,Usuario existe,"1. Login usuario primera vez
+2. Capturar last_login_at
+3. Esperar 2 segundos
+4. Login nuevamente
+5. Verificar last_login_at actualizado","Usuario de prueba con múltiples logins","last_login_at después del segundo login > last_login_at del primero
+Diferencia aproximadamente 2 segundos",,Pendiente,,Auditoría de accesos
+TC-ERROR-001,Manejo de Errores,General,Errores 4xx tienen mensajes descriptivos,Usabilidad,API,Baja,Provocar errores controlados,"1. Enviar requests inválidos
+2. Verificar estructura de errores
+3. Confirmar mensajes útiles","Diversos payloads inválidos","Errores 400/401/422 contienen:
+- detail (string descriptivo)
+- No revelan información sensible
+- Mensajes en inglés consistentes",,Pendiente,,UX de errores
+TC-ERROR-002,Manejo de Errores,General,Errores 5xx no revelan stack traces,Seguridad,API,Alta,Provocar error interno (simulado),"1. Si posible, provocar error 500
+2. Verificar response no contiene stack trace
+3. Confirmar logging interno funciona","Depende de implementación","Status: 500
+Response genérico
+NO incluye stack traces
+NO incluye rutas de archivos internos",,Pendiente,,Seguridad - Info leakage
