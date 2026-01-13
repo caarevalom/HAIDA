@@ -20,6 +20,16 @@ playwright-report/
 test-results/
 reports/allure-report/
 reports/allure-results/
+
+# Large files (GitHub limit: 100MB)
+*.fig
+*.zip
+*.rar
+*.7z
+*.tar.gz
+*.dmg
+*.pkg
+*.iso
 reports/lighthouse/
 coverage/
 *.log
