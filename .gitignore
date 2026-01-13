@@ -5,15 +5,23 @@ yarn-debug.log*
 yarn-error.log*
 package-lock.json
 
-# Environment variables
+# Environment variables - TODOS LOS .env excepto .env.example
 .env
 .env.local
 .env.production
 .env.development
 .env.test
+.env.testing
+.env.corrected
+.env.railway
+.env.redis*
+.env.smtp*
+.env.vault*
 .env.*.local
 !.env.example
 !**/.env.example
+!**/.env.*.example
+!**/.env.*.template
 
 # Test results and reports
 playwright-report/
