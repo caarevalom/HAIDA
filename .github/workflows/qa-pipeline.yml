@@ -1,0 +1,55 @@
+
+name: QA Pipeline
+
+on:
+  pull_request:
+    branches: [ main, develop ]
+  push:
+    branches: [ main ]
+  schedule:
+    - cron: '0 2 * * *'  # 02:00 todos los días
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Configurar variables
+        run: echo "BASE_URL=${{ secrets.BASE_URL }}" >> $GITHUB_ENV
+      - name: Instalar deps
+        run: npm ci
+      - name: Instalar navegadores Playwright
+        run: npx playwright install --with-deps
+      - name: Ejecutar Web E2E
+        run: npm run test:web
+      - name: Ejecutar API (Newman)
+        run: npm run test:api
+      - name: Ejecutar Lighthouse
+        env:
+          BASE_URL: ${{ env.BASE_URL }}
+        run: npm run lighthouse || true
+      - name: Recopilar resultados Allure
+        if: always()
+        run: |
+          mkdir -p reports/allure-results
+          # Playwright + allure-playwright genera en `./allure-results` si se configura.
+          if [ -d allure-results ]; then mv allure-results reports/allure-results/; fi
+      - name: Publicar artefactos
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results
+          path: reports/allure-results
+      - name: Generar reporte Allure HTML
+        if: always()
+        run: |
+          npx allure generate reports/allure-results -o reports/allure-report --clean || true
+      - name: Subir reporte HTML
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: reports/allure-report

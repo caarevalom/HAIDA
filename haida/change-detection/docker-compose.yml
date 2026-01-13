@@ -1,0 +1,121 @@
+version: '3.8'
+
+services:
+  # Changedetection.io - Monitoreo de cambios en UI
+  changedetection:
+    image: ghcr.io/dgtlmoon/changedetection.io:latest
+    container_name: haida-changedetection
+    ports:
+      - "5000:5000"
+    volumes:
+      - changedetection_data:/datastore
+      - ./changedetection-config:/etc/changedetection.io/config:ro
+    environment:
+      # Webhook settings
+      - WEBHOOK_VERIFY_SSL=false
+      - FETCH_BACKEND=selenium  # Para JS rendering
+      - PLAYWRIGHT_INSTALL=1
+    networks:
+      - haida-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Selenium Hub para headless browser (usado por changedetection)
+  selenium:
+    image: selenium/standalone-chrome:latest
+    container_name: haida-selenium
+    ports:
+      - "4444:4444"
+    volumes:
+      - /dev/shm:/dev/shm
+    networks:
+      - haida-network
+    restart: unless-stopped
+
+  # Node.js API Server - Recibe webhooks y lanza tests
+  haida-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: haida-api
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=production
+      - API_PORT=3001
+      - CHANGEDETECTION_URL=http://changedetection:5000
+      - SLACK_WEBHOOK=${SLACK_WEBHOOK}
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+      - LOG_LEVEL=debug
+    depends_on:
+      changedetection:
+        condition: service_healthy
+    volumes:
+      - ./haida:/app/haida
+      - ./test-results:/app/test-results
+      - ./reports:/app/reports
+    networks:
+      - haida-network
+    restart: unless-stopped
+    command: npm start
+
+  # Postgres (opcional) - Para almacenar histórico de tests
+  postgres:
+    image: postgres:15-alpine
+    container_name: haida-postgres
+    environment:
+      - POSTGRES_DB=haida_tests
+      - POSTGRES_USER=haida
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - haida-network
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+
+  # Redis (opcional) - Cache para test results
+  redis:
+    image: redis:7-alpine
+    container_name: haida-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - haida-network
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+
+  # Allure Server (opcional) - Para reportes unificados
+  allure:
+    image: frankescobar/allure-docker-service:latest
+    container_name: haida-allure
+    ports:
+      - "4040:4040"
+      - "4041:4041"
+    networks:
+      - haida-network
+    restart: unless-stopped
+    environment:
+      - CHECK_RESULTS_EVERY_SECONDS=5
+      - KEEP_HISTORY=1
+
+networks:
+  haida-network:
+    driver: bridge
+
+volumes:
+  changedetection_data:
+    driver: local
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local

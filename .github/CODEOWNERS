@@ -1,0 +1,40 @@
+# HAIDA Code Ownership
+
+# Global owners - must review all changes
+* @caarevalom
+
+# Backend (Python/FastAPI)
+/app/ @caarevalom
+requirements.txt @caarevalom
+Dockerfile @caarevalom
+docker-compose.yml @caarevalom
+
+# Database & Infrastructure
+/infrastructure/ @caarevalom
+docs/DB/ @caarevalom
+
+# Frontend (if added later)
+/Figma/ @caarevalom
+package.json @caarevalom
+
+# CI/CD & DevOps
+/.github/ @caarevalom
+vercel.json @caarevalom
+
+# Documentation
+/docs/ @caarevalom
+README*.md @caarevalom
+
+# Testing
+/tests/ @caarevalom
+test-*.ps1 @caarevalom
+playwright.config.ts @caarevalom
+
+# Scripts & Tools
+*.ps1 @caarevalom
+*.sh @caarevalom
+
+# Security - require additional review
+app/core/jwt_auth.py @caarevalom
+app/core/rbac.py @caarevalom
+infrastructure/supabase/policies.sql @caarevalom
