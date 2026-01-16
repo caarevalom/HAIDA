@@ -1,0 +1,87 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/copilot/declarative-agent/v1.5/schema.json",
+  "version": "v1.5",
+  "name": "haida",
+  "description": "Declarative agent created with Microsoft 365 Agents Toolkit and TypeSpec for Microsoft 365 Copilot.",
+  "instructions": "You are a declarative agent and were created with Microsoft 365 Agents Toolkit and TypeSpec for Microsoft 365 Copilot.",
+  "conversation_starters": [
+    {
+      "title": "Data Analysis",
+      "text": "Analyze the customer feedback data and show insights"
+    },
+    {
+      "title": "Generate Image",
+      "text": "Create an image for our new product launch"
+    },
+    {
+      "title": "Meeting Notes",
+      "text": "What decisions were made in yesterday's team meeting?"
+    },
+    {
+      "title": "Find Contact Info",
+      "text": "Who is the project manager for the marketing team?"
+    },
+    {
+      "title": "Create a Chart",
+      "text": "Generate a chart showing sales data trends"
+    },
+    {
+      "title": "Check Emails",
+      "text": "Find emails about the quarterly review"
+    },
+    {
+      "title": "Team Messages",
+      "text": "What were the recent discussions in our engineering channel?"
+    },
+    {
+      "title": "Find Files",
+      "text": "Search my OneDrive for documents about project planning"
+    },
+    {
+      "title": "Search the Web",
+      "text": "Search for information about Microsoft 365"
+    },
+    {
+      "title": "Search GitHub Issues",
+      "text": "Show me the latest GitHub issues"
+    }
+  ],
+  "actions": [
+    {
+      "id": "githubapi",
+      "file": "githubapi-apiplugin.json"
+    }
+  ],
+  "capabilities": [
+    {
+      "name": "WebSearch"
+    },
+    {
+      "name": "OneDriveAndSharePoint"
+    },
+    {
+      "name": "TeamsMessages"
+    },
+    {
+      "name": "Email"
+    },
+    {
+      "name": "People"
+    },
+    {
+      "name": "GraphicArt"
+    },
+    {
+      "name": "GraphConnectors"
+    },
+    {
+      "name": "CodeInterpreter"
+    },
+    {
+      "name": "Meetings"
+    },
+    {
+      "name": "Dataverse"
+    }
+  ]
+}
