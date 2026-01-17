@@ -105,3 +105,28 @@ venv/
 .venv/
 ENV/
 env/
+
+# Large directories - exclude from deployment
+05-INSTALLERS/
+Applications/
+*.app/
+iCloud Drive*/
+iCloud Drive (archivado)/
+Downloads/
+Security_Backup*/
+Atlassian APP/
+vscode-live-server/
+
+# Archive and backup
+08-ARCHIVE/
+*.archived
+backups/
+
+# Documentation and non-deployment files
+*.md
+!README.md
+!CHANGELOG.md
+
+# Figma exports (large binary files)
+Figma/
+*.fig

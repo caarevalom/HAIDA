@@ -49,3 +49,48 @@ database/
 # Examples
 examples/
 demos/
+
+# Large directories - EXCLUDE from deployment
+05-INSTALLERS/
+06-DOWNLOADS/
+07-SECURITY/
+08-ARCHIVE/
+00-PROJECTS/
+01-DOCUMENTATION/
+02-AUTOMATION-SCRIPTS/
+03-TESTING-DATA/
+04-CONFIGURATION/
+Bot Haida/
+Figma/
+Vercel/
+Pro/
+applications/
+iCloud Drive*/
+Security_Backup*/
+allure-results/
+demo-reports/
+infrastructure/
+supabase/
+
+# Large binary files
+*.zip
+*.tar.gz
+*.dmg
+*.pkg
+*.fig
+*.app
+
+# Database files
+database/
+database_schema.sql
+
+# Config duplicates
+*.ps1
+*.ps1.txt
+*.bat
+
+# Temporary
+*.tmp
+*.temp
+*.cache
+*.archived
