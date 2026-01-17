@@ -41,7 +41,7 @@ jobs:
           FRONTEND_URL: ${{ github.event_name == 'pull_request' && format('https://haida-{0}-vercel.vercel.app', github.event.number) || 'https://haida.stayarta.com' }}
 
       - name: 📊 Upload Lighthouse Results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         if: always()
         with:
           name: lighthouse-results
