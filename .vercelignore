@@ -1,20 +1,47 @@
-# Vercel Ignore File - HAIDA
+# Vercel Ignore File - HAIDA (Updated 2026-01-17)
+# ================================================
 
-# Node modules
+# CRITICAL: Large directories (30GB total - must exclude)
+iCloud Drive*/
+iCloud Drive (archivado)/
+05-INSTALLERS/
 node_modules/
+Atlassian APP/
+Bot Haida/
+Downloads/
+Applications/
+04-CONFIGURATION/
 
-# Test results
+# Project subdirectories not needed for deployment
+00-PROJECTS/
+01-DOCUMENTATION/
+02-AUTOMATION-SCRIPTS/
+03-TESTING-DATA/
+06-DOWNLOADS/
+07-SECURITY/
+08-ARCHIVE/
+
+# HAIDA submodules (deploy separately)
+haida/
+tests/
+configs/
+
+# Figma and design files
+Figma/
+*.fig
+
+# Test results and reports
 test-results/
 playwright-report/
 allure-results/
 allure-report/
 reports/
+demo-reports/
 
-# Environment files (use Vercel dashboard for env vars)
+# Environment files (use Vercel dashboard)
 .env
-.env.local
-.env.development
-.env.test
+.env.*
+!.env.example
 
 # Logs
 *.log
@@ -23,6 +50,7 @@ logs/
 # OS files
 .DS_Store
 Thumbs.db
+._*
 
 # IDE
 .vscode/
@@ -30,67 +58,76 @@ Thumbs.db
 *.swp
 *.swo
 
-# Docker
-docker-compose.yml
-Dockerfile
+# Docker (not needed in Vercel)
+docker-compose*.yml
+Dockerfile*
 .dockerignore
 
-# Documentation (not needed in deployment)
+# Documentation
 *.md
 !README.md
 
 # Scripts
 *.ps1
 *.sh
+*.bat
 
 # Database
 database/
-
-# Examples
-examples/
-demos/
-
-# Large directories - EXCLUDE from deployment
-05-INSTALLERS/
-06-DOWNLOADS/
-07-SECURITY/
-08-ARCHIVE/
-00-PROJECTS/
-01-DOCUMENTATION/
-02-AUTOMATION-SCRIPTS/
-03-TESTING-DATA/
-04-CONFIGURATION/
-Bot Haida/
-Figma/
-Vercel/
-Pro/
-applications/
-iCloud Drive*/
-Security_Backup*/
-allure-results/
-demo-reports/
-infrastructure/
+*.sql
 supabase/
+
+# Infrastructure
+infrastructure/
+terraform/
+.terraform/
 
 # Large binary files
 *.zip
 *.tar.gz
+*.tar
 *.dmg
 *.pkg
-*.fig
 *.app
+*.exe
+*.msi
 
-# Database files
-database/
-database_schema.sql
+# Media files
+*.mp4
+*.mov
+*.avi
+*.mp3
+*.wav
 
-# Config duplicates
-*.ps1
-*.ps1.txt
-*.bat
-
-# Temporary
+# Temporary and cache
 *.tmp
 *.temp
 *.cache
 *.archived
+.cache/
+.turbo/
+.next/cache/
+
+# Git
+.git/
+.gitignore
+
+# Security backups
+Security_Backup*/
+*.enc
+*.pem
+*.key
+
+# Vercel specific
+Vercel/
+Pro/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Examples and demos
+examples/
+demos/
